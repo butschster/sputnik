@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Models\Concerns\UsesUuid;
+use App\Models\Server\Task;
 use App\Utils\Ssh\KeyPair;
+use App\Utils\Ssh\KeyStorage;
 use Illuminate\Database\Eloquent\Model;
 
 class Server extends Model
@@ -51,5 +53,25 @@ class Server extends Model
     public function hasKeyPair(): bool
     {
         return !empty($this->public_key) && !empty($this->private_key);
+    }
+
+    /**
+     * Get the tasks that belong to the server.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    /**
+     * Get the path to the user's worker SSH key.
+     *
+     * @return string
+     */
+    public function keyPath()
+    {
+        return (new KeyStorage())->storeKey($this->id, $this->private_key);
     }
 }
