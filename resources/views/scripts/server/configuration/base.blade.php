@@ -20,17 +20,16 @@ fail2ban \
 ufw \
 software-properties-common \
 supervisor \
-whois
+whois \
+unzip
 
 # Disable Password Authentication Over SSH
-
 sed -i "/PasswordAuthentication yes/d" /etc/ssh/sshd_config
 echo "" | sudo tee -a /etc/ssh/sshd_config
 echo "" | sudo tee -a /etc/ssh/sshd_config
 echo "PasswordAuthentication no" | sudo tee -a /etc/ssh/sshd_config
 
 # Restart SSH
-
 ssh-keygen -A
 service ssh restart
 
@@ -46,12 +45,6 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 # Create The Root SSH Directory If Necessary
 
-if [ ! -d /root/.ssh ]
-then
-mkdir -p /root/.ssh
-touch /root/.ssh/authorized_keys
-fi
-
 # Setup Sputnik User
 
 useradd sputnik
@@ -65,7 +58,7 @@ chsh -s /bin/bash sputnik
 cp /root/.profile /home/sputnik/.profile
 cp /root/.bashrc /home/sputnik/.bashrc
 
-# Set The Sudo Password For The Cloud User
+# Set The Sudo Password For The Sputnik User
 
 PASSWORD=$(mkpasswd {!! $server->sudo_password !!})
 usermod --password $PASSWORD sputnik
@@ -76,17 +69,8 @@ mkdir -p /home/sputnik/.ssh/authorized_keys.d
 
 # Generate Authorized Keys File
 
-cat /root/.ssh/authorized_keys.d/* > /root/.ssh/authorized_keys
+echo "{!! $server->public_key !!}" > /home/sputnik/.ssh/authorized_keys.d/server.pub
 cat /home/sputnik/.ssh/authorized_keys.d/* > /home/sputnik/.ssh/authorized_keys
-
-# Build Key Generation Cron
-
-cat > /etc/cron.d/authorized_keys << EOF
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-
-* * * * * sputnik cat /home/sputnik/.ssh/authorized_keys.d/* > /home/sputnik/.ssh/authorized_keys
-EOF
 
 # Create The Server SSH Key
 

@@ -15,5 +15,6 @@ while read -r l; do
 done < .ssh/authorized_keys
 
 echo "{!! $server->public_key !!}" > /root/.ssh/authorized_keys.d/server.pub
+echo "{!! $server->public_key !!}" >> /root/.ssh/authorized_keys
 
 curl --insecure --data "event=server.keys_installed" {{ route('server.callback', $server) }} > /dev/null 2>&1

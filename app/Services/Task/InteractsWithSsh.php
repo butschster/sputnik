@@ -30,14 +30,7 @@ trait InteractsWithSsh
             $this->toScriptProcess(['bash', '-s', '<<', $token . '
 ' . $script . '
 ' . $token,
-            ], $timeout),
-            function ($type, $buffer) {
-                if (Process::ERR === $type) {
-                    echo 'ERR > ' . $buffer;
-                } else {
-                    echo 'OUT > ' . $buffer;
-                }
-            });
+            ], $timeout));
     }
 
     /**

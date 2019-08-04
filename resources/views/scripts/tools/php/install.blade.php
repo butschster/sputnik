@@ -1,19 +1,24 @@
 
-# Install Base PHP Packages
+# ================================================
+# PHP
+#
+# Documentation: https://www.php.net/
+# ================================================
+apt-add-repository ppa:ondrej/php -y
+apt-get update
 
 apt-get update
 
 apt-get install -y --force-yes php7.2-bcmath \
 php7.2-cli \
 php7.2-curl \
-php7.2.dev \
+php7.2-dev \
 php7.2-fpm \
 php7.2-gd \
 php7.2-imap \
 php7.2-intl \
 php7.2-mbstring \
 php7.2-memcached \
-php7.2-mcrypt \
 php7.2-mysql \
 php7.2-pgsql \
 php7.2-readline \
@@ -22,7 +27,12 @@ php7.2-sqlite3 \
 php7.2-xml \
 php7.2-zip
 
-# Install Composer Package Manager
+# ================================================
+# Composer
+#
+# See https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx
+# Documentation: https://getcomposer.org/doc/
+# ================================================
 
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer

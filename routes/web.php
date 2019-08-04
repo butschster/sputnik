@@ -20,6 +20,7 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/server/{server}', 'ServerController@show')->name('server.show');
+    Route::get('/task/{task}', 'TasksController@show')->name('task.show');
 });
 
 Route::get('/server/{server}/install', 'ServerController@installationScript')->name('server.install_script');

@@ -65,7 +65,7 @@ class Server extends Model
     public function setKeypairAttribute(KeyPair $keyPair)
     {
         $this->public_key = $keyPair->getPublicKey();
-        $this->private_key = $keyPair->getPublicKey();
+        $this->private_key = $keyPair->getPrivateKey();
         $this->key_password = $keyPair->getPassword();
     }
 

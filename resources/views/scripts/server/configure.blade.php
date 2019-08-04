@@ -5,13 +5,13 @@ export DEBIAN_FRONTEND=noninteractive
 
 @include('scripts.server.configuration.base')
 
-# Run Caddy Installation Script
-
-@include('scripts.tools.caddy.install')
-
 # Run PHP Installation Script
 
 @include('scripts.tools.php.install')
+
+# Run Nginx Installation Script
+
+@include('scripts.tools.nginx.install')
 
 # Run Node Installation Script
 

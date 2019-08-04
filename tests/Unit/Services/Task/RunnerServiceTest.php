@@ -10,6 +10,7 @@ use App\Utils\Ssh\ProcessRunner;
 use App\Utils\Ssh\ScriptsStorage;
 use App\Utils\Ssh\Shell\Response;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Bus;
 use Tests\TestCase;
 use Mockery as m;
 

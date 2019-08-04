@@ -68,13 +68,13 @@ class ServerTest extends TestCase
     function test_a_key_pair_should_not_be_generated_when_it_set()
     {
         $server = $this->createServer([
-            'public_key' => 'key',
-            'private_key' => 'key',
+            'public_key' => 'public_key',
+            'private_key' => 'private_key',
             'key_password' => 'password'
         ]);
 
-        $this->assertEquals('key', $server->public_key);
-        $this->assertEquals('key', $server->private_key);
+        $this->assertEquals('public_key', $server->public_key);
+        $this->assertEquals('private_key', $server->private_key);
         $this->assertEquals('password', $server->key_password);
 
         $this->assertTrue($server->hasKeyPair());

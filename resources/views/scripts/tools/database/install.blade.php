@@ -1,5 +1,9 @@
 
-# Install MySQL
+# ================================================
+# MySQL
+#
+# Documentation: https://dev.mysql.com/doc/
+# ================================================
 
 debconf-set-selections <<< "mysql-community-server mysql-community-server/data-dir select ''"
 debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password {!! $databasePassword !!}"

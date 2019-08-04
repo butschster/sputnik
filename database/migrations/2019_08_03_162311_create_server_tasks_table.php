@@ -28,6 +28,11 @@ class CreateServerTasksTable extends Migration
             $table->timestamps();
 
             $table->index('created_at');
+
+            $table->foreign('server_id')
+                ->references('id')
+                ->on('servers')
+                ->onDelete('cascade');
         });
     }
 
