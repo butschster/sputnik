@@ -4,11 +4,11 @@ namespace App\Models\Server;
 
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server;
-use App\SecureShellKey;
 use App\Services\Task\Contracts\Task as TaskContract;
-use App\Utils\Ssh\KeyStorage;
+use App\Utils\Ssh\Script;
 use App\Utils\Ssh\Shell\Response;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Task extends Model implements TaskContract
 {
@@ -19,10 +19,24 @@ class Task extends Model implements TaskContract
     const STATUS_FINISHED = 'finished';
     const STATUS_TIMEOUT = 'timeout';
 
+    protected static function boot()
+    {
+        static::creating(function ($task) {
+            $task->status = static::STATUS_PENDING;
+        });
+
+        parent::boot();
+    }
+
     /**
      * @var string
      */
     protected $table = 'server_tasks';
+
+    /**
+     * @var array
+     */
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -49,7 +63,7 @@ class Task extends Model implements TaskContract
      * @param string $value
      * @return array
      */
-    public function getOptionsAttribute($value)
+    public function getOptionsAttribute(string $value)
     {
         return unserialize($value);
     }
@@ -191,6 +205,16 @@ class Task extends Model implements TaskContract
     }
 
     /**
+     * Get the maximum execution time for the task.
+     *
+     * @return int
+     */
+    public function timeout(): int
+    {
+        return (int) ($this->options['timeout'] ?? Script::DEFAULT_TIMEOUT);
+    }
+
+    /**
      * Get the task options
      *
      * @return array
@@ -198,6 +222,39 @@ class Task extends Model implements TaskContract
     public function options(): array
     {
         return $this->options;
+    }
+
+    /**
+     * Get callbacks for the task
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function callbacks(): Collection
+    {
+        $callbacks = $this->options['then'] ?? [];
+
+        return collect($callbacks);
+    }
+
+    /**
+     * Add new callback for the task
+     *
+     * @param string|Object $callback
+     *
+     * @return $this
+     */
+    public function addCallback($callback)
+    {
+        $callbacks = $this->callbacks()->add($callback);
+
+        $options = $this->options;
+        $options['then'] = $callbacks->all();
+
+        $this->options = $options;
+
+        $this->save();
+
+        return $this;
     }
 
     /**

@@ -3,9 +3,30 @@
 namespace App\Services\Task;
 
 use App\Services\Task\Contracts\Task;
+use App\Utils\Ssh\ProcessRunner;
 
 class FinishService
 {
+    use InteractsWithSsh;
+
+    /**
+     * @var ProcessRunner
+     */
+    protected $processRunner;
+
+    /**
+     * @var array
+     */
+    protected $handledCallbacks = [];
+
+    /**
+     * @param ProcessRunner $processRunner
+     */
+    public function __construct(ProcessRunner $processRunner)
+    {
+        $this->processRunner = $processRunner;
+    }
+
     /**
      * Mark the task as finished and gather its output.
      *
@@ -14,15 +35,14 @@ class FinishService
      */
     public function finish(Task $task, int $exitCode = 0)
     {
-        $task->markAsFinished($exitCode, $this->retrieveOutput());
+        $this->task = $task;
 
-        $options = $task->options();
+        $task->markAsFinished(
+            $exitCode,
+            $this->retrieveOutput($task)
+        );
 
-        foreach ($options['then'] ?? [] as $callback) {
-            is_object($callback)
-                ? $callback->handle($task)
-                : app($callback)->handle($task);
-        }
+        $this->runCallbacks($task);
     }
 
     /**
@@ -34,5 +54,31 @@ class FinishService
     protected function retrieveOutput(Task $task): string
     {
         return $this->runInline('tail --bytes=2000000 ' . $task->outputFile(), 10)->getOutput();
+    }
+
+    /**
+     * Dispatch related jobs
+     *
+     * @param Task $task
+     */
+    protected function runCallbacks(Task $task): void
+    {
+        $task->callbacks()->each(function ($callback) use ($task) {
+            if (!is_object($callback)) {
+                $callback = app($callback);
+            }
+
+            $callback->handle($task);
+
+            $this->handledCallbacks[] = get_class($callback);
+        });
+    }
+
+    /**
+     * @return array
+     */
+    public function getHandledCallbacks(): array
+    {
+        return $this->handledCallbacks;
     }
 }

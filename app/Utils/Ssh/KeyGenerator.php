@@ -3,7 +3,8 @@
 namespace App\Utils\Ssh;
 
 use App\Models\Server;
-use App\Utils\Ssh\Shell\SshKeygen;
+use App\Utils\Ssh\Commands\SshKeygen;
+use App\Utils\Ssh\ValueObjects\KeyPair;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 

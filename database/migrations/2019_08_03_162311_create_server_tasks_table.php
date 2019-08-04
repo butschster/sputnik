@@ -22,7 +22,7 @@ class CreateServerTasksTable extends Migration
             $table->string('status', 25)->default(Task::STATUS_PENDING);
             $table->integer('exit_code')->nullable();
             $table->longText('script');
-            $table->longText('output')->default('');
+            $table->longText('output')->nullable();
             $table->text('options');
 
             $table->timestamps();

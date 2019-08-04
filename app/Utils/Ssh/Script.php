@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Utils\Shell\Scripts;
+namespace App\Utils\Ssh;
 
-use App\Utils\Shell\Contracts\Script as ScriptContract;
+use App\Utils\Ssh\Contracts\Script as ScriptContract;
 
 abstract class Script implements ScriptContract
 {

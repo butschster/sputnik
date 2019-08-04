@@ -4,8 +4,9 @@ namespace App\Models;
 
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server\Task;
-use App\Utils\Ssh\KeyPair;
+use App\Utils\Ssh\ValueObjects\KeyPair;
 use App\Utils\Ssh\KeyStorage;
+use App\Utils\Ssh\ValueObjects\PrivateKey;
 use Illuminate\Database\Eloquent\Model;
 
 class Server extends Model
@@ -13,6 +14,8 @@ class Server extends Model
     use UsesUuid;
 
     const STATUS_PENDING = 'pending';
+    const STATUS_CONFIGUTING = 'configuring';
+    const STATUS_CONFIGURED = 'configured';
 
     /**
      * @var array
@@ -31,6 +34,11 @@ class Server extends Model
         'key_password',
         'sudo_password',
     ];
+
+    /**
+     * @var array
+     */
+    protected $guarded = [];
 
     /**
      * Set the SSH key attributes on the model.
@@ -70,8 +78,52 @@ class Server extends Model
      *
      * @return string
      */
-    public function keyPath()
+    public function keyPath(): string
     {
-        return (new KeyStorage())->storeKey($this->id, $this->private_key);
+        $keyStorage = app(KeyStorage::class);
+
+        $keyStorage->storeKey(
+            $key = new PrivateKey($this->id, $this->private_key)
+        );
+
+        return $key->getPath();
+    }
+
+    /**
+     * Determine if the server is currently provisioning.
+     *
+     * @return bool
+     */
+    public function isConfiguring(): bool
+    {
+        return $this->status == static::STATUS_CONFIGUTING;
+    }
+
+    /**
+     * Mark the server as provisioning.
+     */
+    public function markAsConfiguring()
+    {
+        $this->update(['status' => static::STATUS_CONFIGUTING]);
+    }
+
+    /**
+     * Determine if the server is currently provisioned.
+     *
+     * @return bool
+     */
+    public function isConfigured(): bool
+    {
+        return $this->status == static::STATUS_CONFIGURED;
+    }
+
+    /**
+     * Mark the server as provisioned.
+     *
+     * @return $this
+     */
+    public function markAsConfigured()
+    {
+        $this->update(['status' => static::STATUS_CONFIGURED]);
     }
 }

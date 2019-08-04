@@ -34,6 +34,7 @@ class CreateServersTable extends Migration
 
             $table->string('status', 25)->default(Server::STATUS_PENDING);
 
+            $table->timestamp('configuring_job__dispatched_at')->nullable();
             $table->timestamps();
         });
     }

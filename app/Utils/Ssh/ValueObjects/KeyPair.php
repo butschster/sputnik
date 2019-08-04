@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils\Ssh;
+namespace App\Utils\Ssh\ValueObjects;
 
 class KeyPair
 {

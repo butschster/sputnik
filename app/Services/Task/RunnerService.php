@@ -2,31 +2,36 @@
 
 namespace App\Services\Task;
 
+use App\Scripts\Server\Callback;
 use App\Services\Task\Contracts\Task;
-use App\Utils\Ssh\CommandGenerator;
 use App\Utils\Ssh\ProcessRunner;
-use App\Utils\Ssh\Shell\Response;
-use Illuminate\Support\Str;
+use App\Utils\Ssh\ScriptsStorage;
 use Symfony\Component\Process\Exception\ProcessTimedOutException;
-use Symfony\Component\Process\Process;
 
 class RunnerService
 {
+    use InteractsWithSsh;
+
     /**
-     * @var Task
+     * @var ProcessRunner
      */
-    protected $task;
+    protected $processRunner;
+
+    /**
+     * @param ProcessRunner $processRunner
+     */
+    public function __construct(ProcessRunner $processRunner)
+    {
+        $this->processRunner = $processRunner;
+    }
 
     /**
      * @param Task $task
      */
-    public function __construct(Task $task)
+    public function run(Task $task)
     {
         $this->task = $task;
-    }
 
-    public function run()
-    {
         $this->task->markAsRunning();
 
         $this->ensureWorkingDirectoryExists();
@@ -46,6 +51,50 @@ class RunnerService
     }
 
     /**
+     * Run the given script in the background on a remote server.
+     *
+     * @return void
+     */
+    public function runInBackground(Task $task)
+    {
+        $this->task = $task;
+
+        $this->task->markAsRunning();
+
+        $this->addCallbackToScript();
+
+        $this->ensureWorkingDirectoryExists();
+
+        try {
+            $this->upload();
+        } catch (ProcessTimedOutException $e) {
+            return $this->task->markAsTimedOut();
+        }
+
+        $this->processRunner->run(
+            $this->toScriptProcess(sprintf(
+                '\'nohup bash %s >> %s 2>&1 &\'',
+                $this->task->scriptFile(),
+                $this->task->outputFile()
+            ), 10)
+        );
+    }
+
+    /**
+     * Add a callback to the script.
+     *
+     * @return void
+     */
+    protected function addCallbackToScript()
+    {
+        $callback = (new Callback($this->task))->getScript();
+
+        $this->task->update([
+            'script' => $callback,
+        ]);
+    }
+
+    /**
      * Upload the given script to the server.
      *
      * @return bool
@@ -57,27 +106,11 @@ class RunnerService
             $this->task->scriptFile()
         );
 
-        $response = $this->getProcessRunner()->run($process);
+        $response = $this->processRunner->run($process);
 
         @unlink($localScript);
 
         return $response->isSuccess();
-    }
-
-    /**
-     * Run a given script inline on the remote server.
-     *
-     * @param string $script
-     * @param int $timeout
-     * @return Response
-     */
-    protected function runInline(string $script, int $timeout = 60): Response
-    {
-        $token = Str::random(20);
-
-        return $this->getProcessRunner()->run(
-            $this->toScriptProcess('\'bash -s \' << \'' . $token . '\'' . $script . '' . $token, $timeout)
-        );
     }
 
     /**
@@ -87,13 +120,12 @@ class RunnerService
      */
     protected function writeScript(): string
     {
-        $hash = md5(Str::random(20) . $this->task->script());
+        $storage = app(ScriptsStorage::class);
 
-        return tap(storage_path('app/scripts') . '/' . $hash, function ($path) {
-            file_put_contents($path, $this->task->script());
-        });
+        return $storage->storeScript(
+            $this->task->script()
+        );
     }
-
 
     /**
      * Create the remote working directory for the task.
@@ -103,66 +135,5 @@ class RunnerService
     protected function ensureWorkingDirectoryExists()
     {
         $this->runInline('mkdir -p ' . $this->task->path(), 10);
-    }
-
-    /**
-     * @param string $script
-     * @param int $timeout
-     * @return Process
-     */
-    protected function toScriptProcess(string $script, int $timeout): Process
-    {
-        return $this->toProcess(
-            $this->getCommandGenerator()->forScript($script),
-            $timeout
-        );
-    }
-
-    /**
-     * @param string $from
-     * @param string $to
-     * @return Process
-     */
-    protected function toUploadProcess(string $from, string $to): Process
-    {
-        return $this->toProcess(
-            $this->getCommandGenerator()->forUpload($from, $to),
-            15,
-            base_path()
-        );
-    }
-
-    /**
-     * Create a Process instance for the given script.
-     *
-     * @param string $script
-     * @param int $timeout
-     * @param string|null $cwd
-     * @return Process
-     */
-    protected function toProcess(string $script, int $timeout, ?string $cwd = null): Process
-    {
-        return (new Process((array) $script, $cwd))->setTimeout($timeout);
-    }
-
-    /**
-     * @return CommandGenerator
-     */
-    protected function getCommandGenerator(): CommandGenerator
-    {
-        return new CommandGenerator(
-            $this->task->serverIpAddress(),
-            $this->task->serverPort(),
-            $this->task->serverKeyPath(),
-            $this->task->user()
-        );
-    }
-
-    /**
-     * @return ProcessRunner
-     */
-    protected function getProcessRunner(): ProcessRunner
-    {
-        return new ProcessRunner;
     }
 }

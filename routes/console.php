@@ -13,6 +13,10 @@ use Illuminate\Foundation\Inspiring;
 |
 */
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->describe('Display an inspiring quote');
+Artisan::command('server:configure {server}', function (\App\Services\Server\ConfiguratorService $service, $server) {
+
+    $server = \App\Models\Server::findOrFail($server);
+
+    $service->configure($server);
+
+})->describe('Run server configurator');

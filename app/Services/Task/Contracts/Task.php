@@ -3,6 +3,7 @@
 namespace App\Services\Task\Contracts;
 
 use App\Utils\Ssh\Shell\Response;
+use Illuminate\Support\Collection;
 
 interface Task
 {
@@ -34,11 +35,25 @@ interface Task
     public function saveResponse(Response $response);
 
     /**
+     * Get the maximum execution time for the task.
+     *
+     * @return int
+     */
+    public function timeout(): int;
+
+    /**
      * Get the task options
      *
      * @return array
      */
     public function options(): array;
+
+    /**
+     * Get the task callbacks
+     *
+     * @return Collection
+     */
+    public function callbacks(): Collection;
 
     /**
      * Get the task script

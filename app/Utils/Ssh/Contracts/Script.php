@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils\Shell\Contracts;
+namespace App\Utils\Ssh\Contracts;
 
 interface Script
 {
@@ -26,9 +26,11 @@ interface Script
     public function getUser(): string;
 
     /**
-     * Get the script string
+     * Get the contents of the script.
      *
      * @return string
      */
     public function getScript(): string;
+
+    public function __toString();
 }

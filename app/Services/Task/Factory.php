@@ -3,7 +3,7 @@
 namespace App\Services\Task;
 
 use App\Models\Server;
-use App\Utils\Shell\Contracts\Script;
+use App\Utils\Ssh\Contracts\Script;
 
 class Factory
 {

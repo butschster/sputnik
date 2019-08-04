@@ -17,13 +17,16 @@ class ProcessRunner
     public function run(Process $process): Response
     {
         try {
-            $process = $process->run($output = new Output);
+            $exitCode = $process->run($output = new Output);
         } catch (ProcessTimedOutException $e) {
             $timedOut = true;
+            $exitCode = 1;
         }
 
+        dump((string) $output);
+
         return new Response(
-            $process->getExitCode(),
+            $exitCode,
             (string) $output,
             $timedOut ?? false
         );

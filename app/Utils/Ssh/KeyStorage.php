@@ -2,28 +2,18 @@
 
 namespace App\Utils\Ssh;
 
+use App\Utils\Ssh\ValueObjects\PrivateKey;
+
 class KeyStorage
 {
     /**
-     * @param string $name
-     * @param string $key
+     * @param PrivateKey $key
      */
-    public function storeKey(string $name, string $key)
+    public function storeKey(PrivateKey $key)
     {
-        $path = storage_path('app/keys/'.$name);
+        $path = $key->getPath();
 
-        $this->ensureKeyDirectoryExists();
-        $this->ensureFileExists($path, $key);
-    }
-
-    /**
-     * Ensure the SSH key directory exists.
-     */
-    protected function ensureKeyDirectoryExists()
-    {
-        if (! is_dir(storage_path('app/keys'))) {
-            mkdir(storage_path('app/keys'), 0755, true);
-        }
+        $this->ensureFileExists($path, $key->getContents());
     }
 
     /**
