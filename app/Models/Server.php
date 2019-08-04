@@ -2,16 +2,22 @@
 
 namespace App\Models;
 
+use App\Events\Server\Key\AttachedToServer;
+use App\Events\Server\Key\DetachedFromServer;
+use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\UsesUuid;
+use App\Models\Server\Key;
 use App\Models\Server\Task;
 use App\Utils\Ssh\ValueObjects\KeyPair;
 use App\Utils\Ssh\KeyStorage;
 use App\Utils\Ssh\ValueObjects\PrivateKey;
+use App\Utils\Ssh\ValueObjects\PublicKey;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Server extends Model
 {
-    use UsesUuid;
+    use UsesUuid, DeterminesAge;
 
     const STATUS_PENDING = 'pending';
     const STATUS_CONFIGUTING = 'configuring';
@@ -22,6 +28,7 @@ class Server extends Model
      */
     protected $casts = [
         'meta' => 'array',
+        'configuring_job_dispatched_at' => 'datetime',
     ];
 
     /**
@@ -39,6 +46,15 @@ class Server extends Model
      * @var array
      */
     protected $guarded = [];
+
+    protected static function boot()
+    {
+        static::creating(function ($server) {
+            $server->status = static::STATUS_PENDING;
+            $server->database_password = Str::random();
+        });
+        parent::boot();
+    }
 
     /**
      * Set the SSH key attributes on the model.
@@ -74,6 +90,14 @@ class Server extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function keys()
+    {
+        return $this->belongsToMany(Key::class);
+    }
+
+    /**
      * Get the path to the user's worker SSH key.
      *
      * @return string
@@ -94,21 +118,34 @@ class Server extends Model
      *
      * @return bool
      */
+    public function isPending(): bool
+    {
+        return $this->status == static::STATUS_PENDING;
+    }
+
+    /**
+     * Determine if the server is currently configuring.
+     *
+     * @return bool
+     */
     public function isConfiguring(): bool
     {
         return $this->status == static::STATUS_CONFIGUTING;
     }
 
     /**
-     * Mark the server as provisioning.
+     * Mark the server as configuring.
      */
     public function markAsConfiguring()
     {
-        $this->update(['status' => static::STATUS_CONFIGUTING]);
+        $this->update([
+            'status' => static::STATUS_CONFIGUTING,
+            'configuring_job_dispatched_at' => now(),
+        ]);
     }
 
     /**
-     * Determine if the server is currently provisioned.
+     * Determine if the server is currently configured.
      *
      * @return bool
      */
@@ -118,12 +155,45 @@ class Server extends Model
     }
 
     /**
-     * Mark the server as provisioned.
+     * Mark the server as configured.
      *
      * @return $this
      */
     public function markAsConfigured()
     {
         $this->update(['status' => static::STATUS_CONFIGURED]);
+    }
+
+    /**
+     * Add public key to server
+     *
+     * @param PublicKey $key
+     * @return Key
+     */
+    public function addPublicKey(PublicKey $key): ?Key
+    {
+        if (!$this->keys()->where('content', $key->getContents())->first()) {
+            $key = $this->keys()->create([
+                'name' => $key->getName(),
+                'content' => $key->getContents(),
+            ]);
+
+            event(new AttachedToServer($this, $key));
+
+            return $key;
+        }
+
+        return null;
+    }
+
+    /**
+     * Remove public key from server
+     *
+     * @param Key $key
+     */
+    public function removePublicKey(Key $key)
+    {
+        $this->keys()->detach($key);
+        event(new DetachedFromServer($this, $key));
     }
 }

@@ -27,20 +27,27 @@ trait InteractsWithSsh
         $token = Str::random(20);
 
         return $this->processRunner->run(
-            $this->toScriptProcess('\'bash -s \' << \'' . $token . '\'
+            $this->toScriptProcess(['bash', '-s', '<<', $token . '
 ' . $script . '
-' . $token, $timeout)
-        );
+' . $token,
+            ], $timeout),
+            function ($type, $buffer) {
+                if (Process::ERR === $type) {
+                    echo 'ERR > ' . $buffer;
+                } else {
+                    echo 'OUT > ' . $buffer;
+                }
+            });
     }
 
     /**
      * Create a script Process instance.
      *
-     * @param string $script
+     * @param array|string $script
      * @param int $timeout
      * @return Process
      */
-    protected function toScriptProcess(string $script, int $timeout): Process
+    protected function toScriptProcess($script, int $timeout): Process
     {
         return $this->toProcess(
             $this->getCommandGenerator()->forScript($script),
@@ -67,14 +74,14 @@ trait InteractsWithSsh
     /**
      * Create a Process instance for the given script.
      *
-     * @param string $script
+     * @param string|array $script
      * @param int $timeout
      * @param string|null $cwd
      * @return Process
      */
-    protected function toProcess(string $script, int $timeout, ?string $cwd = null): Process
+    protected function toProcess($script, int $timeout, ?string $cwd = null): Process
     {
-        return (new Process((array)$script, $cwd))->setTimeout($timeout);
+        return (new Process($script, $cwd))->setTimeout($timeout);
     }
 
     /**

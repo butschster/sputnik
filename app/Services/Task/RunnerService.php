@@ -2,6 +2,7 @@
 
 namespace App\Services\Task;
 
+use App\Models\Server;
 use App\Scripts\Server\Callback;
 use App\Services\Task\Contracts\Task;
 use App\Utils\Ssh\ProcessRunner;
@@ -53,6 +54,7 @@ class RunnerService
     /**
      * Run the given script in the background on a remote server.
      *
+     * @param Task $task
      * @return void
      */
     public function runInBackground(Task $task)
@@ -72,11 +74,9 @@ class RunnerService
         }
 
         $this->processRunner->run(
-            $this->toScriptProcess(sprintf(
-                '\'nohup bash %s >> %s 2>&1 &\'',
-                $this->task->scriptFile(),
-                $this->task->outputFile()
-            ), 10)
+            $this->toScriptProcess([
+                'nohup', 'bash', $this->task->scriptFile(), '>>', $this->task->outputFile(), '2>&1', '&'
+            ], 10)
         );
     }
 

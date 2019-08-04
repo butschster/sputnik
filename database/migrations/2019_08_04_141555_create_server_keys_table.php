@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSshKeysTable extends Migration
+class CreateServerKeysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,20 @@ class CreateSshKeysTable extends Migration
      */
     public function up()
     {
-        Schema::create('ssh_keys', function (Blueprint $table) {
+        Schema::create('server_keys', function (Blueprint $table) {
             $table->primaryUuid('id');
-            $table->uuid('user_id')->index();
+
             $table->string('name');
+            $table->text('content');
 
             $table->timestamps();
         });
 
-        Schema::create('server_ssh_key', function (Blueprint $table) {
+        Schema::create('key_server', function (Blueprint $table) {
             $table->uuid('server_id');
-            $table->uuid('ssh_key_id');
+            $table->uuid('key_id');
 
-            $table->unique('server_id', 'ssh_key_id');
+            $table->primary(['server_id', 'key_id']);
         });
     }
 
@@ -36,6 +37,6 @@ class CreateSshKeysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ssh_keys');
+        Schema::dropIfExists('server_keys');
     }
 }

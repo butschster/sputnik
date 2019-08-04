@@ -3,6 +3,7 @@
 namespace App\Utils\Ssh\Shell;
 
 use Illuminate\Support\Str;
+use Symfony\Component\Process\Process;
 
 class Output
 {
@@ -20,6 +21,12 @@ class Output
      */
     public function __invoke($type, $line)
     {
+        if (Process::ERR === $type) {
+            echo 'ERR > '.$line;
+        } else {
+            echo 'OUT > '.$line;
+        }
+
         $this->output .= $line;
     }
 

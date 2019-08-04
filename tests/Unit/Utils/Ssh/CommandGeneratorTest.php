@@ -13,7 +13,7 @@ class CommandGeneratorTest extends TestCase
 
         $this->assertEquals(
             'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 22 root@127.0.0.1 echo "hello world"',
-            $generator->forScript('echo "hello world"')
+            implode(' ', $generator->forScript(['echo "hello world"']))
         );
     }
 
@@ -23,7 +23,7 @@ class CommandGeneratorTest extends TestCase
 
         $this->assertEquals(
             'scp -i ~/.ssh/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o PasswordAuthentication=no -P 22 ~/file root@127.0.0.1:/root',
-            $generator->forUpload('~/file', '/root')
+            implode(' ', $generator->forUpload('~/file', '/root'))
         );
     }
 }

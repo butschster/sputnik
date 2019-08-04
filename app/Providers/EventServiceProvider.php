@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
-use App\Models\Server;
+use App\Events\Server\Key;
+use App\Events\Server\KeysInstalled;
+use App\Listeners\Server\AddPublicKeyToServer;
+use App\Listeners\Server\ConfigureServer;
+use App\Listeners\Server\RemovePublicKeyFromServer;
 use App\Observers\Server\GenerateSshKeyPairsObserver;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
@@ -20,6 +24,15 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        KeysInstalled::class => [
+            ConfigureServer::class,
+        ],
+        Key\AttachedToServer::class => [
+            AddPublicKeyToServer::class,
+        ],
+        Key\DetachedFromServer::class => [
+            RemovePublicKeyFromServer::class,
+        ],
     ];
 
     /**
@@ -31,7 +44,7 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        Server::observe([
+        \App\Models\Server::observe([
             GenerateSshKeyPairsObserver::class,
         ]);
     }

@@ -2,10 +2,12 @@
 
 namespace App\Services\Server;
 
+use App\Callbacks\MarkAsProvisioned;
 use App\Models\Server;
 use App\Scripts\Server\Configure;
 use App\Scripts\Utils\GetAptLockStatus;
 use App\Scripts\Utils\GetCurrentDirectory;
+use App\Services\Server\Callbacks\MarkAsConfigured;
 use App\Services\Task\Factory;
 use App\Services\Task\RunnerService;
 
@@ -41,22 +43,29 @@ class ConfiguratorService
     {
        $this->server = $server;
 
-        if (! $this->server->isConfiguring()) {
-            //$this->server->markAsConfiguring();
+       if (! $this->server->isConfiguring()) {
+            $this->server->markAsConfiguring();
 
             $script = new Configure($server);
 
-            return $this->run($script);
-        }
+            return $this->runInBackground($script, [
+                'then' => [
+                    MarkAsConfigured::class,
+                ],
+            ]);
+       }
     }
 
     /**
      * Determine if the server is ready for provisioning.
      *
+     * @param Server $server
      * @return bool
      */
-    protected function isServerReadyForConfigure(): bool
+    public function isServerReadyForConfigure(Server $server): bool
     {
+        $this->server = $server;
+
         $canAccess = $this->run(new GetCurrentDirectory())->output == '/root';
 
         if ($canAccess) {

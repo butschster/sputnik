@@ -3,7 +3,6 @@
 namespace App\Scripts\Server;
 
 use App\Models\Server\Task;
-use App\Utils\Hashids;
 use App\Utils\Ssh\Script;
 use Illuminate\Support\Str;
 
@@ -31,6 +30,7 @@ class Callback extends Script
      * Get the contents of the script.
      *
      * @return string
+     * @throws \Throwable
      */
     public function getScript(): string
     {
@@ -38,7 +38,7 @@ class Callback extends Script
             'task' => $this->task,
             'path' => str_replace('.sh', '-script.sh', $this->task->scriptFile()),
             'token' => Str::random(20),
-            'hash' => (new Hashids())->encode($this->task->id),
+            'hash' => $this->task->id,
         ])->render();
     }
 }

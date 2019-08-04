@@ -104,6 +104,16 @@ class Task extends Model implements TaskContract
      *
      * @return bool
      */
+    public function isPending(): bool
+    {
+        return $this->status === static::STATUS_PENDING;
+    }
+
+    /**
+     * Determine if the task is running.
+     *
+     * @return bool
+     */
     public function isRunning(): bool
     {
         return $this->status === static::STATUS_RUNNING;
@@ -124,6 +134,16 @@ class Task extends Model implements TaskContract
     }
 
     /**
+     * Determine if the task is timed out.
+     *
+     * @return bool
+     */
+    public function isTimedOut(): bool
+    {
+        return $this->status === static::STATUS_TIMEOUT;
+    }
+
+    /**
      * Mark the task as finished.
      *
      * @param int $exitCode
@@ -139,6 +159,16 @@ class Task extends Model implements TaskContract
     }
 
     /**
+     * Determine if the task is finished.
+     *
+     * @return bool
+     */
+    public function isFinished(): bool
+    {
+        return $this->status === static::STATUS_FINISHED;
+    }
+
+    /**
      * Get the remote working directory path for the task.
      *
      * @return string
@@ -147,7 +177,7 @@ class Task extends Model implements TaskContract
     {
         return $this->user === 'root'
             ? '/root/.sputnik'
-            : '/home/cloud/.sputnik';
+            : '/home/sputnik/.sputnik';
     }
 
     /**

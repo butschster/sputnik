@@ -1,4 +1,3 @@
-
 # Rewrite Script Into Another File
 
 cat > {!! $path !!} << '{!! $token !!}'
@@ -18,4 +17,4 @@ cat > {!! $path !!} << '{!! $token !!}'
 
 STATUS=$?
 
-curl --insecure {!! url('/api/callback/'.$hash) !!}?exit_code=$STATUS > /dev/null 2>&1
+curl --insecure --data "exit_code=$STATUS" {!! route('server.task.callback', $hash) !!} > /dev/null 2>&1

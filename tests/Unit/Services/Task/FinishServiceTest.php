@@ -16,10 +16,7 @@ class FinishServiceTest extends TestCase
 
     function test_a_task_should_be_finished()
     {
-        $this->mockSshGenerator();
-
-        $task = factory(Task::class)->create();
-        $this->assertEquals(Task::STATUS_PENDING, $task->status);
+        $task = $this->createTask();
 
         $processRunner = m::mock(ProcessRunner::class);
         $processRunner->shouldReceive('run')->andReturn(new Response(0, $logs = 'logs output from file'));
@@ -36,9 +33,7 @@ class FinishServiceTest extends TestCase
 
     function test_related_callbacks_should_be_called()
     {
-        $this->mockSshGenerator();
-
-        $task = factory(Task::class)->create();
+        $task = $this->createTask();
 
         $task->addCallback($callback = FinishServiceTestCallback::class);
 

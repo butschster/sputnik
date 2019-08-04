@@ -41,19 +41,27 @@ class CommandGenerator
     /**
      * Build an SSH command for the given script.
      *
-     * @param string $script
-     * @return string
+     * @param string|array $script
+     * @return array
      */
-    public function forScript(string $script): string
+    public function forScript($script): array
     {
-        return sprintf(
-            'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i %s -p %d %s@%s %s',
-            $this->keyPath,
-            $this->port,
-            $this->user,
-            $this->ipAddress,
-            $script
-        );
+        $command = [
+            'ssh',
+            '-o', 'UserKnownHostsFile=/dev/null',
+            '-o', 'StrictHostKeyChecking=no',
+            '-i', $this->keyPath,
+            '-p', $this->port,
+            $this->user.'@'.$this->ipAddress,
+        ];
+
+        if (is_array($script)) {
+            return array_merge($command, $script);
+        }
+
+        $command[] = $script;
+
+        return $command;
     }
 
     /**
@@ -62,18 +70,19 @@ class CommandGenerator
      * @param string $from
      * @param string $to
      *
-     * @return string
+     * @return array
      */
-    public function forUpload(string $from, string $to): string
+    public function forUpload(string $from, string $to): array
     {
-        return sprintf(
-            'scp -i %s -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o PasswordAuthentication=no -P %s %s %s@%s:%s',
-            $this->keyPath,
-            $this->port,
+        return [
+            'scp',
+            '-i', $this->keyPath,
+            '-o', 'UserKnownHostsFile=/dev/null',
+            '-o', 'StrictHostKeyChecking=no',
+            '-o', 'PasswordAuthentication=no',
+            '-P', $this->port,
             $from,
-            $this->user,
-            $this->ipAddress,
-            $to
-        );
+            $this->user.'@'.$this->ipAddress.':'.$to,
+        ];
     }
 }

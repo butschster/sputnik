@@ -14,9 +14,7 @@ class FactoryTest extends TestCase
 
     function test_a_task_can_be_created()
     {
-        $this->mockSshGenerator();
-
-        $server = factory(Server::class)->create();
+        $server = $this->createServer();
 
         $factory = new Factory();
 
@@ -33,9 +31,7 @@ class FactoryTest extends TestCase
 
     function test_is_options_contains_timeout_then_it_can_be_used_instead_of_script_timeout()
     {
-        $this->mockSshGenerator();
-
-        $server = factory(Server::class)->create();
+        $server = $this->createServer();
 
         $factory = new Factory();
 

@@ -13,6 +13,9 @@ abstract class Script implements ScriptContract
      */
     const DEFAULT_TIMEOUT = 3600;
 
+    const USER_ROOT = 'root';
+    const USER_SPUTNIK = 'sputnik';
+
     /**
      * @var string
      */
@@ -23,7 +26,7 @@ abstract class Script implements ScriptContract
      *
      * @var string
      */
-    protected $sshAs = 'root';
+    protected $sshAs = self::USER_ROOT;
 
     /**
      * Get the user that the script should be run as.

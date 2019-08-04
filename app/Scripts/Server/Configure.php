@@ -39,6 +39,7 @@ class Configure extends Script
     public function getScript(): string
     {
         return view('scripts.server.configure', [
+            'databasePassword' => $this->server->database_password,
             'script' => $this,
             'server' => $this->server
         ])->render();

@@ -20,3 +20,16 @@ Artisan::command('server:configure {server}', function (\App\Services\Server\Con
     $service->configure($server);
 
 })->describe('Run server configurator');
+
+
+Artisan::command('server:sync-keys {server}', function ($server) {
+
+    $server = \App\Models\Server::findOrFail($server);
+
+    foreach ($server->keys as $key) {
+        app(\App\Listeners\Server\AddPublicKeyToServer::class)->handle(
+            new \App\Events\Server\Key\AttachedToServer($server, $key)
+        );
+    }
+
+})->describe('Sync ssh keys');

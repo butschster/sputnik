@@ -20,13 +20,14 @@ class CreateServersTable extends Migration
             $table->uuid('user_id')->index();
 
             $table->string('name');
-            $table->ipAddress('ip');
+            $table->ipAddress('ip')->unique();
             $table->integer('ssh_port')->default(22);
             $table->string('sudo_password');
             $table->json('meta');
 
             $table->string('php_version')->default('73');
             $table->string('database_type')->nullable()->default('mysql');
+            $table->string('database_password');
 
             $table->text('public_key');
             $table->text('private_key');
@@ -34,7 +35,7 @@ class CreateServersTable extends Migration
 
             $table->string('status', 25)->default(Server::STATUS_PENDING);
 
-            $table->timestamp('configuring_job__dispatched_at')->nullable();
+            $table->timestamp('configuring_job_dispatched_at')->nullable();
             $table->timestamps();
         });
     }

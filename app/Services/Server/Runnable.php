@@ -35,7 +35,7 @@ trait Runnable
      * @param array $options
      * @return Server\Task
      */
-    public function runInBackground(Script $script, array $options = []): Server\Task
+    protected function runInBackground(Script $script, array $options = []): Server\Task
     {
         $task = $this->tasksFactory->createFromScript($this->server, $script, $options);
 

@@ -12,7 +12,9 @@
         "fideloper/proxy": "^4.0",
         "hashids/hashids": "^4.0",
         "laravel/framework": "5.8.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "predis/predis": "^1.1",
+        "violuke/rsa-ssh-key-fingerprint": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

@@ -17,4 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/server/{server}', 'ServerController@show')->name('server.show');
+});
+
+Route::get('/server/{server}/install', 'ServerController@installationScript')->name('server.install_script');
+Route::post('/server/{server}/callback', 'ServerCallbackController')->name('server.callback');
+Route::post('/task/{task}/callback', 'ServerTaskCallbackController')->name('server.task.callback');

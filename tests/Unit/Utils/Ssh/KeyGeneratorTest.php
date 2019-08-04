@@ -14,9 +14,7 @@ class KeyGeneratorTest extends TestCase
 
     function test_a_key_pair_can_be_generated_for_server()
     {
-        $this->mockSshGenerator();
-
-        $server = factory(Server::class)->make();
+        $server = $this->createServer();
 
         /** @var KeyGenerator $generator */
         $generator = app(KeyGenerator::class);
