@@ -24,5 +24,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/server/{server}/install', 'ServerController@installationScript')->name('server.install_script');
-Route::post('/server/{server}/callback', 'ServerCallbackController')->name('server.callback');
-Route::post('/task/{task}/callback', 'ServerTaskCallbackController')->name('server.task.callback');
+
+Route::post('/callback', 'CallbackController')->name('callback')->middleware('signed');

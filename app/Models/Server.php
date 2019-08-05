@@ -8,10 +8,10 @@ use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server\Key;
 use App\Models\Server\Task;
-use App\Utils\Ssh\ValueObjects\KeyPair;
-use App\Utils\Ssh\KeyStorage;
-use App\Utils\Ssh\ValueObjects\PrivateKey;
-use App\Utils\Ssh\ValueObjects\PublicKey;
+use App\Utils\SSH\Contracts\KeyStorage;
+use App\Utils\SSH\ValueObjects\KeyPair;
+use App\Utils\SSH\ValueObjects\PrivateKey;
+use App\Utils\SSH\ValueObjects\PublicKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -40,6 +40,7 @@ class Server extends Model
         'private_key',
         'key_password',
         'sudo_password',
+        'database_password',
     ];
 
     /**
@@ -51,13 +52,13 @@ class Server extends Model
     {
         static::creating(function ($server) {
             $server->status = static::STATUS_PENDING;
-            $server->database_password = Str::random();
         });
+
         parent::boot();
     }
 
     /**
-     * Set the SSH key attributes on the model.
+     * Set the SSH key attributes on the model from Key pair value object
      *
      * @param KeyPair $keyPair
      * @return void
@@ -90,6 +91,8 @@ class Server extends Model
     }
 
     /**
+     * Get the keys that belong to the server.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function keys()
@@ -165,25 +168,17 @@ class Server extends Model
     }
 
     /**
-     * Add public key to server
+     * Attach public key to server
      *
-     * @param PublicKey $key
-     * @return Key
+     * @param Key $key
      */
-    public function addPublicKey(PublicKey $key): ?Key
+    public function addPublicKey(Key $key)
     {
-        if (!$this->keys()->where('content', $key->getContents())->first()) {
-            $key = $this->keys()->create([
-                'name' => $key->getName(),
-                'content' => $key->getContents(),
-            ]);
+        if (!$this->keys()->where('key_id', $key->id)->exists()) {
+            $this->keys()->attach($key);
 
             event(new AttachedToServer($this, $key));
-
-            return $key;
         }
-
-        return null;
     }
 
     /**
@@ -194,6 +189,7 @@ class Server extends Model
     public function removePublicKey(Key $key)
     {
         $this->keys()->detach($key);
+
         event(new DetachedFromServer($this, $key));
     }
 }

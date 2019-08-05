@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Laravel\Passport\HasApiTokens;
 use App\Models\Concerns\UsesUuid;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -9,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, UsesUuid;
+    use HasApiTokens, Notifiable, UsesUuid;
 
     /**
      * The attributes that are mass assignable.
@@ -39,6 +40,8 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get the servers that belong to the user.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function servers(): \Illuminate\Database\Eloquent\Relations\HasMany

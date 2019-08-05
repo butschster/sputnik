@@ -3,7 +3,7 @@
 namespace App\Models\Server;
 
 use App\Models\Concerns\UsesUuid;
-use App\Utils\Ssh\ValueObjects\PublicKey;
+use App\Utils\SSH\ValueObjects\PublicKey;
 use Illuminate\Database\Eloquent\Model;
 
 class Key extends Model
@@ -21,6 +21,8 @@ class Key extends Model
     protected $guarded = [];
 
     /**
+     * Convert key to Public key value object
+     *
      * @return PublicKey
      */
     public function toPublicKey(): PublicKey
@@ -29,7 +31,7 @@ class Key extends Model
     }
 
     /**
-     * Get key fingerprint
+     * Get key fingerprint for the key
      *
      * @return string
      */

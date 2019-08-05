@@ -29,7 +29,6 @@ class ConfigureServer implements ShouldQueue
     public $tries = 40; // 20 Total Minutes...
 
     /**
-     * Create a new job instance.
      *
      * @param Server $server
      */

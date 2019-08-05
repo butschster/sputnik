@@ -3,8 +3,8 @@
 namespace App\Services\Task;
 
 use App\Services\Task\Contracts\Task;
-use App\Utils\Ssh\CommandGenerator;
-use App\Utils\Ssh\Shell\Response;
+use App\Utils\SSH\CommandGenerator;
+use App\Utils\SSH\Shell\Response;
 use Illuminate\Support\Str;
 use Symfony\Component\Process\Process;
 
@@ -26,7 +26,7 @@ trait InteractsWithSsh
     {
         $token = Str::random(20);
 
-        return $this->processRunner->run(
+        return $this->executor->run(
             $this->toScriptProcess(['bash', '-s', '<<', $token . '
 ' . $script . '
 ' . $token,

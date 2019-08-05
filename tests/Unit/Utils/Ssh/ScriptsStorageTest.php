@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit\Utils\Ssh;
+namespace Tests\Unit\Utils\SSH;
 
-use App\Utils\Ssh\ScriptsStorage;
+use App\Utils\SSH\ScriptsStorage;
 use Tests\TestCase;
 
 class ScriptsStorageTest extends TestCase

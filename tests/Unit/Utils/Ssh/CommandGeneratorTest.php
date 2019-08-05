@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit\Utils\Ssh;
+namespace Tests\Unit\Utils\SSH;
 
-use App\Utils\Ssh\CommandGenerator;
+use App\Utils\SSH\CommandGenerator;
 use Tests\TestCase;
 
 class CommandGeneratorTest extends TestCase

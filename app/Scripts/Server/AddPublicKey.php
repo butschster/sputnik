@@ -2,7 +2,7 @@
 
 namespace App\Scripts\Server;
 
-use App\Utils\Ssh\Script;
+use App\Utils\SSH\Script;
 
 class AddPublicKey extends Script
 {
@@ -21,7 +21,11 @@ class AddPublicKey extends Script
     protected $key;
 
     /**
+<<<<<<< HEAD
      * Create a new script instance.
+=======
+     * Upload public key to remove server
+>>>>>>> abceae17c307da394acebfd8dad88dd41ebd45f2
      *
      * @param string $name
      * @param string $key

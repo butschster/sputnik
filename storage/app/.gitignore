@@ -1,3 +1,6 @@
 *
 !public/
+!keys/
+!tmp/
+!scripts/
 !.gitignore

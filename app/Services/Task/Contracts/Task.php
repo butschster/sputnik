@@ -2,7 +2,7 @@
 
 namespace App\Services\Task\Contracts;
 
-use App\Utils\Ssh\Shell\Response;
+use App\Utils\SSH\Shell\Response;
 use Illuminate\Support\Collection;
 
 interface Task
@@ -33,6 +33,22 @@ interface Task
      * @param Response $response
      */
     public function saveResponse(Response $response);
+
+    /**
+     * Check if task's output is equal with given string
+     *
+     * @param string $string
+     *
+     * @return bool
+     */
+    public function outputIsEqual(string $string): bool;
+
+    /**
+     * Check if task's output is empty
+     *
+     * @return bool
+     */
+    public function outputIsEmpty(): bool;
 
     /**
      * Get the maximum execution time for the task.

@@ -1,10 +1,8 @@
 <?php
 
-namespace Tests\Unit\Utils\Ssh;
+namespace Tests\Unit\Utils\SSH;
 
-use App\Models\Server;
-use App\Utils\Ssh\KeyGenerator;
-use Illuminate\Contracts\Filesystem\Filesystem;
+use App\Utils\SSH\Contracts\KeyGenerator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -17,7 +15,7 @@ class KeyGeneratorTest extends TestCase
         $server = $this->createServer();
 
         /** @var KeyGenerator $generator */
-        $generator = app(KeyGenerator::class);
+        $generator = $this->app[KeyGenerator::class];
 
         $keypair = $generator->generateForServer($server);
 

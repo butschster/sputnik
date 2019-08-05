@@ -21,22 +21,12 @@ class KeysInstalled
     public $server;
 
     /**
-     * Create a new event instance.
+     * This event fires when user installed generated key pair into remote server
      *
      * @param Server $server
      */
     public function __construct(Server $server)
     {
         $this->server = $server;
-    }
-
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('channel-name');
     }
 }

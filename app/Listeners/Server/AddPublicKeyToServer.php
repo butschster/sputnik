@@ -3,32 +3,11 @@
 namespace App\Listeners\Server;
 
 use App\Events\Server\Key\AttachedToServer;
+use App\Jobs\Server\RunScript;
 use App\Scripts\Server\AddPublicKey;
-use App\Services\Task\Factory;
-use App\Services\Task\RunnerService;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AddPublicKeyToServer implements ShouldQueue
+class AddPublicKeyToServer
 {
-    /**
-     * @var Factory
-     */
-    protected $taskFactory;
-    /**
-     * @var RunnerService
-     */
-    protected $service;
-
-    /**
-     * @param Factory $taskFactory
-     * @param RunnerService $service
-     */
-    public function __construct(Factory $taskFactory, RunnerService $service)
-    {
-        $this->taskFactory = $taskFactory;
-        $this->service = $service;
-    }
     /**
      * Handle the event.
      *
@@ -37,14 +16,12 @@ class AddPublicKeyToServer implements ShouldQueue
      */
     public function handle(AttachedToServer $event)
     {
-        $task = $this->taskFactory->createFromScript(
+        dispatch(new RunScript(
             $event->server,
             new AddPublicKey(
                 'sputnik-' . $event->key->id,
                 $event->key->content
             )
-        );
-
-        $this->service->run($task);
+        ));
     }
 }

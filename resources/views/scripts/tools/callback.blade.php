@@ -17,4 +17,4 @@ cat > {!! $path !!} << '{!! $token !!}'
 
 STATUS=$?
 
-curl --insecure --data "exit_code=$STATUS" {!! route('server.task.callback', $hash) !!} > /dev/null 2>&1
+{{ callback_url('task.finished', ['task' => $task->id, 'exit_code' => '$STATUS']) }}

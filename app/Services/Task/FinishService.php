@@ -3,16 +3,16 @@
 namespace App\Services\Task;
 
 use App\Services\Task\Contracts\Task;
-use App\Utils\Ssh\ProcessRunner;
+use App\Utils\SSH\Contracts\ProcessExecutor;
 
 class FinishService
 {
     use InteractsWithSsh;
 
     /**
-     * @var ProcessRunner
+     * @var $executor
      */
-    protected $processRunner;
+    protected $executor;
 
     /**
      * @var array
@@ -20,11 +20,11 @@ class FinishService
     protected $handledCallbacks = [];
 
     /**
-     * @param ProcessRunner $processRunner
+     * @param ProcessExecutor $executor
      */
-    public function __construct(ProcessRunner $processRunner)
+    public function __construct(ProcessExecutor $executor)
     {
-        $this->processRunner = $processRunner;
+        $this->executor = $executor;
     }
 
     /**

@@ -2,11 +2,14 @@
 
 namespace App\Models\Server;
 
+use App\Events\Task\Finished;
+use App\Events\Task\Running;
+use App\Events\Task\Timeout;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server;
 use App\Services\Task\Contracts\Task as TaskContract;
-use App\Utils\Ssh\Script;
-use App\Utils\Ssh\Shell\Response;
+use App\Utils\SSH\Script;
+use App\Utils\SSH\Shell\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
@@ -50,6 +53,8 @@ class Task extends Model implements TaskContract
     ];
 
     /**
+     * Link to the server
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function server(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -97,10 +102,12 @@ class Task extends Model implements TaskContract
         $this->update([
             'status' => static::STATUS_RUNNING,
         ]);
+
+        event(new Running($this));
     }
 
     /**
-     * Determine if the task is running.
+     * Determine if the task is pending.
      *
      * @return bool
      */
@@ -131,6 +138,10 @@ class Task extends Model implements TaskContract
             'status' => static::STATUS_TIMEOUT,
             'output' => $output,
         ]);
+
+        event(
+            new Timeout($this)
+        );
     }
 
     /**
@@ -156,6 +167,10 @@ class Task extends Model implements TaskContract
             'status' => static::STATUS_FINISHED,
             'output' => $output,
         ]);
+
+        event(
+            new Finished($this)
+        );
     }
 
     /**
@@ -212,6 +227,10 @@ class Task extends Model implements TaskContract
             'exit_code' => $response->getExitCode(),
             'output' => $response->getOutput(),
         ]);
+
+        event(
+            new \App\Events\Task\Response($this, $response)
+        );
     }
 
     /**
@@ -315,5 +334,27 @@ class Task extends Model implements TaskContract
     public function serverKeyPath(): string
     {
         return $this->server->keyPath();
+    }
+
+    /**
+     * Check if task's output is empty
+     *
+     * @return bool
+     */
+    public function outputIsEmpty(): bool
+    {
+        return $this->output  === '';
+    }
+
+    /**
+     * Check if task's output is equal with given string
+     *
+     * @param string $string
+     *
+     * @return bool
+     */
+    public function outputIsEqual(string $string): bool
+    {
+        return $this->output == $string;
     }
 }

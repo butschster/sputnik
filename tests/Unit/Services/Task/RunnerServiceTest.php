@@ -3,18 +3,17 @@
 namespace Tests\Unit\Services\Task;
 
 use App\Models\Server\Task;
-use App\Services\Task\RunnerService;
-use App\Utils\Hashids;
-use App\Utils\Ssh\KeyStorage;
-use App\Utils\Ssh\ProcessRunner;
-use App\Utils\Ssh\ScriptsStorage;
-use App\Utils\Ssh\Shell\Response;
+use App\Services\Task\ExecutorService;
+use App\Utils\SSH\Contracts\KeyStorage;
+use App\Utils\SSH\Contracts\ProcessExecutor;
+use App\Utils\SSH\ScriptsStorage;
+use App\Utils\SSH\Shell\Response;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Bus;
 use Tests\TestCase;
 use Mockery as m;
 
-class RunnerServiceTest extends TestCase
+class ExecutorServiceTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -30,11 +29,11 @@ class RunnerServiceTest extends TestCase
 
         $task = $this->createTask();
 
-        $processRunner = m::mock(ProcessRunner::class);
-        $processRunner->shouldReceive('run')->andReturn(new Response(0, 'success'));
+        $executor = m::mock(ProcessExecutor::class);
+        $executor->shouldReceive('run')->andReturn(new Response(0, 'success'));
 
-        $service = new RunnerService(
-            $processRunner
+        $service = new ExecutorService(
+            $executor
         );
 
         $service->run($task);
@@ -57,17 +56,19 @@ class RunnerServiceTest extends TestCase
 
         $task = $this->createTask();
 
-        $processRunner = m::mock(ProcessRunner::class);
-        $processRunner->shouldReceive('run')->andReturn(new Response(0, 'success'));
+        $executor = m::mock(ProcessExecutor::class);
+        $executor->shouldReceive('run')->andReturn(new Response(0, 'success'));
 
-        $service = new RunnerService(
-            $processRunner
+        $service = new ExecutorService(
+            $executor
         );
 
         $service->runInBackground($task);
 
-        $response = $this->post(route('server.task.callback', $task), [
-            'exit_code' => 1
+        $response = $this->post($this->callbackUrl(), [
+            'action' => 'task.finished',
+            'exit_code' => 1,
+            'task_id' => $task->id
         ]);
 
         $response->assertOk();

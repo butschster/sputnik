@@ -3,13 +3,22 @@
 namespace Tests\Unit\Models;
 
 use App\Models\Server;
-use App\Utils\Ssh\ValueObjects\PublicKey;
+use App\Utils\SSH\Contracts\KeyStorage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class ServerTest extends TestCase
 {
     use DatabaseMigrations;
+
+    function test_the_database_password_should_be_generated()
+    {
+        $server = $this->createServer([
+            'database_password' => null
+        ]);
+
+        $this->assertNotNull($server->database_password);
+    }
 
     function test_a_server_should_have_pending_status_when_created()
     {
@@ -48,29 +57,34 @@ class ServerTest extends TestCase
     {
         $server = $this->createServer();
 
-        $path = $server->keyPath();
+        $this->mock(KeyStorage::class, function ($mock) {
+            $mock->shouldReceive('storeKey')->once()->andReturn('key_path');
+        });
 
-        $this->assertFileExists($path);
-        $this->assertStringEqualsFile($path, $server->private_key);
-
-        @unlink($path);
+        $server->keyPath();
     }
 
     function test_a_key_pair_sould_be_generated_when_server_is_creating()
     {
         $server = $this->createServer();
 
-        $this->assertEquals('key', $server->public_key);
-        $this->assertEquals('key', $server->private_key);
+        $this->assertEquals($this->getPublicKey(), $server->public_key);
+        $this->assertEquals($this->getPrivateKey(), $server->private_key);
         $this->assertNotNull($server->key_password);
     }
 
     function test_a_key_pair_should_not_be_generated_when_it_set()
     {
         $server = $this->createServer([
+<<<<<<< HEAD
             'public_key' => 'public_key',
             'private_key' => 'private_key',
             'key_password' => 'password'
+=======
+            'public_key' => 'key',
+            'private_key' => 'key',
+            'key_password' => 'password',
+>>>>>>> abceae17c307da394acebfd8dad88dd41ebd45f2
         ]);
 
         $this->assertEquals('public_key', $server->public_key);
@@ -85,10 +99,10 @@ class ServerTest extends TestCase
         $server = $this->createServer();
 
         $task = $this->createTask([
-            'server_id' => $server->id
+            'server_id' => $server->id,
         ]);
         $task1 = $this->createTask([
-            'server_id' => $server->id
+            'server_id' => $server->id,
         ]);
         $task2 = $this->createTask();
 
@@ -117,7 +131,7 @@ class ServerTest extends TestCase
     {
         $server = $this->createServer();
 
-        $server->addPublicKey(new PublicKey('test', 'key content'));
+        $server->addPublicKey($this->createServerKey());
 
         $this->assertCount(1, $server->keys);
     }
@@ -126,7 +140,7 @@ class ServerTest extends TestCase
     {
         $server = $this->createServer();
 
-        $key = $server->addPublicKey(new PublicKey('test', 'key content'));
+        $server->addPublicKey($key = $this->createServerKey());
 
         $server->removePublicKey($key);
 

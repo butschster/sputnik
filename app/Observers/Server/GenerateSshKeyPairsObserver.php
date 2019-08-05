@@ -3,7 +3,7 @@
 namespace App\Observers\Server;
 
 use App\Models\Server;
-use App\Utils\Ssh\KeyGenerator;
+use App\Utils\SSH\Contracts\KeyGenerator;
 
 class GenerateSshKeyPairsObserver
 {

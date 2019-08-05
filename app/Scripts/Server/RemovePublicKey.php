@@ -2,7 +2,7 @@
 
 namespace App\Scripts\Server;
 
-use App\Utils\Ssh\Script;
+use App\Utils\SSH\Script;
 
 class RemovePublicKey extends Script
 {
@@ -14,6 +14,7 @@ class RemovePublicKey extends Script
     protected $name;
 
     /**
+<<<<<<< HEAD
      * The public SSH key.
      *
      * @var string
@@ -22,6 +23,9 @@ class RemovePublicKey extends Script
 
     /**
      * Create a new script instance.
+=======
+     * Remove public ket from remove server
+>>>>>>> abceae17c307da394acebfd8dad88dd41ebd45f2
      *
      * @param string $name
      * @return void

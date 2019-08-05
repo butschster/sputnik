@@ -4,7 +4,7 @@ namespace Tests\Unit\Services\Task;
 
 use App\Models\Server;
 use App\Services\Task\Factory;
-use App\Utils\Ssh\Script;
+use App\Utils\SSH\Script;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
