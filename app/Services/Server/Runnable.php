@@ -32,6 +32,9 @@ trait Runnable
     }
 
     /**
+     * Run the given script on the server by using nohup.
+     * https://en.wikipedia.org/wiki/Nohup
+     *
      * @param Script $script
      * @param array $options
      * @return Task

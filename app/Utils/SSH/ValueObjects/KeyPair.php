@@ -5,16 +5,21 @@ namespace App\Utils\SSH\ValueObjects;
 class KeyPair
 {
     /**
+     * The public key
+     *
      * @var string
      */
     protected $public;
 
     /**
+     * The private key
      * @var string
      */
     protected $private;
 
     /**
+     * The password of the private key
+     *
      * @var string
      */
     protected $password;

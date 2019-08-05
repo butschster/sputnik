@@ -8,6 +8,8 @@ use App\Utils\SSH\ValueObjects\PrivateKey;
 class FilesystemKeyStorage implements KeyStorageContract
 {
     /**
+     * Store private key in local storage
+     *
      * @param PrivateKey $key
      *
      * @return string Path to the file

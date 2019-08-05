@@ -20,8 +20,6 @@ class Run implements ShouldQueue
     public $task;
 
     /**
-     * Create a new job instance.
-     *
      * @param Task $task
      */
     public function __construct(Task $task)

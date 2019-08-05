@@ -7,7 +7,8 @@ use App\Models\Server\Task;
 class MarkAsConfigured
 {
     /**
-     * Handle the callback.
+     * When the task "Configuring Web Server" is finished it runs this callback
+     * and the server changes status to finished
      *
      * @param Task $task
      * @return void

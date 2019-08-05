@@ -21,6 +21,8 @@ class Key extends Model
     protected $guarded = [];
 
     /**
+     * Convert key to Public key value object
+     *
      * @return PublicKey
      */
     public function toPublicKey(): PublicKey
@@ -29,7 +31,7 @@ class Key extends Model
     }
 
     /**
-     * Get key fingerprint
+     * Get key fingerprint for the key
      *
      * @return string
      */

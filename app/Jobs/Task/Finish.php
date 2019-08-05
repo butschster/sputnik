@@ -29,8 +29,6 @@ class Finish implements ShouldQueue
     public $exitCode;
 
     /**
-     * Create a new job instance.
-     *
      * @param Task $task
      * @param int $exitCode
      * @return void
@@ -40,7 +38,6 @@ class Finish implements ShouldQueue
         $this->task = $task;
         $this->exitCode = $exitCode;
     }
-
 
     /**
      * Execute the job.

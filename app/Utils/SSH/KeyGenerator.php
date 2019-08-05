@@ -32,7 +32,7 @@ class KeyGenerator implements KeyGeneratorContract
     }
 
     /**
-     * Generate key-pair for server
+     * Generate key-pair for the server
      *
      * @param Server $server
      * @return KeyPair
@@ -59,6 +59,8 @@ class KeyGenerator implements KeyGeneratorContract
     }
 
     /**
+     * Load content from the file
+     *
      * @param string $key
      * @return string
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
@@ -69,6 +71,8 @@ class KeyGenerator implements KeyGeneratorContract
     }
 
     /**
+     * Get the path to generated key
+     *
      * @param string $key
      * @return string
      */

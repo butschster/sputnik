@@ -35,6 +35,22 @@ interface Task
     public function saveResponse(Response $response);
 
     /**
+     * Check if task's output is equal with given string
+     *
+     * @param string $string
+     *
+     * @return bool
+     */
+    public function outputIsEqual(string $string): bool;
+
+    /**
+     * Check if task's output is empty
+     *
+     * @return bool
+     */
+    public function outputIsEmpty(): bool;
+
+    /**
      * Get the maximum execution time for the task.
      *
      * @return int

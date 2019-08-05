@@ -53,6 +53,8 @@ class Task extends Model implements TaskContract
     ];
 
     /**
+     * Link to the server
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function server(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -105,7 +107,7 @@ class Task extends Model implements TaskContract
     }
 
     /**
-     * Determine if the task is running.
+     * Determine if the task is pending.
      *
      * @return bool
      */
@@ -332,5 +334,27 @@ class Task extends Model implements TaskContract
     public function serverKeyPath(): string
     {
         return $this->server->keyPath();
+    }
+
+    /**
+     * Check if task's output is empty
+     *
+     * @return bool
+     */
+    public function outputIsEmpty(): bool
+    {
+        return $this->output  === '';
+    }
+
+    /**
+     * Check if task's output is equal with given string
+     *
+     * @param string $string
+     *
+     * @return bool
+     */
+    public function outputIsEqual(string $string): bool
+    {
+        return $this->output == $string;
     }
 }

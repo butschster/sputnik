@@ -35,8 +35,11 @@ class ConfiguratorService
     }
 
     /**
+     * Run the server configuration
+     *
      * @param Server $server
-     * @return Server\Task
+     *
+     * @return \App\Services\Task\Contracts\Task
      */
     public function configure(Server $server)
     {
@@ -56,7 +59,7 @@ class ConfiguratorService
     }
 
     /**
-     * Determine if the server is ready for provisioning.
+     * Determine if the server is ready for configuring.
      *
      * @param Server $server
      * @return bool
@@ -65,7 +68,8 @@ class ConfiguratorService
     {
         $this->server = $server;
 
-        $canAccess = $this->run(new GetCurrentDirectory())->output == '/root';
+        // Check if remote user is root
+        $canAccess = $this->run(new GetCurrentDirectory())->outputIsEqual('/root');
 
         if ($canAccess) {
             $apt = $this->run(new GetAptLockStatus());
@@ -73,6 +77,6 @@ class ConfiguratorService
             return false;
         }
 
-        return $apt->isSuccessful() && $apt->output === '';
+        return $apt->isSuccessful() && $apt->outputIsEmpty();
     }
 }

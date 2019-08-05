@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Exceptions\Actions\ActionNotFoundException;
 use App\Jobs\Server\ConfigureServer;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Bus;

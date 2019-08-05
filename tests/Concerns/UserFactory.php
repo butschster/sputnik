@@ -3,9 +3,24 @@
 namespace Tests\Concerns;
 
 use App\Models\User;
+use Laravel\Passport\Passport;
 
 trait UserFactory
 {
+    /**
+     * @param User|null $user
+     *
+     * @return User
+     */
+    public function signInAPI($user = null): User
+    {
+        $user = $user ?: $this->createUser();
+
+        Passport::actingAs($user);
+
+        return $user;
+    }
+
     /**
      * @param User|null $user
      *

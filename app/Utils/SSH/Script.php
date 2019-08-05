@@ -17,6 +17,8 @@ abstract class Script implements ScriptContract
     const USER_SPUTNIK = 'sputnik';
 
     /**
+     * The name of the script
+     *
      * @var string
      */
     protected $name;

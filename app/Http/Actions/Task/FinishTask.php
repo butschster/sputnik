@@ -20,10 +20,14 @@ class FinishTask extends Action
         ];
     }
 
+    /**
+     * Finish task which has status running
+     */
     public function handle()
     {
         $task = Task::findOrFail($this->task_id);
 
+        // If task is not run, it shouldn't be finished
         abort_unless($task->isRunning(), 404);
 
         dispatch(

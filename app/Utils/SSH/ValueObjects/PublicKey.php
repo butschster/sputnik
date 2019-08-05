@@ -33,6 +33,8 @@ class PublicKey
     }
 
     /**
+     * Get public key content
+     *
      * @return string
      */
     public function getContents(): string
@@ -41,7 +43,7 @@ class PublicKey
     }
 
     /**
-     * Get key fingerprint
+     * Get key fingerprint of public key
      *
      * @return string
      */

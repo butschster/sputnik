@@ -18,6 +18,8 @@ class ExecutorService
     protected $executor;
 
     /**
+     * This service executes tasks
+     *
      * @param ProcessExecutor $executor
      */
     public function __construct(ProcessExecutor $executor)
@@ -26,6 +28,8 @@ class ExecutorService
     }
 
     /**
+     * Run task
+     *
      * @param Task $task
      */
     public function run(Task $task)
@@ -51,10 +55,12 @@ class ExecutorService
     }
 
     /**
-     * Run the given script in the background on a remote server.
+     * Run the given script in the background on a remote server by using nohup.
+     * https://en.wikipedia.org/wiki/Nohup
      *
      * @param Task $task
-     * @return void
+     *
+     * @throws \Throwable
      */
     public function runInBackground(Task $task)
     {
@@ -81,6 +87,7 @@ class ExecutorService
 
     /**
      * Add a callback to the script.
+     *
      * @return void
      * @throws \Throwable
      */

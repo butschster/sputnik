@@ -26,7 +26,7 @@ class Response
     public $response;
 
     /**
-     * Create a new event instance.
+     * This event fires when remove server sent console output
      *
      * @param Task $task
      * @param \App\Utils\SSH\Shell\Response $response
@@ -35,15 +35,5 @@ class Response
     {
         $this->task = $task;
         $this->response = $response;
-    }
-
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('channel-name');
     }
 }

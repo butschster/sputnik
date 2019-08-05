@@ -35,6 +35,8 @@ class Response
     }
 
     /**
+     * Get response output
+     *
      * @return string
      */
     public function getOutput(): string
@@ -43,6 +45,8 @@ class Response
     }
 
     /**
+     * Get exit code status
+     *
      * @return int
      */
     public function getExitCode(): int
@@ -51,6 +55,8 @@ class Response
     }
 
     /**
+     * Check if response is success
+     *
      * @return bool
      */
     public function isSuccess(): bool
@@ -59,6 +65,8 @@ class Response
     }
 
     /**
+     * Check if task is timeout
+     *
      * @return bool
      */
     public function isTimedOut(): bool

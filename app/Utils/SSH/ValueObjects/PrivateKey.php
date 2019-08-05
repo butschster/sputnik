@@ -5,6 +5,8 @@ namespace App\Utils\SSH\ValueObjects;
 class PrivateKey
 {
     /**
+     * The name of the key
+     *
      * @var string
      */
     protected $name;
@@ -41,6 +43,8 @@ class PrivateKey
     }
 
     /**
+     * Get path of private key file
+     *
      * @return string
      */
     public function getPath(): string

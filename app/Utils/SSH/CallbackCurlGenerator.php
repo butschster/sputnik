@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\URL;
 class CallbackCurlGenerator
 {
     /**
+     * Generate curl string with callbakc url and data
+     *
      * @param string $action
      * @param array $parameters
      * @param int $lifeTime
@@ -26,6 +28,8 @@ class CallbackCurlGenerator
     }
 
     /**
+     * Build query string with data from parameters
+     *
      * @param array $parameters
      *
      * @return string

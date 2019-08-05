@@ -58,7 +58,7 @@ class Server extends Model
     }
 
     /**
-     * Set the SSH key attributes on the model.
+     * Set the SSH key attributes on the model from Key pair value object
      *
      * @param KeyPair $keyPair
      * @return void
@@ -91,6 +91,8 @@ class Server extends Model
     }
 
     /**
+     * Get the keys that belong to the server.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function keys()
@@ -166,7 +168,7 @@ class Server extends Model
     }
 
     /**
-     * Add public key to server
+     * Attach public key to server
      *
      * @param Key $key
      */

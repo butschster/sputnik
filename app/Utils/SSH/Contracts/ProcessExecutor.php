@@ -8,6 +8,8 @@ use Symfony\Component\Process\Process;
 interface ProcessExecutor
 {
     /**
+     * Run the given script
+     *
      * @param Process $process
      *
      * @return Response

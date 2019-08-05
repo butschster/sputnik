@@ -27,7 +27,7 @@ class DetachedFromServer
     public $server;
 
     /**
-     * Create a new event instance.
+     * This event fires when key detached from the server
      *
      * @param Server $server
      * @param Key $key
@@ -36,15 +36,5 @@ class DetachedFromServer
     {
         $this->key = $key;
         $this->server = $server;
-    }
-
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('channel-name');
     }
 }

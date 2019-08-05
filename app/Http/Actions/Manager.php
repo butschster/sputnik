@@ -15,7 +15,7 @@ class Manager implements ManagerContract
     protected $actions;
 
     /**
-     * @param array $actions
+     * @param array $actions List of actions
      */
     public function __construct(array $actions)
     {
@@ -27,8 +27,9 @@ class Manager implements ManagerContract
      *
      * @param string $action
      * @param array $attributes
+     * @throws ActionNotFoundException
      *
-     * @return Response|null
+     * @return Response|null If response returned it will be sent
      */
     public function runAction(string $action, array $attributes = []): ?Response
     {

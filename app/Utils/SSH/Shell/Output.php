@@ -13,7 +13,8 @@ class Output
     protected $output = '';
 
     /**
-     * Invoke the class.
+     * This method invokes each time when ran process send response from
+     * the command line
      *
      * @param string $type
      * @param string $line

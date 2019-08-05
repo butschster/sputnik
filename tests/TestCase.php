@@ -2,14 +2,17 @@
 
 namespace Tests;
 
+use App\Utils\SSH\Contracts\KeyGenerator;
 use App\Utils\SSH\Contracts\KeyStorage as KeyStorageContract;
 use App\Utils\SSH\Contracts\ProcessExecutor as ProcessExecutorContract;
 use App\Utils\SSH\Shell\Response;
 use App\Utils\SSH\Commands\SshKeygen;
+use App\Utils\SSH\ValueObjects\KeyPair;
 use App\Utils\SSH\ValueObjects\PrivateKey;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 use Symfony\Component\Process\Process;
 use Tests\Concerns\ServerFactory;
 use Tests\Concerns\ServerKeyFactory;
@@ -29,10 +32,21 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
 
         $this->instance(ProcessExecutorContract::class, new FakeProcessExecutor());
+
         $this->mock(KeyStorageContract::class, function($mock) {
-
             $mock->shouldReceive('storeKey')->andReturn('path to the file');
+        });
 
+        $this->mock(KeyGenerator::class, function($mock) {
+            $mock->shouldReceive('generateForServer')->andReturnUsing(function() {
+
+                return new KeyPair(
+                    $this->getPublicKey(),
+                    $this->getPrivateKey(),
+                    Str::random()
+                );
+
+            });
         });
     }
 
@@ -61,6 +75,16 @@ abstract class TestCase extends BaseTestCase
     {
         return trim(file_get_contents(
             base_path('tests/fixtures/Ssh/id_rsa.pub')
+        ));
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrivateKey(): string
+    {
+        return trim(file_get_contents(
+            base_path('tests/fixtures/Ssh/id_rsa')
         ));
     }
 }

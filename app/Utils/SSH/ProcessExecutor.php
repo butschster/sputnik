@@ -11,6 +11,8 @@ use Symfony\Component\Process\Process;
 class ProcessExecutor implements ProcessExecutorContract
 {
     /**
+     * Run the given script
+     *
      * @param Process $process
      *
      * @return Response

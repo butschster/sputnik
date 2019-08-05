@@ -20,22 +20,12 @@ class Executed
     public $action;
 
     /**
-     * Create a new event instance.
+     * This event fires when remover server sends callback
      *
      * @param Action $action
      */
     public function __construct(Action $action)
     {
         $this->action = $action;
-    }
-
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('channel-name');
     }
 }

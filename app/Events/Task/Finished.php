@@ -21,22 +21,12 @@ class Finished
     public $task;
 
     /**
-     * Create a new event instance.
+     * This event fires when remove server sent callback about finished task
      *
      * @param Task $task
      */
     public function __construct(Task $task)
     {
         $this->task = $task;
-    }
-
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('channel-name');
     }
 }

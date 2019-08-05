@@ -21,7 +21,7 @@ class AddPublicKey extends Script
     protected $key;
 
     /**
-     * Create a new script instance.
+     * Upload public key to remove server
      *
      * @param string $name
      * @param string $key

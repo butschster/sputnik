@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Events\Server\Key;
 use App\Events\Server\KeysInstalled;
 use App\Listeners\Server\AddPublicKeyToServer;
-use App\Listeners\Server\ConfigureServer;
 use App\Listeners\Server\RemovePublicKeyFromServer;
 use App\Observers\Server\GenerateDatabasePassword;
 use App\Observers\Server\GenerateSshKeyPairsObserver;

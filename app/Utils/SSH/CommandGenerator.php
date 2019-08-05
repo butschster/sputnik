@@ -5,26 +5,36 @@ namespace App\Utils\SSH;
 class CommandGenerator
 {
     /**
+     * The server ap address
+     *
      * @var string
      */
     protected $ipAddress;
 
     /**
+     * The server post
+     *
      * @var int
      */
     protected $port;
 
     /**
+     * The private key path on local server
+     *
      * @var string
      */
     protected $keyPath;
 
     /**
+     * SSH user
+     *
      * @var string
      */
     protected $user;
 
     /**
+     * Generate SSH commands for connect to remote server
+     *
      * @param string $ipAddress
      * @param int $port
      * @param string $keyPath

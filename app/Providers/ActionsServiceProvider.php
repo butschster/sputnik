@@ -12,6 +12,9 @@ use Illuminate\Support\ServiceProvider;
 class ActionsServiceProvider extends ServiceProvider
 {
     /**
+     * Action list that will be used when remote server sends
+     * callback with action name
+     *
      * @var array
      */
     protected $actions = [
@@ -22,6 +25,7 @@ class ActionsServiceProvider extends ServiceProvider
 
     /**
      * Register services.
+     *
      * @return void
      */
     public function register()

@@ -9,11 +9,12 @@ use App\Utils\SSH\Contracts\Script;
 class Factory
 {
     /**
-     * Create a new task instance for server.
+     * Create a new task instance with given script for server.
      *
      * @param Server $server
      * @param Script $script
      * @param array $options
+     *
      * @return Task
      */
     public function createFromScript(Server $server, Script $script, array $options = []): Task

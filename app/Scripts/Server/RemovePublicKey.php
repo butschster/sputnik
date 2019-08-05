@@ -14,7 +14,7 @@ class RemovePublicKey extends Script
     protected $name;
 
     /**
-     * Create a new script instance.
+     * Remove public ket from remove server
      *
      * @param string $name
      * @return void

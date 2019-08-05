@@ -40,6 +40,8 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get the servers that belong to the user.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function servers(): \Illuminate\Database\Eloquent\Relations\HasMany
