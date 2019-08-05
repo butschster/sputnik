@@ -2,6 +2,7 @@
 
 namespace App\Http\Actions;
 
+use App\Events\Action\Executed;
 use App\Exceptions\Actions\ActionNotFoundException;
 use App\Http\Actions\Contracts\Manager as ManagerContract;
 use Illuminate\Http\Response;
@@ -37,6 +38,10 @@ class Manager implements ManagerContract
 
         $class = $this->actions[$action];
 
-        return (new $class($attributes))->run();
+        $action = (new $class($attributes));
+
+        event(new Executed($action));
+
+        return $action->run();
     }
 }
