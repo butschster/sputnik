@@ -3,7 +3,7 @@
 namespace App\Scripts\Server;
 
 use App\Models\Server\Task;
-use App\Utils\Ssh\Script;
+use App\Utils\SSH\Script;
 use Illuminate\Support\Str;
 
 class Callback extends Script

@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit\Utils\Ssh\ValueObjects;
+namespace Tests\Unit\Utils\SSH\ValueObjects;
 
-use App\Utils\Ssh\ValueObjects\PublicKey;
+use App\Utils\SSH\ValueObjects\PublicKey;
 use Tests\TestCase;
 
 class PublicKeyTest extends TestCase

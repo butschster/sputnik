@@ -2,7 +2,7 @@
 
 namespace App\Services\Task\Contracts;
 
-use App\Utils\Ssh\Shell\Response;
+use App\Utils\SSH\Shell\Response;
 use Illuminate\Support\Collection;
 
 interface Task

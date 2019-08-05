@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Unit\Utils\Ssh;
+namespace Tests\Unit\Utils\SSH;
 
-use App\Utils\Ssh\KeyStorage;
-use App\Utils\Ssh\ValueObjects\PrivateKey;
+use App\Utils\SSH\FilesystemKeyStorage;
+use App\Utils\SSH\ValueObjects\PrivateKey;
 use Tests\TestCase;
 
 class KeyStorageTest extends TestCase
@@ -12,7 +12,7 @@ class KeyStorageTest extends TestCase
     {
         $privateKey = new PrivateKey('test', 'key content');
         @unlink($privateKey->getPath());
-        $storage = new KeyStorage();
+        $storage = new FilesystemKeyStorage();
 
         $storage->storeKey($privateKey);
 

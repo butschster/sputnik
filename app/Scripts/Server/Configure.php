@@ -3,7 +3,7 @@
 namespace App\Scripts\Server;
 
 use App\Models\Server;
-use App\Utils\Ssh\Script;
+use App\Utils\SSH\Script;
 
 class Configure extends Script
 {

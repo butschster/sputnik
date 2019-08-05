@@ -2,7 +2,7 @@
 
 namespace App\Scripts\Utils;
 
-use App\Utils\Ssh\Script;
+use App\Utils\SSH\Script;
 
 class GetAptLockStatus extends Script
 {

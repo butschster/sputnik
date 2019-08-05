@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\Server\KeysInstalled;
 use App\Models\Server;
 use App\Services\Server\ConfiguratorService;
-use App\Utils\Ssh\ValueObjects\PublicKey;
+use App\Utils\SSH\ValueObjects\PublicKey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -27,7 +27,10 @@ class ServerCallbackController extends Controller
         if ($request->event == 'server.key') {
             if (!empty($request->key)) {
                 $server->addPublicKey(
-                    new PublicKey(Str::random(20), $request->key)
+                    Server\Key::create([
+                        'name' => Str::random(20),
+                        'content' => $request->key
+                    ])
                 );
             }
         }

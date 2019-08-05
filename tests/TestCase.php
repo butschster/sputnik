@@ -2,135 +2,43 @@
 
 namespace Tests;
 
-use App\Models\Server;
-use App\Services\Task\Contracts\Task;
-use App\Services\Task\RunnerService;
-use App\Utils\Ssh\ProcessRunner;
-use App\Utils\Ssh\Shell\Response;
-use App\Utils\Ssh\Commands\SshKeygen;
+use App\Utils\SSH\Contracts\KeyStorage as KeyStorageContract;
+use App\Utils\SSH\Contracts\ProcessExecutor as ProcessExecutorContract;
+use App\Utils\SSH\Shell\Response;
+use App\Utils\SSH\Commands\SshKeygen;
+use App\Utils\SSH\ValueObjects\PrivateKey;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Symfony\Component\Process\Exception\ProcessTimedOutException;
+use Symfony\Component\Process\Process;
+use Tests\Concerns\ServerFactory;
+use Tests\Concerns\ServerKeyFactory;
+use Tests\Concerns\TaskFactory;
+use Tests\Concerns\UserFactory;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication,
+        ServerFactory,
+        TaskFactory,
+        UserFactory,
+        ServerKeyFactory;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->instance(RunnerService::class, new FakeRunnerService);
+        $this->instance(ProcessExecutorContract::class, new FakeProcessExecutor());
+        $this->mock(KeyStorageContract::class, function($mock) {
+
+            $mock->shouldReceive('storeKey')->andReturn('path to the file');
+
+        });
     }
 
-    /**
-     * Create a new server
-     *
-     * @param array $attributes
-     * @param int $times
-     * @return Server|Collection
-     */
-    public function createServer(array $attributes = [], int $times = null)
-    {
-        $this->mockSshGenerator();
-
-        return $this->serverFactory($times)->create($attributes);
-    }
-
-    /**
-     * Make a new server
-     *
-     * @param array $attributes
-     * @param int $times
-     * @return Server|Collection
-     */
-    public function makeServer(array $attributes = [], int $times = null)
-    {
-        return $this->serverFactory($times)->make($attributes);
-    }
-
-    /**
-     * @param int|null $times
-     * @return \Illuminate\Database\Eloquent\FactoryBuilder
-     */
-    public function serverFactory(int $times = null)
-    {
-        return factory(Server::class, $times);
-    }
-
-    /**
-     * Create a new task
-     *
-     * @param array $attributes
-     * @param int $times
-     * @return Server\Task|Collection
-     */
-    public function createTask(array $attributes = [], int $times = null)
-    {
-        $this->mockSshGenerator();
-
-        return $this->taskFactory($times)->create($attributes);
-    }
-
-    /**
-     * Make a new task
-     *
-     * @param array $attributes
-     * @param int $times
-     * @return Server\Task|Collection
-     */
-    public function makeTask(array $attributes = [], int $times = null)
-    {
-        $this->mockSshGenerator();
-
-        return $this->taskFactory($times)->make($attributes);
-    }
-
-    /**
-     * @param int|null $times
-     * @return \Illuminate\Database\Eloquent\FactoryBuilder
-     */
-    public function taskFactory(int $times = null)
-    {
-        return factory(Server\Task::class, $times);
-    }
-
-    /**
-     * Create a new server
-     *
-     * @param array $attributes
-     * @param int $times
-     * @return Server\Key|Collection
-     */
-    public function createServerKey(array $attributes = [], int $times = null)
-    {
-        return $this->serverKeyFactory($times)->create($attributes);
-    }
-
-    /**
-     * Make a new server
-     *
-     * @param array $attributes
-     * @param int $times
-     * @return Server\Key|Collection
-     */
-    public function makeServerKey(array $attributes = [], int $times = null)
-    {
-        return $this->serverKeyFactory($times)->make($attributes);
-    }
-
-    /**
-     * @param int|null $times
-     * @return \Illuminate\Database\Eloquent\FactoryBuilder
-     */
-    public function serverKeyFactory(int $times = null)
-    {
-        return factory(Server\Key::class, $times);
-    }
 
     public function mockSshGenerator()
     {
-        $this->instance(SshKeygen::class, new SshKeygenMock(new ProcessRunner()));
+        $this->instance(SshKeygen::class, new SshKeygenMock(new FakeProcessExecutor()));
         $this->spy(Filesystem::class, function ($mock) {
             $mock->shouldReceive('get')->andReturn('key');
             $mock->shouldReceive('delete');
@@ -161,36 +69,16 @@ class SshKeygenMock extends SshKeygen
     }
 }
 
-class FakeRunnerService extends RunnerService
+class FakeProcessExecutor implements ProcessExecutorContract
 {
-    public function __construct(){}
 
     /**
-     * @param Task $task
-     */
-    public function run(Task $task)
-    {
-        $this->task = $task;
-
-        $this->task->markAsRunning();
-
-        return $this->task->saveResponse(
-            new Response(0, 'done!')
-        );
-    }
-
-    /**
-     * Run the given script in the background on a remote server.
+     * @param Process $process
      *
-     * @param Task $task
-     * @return void
+     * @return Response
      */
-    public function runInBackground(Task $task)
+    public function run(Process $process): Response
     {
-        $this->task = $task;
-
-        $this->task->markAsRunning();
-
-        $this->addCallbackToScript();
+        return new Response(0, 'done!');
     }
 }

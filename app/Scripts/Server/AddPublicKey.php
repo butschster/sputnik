@@ -2,7 +2,7 @@
 
 namespace App\Scripts\Server;
 
-use App\Utils\Ssh\Script;
+use App\Utils\SSH\Script;
 
 class AddPublicKey extends Script
 {
@@ -19,13 +19,6 @@ class AddPublicKey extends Script
      * @var string
      */
     protected $key;
-
-    /**
-     * The user that the script should be run as.
-     *
-     * @var string
-     */
-    public $sshAs = self::USER_SPUTNIK;
 
     /**
      * Create a new script instance.

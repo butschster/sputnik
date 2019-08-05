@@ -7,8 +7,8 @@ use App\Events\Server\KeysInstalled;
 use App\Listeners\Server\AddPublicKeyToServer;
 use App\Listeners\Server\ConfigureServer;
 use App\Listeners\Server\RemovePublicKeyFromServer;
+use App\Observers\Server\GenerateDatabasePassword;
 use App\Observers\Server\GenerateSshKeyPairsObserver;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,7 +17,6 @@ class EventServiceProvider extends ServiceProvider
 {
     /**
      * The event listener mappings for the application.
-     *
      * @var array
      */
     protected $listen = [
@@ -37,7 +36,6 @@ class EventServiceProvider extends ServiceProvider
 
     /**
      * Register any events for your application.
-     *
      * @return void
      */
     public function boot()
@@ -46,6 +44,7 @@ class EventServiceProvider extends ServiceProvider
 
         \App\Models\Server::observe([
             GenerateSshKeyPairsObserver::class,
+            GenerateDatabasePassword::class,
         ]);
     }
 }

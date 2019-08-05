@@ -4,8 +4,8 @@ namespace Tests\Unit\Services\Task;
 
 use App\Models\Server\Task;
 use App\Services\Task\FinishService;
-use App\Utils\Ssh\ProcessRunner;
-use App\Utils\Ssh\Shell\Response;
+use App\Utils\SSH\Contracts\ProcessExecutor;
+use App\Utils\SSH\Shell\Response;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Mockery as m;
@@ -18,10 +18,10 @@ class FinishServiceTest extends TestCase
     {
         $task = $this->createTask();
 
-        $processRunner = m::mock(ProcessRunner::class);
-        $processRunner->shouldReceive('run')->andReturn(new Response(0, $logs = 'logs output from file'));
+        $executor = m::mock(ProcessExecutor::class);
+        $executor->shouldReceive('run')->andReturn(new Response(0, $logs = 'logs output from file'));
         $service = new FinishService(
-            $processRunner
+            $executor
         );
 
         $service->finish($task);
@@ -37,10 +37,10 @@ class FinishServiceTest extends TestCase
 
         $task->addCallback($callback = FinishServiceTestCallback::class);
 
-        $processRunner = m::mock(ProcessRunner::class);
-        $processRunner->shouldReceive('run')->andReturn(new Response(0, $logs = 'logs output from file'));
+        $executor = m::mock(ProcessExecutor::class);
+        $executor->shouldReceive('run')->andReturn(new Response(0, $logs = 'logs output from file'));
         $service = new FinishService(
-            $processRunner
+            $executor
         );
 
         $service->finish($task);

@@ -3,7 +3,8 @@
 namespace App\Services\Server;
 
 use App\Models\Server;
-use App\Utils\Ssh\Contracts\Script;
+use App\Services\Task\Contracts\Task;
+use App\Utils\SSH\Contracts\Script;
 
 trait Runnable
 {
@@ -17,13 +18,13 @@ trait Runnable
      *
      * @param Script $script
      * @param array $options
-     * @return Server\Task
+     * @return Task
      */
-    protected function run(Script $script, array $options = []): Server\Task
+    protected function run(Script $script, array $options = []): Task
     {
         $task = $this->tasksFactory->createFromScript($this->server, $script, $options);
 
-        $this->runnerService->run(
+        $this->executorService->run(
             $task
         );
 
@@ -33,13 +34,13 @@ trait Runnable
     /**
      * @param Script $script
      * @param array $options
-     * @return Server\Task
+     * @return Task
      */
-    protected function runInBackground(Script $script, array $options = []): Server\Task
+    protected function runInBackground(Script $script, array $options = []): Task
     {
         $task = $this->tasksFactory->createFromScript($this->server, $script, $options);
 
-        $this->runnerService->runInBackground(
+        $this->executorService->runInBackground(
             $task
         );
 

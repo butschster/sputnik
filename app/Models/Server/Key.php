@@ -3,7 +3,7 @@
 namespace App\Models\Server;
 
 use App\Models\Concerns\UsesUuid;
-use App\Utils\Ssh\ValueObjects\PublicKey;
+use App\Utils\SSH\ValueObjects\PublicKey;
 use Illuminate\Database\Eloquent\Model;
 
 class Key extends Model

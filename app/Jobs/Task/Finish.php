@@ -50,6 +50,6 @@ class Finish implements ShouldQueue
      */
     public function handle(FinishService $service)
     {
-        $service->finish($this->task);
+        $service->finish($this->task, $this->exitCode);
     }
 }

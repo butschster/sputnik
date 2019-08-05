@@ -3,31 +3,11 @@
 namespace App\Listeners\Server;
 
 use App\Events\Server\Key\DetachedFromServer;
+use App\Jobs\Server\RunScript;
 use App\Scripts\Server\RemovePublicKey;
-use App\Services\Task\Factory;
-use App\Services\Task\RunnerService;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
-class RemovePublicKeyFromServer implements ShouldQueue
+class RemovePublicKeyFromServer
 {
-    /**
-     * @var Factory
-     */
-    protected $taskFactory;
-    /**
-     * @var RunnerService
-     */
-    protected $service;
-
-    /**
-     * @param Factory $taskFactory
-     * @param RunnerService $service
-     */
-    public function __construct(Factory $taskFactory, RunnerService $service)
-    {
-        $this->taskFactory = $taskFactory;
-        $this->service = $service;
-    }
     /**
      * Handle the event.
      *
@@ -36,13 +16,11 @@ class RemovePublicKeyFromServer implements ShouldQueue
      */
     public function handle(DetachedFromServer $event)
     {
-        $task = $this->taskFactory->createFromScript(
+        dispatch(new RunScript(
             $event->server,
             new RemovePublicKey(
                 'sputnik-' . $event->key->id
             )
-        );
-
-        $this->service->run($task);
+        ));
     }
 }

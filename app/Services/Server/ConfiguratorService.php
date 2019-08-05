@@ -2,14 +2,13 @@
 
 namespace App\Services\Server;
 
-use App\Callbacks\MarkAsProvisioned;
 use App\Models\Server;
 use App\Scripts\Server\Configure;
 use App\Scripts\Utils\GetAptLockStatus;
 use App\Scripts\Utils\GetCurrentDirectory;
 use App\Services\Server\Callbacks\MarkAsConfigured;
 use App\Services\Task\Factory;
-use App\Services\Task\RunnerService;
+use App\Services\Task\ExecutorService;
 
 class ConfiguratorService
 {
@@ -21,18 +20,18 @@ class ConfiguratorService
     protected $tasksFactory;
 
     /**
-     * @var RunnerService
+     * @var ExecutorService
      */
-    protected $runnerService;
+    protected $executorService;
 
     /**
      * @param Factory $tasksFactory
-     * @param RunnerService $runnerService
+     * @param ExecutorService $executorService
      */
-    public function __construct(Factory $tasksFactory, RunnerService $runnerService)
+    public function __construct(Factory $tasksFactory, ExecutorService $executorService)
     {
         $this->tasksFactory = $tasksFactory;
-        $this->runnerService = $runnerService;
+        $this->executorService = $executorService;
     }
 
     /**
