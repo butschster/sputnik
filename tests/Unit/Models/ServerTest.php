@@ -68,8 +68,8 @@ class ServerTest extends TestCase
     {
         $server = $this->createServer();
 
-        $this->assertEquals('key', $server->public_key);
-        $this->assertEquals('key', $server->private_key);
+        $this->assertEquals($this->getPublicKey(), $server->public_key);
+        $this->assertEquals($this->getPrivateKey(), $server->private_key);
         $this->assertNotNull($server->key_password);
     }
 
