@@ -3,10 +3,10 @@
 namespace App\Services\Server;
 
 use App\Models\Server;
+use App\Scripts\Server\Callbacks\MarkAsConfigured;
 use App\Scripts\Server\Configure;
 use App\Scripts\Utils\GetAptLockStatus;
 use App\Scripts\Utils\GetCurrentDirectory;
-use App\Services\Server\Callbacks\MarkAsConfigured;
 use App\Services\Task\Factory;
 use App\Services\Task\ExecutorService;
 

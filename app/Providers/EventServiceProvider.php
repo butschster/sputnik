@@ -24,7 +24,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         KeysInstalled::class => [
-            ConfigureServer::class,
+
         ],
         Key\AttachedToServer::class => [
             AddPublicKeyToServer::class,

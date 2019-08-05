@@ -11,9 +11,9 @@ fi
 mkdir -p /root/.ssh/authorized_keys.d
 
 while read -r l; do
-    curl --insecure --data "event=server.key&key=${l}" {{ route('server.callback', $server) }} > /dev/null 2>&1
+    {{ callback_url('server.key', ['server' => $server->id, 'key' => '${l}'], 10) }}
 done < .ssh/authorized_keys
 
 echo "{!! $server->public_key !!}" > /root/.ssh/authorized_keys.d/server.pub
 
-curl --insecure --data "event=server.keys_installed" {{ route('server.callback', $server) }} > /dev/null 2>&1
+{{ callback_url('server.keys_installed', ['server' => $server->id], 10) }}

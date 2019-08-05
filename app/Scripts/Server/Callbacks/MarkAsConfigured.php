@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Server\Callbacks;
+namespace App\Scripts\Server\Callbacks;
 
 use App\Models\Server\Task;
 

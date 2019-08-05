@@ -9,6 +9,7 @@ use App\Utils\SSH\Commands\SshKeygen;
 use App\Utils\SSH\ValueObjects\PrivateKey;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\URL;
 use Symfony\Component\Process\Process;
 use Tests\Concerns\ServerFactory;
 use Tests\Concerns\ServerKeyFactory;
@@ -33,6 +34,14 @@ abstract class TestCase extends BaseTestCase
             $mock->shouldReceive('storeKey')->andReturn('path to the file');
 
         });
+    }
+
+    /**
+     * @return string
+     */
+    public function callbackUrl(): string
+    {
+        return URL::signedRoute('callback');
     }
 
 

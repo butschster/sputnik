@@ -64,8 +64,10 @@ class ExecutorServiceTest extends TestCase
 
         $service->runInBackground($task);
 
-        $response = $this->post(route('server.task.callback', $task), [
-            'exit_code' => 1
+        $response = $this->post($this->callbackUrl(), [
+            'action' => 'task.finished',
+            'exit_code' => 1,
+            'task_id' => $task->id
         ]);
 
         $response->assertOk();

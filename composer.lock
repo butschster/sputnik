@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "edb1454833d0ea4b47f3a6f1098960d8",
+    "content-hash": "107b8d7a4dd890f1a566aa7fc8cdb708",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -830,6 +830,63 @@
             "time": "2019-06-18T20:09:29+00:00"
         },
         {
+            "name": "lorisleiva/laravel-actions",
+            "version": "v0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lorisleiva/laravel-actions.git",
+                "reference": "ad70300d8137b995ee27ca481e5fcbe17fbc1844"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lorisleiva/laravel-actions/zipball/ad70300d8137b995ee27ca481e5fcbe17fbc1844",
+                "reference": "ad70300d8137b995ee27ca481e5fcbe17fbc1844",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.7.*|5.8.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0.0",
+                "orchestra/testbench": "~3.8.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Lorisleiva\\Actions\\ActionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lorisleiva\\Actions\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Loris LEIVA",
+                    "email": "loris.leiva@gmail.com",
+                    "homepage": "https://lorisleiva.com"
+                }
+            ],
+            "description": "Laravel components that take care of one specific task",
+            "homepage": "https://github.com/lorisleiva/laravel-actions",
+            "keywords": [
+                "action",
+                "component",
+                "controller",
+                "job",
+                "laravel"
+            ],
+            "time": "2019-07-30T09:15:55+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.24.0",
             "source": {
@@ -1530,6 +1587,63 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "spatie/laravel-webhook-client",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-webhook-client.git",
+                "reference": "5cb7b0e5eed4e770355ecb59687baeca572be5a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-webhook-client/zipball/5cb7b0e5eed4e770355ecb59687baeca572be5a2",
+                "reference": "5cb7b0e5eed4e770355ecb59687baeca572be5a2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/bus": "^5.8",
+                "illuminate/database": "^5.8",
+                "illuminate/support": "^5.8",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.8",
+                "phpunit/phpunit": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\WebhookClient\\WebhookClientServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\WebhookClient\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "role": "Developer",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be"
+                }
+            ],
+            "description": "Receive webhoops in Laravel apps",
+            "homepage": "https://github.com/spatie/laravel-webhook-client",
+            "keywords": [
+                "laravel-webhook-client",
+                "spatie"
+            ],
+            "time": "2019-07-09T16:09:58+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
