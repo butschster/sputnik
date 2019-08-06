@@ -20,13 +20,10 @@ class KeyEventsTest extends TestCase
 
         $server = $this->createServer();
 
-        $key = $this->createSSHKey();
-        $server->addPublicKey(
-            $key
-        );
+        $server->addPublicKey('test', 'public key content');
 
-        Event::assertDispatched(AttachedToServer::class, function ($event) use ($server, $key) {
-            return $event->server->is($server);
+        Event::assertDispatched(AttachedToServer::class, function ($event) use ($server) {
+            return $event->key->server->is($server);
         });
     }
 
@@ -37,11 +34,7 @@ class KeyEventsTest extends TestCase
         ]);
 
         $server = $this->createServer();
-
-        $key = $this->createSSHKey();
-        $server->addPublicKey(
-            $key
-        );
+        $key = $server->addPublicKey('test', 'public key content');
 
         $server->removePublicKey($key);
 

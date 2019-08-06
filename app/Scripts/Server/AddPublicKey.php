@@ -39,7 +39,7 @@ class AddPublicKey extends Script
      */
     public function getName(): string
     {
-        return "Syncing SSH Key [{$this->name}]";
+        return "Add SSH Key [{$this->name}]";
     }
 
     /**

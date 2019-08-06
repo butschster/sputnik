@@ -18,7 +18,7 @@ class AddPublicKeyToServerTest extends TestCase
         Bus::fake();
 
         $server = $this->createServer();
-        $key = $this->createSSHKeyForServer($server);
+        $key = $server->addPublicKey('test', 'test');
 
         Bus::assertDispatched(RunScript::class, function (RunScript $job) {
             $this->app->call([$job, 'handle']);
@@ -27,7 +27,7 @@ class AddPublicKeyToServerTest extends TestCase
         });
 
         Bus::assertDispatched(Run::class, function (Run $job) use ($server) {
-            return $job->task->server->is($server) && Str::contains($job->task->name, 'Syncing SSH Key');
+            return $job->task->server->is($server) && Str::contains($job->task->name, 'Add SSH Key');
         });
     }
 }

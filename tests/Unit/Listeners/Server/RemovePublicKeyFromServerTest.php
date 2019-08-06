@@ -29,7 +29,7 @@ class RemovePublicKeyFromServerTest extends TestCase
         });
 
         Bus::assertDispatched(Run::class, function (Run $job) use ($server) {
-            return $job->task->server->is($server) && Str::contains($job->task->name, 'Syncing SSH Key');
+            return $job->task->server->is($server) && Str::contains($job->task->name, 'Remove SSH Key');
         });
     }
 }

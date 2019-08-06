@@ -109,12 +109,9 @@ class ServerTest extends TestCase
     {
         $server = $this->createServer();
 
-        $key = $this->createSSHKey();
-        $key1 = $this->createSSHKey();
+        $key = $this->createSSHKeyForServer($server);
+        $key1 = $this->createSSHKeyForServer($server);
         $key2 = $this->createSSHKey();
-
-        $server->keys()->attach($key);
-        $server->keys()->attach($key1);
 
         $this->assertTrue($server->keys->contains($key));
         $this->assertTrue($server->keys->contains($key1));
@@ -125,7 +122,7 @@ class ServerTest extends TestCase
     {
         $server = $this->createServer();
 
-        $server->addPublicKey($this->createSSHKey());
+        $server->addPublicKey('test', 'test');
 
         $this->assertCount(1, $server->keys);
     }
@@ -134,7 +131,7 @@ class ServerTest extends TestCase
     {
         $server = $this->createServer();
 
-        $server->addPublicKey($key = $this->createSSHKey());
+        $key = $server->addPublicKey('test', 'test');
 
         $server->removePublicKey($key);
 

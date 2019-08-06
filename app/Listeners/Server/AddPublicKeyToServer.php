@@ -17,7 +17,7 @@ class AddPublicKeyToServer
     public function handle(AttachedToServer $event)
     {
         dispatch(new RunScript(
-            $event->server,
+            $event->key->server,
             new AddPublicKey(
                 'sputnik-' . $event->key->id,
                 $event->key->content

@@ -17,7 +17,7 @@ class RemovePublicKeyFromServer
     public function handle(DetachedFromServer $event)
     {
         dispatch(new RunScript(
-            $event->server,
+            $event->key->server,
             new RemovePublicKey(
                 'sputnik-' . $event->key->id
             )

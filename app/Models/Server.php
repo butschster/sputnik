@@ -128,11 +128,11 @@ class Server extends Model
     /**
      * Get the keys that belong to the server.
      *
-     * @return BelongsToMany
+     * @return HasMany
      */
-    public function keys(): BelongsToMany
+    public function keys(): HasMany
     {
-        return $this->belongsToMany(Key::class);
+        return $this->hasMany(Key::class);
     }
 
     /**
@@ -207,26 +207,32 @@ class Server extends Model
     /**
      * Attach public key to server
      *
-     * @param Key $key
+     * @param string $name
+     * @param string $content
+     * @return Key
      */
-    public function addPublicKey(Key $key)
+    public function addPublicKey(string $name, string $content): Key
     {
-        if (!$this->keys()->where('key_id', $key->id)->exists()) {
-            $this->keys()->attach($key);
+        $key = $this->keys()->create([
+            'name' => $name,
+            'content' => $content
+        ]);
 
-            event(new AttachedToServer($this, $key));
-        }
+        event(new AttachedToServer($key));
+
+        return $key;
     }
 
     /**
      * Remove public key from server
      *
      * @param Key $key
+     * @throws \Exception
      */
     public function removePublicKey(Key $key)
     {
-        $this->keys()->detach($key);
+        $key->delete();
 
-        event(new DetachedFromServer($this, $key));
+        event(new DetachedFromServer($key));
     }
 }

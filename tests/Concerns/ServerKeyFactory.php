@@ -31,17 +31,9 @@ trait ServerKeyFactory
      */
     public function createSSHKeyForServer(Server $server, array $attributes = [], int $times = null)
     {
-        $key = $this->createSSHKey($attributes, $times);
+        $attributes['server_id'] = $server->id;
 
-        if ($key instanceof Collection) {
-            foreach ($key as $item) {
-                $server->addPublicKey($item);
-            }
-        } else {
-            $server->addPublicKey($key);
-        }
-
-        return $key;
+        return $this->createSSHKey($attributes, $times);
     }
 
     /**

@@ -22,19 +22,12 @@ class AttachedToServer
     public $key;
 
     /**
-     * @var Server
-     */
-    public $server;
-
-    /**
      * This event fires when key created and attached to the server
      *
-     * @param Server $server
      * @param Key $key
      */
-    public function __construct(Server $server, Key $key)
+    public function __construct(Key $key)
     {
         $this->key = $key;
-        $this->server = $server;
     }
 }
