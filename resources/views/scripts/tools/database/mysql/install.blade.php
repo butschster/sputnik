@@ -32,4 +32,4 @@ mysql --user="root" --password="{!! $databasePassword !!}" -e "GRANT ALL ON *.* 
 
 mysql --user="root" --password="{!! $databasePassword !!}" -e "FLUSH PRIVILEGES;"
 
-{!! callback_url('server.configuring', ['server_id' => $server->id, 'message' => 'mysql.installed'], 10) !!}
+{!! callback_url('server.event', ['server_id' => $server->id, 'message' => 'mysql.installed'], 10) !!}

@@ -1,6 +1,6 @@
 <?php
 
-Route::post('/callback', 'CallbackController')->name('callback'); //->middleware('signed');
+Route::post('/callback', 'CallbackController')->name('callback');
 
 Auth::routes();
 
@@ -11,4 +11,3 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/server/{server}/install', 'ServerController@installationScript')->name('server.install_script');
-

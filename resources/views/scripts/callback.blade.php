@@ -19,6 +19,3 @@ cat > {!! $path !!} << '{!! $token !!}'
 @endif
 
 # Call Home With ID & Status Code
-
-STATUS=$?
-{!! callback_url('task.finished', ['task_id' => $task->id, 'exit_code' => '$STATUS']) !!}

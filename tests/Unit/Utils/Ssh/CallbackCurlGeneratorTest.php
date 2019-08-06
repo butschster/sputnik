@@ -17,8 +17,7 @@ class CallbackCurlGeneratorTest extends TestCase
         $string = $generator->generate('server.configured', ['server' => 'server-id', 'exit_code' => '$STATUS']);
 
         $this->assertEquals(
-            //'curl -X POST -k -H "Content-Type: application/json" -d "server=server-id&exit_code=%24STATUS&action=server.configured" http://localhost/callback?action=server.configured&expires=1286672400&signature=4390de16b3bbdc36e3f5a3cd84cfcecd53d28c93d196f79d89927160542addb9 > /dev/null 2>&1',
-            'curl -X POST -k -d "server=server-id&exit_code=$STATUS&action=server.configured" http://sputnik.superprojects.space/callback > /dev/null 2>&1',
+            'curl -X POST -k -d "server=server-id&exit_code=$STATUS&action=server.configured&expires=1286672400&signature=4642cc6aa477ee9313d5fca309932210c545dd6106d1ea4e15799fec911b1f55" http://sputnik.superprojects.space/callback > /dev/null 2>&1',
             $string
         );
     }
