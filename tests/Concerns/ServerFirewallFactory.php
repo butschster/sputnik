@@ -13,11 +13,11 @@ trait ServerFirewallFactory
      * @param array $attributes
      * @param int $times
      *
-     * @return Server\Firewall|Collection
+     * @return Server\Firewall\Rule|Collection
      */
-    public function createServerFirewall(array $attributes = [], int $times = null)
+    public function createFirewallRule(array $attributes = [], int $times = null)
     {
-        return $this->serverFirewallFactory($times)->create($attributes);
+        return $this->firewallRuleFactory($times)->create($attributes);
     }
 
     /**
@@ -26,11 +26,11 @@ trait ServerFirewallFactory
      * @param array $attributes
      * @param int $times
      *
-     * @return Server\Firewall|Collection
+     * @return Server\Firewall\Rule|Collection
      */
-    public function makeServerFirewall(array $attributes = [], int $times = null)
+    public function makeFirewallRule(array $attributes = [], int $times = null)
     {
-        return $this->serverFirewallFactory($times)->make($attributes);
+        return $this->firewallRuleFactory($times)->make($attributes);
     }
 
     /**
@@ -38,8 +38,8 @@ trait ServerFirewallFactory
      *
      * @return \Illuminate\Database\Eloquent\FactoryBuilder
      */
-    public function serverFirewallFactory(int $times = null)
+    public function firewallRuleFactory(int $times = null)
     {
-        return factory(Server\Firewall::class, $times);
+        return factory(Server\Firewall\Rule::class, $times);
     }
 }

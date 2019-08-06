@@ -32,7 +32,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Event[] $events
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Firewall[] $firewall
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Firewall\Rule[] $firewallRules
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Key[] $keys
  * @property-write mixed $keypair
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Task[] $tasks
@@ -94,16 +94,16 @@ namespace App\Models\Server{
 	class Task extends \Eloquent {}
 }
 
-namespace App\Models\Server{
+namespace App\Models\Server\Firewall{
 /**
- * App\Models\Server\Firewall
+ * App\Models\Server\Firewall\Rule
  *
  * @property-read \App\Models\Server $server
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule query()
  */
-	class Firewall extends \Eloquent {}
+	class Rule extends \Eloquent {}
 }
 
 namespace App\Models\Server{

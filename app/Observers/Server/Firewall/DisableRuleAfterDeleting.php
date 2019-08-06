@@ -2,7 +2,7 @@
 
 namespace App\Observers\Server\Firewall;
 
-use App\Models\Server\Firewall;
+use App\Models\Server\Firewall\Rule as FirewallRule;
 use App\Services\Server\FirewallService;
 
 class DisableRuleAfterDeleting
@@ -21,9 +21,9 @@ class DisableRuleAfterDeleting
     }
 
     /**
-     * @param Firewall $rule
+     * @param FirewallRule $rule
      */
-    public function deleted(Firewall $rule)
+    public function deleted(FirewallRule $rule)
     {
         $this->service->disableRule($rule);
     }

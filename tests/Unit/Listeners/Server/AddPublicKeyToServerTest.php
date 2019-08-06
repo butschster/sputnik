@@ -6,6 +6,7 @@ use App\Jobs\Server\RunScript;
 use App\Jobs\Task\Run;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class AddPublicKeyToServerTest extends TestCase
@@ -16,11 +17,8 @@ class AddPublicKeyToServerTest extends TestCase
     {
         Bus::fake();
 
-        $key = $this->createServerKey();
-
         $server = $this->createServer();
-
-        $server->addPublicKey($key);
+        $key = $this->createSSHKeyForServer($server);
 
         Bus::assertDispatched(RunScript::class, function (RunScript $job) {
             $this->app->call([$job, 'handle']);
@@ -29,7 +27,7 @@ class AddPublicKeyToServerTest extends TestCase
         });
 
         Bus::assertDispatched(Run::class, function (Run $job) use ($server) {
-            return $job->task->server->is($server) && $job->task->name == 'Syncing SSH Key';
+            return $job->task->server->is($server) && Str::contains($job->task->name, 'Syncing SSH Key');
         });
     }
 }

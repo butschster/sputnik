@@ -3,6 +3,7 @@
 namespace App\Http\Actions\Server;
 
 use App\Models\Server;
+use App\Rules\Server\Key\PublicKey;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\Action;
@@ -10,15 +11,13 @@ use Lorisleiva\Actions\Action;
 class RegisterNewKey extends Action
 {
     /**
-     * TODO Add public key validation
-     *
      * @return array
      */
     public function rules()
     {
         return [
             'server_id' => ['required', Rule::exists('servers', 'id')],
-            'key' => 'required|string',
+            'key' => ['required', 'string', new PublicKey],
         ];
     }
 

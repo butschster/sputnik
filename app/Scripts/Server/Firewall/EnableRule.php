@@ -2,20 +2,20 @@
 
 namespace App\Scripts\Server\Firewall;
 
-use App\Models\Server\Firewall;
+use App\Models\Server\Firewall\Rule;
 use App\Utils\SSH\Script;
 
 class EnableRule extends Script
 {
     /**
-     * @var Firewall
+     * @var Rule
      */
     protected $rule;
 
     /**
-     * @param Firewall $rule
+     * @param Rule $rule
      */
-    public function __construct(Firewall $rule)
+    public function __construct(Rule $rule)
     {
         $this->rule = $rule;
     }

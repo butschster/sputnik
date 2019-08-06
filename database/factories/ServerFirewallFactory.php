@@ -3,10 +3,10 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\Server;
-use App\Models\Server\Firewall;
+use App\Models\Server\Firewall\Rule;
 use Faker\Generator as Faker;
 
-$factory->define(Firewall::class, function (Faker $faker) {
+$factory->define(Rule::class, function (Faker $faker) {
     return [
         'server_id' => factory(Server::class),
         'editable' => $faker->boolean(90),

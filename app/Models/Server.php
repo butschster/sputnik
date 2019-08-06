@@ -10,7 +10,7 @@ use App\Events\Server\Key\DetachedFromServer;
 use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server\Event;
-use App\Models\Server\Firewall;
+use App\Models\Server\Firewall\Rule as FirewallRule;
 use App\Models\Server\Key;
 use App\Models\Server\Task;
 use App\Utils\SSH\Contracts\KeyStorage;
@@ -120,9 +120,9 @@ class Server extends Model
      *
      * @return HasMany
      */
-    public function firewall(): HasMany
+    public function firewallRules(): HasMany
     {
-        return $this->hasMany(Firewall::class);
+        return $this->hasMany(FirewallRule::class);
     }
 
     /**

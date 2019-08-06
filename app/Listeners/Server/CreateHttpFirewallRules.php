@@ -25,14 +25,14 @@ class CreateHttpFirewallRules
      */
     public function handle(Configured $event)
     {
-        $event->server->firewall()->create(['name' => 'SSH', 'port' => 22, 'policy' => 'allow', 'editable' => false]);
+        $event->server->firewallRules()->create(['name' => 'SSH', 'port' => 22, 'policy' => 'allow', 'editable' => false]);
 
         $this->service->enableRule(
-            $event->server->firewall()->create(['name' => 'HTTP', 'port' => 80, 'policy' => 'allow'])
+            $event->server->firewallRules()->create(['name' => 'HTTP', 'port' => 80, 'policy' => 'allow'])
         );
 
         $this->service->enableRule(
-            $event->server->firewall()->create(['name' => 'HTTPS', 'port' => 443, 'policy' => 'allow'])
+            $event->server->firewallRules()->create(['name' => 'HTTPS', 'port' => 443, 'policy' => 'allow'])
         );
     }
 }

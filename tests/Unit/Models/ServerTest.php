@@ -14,7 +14,7 @@ class ServerTest extends TestCase
     function test_the_database_password_should_be_generated()
     {
         $server = $this->createServer([
-            'database_password' => null
+            'database_password' => null,
         ]);
 
         $this->assertNotNull($server->database_password);
@@ -78,7 +78,7 @@ class ServerTest extends TestCase
         $server = $this->createServer([
             'public_key' => 'public_key',
             'private_key' => 'private_key',
-            'key_password' => 'password'
+            'key_password' => 'password',
         ]);
 
         $this->assertEquals('public_key', $server->public_key);
@@ -109,9 +109,9 @@ class ServerTest extends TestCase
     {
         $server = $this->createServer();
 
-        $key = $this->createServerKey();
-        $key1 = $this->createServerKey();
-        $key2 = $this->createServerKey();
+        $key = $this->createSSHKey();
+        $key1 = $this->createSSHKey();
+        $key2 = $this->createSSHKey();
 
         $server->keys()->attach($key);
         $server->keys()->attach($key1);
@@ -125,7 +125,7 @@ class ServerTest extends TestCase
     {
         $server = $this->createServer();
 
-        $server->addPublicKey($this->createServerKey());
+        $server->addPublicKey($this->createSSHKey());
 
         $this->assertCount(1, $server->keys);
     }
@@ -134,7 +134,7 @@ class ServerTest extends TestCase
     {
         $server = $this->createServer();
 
-        $server->addPublicKey($key = $this->createServerKey());
+        $server->addPublicKey($key = $this->createSSHKey());
 
         $server->removePublicKey($key);
 
@@ -146,11 +146,38 @@ class ServerTest extends TestCase
         $server = $this->createServer();
 
         $events = $this->createServerEvent([
-            'server_id' => $server->id
+            'server_id' => $server->id,
         ], 2);
 
         $events1 = $this->createServerEvent([], 2);
 
         $this->assertCount(2, $server->events);
+        foreach ($events as $event) {
+            $this->assertTrue($server->events->contains($event));
+        }
+
+        foreach ($events1 as $event) {
+            $this->assertFalse($server->events->contains($event));
+        }
+    }
+
+    function test_get_firewall_rules()
+    {
+        $server = $this->createServer();
+
+        $rules = $this->createFirewallRule([
+            'server_id' => $server,
+        ], 2);
+
+        $rules1 = $this->createFirewallRule([], 2);
+        foreach ($rules as $rule) {
+            $this->assertTrue($server->firewallRules->contains($rule));
+        }
+
+        foreach ($rules1 as $rule) {
+            $this->assertFalse($server->firewallRules->contains($rules1));
+        }
+
+        $this->assertCount(2, $server->firewallRules);
     }
 }

@@ -14,7 +14,7 @@ class KeyTest extends TestCase
 
     function test_gets_fingerprint()
     {
-        $key = $this->createServerKey([
+        $key = $this->createSSHKey([
             'content' => $this->getPublicKey()
         ]);
 

@@ -51,7 +51,7 @@ class EventServiceProvider extends ServiceProvider
             GenerateDatabasePassword::class,
         ]);
 
-        \App\Models\Server\Firewall::observe([
+        \App\Models\Server\Firewall\Rule::observe([
             DisableRuleAfterDeleting::class
         ]);
     }

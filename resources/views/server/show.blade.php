@@ -47,7 +47,7 @@
                     <th>Policy</th>
                 </tr>
                 </thead>
-                @foreach($server->firewall as $rule)
+                @foreach($server->firewallRules as $rule)
                     <tr>
                         <th>{{ $rule->name }}</th>
                         <th>{{ $rule->port }} [{{ $rule->protocol }}]</th>

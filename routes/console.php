@@ -30,7 +30,7 @@ Artisan::command('server:configured {server}', function ($server) {
 })->describe('Fire event about server configured');
 
 Artisan::command('firewall:disable {id}', function ($id) {
-    $rule = \App\Models\Server\Firewall::findOrFail($id);
+    $rule = \App\Models\Server\Firewall\Rule::findOrFail($id);
 
     $rule->delete();
 

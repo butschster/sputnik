@@ -2,7 +2,7 @@
 
 namespace App\Services\Server;
 
-use App\Models\Server\Firewall;
+use App\Models\Server\Firewall\Rule;
 use App\Scripts\Server\Firewall\DisableRule;
 use App\Scripts\Server\Firewall\EnableRule;
 
@@ -13,9 +13,9 @@ class FirewallService
     /**
      * Enable firewall rule
      *
-     * @param Firewall $rule
+     * @param Rule $rule
      */
-    public function enableRule(Firewall $rule)
+    public function enableRule(Rule $rule)
     {
         $this->server = $rule->server;
 
@@ -27,9 +27,9 @@ class FirewallService
     /**
      * Enable firewall rule
      *
-     * @param Firewall $rule
+     * @param Rule $rule
      */
-    public function disableRule(Firewall $rule)
+    public function disableRule(Rule $rule)
     {
         $this->server = $rule->server;
 

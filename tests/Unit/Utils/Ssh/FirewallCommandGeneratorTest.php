@@ -18,7 +18,7 @@ class FirewallCommandGeneratorTest extends TestCase
      */
     function test_rule_generation($data, $expected)
     {
-        $rule = $this->createServerFirewall($data);
+        $rule = $this->createFirewallRule($data);
 
         $this->assertEquals($expected, $rule->toBashEnableCommand());
     }

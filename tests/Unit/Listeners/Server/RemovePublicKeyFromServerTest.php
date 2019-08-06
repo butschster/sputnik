@@ -6,6 +6,7 @@ use App\Jobs\Server\RunScript;
 use App\Jobs\Task\Run;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class RemovePublicKeyFromServerTest extends TestCase
@@ -16,11 +17,9 @@ class RemovePublicKeyFromServerTest extends TestCase
     {
         Bus::fake();
 
-        $key = $this->createServerKey();
-
         $server = $this->createServer();
+        $key = $this->createSSHKeyForServer($server);
 
-        $server->addPublicKey($key);
         $server->removePublicKey($key);
 
         Bus::assertDispatched(RunScript::class, function (RunScript $job) {
@@ -30,7 +29,7 @@ class RemovePublicKeyFromServerTest extends TestCase
         });
 
         Bus::assertDispatched(Run::class, function (Run $job) use ($server) {
-            return $job->task->server->is($server) && $job->task->name == 'Syncing SSH Key';
+            return $job->task->server->is($server) && Str::contains($job->task->name, 'Syncing SSH Key');
         });
     }
 }

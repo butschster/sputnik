@@ -20,7 +20,7 @@ class KeyEventsTest extends TestCase
 
         $server = $this->createServer();
 
-        $key = $this->createServerKey();
+        $key = $this->createSSHKey();
         $server->addPublicKey(
             $key
         );
@@ -38,7 +38,7 @@ class KeyEventsTest extends TestCase
 
         $server = $this->createServer();
 
-        $key = $this->createServerKey();
+        $key = $this->createSSHKey();
         $server->addPublicKey(
             $key
         );

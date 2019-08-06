@@ -13,7 +13,7 @@ class CreateServerFirewallTable extends Migration
      */
     public function up()
     {
-        Schema::create('server_firewall', function (Blueprint $table) {
+        Schema::create('server_firewall_rules', function (Blueprint $table) {
             $table->primaryUuid('id');
             $table->uuid('server_id');
             $table->boolean('editable')->default(true);

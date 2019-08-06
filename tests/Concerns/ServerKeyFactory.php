@@ -8,16 +8,40 @@ use Illuminate\Support\Collection;
 trait ServerKeyFactory
 {
     /**
-     * Create a new server
+     * Create a new ssh key
      *
      * @param array $attributes
      * @param int $times
      *
      * @return Server\Key|Collection
      */
-    public function createServerKey(array $attributes = [], int $times = null)
+    public function createSSHKey(array $attributes = [], int $times = null)
     {
-        return $this->serverKeyFactory($times)->create($attributes);
+        return $this->SSHKeyFactory($times)->create($attributes);
+    }
+
+    /**
+     * Create a new ssh key and attach to the server
+     *
+     * @param Server $server
+     * @param array $attributes
+     * @param int $times
+     *
+     * @return Server\Key|Collection
+     */
+    public function createSSHKeyForServer(Server $server, array $attributes = [], int $times = null)
+    {
+        $key = $this->createSSHKey($attributes, $times);
+
+        if ($key instanceof Collection) {
+            foreach ($key as $item) {
+                $server->addPublicKey($item);
+            }
+        } else {
+            $server->addPublicKey($key);
+        }
+
+        return $key;
     }
 
     /**
@@ -28,9 +52,9 @@ trait ServerKeyFactory
      *
      * @return Server\Key|Collection
      */
-    public function makeServerKey(array $attributes = [], int $times = null)
+    public function makeSSHKey(array $attributes = [], int $times = null)
     {
-        return $this->serverKeyFactory($times)->make($attributes);
+        return $this->SSHKeyFactory($times)->make($attributes);
     }
 
     /**
@@ -38,7 +62,7 @@ trait ServerKeyFactory
      *
      * @return \Illuminate\Database\Eloquent\FactoryBuilder
      */
-    public function serverKeyFactory(int $times = null)
+    public function SSHKeyFactory(int $times = null)
     {
         return factory(Server\Key::class, $times);
     }

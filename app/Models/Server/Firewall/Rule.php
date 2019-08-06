@@ -15,12 +15,99 @@ class Rule extends Model
     /**
      * @var string
      */
-    protected $table = 'server_firewall';
+    protected $table = 'server_firewall_rules';
 
     /**
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * @var array
+     */
+    protected $attributes = [
+        'from' => null,
+        'policy' => 'allow',
+        'protocol' => null,
+    ];
+
+    /**
+     * Get the policy
+     *
+     * @return string
+     */
+    public function policy(): string
+    {
+        if (empty($this->policy)) {
+            return 'allow';
+        }
+
+        return $this->policy;
+    }
+
+    /**
+     * Get the rule protocol
+     *
+     * @return string|null
+     */
+    public function protocol(): ?string
+    {
+        return $this->protocol;
+    }
+
+    /**
+     * Get the rule port
+     *
+     * @return string|null
+     */
+    public function port(): ?string
+    {
+        if ($this->hasProtocol() && $this->hasPort()) {
+            return $this->port . '/' . $this->protocol();
+        }
+
+        return $this->port;
+    }
+
+    /**
+     * Get the from
+     *
+     * @return string|null
+     */
+    public function from(): ?string
+    {
+        return $this->from;
+    }
+
+    /**
+     * Check if the port was set
+     *
+     * @return bool
+     */
+    public function hasFrom(): bool
+    {
+        return !empty($this->from);
+    }
+
+    /**
+     * Check if the port was set
+     *
+     * @return bool
+     */
+    public function hasPort(): bool
+    {
+        return !empty($this->port);
+    }
+
+    /**
+     * Check if the protocol was set
+     *
+     * @return bool
+     */
+    public function hasProtocol(): bool
+    {
+        return !empty($this->protocol);
+    }
 
     /**
      * Get the server that belong to the firewall rule.
