@@ -1,3 +1,8 @@
+
+# ================================================
+# Task {!! $task->id !!}
+# ================================================
+
 # Rewrite Script Into Another File
 
 cat > {!! $path !!} << '{!! $token !!}'
@@ -16,5 +21,4 @@ cat > {!! $path !!} << '{!! $token !!}'
 # Call Home With ID & Status Code
 
 STATUS=$?
-
 {!! callback_url('task.finished', ['task_id' => $task->id, 'exit_code' => '$STATUS']) !!}

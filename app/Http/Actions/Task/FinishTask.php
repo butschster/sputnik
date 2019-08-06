@@ -27,6 +27,10 @@ class FinishTask extends Action
     {
         $task = Task::findOrFail($this->task_id);
 
+        $task->update([
+            'exit_code' => (int) $this->exit_code
+        ]);
+
         // If task is not run, it shouldn't be finished
         abort_unless($task->isRunning(), 404);
 

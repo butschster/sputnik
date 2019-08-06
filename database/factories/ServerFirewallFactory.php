@@ -12,7 +12,7 @@ $factory->define(Rule::class, function (Faker $faker) {
         'editable' => $faker->boolean(90),
         'name' => $faker->word,
         'port' => $faker->numberBetween(22, 65331),
-        'protocol' => $faker->randomElement(['tcp', 'udp', null]),
+        'protocol' => $faker->randomElement(['tcp', 'udp']),
         'from' => $faker->ipv4,
         'policy' => $faker->randomElement(['allow', 'deny']),
     ];

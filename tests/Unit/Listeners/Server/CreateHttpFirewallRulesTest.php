@@ -18,10 +18,11 @@ class CreateHttpFirewallRulesTest extends TestCase
         $server = $this->createServer();
         $this->assertCount(0, $server->firewallRules);
 
-        $service = m::mock(FirewallService::class);
-        $service->shouldReceive('enableRule')->twice();
+        $this->mock(FirewallService::class, function ($mock) {
+            $mock->shouldReceive('enableRule')->times(3);
+        });
 
-        $listener = new CreateHttpFirewallRules($service);
+        $listener = $this->app[CreateHttpFirewallRules::class];
         $listener->handle(new Configured($server));
 
         $this->checkFilrewallRules($server->refresh());

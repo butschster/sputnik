@@ -9,6 +9,7 @@ use App\Events\Server\Key\AttachedToServer;
 use App\Events\Server\Key\DetachedFromServer;
 use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\UsesUuid;
+use App\Models\Server\CallbackLog;
 use App\Models\Server\CronJob;
 use App\Models\Server\Event;
 use App\Models\Server\Firewall\Rule as FirewallRule;

@@ -14,6 +14,10 @@
                     <th>Status</th>
                     <td>{{ $task->status }}</td>
                 </tr>
+                <tr>
+                    <th>Success</th>
+                    <td>{{ $task->isSuccessful() ? 'yes' : 'no' }}</td>
+                </tr>
             </table>
         </div>
 

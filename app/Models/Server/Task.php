@@ -91,7 +91,11 @@ class Task extends Model implements TaskContract
      */
     public function isSuccessful(): bool
     {
-        return (int)$this->exit_code === 0;
+        if (is_null($this->exit_code)) {
+            return false;
+        }
+
+        return (int) $this->exit_code === 0;
     }
 
     /**

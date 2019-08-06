@@ -9,8 +9,6 @@ use Lorisleiva\Actions\Action;
 class ProcessServerEvents extends Action
 {
     /**
-     * TODO Add public key validation
-     *
      * @return array
      */
     public function rules()

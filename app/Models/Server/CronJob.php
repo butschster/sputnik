@@ -4,6 +4,8 @@ namespace App\Models\Server;
 
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server;
+use App\Services\Server\CronService;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -29,6 +31,14 @@ class CronJob extends Model
     ];
 
     /**
+     * @param string $expression
+     */
+    public function setCronAttribute(string $expression)
+    {
+        $this->attributes['cron'] = app(CronService::class)->parseExpression($expression);
+    }
+
+    /**
      * Link to the server
      *
      * @return BelongsTo
@@ -39,13 +49,21 @@ class CronJob extends Model
     }
 
     /**
+     * @return Carbon
+     */
+    public function nextRunDate(): Carbon
+    {
+        return app(CronService::class)->nextRunDate($this->cron);
+    }
+
+    /**
      * Get the job name for crontab
      *
      * @return string
      */
     public function crontabName(): string
     {
-        return "# Sputnik json " . $this->id;
+        return "# Sputnik " . $this->id;
     }
 
     /**

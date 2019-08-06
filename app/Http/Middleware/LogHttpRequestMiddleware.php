@@ -34,6 +34,7 @@ class LogHttpRequestMiddleware
             'method' => $request->method(),
             'data' => $request->all(),
             'query' => $request->query(),
+            'ip' => $request->ip()
         ]);
 
         return $next($request);

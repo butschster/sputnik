@@ -2,14 +2,12 @@
 
 namespace App\Scripts\Server;
 
-use App\Models\Server\Task;
 use App\Utils\SSH\Script;
-use Illuminate\Support\Str;
 
-class Callback extends Script
+class Task extends Script
 {
     /**
-     * @var Task
+     * @var \App\Services\Task\Contracts\Task
      */
     protected $task;
 
@@ -19,9 +17,9 @@ class Callback extends Script
     protected $name = 'Callback from server';
 
     /**
-     * @param Task $task
+     * @param \App\Services\Task\Contracts\Task $task
      */
-    public function __construct(Task $task)
+    public function __construct(\App\Services\Task\Contracts\Task $task)
     {
         $this->task = $task;
     }
@@ -34,11 +32,8 @@ class Callback extends Script
      */
     public function getScript(): string
     {
-        return view('scripts.callback', [
-            'task' => $this->task,
-            'path' => str_replace('.sh', '-script.sh', $this->task->scriptFile()),
-            'token' => Str::random(20),
-            'hash' => $this->task->id,
+        return view('scripts.task', [
+            'task' => $this->task
         ])->render();
     }
 }

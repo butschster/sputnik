@@ -130,7 +130,9 @@ class ExecutorService
         $storage = app(ScriptsStorage::class);
 
         return $storage->storeScript(
-            $this->task->script()
+            (string) new \App\Scripts\Server\Task(
+                $this->task
+            )
         );
     }
 

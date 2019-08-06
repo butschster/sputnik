@@ -29,13 +29,33 @@ Artisan::command('server:configured {server}', function ($server) {
 
 })->describe('Fire event about server configured');
 
-Artisan::command('firewall:disable {id}', function ($id) {
+Artisan::command('server:firewall:disable {id}', function ($id) {
     $rule = \App\Models\Server\Firewall\Rule::findOrFail($id);
-
     $rule->delete();
-
 })->describe('Disable firewall rule');
 
+Artisan::command('server:firewall:create-random {id}', function ($id) {
+    $server = \App\Models\Server::findOrFail($id);
+    $rule = factory(\App\Models\Server\Firewall\Rule::class)->create([
+        'server_id' => $server->id
+    ]);
+
+    $this->info('Firewall rule created '. $rule->id);
+})->describe('Create random firewall rule');
+
+Artisan::command('server:cron:create-random {id}', function ($id) {
+    $server = \App\Models\Server::findOrFail($id);
+    $job = factory(\App\Models\Server\CronJob::class)->create([
+        'server_id' => $server->id
+    ]);
+
+    $this->info('Job created '. $job->id);
+})->describe('Create random cron job');
+
+Artisan::command('server:cron:delete {id}', function ($id) {
+    $job = \App\Models\Server\CronJob::findOrFail($id);
+    $job->delete();
+})->describe('Disable cron job');
 
 Artisan::command('server:sync-keys {server}', function ($server) {
 

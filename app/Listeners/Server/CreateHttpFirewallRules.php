@@ -13,6 +13,15 @@ class CreateHttpFirewallRules
     protected $service;
 
     /**
+     * @var array
+     */
+    protected $rules = [
+        ['name' => 'SSH', 'port' => 22, 'policy' => 'allow', 'editable' => false],
+        ['name' => 'HTTP', 'port' => 80, 'policy' => 'allow'],
+        ['name' => 'HTTPS', 'port' => 443, 'policy' => 'allow'],
+    ];
+
+    /**
      * @param FirewallService $service
      */
     public function __construct(FirewallService $service)
@@ -25,14 +34,8 @@ class CreateHttpFirewallRules
      */
     public function handle(Configured $event)
     {
-        $event->server->firewallRules()->create(['name' => 'SSH', 'port' => 22, 'policy' => 'allow', 'editable' => false]);
-
-        $this->service->enableRule(
-            $event->server->firewallRules()->create(['name' => 'HTTP', 'port' => 80, 'policy' => 'allow'])
-        );
-
-        $this->service->enableRule(
-            $event->server->firewallRules()->create(['name' => 'HTTPS', 'port' => 443, 'policy' => 'allow'])
-        );
+        foreach ($this->rules as $rule) {
+            $event->server->firewallRules()->create($rule);
+        }
     }
 }

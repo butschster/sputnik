@@ -49,10 +49,40 @@
                 </thead>
                 @foreach($server->firewallRules as $rule)
                     <tr>
-                        <th>{{ $rule->name }}</th>
+                        <th>{{ $rule->name }} <br><small>{{ $rule->id }}</small></th>
                         <th>{{ $rule->port }} [{{ $rule->protocol }}]</th>
                         <td>{{ $rule->from }}</td>
                         <td>{{ $rule->policy }}</td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">Server Scheduler</div>
+
+            <table class="table">
+                <col>
+                <col width="100px">
+                <col width="100px">
+                <col>
+                <col width="200px">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Cron</th>
+                    <th>User</th>
+                    <th>Command</th>
+                    <th>Next run</th>
+                </tr>
+                </thead>
+                @foreach($server->cronJobs as $job)
+                    <tr>
+                        <th>{{ $job->name }} <br><small>{{ $job->id }}</small></th>
+                        <th>{{ $job->cron }}</th>
+                        <td>{{ $job->user }}</td>
+                        <td>{{ $job->command }}</td>
+                        <td>{{ $job->nextRunDate() }}</td>
                     </tr>
                 @endforeach
             </table>

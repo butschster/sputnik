@@ -6,6 +6,7 @@ use App\Models\Server\CronJob;
 use App\Scripts\Server\Cron\DeleteJob;
 use App\Scripts\Server\Cron\ScheduleJob;
 use App\Services\Task\Contracts\Task;
+use Carbon\Carbon;
 use Cron\CronExpression;
 
 class CronService
@@ -22,6 +23,20 @@ class CronService
     public function parseExpression(string $expression): string
     {
         return CronExpression::factory($expression)->getExpression();
+    }
+
+    /**
+     * Get a next run date relative to the current date or a specific date
+     *
+     * @param string $expression
+     *
+     * @return Carbon
+     */
+    public function nextRunDate(string $expression): Carbon
+    {
+        return \Illuminate\Support\Carbon::instance(
+            CronExpression::factory($expression)->getNextRunDate()
+        );
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Actions\Contracts\Manager;
+use App\Models\CallbackLog;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
@@ -20,6 +21,11 @@ class CallbackController extends Controller
     {
         $this->validate($request, [
             'action' => 'required',
+        ]);
+
+        CallbackLog::create([
+            'source' => $request->ip(),
+            'data' => $request->all(),
         ]);
 
         $response = $manager->runAction($request->action, $request->all());

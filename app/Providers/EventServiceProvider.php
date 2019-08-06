@@ -59,7 +59,7 @@ class EventServiceProvider extends ServiceProvider
 
 
         \App\Models\Server\Firewall\Rule::observe([
-            \App\Observers\Server\Firewall\DisableRuleAfterDeleting::class,
+            \App\Observers\Server\Firewall\SyncFirewallRuleObserver::class,
         ]);
     }
 }
