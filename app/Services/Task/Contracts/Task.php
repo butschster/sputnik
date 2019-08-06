@@ -126,4 +126,11 @@ interface Task
      * @return string
      */
     public function outputFile(): string;
+
+    /**
+     * Determine if the task was successful.
+     *
+     * @return bool
+     */
+    public function isSuccessful(): bool;
 }

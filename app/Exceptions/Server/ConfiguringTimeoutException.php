@@ -5,7 +5,7 @@ namespace App\Exceptions\Server;
 use App\Models\Server;
 use Exception;
 
-class ConfiguringTimeout extends Exception
+class ConfiguringTimeoutException extends Exception
 {
     /**
      * Create a new exception for a configurable server.

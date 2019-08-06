@@ -2,13 +2,12 @@
 
 namespace App\Services\Server;
 
+use App\Exceptions\Server\ConfigurationException;
 use App\Models\Server;
 use App\Scripts\Server\Callbacks\MarkAsConfigured;
 use App\Scripts\Server\Configure;
 use App\Scripts\Utils\GetAptLockStatus;
 use App\Scripts\Utils\GetCurrentDirectory;
-use App\Services\Task\Factory;
-use App\Services\Task\ExecutorService;
 
 class ConfiguratorService
 {
@@ -20,22 +19,28 @@ class ConfiguratorService
      * @param Server $server
      *
      * @return \App\Services\Task\Contracts\Task
+     * @throws \Throwable
      */
     public function configure(Server $server)
     {
-       $this->server = $server;
+        $this->server = $server;
 
-       if (! $this->server->isConfiguring()) {
-            $this->server->markAsConfiguring();
+        if (!$this->server->isPending()) {
+            throw new ConfigurationException(
+                "Server [{$server->id}] can not be configured twice"
+            );
+        }
 
-            $script = new Configure($server);
+        $this->server->markAsConfiguring();
 
-            return $this->runInBackground($script, [
+        return $this->runInBackground(
+            new Configure($server),
+            [
                 'then' => [
                     MarkAsConfigured::class,
                 ],
-            ]);
-       }
+            ]
+        );
     }
 
     /**
@@ -53,10 +58,10 @@ class ConfiguratorService
 
         if ($canAccess) {
             $apt = $this->run(new GetAptLockStatus());
-        } else {
-            return false;
+
+            return $apt->isSuccessful() && $apt->outputIsEmpty();
         }
 
-        return $apt->isSuccessful() && $apt->outputIsEmpty();
+        return false;
     }
 }

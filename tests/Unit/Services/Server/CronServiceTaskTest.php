@@ -2,12 +2,10 @@
 
 namespace Tests\Unit\Services\Server;
 
-use App\Events\Server\CronJob\Created;
 use App\Events\Task\Running;
+use App\Scripts\Server\Cron\DeleteJob;
+use App\Scripts\Server\Cron\ScheduleJob;
 use App\Services\Server\CronService;
-use App\Services\Task\ExecutorService;
-use App\Services\Task\Factory;
-use App\Utils\SSH\Contracts\ProcessExecutor;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
@@ -20,21 +18,29 @@ class CronServiceTaskTest extends TestCase
     {
         $service = $this->getCronService();
 
+        $this->assertTrue($service->validate('@yearly'));
+        $this->assertTrue($service->validate('@annually'));
+        $this->assertTrue($service->validate('@monthly'));
+        $this->assertTrue($service->validate('@weekly'));
+        $this->assertTrue($service->validate('@daily'));
+        $this->assertTrue($service->validate('@hourly'));
+
         $this->assertTrue($service->validate('* * * * *'));
+        $this->assertFalse($service->validate('* * * *'));
+        $this->assertFalse($service->validate('* * * * * *'));
     }
 
     function test_a_job_can_be_scheduled_when_it_created()
     {
         $this->spyRunningTasks();
 
-        $service = $this->getCronService();
-
         $job = $this->createCronJob();
 
-        $service->schedule($job);
+        $this->getCronService()->schedule($job);
 
-        $this->assertExecutedTaskScriptContains('Schedule new cron job');
-        $this->assertExecutedTaskScriptContains($job->crontabName());
+        $this->assertExecutedTaskScript(
+            new ScheduleJob($job)
+        );
     }
 
     function test_a_job_can_be_deleted_from_server_when_in_was_deleted()
@@ -43,26 +49,20 @@ class CronServiceTaskTest extends TestCase
             Running::class,
         ]);
 
-
-        $service = $this->getCronService();
-
         $job = $this->createCronJob();
 
-        $service->delete($job);
+        $this->getCronService()->delete($job);
 
-        $this->assertExecutedTaskScriptContains($job->crontabName(), 'Delete scheduled Job');
+        $this->assertExecutedTaskScript(
+            new DeleteJob($job)
+        );
     }
 
     /**
-     * @param ProcessExecutor $executor
      * @return CronService
      */
-    protected function getCronService(ProcessExecutor $executor = null): CronService
+    protected function getCronService(): CronService
     {
-        if (!$executor) {
-            return $this->app[CronService::class];
-        }
-
-        return new CronService(new Factory, new ExecutorService($executor));
+        return $this->app[CronService::class];
     }
 }

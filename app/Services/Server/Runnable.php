@@ -60,6 +60,7 @@ trait Runnable
      * @param Script $script
      * @param array $options
      * @return Task
+     * @throws \Throwable
      */
     protected function runInBackground(Script $script, array $options = []): Task
     {

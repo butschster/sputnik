@@ -2,8 +2,7 @@
 
 namespace App\Jobs\Server;
 
-use App\Events\Server\Configured;
-use App\Exceptions\Server\ConfiguringTimeout;
+use App\Exceptions\Server\ConfiguringTimeoutException;
 use App\Models\Server;
 use App\Services\Server\ConfiguratorService;
 use Illuminate\Bus\Queueable;
@@ -57,7 +56,7 @@ class ConfigureServer implements ShouldQueue
         } elseif ($service->isServerReadyForConfigure($this->server)) {
             $service->configure($this->server);
         } elseif ($this->server->olderThan(now()->addDay(), 'configuring_job_dispatched_at')) {
-            return $this->fail(ConfiguringTimeout::for($this->server));
+            return $this->fail(ConfiguringTimeoutException::for($this->server));
         }
 
         $this->release(now()->addSeconds(30));

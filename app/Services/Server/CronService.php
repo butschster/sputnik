@@ -5,6 +5,7 @@ namespace App\Services\Server;
 use App\Models\Server\CronJob;
 use App\Scripts\Server\Cron\DeleteJob;
 use App\Scripts\Server\Cron\ScheduleJob;
+use App\Services\Task\Contracts\Task;
 use Cron\CronExpression;
 
 class CronService
@@ -27,12 +28,13 @@ class CronService
      * Schedule Job
      *
      * @param CronJob $job
+     * @return Task
      */
-    public function schedule(CronJob $job)
+    public function schedule(CronJob $job): Task
     {
         $this->server = $job->server;
 
-        $this->run(
+        return $this->run(
             new ScheduleJob($job)
         );
     }
@@ -41,12 +43,13 @@ class CronService
      * Delete scheduled job
      *
      * @param CronJob $job
+     * @return Task
      */
-    public function delete(CronJob $job)
+    public function delete(CronJob $job): Task
     {
         $this->server = $job->server;
 
-        $this->run(
+        return $this->run(
             new DeleteJob($job)
         );
     }

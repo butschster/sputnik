@@ -5,6 +5,7 @@ namespace App\Services\Server;
 use App\Models\Server\Firewall\Rule;
 use App\Scripts\Server\Firewall\DisableRule;
 use App\Scripts\Server\Firewall\EnableRule;
+use App\Services\Task\Contracts\Task;
 
 class FirewallService
 {
@@ -14,27 +15,30 @@ class FirewallService
      * Enable firewall rule
      *
      * @param Rule $rule
+     *
+     * @return Task
      */
-    public function enableRule(Rule $rule)
+    public function enableRule(Rule $rule): Task
     {
         $this->server = $rule->server;
 
-        $script = new EnableRule($rule);
-
-        $this->run($script);
+        return $this->run(
+            new EnableRule($rule)
+        );
     }
 
     /**
      * Enable firewall rule
      *
      * @param Rule $rule
+     * @return Task
      */
-    public function disableRule(Rule $rule)
+    public function disableRule(Rule $rule): Task
     {
         $this->server = $rule->server;
 
-        $script = new DisableRule($rule);
-
-        $this->run($script);
+        return $this->run(
+            new DisableRule($rule)
+        );
     }
 }

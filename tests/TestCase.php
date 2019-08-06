@@ -3,9 +3,12 @@
 namespace Tests;
 
 use App\Events\Task\Running;
+use App\Services\Task\Contracts\Task;
+use App\Services\Task\ExecutorService;
 use App\Utils\SSH\Contracts\KeyGenerator;
 use App\Utils\SSH\Contracts\KeyStorage as KeyStorageContract;
 use App\Utils\SSH\Contracts\ProcessExecutor as ProcessExecutorContract;
+use App\Utils\SSH\Contracts\Script;
 use App\Utils\SSH\Shell\Response;
 use App\Utils\SSH\Commands\SshKeygen;
 use App\Utils\SSH\ValueObjects\KeyPair;
@@ -106,6 +109,28 @@ abstract class TestCase extends BaseTestCase
     /**
      * Check if specific tasks were run
      *
+     * @param Task $task
+     */
+    public function assertTaskExecuted(Task $task)
+    {
+        Event::assertDispatched(Running::class, function ($event) use($task) {
+            return $task->is($event->task);
+        });
+    }
+
+    /**
+     * Check if specific tasks were run
+     *
+     * @param Script $script
+     */
+    public function assertExecutedTaskScript(Script $script)
+    {
+        return $this->assertExecutedTaskScriptContains($script->getScript(), $script->getName());
+    }
+
+    /**
+     * Check if specific tasks were run
+     *
      * @param string $partOfScript
      * @param string|null $taskName
      */
@@ -135,6 +160,27 @@ abstract class TestCase extends BaseTestCase
             $events->count() > 0,
             "The expected [{$event}] event was not dispatched."
         );
+    }
+
+    /**
+     * @param \Closure $callback
+     */
+    public function listenExecutorService(\Closure $callback)
+    {
+        $this->mock(ExecutorService::class, function ($mock) use($callback) {
+            $mock->shouldReceive('run')->andReturnUsing(function (Task $task) use($callback) {
+                $response = new Response(0, '');
+
+                $callbackResponse = $callback($task);
+                if ($callbackResponse instanceof Response) {
+                    $response = $callbackResponse;
+                }
+
+                $task->saveResponse(
+                    $response
+                );
+            });
+        });
     }
 }
 

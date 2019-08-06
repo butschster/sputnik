@@ -6,6 +6,7 @@ use App\Scripts\Server\Callback;
 use App\Services\Task\Contracts\Task;
 use App\Utils\SSH\Contracts\ProcessExecutor;
 use App\Utils\SSH\ScriptsStorage;
+use App\Utils\SSH\Shell\Response;
 use Symfony\Component\Process\Exception\ProcessTimedOutException;
 
 class ExecutorService
@@ -46,7 +47,7 @@ class ExecutorService
             return $this->task->markAsTimedOut();
         }
 
-        return $this->task->saveResponse(
+        $this->task->saveResponse(
             $this->runInline(
                 sprintf('bash %s 2>&1 | tee %s', $this->task->scriptFile(), $this->task->outputFile()),
                 $this->options['timeout'] ?? 60
