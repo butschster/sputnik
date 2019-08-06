@@ -98,10 +98,30 @@ namespace App\Models\Server\Firewall{
 /**
  * App\Models\Server\Firewall\Rule
  *
+ * @property string $id
+ * @property string $server_id
+ * @property int $editable
+ * @property string $name
+ * @property string|null $port
+ * @property string|null $protocol
+ * @property string|null $from
+ * @property string $policy
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Server $server
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereEditable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereFrom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule wherePolicy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule wherePort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereProtocol($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereUpdatedAt($value)
  */
 	class Rule extends \Eloquent {}
 }
@@ -136,6 +156,7 @@ namespace App\Models\Server{
  * @property string $content
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Server $server
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Key newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Key newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Key query()

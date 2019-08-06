@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Server;
+use App\Policies\ServerKeyPolicy;
 use App\Policies\ServerPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
@@ -15,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Server::class => ServerPolicy::class,
+        Server\Key::class => ServerKeyPolicy::class
     ];
 
     /**

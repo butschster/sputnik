@@ -213,14 +213,10 @@ class Server extends Model
      */
     public function addPublicKey(string $name, string $content): Key
     {
-        $key = $this->keys()->create([
+        return $this->keys()->create([
             'name' => $name,
             'content' => $content
         ]);
-
-        event(new AttachedToServer($key));
-
-        return $key;
     }
 
     /**
@@ -232,7 +228,5 @@ class Server extends Model
     public function removePublicKey(Key $key)
     {
         $key->delete();
-
-        event(new DetachedFromServer($key));
     }
 }

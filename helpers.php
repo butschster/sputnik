@@ -1,6 +1,19 @@
 <?php
 
 /**
+ * Generate API route with version by name
+ *
+ * @param string $name
+ * @param array $parameters
+ * @param string $version
+ * @return string
+ */
+function api_route(string $name, $parameters = [], string $version = 'v1'): string
+{
+    return route('api.' . $version . '.' . $name, $parameters);
+}
+
+/**
  * Generate curl callback string
  *
  * @param string $action

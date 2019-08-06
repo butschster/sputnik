@@ -14,7 +14,7 @@ class ServerControllerTest extends TestCase
 
     function test_a_guest_cannot_see_servers()
     {
-        $this->getJson(route('api.v1.servers'))->assertUnauthorized();
+        $this->getJson(api_route('servers'))->assertUnauthorized();
     }
 
     // An authenticated user can see only own servers
@@ -27,7 +27,7 @@ class ServerControllerTest extends TestCase
 
         $serversForeign = $this->createServer([], 2);
 
-        $response = $this->getJson(route('api.v1.servers'));
+        $response = $this->getJson(api_route('servers'));
         $response->assertOk();
 
         $response->assertJson([
@@ -43,7 +43,7 @@ class ServerControllerTest extends TestCase
     {
         $server = $this->createServer();
 
-        $this->getJson(route('api.v1.server.show', $server))->assertUnauthorized();
+        $this->getJson(api_route('server.show', $server))->assertUnauthorized();
     }
 
     // An authenticated user can view information about own server
@@ -54,7 +54,7 @@ class ServerControllerTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        $response = $this->getJson(route('api.v1.server.show', $server));
+        $response = $this->getJson(api_route('server.show', $server));
         $response->assertOk();
 
         $response->assertJson([
@@ -65,14 +65,14 @@ class ServerControllerTest extends TestCase
 
         // An authenticated user can not view information about foreigner server
         $serverForeign = $this->createServer();
-        $this->getJson(route('api.v1.server.show', $serverForeign))->assertForbidden();
+        $this->getJson(api_route('server.show', $serverForeign))->assertForbidden();
     }
 
     function test_a_guest_cannot_create_server()
     {
         $server = $this->createServer();
 
-        $this->postJson(route('api.v1.server.store'))->assertUnauthorized();
+        $this->postJson(api_route('server.store'))->assertUnauthorized();
     }
 
     // An authenticated user can create server
@@ -80,7 +80,7 @@ class ServerControllerTest extends TestCase
     {
         $user = $this->signInAPI();
 
-        $response = $this->postJson(route('api.v1.server.store'), [
+        $response = $this->postJson(api_route('server.store'), [
             'name' => 'Server name',
             'ip' => '127.0.0.1',
             'ssh_port' => 22,

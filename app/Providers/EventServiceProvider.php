@@ -10,6 +10,7 @@ use App\Listeners\Server\RemovePublicKeyFromServer;
 use App\Observers\Server\Firewall\DisableRuleAfterDeleting;
 use App\Observers\Server\GenerateDatabasePassword;
 use App\Observers\Server\GenerateSshKeyPairsObserver;
+use App\Observers\Server\Key\FireEventsObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -34,8 +35,8 @@ class EventServiceProvider extends ServiceProvider
             RemovePublicKeyFromServer::class,
         ],
         Server\Configured::class => [
-            CreateHttpFirewallRules::class
-        ]
+            CreateHttpFirewallRules::class,
+        ],
     ];
 
     /**
@@ -51,8 +52,12 @@ class EventServiceProvider extends ServiceProvider
             GenerateDatabasePassword::class,
         ]);
 
+        \App\Models\Server\Key::observe([
+            FireEventsObserver::class,
+        ]);
+
         \App\Models\Server\Firewall\Rule::observe([
-            DisableRuleAfterDeleting::class
+            DisableRuleAfterDeleting::class,
         ]);
     }
 }

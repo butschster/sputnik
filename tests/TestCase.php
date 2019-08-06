@@ -10,7 +10,9 @@ use App\Utils\SSH\Commands\SshKeygen;
 use App\Utils\SSH\ValueObjects\KeyPair;
 use App\Utils\SSH\ValueObjects\PrivateKey;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Foundation\Testing\Assert as PHPUnit;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Symfony\Component\Process\Process;
@@ -34,6 +36,8 @@ abstract class TestCase extends BaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        TestResponse::mixin(new TestResponseMixins());
 
         $this->instance(ProcessExecutorContract::class, new FakeProcessExecutor());
 

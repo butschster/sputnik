@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Server\Key;
 
+use App\Models\Server\Key;
 use App\Rules\Server\Key\PublicKey;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -27,16 +28,22 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'server_id' => [
-                'required',
-                Rule::exists('servers', 'id')
-            ],
             'content' => [
                 'required',
                 'string',
                 new PublicKey,
-                Rule::unique('server_keys')->where('server_id', $this->server_id)
+                Rule::unique('server_keys')->where('server_id', $this->route('server')->id),
             ],
         ];
+    }
+
+    /**
+     * @return Key
+     */
+    public function persist(): Key
+    {
+        $server = $this->route('server');
+
+        return $server->addPublicKey($this->name, $this->content);
     }
 }
