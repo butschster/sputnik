@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.30 on 2019-08-05 07:40:02.
+ * Generated for Laravel 5.8.30 on 2019-08-05 23:26:18.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2636,6 +2636,17 @@ namespace Illuminate\Support\Facades {
     class Bus {
         
         /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getCommandHandler($command)
+        {
+                        /** @var \Lorisleiva\Actions\BusDispatcher $instance */
+                        return $instance->getCommandHandler($command);
+        }
+        
+        /**
          * Dispatch a command to its appropriate handler.
          *
          * @param mixed $command
@@ -2644,7 +2655,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function dispatch($command)
         {
-                        /** @var \Illuminate\Bus\Dispatcher $instance */
+            //Method inherited from \Illuminate\Bus\Dispatcher            
+                        /** @var \Lorisleiva\Actions\BusDispatcher $instance */
                         return $instance->dispatch($command);
         }
         
@@ -2658,7 +2670,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function dispatchNow($command, $handler = null)
         {
-                        /** @var \Illuminate\Bus\Dispatcher $instance */
+            //Method inherited from \Illuminate\Bus\Dispatcher            
+                        /** @var \Lorisleiva\Actions\BusDispatcher $instance */
                         return $instance->dispatchNow($command, $handler);
         }
         
@@ -2671,21 +2684,9 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function hasCommandHandler($command)
         {
-                        /** @var \Illuminate\Bus\Dispatcher $instance */
+            //Method inherited from \Illuminate\Bus\Dispatcher            
+                        /** @var \Lorisleiva\Actions\BusDispatcher $instance */
                         return $instance->hasCommandHandler($command);
-        }
-        
-        /**
-         * Retrieve the handler for a command.
-         *
-         * @param mixed $command
-         * @return bool|mixed 
-         * @static 
-         */ 
-        public static function getCommandHandler($command)
-        {
-                        /** @var \Illuminate\Bus\Dispatcher $instance */
-                        return $instance->getCommandHandler($command);
         }
         
         /**
@@ -2698,7 +2699,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function dispatchToQueue($command)
         {
-                        /** @var \Illuminate\Bus\Dispatcher $instance */
+            //Method inherited from \Illuminate\Bus\Dispatcher            
+                        /** @var \Lorisleiva\Actions\BusDispatcher $instance */
                         return $instance->dispatchToQueue($command);
         }
         
@@ -2706,12 +2708,13 @@ namespace Illuminate\Support\Facades {
          * Set the pipes through which commands should be piped before dispatching.
          *
          * @param array $pipes
-         * @return \Illuminate\Bus\Dispatcher 
+         * @return \Lorisleiva\Actions\BusDispatcher 
          * @static 
          */ 
         public static function pipeThrough($pipes)
         {
-                        /** @var \Illuminate\Bus\Dispatcher $instance */
+            //Method inherited from \Illuminate\Bus\Dispatcher            
+                        /** @var \Lorisleiva\Actions\BusDispatcher $instance */
                         return $instance->pipeThrough($pipes);
         }
         
@@ -2719,12 +2722,13 @@ namespace Illuminate\Support\Facades {
          * Map a command to a handler.
          *
          * @param array $map
-         * @return \Illuminate\Bus\Dispatcher 
+         * @return \Lorisleiva\Actions\BusDispatcher 
          * @static 
          */ 
         public static function map($map)
         {
-                        /** @var \Illuminate\Bus\Dispatcher $instance */
+            //Method inherited from \Illuminate\Bus\Dispatcher            
+                        /** @var \Lorisleiva\Actions\BusDispatcher $instance */
                         return $instance->map($map);
         }
         
@@ -7901,6 +7905,74 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Migrate the delayed jobs that are ready to the regular queue.
+         *
+         * @param string $from
+         * @param string $to
+         * @return array 
+         * @static 
+         */ 
+        public static function migrateExpiredJobs($from, $to)
+        {
+                        /** @var \Illuminate\Queue\RedisQueue $instance */
+                        return $instance->migrateExpiredJobs($from, $to);
+        }
+        
+        /**
+         * Delete a reserved job from the queue.
+         *
+         * @param string $queue
+         * @param \Illuminate\Queue\Jobs\RedisJob $job
+         * @return void 
+         * @static 
+         */ 
+        public static function deleteReserved($queue, $job)
+        {
+                        /** @var \Illuminate\Queue\RedisQueue $instance */
+                        $instance->deleteReserved($queue, $job);
+        }
+        
+        /**
+         * Delete a reserved job from the reserved queue and release it.
+         *
+         * @param string $queue
+         * @param \Illuminate\Queue\Jobs\RedisJob $job
+         * @param int $delay
+         * @return void 
+         * @static 
+         */ 
+        public static function deleteAndRelease($queue, $job, $delay)
+        {
+                        /** @var \Illuminate\Queue\RedisQueue $instance */
+                        $instance->deleteAndRelease($queue, $job, $delay);
+        }
+        
+        /**
+         * Get the queue or return the default.
+         *
+         * @param string|null $queue
+         * @return string 
+         * @static 
+         */ 
+        public static function getQueue($queue)
+        {
+                        /** @var \Illuminate\Queue\RedisQueue $instance */
+                        return $instance->getQueue($queue);
+        }
+        
+        /**
+         * Get the underlying Redis instance.
+         *
+         * @return \Illuminate\Contracts\Redis\Factory 
+         * @static 
+         */ 
+        public static function getRedis()
+        {
+                        /** @var \Illuminate\Queue\RedisQueue $instance */
+                        return $instance->getRedis();
+        }
+        
+        /**
          * Get the retry delay for an object-based queue handler.
          *
          * @param mixed $job
@@ -7910,7 +7982,7 @@ namespace Illuminate\Support\Facades {
         public static function getJobRetryDelay($job)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-                        /** @var \Illuminate\Queue\SyncQueue $instance */
+                        /** @var \Illuminate\Queue\RedisQueue $instance */
                         return $instance->getJobRetryDelay($job);
         }
         
@@ -7924,7 +7996,7 @@ namespace Illuminate\Support\Facades {
         public static function getJobExpiration($job)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-                        /** @var \Illuminate\Queue\SyncQueue $instance */
+                        /** @var \Illuminate\Queue\RedisQueue $instance */
                         return $instance->getJobExpiration($job);
         }
         
@@ -7938,7 +8010,7 @@ namespace Illuminate\Support\Facades {
         public static function createPayloadUsing($callback)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-                        \Illuminate\Queue\SyncQueue::createPayloadUsing($callback);
+                        \Illuminate\Queue\RedisQueue::createPayloadUsing($callback);
         }
         
         /**
@@ -7951,7 +8023,7 @@ namespace Illuminate\Support\Facades {
         public static function setContainer($container)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-                        /** @var \Illuminate\Queue\SyncQueue $instance */
+                        /** @var \Illuminate\Queue\RedisQueue $instance */
                         $instance->setContainer($container);
         }
          
@@ -11575,6 +11647,26 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Routing\Router $instance */
                         return $instance->macroCall($method, $parameters);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function actions($group)
+        {
+                        return \Illuminate\Routing\Router::actions($group);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function webhooks($url, $name = 'default')
+        {
+                        return \Illuminate\Routing\Router::webhooks($url, $name);
         }
          
     }

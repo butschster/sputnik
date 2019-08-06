@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\Actions\Contracts\Manager as ManagerContract;
 use App\Http\Actions\Manager;
+use App\Http\Actions\Server\ProcessServerEvents;
 use App\Http\Actions\Server\RegisterNewKey;
 use App\Http\Actions\Server\RunServerConfiguration;
 use App\Http\Actions\Task\FinishTask;
@@ -18,6 +19,7 @@ class ActionsServiceProvider extends ServiceProvider
      * @var array
      */
     protected $actions = [
+        'server.event' => ProcessServerEvents::class,
         'server.key' => RegisterNewKey::class,
         'server.keys_installed' => RunServerConfiguration::class,
         'task.finished' => FinishTask::class,

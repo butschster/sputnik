@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\LogHttpRequestMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -28,6 +29,7 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
+            'log',
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
@@ -38,6 +40,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            'log',
             'throttle:600,1',
             'bindings',
         ],
@@ -60,6 +63,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'log' => LogHttpRequestMiddleware::class,
     ];
 
     /**

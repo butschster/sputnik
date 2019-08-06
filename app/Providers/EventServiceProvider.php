@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
-use App\Events\Server\Key;
+use App\Events\Server;
 use App\Events\Server\KeysInstalled;
 use App\Listeners\Server\AddPublicKeyToServer;
+use App\Listeners\Server\CreateHttpFirewallRules;
 use App\Listeners\Server\RemovePublicKeyFromServer;
+use App\Observers\Server\Firewall\DisableRuleAfterDeleting;
 use App\Observers\Server\GenerateDatabasePassword;
 use App\Observers\Server\GenerateSshKeyPairsObserver;
 use Illuminate\Auth\Events\Registered;
@@ -25,12 +27,15 @@ class EventServiceProvider extends ServiceProvider
         KeysInstalled::class => [
 
         ],
-        Key\AttachedToServer::class => [
+        Server\Key\AttachedToServer::class => [
             AddPublicKeyToServer::class,
         ],
-        Key\DetachedFromServer::class => [
+        Server\Key\DetachedFromServer::class => [
             RemovePublicKeyFromServer::class,
         ],
+        Server\Configured::class => [
+            CreateHttpFirewallRules::class
+        ]
     ];
 
     /**
@@ -44,6 +49,10 @@ class EventServiceProvider extends ServiceProvider
         \App\Models\Server::observe([
             GenerateSshKeyPairsObserver::class,
             GenerateDatabasePassword::class,
+        ]);
+
+        \App\Models\Server\Firewall::observe([
+            DisableRuleAfterDeleting::class
         ]);
     }
 }

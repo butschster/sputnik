@@ -2,141 +2,59 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8758e2e8-28cb-4454-a8bc-3bb8b89c0d7f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Events/Action/Executed.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Events/Task/Finished.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Events/Task/Response.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Events/Task/Running.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Events/Task/Timeout.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Exceptions/Actions/ActionNotFoundException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Actions/Contracts/Manager.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Actions/Manager.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Actions/Server/RegisterNewKey.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Actions/Server/RunServerConfiguration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Actions/Task/FinishTask.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/API/Controller.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/API/v1/ServerController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/CallbackController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Server/StoreRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/v1/ServerCollection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/v1/ServerResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Jobs/Server/RunScript.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Jobs/Task/Run.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Observers/Server/GenerateDatabasePassword.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Policies/ServerPolicy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Providers/ActionsServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Providers/SSHServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Utils/SSH/CallbackCurlGenerator.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Utils/SSH/Contracts/KeyGenerator.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Utils/SSH/Contracts/KeyStorage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Utils/SSH/Contracts/ProcessExecutor.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helpers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/api_v1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/app/keys/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/app/scripts/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/app/tmp/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Concerns/ServerFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Concerns/ServerKeyFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Concerns/TaskFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Concerns/UserFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/API/v1/ServerControllerTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/CallbackControllerTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Http/Actions/ManagerTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Jobs/Server/RunScriptTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Jobs/Task/FinishTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Jobs/Task/RunTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Listeners/Server/AddPublicKeyToServerTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Listeners/Server/RemovePublicKeyFromServerTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Models/KeyEventsTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Models/TaskEventsTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Models/UserTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/CallbackCurlGeneratorTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/fixtures/Ssh/id_rsa" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/$CACHE_FILE$" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8e338625-2e3e-4be7-bea7-85113645229b.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel-forge.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Actions/Server/ProcessServerEvents.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Server/Event.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Server/Firewall.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Observers/Server/Firewall/DisableRuleAfterDeleting.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Scripts/Contracts/Manager.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Scripts/Manager.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Scripts/Server/Firewall/DisableRule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Scripts/Server/Firewall/EnableRule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/Server/FirewallService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Utils/SSH/FirewallCommandGenerator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/configurations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/scripts/server/firewall/disable_rule.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/scripts/server/firewall/enable_rule.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/nginx/site.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/php/72/install.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/php/72/remove.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/php/72/restart.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/php/73/remove.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/php/73/restart.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/redis/remove.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Concerns/ServerEventFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Concerns/ServerFirewallFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/FirewallCommandGeneratorTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Events/Server/Configured.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/Server/Configured.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Events/Server/Key/AttachedToServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/Server/Key/AttachedToServer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Events/Server/Key/DetachedFromServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/Server/Key/DetachedFromServer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Events/Server/KeysInstalled.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/Server/KeysInstalled.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServerCallbackController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServerTaskCallbackController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ServerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/Server/ConfigureServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/Server/ConfigureServer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/Task/Finish.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/Task/Finish.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/Server/AddPublicKeyToServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/Server/AddPublicKeyToServer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/Server/ConfigureServer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/Server/RemovePublicKeyFromServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/Server/RemovePublicKeyFromServer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Concerns/UsesUuid.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Concerns/UsesUuid.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Server.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Server.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Server/Key.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Server/Key.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Server/Task.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Server/Task.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Observers/Server/GenerateSshKeyPairsObserver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Observers/Server/GenerateSshKeyPairsObserver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/ActionsServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/ActionsServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Scripts/Server/AddPublicKey.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scripts/Server/AddPublicKey.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Scripts/Server/Callback.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scripts/Server/Callback.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Scripts/Server/Configure.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scripts/Server/Configure.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Scripts/Server/RemovePublicKey.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scripts/Server/RemovePublicKey.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Scripts/Utils/GetAptLockStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scripts/Utils/GetAptLockStatus.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Scripts/Utils/GetCurrentDirectory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scripts/Utils/GetCurrentDirectory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Server/Callbacks/MarkAsConfigured.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scripts/Server/Callbacks/MarkAsConfigured.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Server/ConfiguratorService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Server/ConfiguratorService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Server/Runnable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Server/Runnable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Task/Contracts/Task.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Task/Contracts/Task.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Task/Factory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Task/Factory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Task/FinishService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Task/FinishService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Task/InteractsWithSsh.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Task/InteractsWithSsh.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Task/RunnerService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Task/ExecutorService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/CommandGenerator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/CommandGenerator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/Commands/SshKeygen.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/Commands/SshKeygen.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/Contracts/Script.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/Contracts/Script.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/KeyGenerator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/KeyGenerator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/KeyStorage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/FilesystemKeyStorage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/ProcessRunner.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/ProcessExecutor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/Script.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/Script.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/ScriptsStorage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/ScriptsStorage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/Shell/Output.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/Shell/Output.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/Shell/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/Shell/Response.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/ValueObjects/KeyPair.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/ValueObjects/KeyPair.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/ValueObjects/PrivateKey.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/ValueObjects/PrivateKey.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/Ssh/ValueObjects/PublicKey.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/ValueObjects/PublicKey.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Utils/SSH/CallbackCurlGenerator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/CallbackCurlGenerator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_03_130244_create_servers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_03_130244_create_servers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_04_141555_create_server_keys_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_04_141555_create_server_keys_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/scripts/server/configuration/base.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/server/configuration/base.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/scripts/server/configure.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/server/configure.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/scripts/server/key_installation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/server/key_installation.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/scripts/tools/callback.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/tools/callback.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/scripts/tools/database/install.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/tools/database/mysql/install.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/scripts/tools/nginx/install.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/tools/nginx/install.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/scripts/tools/node/install.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/tools/node/install.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/scripts/tools/php/install.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/tools/php/73/install.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/scripts/tools/redis/install.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/tools/redis/install.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/server/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/server/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/console.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/console.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/app/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Server/CallbackTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Task/CallbackTest.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Models/KeyTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Models/KeyTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Unit/Models/ServerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Models/ServerTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Models/TaskTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Models/TaskTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/Task/FactoryTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/Task/FactoryTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/Task/FinishServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/Task/FinishServiceTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/Task/RunnerServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/Task/RunnerServiceTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/CommandGeneratorTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/CommandGeneratorTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/KeyGeneratorTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/KeyGeneratorTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/KeyStorageTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/KeyStorageTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/ProcessRunnerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/ProcessExecutorTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/ScriptsStorageTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/ScriptsStorageTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/ValueObjects/PublicKeyTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/ValueObjects/PublicKeyTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/CallbackCurlGeneratorTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/CallbackCurlGeneratorTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -161,7 +79,23 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="laravel_cloud@127.0.0.1" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="laravel_cloud@127.0.0.1" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="laravel_cloud@127.0.0.1" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="laravel_cloud: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="Git.Settings">
@@ -267,6 +201,23 @@
       <path value="$PROJECT_DIR$/vendor/hashids/hashids" />
       <path value="$PROJECT_DIR$/vendor/violuke/rsa-ssh-key-fingerprint" />
       <path value="$PROJECT_DIR$/vendor/predis/predis" />
+      <path value="$PROJECT_DIR$/vendor/laravel/passport" />
+      <path value="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/vendor/league/event" />
+      <path value="$PROJECT_DIR$/vendor/league/oauth2-server" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-webhook-client" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/vendor/defuse/php-encryption" />
+      <path value="$PROJECT_DIR$/vendor/lorisleiva/laravel-actions" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Oum9pnmUitJSJw1ZGyaaOlROiV" />
@@ -275,26 +226,26 @@
     <property name="DatabaseDriversLRU" value="mysql&#10;mariadb" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/scripts/tools/mongodb" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Scripts/Server/Firewall" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/scripts/tools/mongodb" />
-      <recent name="$PROJECT_DIR$/resources/views/scripts/tools/nginx" />
-      <recent name="$PROJECT_DIR$/resources/views/task" />
-      <recent name="$PROJECT_DIR$/app/Models/Concerns" />
-      <recent name="$PROJECT_DIR$/resources/views/scripts/server" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/scripts/tools/php" />
+      <recent name="$PROJECT_DIR$/resources/views/scripts/tools/php/73" />
+      <recent name="$PROJECT_DIR$/resources/views/scripts/tools/php/73/config" />
+      <recent name="$PROJECT_DIR$/resources/views/scripts/tools/database/mysql" />
       <recent name="$PROJECT_DIR$/storage/app" />
-      <recent name="$PROJECT_DIR$/app/Utils/Ssh/Commands" />
-      <recent name="$PROJECT_DIR$/app/Utils/Ssh/ValueObjects" />
-      <recent name="$PROJECT_DIR$/app/Utils/Ssh" />
-      <recent name="$PROJECT_DIR$/app/Utils/." />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Scripts/Server/Firewall" />
+      <recent name="$PROJECT_DIR$/resources/views/scripts/server/firewall" />
+      <recent name="$PROJECT_DIR$/tests/Concerns" />
+      <recent name="$PROJECT_DIR$/app/Models/Server" />
+      <recent name="$PROJECT_DIR$/resources/views/scripts/tools/nginx" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -319,7 +270,12 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand />
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@6c09fe6f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
           <select />
         </treeState>
       </serviceView>
@@ -337,7 +293,7 @@
       <workItem from="1564921758036" duration="12354000" />
       <workItem from="1564934415582" duration="21834000" />
       <workItem from="1565023327407" duration="37000" />
-      <workItem from="1565023376081" duration="460000" />
+      <workItem from="1565023376081" duration="19664000" />
     </task>
     <servers />
   </component>

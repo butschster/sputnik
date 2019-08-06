@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Events\Server\Configured;
+use App\Events\Server\Created;
+use App\Events\Server\Deleted;
 use App\Events\Server\Key\AttachedToServer;
 use App\Events\Server\Key\DetachedFromServer;
 use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\UsesUuid;
+use App\Models\Server\Event;
+use App\Models\Server\Firewall;
 use App\Models\Server\Key;
 use App\Models\Server\Task;
 use App\Utils\SSH\Contracts\KeyStorage;
@@ -13,6 +18,8 @@ use App\Utils\SSH\ValueObjects\KeyPair;
 use App\Utils\SSH\ValueObjects\PrivateKey;
 use App\Utils\SSH\ValueObjects\PublicKey;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Server extends Model
@@ -54,6 +61,14 @@ class Server extends Model
             $server->status = static::STATUS_PENDING;
         });
 
+        static::created(function ($server) {
+            event(new Created($server));
+        });
+
+        static::deleted(function ($server) {
+            event(new Deleted($server));
+        });
+
         parent::boot();
     }
 
@@ -83,19 +98,39 @@ class Server extends Model
     /**
      * Get the tasks that belong to the server.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function tasks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
     }
 
     /**
+     * Get the events that belong to the server.
+     *
+     * @return HasMany
+     */
+    public function events(): HasMany
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    /**
+     * Get the firewall rules that belong to the server.
+     *
+     * @return HasMany
+     */
+    public function firewall(): HasMany
+    {
+        return $this->hasMany(Firewall::class);
+    }
+
+    /**
      * Get the keys that belong to the server.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function keys()
+    public function keys(): BelongsToMany
     {
         return $this->belongsToMany(Key::class);
     }
@@ -165,6 +200,8 @@ class Server extends Model
     public function markAsConfigured()
     {
         $this->update(['status' => static::STATUS_CONFIGURED]);
+
+        event(new Configured($this));
     }
 
     /**

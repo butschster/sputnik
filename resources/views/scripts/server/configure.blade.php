@@ -7,7 +7,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 # Run PHP Installation Script
 
-@include('scripts.tools.php.install')
+@include('scripts.tools.php.73.install')
 
 # Run Nginx Installation Script
 
@@ -19,7 +19,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 # Run Database Installation Script
 
-@include('scripts.tools.database.install')
+@include('scripts.tools.database.mysql.install')
 
 # Run Redis Installation Script
 

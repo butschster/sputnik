@@ -15,26 +15,6 @@ class ConfiguratorService
     use Runnable;
 
     /**
-     * @var Factory
-     */
-    protected $tasksFactory;
-
-    /**
-     * @var ExecutorService
-     */
-    protected $executorService;
-
-    /**
-     * @param Factory $tasksFactory
-     * @param ExecutorService $executorService
-     */
-    public function __construct(Factory $tasksFactory, ExecutorService $executorService)
-    {
-        $this->tasksFactory = $tasksFactory;
-        $this->executorService = $executorService;
-    }
-
-    /**
      * Run the server configuration
      *
      * @param Server $server

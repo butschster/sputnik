@@ -19,9 +19,10 @@ class CallbackCurlGenerator
     {
         $parameters['action'] = $action;
 
-        $url = URL::temporarySignedRoute('callback', now()->addMinutes($lifeTime), ['action' => $action]);
+        //$url = URL::temporarySignedRoute('callback', now()->addMinutes($lifeTime), ['action' => $action]);
+        $url = route('callback');
 
-        return sprintf('curl-X POST -k -H "Content-Type: application/json" -d "%s" %s > /dev/null 2>&1',
+        return sprintf('curl -X POST -k -d "%s" %s > /dev/null 2>&1',
             $this->buildData($parameters),
             $url
         );
@@ -36,6 +37,6 @@ class CallbackCurlGenerator
      */
     protected function buildData(array $parameters): string
     {
-        return http_build_query($parameters);
+        return urldecode(http_build_query($parameters));
     }
 }

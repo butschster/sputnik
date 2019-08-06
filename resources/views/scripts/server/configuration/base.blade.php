@@ -87,9 +87,7 @@ echo "sputnik ALL=NOPASSWD: /usr/bin/supervisorctl *" > /etc/sudoers.d/superviso
 
 # Setup UFW Firewall
 
-ufw allow 22
-ufw allow 80
-ufw allow 443
+ufw allow {{ $server->ssh_port }}
 ufw --force enable
 
 # Configure Swap Disk
@@ -127,3 +125,5 @@ EOF
 # Make Sure Directories Have Correct Permissions
 
 @include('scripts.tools.chown')
+
+{!! callback_url('server.event', ['server_id' => $server->id, 'message' => 'base.installed'], 10) !!}

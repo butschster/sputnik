@@ -70,7 +70,7 @@ class ConfigureServer implements ShouldQueue
      */
     protected function configured()
     {
-        event(new Configured($this->server));
+
     }
 
 }

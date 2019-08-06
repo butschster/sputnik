@@ -12,35 +12,6 @@
 
 namespace App\Models{
 /**
- * App\Models\User
- *
- * @property string $id
- * @property string $name
- * @property string $email
- * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string $password
- * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server[] $servers
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
- */
-	class User extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
  * App\Models\Server
  *
  * @property string $id
@@ -60,6 +31,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $configuring_job_dispatched_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Event[] $events
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Firewall[] $firewall
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Key[] $keys
  * @property-write mixed $keypair
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Task[] $tasks
@@ -123,6 +96,39 @@ namespace App\Models\Server{
 
 namespace App\Models\Server{
 /**
+ * App\Models\Server\Firewall
+ *
+ * @property-read \App\Models\Server $server
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall query()
+ */
+	class Firewall extends \Eloquent {}
+}
+
+namespace App\Models\Server{
+/**
+ * App\Models\Server\Event
+ *
+ * @property string $id
+ * @property string $server_id
+ * @property string $message
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereUpdatedAt($value)
+ */
+	class Event extends \Eloquent {}
+}
+
+namespace App\Models\Server{
+/**
  * App\Models\Server\Key
  *
  * @property string $id
@@ -140,5 +146,36 @@ namespace App\Models\Server{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Key whereUpdatedAt($value)
  */
 	class Key extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\User
+ *
+ * @property string $id
+ * @property string $name
+ * @property string $email
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property string $password
+ * @property string|null $remember_token
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server[] $servers
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
+ */
+	class User extends \Eloquent {}
 }
 

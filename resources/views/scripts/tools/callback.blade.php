@@ -17,4 +17,4 @@ cat > {!! $path !!} << '{!! $token !!}'
 
 STATUS=$?
 
-{{ callback_url('task.finished', ['task' => $task->id, 'exit_code' => '$STATUS']) }}
+{!! callback_url('task.finished', ['task_id' => $task->id, 'exit_code' => '$STATUS']) !!}

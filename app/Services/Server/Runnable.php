@@ -4,6 +4,8 @@ namespace App\Services\Server;
 
 use App\Models\Server;
 use App\Services\Task\Contracts\Task;
+use App\Services\Task\ExecutorService;
+use App\Services\Task\Factory;
 use App\Utils\SSH\Contracts\Script;
 
 trait Runnable
@@ -12,6 +14,26 @@ trait Runnable
      * @var Server
      */
     protected $server;
+
+    /**
+     * @var Factory
+     */
+    protected $tasksFactory;
+
+    /**
+     * @var ExecutorService
+     */
+    protected $executorService;
+
+    /**
+     * @param Factory $tasksFactory
+     * @param ExecutorService $executorService
+     */
+    public function __construct(Factory $tasksFactory, ExecutorService $executorService)
+    {
+        $this->tasksFactory = $tasksFactory;
+        $this->executorService = $executorService;
+    }
 
     /**
      * Run the given script on the server.

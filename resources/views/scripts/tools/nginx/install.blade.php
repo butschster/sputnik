@@ -35,9 +35,9 @@ EOF
 
 ln -s /etc/nginx/sites-available/catch-all /etc/nginx/sites-enabled/catch-all
 
-# Restart Nginx & PHP-FPM Services
-service nginx reload
+@include('scripts.tools.nginx.restart')
 
+# TODO remove
 if [ ! -z "\$(ps aux | grep php-fpm | grep -v grep)" ]
 then
     service php7.3-fpm restart > /dev/null 2>&1
@@ -48,3 +48,5 @@ fi
 usermod -a -G www-data sputnik
 id sputnik
 groups sputnik
+
+{!! callback_url('server.event', ['server_id' => $server->id, 'message' => 'nginx.installed'], 10) !!}

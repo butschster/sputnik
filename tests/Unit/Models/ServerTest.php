@@ -76,15 +76,9 @@ class ServerTest extends TestCase
     function test_a_key_pair_should_not_be_generated_when_it_set()
     {
         $server = $this->createServer([
-<<<<<<< HEAD
             'public_key' => 'public_key',
             'private_key' => 'private_key',
             'key_password' => 'password'
-=======
-            'public_key' => 'key',
-            'private_key' => 'key',
-            'key_password' => 'password',
->>>>>>> abceae17c307da394acebfd8dad88dd41ebd45f2
         ]);
 
         $this->assertEquals('public_key', $server->public_key);
@@ -145,6 +139,18 @@ class ServerTest extends TestCase
         $server->removePublicKey($key);
 
         $this->assertCount(0, $server->keys);
+    }
 
+    function test_get_events()
+    {
+        $server = $this->createServer();
+
+        $events = $this->createServerEvent([
+            'server_id' => $server->id
+        ], 2);
+
+        $events1 = $this->createServerEvent([], 2);
+
+        $this->assertCount(2, $server->events);
     }
 }

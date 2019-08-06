@@ -9,23 +9,12 @@ apt-get update
 
 apt-get update
 
-apt-get install -y --force-yes php7.2-bcmath \
-php7.2-cli \
-php7.2-curl \
-php7.2-dev \
-php7.2-fpm \
-php7.2-gd \
-php7.2-imap \
-php7.2-intl \
-php7.2-mbstring \
-php7.2-memcached \
-php7.2-mysql \
-php7.2-pgsql \
-php7.2-readline \
-php7.2-soap \
-php7.2-sqlite3 \
-php7.2-xml \
-php7.2-zip
+apt-get install -y --force-yes php7.3-cli php7.3-dev \
+php7.3-pgsql php7.3-sqlite3 php7.3-gd \
+php7.3-curl php7.3-memcached \
+php7.3-imap php7.3-mysql php7.3-mbstring \
+php7.3-xml php7.3-zip php7.3-bcmath php7.3-soap \
+php7.3-intl php7.3-readline
 
 # ================================================
 # Composer
@@ -39,29 +28,31 @@ mv composer.phar /usr/local/bin/composer
 
 # Configure PHP CLI
 
-cat > /etc/php/7.2/cli/php.ini << EOF
+cat > /etc/php/7.3/cli/php.ini << EOF
 {!! file_get_contents(resource_path('views/scripts/tools/php/cli.ini')) !!}
 
 EOF
 
 # Configure PHP FPM
 
-cat > /etc/php/7.2/fpm/php.ini << EOF
+cat > /etc/php/7.3/fpm/php.ini << EOF
 {!! file_get_contents(resource_path('views/scripts/tools/php/fpm.ini')) !!}
 
 EOF
 
 # Configure FPM Pool
 
-cat > /etc/php/7.2/fpm/pool.d/www.conf << EOF
+cat > /etc/php/7.3/fpm/pool.d/www.conf << EOF
 {!! file_get_contents(resource_path('views/scripts/tools/php/www.conf')) !!}
 
 EOF
 
 # Restart FPM
 
-service php7.2-fpm restart > /dev/null 2>&1
+service php7.3-fpm restart > /dev/null 2>&1
 
 # Configure Sudoers Entries
 
-echo "sputnik ALL=NOPASSWD: /usr/sbin/service php7.2-fpm reload" > /etc/sudoers.d/php-fpm
+echo "sputnik ALL=NOPASSWD: /usr/sbin/service php7.3-fpm reload" > /etc/sudoers.d/php-fpm
+
+{!! callback_url('server.event', ['server_id' => $server->id, 'message' => 'php73.installed'], 10) !!}

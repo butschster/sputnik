@@ -14,7 +14,9 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Symfony\Component\Process\Process;
+use Tests\Concerns\ServerEventFactory;
 use Tests\Concerns\ServerFactory;
+use Tests\Concerns\ServerFirewallFactory;
 use Tests\Concerns\ServerKeyFactory;
 use Tests\Concerns\TaskFactory;
 use Tests\Concerns\UserFactory;
@@ -25,7 +27,9 @@ abstract class TestCase extends BaseTestCase
         ServerFactory,
         TaskFactory,
         UserFactory,
-        ServerKeyFactory;
+        ServerKeyFactory,
+        ServerEventFactory,
+        ServerFirewallFactory;
 
     protected function setUp(): void
     {

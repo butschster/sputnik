@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\Server\Configured;
 use Illuminate\Foundation\Inspiring;
 
 /*
@@ -20,6 +21,20 @@ Artisan::command('server:configure {server}', function (\App\Services\Server\Con
     $service->configure($server);
 
 })->describe('Run server configurator');
+
+Artisan::command('server:configured {server}', function ($server) {
+    $server = \App\Models\Server::findOrFail($server);
+
+    event(new Configured($server));
+
+})->describe('Fire event about server configured');
+
+Artisan::command('firewall:disable {id}', function ($id) {
+    $rule = \App\Models\Server\Firewall::findOrFail($id);
+
+    $rule->delete();
+
+})->describe('Disable firewall rule');
 
 
 Artisan::command('server:sync-keys {server}', function ($server) {

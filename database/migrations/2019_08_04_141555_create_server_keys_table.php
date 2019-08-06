@@ -27,6 +27,11 @@ class CreateServerKeysTable extends Migration
             $table->uuid('key_id');
 
             $table->primary(['server_id', 'key_id']);
+
+            $table->foreign('server_id')
+                ->references('id')
+                ->on('servers')
+                ->onDelete('cascade');
         });
     }
 
