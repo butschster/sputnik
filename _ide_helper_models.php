@@ -62,6 +62,18 @@ namespace App\Models{
 
 namespace App\Models\Server{
 /**
+ * App\Models\Server\CronJob
+ *
+ * @property-read \App\Models\Server $server
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob query()
+ */
+	class CronJob extends \Eloquent {}
+}
+
+namespace App\Models\Server{
+/**
  * App\Models\Server\Task
  *
  * @property string $id
@@ -152,6 +164,7 @@ namespace App\Models\Server{
  * App\Models\Server\Key
  *
  * @property string $id
+ * @property string $server_id
  * @property string $name
  * @property string $content
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -164,6 +177,7 @@ namespace App\Models\Server{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Key whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Key whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Key whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Key whereServerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Key whereUpdatedAt($value)
  */
 	class Key extends \Eloquent {}

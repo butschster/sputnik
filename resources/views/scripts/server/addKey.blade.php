@@ -1,5 +1,7 @@
 
+# ================================================
 # Write Key & Regenerate Keys File
+# ================================================
 
 cat > /home/sputnik/.ssh/authorized_keys.d/{{ $name }} << EOF
 {{ $key }}

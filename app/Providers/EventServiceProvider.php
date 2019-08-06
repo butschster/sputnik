@@ -7,10 +7,6 @@ use App\Events\Server\KeysInstalled;
 use App\Listeners\Server\AddPublicKeyToServer;
 use App\Listeners\Server\CreateHttpFirewallRules;
 use App\Listeners\Server\RemovePublicKeyFromServer;
-use App\Observers\Server\Firewall\DisableRuleAfterDeleting;
-use App\Observers\Server\GenerateDatabasePassword;
-use App\Observers\Server\GenerateSshKeyPairsObserver;
-use App\Observers\Server\Key\FireEventsObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -48,16 +44,22 @@ class EventServiceProvider extends ServiceProvider
         parent::boot();
 
         \App\Models\Server::observe([
-            GenerateSshKeyPairsObserver::class,
-            GenerateDatabasePassword::class,
+            \App\Observers\Server\GenerateSshKeyPairsObserver::class,
+            \App\Observers\Server\GenerateDatabasePassword::class,
         ]);
 
         \App\Models\Server\Key::observe([
-            FireEventsObserver::class,
+            \App\Observers\Server\Key\FireEventsObserver::class,
         ]);
 
+        \App\Models\Server\CronJob::observe([
+            \App\Observers\Server\Cron\SyncCronJobsObserver::class,
+            \App\Observers\Server\Cron\FireEventsObserver::class,
+        ]);
+
+
         \App\Models\Server\Firewall\Rule::observe([
-            DisableRuleAfterDeleting::class,
+            \App\Observers\Server\Firewall\DisableRuleAfterDeleting::class,
         ]);
     }
 }
