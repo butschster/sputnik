@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Server;
+namespace App\Models\Server\Firewall;
 
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server;
@@ -8,7 +8,7 @@ use App\Utils\SSH\FirewallCommandGenerator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Firewall extends Model
+class Rule extends Model
 {
     use UsesUuid;
 
