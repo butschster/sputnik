@@ -2,59 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8758e2e8-28cb-4454-a8bc-3bb8b89c0d7f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Actions/Server/ProcessServerEvents.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Server/Event.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Server/Firewall.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Observers/Server/Firewall/DisableRuleAfterDeleting.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Scripts/Contracts/Manager.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Scripts/Manager.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Scripts/Server/Firewall/DisableRule.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Scripts/Server/Firewall/EnableRule.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Server/FirewallService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Utils/SSH/FirewallCommandGenerator.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/configurations.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/scripts/server/firewall/disable_rule.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/scripts/server/firewall/enable_rule.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/nginx/site.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/php/72/install.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/php/72/remove.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/php/72/restart.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/php/73/remove.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/php/73/restart.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/scripts/tools/redis/remove.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Concerns/ServerEventFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Concerns/ServerFirewallFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/FirewallCommandGeneratorTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ServerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/Server/ConfigureServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/Server/ConfigureServer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Server.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Server.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/ActionsServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/ActionsServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Server/ConfiguratorService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Server/ConfiguratorService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Server/Runnable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Server/Runnable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Utils/SSH/CallbackCurlGenerator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Utils/SSH/CallbackCurlGenerator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_03_130244_create_servers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_03_130244_create_servers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_04_141555_create_server_keys_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_04_141555_create_server_keys_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/scripts/server/configuration/base.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/server/configuration/base.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/scripts/server/configure.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/server/configure.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/scripts/server/key_installation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/server/key_installation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/scripts/tools/callback.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/tools/callback.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/scripts/tools/database/install.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/tools/database/mysql/install.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/scripts/tools/nginx/install.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/tools/nginx/install.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/scripts/tools/node/install.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/tools/node/install.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/scripts/tools/php/install.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/tools/php/73/install.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/scripts/tools/redis/install.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/scripts/tools/redis/install.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/server/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/server/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/console.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/console.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Models/ServerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Models/ServerTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/CallbackCurlGeneratorTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Utils/Ssh/CallbackCurlGeneratorTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Scripts/Server/AddPublicKey.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scripts/Server/AddPublicKey.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Scripts/Server/Configure.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scripts/Server/Configure.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Scripts/Server/Firewall/DisableRule.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scripts/Server/Firewall/DisableRule.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Scripts/Server/Firewall/EnableRule.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scripts/Server/Firewall/EnableRule.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Scripts/Server/RemovePublicKey.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Scripts/Server/RemovePublicKey.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -293,7 +246,7 @@
       <workItem from="1564921758036" duration="12354000" />
       <workItem from="1564934415582" duration="21834000" />
       <workItem from="1565023327407" duration="37000" />
-      <workItem from="1565023376081" duration="19664000" />
+      <workItem from="1565023376081" duration="20589000" />
     </task>
     <servers />
   </component>

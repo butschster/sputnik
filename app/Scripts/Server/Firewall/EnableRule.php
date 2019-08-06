@@ -27,7 +27,7 @@ class EnableRule extends Script
      */
     public function getName(): string
     {
-        return "Enable UFW rule";
+        return "Enable UFW rule [{$this->rule->name}]";
     }
 
     /**

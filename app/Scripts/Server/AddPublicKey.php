@@ -21,11 +21,8 @@ class AddPublicKey extends Script
     protected $key;
 
     /**
-<<<<<<< HEAD
      * Create a new script instance.
-=======
      * Upload public key to remove server
->>>>>>> abceae17c307da394acebfd8dad88dd41ebd45f2
      *
      * @param string $name
      * @param string $key
@@ -42,7 +39,7 @@ class AddPublicKey extends Script
      */
     public function getName(): string
     {
-        return "Syncing SSH Key";
+        return "Syncing SSH Key [{$this->name}]";
     }
 
     /**

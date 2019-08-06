@@ -27,7 +27,7 @@ class Configure extends Script
      */
     public function getName(): string
     {
-        return "Configuring Web Server ({$this->server->name})";
+        return "Configuring server [{$this->server->name}]";
     }
 
     /**

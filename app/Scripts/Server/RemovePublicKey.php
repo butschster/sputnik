@@ -14,7 +14,6 @@ class RemovePublicKey extends Script
     protected $name;
 
     /**
-<<<<<<< HEAD
      * The public SSH key.
      *
      * @var string
@@ -23,9 +22,7 @@ class RemovePublicKey extends Script
 
     /**
      * Create a new script instance.
-=======
      * Remove public ket from remove server
->>>>>>> abceae17c307da394acebfd8dad88dd41ebd45f2
      *
      * @param string $name
      * @return void
@@ -40,7 +37,7 @@ class RemovePublicKey extends Script
      */
     public function getName(): string
     {
-        return "Remove SSH Key";
+        return "Remove SSH Key [{$this->name}]";
     }
 
     /**
