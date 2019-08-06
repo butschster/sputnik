@@ -13,6 +13,18 @@ class CronService
     use Runnable;
 
     /**
+     * Convert named expression to
+     *
+     * @param string $expression
+     *
+     * @return string
+     */
+    public function parseExpression(string $expression): string
+    {
+        return CronExpression::factory($expression)->getExpression();
+    }
+
+    /**
      * Validate cron string
      *
      * @param string $expression

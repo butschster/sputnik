@@ -19,4 +19,18 @@ class TestResponseMixins
             return $this;
         };
     }
+
+    public function assertDeleted()
+    {
+        return function () {
+            $actual = $this->getStatusCode();
+
+            PHPUnit::assertTrue(
+                202 === $actual,
+                'Response status code ['.$actual.'] is not an deleted status code.'
+            );
+
+            return $this;
+        };
+    }
 }

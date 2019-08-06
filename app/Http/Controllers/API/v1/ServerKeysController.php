@@ -30,10 +30,15 @@ class ServerKeysController extends Controller
      * Remove public key from the server
      *
      * @param Server\Key $key
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function delete(Server\Key $key)
     {
         $this->authorize('delete', $key);
+
+        $key->delete();
+
+        return $this->responseDeleted();
     }
 }

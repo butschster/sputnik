@@ -9,6 +9,7 @@ use App\Events\Server\Key\AttachedToServer;
 use App\Events\Server\Key\DetachedFromServer;
 use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\UsesUuid;
+use App\Models\Server\CronJob;
 use App\Models\Server\Event;
 use App\Models\Server\Firewall\Rule as FirewallRule;
 use App\Models\Server\Key;
@@ -133,6 +134,16 @@ class Server extends Model
     public function keys(): HasMany
     {
         return $this->hasMany(Key::class);
+    }
+
+    /**
+     * Get the cron jobs that belong to the server.
+     *
+     * @return HasMany
+     */
+    public function cronJobs(): HasMany
+    {
+        return $this->hasMany(CronJob::class);
     }
 
     /**

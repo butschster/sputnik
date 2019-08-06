@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Http\Controllers\API\v1;
+
+use App\Http\Controllers\API\Controller;
+use App\Http\Requests\Server\CronJob\StoreRequest;
+use App\Http\Resources\v1\Server\CronJobResource;
+use App\Models\Server;
+
+class ServerCronJobsController extends Controller
+{
+    /**
+     * @param StoreRequest $request
+     * @param Server $server
+     * @return CronJobResource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function store(StoreRequest $request, Server $server)
+    {
+        $this->authorize('store', [Server\CronJob::class, $server]);
+
+        $job = $request->persist();
+
+        return CronJobResource::make($job);
+    }
+
+    /**
+     * Remove cron jobs from the server
+     *
+     * @param Server\CronJob $job
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function delete(Server\CronJob $job)
+    {
+        $this->authorize('delete', $job);
+
+        $job->delete();
+
+        return $this->responseDeleted();
+    }
+}

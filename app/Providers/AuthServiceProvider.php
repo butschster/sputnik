@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Server;
+use App\Policies\ServerCronJobPolicy;
 use App\Policies\ServerKeyPolicy;
 use App\Policies\ServerPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -16,7 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Server::class => ServerPolicy::class,
-        Server\Key::class => ServerKeyPolicy::class
+        Server\Key::class => ServerKeyPolicy::class,
+        Server\CronJob::class => ServerCronJobPolicy::class,
     ];
 
     /**

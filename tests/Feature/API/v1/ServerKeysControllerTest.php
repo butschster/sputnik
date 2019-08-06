@@ -138,7 +138,9 @@ class ServerKeysControllerTest extends TestCase
         $server = $this->createServer(['user_id' => $user]);
         $key = $this->createSSHKeyForServer($server);
 
-        $this->deleteJson(api_route('server.key.delete', $key))->assertOk();
+        $this->deleteJson(api_route('server.key.delete', $key))->assertDeleted();
+
+        $this->assertCount(0, $server->keys);
     }
 
     // An authenticated user cannot remove keys on foreign servers
@@ -149,5 +151,7 @@ class ServerKeysControllerTest extends TestCase
         $key = $this->createSSHKeyForServer($server);
 
         $this->deleteJson(api_route('server.key.delete', $key))->assertForbidden();
+
+        $this->assertCount(1, $server->keys);
     }
 }
