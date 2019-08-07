@@ -29,6 +29,34 @@ Artisan::command('server:configured {server}', function ($server) {
 
 })->describe('Fire event about server configured');
 
+Artisan::command('server:firewall:rules {id}', function (\App\Services\Server\FirewallService $service, $id) {
+    $server = \App\Models\Server::findOrFail($id);
+    $rules = $service->getAvailableRules($server);
+
+
+    $headers = ['Port', 'Action', 'From', 'Version'];
+
+    $this->info('Remove rules');
+    $this->table($headers, $rules->map(function(\App\Utils\SSH\ValueObjects\UfwRule $rule) {
+        return [
+            $rule->port(),
+            $rule->policy(),
+            $rule->from(),
+            $rule->getVersion()
+        ];
+    }));
+
+    $this->info('Database rules');
+    $this->table($headers, $server->firewallRules->map(function(\App\Utils\SSH\Contracts\UfwRule $rule) {
+        return [
+            $rule->port(),
+            $rule->policy(),
+            $rule->from(),
+            'v4'
+        ];
+    }));
+})->describe('Show server firewall rules');
+
 Artisan::command('server:firewall:disable {id}', function ($id) {
     $rule = \App\Models\Server\Firewall\Rule::findOrFail($id);
     $rule->delete();
