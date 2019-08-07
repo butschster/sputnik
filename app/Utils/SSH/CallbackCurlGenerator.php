@@ -2,10 +2,23 @@
 
 namespace App\Utils\SSH;
 
-use Carbon\Carbon;
+use App\Contracts\Request\RequestSignatureHandler;
 
 class CallbackCurlGenerator
 {
+    /**
+     * @var RequestSignatureHandler
+     */
+    protected $signatureHandler;
+
+    /**
+     * @param RequestSignatureHandler $signatureHandler
+     */
+    public function __construct(RequestSignatureHandler $signatureHandler)
+    {
+        $this->signatureHandler = $signatureHandler;
+    }
+
     /**
      * Generate curl string with callbakc url and data
      *
@@ -19,7 +32,10 @@ class CallbackCurlGenerator
     {
         $parameters = array_merge(
             $parameters,
-            $this->signParameters(['action' => $action], now()->addMinutes($lifeTime))
+            $this->signatureHandler->signParameters(
+                ['action' => $action],
+                now()->addMinutes($lifeTime)
+            )
         );
 
         return sprintf('curl -X POST -k -d "%s" %s > /dev/null 2>&1',
@@ -37,23 +53,6 @@ class CallbackCurlGenerator
     }
 
     /**
-     * @param string $url
-     * @param array $parameters
-     * @param Carbon $expiration
-     * @return array
-     */
-    public function signParameters(array $parameters, Carbon $expiration)
-    {
-        $parameters += ['expires' => $expiration->getTimestamp()];
-
-        ksort($parameters);
-
-        return $parameters + [
-            'signature' => hash_hmac('sha256', $this->url(), config('app.key')),
-        ];
-    }
-
-    /**
      * Build query string with data from parameters
      *
      * @param array $parameters
@@ -62,6 +61,8 @@ class CallbackCurlGenerator
      */
     protected function buildData(array $parameters): string
     {
-        return urldecode(http_build_query($parameters));
+        return urldecode(
+            http_build_query($parameters)
+        );
     }
 }

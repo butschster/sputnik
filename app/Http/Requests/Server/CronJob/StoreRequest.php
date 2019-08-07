@@ -4,8 +4,7 @@ namespace App\Http\Requests\Server\CronJob;
 
 use App\Http\Requests\SanitizesInput;
 use App\Models\Server\CronJob;
-use App\Rules\Server\CronExpression;
-use App\Services\Server\CronService;
+use App\Validation\Rules\Server\CronExpression;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest

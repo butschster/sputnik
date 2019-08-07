@@ -3,7 +3,7 @@
 namespace App\Http\Actions\Server;
 
 use App\Models\Server;
-use App\Rules\Server\Key\PublicKey;
+use App\Validation\Rules\Server\PublicKey;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\Action;

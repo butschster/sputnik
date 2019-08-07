@@ -2,10 +2,10 @@
 
 namespace Tests;
 
+use App\Contracts\Request\RequestSignatureHandler;
 use App\Events\Task\Running;
 use App\Services\Task\Contracts\Task;
 use App\Services\Task\ExecutorService;
-use App\Utils\SSH\CallbackCurlGenerator;
 use App\Utils\SSH\Commands\SshKeygen;
 use App\Utils\SSH\Contracts\KeyGenerator;
 use App\Utils\SSH\Contracts\KeyStorage as KeyStorageContract;
@@ -74,15 +74,14 @@ abstract class TestCase extends BaseTestCase
      */
     public function sendCallbackRequest(string $action, array $parameters = [])
     {
-        $generator = new CallbackCurlGenerator();
+        $signatureHandler = $this->app[RequestSignatureHandler::class];
 
-        $parameters = array_merge($parameters, $generator->signParameters(
-            ['action' => $action],
-            now()->addMinutes(10)
+        $parameters = array_merge($parameters, $signatureHandler->signParameters(
+            ['action' => $action]
         ));
 
         return $this->postJson(
-            $generator->url(),
+            route('callback'),
             $parameters
         );
     }

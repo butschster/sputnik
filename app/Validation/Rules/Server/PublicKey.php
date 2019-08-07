@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules\Server\Key;
+namespace App\Validation\Rules\Server;
 
 use Illuminate\Contracts\Validation\Rule;
 
@@ -15,6 +15,7 @@ class PublicKey implements Rule
      */
     public function passes($attribute, $value)
     {
+        // We try to generate fingerprint for given key
         $key = new \App\Utils\SSH\ValueObjects\PublicKey('key', $value);
 
         try {
@@ -28,7 +29,6 @@ class PublicKey implements Rule
 
     /**
      * Get the validation error message.
-     * TODO translate this message
      *
      * @return string
      */

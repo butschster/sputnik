@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules\Server;
+namespace App\Validation\Rules\Server;
 
 use App\Services\Server\CronService;
 use Illuminate\Contracts\Validation\Rule;
@@ -21,7 +21,6 @@ class CronExpression implements Rule
 
     /**
      * Get the validation error message.
-     * TODO Add translation
      *
      * @return string
      */

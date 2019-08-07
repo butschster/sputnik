@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Server\Key;
 
 use App\Models\Server\Key;
-use App\Rules\Server\Key\PublicKey;
+use App\Validation\Rules\Server\PublicKey;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

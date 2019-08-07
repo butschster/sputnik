@@ -12,7 +12,7 @@ class CronJobTest extends TestCase
     /**
      * @dataProvider cronNamesProvider
      */
-    function test_a_named_expression_should_be_converted($name, $expression)
+    function test_a_named_string_should_be_converted_to_cron_expression($name, $expression)
     {
         $job = $this->makeCronJob([
             'cron' => $name

@@ -2,38 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Request\RequestSignatureHandler;
 use App\Http\Actions\Contracts\Manager;
 use App\Models\CallbackLog;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Exceptions\InvalidSignatureException;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Carbon;
-use Illuminate\Validation\ValidationException;
 
 class CallbackController extends Controller
 {
     /**
+     * @var RequestSignatureHandler
+     */
+    protected $signatureHandler;
+
+    /**
+     * @param RequestSignatureHandler $signatureHandler
+     */
+    public function __construct(RequestSignatureHandler $signatureHandler)
+    {
+        $this->signatureHandler = $signatureHandler;
+    }
+
+    /**
      * @param Request $request
      * @param Manager $manager
      *
-     * @return array
+     * @return array|mixed
      * @throws \Illuminate\Validation\ValidationException
+     * @throws \Illuminate\Routing\Exceptions\InvalidSignatureException
      */
     public function __invoke(Request $request, Manager $manager)
     {
-        if (!$this->hasValidSignature($request)) {
-            throw new InvalidSignatureException;
-        }
-
         $this->validate($request, [
             'action' => 'required|string',
+            'signature' => 'required'
         ]);
 
-        CallbackLog::create([
-            'source' => $request->ip(),
-            'data' => $request->all(),
-        ]);
+        $this->checkValidSignature($request);
+        $this->logRequest($request);
 
         $response = $manager->runAction($request->action, $request->all());
 
@@ -45,25 +52,27 @@ class CallbackController extends Controller
     }
 
     /**
-     * Determine if the given request has a valid signature.
+     * Check signature fro incoming request
      *
-     * @param \Illuminate\Http\Request $request
-     * @param bool $absolute
-     * @return bool
+     * @param Request $request
      */
-    public function hasValidSignature(Request $request)
+    protected function checkValidSignature(Request $request): void
     {
-        $original = route('callback');
+        if (!$this->signatureHandler->validate($request->signature, $request->only('action'), $request->expires)) {
+            throw new InvalidSignatureException;
+        }
+    }
 
-        $expires = $request->expires;
-        $requestSignature = (string) $request->signature;
-
-        $signature = hash_hmac('sha256', $original, config('app.key'));
-
-        $request->offsetUnset('expires');
-        $request->offsetUnset('signature');
-
-        return hash_equals($signature, $requestSignature) &&
-            !($expires && Carbon::now()->getTimestamp() > $expires);
+    /**
+     * Log incoming request
+     *
+     * @param Request $request
+     */
+    protected function logRequest(Request $request): void
+    {
+        CallbackLog::create([
+            'source' => $request->ip(),
+            'data' => $request->all(),
+        ]);
     }
 }
