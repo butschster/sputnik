@@ -33,7 +33,7 @@ class ExecutorService
      *
      * @param Task $task
      */
-    public function run(Task $task)
+    public function run(Task $task): void
     {
         $this->task = $task;
 
@@ -44,7 +44,8 @@ class ExecutorService
         try {
             $this->upload();
         } catch (ProcessTimedOutException $e) {
-            return $this->task->markAsTimedOut();
+            $this->task->markAsTimedOut();
+            return;
         }
 
         $this->task->saveResponse(
@@ -63,7 +64,7 @@ class ExecutorService
      *
      * @throws \Throwable
      */
-    public function runInBackground(Task $task)
+    public function runInBackground(Task $task): void
     {
         $this->task = $task;
 
@@ -76,7 +77,8 @@ class ExecutorService
         try {
             $this->upload();
         } catch (ProcessTimedOutException $e) {
-            return $this->task->markAsTimedOut();
+            $this->task->markAsTimedOut();
+            return;
         }
 
         $this->executor->run(
@@ -92,7 +94,7 @@ class ExecutorService
      * @return void
      * @throws \Throwable
      */
-    protected function addCallbackToScript()
+    protected function addCallbackToScript(): void
     {
         $callback = (new Callback($this->task))->getScript();
 
@@ -106,7 +108,7 @@ class ExecutorService
      *
      * @return bool
      */
-    protected function upload()
+    protected function upload(): bool
     {
         $process = $this->toUploadProcess(
             $localScript = $this->writeScript(),
@@ -141,7 +143,7 @@ class ExecutorService
      *
      * @return void
      */
-    protected function ensureWorkingDirectoryExists()
+    protected function ensureWorkingDirectoryExists(): void
     {
         $this->runInline('mkdir -p ' . $this->task->path(), 10);
     }

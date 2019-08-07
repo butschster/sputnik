@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Passport\HasApiTokens;
 use App\Models\Concerns\UsesUuid;
 use Illuminate\Notifications\Notifiable;
@@ -42,9 +43,9 @@ class User extends Authenticatable
     /**
      * Get the servers that belong to the user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function servers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function servers(): HasMany
     {
         return $this->hasMany(Server::class);
     }

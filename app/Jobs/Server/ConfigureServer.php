@@ -67,7 +67,7 @@ class ConfigureServer implements ShouldQueue
      *
      * @return void
      */
-    protected function configured()
+    protected function configured(): void
     {
 
     }

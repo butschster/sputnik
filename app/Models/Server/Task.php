@@ -11,6 +11,7 @@ use App\Services\Task\Contracts\Task as TaskContract;
 use App\Utils\SSH\Script;
 use App\Utils\SSH\Shell\Response;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 
 class Task extends Model implements TaskContract
@@ -55,9 +56,9 @@ class Task extends Model implements TaskContract
     /**
      * Link to the server
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function server(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function server(): BelongsTo
     {
         return $this->belongsTo(Server::class);
     }
@@ -79,7 +80,7 @@ class Task extends Model implements TaskContract
      * @param array $value
      * @return array
      */
-    public function setOptionsAttribute(array $value)
+    public function setOptionsAttribute(array $value): void
     {
         $this->attributes['options'] = serialize($value);
     }
@@ -101,7 +102,7 @@ class Task extends Model implements TaskContract
     /**
      * Mark the task as running.
      */
-    public function markAsRunning()
+    public function markAsRunning(): void
     {
         $this->update([
             'status' => static::STATUS_RUNNING,
@@ -135,7 +136,7 @@ class Task extends Model implements TaskContract
      *
      * @param string $output
      */
-    public function markAsTimedOut(string $output = '')
+    public function markAsTimedOut(string $output = ''): void
     {
         $this->update([
             'exit_code' => 1,
@@ -164,7 +165,7 @@ class Task extends Model implements TaskContract
      * @param int $exitCode
      * @param string $output
      */
-    public function markAsFinished(int $exitCode = 0, string $output = '')
+    public function markAsFinished(int $exitCode = 0, string $output = ''): void
     {
         $this->update([
             'exit_code' => $exitCode,
@@ -224,7 +225,7 @@ class Task extends Model implements TaskContract
      *
      * @param Response $response
      */
-    public function saveResponse(Response $response)
+    public function saveResponse(Response $response): void
     {
         $this->update([
             'status' => $response->isTimedOut() ? static::STATUS_TIMEOUT : static::STATUS_FINISHED,
@@ -337,7 +338,7 @@ class Task extends Model implements TaskContract
      */
     public function serverKeyPath(): string
     {
-        return $this->server->keyPath();
+        return $this->server->privateKey()->getPath();
     }
 
     /**

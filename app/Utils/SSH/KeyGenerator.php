@@ -65,7 +65,7 @@ class KeyGenerator implements KeyGeneratorContract
      * @return string
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    protected function getKeyContent(string $key)
+    protected function getKeyContent(string $key): string
     {
         return $this->filesystem->get($this->getKeyPath($key));
     }
@@ -76,7 +76,7 @@ class KeyGenerator implements KeyGeneratorContract
      * @param string $key
      * @return string
      */
-    protected function getKeyPath(string $key)
+    protected function getKeyPath(string $key): string
     {
         return 'tmp/' . $key;
     }

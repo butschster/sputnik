@@ -11,7 +11,7 @@ class FireEventsObserver
     /**
      * @param CronJob $job
      */
-    public function created(CronJob $job)
+    public function created(CronJob $job): void
     {
         event(new Created($job));
     }
@@ -19,7 +19,7 @@ class FireEventsObserver
     /**
      * @param CronJob $job
      */
-    public function deleted(CronJob $job)
+    public function deleted(CronJob $job): void
     {
         event(new Deleted($job));
     }

@@ -25,7 +25,7 @@ class SyncCronJobsObserver
     /**
      * @param CronJob $job
      */
-    public function created(CronJob $job)
+    public function created(CronJob $job): void
     {
         $this->service->schedule($job);
     }
@@ -33,7 +33,7 @@ class SyncCronJobsObserver
     /**
      * @param CronJob $job
      */
-    public function deleted(CronJob $job)
+    public function deleted(CronJob $job): void
     {
         $this->service->delete($job);
     }

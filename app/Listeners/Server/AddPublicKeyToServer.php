@@ -14,7 +14,7 @@ class AddPublicKeyToServer
      * @param AttachedToServer $event
      * @return void
      */
-    public function handle(AttachedToServer $event)
+    public function handle(AttachedToServer $event): void
     {
         dispatch(new RunScript(
             $event->key->server,

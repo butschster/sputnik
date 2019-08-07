@@ -80,7 +80,7 @@ class ExecutorServiceTest extends TestCase
     protected function getExecutorService(\Closure $scriptsStorageMock = null): ExecutorService
     {
         $this->mock(KeyStorage::class, function ($mock) {
-            $mock->shouldReceive('storeKey');
+            $mock->shouldReceive('store');
         });
 
         $this->mock(ScriptsStorage::class, $scriptsStorageMock ?? function ($mock) {

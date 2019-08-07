@@ -4,9 +4,23 @@ namespace App\Utils\SSH;
 
 use App\Utils\SSH\Contracts\KeyStorage as KeyStorageContract;
 use App\Utils\SSH\ValueObjects\PrivateKey;
+use Illuminate\Filesystem\Filesystem;
 
 class FilesystemKeyStorage implements KeyStorageContract
 {
+    /**
+     * @var Filesystem
+     */
+    protected $filesystem;
+
+    /**
+     * @param Filesystem $filesystem
+     */
+    public function __construct(Filesystem $filesystem)
+    {
+        $this->filesystem = $filesystem;
+    }
+
     /**
      * Store private key in local storage
      *
@@ -14,13 +28,24 @@ class FilesystemKeyStorage implements KeyStorageContract
      *
      * @return string Path to the file
      */
-    public function storeKey(PrivateKey $key): string
+    public function store(PrivateKey $key): string
     {
-        $path = $key->getPath();
+        $this->ensureFileExists(
+            $key->getPath(), $key->getContents()
+        );
 
-        $this->ensureFileExists($path, $key->getContents());
+        return $key->getPath();
+    }
 
-        return $path;
+    /**
+     * Remove private key from the key storage
+     *
+     * @param PrivateKey $key
+     * @return void
+     */
+    public function remove(PrivateKey $key): void
+    {
+        $this->filesystem->delete($key->getPath());
     }
 
     /**
@@ -29,10 +54,10 @@ class FilesystemKeyStorage implements KeyStorageContract
      * @param string $path
      * @param string $key
      */
-    protected function ensureFileExists(string $path, string $key)
+    protected function ensureFileExists(string $path, string $key): void
     {
-        file_put_contents($path, $key);
+        $this->filesystem->put($path, $key);
 
-        chmod($path, 0600);
+        $this->filesystem->chmod($path, 0600);
     }
 }

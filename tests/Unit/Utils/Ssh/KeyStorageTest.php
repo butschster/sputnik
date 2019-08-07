@@ -4,17 +4,17 @@ namespace Tests\Unit\Utils\SSH;
 
 use App\Utils\SSH\FilesystemKeyStorage;
 use App\Utils\SSH\ValueObjects\PrivateKey;
+use Illuminate\Filesystem\Filesystem;
 use Tests\TestCase;
 
 class KeyStorageTest extends TestCase
 {
-    function test_a_private_key_can_be_stored()
+    function test_the_private_key_can_be_stored()
     {
-        $privateKey = new PrivateKey('test', 'key content');
-        @unlink($privateKey->getPath());
-        $storage = new FilesystemKeyStorage();
-
-        $storage->storeKey($privateKey);
+        $storage = $this->getFilesystemKeyStorage();
+        $storage->store(
+            $privateKey = $this->getTestPrivateKey()
+        );
 
         $this->assertFileExists(
             $privateKey->getPath()
@@ -28,5 +28,41 @@ class KeyStorageTest extends TestCase
         );
 
         @unlink($privateKey->getPath());
+    }
+
+    function test_the_private_key_can_be_removed()
+    {
+        $storage = $this->getFilesystemKeyStorage();
+        $storage->store(
+            $privateKey = $this->getTestPrivateKey()
+        );
+
+        $storage->remove($privateKey);
+
+        $this->assertFileNotExists(
+            $privateKey->getPath()
+        );
+    }
+
+    /**
+     * @return FilesystemKeyStorage
+     */
+    protected function getFilesystemKeyStorage(): FilesystemKeyStorage
+    {
+        return new FilesystemKeyStorage(
+            new Filesystem()
+        );
+    }
+
+    /**
+     * @return PrivateKey|string
+     */
+    protected function getTestPrivateKey(): PrivateKey
+    {
+        $privateKey = new PrivateKey('test', 'key content');
+
+        @unlink($privateKey->getPath());
+
+        return $privateKey;
     }
 }

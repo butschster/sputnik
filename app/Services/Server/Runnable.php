@@ -53,7 +53,7 @@ trait Runnable
     /**
      * @param Server $server
      */
-    public function setServer(Server $server)
+    public function setServer(Server $server): void
     {
         $this->server = $server;
     }

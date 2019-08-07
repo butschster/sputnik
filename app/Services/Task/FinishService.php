@@ -33,7 +33,7 @@ class FinishService
      * @param Task $task
      * @param int $exitCode
      */
-    public function finish(Task $task, int $exitCode = 0)
+    public function finish(Task $task, int $exitCode = 0): void
     {
         $this->task = $task;
 

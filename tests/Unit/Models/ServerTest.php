@@ -55,13 +55,13 @@ class ServerTest extends TestCase
 
     function test_a_key_path_can_be_generated()
     {
-        $server = $this->createServer();
-
         $this->mock(KeyStorage::class, function ($mock) {
-            $mock->shouldReceive('storeKey')->once()->andReturn('key_path');
+            $mock->shouldReceive('store')->once()->andReturn('key_path');
         });
 
-        $server->keyPath();
+        $server = $this->createServer();
+
+        $server->privateKey()->getPath();
     }
 
     function test_a_key_pair_sould_be_generated_when_server_is_creating()

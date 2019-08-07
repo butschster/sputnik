@@ -23,7 +23,7 @@ class SyncFirewallRuleObserver
     /**
      * @param Rule $rule
      */
-    public function created(Rule $rule)
+    public function created(Rule $rule): void
     {
         $this->service->enableRule($rule);
     }
@@ -31,7 +31,7 @@ class SyncFirewallRuleObserver
     /**
      * @param Rule $rule
      */
-    public function deleted(Rule $rule)
+    public function deleted(Rule $rule): void
     {
         $this->service->disableRule($rule);
     }

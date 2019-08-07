@@ -48,7 +48,7 @@ abstract class TestCase extends BaseTestCase
         $this->instance(ProcessExecutorContract::class, new FakeProcessExecutor());
 
         $this->mock(KeyStorageContract::class, function($mock) {
-            $mock->shouldReceive('storeKey')->andReturn('path to the file');
+            $mock->shouldReceive('store')->andReturn('path to the file');
         });
 
         $this->mock(KeyGenerator::class, function($mock) {

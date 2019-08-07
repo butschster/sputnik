@@ -28,7 +28,7 @@ class CallbackCurlGenerator
      *
      * @return string
      */
-    public function generate(string $action, array $parameters = [], int $lifeTime = 60)
+    public function generate(string $action, array $parameters = [], int $lifeTime = 60): string
     {
         $parameters = array_merge(
             $parameters,

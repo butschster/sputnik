@@ -25,7 +25,9 @@ class SSHServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton(KeyStorage::class, function () {
-            return new FilesystemKeyStorage;
+            return new FilesystemKeyStorage(
+                new \Illuminate\Filesystem\Filesystem()
+            );
         });
 
         $this->app->singleton(KeyGeneratorContract::class, function () {

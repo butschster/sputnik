@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Server\StoreRequest;
+use App\Http\Resources\v1\ServerResource;
 use App\Models\Server;
-use App\Utils\SSH\CallbackCurlGenerator;
+use App\Services\Server\FirewallService;
 use Illuminate\Http\Request;
-use URL;
 
 class ServerController extends Controller
 {
@@ -21,6 +22,18 @@ class ServerController extends Controller
         return view('home', [
             'servers' => $servers,
         ]);
+    }
+
+    /**
+     * @param StoreRequest $request
+     *
+     * @return ServerResource
+     */
+    public function store(StoreRequest $request)
+    {
+        $server = $request->persist();
+
+        return redirect(route('server.show', $server));
     }
 
     /**

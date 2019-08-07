@@ -16,14 +16,14 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'ip' => 'required|ipv4',
-            'port' => 'nullable|digits_between:2,4',
+            'ip' => ['required', 'ipv4', Rule::unique('servers')],
+            'ssh_port' => 'nullable|digits_between:2,4',
             'sudo_password' => 'nullable|string',
             // TODO: move versions into config
             'php_version' => ['required', Rule::in(['73', '72', '71', '70', '56'])],
             // TODO: move database types into config
             'database_type' => ['required', Rule::in(['mysql', 'mysql8', 'mariadb', 'pgsql'])],
-            'meta' => 'array'
+            'meta' => 'nullable|array'
         ];
     }
 

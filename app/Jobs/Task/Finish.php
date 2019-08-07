@@ -45,7 +45,7 @@ class Finish implements ShouldQueue
      * @param FinishService $service
      * @return void
      */
-    public function handle(FinishService $service)
+    public function handle(FinishService $service): void
     {
         $service->finish($this->task, $this->exitCode);
     }

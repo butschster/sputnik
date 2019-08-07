@@ -10,8 +10,6 @@ use Lorisleiva\Actions\Action;
 class RunServerConfiguration extends Action
 {
     /**
-     * TODO Add public key validation
-     *
      * @return array
      */
     public function rules()
@@ -21,7 +19,7 @@ class RunServerConfiguration extends Action
         ];
     }
 
-    public function handle()
+    public function handle(): void
     {
         $server = Server::findOrFail($this->server_id);
 

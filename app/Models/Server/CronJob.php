@@ -33,7 +33,7 @@ class CronJob extends Model
     /**
      * @param string $expression
      */
-    public function setCronAttribute(string $expression)
+    public function setCronAttribute(string $expression): void
     {
         $this->attributes['cron'] = app(CronService::class)->parseExpression($expression);
     }

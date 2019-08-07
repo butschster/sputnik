@@ -80,7 +80,7 @@ class Server extends Model
      * @param KeyPair $keyPair
      * @return void
      */
-    public function setKeypairAttribute(KeyPair $keyPair)
+    public function setKeypairAttribute(KeyPair $keyPair): void
     {
         $this->public_key = $keyPair->getPublicKey();
         $this->private_key = $keyPair->getPrivateKey();
@@ -148,19 +148,13 @@ class Server extends Model
     }
 
     /**
-     * Get the path to the user's worker SSH key.
+     * Get private key
      *
-     * @return string
+     * @return PrivateKey
      */
-    public function keyPath(): string
+    public function privateKey(): PrivateKey
     {
-        $keyStorage = app(KeyStorage::class);
-
-        $keyStorage->storeKey(
-            $key = new PrivateKey($this->id, $this->private_key)
-        );
-
-        return $key->getPath();
+        return new PrivateKey($this->id, $this->private_key);
     }
 
     /**
@@ -186,7 +180,7 @@ class Server extends Model
     /**
      * Mark the server as configuring.
      */
-    public function markAsConfiguring()
+    public function markAsConfiguring(): void
     {
         $this->update([
             'status' => static::STATUS_CONFIGUTING,
@@ -209,7 +203,7 @@ class Server extends Model
      *
      * @return $this
      */
-    public function markAsConfigured()
+    public function markAsConfigured(): void
     {
         $this->update(['status' => static::STATUS_CONFIGURED]);
 
@@ -237,7 +231,7 @@ class Server extends Model
      * @param Key $key
      * @throws \Exception
      */
-    public function removePublicKey(Key $key)
+    public function removePublicKey(Key $key): void
     {
         $key->delete();
     }

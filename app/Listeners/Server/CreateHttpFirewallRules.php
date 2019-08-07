@@ -32,7 +32,7 @@ class CreateHttpFirewallRules
     /**
      * @param Configured $event
      */
-    public function handle(Configured $event)
+    public function handle(Configured $event): void
     {
         foreach ($this->rules as $rule) {
             $event->server->firewallRules()->create($rule);

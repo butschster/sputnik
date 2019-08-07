@@ -23,7 +23,7 @@ class FinishTask extends Action
     /**
      * Finish task which has status running
      */
-    public function handle()
+    public function handle(): void
     {
         $task = Task::findOrFail($this->task_id);
 

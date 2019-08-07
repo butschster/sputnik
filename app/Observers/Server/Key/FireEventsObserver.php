@@ -11,7 +11,7 @@ class FireEventsObserver
     /**
      * @param Key $key
      */
-    public function created(Key $key)
+    public function created(Key $key): void
     {
         event(new AttachedToServer($key));
     }
@@ -19,7 +19,7 @@ class FireEventsObserver
     /**
      * @param Key $key
      */
-    public function deleted(Key $key)
+    public function deleted(Key $key): void
     {
         event(new DetachedFromServer($key));
     }

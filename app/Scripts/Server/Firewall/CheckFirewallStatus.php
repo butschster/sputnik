@@ -7,6 +7,11 @@ use App\Utils\SSH\Script;
 class CheckFirewallStatus extends Script
 {
     /**
+     * @var string
+     */
+    protected $name = 'Get UFW firewall status';
+
+    /**
      * Get the contents of the script.
      *
      * @return string

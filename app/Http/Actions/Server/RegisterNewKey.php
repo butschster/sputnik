@@ -21,7 +21,7 @@ class RegisterNewKey extends Action
         ];
     }
 
-    public function handle()
+    public function handle(): void
     {
         $server = Server::findOrFail($this->server_id);
 

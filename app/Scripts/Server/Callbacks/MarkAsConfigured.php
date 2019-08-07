@@ -13,7 +13,7 @@ class MarkAsConfigured
      * @param Task $task
      * @return void
      */
-    public function handle(Task $task)
+    public function handle(Task $task): void
     {
         if ($task->server) {
             $task->server->markAsConfigured();

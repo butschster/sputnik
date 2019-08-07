@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Pavel Buchnev',
         ]);
 
-        $server = factory(\App\Models\Server::class)->create([
-            'user_id' => $user->id,
-            'name' => 'test',
-            'ip' => '167.71.3.113',
-            'key_password' => 'password'
-        ]);
+//        $server = factory(\App\Models\Server::class)->create([
+//            'user_id' => $user->id,
+//            'name' => 'test',
+//            'ip' => '167.71.3.113',
+//            'key_password' => 'password'
+//        ]);
     }
 }

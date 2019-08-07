@@ -38,7 +38,7 @@ class RunScript
     /**
      * @param Factory $taskFactory
      */
-    public function handle(Factory $taskFactory)
+    public function handle(Factory $taskFactory): void
     {
         $task = $taskFactory->createFromScript(
             $this->server, $this->script

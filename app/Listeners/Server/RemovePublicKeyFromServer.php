@@ -14,7 +14,7 @@ class RemovePublicKeyFromServer
      * @param DetachedFromServer $event
      * @return void
      */
-    public function handle(DetachedFromServer $event)
+    public function handle(DetachedFromServer $event): void
     {
         dispatch(new RunScript(
             $event->key->server,

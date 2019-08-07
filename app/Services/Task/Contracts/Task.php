@@ -18,21 +18,21 @@ interface Task
      * @param int $exitCode
      * @param string $output
      */
-    public function markAsFinished(int $exitCode = 0, string $output = '');
+    public function markAsFinished(int $exitCode = 0, string $output = ''): void;
 
     /**
      * Mark the task as timed out.
      *
      * @param string $output
      */
-    public function markAsTimedOut(string $output = '');
+    public function markAsTimedOut(string $output = ''): void;
 
     /**
      * Update the task for the given SSH response.
      *
      * @param Response $response
      */
-    public function saveResponse(Response $response);
+    public function saveResponse(Response $response): void;
 
     /**
      * Check if task's output is equal with given string

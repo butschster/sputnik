@@ -30,7 +30,7 @@ class Run implements ShouldQueue
     /**
      * @param ExecutorService $service
      */
-    public function handle(ExecutorService $service)
+    public function handle(ExecutorService $service): void
     {
         $service->run(
             $this->task
