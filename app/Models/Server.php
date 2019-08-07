@@ -8,6 +8,7 @@ use App\Events\Server\Deleted;
 use App\Events\Server\Key\AttachedToServer;
 use App\Events\Server\Key\DetachedFromServer;
 use App\Models\Concerns\DeterminesAge;
+use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server\CallbackLog;
 use App\Models\Server\CronJob;
@@ -26,7 +27,7 @@ use Illuminate\Support\Str;
 
 class Server extends Model
 {
-    use UsesUuid, DeterminesAge;
+    use UsesUuid, DeterminesAge, HasTask;
 
     const STATUS_PENDING = 'pending';
     const STATUS_CONFIGUTING = 'configuring';
@@ -124,7 +125,7 @@ class Server extends Model
      */
     public function firewallRules(): HasMany
     {
-        return $this->hasMany(FirewallRule::class);
+        return $this->hasMany(FirewallRule::class)->with('task');
     }
 
     /**
@@ -134,7 +135,7 @@ class Server extends Model
      */
     public function keys(): HasMany
     {
-        return $this->hasMany(Key::class);
+        return $this->hasMany(Key::class)->with('task');
     }
 
     /**
@@ -144,7 +145,7 @@ class Server extends Model
      */
     public function cronJobs(): HasMany
     {
-        return $this->hasMany(CronJob::class);
+        return $this->hasMany(CronJob::class)->with('task');
     }
 
     /**

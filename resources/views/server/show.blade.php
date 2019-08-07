@@ -48,7 +48,7 @@
                 </tr>
                 </thead>
                 @foreach($server->firewallRules as $rule)
-                    <tr>
+                    <tr @if(!$rule->isSuccessful()) class="bg-warning" @endif>
                         <th>{{ $rule->name }} <br><small>{{ $rule->id }}</small></th>
                         <th>{{ $rule->port }} [{{ $rule->protocol }}]</th>
                         <td>{{ $rule->from }}</td>

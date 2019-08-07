@@ -2,6 +2,7 @@
 
 namespace App\Models\Server\Firewall;
 
+use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server;
 use App\Utils\SSH\Contracts\UfwRule;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Rule extends Model implements UfwRule
 {
-    use UsesUuid;
+    use UsesUuid, HasTask;
 
     /**
      * @var string

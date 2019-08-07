@@ -7,6 +7,7 @@ use App\Services\Task\Contracts\Task;
 use App\Services\Task\ExecutorService;
 use App\Services\Task\Factory;
 use App\Utils\SSH\Contracts\Script;
+use Illuminate\Database\Eloquent\Model;
 
 trait Runnable
 {
@@ -29,6 +30,11 @@ trait Runnable
      * @var Server
      */
     protected $server;
+
+    /**
+     * @var Model
+     */
+    protected $owner;
 
     /**
      * @var Factory
@@ -59,6 +65,14 @@ trait Runnable
     }
 
     /**
+     * @param Model $owner
+     */
+    public function setOwner(Model $owner): void
+    {
+        $this->owner = $owner;
+    }
+
+    /**
      * Run the given script on the server.
      *
      * @param Script $script
@@ -67,10 +81,10 @@ trait Runnable
      */
     protected function run(Script $script, array $options = []): Task
     {
-        $task = $this->tasksFactory->createFromScript($this->server, $script, $options);
-
         $this->executorService->run(
-            $task
+            $task = $this->tasksFactory->createFromScript(
+                $this->server, $script, $options, $this->owner
+            )
         );
 
         return $task->refresh();
@@ -87,12 +101,12 @@ trait Runnable
      */
     protected function runInBackground(Script $script, array $options = []): Task
     {
-        $task = $this->tasksFactory->createFromScript($this->server, $script, $options);
-
         $this->executorService->runInBackground(
-            $task
+            $task = $this->tasksFactory->createFromScript(
+                $this->server, $script, $options, $this->owner
+            )
         );
 
-        return $task;
+        return $task->refresh();
     }
 }

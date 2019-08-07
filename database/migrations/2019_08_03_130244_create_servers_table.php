@@ -28,6 +28,7 @@ class CreateServersTable extends Migration
             $table->string('php_version')->default('73');
             $table->string('database_type')->nullable()->default('mysql');
             $table->string('database_password');
+            $table->string('webserver_type')->nullable()->default('nginx');
 
             $table->text('public_key');
             $table->text('private_key');

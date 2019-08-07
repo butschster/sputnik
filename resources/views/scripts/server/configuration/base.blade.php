@@ -17,21 +17,11 @@ apt-get upgrade -y
 apt-get install -y --force-yes build-essential \
 curl \
 fail2ban \
-ufw \
 software-properties-common \
-supervisor \
 whois \
 unzip
 
-# Disable Password Authentication Over SSH
-sed -i "/PasswordAuthentication yes/d" /etc/ssh/sshd_config
-echo "" | sudo tee -a /etc/ssh/sshd_config
-echo "" | sudo tee -a /etc/ssh/sshd_config
-echo "PasswordAuthentication no" | sudo tee -a /etc/ssh/sshd_config
-
-# Restart SSH
-ssh-keygen -A
-service ssh restart
+@include('scripts.server.configuration.ssh')
 
 # Set The Hostname
 
@@ -45,73 +35,23 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 # Create The Root SSH Directory If Necessary
 
-# Setup Sputnik User
+@include('scripts.server.create_user')
 
-useradd sputnik
-mkdir -p /home/sputnik/.ssh
-mkdir -p /home/sputnik/.sputnik
-adduser sputnik sudo
+@include('scripts.server.configuration.supervisor')
 
-# Setup Bash For The Sputnik User
+@include('scripts.server.configuration.firewall', ['ports' => [$server->ssh_port]])
 
-chsh -s /bin/bash sputnik
-cp /root/.profile /home/sputnik/.profile
-cp /root/.bashrc /home/sputnik/.bashrc
-
-# Set The Sudo Password For The Sputnik User
-
-PASSWORD=$(mkpasswd {!! $server->sudo_password !!})
-usermod --password $PASSWORD sputnik
-
-# Build SSH Key Directories
-
-mkdir -p /home/sputnik/.ssh/authorized_keys.d
-
-# Generate Authorized Keys File
-
-echo "{!! $server->public_key !!}" > /home/sputnik/.ssh/authorized_keys.d/server.pub
-cat /home/sputnik/.ssh/authorized_keys.d/* > /home/sputnik/.ssh/authorized_keys
-
-# Create The Server SSH Key
-
-ssh-keygen -f /home/sputnik/.ssh/id_rsa -t rsa -N ''
-
-# Configure Supervisor
-
-systemctl enable supervisor.service
-service supervisor start
-
-chmod 777 /etc/supervisor/conf.d
-
-echo "sputnik ALL=NOPASSWD: /usr/bin/supervisorctl *" > /etc/sudoers.d/supervisorctl
-
-# Setup UFW Firewall
-
-ufw allow {{ $server->ssh_port }}
-ufw --force enable
-
-# Configure Swap Disk
-
-if [ -f /swapfile ]; then
-echo "Swap exists."
-else
-fallocate -l 1G /swapfile
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-echo "/swapfile none swap sw 0 0" >> /etc/fstab
-echo "vm.swappiness=30" >> /etc/sysctl.conf
-echo "vm.vfs_cache_pressure=50" >> /etc/sysctl.conf
-fi
+@include('scripts.server.configuration.swap')
 
 # Setup Unattended Security Upgrades
 
 cat > /etc/apt/apt.conf.d/50unattended-upgrades << EOF
 Unattended-Upgrade::Allowed-Origins {
-"Ubuntu zesty-security";
+    "Ubuntu zesty-security";
 };
+
 Unattended-Upgrade::Package-Blacklist {
-//
+    //
 };
 EOF
 
@@ -123,7 +63,6 @@ APT::Periodic::Unattended-Upgrade "1";
 EOF
 
 # Make Sure Directories Have Correct Permissions
-
 @include('scripts.tools.chown')
 
 {!! callback_url('server.event', ['server_id' => $server->id, 'message' => 'base.installed'], 10) !!}

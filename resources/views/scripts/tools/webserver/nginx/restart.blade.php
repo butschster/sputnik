@@ -1,6 +1,6 @@
 
 # ================================================
-# Restart Redis Services
+# Restart Nginx Service
 # ================================================
 
-systemctl restart redis
+service nginx reload

@@ -2,20 +2,23 @@
 
 namespace App\Models\Server;
 
+use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class Site extends Model
 {
-    use UsesUuid;
+    use UsesUuid, HasTask;
 
     /**
      * @var string
      */
-    protected $table = 'server_events';
+    protected $table = 'server_sites';
 
     /**
      * @var array
      */
-    protected $guarded = [];
+    protected $casts = [
+        'aliases' => 'array',
+    ];
 }

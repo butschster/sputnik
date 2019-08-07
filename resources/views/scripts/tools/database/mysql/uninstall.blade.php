@@ -1,9 +1,8 @@
 
 # ================================================
-# Uninstall Redis
+# Uninstall Nginx
 # ================================================
 
-apt-get purge --auto-remove -y --force-yes redis-server
+apt-get purge --auto-remove -y --force-yes mysql*
 apt-get autoremove
 apt-get autoclean
-

@@ -6,20 +6,20 @@ export DEBIAN_FRONTEND=noninteractive
 @include('scripts.server.configuration.base')
 
 # Run PHP Installation Script
+{!! $configurator->php()->install() !!}
 
-@include('scripts.tools.php.73.install')
+# Run Webserver Installation Script
+{!! $configurator->webserver()->install() !!}
 
-# Run Nginx Installation Script
 
-@include('scripts.tools.nginx.install')
+# Run Database Installation Script
+{!! $configurator->database()->install() !!}
 
+{{--
 # Run Node Installation Script
 
 @include('scripts.tools.node.install')
-
-# Run Database Installation Script
-
-@include('scripts.tools.database.mysql.install')
+--}}
 
 # Run Redis Installation Script
 

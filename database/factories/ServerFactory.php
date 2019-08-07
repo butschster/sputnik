@@ -15,8 +15,9 @@ $factory->define(Server::class, function (Faker $faker) {
         'ssh_port' => 22,
         'sudo_password' => $faker->md5,
         'meta' => [],
-        'php_version' => $faker->randomElement(['56', '70', '71', '72', '73']),
-        'database_type' => $faker->randomElement(['mariadb', 'mysql', 'mysql8', 'pgsql']),
-        'database_password' => $faker->md5
+        'php_version' => $faker->randomElement(config('configurations.php', [])),
+        'database_type' => $faker->randomElement(config('configurations.database', [])),
+        'database_password' => $faker->md5,
+        'webserver_type' => $faker->randomElement(config('configurations.webserver', []))
     ];
 });

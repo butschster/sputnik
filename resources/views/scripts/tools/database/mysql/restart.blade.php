@@ -1,6 +1,6 @@
 
 # ================================================
-# Restart Redis Services
+# Restart MySQL Service
 # ================================================
 
-systemctl restart redis
+systemctl restart mysql

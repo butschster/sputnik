@@ -1,4 +1,10 @@
 
+# ================================================
+# Caddy
+#
+# Documentation: https://caddyserver.com/docs
+# ================================================
+
 # Allow Caddy To Bind To Root Privileged Ports
 
 setcap cap_net_bind_service=+ep $(which caddy)
@@ -8,8 +14,6 @@ setcap cap_net_bind_service=+ep $(which caddy)
 mkdir /home/sputnik/.caddy
 
 # Write The Caddy Supervisor Configuration
-
-#  -ca "https://acme-staging.api.letsencrypt.org/directory"
 
 cat > /etc/supervisor/conf.d/caddy.conf << EOF
 [program:caddy]
@@ -48,8 +52,6 @@ setcap cap_net_bind_service=+ep $(which caddy)
 mkdir /home/sputnik/.caddy
 
 # Write The Caddy Supervisor Configuration
-
-#  -ca "https://acme-staging.api.letsencrypt.org/directory"
 
 cat > /etc/supervisor/conf.d/caddy.conf << EOF
 [program:caddy]

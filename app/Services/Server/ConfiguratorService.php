@@ -23,7 +23,8 @@ class ConfiguratorService
      */
     public function configure(Server $server)
     {
-        $this->server = $server;
+        $this->setServer($server);
+        $this->setOwner($server);
 
         if (!$this->server->isPending()) {
             throw new ConfigurationException(
@@ -51,7 +52,8 @@ class ConfiguratorService
      */
     public function isServerReadyForConfigure(Server $server): bool
     {
-        $this->server = $server;
+        $this->setServer($server);
+        $this->setOwner($server);
 
         // Check if remote user is root
         $canAccess = $this->run(new GetCurrentDirectory())->outputIsEqual('/root');

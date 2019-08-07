@@ -55,6 +55,7 @@ class FirewallService
     public function enableRule(Rule $rule): Task
     {
         $this->setServer($rule->server);
+        $this->setOwner($rule);
 
         return $this->run(new EnableRule($rule));
     }
@@ -69,6 +70,7 @@ class FirewallService
     public function disableRule(Rule $rule): Task
     {
         $this->setServer($rule->server);
+        $this->setOwner($rule);
 
         return $this->run(new DisableRule($rule));
     }

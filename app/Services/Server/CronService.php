@@ -59,7 +59,8 @@ class CronService
      */
     public function schedule(CronJob $job): Task
     {
-        $this->server = $job->server;
+        $this->setServer($job->server);
+        $this->setOwner($job);
 
         return $this->run(
             new ScheduleJob($job)
@@ -74,7 +75,8 @@ class CronService
      */
     public function delete(CronJob $job): Task
     {
-        $this->server = $job->server;
+        $this->setServer($job->server);
+        $this->setOwner($job);
 
         return $this->run(
             new DeleteJob($job)

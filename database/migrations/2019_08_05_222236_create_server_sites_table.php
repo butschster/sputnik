@@ -20,8 +20,12 @@ class CreateServerSitesTable extends Migration
             $table->string('token');
 
             $table->string('domain');
-            $table->string('aliases')->nullable();
-            $table->string('public_dir');
+            $table->json('aliases')->nullable();
+            $table->string('public_dir')->nullable();
+
+            $table->string('repository')->nullable();
+            $table->string('repository_provider')->nullable();
+            $table->string('repository_branch')->nullable();
 
             $table->timestamps();
 

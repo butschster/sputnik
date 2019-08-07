@@ -1,6 +1,6 @@
 
 # ================================================
-# PHP
+# PHP {{ $version }}
 #
 # Documentation: https://www.php.net/
 # ================================================
@@ -54,5 +54,3 @@ service php7.3-fpm restart > /dev/null 2>&1
 # Configure Sudoers Entries
 
 echo "sputnik ALL=NOPASSWD: /usr/sbin/service php7.3-fpm reload" > /etc/sudoers.d/php-fpm
-
-{!! callback_url('server.event', ['server_id' => $server->id, 'message' => 'php73.installed'], 10) !!}

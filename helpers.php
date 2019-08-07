@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Server;
+use App\Scripts\ServerConfigurationManager;
+
 /**
  * Generate API route with version by name
  *
@@ -26,4 +29,13 @@ function api_route(string $name, $parameters = [], string $version = 'v1'): stri
 function callback_url(string $action, array $parameters = [], int $lifeTime = 60): string
 {
     return app(\App\Utils\SSH\CallbackCurlGenerator::class)->generate($action, $parameters, $lifeTime);
+}
+
+/**
+ * @param Server $server
+ * @return ServerConfigurationManager
+ */
+function server_configurator(Server $server): ServerConfigurationManager
+{
+    return (new ServerConfigurationManager($server));
 }

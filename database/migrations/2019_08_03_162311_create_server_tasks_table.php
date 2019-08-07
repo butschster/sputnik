@@ -25,6 +25,8 @@ class CreateServerTasksTable extends Migration
             $table->longText('output')->nullable();
             $table->text('options');
 
+            $table->nullableUuidMorphs('owner');
+
             $table->timestamps();
 
             $table->index('created_at');

@@ -12,6 +12,7 @@ use App\Utils\SSH\Script;
 use App\Utils\SSH\Shell\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Collection;
 
 class Task extends Model implements TaskContract
@@ -61,6 +62,14 @@ class Task extends Model implements TaskContract
     public function server(): BelongsTo
     {
         return $this->belongsTo(Server::class);
+    }
+
+    /**
+     * @return MorphTo
+     */
+    public function owner(): MorphTo
+    {
+        return $this->morphTo('owner');
     }
 
     /**

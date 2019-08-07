@@ -2,6 +2,7 @@
 
 namespace App\Models\Server;
 
+use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server;
 use App\Utils\SSH\ValueObjects\PublicKey;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Key extends Model
 {
-    use UsesUuid;
+    use UsesUuid, HasTask;
 
     /**
      * @var string
