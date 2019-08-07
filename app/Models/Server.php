@@ -104,7 +104,7 @@ class Server extends Model
      */
     public function tasks(): HasMany
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Task::class)->latest();
     }
 
     /**
@@ -114,7 +114,7 @@ class Server extends Model
      */
     public function events(): HasMany
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(Event::class)->latest();
     }
 
     /**
