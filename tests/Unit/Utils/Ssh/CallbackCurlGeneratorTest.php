@@ -10,6 +10,7 @@ class CallbackCurlGeneratorTest extends TestCase
 {
     function test_curl_string_can_ve_generated()
     {
+        config()->set('app.key', '123');
         Carbon::setTestNow('2010-10-10');
 
         $generator = new CallbackCurlGenerator();
@@ -17,7 +18,7 @@ class CallbackCurlGeneratorTest extends TestCase
         $string = $generator->generate('server.configured', ['server' => 'server-id', 'exit_code' => '$STATUS']);
 
         $this->assertEquals(
-            'curl -X POST -k -d "server=server-id&exit_code=$STATUS&action=server.configured&expires=1286672400&signature=4642cc6aa477ee9313d5fca309932210c545dd6106d1ea4e15799fec911b1f55" http://sputnik.superprojects.space/callback > /dev/null 2>&1',
+            'curl -X POST -k -d "server=server-id&exit_code=$STATUS&action=server.configured&expires=1286672400&signature=084239b65442e89f79e93425c92ebf09bdd24c9bd888623ec72a6c681f3da4a2" http://localhost/callback > /dev/null 2>&1',
             $string
         );
     }
