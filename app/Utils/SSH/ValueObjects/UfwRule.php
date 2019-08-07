@@ -1,40 +1,57 @@
 <?php
 
-namespace App\Models\Server\Firewall;
+namespace App\Utils\SSH\ValueObjects;
 
-use App\Models\Concerns\UsesUuid;
-use App\Models\Server;
-use App\Utils\SSH\Contracts\UfwRule;
+use App\Utils\SSH\Contracts\UfwRule as UfwRuleContract;
 use App\Utils\SSH\FirewallCommandGenerator;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Rule extends Model implements UfwRule
+class UfwRule implements UfwRuleContract
 {
-    use UsesUuid;
+    /**
+     * @var string
+     */
+    protected $port;
 
     /**
      * @var string
      */
-    protected $table = 'server_firewall_rules';
+    protected $policy;
 
     /**
-     * @var array
+     * @var string
      */
-    protected $guarded = [];
+    protected $from;
 
     /**
-     * @var array
+     * @var string
      */
-    protected $attributes = [
-        'from' => null,
-        'policy' => 'allow',
-        'protocol' => null,
-    ];
+    protected $protocol;
+
+    /**
+     * @var string|null
+     */
+    protected $version;
+
+    /**
+     * UfwRule constructor.
+     *
+     * @param string $port
+     * @param string $policy
+     * @param string|null $from
+     * @param string|null $protocol
+     * @param string|null $version
+     */
+    public function __construct(string $port, string $policy = 'allow', string $from = null, string $protocol = null, string $version = null)
+    {
+        $this->port = $port;
+        $this->policy = $policy;
+        $this->from = $from == 'Anywhere' ? null : $from;
+        $this->protocol = $protocol;
+        $this->version = $version == '(v6)' ? 'v6' : 'v4';
+    }
 
     /**
      * Get the policy
-     *
      * @return string
      */
     public function policy(): string
@@ -48,7 +65,6 @@ class Rule extends Model implements UfwRule
 
     /**
      * Get the rule protocol
-     *
      * @return string|null
      */
     public function protocol(): ?string
@@ -58,7 +74,6 @@ class Rule extends Model implements UfwRule
 
     /**
      * Get the rule port
-     *
      * @return string|null
      */
     public function port(): ?string
@@ -72,7 +87,6 @@ class Rule extends Model implements UfwRule
 
     /**
      * Get the from
-     *
      * @return string|null
      */
     public function from(): ?string
@@ -82,7 +96,6 @@ class Rule extends Model implements UfwRule
 
     /**
      * Check if the port was set
-     *
      * @return bool
      */
     public function hasFrom(): bool
@@ -92,7 +105,6 @@ class Rule extends Model implements UfwRule
 
     /**
      * Check if the port was set
-     *
      * @return bool
      */
     public function hasPort(): bool
@@ -102,7 +114,6 @@ class Rule extends Model implements UfwRule
 
     /**
      * Check if the protocol was set
-     *
      * @return bool
      */
     public function hasProtocol(): bool
@@ -111,18 +122,31 @@ class Rule extends Model implements UfwRule
     }
 
     /**
-     * Get the server that belong to the firewall rule.
-     *
-     * @return BelongsTo
+     * @return string|null
      */
-    public function server(): BelongsTo
+    public function getVersion(): ?string
     {
-        return $this->belongsTo(Server::class);
+        return $this->version;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIPv4(): bool
+    {
+        return $this->version == 'v4';
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIPv6(): bool
+    {
+        return $this->version == 'v6';
     }
 
     /**
      * Generate bash command to enable rule
-     *
      * @return string
      * @throws \Exception
      */
@@ -133,7 +157,6 @@ class Rule extends Model implements UfwRule
 
     /**
      * Generate bash command to delete rule
-     *
      * @return string
      * @throws \Exception
      */

@@ -11,6 +11,21 @@ use App\Utils\SSH\Contracts\Script;
 trait Runnable
 {
     /**
+     * Create instance for specific server
+     *
+     * @param Server $server
+     *
+     * @return Runnable
+     */
+    public static function factory(Server $server): self
+    {
+        $object = app(static::class);
+        $object->setServer($server);
+
+        return $object;
+    }
+
+    /**
      * @var Server
      */
     protected $server;
@@ -33,6 +48,14 @@ trait Runnable
     {
         $this->tasksFactory = $tasksFactory;
         $this->executorService = $executorService;
+    }
+
+    /**
+     * @param Server $server
+     */
+    public function setServer(Server $server)
+    {
+        $this->server = $server;
     }
 
     /**
