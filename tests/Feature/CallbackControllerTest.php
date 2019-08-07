@@ -13,9 +13,7 @@ class CallbackControllerTest extends TestCase
 
     function test_if_action_not_found_show_page_not_found()
     {
-        $response = $this->postJson($this->callbackUrl(), [
-            'action' => 'non-exist-action-key',
-        ]);
+        $response = $this->sendCallbackRequest('non-exist-action-key');
 
         $response->assertStatus(404);
     }

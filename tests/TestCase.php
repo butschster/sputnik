@@ -5,18 +5,18 @@ namespace Tests;
 use App\Events\Task\Running;
 use App\Services\Task\Contracts\Task;
 use App\Services\Task\ExecutorService;
+use App\Utils\SSH\CallbackCurlGenerator;
+use App\Utils\SSH\Commands\SshKeygen;
 use App\Utils\SSH\Contracts\KeyGenerator;
 use App\Utils\SSH\Contracts\KeyStorage as KeyStorageContract;
 use App\Utils\SSH\Contracts\ProcessExecutor as ProcessExecutorContract;
 use App\Utils\SSH\Contracts\Script;
 use App\Utils\SSH\Shell\Response;
-use App\Utils\SSH\Commands\SshKeygen;
 use App\Utils\SSH\ValueObjects\KeyPair;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Symfony\Component\Process\Process;
@@ -65,12 +65,28 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * @return string
+     * Send callback request
+     *
+     * @param string $action
+     * @param array $parameters
+     *
+     * @return TestResponse
      */
-    public function callbackUrl(): string
+    public function sendCallbackRequest(string $action, array $parameters = [])
     {
-        return URL::signedRoute('callback');
+        $generator = new CallbackCurlGenerator();
+
+        $parameters = array_merge($parameters, $generator->signParameters(
+            ['action' => $action],
+            now()->addMinutes(10)
+        ));
+
+        return $this->postJson(
+            $generator->url(),
+            $parameters
+        );
     }
+
 
     public function mockSshGenerator()
     {

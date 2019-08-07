@@ -17,17 +17,23 @@ class CallbackCurlGenerator
      */
     public function generate(string $action, array $parameters = [], int $lifeTime = 60)
     {
-        $url = route('callback');
-
         $parameters = array_merge(
             $parameters,
-            $this->signature($url, ['action' => $action], now()->addMinutes($lifeTime))
+            $this->signParameters(['action' => $action], now()->addMinutes($lifeTime))
         );
 
         return sprintf('curl -X POST -k -d "%s" %s > /dev/null 2>&1',
             $this->buildData($parameters),
-            $url
+            $this->url()
         );
+    }
+
+    /**
+     * @return string
+     */
+    public function url(): string
+    {
+        return route('callback');
     }
 
     /**
@@ -36,14 +42,14 @@ class CallbackCurlGenerator
      * @param Carbon $expiration
      * @return array
      */
-    protected function signature(string $url, array $parameters, Carbon $expiration)
+    public function signParameters(array $parameters, Carbon $expiration)
     {
         $parameters += ['expires' => $expiration->getTimestamp()];
 
         ksort($parameters);
 
         return $parameters + [
-            'signature' => hash_hmac('sha256', $url, config('app.key')),
+            'signature' => hash_hmac('sha256', $this->url(), config('app.key')),
         ];
     }
 

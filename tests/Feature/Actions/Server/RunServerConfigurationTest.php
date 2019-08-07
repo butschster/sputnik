@@ -14,15 +14,16 @@ class RunServerConfigurationTest extends TestCase
     // Server ID is required
     function test_server_id_is_required()
     {
-        $this->postJson($this->callbackUrl(), ['action' => 'server.keys_installed'])
+        $this->sendCallbackRequest('server.keys_installed')
             ->assertJsonValidationErrors(['server_id']);
     }
 
     // Server should exist
     function test_server_should_exist()
     {
-        $this->postJson($this->callbackUrl(), ['action' => 'server.keys_installed', 'server_id' => 'abs'])
-            ->assertJsonValidationErrors(['server_id']);
+        $this->sendCallbackRequest('server.keys_installed', [
+            'server_id' => 'abs'
+        ])->assertJsonValidationErrors(['server_id']);
     }
 
     function test_fire_job_when_keys_installed()
@@ -31,8 +32,7 @@ class RunServerConfigurationTest extends TestCase
 
         $server = $this->createServer();
 
-        $this->postJson($this->callbackUrl(), [
-            'action' => 'server.keys_installed',
+        $this->sendCallbackRequest('server.keys_installed', [
             'server_id' => $server->id,
         ])->assertOk();
 

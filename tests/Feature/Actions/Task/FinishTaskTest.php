@@ -12,14 +12,14 @@ class FinishTaskTest extends TestCase
     // Task ID is required
     function test_task_id_is_required()
     {
-        $this->postJson($this->callbackUrl(), ['action' => 'task.finished'])
+        $this->sendCallbackRequest('task.finished')
             ->assertJsonValidationErrors(['task_id']);
     }
 
     // Task should exist
     function test_task_should_exist()
     {
-        $this->postJson($this->callbackUrl(), ['action' => 'task.finished', 'task_id' => 'test'])
+        $this->sendCallbackRequest('task.finished', ['task_id' => 'test'])
             ->assertJsonValidationErrors(['task_id']);
     }
 
@@ -27,8 +27,7 @@ class FinishTaskTest extends TestCase
     {
         $task = $this->createTask();
 
-        $this->postJson($this->callbackUrl(), [
-            'action' => 'task.finished',
+        $this->sendCallbackRequest('task.finished', [
             'task_id' => $task->id,
             'exit_code' => 0,
         ])->assertStatus(404);
@@ -44,8 +43,7 @@ class FinishTaskTest extends TestCase
 
         $task->markAsRunning();
 
-        $this->postJson($this->callbackUrl(), [
-            'action' => 'task.finished',
+        $this->sendCallbackRequest('task.finished', [
             'task_id' => $task->id,
             'exit_code' => 0,
         ])->assertOk();
