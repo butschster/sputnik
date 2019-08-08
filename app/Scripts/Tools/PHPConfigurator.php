@@ -13,7 +13,7 @@ class PHPConfigurator extends Configurator
      */
     public function version(): string
     {
-        return $this->server->php_version;
+        return $this->configuration->phpVersion();
     }
 
     /**
@@ -64,14 +64,16 @@ class PHPConfigurator extends Configurator
     }
 
     /**
-     * @param mixed ...$modules
+     * Get command string for install given php modules
+     *
+     * @param string ...$modules
      * @return string
      */
-    public function installModules(...$modules)
+    public function installModules(string ...$modules)
     {
         $modules = collect($modules)->map(function ($module) {
             return 'php'.$this->humanReadableVersion() . '-' . $module;
-        })->chunk(1)->map(function ($chunk) { return $chunk->implode(' ');} )->implode(" \\\n\t");
+        })->implode(' ');
 
         return 'apt-get install -y --force-yes ' . $modules;
     }

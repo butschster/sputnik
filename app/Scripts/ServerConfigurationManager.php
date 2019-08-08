@@ -2,7 +2,7 @@
 
 namespace App\Scripts;
 
-use App\Models\Server;
+use App\Scripts\Contracts\ServerConfiguration;
 use App\Scripts\Tools\DatabaseConfigurator;
 use App\Scripts\Tools\PHPConfigurator;
 use App\Scripts\Tools\WebServerConfigurator;
@@ -10,16 +10,26 @@ use App\Scripts\Tools\WebServerConfigurator;
 class ServerConfigurationManager
 {
     /**
-     * @var Server
+     * @var ServerConfiguration
      */
-    protected $server;
+    protected $configuration;
 
     /**
-     * @param Server $server
+     * @param ServerConfiguration $configuration
      */
-    public function __construct(Server $server)
+    public function __construct(ServerConfiguration $configuration)
     {
-        $this->server = $server;
+        $this->configuration = $configuration;
+    }
+
+    /**
+     * Get system users
+     *
+     * @return array
+     */
+    public function systemUsers(): array
+    {
+        return $this->configuration->systemUsers();
     }
 
     /**
@@ -31,7 +41,7 @@ class ServerConfigurationManager
     public function php(): PHPConfigurator
     {
         return new PHPConfigurator(
-            $this->server
+            $this->configuration
         );
     }
 
@@ -44,7 +54,7 @@ class ServerConfigurationManager
     public function webserver(): WebServerConfigurator
     {
         return new WebServerConfigurator(
-            $this->server
+            $this->configuration
         );
     }
 
@@ -57,7 +67,7 @@ class ServerConfigurationManager
     public function database(): DatabaseConfigurator
     {
         return new DatabaseConfigurator(
-            $this->server
+            $this->configuration
         );
     }
 }

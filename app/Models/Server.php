@@ -5,29 +5,24 @@ namespace App\Models;
 use App\Events\Server\Configured;
 use App\Events\Server\Created;
 use App\Events\Server\Deleted;
-use App\Events\Server\Key\AttachedToServer;
-use App\Events\Server\Key\DetachedFromServer;
 use App\Models\Concerns\DeterminesAge;
+use App\Models\Concerns\HasConfiguration;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
-use App\Models\Server\CallbackLog;
 use App\Models\Server\CronJob;
 use App\Models\Server\Event;
 use App\Models\Server\Firewall\Rule as FirewallRule;
 use App\Models\Server\Key;
 use App\Models\Server\Task;
-use App\Utils\SSH\Contracts\KeyStorage;
+use App\Scripts\Contracts\ServerConfiguration;
 use App\Utils\SSH\ValueObjects\KeyPair;
 use App\Utils\SSH\ValueObjects\PrivateKey;
-use App\Utils\SSH\ValueObjects\PublicKey;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
 
-class Server extends Model
+class Server extends Model implements ServerConfiguration
 {
-    use UsesUuid, DeterminesAge, HasTask;
+    use UsesUuid, DeterminesAge, HasTask, HasConfiguration;
 
     const STATUS_PENDING = 'pending';
     const STATUS_CONFIGUTING = 'configuring';
@@ -51,14 +46,6 @@ class Server extends Model
         'sudo_password',
         'database_password',
     ];
-
-    /**
-     * @return array
-     */
-    public function getSystemUsers(): array
-    {
-        return ['sputnik', 'butschster'];
-    }
 
     /**
      * @var array

@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.30 on 2019-08-06 12:12:00.
+ * Generated for Laravel 5.8.31 on 2019-08-08 13:56:15.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14762,6 +14762,50 @@ namespace Illuminate\Support {
  
 }
 
+namespace Waavi\Sanitizer\Laravel { 
+
+    /**
+     * 
+     *
+     * @see \Illuminate\Validation\Factory
+     */ 
+    class Facade {
+        
+        /**
+         * Create a new Sanitizer instance
+         * 
+         * @param  array   $data       Data to be sanitized
+         *
+         * @param array $rules Filters to be applied to the given data
+         *  @return Sanitizer
+         * @static 
+         */ 
+        public static function make($data, $rules)
+        {
+                        /** @var \Waavi\Sanitizer\Laravel\Factory $instance */
+                        return $instance->make($data, $rules);
+        }
+        
+        /**
+         * Add a custom filters to all Sanitizers created with this Factory.
+         * 
+         * @param  string  $name       Name of the filter
+         *
+         * @param mixed $extension Either the full class name of a Filter class implementing the Filter contract, or a \Closure.
+         *  @throws InvalidArgumentException
+         *  @return void
+         * @static 
+         */ 
+        public static function extend($name, $customFilter)
+        {
+                        /** @var \Waavi\Sanitizer\Laravel\Factory $instance */
+                        return $instance->extend($name, $customFilter);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -17425,13 +17469,13 @@ namespace  {
             /**
              * Dump the current SQL and bindings.
              *
-             * @return void 
+             * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
             public static function dump()
             {
                                 /** @var \Illuminate\Database\Query\Builder $instance */
-                                $instance->dump();
+                                return $instance->dump();
             }
          
             /**
@@ -17544,6 +17588,8 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class Sanitizer extends \Waavi\Sanitizer\Laravel\Facade {}
  
 }
 

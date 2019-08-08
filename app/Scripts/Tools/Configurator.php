@@ -3,22 +3,22 @@
 namespace App\Scripts\Tools;
 
 use App\Exceptions\Scrpits\ConfigurationNotFoundException;
-use App\Models\Server;
+use App\Scripts\Contracts\ServerConfiguration;
 
 abstract class Configurator
 {
     /**
-     * @var Server
+     * @var ServerConfiguration
      */
-    protected $server;
+    protected $configuration;
 
     /**
-     * @param Server $server
+     * @param ServerConfiguration $configuration
      * @throws ConfigurationNotFoundException
      */
-    public function __construct(Server $server)
+    public function __construct(ServerConfiguration $configuration)
     {
-        $this->server = $server;
+        $this->configuration = $configuration;
 
         $this->checkRequirements();
     }
@@ -74,9 +74,9 @@ abstract class Configurator
     {
         $data = array_merge(
             $this->data(), $data, [
-                'server' => $this->server,
-                'users' => $this->server->getSystemUsers(),
-                'configurator' => server_configurator($this->server),
+                'server' => $this->configuration,
+                'users' => $this->configuration->systemUsers(),
+                'configurator' => server_configurator($this->configuration),
             ]
         );
 
@@ -96,8 +96,6 @@ abstract class Configurator
      */
     protected function generateCallbackUrl(string $message): string
     {
-        return callback_url('server.event', [
-            'server_id' => $this->server->id, 'message' => $message,
-        ], 10);
+        return $this->configuration->callbackUrl($message);
     }
 }

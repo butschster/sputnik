@@ -38,11 +38,13 @@ class Configure extends Script
      */
     public function getScript(): string
     {
+        $configurator = server_configurator($this->server);
+
         return view('scripts.server.configure', [
             'script' => $this,
-            'users' => $this->server->getSystemUsers(),
+            'users' => $configurator->systemUsers(),
             'server' => $this->server,
-            'configurator' => server_configurator($this->server)
+            'configurator' => $configurator
         ])->render();
     }
 }

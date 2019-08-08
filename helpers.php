@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Server;
+use App\Scripts\Contracts\ServerConfiguration;
 use App\Scripts\ServerConfigurationManager;
 
 /**
@@ -32,10 +32,14 @@ function callback_url(string $action, array $parameters = [], int $lifeTime = 60
 }
 
 /**
- * @param Server $server
+ * Get server configurator
+ *
+ * @param ServerConfiguration $configuration
  * @return ServerConfigurationManager
  */
-function server_configurator(Server $server): ServerConfigurationManager
+function server_configurator(ServerConfiguration $configuration): ServerConfigurationManager
 {
-    return (new ServerConfigurationManager($server));
+    return new ServerConfigurationManager(
+        $configuration
+    );
 }

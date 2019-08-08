@@ -206,7 +206,7 @@ class SshKeygenMock extends SshKeygen
      * @param string $password
      * @return Response
      */
-    public function execute(string $name, string $password): Response
+    public function execute(string $name, string $password = null): Response
     {
         return new Response(0, '');
     }

@@ -22,8 +22,6 @@ class ProcessExecutor implements ProcessExecutorContract
     {
         set_time_limit(0);
 
-        Log::info($process->getCommandLine());
-
         try {
             $exitCode = $process->run($output = new Output);
         } catch (ProcessTimedOutException $e) {

@@ -12,7 +12,7 @@ class WebServerConfigurator extends Configurator
      */
     public function type(): string
     {
-        return $this->server->webserver_type;
+        return $this->configuration->webServerType();
     }
 
     /**
@@ -68,7 +68,7 @@ class WebServerConfigurator extends Configurator
     {
         if (!in_array($this->type(), $this->availableTypes())) {
             throw new ConfigurationNotFoundException(
-                "Configuration for given webserver type [{$this->type()}}] not found"
+                "Configuration for given webserver type [{$this->type()}] not found"
             );
         }
     }

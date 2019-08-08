@@ -21,7 +21,7 @@ class DatabaseConfigurator extends Configurator
      */
     public function type(): string
     {
-        return $this->server->database_type;
+        return $this->configuration->databaseType();
     }
 
     /**
@@ -31,7 +31,7 @@ class DatabaseConfigurator extends Configurator
      */
     public function password(): string
     {
-        return $this->server->database_password;
+        return $this->configuration->databasePassword();
     }
 
     /**
@@ -79,7 +79,7 @@ class DatabaseConfigurator extends Configurator
     {
         return [
             'password' => $this->password(),
-            'hosts' => [$this->server->ip, 'localhost']
+            'hosts' => $this->configuration->databaseHosts()
         ];
     }
 
