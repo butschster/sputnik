@@ -45,7 +45,7 @@ class KeyGenerator implements KeyGeneratorContract
         // Generate password for key
         $password = Str::random(20);
 
-        $this->command->execute($name, $password);
+        $this->command->execute($name);
 
         [$publicKey, $privateKey] = [
             $this->getKeyContent($name . '.pub'),

@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
 //            'user_id' => $user->id,
 //            'name' => 'test',
 //            'ip' => '167.71.3.113',
-//            'key_password' => 'password'
 //        ]);
     }
 }

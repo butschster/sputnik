@@ -32,7 +32,6 @@ class CreateServersTable extends Migration
 
             $table->text('public_key');
             $table->text('private_key');
-            $table->string('key_password');
 
             $table->string('status', 25)->default(Server::STATUS_PENDING);
 

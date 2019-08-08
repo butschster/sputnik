@@ -29,7 +29,7 @@ class SshKeygen
      *
      * @return Response
      */
-    public function execute(string $name, string $password): Response
+    public function execute(string $name, string $password = null): Response
     {
         $process = new Process(
             sprintf('ssh-keygen -C "sputnik@superprojects.space" -f %s -t rsa -b 4096 -N %s', $name, escapeshellarg($password)),

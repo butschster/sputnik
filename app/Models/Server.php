@@ -48,7 +48,6 @@ class Server extends Model
      */
     protected $hidden = [
         'private_key',
-        'key_password',
         'sudo_password',
         'database_password',
     ];
@@ -93,7 +92,6 @@ class Server extends Model
     {
         $this->public_key = $keyPair->getPublicKey();
         $this->private_key = $keyPair->getPrivateKey();
-        $this->key_password = $keyPair->getPassword();
     }
 
     /**
