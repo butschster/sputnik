@@ -62,7 +62,7 @@ class CronService
         $this->setServer($job->server);
         $this->setOwner($job);
 
-        return $this->run(
+        return $this->runJob(
             new ScheduleJob($job)
         );
     }
@@ -78,7 +78,7 @@ class CronService
         $this->setServer($job->server);
         $this->setOwner($job);
 
-        return $this->run(
+        return $this->runJob(
             new DeleteJob($job)
         );
     }

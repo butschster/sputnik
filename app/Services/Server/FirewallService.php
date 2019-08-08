@@ -57,7 +57,7 @@ class FirewallService
         $this->setServer($rule->server);
         $this->setOwner($rule);
 
-        return $this->run(new EnableRule($rule));
+        return $this->runJob(new EnableRule($rule));
     }
 
     /**
@@ -72,6 +72,6 @@ class FirewallService
         $this->setServer($rule->server);
         $this->setOwner($rule);
 
-        return $this->run(new DisableRule($rule));
+        return $this->runJob(new DisableRule($rule));
     }
 }

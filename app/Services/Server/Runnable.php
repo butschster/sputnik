@@ -2,6 +2,7 @@
 
 namespace App\Services\Server;
 
+use App\Jobs\Task\Run;
 use App\Models\Server;
 use App\Services\Task\Contracts\Task;
 use App\Services\Task\ExecutorService;
@@ -82,12 +83,26 @@ trait Runnable
     protected function run(Script $script, array $options = []): Task
     {
         $this->executorService->run(
-            $task = $this->tasksFactory->createFromScript(
-                $this->server, $script, $options, $this->owner
-            )
+            $task = $this->createTask($script, $options)
         );
 
         return $task->refresh();
+    }
+
+    /**
+     * Send task to queue
+     *
+     * @param Script $script
+     * @param array $options
+     * @return Task
+     */
+    protected function runJob(Script $script, array $options = []): Task
+    {
+        dispatch(new Run(
+            $task = $this->createTask($script, $options)
+        ));
+
+        return $task;
     }
 
     /**
@@ -102,11 +117,21 @@ trait Runnable
     protected function runInBackground(Script $script, array $options = []): Task
     {
         $this->executorService->runInBackground(
-            $task = $this->tasksFactory->createFromScript(
-                $this->server, $script, $options, $this->owner
-            )
+            $task = $this->createTask($script, $options)
         );
 
         return $task->refresh();
+    }
+
+    /**
+     * @param Script $script
+     * @param array $options
+     * @return Task
+     */
+    protected function createTask(Script $script, array $options): Task
+    {
+        return $this->tasksFactory->createFromScript(
+            $this->server, $script, $options, $this->owner
+        );
     }
 }

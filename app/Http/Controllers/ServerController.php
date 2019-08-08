@@ -52,7 +52,9 @@ class ServerController extends Controller
      */
     public function config(Server $server)
     {
-        return new Configure($server);
+        $script = new Configure($server);
+
+        return view('server.config', compact('script'));
     }
 
     /**

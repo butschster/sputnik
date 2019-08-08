@@ -3,9 +3,21 @@
 @section('content')
     <div class="container">
         <div class="card">
-            <div class="card-header">Server Metadata</div>
+            <div class="card-header">
+                Server {{ $server->name }}
 
+                <span class="badge @if($server->isConfigured()) badge-success @else badge-warning @endif">{{ $server->status }}</span>
+
+                <a href="{{ route('server.config', $server) }}" class="btn btn-sm btn-primary float-right">Configuration script</a>
+            </div>
+            @if(!$server->isConfigured())
+            <div class="alert alert-warning mb-0">
+                <code>wget -O sputnik.sh "{{ route('server.install_script', $server) }}"; bash sputnik.sh</code>
+            </div>
+            @endif
             <table class="table">
+                <col width="200px">
+                <col>
                 <tr>
                     <th>Name</th>
                     <td>{{ $server->name }}</td>
@@ -18,96 +30,26 @@
                     <th>IP Address</th>
                     <td>{{ $server->ip }}</td>
                 </tr>
-            </table>
-        </div>
-
-        <div class="card mt-3">
-            <div class="card-header">Status <strong>{{ $server->status }}</strong></div>
-
-            @if(!$server->isConfigured())
-                <div class="card-body">
-                    <code>wget -O sputnik.sh "{{ route('server.install_script', $server) }}"; bash sputnik.sh</code>
-                </div>
-            @endif
-        </div>
-
-        <div class="card mt-3">
-            <div class="card-header">Server firewall</div>
-
-            <table class="table">
-                <col>
-                <col width="100px">
-                <col width="100px">
-                <col width="100px">
-                <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Port</th>
-                    <th>From</th>
-                    <th>Policy</th>
+                    <th>PHP Version</th>
+                    <td>{{ $server->php_version }}</td>
                 </tr>
-                </thead>
-                @foreach($server->firewallRules as $rule)
-                    <tr @if(!$rule->isSuccessful()) class="bg-warning" @endif>
-                        <th>{{ $rule->name }} <br><small>{{ $rule->id }}</small></th>
-                        <th>{{ $rule->port }} [{{ $rule->protocol }}]</th>
-                        <td>{{ $rule->from }}</td>
-                        <td>{{ $rule->policy }}</td>
-                    </tr>
-                @endforeach
-            </table>
-        </div>
-
-        <div class="card mt-3">
-            <div class="card-header">Server Scheduler</div>
-
-            <table class="table">
-                <col>
-                <col width="100px">
-                <col width="100px">
-                <col>
-                <col width="200px">
-                <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Cron</th>
-                    <th>User</th>
-                    <th>Command</th>
-                    <th>Next run</th>
+                    <th>Database</th>
+                    <td>{{ $server->database_type }}</td>
                 </tr>
-                </thead>
-                @foreach($server->cronJobs as $job)
-                    <tr>
-                        <th>{{ $job->name }} <br><small>{{ $job->id }}</small></th>
-                        <th>{{ $job->cron }}</th>
-                        <td>{{ $job->user }}</td>
-                        <td>{{ $job->command }}</td>
-                        <td>{{ $job->nextRunDate() }}</td>
-                    </tr>
-                @endforeach
+                <tr>
+                    <th>Webserver</th>
+                    <td>{{ $server->webserver_type }}</td>
+                </tr>
             </table>
         </div>
 
-        <div class="card mt-3">
-            <div class="card-header">SSH keys</div>
+        @include('server.partials.firewall')
+        @include('server.partials.scheduler')
+        @include('server.partials.keys')
 
-            <table class="table">
-                <col>
-                <col width="300px">
-                @foreach($server->keys as $key)
-                    <tr>
-                        <th>{{ $key->name }}</th>
-                        <td>{{ $key->fingerprint() }}</td>
-                    </tr>
-                @endforeach
-            </table>
-        </div>
 
-        <div class="card mt-3">
-            <div class="card-header">Sputnik Public Key</div>
-
-            <code class="card-body">{{ $server->public_key }}</code>
-        </div>
 
         <div class="card mt-3">
             <div class="card-header">Server tasks</div>

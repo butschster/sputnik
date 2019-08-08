@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Formatters;
 
-use App\Services\Server\CronService;
 use Waavi\Sanitizer\Contracts\Filter;
 
-class CronFormatter implements Filter
+class RemoveNewLines implements Filter
 {
     /**
      *  Return the result of applying this filter to the given input.
@@ -17,12 +16,7 @@ class CronFormatter implements Filter
      */
     public function apply($value, $options = [])
     {
-        $service = app(CronService::class);
-
-        if ($service->validate($value)) {
-            return $service->parseExpression($value);
-        }
-
-        return $value;
+        return str_replace(PHP_EOL, '', $value);
     }
 }
+
