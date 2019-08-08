@@ -3,4 +3,4 @@
 # Restart Redis Services
 # ================================================
 
-systemctl restart redis
+service redis-server restart

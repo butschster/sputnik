@@ -78,7 +78,8 @@ class DatabaseConfigurator extends Configurator
     protected function data(): array
     {
         return [
-            'password' => $this->password()
+            'password' => $this->password(),
+            'hosts' => [$this->server->ip, 'localhost']
         ];
     }
 

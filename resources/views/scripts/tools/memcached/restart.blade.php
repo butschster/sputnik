@@ -1,8 +1,6 @@
 
 # ================================================
-# MongoDB
-#
-# Documentation: https://docs.mongodb.com/
+# Restart Memcached Services
 # ================================================
-apt-get install mongodb-server
 
+service memcached restart

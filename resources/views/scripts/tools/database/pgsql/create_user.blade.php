@@ -1,0 +1,2 @@
+
+sudo -u postgres psql -c "CREATE ROLE {{ $user }} LOGIN PASSWORD '{!! $password !!}' SUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;"

@@ -17,6 +17,16 @@ class PHPConfigurator extends Configurator
     }
 
     /**
+     * Get current version of PHP
+     *
+     * @return string
+     */
+    public function humanReadableVersion(): string
+    {
+        return implode('.', str_split($this->version()));
+    }
+
+    /**
      * Get available versions of PHP
      *
      * @return \Illuminate\Config\Repository|mixed
@@ -32,7 +42,7 @@ class PHPConfigurator extends Configurator
      */
     public function install(): string
     {
-        return $this->render('tools.php.' . $this->version() . '.install');
+        return $this->render('tools.php.install');
     }
 
     /**
@@ -41,7 +51,7 @@ class PHPConfigurator extends Configurator
      */
     public function uninstall(): string
     {
-        return $this->render('tools.php.' . $this->version() . '.uninstall');
+        return $this->render('tools.php.uninstall');
     }
 
     /**
@@ -50,7 +60,20 @@ class PHPConfigurator extends Configurator
      */
     public function restart(): string
     {
-        return $this->render('tools.php.' . $this->version() . '.restart');
+        return $this->render('tools.php.restart');
+    }
+
+    /**
+     * @param mixed ...$modules
+     * @return string
+     */
+    public function installModules(...$modules)
+    {
+        $modules = collect($modules)->map(function ($module) {
+            return 'php'.$this->humanReadableVersion() . '-' . $module;
+        })->chunk(1)->map(function ($chunk) { return $chunk->implode(' ');} )->implode(" \\\n\t");
+
+        return 'apt-get install -y --force-yes ' . $modules;
     }
 
     /**
@@ -61,7 +84,12 @@ class PHPConfigurator extends Configurator
     protected function data(): array
     {
         return [
-            'version' => $this->version()
+            'version' => $this->humanReadableVersion(),
+            'modules' => $this->installModules(
+                'cli', 'dev', 'pgsql', 'sqlite3', 'gd', 'curl', 'memcached',
+                'imap', 'mysql', 'mbstring', 'xml', 'zip', 'bcmath', 'soap',
+                'intl', 'readline', 'mongodb'
+            )
         ];
     }
 

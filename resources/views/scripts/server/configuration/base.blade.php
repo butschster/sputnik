@@ -35,7 +35,9 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 # Create The Root SSH Directory If Necessary
 
+@foreach($users as $user)
 @include('scripts.server.create_user')
+@endforeach
 
 @include('scripts.server.configuration.supervisor')
 

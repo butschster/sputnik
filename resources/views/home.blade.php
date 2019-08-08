@@ -69,6 +69,40 @@
                         </div>
                     </div>
 
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>PHP version</label>
+
+                            <select name="php_version" class="form-control @error('php_version') is-invalid @enderror">
+                                <option value="72">PHP 7.2</option>
+                                <option value="73" selected>PHP 7.3</option>
+                            </select>
+
+                            @error('php_version')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group col">
+                            <label>Database</label>
+
+                            <select name="database_type" class="form-control @error('database_type') is-invalid @enderror">
+                                <option value="mysql" selected>MySQL</option>
+                                <option value="mariadb" selected>MariaDB</option>
+                                <option value="mysql8" selected>MySQL 8</option>
+                                <option value="pgsql">PostgreSQL</option>
+                            </select>
+
+                            @error('database_type')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <button class="btn btn-primary">Создать</button>
                     </div>

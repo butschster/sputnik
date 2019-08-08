@@ -40,7 +40,7 @@ class Configure extends Script
     {
         return view('scripts.server.configure', [
             'script' => $this,
-            'user' => 'sputnik',
+            'users' => $this->server->getSystemUsers(),
             'server' => $this->server,
             'configurator' => server_configurator($this->server)
         ])->render();

@@ -31,3 +31,4 @@ cat /home/{{ $user }}/.ssh/authorized_keys.d/* > /home/{{ $user }}/.ssh/authoriz
 # Create The Server SSH Key
 
 ssh-keygen -f /home/{{ $user }}/.ssh/id_rsa -t rsa -N ''
+

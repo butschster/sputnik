@@ -54,6 +54,14 @@ class Server extends Model
     ];
 
     /**
+     * @return array
+     */
+    public function getSystemUsers(): array
+    {
+        return ['sputnik', 'butschster'];
+    }
+
+    /**
      * @var array
      */
     protected $guarded = [];

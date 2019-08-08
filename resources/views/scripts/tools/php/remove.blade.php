@@ -1,8 +1,5 @@
 
 # ================================================
-# MongoDB
-#
-# Documentation: https://docs.mongodb.com/
+# Remove PHP {!! $version !!}
 # ================================================
-apt-get install mongodb-server
-
+apt-get purge -y --force-yes --auto-remove php7.3-common

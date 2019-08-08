@@ -2,7 +2,7 @@
 
 return [
     'php' => ['72', '73'],
-    'database' => ['mysql', /*'mysql8', 'mariadb', 'pgsql'*/],
+    'database' => ['mysql', 'mariadb', 'pgsql', /*'mysql8'*/],
     'tools' => ['redis', 'memcached', 'beanstalk'],
     'webserver' => ['nginx', /*'caddy'*/],
 ];

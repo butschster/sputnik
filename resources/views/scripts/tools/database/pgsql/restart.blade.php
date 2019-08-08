@@ -1,8 +1,6 @@
 
 # ================================================
-# MongoDB
-#
-# Documentation: https://docs.mongodb.com/
+# Restart PostgreSQL
 # ================================================
-apt-get install mongodb-server
 
+service postgresql restart

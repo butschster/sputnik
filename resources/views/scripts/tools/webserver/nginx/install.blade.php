@@ -11,6 +11,7 @@ apt-get update
 
 apt-get install -y --force-yes nginx
 
+{!! $configurator->php()->installModules('fpm') !!}
 systemctl enable nginx.service
 
 # Configure Gzip
@@ -24,7 +25,6 @@ EOF
 
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-service nginx restart
 
 # Install A Catch All Server
 
@@ -36,13 +36,9 @@ EOF
 
 ln -s /etc/nginx/sites-available/catch-all /etc/nginx/sites-enabled/catch-all
 
-@include('scripts.tools.webserver.nginx.restart')
+{!! $configurator->webserver()->restart() !!}
 
-# TODO remove
-if [ ! -z "\$(ps aux | grep php-fpm | grep -v grep)" ]
-then
-    service php7.3-fpm restart > /dev/null 2>&1
-fi
+{!! $configurator->php()->restart() !!}
 
 # Add Sputnik User To www-data Group
 

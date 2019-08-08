@@ -59,7 +59,7 @@ abstract class Configurator
     protected function callbackMessage(string $path): string
     {
         // By default it's current script path
-        return str_replace('tools.', '', $path.'.finished');
+        return str_replace('tools.', '', $path . '.finished');
     }
 
     /**
@@ -73,15 +73,18 @@ abstract class Configurator
     protected function render(string $path, array $data = []): string
     {
         $data = array_merge(
-            $this->data(), $data, ['server' => $this->server]
+            $this->data(), $data, [
+                'server' => $this->server,
+                'users' => $this->server->getSystemUsers(),
+                'configurator' => server_configurator($this->server),
+            ]
         );
 
         return view($this->scriptPath('configurator'), [
-            'configurator' => server_configurator($this->server),
             'script' => view($this->scriptPath($path), $data)->render(),
             'callback' => $this->generateCallbackUrl(
                 $this->callbackMessage($path)
-            )
+            ),
         ])->render();
     }
 
@@ -94,7 +97,7 @@ abstract class Configurator
     protected function generateCallbackUrl(string $message): string
     {
         return callback_url('server.event', [
-            'server_id' => $this->server->id, 'message' => $message
+            'server_id' => $this->server->id, 'message' => $message,
         ], 10);
     }
 }

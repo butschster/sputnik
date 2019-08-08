@@ -1,5 +1,6 @@
 
 # ================================================
-# Remove PHP 7.3
+# Restart Memcached Beanstalk
 # ================================================
-apt-get purge -y --force-yes --auto-remove php7.3-common
+
+service beanstalkd restart
