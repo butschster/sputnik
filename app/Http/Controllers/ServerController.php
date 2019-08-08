@@ -9,6 +9,9 @@ use App\Scripts\Server\Configure;
 use App\Services\Server\FirewallService;
 use Illuminate\Http\Request;
 
+/**
+ * TODO Remove this
+ */
 class ServerController extends Controller
 {
     /**
@@ -55,14 +58,5 @@ class ServerController extends Controller
         $script = new Configure($server);
 
         return view('server.config', compact('script'));
-    }
-
-    /**
-     * @param Server $server
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function installationScript(Server $server)
-    {
-        return view('scripts.server.key_installation', compact('server'));
     }
 }

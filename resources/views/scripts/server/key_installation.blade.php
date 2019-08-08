@@ -1,6 +1,5 @@
 
 #!/bin/sh
-# Build Formatted Keys & Copy Keys To Forge
 
 if [ ! -d /root/.ssh ]
 then

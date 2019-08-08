@@ -1,5 +1,6 @@
 <?php
 
+Route::get('/server/{server}/install', 'ServerInstallerController')->name('server.install_script');
 Route::post('/callback', 'CallbackController')->name('callback');
 
 Auth::routes();
@@ -17,4 +18,3 @@ Route::middleware('auth')->group(function () {
     Route::post('/server/{server}/key', 'ServerPublicKeyController@store')->name('server.public_key.store');
 });
 
-Route::get('/server/{server}/install', 'ServerController@installationScript')->name('server.install_script');
