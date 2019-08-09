@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Events\Server\Configured;
+use App\Events\Server\Configuring;
 use App\Events\Server\Created;
 use App\Events\Server\Deleted;
+use App\Events\Server\Failed;
 use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\HasConfiguration;
 use App\Models\Concerns\HasTask;
@@ -28,6 +30,7 @@ class Server extends Model implements ServerConfiguration
     const STATUS_PENDING = 'pending';
     const STATUS_CONFIGUTING = 'configuring';
     const STATUS_CONFIGURED = 'configured';
+    const STATUS_FAILED = 'failed';
 
     /**
      * @var array
@@ -182,6 +185,8 @@ class Server extends Model implements ServerConfiguration
             'status' => static::STATUS_CONFIGUTING,
             'configuring_job_dispatched_at' => now(),
         ]);
+
+        event(new Configuring($this));
     }
 
     /**
@@ -204,6 +209,28 @@ class Server extends Model implements ServerConfiguration
         $this->update(['status' => static::STATUS_CONFIGURED]);
 
         event(new Configured($this));
+    }
+
+    /**
+     * Determine if the server is currently failed.
+     *
+     * @return bool
+     */
+    public function isFailed(): bool
+    {
+        return $this->status == static::STATUS_FAILED;
+    }
+
+    /**
+     * Mark the server as configured.
+     *
+     * @return $this
+     */
+    public function markAsFailed(): void
+    {
+        $this->update(['status' => static::STATUS_FAILED]);
+
+        event(new Failed($this));
     }
 
     /**

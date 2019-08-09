@@ -3,7 +3,9 @@
 namespace App\Jobs\Server;
 
 use App\Exceptions\Server\ConfiguringTimeoutException;
+use App\Exceptions\Server\ServerFailedException;
 use App\Models\Server;
+use App\Scripts\Utils\GetOSInformation;
 use App\Services\Server\ConfiguratorService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -25,7 +27,7 @@ class ConfigureServer implements ShouldQueue
      *
      * @var int
      */
-    public $tries = 40; // 20 Total Minutes...
+    public $tries = 41; // 20 Total Minutes...
 
     /**
      *
@@ -37,13 +39,25 @@ class ConfigureServer implements ShouldQueue
     }
 
     /**
-     * Execute the job.
-     *
      * @param ConfiguratorService $service
-     * @return void
+     * @throws \Throwable
      */
     public function handle(ConfiguratorService $service)
     {
+        if (!$this->server->systemInformation()) {
+            dispatch(new RunScript(
+                $this->server, new GetOSInformation($this->server)
+            ));
+
+            return $this->release(now()->addSeconds(10));
+        }
+
+        if ($this->server->isFailed()) {
+            return $this->fail(
+                new ServerFailedException('Server failed . [' . $this->server->id . ']')
+            );
+        }
+
         if ($this->server->isConfigured()) {
             try {
                 $this->configured();

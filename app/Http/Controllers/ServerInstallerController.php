@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Server;
-use App\Scripts\Utils\GetOSInformation;
 
 class ServerInstallerController extends Controller
 {
@@ -17,8 +16,6 @@ class ServerInstallerController extends Controller
             abort(404, 'Server has already configured');
         }
 
-        $osInformation = new GetOSInformation($server);
-
-        return view('scripts.server.key_installation', compact('server', 'osInformation'));
+        return view('scripts.server.key_installation', compact('server'));
     }
 }

@@ -2,9 +2,13 @@
 
 namespace Tests\Unit\Models;
 
+use App\Events\Server\Configured;
+use App\Events\Server\Configuring;
+use App\Events\Server\Failed;
 use App\Models\Server;
 use App\Utils\SSH\Contracts\KeyStorage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class ServerTest extends TestCase
@@ -42,6 +46,17 @@ class ServerTest extends TestCase
         $this->assertFalse($server->isConfigured());
     }
 
+    function test_an_event_should_be_fired_when_server_is_configuring()
+    {
+        Event::fake(Configuring::class);
+        $server = $this->createServer();
+        $server->markAsConfiguring();
+
+        Event::assertDispatched(Configuring::class, function ($event) use ($server) {
+            return $server->is($event->server);
+        });
+    }
+
     function test_check_if_server_is_configured()
     {
         $server = $this->createServer();
@@ -51,6 +66,39 @@ class ServerTest extends TestCase
         $server->refresh();
         $this->assertEquals(Server::STATUS_CONFIGURED, $server->status);
         $this->assertTrue($server->isConfigured());
+    }
+
+    function test_an_event_should_be_fired_when_server_was_configured()
+    {
+        Event::fake(Configured::class);
+        $server = $this->createServer();
+        $server->markAsConfigured();
+
+        Event::assertDispatched(Configured::class, function ($event) use ($server) {
+            return $server->is($event->server);
+        });
+    }
+
+    function test_check_if_server_was_failed()
+    {
+        $server = $this->createServer();
+
+        $this->assertFalse($server->isFailed());
+        $server->markAsFailed();
+        $server->refresh();
+        $this->assertEquals(Server::STATUS_FAILED, $server->status);
+        $this->assertTrue($server->isFailed());
+    }
+
+    function test_an_event_should_be_fired_when_server_is_failed()
+    {
+        Event::fake(Failed::class);
+        $server = $this->createServer();
+        $server->markAsFailed();
+
+        Event::assertDispatched(Failed::class, function ($event) use ($server) {
+            return $server->is($event->server);
+        });
     }
 
     function test_a_key_path_can_be_generated()
@@ -178,9 +226,7 @@ class ServerTest extends TestCase
     function test_get_system_information()
     {
         $server = $this->createServer();
-        $this->assertEquals('unknown', $server->systemInformation()->getOs());
-        $this->assertEquals('unknown', $server->systemInformation()->getVersion());
-        $this->assertEquals('unknown', $server->systemInformation()->getArchitecture());
+        $this->assertNull($server->systemInformation());
 
         $server = $this->createServer([
             'os_information' => [

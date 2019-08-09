@@ -1,7 +1,5 @@
 #!/bin/sh
 
-{!! $osInformation !!}
-
 if [ ! -d /root/.ssh ]
 then
     mkdir -p /root/.ssh

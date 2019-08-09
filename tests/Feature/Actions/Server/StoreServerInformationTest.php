@@ -86,4 +86,19 @@ class StoreServerInformationTest extends TestCase
             'architecture' => '32',
         ], $server->refresh()->os_information);
     }
+
+    function test_is_counfiguration_is_not_supportde_mark_server_as_failed()
+    {
+        config()->set('configurations.os', []);
+        $server = $this->createServer();
+
+        $this->sendCallbackRequest('server.information', [
+            'server_id' => $server->id,
+            'os' => 'Ubuntu',
+            'version' => '18.10',
+            'architecture' => '32',
+        ])->assertOk();
+
+        $this->assertTrue($server->refresh()->isFailed());
+    }
 }

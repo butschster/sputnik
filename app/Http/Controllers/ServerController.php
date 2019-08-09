@@ -48,7 +48,13 @@ class ServerController extends Controller
     {
         $sysInfo = $server->systemInformation();
 
-        return view('server.show', compact('server', 'sysInfo'));
+        $data = compact('server', 'sysInfo');
+
+        if ($sysInfo && !$sysInfo->isSupported()) {
+            return view('server.not_supported', $data);
+        }
+
+        return view('server.show', $data);
     }
 
     /**
@@ -60,5 +66,17 @@ class ServerController extends Controller
         $script = new Configure($server);
 
         return view('server.config', compact('script'));
+    }
+
+    /**
+     * @param Server $server
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
+     */
+    public function delete(Server $server)
+    {
+        $server->delete();
+
+        return redirect(route('home'));
     }
 }

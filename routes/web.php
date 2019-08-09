@@ -9,6 +9,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/server/{server}', 'ServerController@show')->name('server.show');
     Route::get('/server/{server}/config', 'ServerController@config')->name('server.config');
     Route::post('/server', 'ServerController@store')->name('server.store');
+    Route::delete('/server/{server}', 'ServerController@delete')->name('server.delete');
     Route::get('/task/{task}', 'TasksController@show')->name('task.show');
     Route::get('/', 'ServerController@index')->name('home');
 

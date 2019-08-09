@@ -56,6 +56,17 @@ class SystemInformation
     }
 
     /**
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return sprintf(
+            '%s v.%s [%s bits]',
+            $this->getOs(), $this->getVersion(), $this->getArchitecture()
+        );
+    }
+
+    /**
      * @return bool
      */
     public function isSupported(): bool
