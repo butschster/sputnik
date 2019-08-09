@@ -1,5 +1,7 @@
 <div class="card mt-3">
-    <div class="card-header">Server Scheduler</div>
+    <div class="card-header">
+        <i class="fas fa-clock fa-lg mr-3"></i> Server Scheduler
+    </div>
     <table class="table mb-0">
         <col>
         <col width="100px">
@@ -74,7 +76,7 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group mb-0">
             <button class="btn btn-primary">Schedule</button>
         </div>
     </form>

@@ -1,5 +1,15 @@
-<div class="card mt-4">
+<div class="card">
     <div class="card-header">
+        Sites
+    </div>
+    <div class="nav flex-column">
+        @foreach($server->sites as $site)
+            <a class="nav-link" href="{{ route('server.site.show', ['server' => $server, 'site' => $site]) }}">
+                {{ $site->domain }}
+            </a>
+        @endforeach
+    </div>
+    <div class="card-header border-top">
         Create site
     </div>
     <form action="{{ route('server.site.store', $server) }}" method="POST" class="card-body">
@@ -29,7 +39,7 @@
             @enderror
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-0">
             <button class="btn btn-primary">Create</button>
         </div>
     </form>

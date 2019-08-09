@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container">
+        <div class="mb-2">
+            <a class="btn btn-link" href="{{ route('server.show', $site->server) }}">
+                <i class="fas fa-arrow-left"></i> Back to server
+            </a>
+        </div>
         <div class="card">
             <div class="card-header">
                 Site <strong>{{ $site->domain }}</strong>

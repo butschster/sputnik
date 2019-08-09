@@ -1,5 +1,7 @@
 <div class="card mt-3">
-    <div class="card-header">SSH keys</div>
+    <div class="card-header">
+        <i class="fas fa-key fa-lg mr-3"></i> SSH keys
+    </div>
 
     <table class="table table-dark mb-0">
         <col>
@@ -38,7 +40,7 @@
             @enderror
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-0">
             <button class="btn btn-primary">Store</button>
         </div>
     </form>

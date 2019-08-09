@@ -1,9 +1,11 @@
 <div class="card mt-3">
-    <div class="card-header">Server firewall</div>
+    <div class="card-header">
+        <i class="fas fa-shield-alt fa-lg mr-3"></i> Server firewall
+    </div>
 
     <form action="{{ route('server.firewall.store', $server) }}" method="POST">
         @csrf
-    <table class="table">
+    <table class="table mb-0">
         <col>
         <col width="100px">
         <col width="200px">

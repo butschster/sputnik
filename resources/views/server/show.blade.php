@@ -4,18 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-3">
-                <div class="card">
-                    <div class="card-header">
-                        Sites
-                    </div>
-                    <div class="nav flex-column">
-                        @foreach($server->sites as $site)
-                        <a class="nav-link" href="{{ route('server.site.show', ['server' => $server, 'site' => $site]) }}">
-                            {{ $site->domain }}
-                        </a>
-                        @endforeach
-                    </div>
-                </div>
+
+                @include('server.partials.sites')
             </div>
             <div class="col-9">
                 <div class="card">
@@ -66,7 +56,7 @@
                         </tr>
                         <tr>
                             <th>PHP Version</th>
-                            <td>{{ $server->php_version }}</td>
+                            <td>{{ $server->php_version }} </td>
                         </tr>
                         <tr>
                             <th>Database</th>
@@ -81,16 +71,17 @@
 
 
                 @if($server->isConfigured())
-                @include('server.partials.sites')
                 @include('server.partials.firewall')
                 @include('server.partials.scheduler')
                 @include('server.partials.keys')
                 @endif
 
                 <div class="card mt-3">
-                    <div class="card-header">Server tasks</div>
+                    <div class="card-header">
+                        <i class="fas fa-tasks fa-lg mr-3"></i> Server tasks
+                    </div>
 
-                    <table class="table">
+                    <table class="table table-hover mb-0">
                         <col>
                         <col width="100px">
                         @foreach($server->tasks as $task)
@@ -105,7 +96,7 @@
                 <div class="card mt-3">
                     <div class="card-header">Server Events</div>
 
-                    <table class="table">
+                    <table class="table table-hover mb-0">
                         <col>
                         <col width="200px">
                         @foreach($server->events as $event)
