@@ -19,7 +19,7 @@
                         <tr>
                             <th><a href="{{ route('server.show', $server) }}">{{ $server->name }}</a></th>
                             <td>{{ $server->ip }}</td>
-                            <td>{{ $server->status }}</td>
+                            <td><span class="badge badge-dark">{{ $server->status }}</span></td>
                         </tr>
                     @endforeach
                 </table>

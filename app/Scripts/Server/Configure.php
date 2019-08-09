@@ -40,7 +40,6 @@ class Configure extends Script
     {
         $configurator = server_configurator($this->server);
 
-        return '';
         return view('scripts.server.configure', [
             'script' => $this,
             'users' => $configurator->systemUsers(),
