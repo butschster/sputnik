@@ -23,6 +23,8 @@ class RunServerConfiguration extends Action
     {
         $server = Server::findOrFail($this->server_id);
 
+        abort_if(!$server->isPending(), 404);
+
         event(new KeysInstalled($server));
 
         dispatch(

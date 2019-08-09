@@ -26,6 +26,16 @@ class RunServerConfigurationTest extends TestCase
         ])->assertJsonValidationErrors(['server_id']);
     }
 
+    function test_if_server_has_not_status_pending_show_page_not_found_response()
+    {
+        $server = $this->createServer();
+        $server->markAsConfiguring();
+
+        $this->sendCallbackRequest('server.keys_installed', [
+            'server_id' => $server->id,
+        ])->assertNotFound();
+    }
+
     function test_fire_job_when_keys_installed()
     {
         Bus::fake();

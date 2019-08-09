@@ -1,5 +1,6 @@
-
 #!/bin/sh
+
+{!! $osInformation !!}
 
 if [ ! -d /root/.ssh ]
 then
@@ -16,4 +17,6 @@ done < .ssh/authorized_keys
 echo "{!! $server->public_key !!}" > /root/.ssh/authorized_keys.d/server.pub
 echo "{!! $server->public_key !!}" >> /root/.ssh/authorized_keys
 
-{!! callback_url('server.keys_installed', ['server_id' => $server->id], 10) !!}
+{!! callback_url('server.keys_installed', [
+    'server_id' => $server->id
+], 10) !!}

@@ -21,13 +21,13 @@ namespace App\Models{
  * @property int $ssh_port
  * @property string|null $sudo_password
  * @property array|null $meta
+ * @property array|null $os_information
  * @property string $php_version
  * @property string|null $database_type
  * @property string $database_password
  * @property string|null $webserver_type
  * @property string $public_key
  * @property string $private_key
- * @property string $key_password
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $configuring_job_dispatched_at
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -48,9 +48,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereDatabaseType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereIp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereKeyPassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereMeta($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereOsInformation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server wherePhpVersion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server wherePrivateKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server wherePublicKey($value)

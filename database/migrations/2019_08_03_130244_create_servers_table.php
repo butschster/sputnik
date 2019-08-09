@@ -24,6 +24,7 @@ class CreateServersTable extends Migration
             $table->integer('ssh_port')->default(22);
             $table->string('sudo_password')->nullable();
             $table->json('meta')->nullable();
+            $table->json('os_information')->nullable();
 
             $table->string('php_version')->default('73');
             $table->string('database_type')->nullable()->default('mysql');

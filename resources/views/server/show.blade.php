@@ -6,14 +6,16 @@
             <div class="card-header">
                 Server {{ $server->name }}
 
-                <span class="badge @if($server->isConfigured()) badge-success @else badge-warning @endif">{{ $server->status }}</span>
+                <span
+                    class="badge @if($server->isConfigured()) badge-success @else badge-warning @endif">{{ $server->status }}</span>
 
-                <a href="{{ route('server.config', $server) }}" class="btn btn-sm btn-primary float-right">Configuration script</a>
+                <a href="{{ route('server.config', $server) }}" class="btn btn-sm btn-primary float-right">Configuration
+                    script</a>
             </div>
             @if(!$server->isConfigured())
-            <div class="alert alert-warning mb-0">
-                <code>wget -O sputnik.sh "{{ route('server.install_script', $server) }}"; bash sputnik.sh</code>
-            </div>
+                <div class="alert alert-warning mb-0">
+                    <code>wget -O sputnik.sh "{{ route('server.install_script', $server) }}"; bash sputnik.sh</code>
+                </div>
             @endif
             <table class="table">
                 <col width="200px">
@@ -22,6 +24,22 @@
                     <th>Name</th>
                     <td>{{ $server->name }}</td>
                 </tr>
+                @if($sysInfo)
+                    <tr>
+                        <th>OS</th>
+                        <td>
+                            {{ $sysInfo->getOs() }}
+                            {{ $sysInfo->getVersion() }}
+                            [{{ $sysInfo->getArchitecture() }} bits]
+
+                            @if($sysInfo->isSupported())
+                                <span class="badge badge-success">Supported</span>
+                            @else
+                                <span class="badge badge-danger">Not supported</span>
+                            @endif
+                        </td>
+                    </tr>
+                @endif
                 <tr>
                     <th>SSH Port</th>
                     <td>{{ $server->ssh_port }}</td>
@@ -48,7 +66,6 @@
         @include('server.partials.firewall')
         @include('server.partials.scheduler')
         @include('server.partials.keys')
-
 
 
         <div class="card mt-3">

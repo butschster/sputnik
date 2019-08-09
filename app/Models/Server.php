@@ -17,6 +17,7 @@ use App\Models\Server\Task;
 use App\Scripts\Contracts\ServerConfiguration;
 use App\Utils\SSH\ValueObjects\KeyPair;
 use App\Utils\SSH\ValueObjects\PrivateKey;
+use App\Utils\SSH\ValueObjects\SystemInformation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -33,6 +34,7 @@ class Server extends Model implements ServerConfiguration
      */
     protected $casts = [
         'meta' => 'array',
+        'os_information' => 'array',
         'configuring_job_dispatched_at' => 'datetime',
     ];
 
@@ -215,7 +217,7 @@ class Server extends Model implements ServerConfiguration
     {
         return $this->keys()->create([
             'name' => $name,
-            'content' => $content
+            'content' => $content,
         ]);
     }
 
@@ -228,5 +230,23 @@ class Server extends Model implements ServerConfiguration
     public function removePublicKey(Key $key): void
     {
         $key->delete();
+    }
+
+    /**
+     * Get system information about server
+     *
+     * @return SystemInformation|null
+     */
+    public function systemInformation(): ?SystemInformation
+    {
+        if (!$this->os_information) {
+            return null;
+        }
+
+        return new SystemInformation(
+            $this->os_information['os'],
+            $this->os_information['version'],
+            $this->os_information['architecture'],
+        );
     }
 }

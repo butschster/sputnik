@@ -46,7 +46,9 @@ class ServerController extends Controller
      */
     public function show(Server $server)
     {
-        return view('server.show', compact('server'));
+        $sysInfo = $server->systemInformation();
+
+        return view('server.show', compact('server', 'sysInfo'));
     }
 
     /**

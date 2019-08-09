@@ -5,13 +5,14 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2019-08-06 12:12:23.
+    * Generated on 2019-08-09 18:00:36.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
     */
     override(new \Illuminate\Contracts\Container\Container, map([
         '' => '@',
+        'App\Contracts\Request\RequestSignatureHandler' => \App\Http\Requests\RequestSignatureHandler::class,
         'App\Http\Actions\Contracts\Manager' => \App\Http\Actions\Manager::class,
         'App\Utils\SSH\Contracts\KeyGenerator' => \App\Utils\SSH\KeyGenerator::class,
         'App\Utils\SSH\Contracts\KeyStorage' => \App\Utils\SSH\FilesystemKeyStorage::class,
@@ -149,6 +150,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'sanitizer' => \Waavi\Sanitizer\Laravel\Factory::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,
@@ -163,6 +165,7 @@ namespace PHPSTORM_META {
     ]));
     override(\Illuminate\Contracts\Container\Container::make(0), map([
         '' => '@',
+        'App\Contracts\Request\RequestSignatureHandler' => \App\Http\Requests\RequestSignatureHandler::class,
         'App\Http\Actions\Contracts\Manager' => \App\Http\Actions\Manager::class,
         'App\Utils\SSH\Contracts\KeyGenerator' => \App\Utils\SSH\KeyGenerator::class,
         'App\Utils\SSH\Contracts\KeyStorage' => \App\Utils\SSH\FilesystemKeyStorage::class,
@@ -300,6 +303,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'sanitizer' => \Waavi\Sanitizer\Laravel\Factory::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,
@@ -314,6 +318,7 @@ namespace PHPSTORM_META {
     ]));
     override(\Illuminate\Contracts\Container\Container::makeWith(0), map([
         '' => '@',
+        'App\Contracts\Request\RequestSignatureHandler' => \App\Http\Requests\RequestSignatureHandler::class,
         'App\Http\Actions\Contracts\Manager' => \App\Http\Actions\Manager::class,
         'App\Utils\SSH\Contracts\KeyGenerator' => \App\Utils\SSH\KeyGenerator::class,
         'App\Utils\SSH\Contracts\KeyStorage' => \App\Utils\SSH\FilesystemKeyStorage::class,
@@ -451,6 +456,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'sanitizer' => \Waavi\Sanitizer\Laravel\Factory::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,
@@ -465,6 +471,7 @@ namespace PHPSTORM_META {
     ]));
     override(\App::make(0), map([
         '' => '@',
+        'App\Contracts\Request\RequestSignatureHandler' => \App\Http\Requests\RequestSignatureHandler::class,
         'App\Http\Actions\Contracts\Manager' => \App\Http\Actions\Manager::class,
         'App\Utils\SSH\Contracts\KeyGenerator' => \App\Utils\SSH\KeyGenerator::class,
         'App\Utils\SSH\Contracts\KeyStorage' => \App\Utils\SSH\FilesystemKeyStorage::class,
@@ -602,6 +609,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'sanitizer' => \Waavi\Sanitizer\Laravel\Factory::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,
@@ -616,6 +624,7 @@ namespace PHPSTORM_META {
     ]));
     override(\App::makeWith(0), map([
         '' => '@',
+        'App\Contracts\Request\RequestSignatureHandler' => \App\Http\Requests\RequestSignatureHandler::class,
         'App\Http\Actions\Contracts\Manager' => \App\Http\Actions\Manager::class,
         'App\Utils\SSH\Contracts\KeyGenerator' => \App\Utils\SSH\KeyGenerator::class,
         'App\Utils\SSH\Contracts\KeyStorage' => \App\Utils\SSH\FilesystemKeyStorage::class,
@@ -753,6 +762,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'sanitizer' => \Waavi\Sanitizer\Laravel\Factory::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,
@@ -767,6 +777,7 @@ namespace PHPSTORM_META {
     ]));
     override(\app(0), map([
         '' => '@',
+        'App\Contracts\Request\RequestSignatureHandler' => \App\Http\Requests\RequestSignatureHandler::class,
         'App\Http\Actions\Contracts\Manager' => \App\Http\Actions\Manager::class,
         'App\Utils\SSH\Contracts\KeyGenerator' => \App\Utils\SSH\KeyGenerator::class,
         'App\Utils\SSH\Contracts\KeyStorage' => \App\Utils\SSH\FilesystemKeyStorage::class,
@@ -904,6 +915,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'sanitizer' => \Waavi\Sanitizer\Laravel\Factory::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,
@@ -918,6 +930,7 @@ namespace PHPSTORM_META {
     ]));
     override(\resolve(0), map([
         '' => '@',
+        'App\Contracts\Request\RequestSignatureHandler' => \App\Http\Requests\RequestSignatureHandler::class,
         'App\Http\Actions\Contracts\Manager' => \App\Http\Actions\Manager::class,
         'App\Utils\SSH\Contracts\KeyGenerator' => \App\Utils\SSH\KeyGenerator::class,
         'App\Utils\SSH\Contracts\KeyStorage' => \App\Utils\SSH\FilesystemKeyStorage::class,
@@ -1055,6 +1068,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'sanitizer' => \Waavi\Sanitizer\Laravel\Factory::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,

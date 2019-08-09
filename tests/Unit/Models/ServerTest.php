@@ -174,4 +174,24 @@ class ServerTest extends TestCase
 
         $this->assertCount(2, $server->firewallRules);
     }
+
+    function test_get_system_information()
+    {
+        $server = $this->createServer();
+        $this->assertEquals('unknown', $server->systemInformation()->getOs());
+        $this->assertEquals('unknown', $server->systemInformation()->getVersion());
+        $this->assertEquals('unknown', $server->systemInformation()->getArchitecture());
+
+        $server = $this->createServer([
+            'os_information' => [
+                'os' => 'Name',
+                'version' => '0.1',
+                'architecture' => '64'
+            ]
+        ]);
+
+        $this->assertEquals('Name', $server->systemInformation()->getOs());
+        $this->assertEquals('0.1', $server->systemInformation()->getVersion());
+        $this->assertEquals('64', $server->systemInformation()->getArchitecture());
+    }
 }
