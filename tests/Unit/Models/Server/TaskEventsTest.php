@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Unit\Models\Server;
 
 use App\Events\Task\Finished;
 use App\Events\Task\Response;

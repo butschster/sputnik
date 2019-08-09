@@ -2,17 +2,16 @@
 
 namespace App\Models\Server;
 
+use App\Models\Concerns\HasServer;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
-use App\Models\Server;
 use App\Services\Server\CronService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CronJob extends Model
 {
-    use UsesUuid, HasTask;
+    use UsesUuid, HasTask, HasServer;
 
     /**
      * @var string
@@ -37,16 +36,6 @@ class CronJob extends Model
     public function setCronAttribute(string $expression): void
     {
         $this->attributes['cron'] = app(CronService::class)->parseExpression($expression);
-    }
-
-    /**
-     * Link to the server
-     *
-     * @return BelongsTo
-     */
-    public function server(): BelongsTo
-    {
-        return $this->belongsTo(Server::class);
     }
 
     /**

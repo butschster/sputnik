@@ -52,6 +52,12 @@ class EventServiceProvider extends ServiceProvider
             \App\Observers\Server\Key\FireEventsObserver::class,
         ]);
 
+        \App\Models\Server\Site::observe([
+            \App\Observers\Server\Site\GenerateRandomTokenObserver::class,
+            \App\Observers\Server\Site\FireEventsObserver::class,
+            \App\Observers\Server\Site\SyncSiteObserver::class,
+        ]);
+
         \App\Models\Server\CronJob::observe([
             \App\Observers\Server\Cron\SyncCronJobsObserver::class,
             \App\Observers\Server\Cron\FireEventsObserver::class,

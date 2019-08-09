@@ -5,6 +5,7 @@ namespace App\Models\Server;
 use App\Events\Task\Finished;
 use App\Events\Task\Running;
 use App\Events\Task\Timeout;
+use App\Models\Concerns\HasServer;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server;
 use App\Services\Task\Contracts\Task as TaskContract;
@@ -17,7 +18,7 @@ use Illuminate\Support\Collection;
 
 class Task extends Model implements TaskContract
 {
-    use UsesUuid;
+    use UsesUuid, HasServer;
 
     const STATUS_PENDING = 'pending';
     const STATUS_RUNNING = 'running';
@@ -53,16 +54,6 @@ class Task extends Model implements TaskContract
         'output',
         'script',
     ];
-
-    /**
-     * Link to the server
-     *
-     * @return BelongsTo
-     */
-    public function server(): BelongsTo
-    {
-        return $this->belongsTo(Server::class);
-    }
 
     /**
      * @return MorphTo

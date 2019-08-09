@@ -21,7 +21,8 @@ class CreateServerSitesTable extends Migration
 
             $table->string('domain');
             $table->json('aliases')->nullable();
-            $table->string('public_dir')->nullable();
+            $table->json('environment')->nullable();
+            $table->string('public_dir');
 
             $table->string('repository')->nullable();
             $table->string('repository_provider')->nullable();

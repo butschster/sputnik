@@ -12,6 +12,15 @@ apt-get update
 {!! $modules !!}
 
 # ================================================
+# Deployer
+#
+# Documentation: https://deployer.org/docs/
+# ================================================
+curl -LO https://deployer.org/deployer.phar
+mv deployer.phar /usr/local/bin/dep
+chmod +x /usr/local/bin/dep
+
+# ================================================
 # Composer
 #
 # See https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx

@@ -25,6 +25,7 @@ use Tests\Concerns\ServerEventFactory;
 use Tests\Concerns\ServerFactory;
 use Tests\Concerns\ServerFirewallFactory;
 use Tests\Concerns\ServerKeyFactory;
+use Tests\Concerns\ServerSiteFactory;
 use Tests\Concerns\TaskFactory;
 use Tests\Concerns\UserFactory;
 
@@ -37,7 +38,8 @@ abstract class TestCase extends BaseTestCase
         ServerKeyFactory,
         ServerEventFactory,
         ServerFirewallFactory,
-        CronJobFactory;
+        CronJobFactory,
+        ServerSiteFactory;
 
     protected function setUp(): void
     {

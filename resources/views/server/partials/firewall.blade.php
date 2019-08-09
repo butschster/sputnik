@@ -20,11 +20,11 @@
         </thead>
         @foreach($server->firewallRules as $rule)
             <tr @if(!$rule->isSuccessful()) class="bg-warning" @endif>
-                <th>{{ $rule->name }} <br><small>{{ $rule->id }}</small></th>
-                <th>{{ $rule->port }} [{{ $rule->protocol }}]</th>
+                <th>{{ $rule->name }} <br><small class="text-muted">{{ $rule->id }}</small></th>
+                <th>{{ $rule->port }} @if($rule->protocol)[{{ $rule->protocol }}]@endif</th>
                 <td>{{ $rule->from }}</td>
-                <td>{{ $rule->policy }}</td>
-                <td>{{ $rule->taskStatus() }}</td>
+                <td><span class="badge">{{ $rule->policy }}</span></td>
+                <td><span class="badge badge-dark">{{ $rule->taskStatus() }}</span></td>
             </tr>
         @endforeach
 

@@ -1,13 +1,21 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Unit\Models\Firewall;
 
+use App\Models\Server;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class FirewallRuleTest extends TestCase
+class RuleTest extends TestCase
 {
     use DatabaseMigrations;
+
+    function test_it_has_server()
+    {
+        $rule = $this->createFirewallRule();
+
+        $this->assertInstanceOf(Server::class, $rule->server);
+    }
 
     function test_the_protocol_can_be_null()
     {

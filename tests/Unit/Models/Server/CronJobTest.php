@@ -1,13 +1,21 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Unit\Models\Server;
 
+use App\Models\Server;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class CronJobTest extends TestCase
 {
     use DatabaseMigrations;
+
+    function test_it_has_server()
+    {
+        $job = $this->makeCronJob();
+
+        $this->assertInstanceOf(Server::class, $job->server);
+    }
 
     /**
      * @dataProvider cronNamesProvider

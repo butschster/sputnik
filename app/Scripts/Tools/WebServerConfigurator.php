@@ -58,7 +58,18 @@ class WebServerConfigurator extends Configurator
      */
     public function createSite(Site $site): string
     {
-        return $this->render('tools.webserver.' . $this->type() . '.site', compact('site'));
+        return $this->render('tools.webserver.' . $this->type() . '.site.create', compact('site'));
+    }
+
+    /**
+     * @param Site $site
+     *
+     * @return string
+     * @throws \Throwable
+     */
+    public function deleteSite(Site $site): string
+    {
+        return $this->render('tools.webserver.' . $this->type() . '.site.delete', compact('site'));
     }
 
     /**
@@ -71,5 +82,17 @@ class WebServerConfigurator extends Configurator
                 "Configuration for given webserver type [{$this->type()}] not found"
             );
         }
+    }
+
+    /**
+     * Build config path for given site
+     *
+     * @param Site $site
+     * @param string $path
+     * @return string
+     */
+    public function configPath(Site $site, string $path = ''): string
+    {
+        return '/etc/nginx/configs/'.$site->domain.'/'.ltrim(trim($path), '/');
     }
 }

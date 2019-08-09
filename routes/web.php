@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/server/{server}/install', 'ServerInstallerController')->name('server.install_script');
-Route::post('/callback', 'CallbackController')->name('callback');
+Route::any('/callback', 'CallbackController')->name('callback');
 
 Auth::routes();
 
@@ -17,5 +17,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/server/{server}/job', 'ServerSchedulerController@store')->name('server.scheduler.store');
     Route::post('/server/{server}/firewall', 'ServerFirewallController@store')->name('server.firewall.store');
     Route::post('/server/{server}/key', 'ServerPublicKeyController@store')->name('server.public_key.store');
+
+    Route::get('/server/{server}/site/{site}', 'ServerSitesController@show')->name('server.site.show');
+    Route::post('/server/{server}/site', 'ServerSitesController@store')->name('server.site.store');
+    Route::delete('/server/site/{site}', 'ServerSitesController@delete')->name('server.site.delete');
 });
 

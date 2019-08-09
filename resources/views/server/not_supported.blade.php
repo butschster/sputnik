@@ -11,14 +11,13 @@
                 Sorry, your OS {{ $sysInfo->getFullName() }} currently is not supported!
 
 
-                <form class="mt-3" action="{{ route('server.delete', $server) }}" method="DELETE">
+                <form class="mt-3" action="{{ route('server.delete', $server) }}" method="POST">
                     @method('DELETE')
                     @csrf
 
-                    <button class="btn btn-danger">Delete</button>
+                    <button class="btn btn-lg btn-danger">Delete</button>
                 </form>
             </div>
         </div>
-
     </div>
 @endsection

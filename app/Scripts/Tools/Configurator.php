@@ -74,6 +74,7 @@ abstract class Configurator
     {
         $data = array_merge(
             $this->data(), $data, [
+                'config' => $this,
                 'server' => $this->configuration,
                 'users' => $this->configuration->systemUsers(),
                 'configurator' => server_configurator($this->configuration),

@@ -15,6 +15,7 @@ use App\Models\Server\CronJob;
 use App\Models\Server\Event;
 use App\Models\Server\Firewall\Rule as FirewallRule;
 use App\Models\Server\Key;
+use App\Models\Server\Site;
 use App\Models\Server\Task;
 use App\Scripts\Contracts\ServerConfiguration;
 use App\Utils\SSH\ValueObjects\KeyPair;
@@ -94,6 +95,16 @@ class Server extends Model implements ServerConfiguration
     public function hasKeyPair(): bool
     {
         return !empty($this->public_key) && !empty($this->private_key);
+    }
+
+    /**
+     * Get the sites that belong to the server.
+     *
+     * @return HasMany
+     */
+    public function sites(): HasMany
+    {
+        return $this->hasMany(Site::class)->latest();
     }
 
     /**

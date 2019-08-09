@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Unit\Models\Server;
 
 use App\Events\Server\Key\AttachedToServer;
 use App\Events\Server\Key\DetachedFromServer;

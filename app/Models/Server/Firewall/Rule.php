@@ -2,17 +2,16 @@
 
 namespace App\Models\Server\Firewall;
 
+use App\Models\Concerns\HasServer;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
-use App\Models\Server;
 use App\Utils\SSH\Contracts\UfwRule;
 use App\Utils\SSH\FirewallCommandGenerator;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Rule extends Model implements UfwRule
 {
-    use UsesUuid, HasTask;
+    use UsesUuid, HasTask, HasServer;
 
     /**
      * @var string
@@ -109,16 +108,6 @@ class Rule extends Model implements UfwRule
     public function hasProtocol(): bool
     {
         return !empty($this->protocol);
-    }
-
-    /**
-     * Get the server that belong to the firewall rule.
-     *
-     * @return BelongsTo
-     */
-    public function server(): BelongsTo
-    {
-        return $this->belongsTo(Server::class);
     }
 
     /**

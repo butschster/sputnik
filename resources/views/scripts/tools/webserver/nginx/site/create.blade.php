@@ -3,17 +3,23 @@
 # Crete a new site for Nginx
 # ================================================
 
+mkdir -p {{ $site->publicPath() }}
+cat > {{ $site->publicPath() }}/index.php << EOF
+<?php echo '<?php phpinfo(); ?>'; ?>
+
+EOF
+
 # Write The Nginx Server Block For The Site
 rm -f "/etc/nginx/sites-available/{{ $site->domain }}"
-rm -f "/etc/nginx/sites-available/www.{{ $site->domain }}"
 
+touch /etc/nginx/sites-available/{{ $site->domain }}
 cat > /etc/nginx/sites-available/{{ $site->domain }} << EOF
 include configs/{{ $site->domain }}/before/*;
 server {
     listen 80;
     listen [::]:80;
     server_name {{ $site->domain }};
-    root /home/forge/{{ $site->domain }}/public;
+    root {{ $site->publicPath() }};
 
     # ssl_certificate;
     # ssl_certificate_key;
@@ -44,7 +50,7 @@ server {
     error_page 404 /index.php;
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php{{ $configurator->php()->humanReadableVersion() }}-fpm.sock;
         fastcgi_index index.php;
         include fastcgi_params;
     }
@@ -54,27 +60,24 @@ server {
     }
 }
 include configs/{{ $site->domain }}/after/*;
-EOF
 
+EOF
 
 # Write The Configuration Directories
 
-mkdir -p /etc/nginx/configs/{{ $site->domain }}/before
-mkdir -p /etc/nginx/configs/{{ $site->domain }}/after
-mkdir -p /etc/nginx/configs/{{ $site->domain }}/server
+@foreach(['before', 'after', 'server'] as $folder)
+mkdir -p {{ $config->configPath($site, $folder) }}
+@endforeach
 
 # Enable The Nginx Sites
 
 rm -f "/etc/nginx/sites-enabled/{{ $site->domain }}"
-rm -f "/etc/nginx/sites-enabled/{{ $site->domain }}"
-
 ln -s /etc/nginx/sites-available/{{ $site->domain }} /etc/nginx/sites-enabled/{{ $site->domain }}
 
 # Write The Base Redirector For The Site
 
 rm -f /etc/nginx/configs/{{ $site->domain }}/before/redirect.conf
 rm -f /etc/nginx/configs/{{ $site->domain }}/before/ssl_redirect.conf
-
 
 cat > /etc/nginx/configs/{{ $site->domain }}/before/redirect.conf << EOF
 server {
@@ -83,13 +86,8 @@ server {
     server_name www.{{ $site->domain }};
     return 301 \$scheme://{{ $site->domain }}\$request_uri;
 }
+
 EOF
 
 @include('scripts.tools.webserver.nginx.restart')
-
 {!! $configurator->php()->restart() !!}
-
-if [ ! -z "\$(ps aux | grep php-fpm | grep -v grep)" ]
-then
-    service php7.3-fpm restart > /dev/null 2>&1
-fi
