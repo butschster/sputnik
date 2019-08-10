@@ -20,6 +20,24 @@ class SiteTest extends TestCase
         $this->assertNotNull($site->token);
     }
 
+    function test_get_domain_url()
+    {
+        $site = $this->createServerSite([
+            'domain' => 'site.com'
+        ]);
+
+        $this->assertEquals('http://site.com', $site->url());
+    }
+
+    function test_get_domain_secure_url()
+    {
+        $site = $this->createServerSite([
+            'domain' => 'site.com'
+        ]);
+
+        $this->assertEquals('https://site.com', $site->secureUrl());
+    }
+
     function test_get_default_branch_if_it_is_not_set()
     {
         $site = $this->createServerSite([

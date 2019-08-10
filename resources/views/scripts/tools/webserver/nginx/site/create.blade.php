@@ -5,7 +5,9 @@
 
 mkdir -p {{ $site->publicPath() }}
 cat > {{ $site->publicPath() }}/index.php << EOF
-<?php echo '<?php phpinfo(); ?>'; ?>
+
+@include('scripts.tools.webserver.template')
+
 
 EOF
 

@@ -53,6 +53,22 @@ class Site extends Model
     }
 
     /**
+     * @return string
+     */
+    public function url(): string
+    {
+        return 'http://'.$this->domain;
+    }
+
+    /**
+     * @return string
+     */
+    public function secureUrl(): string
+    {
+        return 'https://'.$this->domain;
+    }
+
+    /**
      * Get project folder path
      *
      * @return string

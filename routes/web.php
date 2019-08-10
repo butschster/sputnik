@@ -22,4 +22,3 @@ Route::middleware('auth')->group(function () {
     Route::post('/server/{server}/site', 'ServerSitesController@store')->name('server.site.store');
     Route::delete('/server/site/{site}', 'ServerSitesController@delete')->name('server.site.delete');
 });
-

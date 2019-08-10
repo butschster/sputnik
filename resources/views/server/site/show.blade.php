@@ -23,7 +23,7 @@
                 <col>
                 <tr>
                     <th>Domain</th>
-                    <td>{{ $site->domain }}</td>
+                    <td><a target="_blank" href="{{ $site->url() }}">{{ $site->domain }}</a></td>
                 </tr>
                 <tr>
                     <th>Status</th>
