@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Server\Site;
 use Dotenv\Dotenv;
 use Dotenv\Environment\DotenvFactory;
+use Dotenv\Exception\InvalidFileException;
 use Dotenv\Loader;
 use Illuminate\Http\Request;
 
@@ -24,9 +25,13 @@ class ServerSiteEnvironmentController extends Controller
 
         $loader = new Loader([],  new DotenvFactory());
 
-        $data = $loader->loadDirect(
-            file_get_contents($request->file('file')->openFile()->getRealPath())
-        );
+        try {
+            $data = $loader->loadDirect(
+                file_get_contents($request->file('file')->openFile()->getRealPath())
+            );
+        } catch (InvalidFileException $e) {
+            return back()->withErrors(['file' => 'Invalid file']);
+        }
 
         $site->update([
             'environment' => $data
