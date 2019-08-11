@@ -61,7 +61,7 @@ class SystemInformation
     public function getFullName(): string
     {
         return sprintf(
-            '%s v.%s [%s bits]',
+            '%s %s [%s bits]',
             $this->getOs(), $this->getVersion(), $this->getArchitecture()
         );
     }
@@ -74,5 +74,4 @@ class SystemInformation
         return $this->getArchitecture() == '64'
             && in_array($this->version, config('configurations.os.'.strtolower($this->os), []));
     }
-
 }

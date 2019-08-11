@@ -6,10 +6,13 @@ use App\Exceptions\Scrpits\ConfigurationNotFoundException;
 use App\Scripts\Contracts\ServerConfiguration;
 use App\Scripts\Tools\WebServerConfigurator;
 use App\Utils\SSH\ValueObjects\PublicKey;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class WebServerConfiguratorTest extends TestCase
 {
+    use DatabaseMigrations;
+
     function test_if_webserer_type_not_found_configurator_should_not_be_created()
     {
         $this->expectException(ConfigurationNotFoundException::class);
@@ -72,6 +75,37 @@ class WebServerConfiguratorTest extends TestCase
     }
 
     /**
+     * @dataProvider webserverInstallScriptPartsDataProvider
+     */
+    function test_gets_created_a_new_site_script($type, array $parts)
+    {
+        $configurator = $this->getWebServerConfigurator($type);
+
+        $site = $this->createServerSite([
+            'domain' => 'localhost'
+        ]);
+
+        $script = $configurator->createSite($site);
+        $this->assertStringContainsString($parts['create_site'], $script);
+    }
+
+    /**
+     * @dataProvider webserverInstallScriptPartsDataProvider
+     */
+    function test_gets_deleted_site_script($type, array $parts)
+    {
+        $configurator = $this->getWebServerConfigurator($type);
+
+        $site = $this->createServerSite([
+            'domain' => 'localhost'
+        ]);
+
+        $script = $configurator->deleteSite($site);
+        $this->assertStringContainsString($parts['delete_site'], $script);
+    }
+
+
+    /**
      * @param string $type
      * @return WebServerConfigurator
      * @throws \App\Exceptions\Scrpits\ConfigurationNotFoundException
@@ -86,17 +120,14 @@ class WebServerConfiguratorTest extends TestCase
         );
     }
 
-    function test_gets_created_a_new_site_script()
-    {
-        $this->markTestSkipped('Cover webserver site creating');
-    }
-
     function webserverInstallScriptPartsDataProvider()
     {
         return [
             [
                 'nginx',
                 [
+                    'delete_site' => 'rm "/etc/nginx/sites-enabled/localhost"',
+                    'create_site' => 'cat > /etc/nginx/sites-available/localhost << EOF',
                     'restart' => 'service nginx reload',
                     'uninstall' => 'apt-get purge --auto-remove -y --force-yes nginx*',
                     'install' => [

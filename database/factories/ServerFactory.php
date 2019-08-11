@@ -18,6 +18,6 @@ $factory->define(Server::class, function (Faker $faker) {
         'php_version' => $faker->randomElement(config('configurations.php', [])),
         'database_type' => $faker->randomElement(config('configurations.database', [])),
         'database_password' => $faker->md5,
-        'webserver_type' => $faker->randomElement(config('configurations.webserver', []))
+        'webserver_type' => 'nginx'
     ];
 });
