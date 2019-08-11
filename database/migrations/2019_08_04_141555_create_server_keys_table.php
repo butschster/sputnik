@@ -15,17 +15,12 @@ class CreateServerKeysTable extends Migration
     {
         Schema::create('server_keys', function (Blueprint $table) {
             $table->primaryUuid('id');
-            $table->uuid('server_id');
+            $table->belongsToServer();
 
             $table->string('name');
             $table->text('content');
 
             $table->timestamps();
-
-            $table->foreign('server_id')
-                ->references('id')
-                ->on('servers')
-                ->onDelete('cascade');
         });
     }
 

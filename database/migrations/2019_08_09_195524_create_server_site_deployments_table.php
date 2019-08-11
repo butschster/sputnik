@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateServerSiteDeployemntsTable extends Migration
+class CreateServerSiteDeploymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -21,6 +21,11 @@ class CreateServerSiteDeployemntsTable extends Migration
             $table->string('commit_hash');
             $table->string('status', 25)->default('pending');
 
+            $table->foreign('server_site_id')
+                ->references('id')
+                ->on('server_sites')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -32,6 +37,6 @@ class CreateServerSiteDeployemntsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('server_site_deployemnts');
+        Schema::dropIfExists('server_site_deployments');
     }
 }

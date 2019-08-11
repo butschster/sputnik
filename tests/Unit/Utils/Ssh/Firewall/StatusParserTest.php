@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit\Services\Server\Firewall;
+namespace Tests\Unit\Utils\Ssh\Firewall;
 
-use App\Services\Server\Firewall\StatusParser;
+use App\Utils\SSH\Firewall\StatusParser;
 use Tests\TestCase;
 
 class StatusParserTest extends TestCase

@@ -3,6 +3,8 @@
 namespace Tests\Unit\Services\Server;
 
 use App\Exceptions\Server\ConfigurationException;
+use App\Scripts\Server\Configure;
+use App\Scripts\Server\Cron\DeleteJob;
 use App\Scripts\Utils\GetAptLockStatus;
 use App\Scripts\Utils\GetCurrentDirectory;
 use App\Services\Server\ConfiguratorService;
@@ -35,14 +37,24 @@ class ConfiguratorServiceTest extends TestCase
 
         $this->assertTrue($server->isConfiguring());
 
+        $this->assertTrue($task->owner->is($server));
+        $this->assertTrue($task->server->is($server));
+
         $this->assertTaskExecuted($task);
+
+        $this->assertExecutedTaskScript(
+            new Configure($server)
+        );
     }
 
     function test_if_user_is_not_root_server_is_not_ready_to_configure()
     {
         $server = $this->createServer();
 
-        $this->listenExecutorService(function(Task $task) {
+        $this->listenExecutorService(function(Task $task) use($server) {
+            $this->assertTrue($task->owner->is($server));
+            $this->assertTrue($task->server->is($server));
+
             if ($task->script() == new GetCurrentDirectory()) {
                 return new Response(0, '');
             }

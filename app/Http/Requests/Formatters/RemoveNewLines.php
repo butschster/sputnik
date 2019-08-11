@@ -16,7 +16,7 @@ class RemoveNewLines implements Filter
      */
     public function apply($value, $options = [])
     {
-        return str_replace(PHP_EOL, '', $value);
+        return str_replace([PHP_EOL, "\r"], '', $value);
     }
 }
 

@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\Http\Requests\Formatters\CronFormatter;
 use App\Http\Requests\Formatters\RemoveNewLines;
 use Waavi\Sanitizer\Laravel\Factory;
-use Waavi\Sanitizer\Sanitizer;
 
 trait SanitizesInput
 {

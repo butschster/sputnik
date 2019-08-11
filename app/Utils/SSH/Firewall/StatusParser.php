@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Server\Firewall;
+namespace App\Utils\SSH\Firewall;
 
 use App\Utils\SSH\ValueObjects\UfwRule;
 use Illuminate\Support\Collection;

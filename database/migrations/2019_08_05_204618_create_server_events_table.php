@@ -15,13 +15,9 @@ class CreateServerEventsTable extends Migration
     {
         Schema::create('server_events', function (Blueprint $table) {
             $table->primaryUuid('id');
-            $table->uuid('server_id');
+            $table->belongsToServer();
             $table->text('message');
             $table->timestamps();
-            $table->foreign('server_id')
-                ->references('id')
-                ->on('servers')
-                ->onDelete('cascade');
         });
     }
 

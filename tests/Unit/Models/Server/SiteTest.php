@@ -80,11 +80,13 @@ class SiteTest extends TestCase
         $site = $this->createServerSite([
             'id' => 'uuid',
             'domain' => 'site.com',
-            'public_dir' => '/public',
+            'public_dir' => '/public'
         ]);
 
+        $site->token = 'abc';
+
         $this->assertEquals(
-            'http://localhost/callback?site_id=uuid&action=hook&signature=ed9a5f8d8e87dbb338c0d1127b93b25900181bc4912b05f105006a894674aa25',
+            'http://localhost/callback?action=hook&signature=e45cf8a080ce2c501b298bae35e23eb43693d5dbb19b8903c6ddbc2e85e7af4a&token=abc&site_id=uuid',
             $site->hooksHandlerUrl()
         );
     }
@@ -94,6 +96,23 @@ class SiteTest extends TestCase
         $site = $this->createServerSite();
 
         $this->assertInstanceOf(Server::class, $site->server);
+    }
+
+    function test_it_has_deployments()
+    {
+        $site = $this->createServerSite();
+
+        $deployment = $this->createServerSiteDeployment([
+            'server_site_id' => $site->id,
+        ]);
+        $deployment1 = $this->createServerSiteDeployment([
+            'server_site_id' => $site->id,
+        ]);
+        $deployment2 = $this->createServerSiteDeployment();
+
+        $this->assertTrue($site->deployments->contains($deployment));
+        $this->assertTrue($site->deployments->contains($deployment1));
+        $this->assertFalse($site->deployments->contains($deployment2));
     }
 
     function test_an_event_should_be_fired_when_site_created()

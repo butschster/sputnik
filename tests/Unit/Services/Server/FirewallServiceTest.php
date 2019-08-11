@@ -20,11 +20,15 @@ class FirewallServiceTest extends TestCase
 
         $rule = $this->createFirewallRule();
 
-        $this->getFirewallService()->enableRule($rule);
+        $task = $this->getFirewallService()->enableRule($rule);
 
+        $this->assertTaskExecuted($task);
         $this->assertExecutedTaskScript(
             new EnableRule($rule)
         );
+
+        $this->assertTrue($task->owner->is($rule));
+        $this->assertTrue($task->server->is($rule->server));
     }
 
     function test_a_rule_can_be_disabled()
@@ -33,11 +37,15 @@ class FirewallServiceTest extends TestCase
 
         $rule = $this->createFirewallRule();
 
-        $this->getFirewallService()->disableRule($rule);
+        $task = $this->getFirewallService()->disableRule($rule);
 
         $this->assertExecutedTaskScript(
             new DisableRule($rule)
         );
+        $this->assertTaskExecuted($task);
+
+        $this->assertTrue($task->owner->is($rule));
+        $this->assertTrue($task->server->is($rule->server));
     }
 
     function test_firewall_status_should_return_false_if_it_inactive()

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Server\Site\StoreRequest;
+use App\Http\Requests\Server\Site\UpdateRepositoryRequest;
 use App\Models\Server;
+use App\Services\Server\Site\DeploymentService;
+use Illuminate\Http\Request;
 
 class ServerSitesController extends Controller
 {
@@ -26,6 +29,62 @@ class ServerSitesController extends Controller
         $site = $request->persist();
 
         return redirect(route('server.site.show', $server, $site));
+    }
+
+    /**
+     * @param DeploymentService $service
+     * @param Request $request
+     * @param $server
+     * @param Server\Site $site
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deploy(DeploymentService $service, Request $request, $server, Server\Site $site)
+    {
+        $service->deploy(
+            $site->deployments()->create([
+                'initiator_id' => $request->user()->id,
+                'branch' => $site->repositoryBranch(),
+                'commit_hash' => 'abc'
+            ])
+        );
+
+        return back();
+    }
+
+    /**
+     * @param UpdateRepositoryRequest $request
+     * @param $server
+     * @param Server\Site $site
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateRepository(UpdateRepositoryRequest $request, $server, Server\Site $site)
+    {
+        $request->persist();
+
+        return back();
+    }
+
+    /**
+     * @param Request $request
+     * @param $server
+     * @param Server\Site $site
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function environment(Request $request, $server, Server\Site $site)
+    {
+        $this->validate($request, [
+            'key' => 'required|string',
+            'value' => 'required|string'
+        ]);
+
+        $environment = $site->environment ?? [];
+
+        $environment[$request->key] = $request->value;
+        $site->update([
+            'environment' => $environment
+        ]);
+
+        return back();
     }
 
     /**

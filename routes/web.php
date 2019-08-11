@@ -20,5 +20,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/server/{server}/site/{site}', 'ServerSitesController@show')->name('server.site.show');
     Route::post('/server/{server}/site', 'ServerSitesController@store')->name('server.site.store');
+    Route::post('/server/{server}/site/{site}/repository', 'ServerSitesController@updateRepository')->name('server.site.update_repository');
     Route::delete('/server/site/{site}', 'ServerSitesController@delete')->name('server.site.delete');
+    Route::post('/server/{server}/site/{site}/deploy', 'ServerSitesController@deploy')->name('server.site.deploy');
+    Route::post('/server/{server}/site/{site}/environment', 'ServerSitesController@environment')->name('server.site.environment');
 });

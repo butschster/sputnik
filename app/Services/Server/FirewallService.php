@@ -7,8 +7,8 @@ use App\Models\Server\Firewall\Rule;
 use App\Scripts\Server\Firewall\CheckFirewallStatus;
 use App\Scripts\Server\Firewall\DisableRule;
 use App\Scripts\Server\Firewall\EnableRule;
-use App\Services\Server\Firewall\StatusParser;
 use App\Services\Task\Contracts\Task;
+use App\Utils\SSH\Firewall\StatusParser;
 use Illuminate\Support\Collection;
 
 class FirewallService

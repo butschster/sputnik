@@ -44,7 +44,4 @@
             <button class="btn btn-primary">Store</button>
         </div>
     </form>
-    <div class="card-header">Server Public Key</div>
-    <div class="alert alert-info mb-0 rounded-0">You can use this key for github, ....</div>
-    <code class="card-body">{{ $server->public_key }}</code>
 </div>

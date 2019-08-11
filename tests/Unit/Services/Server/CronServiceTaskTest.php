@@ -36,11 +36,16 @@ class CronServiceTaskTest extends TestCase
 
         $job = $this->createCronJob();
 
-        $this->getCronService()->schedule($job);
+        $task = $this->getCronService()->schedule($job);
 
         $this->assertExecutedTaskScript(
             new ScheduleJob($job)
         );
+
+
+        $this->assertTaskExecuted($task);
+        $this->assertTrue($task->owner->is($job));
+        $this->assertTrue($task->server->is($job->server));
     }
 
     function test_a_job_can_be_deleted_from_server_when_in_was_deleted()
@@ -51,11 +56,15 @@ class CronServiceTaskTest extends TestCase
 
         $job = $this->createCronJob();
 
-        $this->getCronService()->delete($job);
+        $task = $this->getCronService()->delete($job);
 
         $this->assertExecutedTaskScript(
             new DeleteJob($job)
         );
+
+        $this->assertTaskExecuted($task);
+        $this->assertTrue($task->owner->is($job));
+        $this->assertTrue($task->server->is($job->server));
     }
 
     /**

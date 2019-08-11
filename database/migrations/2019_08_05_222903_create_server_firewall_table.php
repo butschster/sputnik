@@ -15,7 +15,7 @@ class CreateServerFirewallTable extends Migration
     {
         Schema::create('server_firewall_rules', function (Blueprint $table) {
             $table->primaryUuid('id');
-            $table->uuid('server_id');
+            $table->belongsToServer();
             $table->boolean('editable')->default(true);
 
             $table->string('name');
@@ -25,11 +25,6 @@ class CreateServerFirewallTable extends Migration
             $table->enum('policy', ['allow', 'deny'])->default('allow');
 
             $table->timestamps();
-
-            $table->foreign('server_id')
-                ->references('id')
-                ->on('servers')
-                ->onDelete('cascade');
         });
     }
 

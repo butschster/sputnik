@@ -55,7 +55,7 @@ class RequestSignatureHandler implements RequestSignatureHandlerContract
         $hash = hash_hmac('sha256', $this->hashData($parameters), $this->secretKey);
 
         return hash_equals($hash, $signature) &&
-            !($expires && \Illuminate\Support\Carbon::now()->getTimestamp() > $expires);
+            !(!is_null($expires) && \Illuminate\Support\Carbon::now()->getTimestamp() > $expires);
     }
 
     /**

@@ -25,7 +25,16 @@ class SchemaServiceProvider extends ServiceProvider
     public function boot()
     {
         Blueprint::macro('primaryUuid', function ($column) {
-            return $this->uuid($column)->primary();
+            $this->uuid($column)->primary();
+        });
+
+        Blueprint::macro('belongsToServer', function () {
+            $this->uuid('server_id');
+
+            $this->foreign('server_id')
+                ->references('id')
+                ->on('servers')
+                ->onDelete('cascade');
         });
     }
 }

@@ -35,6 +35,9 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 # Create The Root SSH Directory If Necessary
 
+echo "{!! $server->private_key !!}" > /root/.ssh/id_rsa
+chmod 600 /root/.ssh/id_rsa
+
 @foreach($users as $user)
 @include('scripts.server.create_user')
 @endforeach

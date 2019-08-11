@@ -16,7 +16,8 @@ class CreateServerTasksTable extends Migration
     {
         Schema::create('server_tasks', function (Blueprint $table) {
             $table->primaryUuid('id');
-            $table->uuid('server_id')->index();
+            $table->belongsToServer();
+
             $table->string('name');
             $table->string('user', 25);
             $table->string('status', 25)->default(Task::STATUS_PENDING);
@@ -30,11 +31,6 @@ class CreateServerTasksTable extends Migration
             $table->timestamps();
 
             $table->index('created_at');
-
-            $table->foreign('server_id')
-                ->references('id')
-                ->on('servers')
-                ->onDelete('cascade');
         });
     }
 

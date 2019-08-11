@@ -15,7 +15,7 @@ class CreateServerJobsTable extends Migration
     {
         Schema::create('server_jobs', function (Blueprint $table) {
             $table->primaryUuid('id');
-            $table->uuid('server_id');
+            $table->belongsToServer();
 
             $table->string('name')->nullable();
             $table->text('command');
@@ -23,11 +23,6 @@ class CreateServerJobsTable extends Migration
             $table->string('cron');
 
             $table->timestamps();
-
-            $table->foreign('server_id')
-                ->references('id')
-                ->on('servers')
-                ->onDelete('cascade');
         });
     }
 

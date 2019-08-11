@@ -6,6 +6,9 @@
 mkdir -p {{ $site->publicPath() }}
 cat > {{ $site->publicPath() }}/index.php << EOF
 
+mkdir -p {{ $site->publicPath() }}
+cat > {{ $site->publicPath() }}/index.php << EOF
+
 @include('scripts.tools.webserver.template')
 
 

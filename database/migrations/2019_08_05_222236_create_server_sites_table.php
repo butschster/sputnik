@@ -15,7 +15,7 @@ class CreateServerSitesTable extends Migration
     {
         Schema::create('server_sites', function (Blueprint $table) {
             $table->primaryUuid('id');
-            $table->uuid('server_id');
+            $table->belongsToServer();
 
             $table->string('token');
 
@@ -29,11 +29,6 @@ class CreateServerSitesTable extends Migration
             $table->string('repository_branch')->nullable();
 
             $table->timestamps();
-
-            $table->foreign('server_id')
-                ->references('id')
-                ->on('servers')
-                ->onDelete('cascade');
         });
     }
 

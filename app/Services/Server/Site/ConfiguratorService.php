@@ -6,6 +6,7 @@ use App\Models\Server\Site;
 use App\Scripts\Server\Site\Create;
 use App\Scripts\Server\Site\Delete;
 use App\Services\Server\Runnable;
+use App\Services\Task\Contracts\Task;
 
 class ConfiguratorService
 {
@@ -13,23 +14,25 @@ class ConfiguratorService
 
     /**
      * @param Site $site
+     * @return Task
      */
-    public function create(Site $site)
+    public function create(Site $site): Task
     {
         $this->setServer($site->server);
         $this->setOwner($site);
 
-        $this->runJob(new Create($site));
+        return $this->runJob(new Create($site));
     }
 
     /**
      * @param Site $site
+     * @return Task
      */
-    public function delete(Site $site)
+    public function delete(Site $site): Task
     {
         $this->setServer($site->server);
         $this->setOwner($site);
 
-        $this->runJob(new Delete($site));
+        return $this->runJob(new Delete($site));
     }
 }

@@ -5,7 +5,9 @@ namespace App\Models\Server;
 use App\Models\Concerns\HasServer;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
+use App\Models\Server\Site\Deployment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Site extends Model
 {
@@ -19,7 +21,7 @@ class Site extends Model
     /**
      * @var array
      */
-    protected $guarded = [];
+    protected $guarded = ['token'];
 
     /**
      * @var array
@@ -28,6 +30,16 @@ class Site extends Model
         'aliases' => 'array',
         'environment' => 'array',
     ];
+
+    /**
+     * Get the deployments that belong to the site.
+     *
+     * @return HasMany
+     */
+    public function deployments(): HasMany
+    {
+        return $this->hasMany(Deployment::class, 'server_site_id')->latest();
+    }
 
     /**
      * @return string
@@ -48,8 +60,8 @@ class Site extends Model
         $urlSigner = app(\App\Contracts\Request\RequestSignatureHandler::class);
 
         return route('callback', $urlSigner->signParameters([
-            'site_id' => $this->id, 'action' => 'hook'
-        ]));
+            'action' => 'hook'
+        ]) + ['token' => $this->token, 'site_id' => $this->id,]);
     }
 
     /**
