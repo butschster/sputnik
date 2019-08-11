@@ -7,6 +7,7 @@
     <style>
         body {background-image: linear-gradient(45deg, #389fff, #06213c);font-family: 'Montserrat', sans-serif;}
         h1 {font-weight: 900;font-size: 4em}
+        h2 {background-image: linear-gradient(45deg, #214467, #389fff);}
     </style>
 </head>
 <body class="min-vh-100 d-flex flex-column justify-content-center text-center text-white">

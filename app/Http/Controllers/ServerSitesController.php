@@ -28,7 +28,7 @@ class ServerSitesController extends Controller
     {
         $site = $request->persist();
 
-        return redirect(route('server.site.show', $server, $site));
+        return redirect(route('server.site.show', [$server, $site]));
     }
 
     /**
@@ -60,29 +60,6 @@ class ServerSitesController extends Controller
     public function updateRepository(UpdateRepositoryRequest $request, $server, Server\Site $site)
     {
         $request->persist();
-
-        return back();
-    }
-
-    /**
-     * @param Request $request
-     * @param $server
-     * @param Server\Site $site
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function environment(Request $request, $server, Server\Site $site)
-    {
-        $this->validate($request, [
-            'key' => 'required|string',
-            'value' => 'required|string'
-        ]);
-
-        $environment = $site->environment ?? [];
-
-        $environment[$request->key] = $request->value;
-        $site->update([
-            'environment' => $environment
-        ]);
 
         return back();
     }

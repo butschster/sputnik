@@ -36,7 +36,8 @@
             <div class="card-header">
                 Git repository details
 
-                <form class="float-right" action="{{ route('server.site.deploy', [$site->server_id, $site]) }}" method="POST">
+                <form class="float-right" action="{{ route('server.site.deploy', [$site->server_id, $site]) }}"
+                      method="POST">
                     @csrf
 
                     <button class="btn btn-warning"><i class="fas fa-play-circle mr-2"></i> Deploy!</button>
@@ -84,33 +85,56 @@
         <div class="card mt-4">
             <div class="card-header">
                 Environment variables
-            </div>
-            <form action="{{ route('server.site.environment', [$site->server_id, $site]) }}" method="POST">
-                @csrf
 
+                <form class="float-right" action="{{ route('server.site.environment.upload', [$site->server_id, $site]) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="file">
+                    <button class="btn btn-sm btn-primary">Upload</button>
+                </form>
+            </div>
+            @if($site->environment)
                 <table class="table">
                     <col width="200px">
                     <col>
+                    <col width="100px">
                     <thead>
                     <tr>
                         <th>Key</th>
                         <th>Value</th>
+                        <th></th>
                     </tr>
                     </thead>
-                    @if($site->environment)
                     <tbody>
                     @foreach($site->environment as $key => $value)
                         <tr>
                             <th>{{ $key }}</th>
                             <td>{{ $value }}</td>
+                            <td class="text-right">
+                                <form class="float-right"
+                                      action="{{ route('server.site.environment.delete', [$site->server_id, $site]) }}"
+                                      method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="key" value="{{ $key }}">
+                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
-                    @endif
-                    <tfoot>
+                </table>
+            @endif
+            <form action="{{ route('server.site.environment.update', [$site->server_id, $site]) }}" method="POST">
+                @csrf
+                <table class="table mb-0">
+                    <col width="200px">
+                    <col>
+                    <col width="100px">
+
                     <tr>
                         <td>
-                            <input type="text" class="form-control @error('key') is-invalid @enderror" name="key" value="{{ old('key') }}" required>
+                            <input type="text" class="form-control @error('key') is-invalid @enderror" name="key"
+                                   value="{{ old('key') }}" required>
 
                             @error('key')
                             <span class="invalid-feedback" role="alert">
@@ -118,8 +142,9 @@
                             </span>
                             @enderror
                         </td>
-                        <td>
-                            <input type="text" class="form-control @error('value') is-invalid @enderror" name="value" value="{{ old('value') }}" required>
+                        <td colspan="2">
+                            <input type="text" class="form-control @error('value') is-invalid @enderror" name="value"
+                                   value="{{ old('value') }}" required>
 
                             @error('value')
                             <span class="invalid-feedback" role="alert">
@@ -129,11 +154,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                            <button class="btn btn-primary">Store</button>
+                        <td colspan="3">
+                            <button class="btn btn-primary" type="submit">Store</button>
                         </td>
                     </tr>
-                    </tfoot>
                 </table>
             </form>
         </div>

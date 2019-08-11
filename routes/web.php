@@ -23,5 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/server/{server}/site/{site}/repository', 'ServerSitesController@updateRepository')->name('server.site.update_repository');
     Route::delete('/server/site/{site}', 'ServerSitesController@delete')->name('server.site.delete');
     Route::post('/server/{server}/site/{site}/deploy', 'ServerSitesController@deploy')->name('server.site.deploy');
-    Route::post('/server/{server}/site/{site}/environment', 'ServerSitesController@environment')->name('server.site.environment');
+
+
+    Route::post('/server/{server}/site/{site}/environment', 'ServerSiteEnvironmentController@update')->name('server.site.environment.update');
+    Route::delete('/server/{server}/site/{site}/environment', 'ServerSiteEnvironmentController@delete')->name('server.site.environment.delete');
+    Route::post('/server/{server}/site/{site}/environment/upload', 'ServerSiteEnvironmentController@upload')->name('server.site.environment.upload');
 });
