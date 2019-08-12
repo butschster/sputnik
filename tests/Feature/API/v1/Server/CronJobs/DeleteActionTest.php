@@ -7,7 +7,7 @@ use App\Scripts\Server\Cron\ScheduleJob;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class StoreActionTest extends TestCase
+class DeleteActionTest extends TestCase
 {
     use DatabaseMigrations;
 
