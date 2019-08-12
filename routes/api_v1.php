@@ -8,10 +8,10 @@ Route::middleware('auth:api')->group(function () {
     Route::post('server', 'ServerController@store')->name('server.store');
 
     // Public keys
-    Route::post('server/{server}/key', 'ServerKeysController@store')->name('server.key.store');
-    Route::delete('server/key/{key}', 'ServerKeysController@delete')->name('server.key.delete');
+    Route::post('server/{server}/key', 'Server\PublicKeysController@store')->name('server.key.store');
+    Route::delete('server/key/{key}', 'Server\PublicKeysController@delete')->name('server.key.delete');
 
     // Cron jobs
-    Route::post('server/{server}/cron', 'ServerCronJobsController@store')->name('server.cron_job.store');
-    Route::delete('server/cron/{job}', 'ServerCronJobsController@delete')->name('server.cron_job.delete');
+    Route::post('server/{server}/cron', 'Server\CronJobsController@store')->name('server.cron_job.store');
+    Route::delete('server/cron/{job}', 'Server\CronJobsController@delete')->name('server.cron_job.delete');
 });

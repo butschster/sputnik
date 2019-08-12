@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Server;
 
-use App\Events\Server\Key\AttachedToServer;
+use App\Events\Server\PublicKey\AttachedToServer;
 use App\Jobs\Server\RunScript;
 use App\Scripts\Server\AddPublicKey;
 

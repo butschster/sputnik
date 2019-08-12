@@ -4,13 +4,13 @@ namespace App\Http\Resources\v1\Server;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class KeysCollection extends ResourceCollection
+class PublicKeysCollection extends ResourceCollection
 {
     /**
      * The resource that this resource collects.
      * @var string
      */
-    public $collects = KeyResource::class;
+    public $collects = PublicKeyResource::class;
 
     /**
      * Transform the resource collection into an array.

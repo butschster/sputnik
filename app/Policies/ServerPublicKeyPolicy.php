@@ -6,7 +6,7 @@ use App\Models\Server;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ServerKeyPolicy
+class ServerPublicKeyPolicy
 {
     use HandlesAuthorization;
 
@@ -26,11 +26,11 @@ class ServerKeyPolicy
      * Check if user can delete public keys for the given server
      *
      * @param User $user
-     * @param Server\Key $key
+     * @param Server\PublicKey $key
      *
      * @return bool
      */
-    public function delete(User $user, Server\Key $key): bool
+    public function delete(User $user, Server\PublicKey $key): bool
     {
         return $user->id === $key->server->user_id;
     }

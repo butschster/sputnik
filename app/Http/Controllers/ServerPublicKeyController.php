@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Server\Key\StoreRequest;
+use App\Http\Requests\Server\PublicKey\StoreRequest;
 use App\Models\Server;
 
 class ServerPublicKeyController extends Controller

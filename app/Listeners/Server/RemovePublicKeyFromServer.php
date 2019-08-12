@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Server;
 
-use App\Events\Server\Key\DetachedFromServer;
+use App\Events\Server\PublicKey\DetachedFromServer;
 use App\Jobs\Server\RunScript;
 use App\Scripts\Server\RemovePublicKey;
 

@@ -5,17 +5,17 @@ namespace App\Models\Server;
 use App\Models\Concerns\HasServer;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
-use App\Utils\SSH\ValueObjects\PublicKey;
+use App\Utils\SSH\ValueObjects\PublicKey as PublicKeyValueObject;
 use Illuminate\Database\Eloquent\Model;
 
-class Key extends Model
+class PublicKey extends Model
 {
     use UsesUuid, HasTask, HasServer;
 
     /**
      * @var string
      */
-    protected $table = 'server_keys';
+    protected $table = 'server_public_keys';
 
     /**
      * @var array
@@ -24,12 +24,11 @@ class Key extends Model
 
     /**
      * Convert key to Public key value object
-     *
-     * @return PublicKey
+     * @return PublicKeyValueObject
      */
-    public function toPublicKey(): PublicKey
+    public function toPublicKey(): PublicKeyValueObject
     {
-        return new PublicKey($this->name, $this->content);
+        return new PublicKeyValueObject($this->name, $this->content);
     }
 
     /**
@@ -39,6 +38,6 @@ class Key extends Model
      */
     public function fingerprint(): string
     {
-        return (new PublicKey($this->name, $this->content))->getFingerprint();
+        return $this->toPublicKey()->getFingerprint();
     }
 }

@@ -13,7 +13,7 @@ class CreateServerKeysTable extends Migration
      */
     public function up()
     {
-        Schema::create('server_keys', function (Blueprint $table) {
+        Schema::create('server_public_keys', function (Blueprint $table) {
             $table->primaryUuid('id');
             $table->belongsToServer();
 
@@ -31,6 +31,6 @@ class CreateServerKeysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('server_keys');
+        Schema::dropIfExists('server_public_keys');
     }
 }

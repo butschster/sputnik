@@ -14,7 +14,7 @@ use App\Models\Concerns\UsesUuid;
 use App\Models\Server\CronJob;
 use App\Models\Server\Event;
 use App\Models\Server\Firewall\Rule as FirewallRule;
-use App\Models\Server\Key;
+use App\Models\Server\PublicKey;
 use App\Models\Server\Site;
 use App\Models\Server\Task;
 use App\Scripts\Contracts\ServerConfiguration;
@@ -144,7 +144,7 @@ class Server extends Model implements ServerConfiguration
      */
     public function keys(): HasMany
     {
-        return $this->hasMany(Key::class)->with('task');
+        return $this->hasMany(PublicKey::class)->with('task');
     }
 
     /**
@@ -249,9 +249,9 @@ class Server extends Model implements ServerConfiguration
      *
      * @param string $name
      * @param string $content
-     * @return Key
+     * @return PublicKey
      */
-    public function addPublicKey(string $name, string $content): Key
+    public function addPublicKey(string $name, string $content): PublicKey
     {
         return $this->keys()->create([
             'name' => $name,
@@ -262,10 +262,10 @@ class Server extends Model implements ServerConfiguration
     /**
      * Remove public key from server
      *
-     * @param Key $key
+     * @param PublicKey $key
      * @throws \Exception
      */
-    public function removePublicKey(Key $key): void
+    public function removePublicKey(PublicKey $key): void
     {
         $key->delete();
     }

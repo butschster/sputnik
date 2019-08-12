@@ -2,14 +2,14 @@
 
 namespace Tests\Unit\Models\Server;
 
-use App\Events\Server\Key\AttachedToServer;
-use App\Events\Server\Key\DetachedFromServer;
+use App\Events\Server\PublicKey\AttachedToServer;
+use App\Events\Server\PublicKey\DetachedFromServer;
 use App\Models\Server;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
-class KeyTest extends TestCase
+class PublicKeyTest extends TestCase
 {
     use DatabaseMigrations;
 

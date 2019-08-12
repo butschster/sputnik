@@ -13,7 +13,7 @@ trait ServerKeyFactory
      * @param array $attributes
      * @param int $times
      *
-     * @return Server\Key|Collection
+     * @return Server\PublicKey|Collection
      */
     public function createSSHKey(array $attributes = [], int $times = null)
     {
@@ -27,7 +27,7 @@ trait ServerKeyFactory
      * @param array $attributes
      * @param int $times
      *
-     * @return Server\Key|Collection
+     * @return Server\PublicKey|Collection
      */
     public function createSSHKeyForServer(Server $server, array $attributes = [], int $times = null)
     {
@@ -42,7 +42,7 @@ trait ServerKeyFactory
      * @param array $attributes
      * @param int $times
      *
-     * @return Server\Key|Collection
+     * @return Server\PublicKey|Collection
      */
     public function makeSSHKey(array $attributes = [], int $times = null)
     {
@@ -56,6 +56,6 @@ trait ServerKeyFactory
      */
     public function SSHKeyFactory(int $times = null)
     {
-        return factory(Server\Key::class, $times);
+        return factory(Server\PublicKey::class, $times);
     }
 }

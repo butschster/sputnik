@@ -1,32 +1,27 @@
 <?php
 
-namespace App\Events\Server\Key;
+namespace App\Events\Server\PublicKey;
 
-use App\Models\Server;
-use App\Models\Server\Key;
-use Illuminate\Broadcasting\Channel;
+use App\Models\Server\PublicKey;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class DetachedFromServer
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * @var Key
+     * @var PublicKey
      */
     public $key;
 
     /**
      * This event fires when key detached from the server
      *
-     * @param Key $key
+     * @param PublicKey $key
      */
-    public function __construct(Key $key)
+    public function __construct(PublicKey $key)
     {
         $this->key = $key;
     }

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API\v1;
+namespace App\Http\Controllers\API\v1\Server;
 
 use App\Http\Controllers\API\Controller;
 use App\Http\Requests\Server\CronJob\StoreRequest;
 use App\Http\Resources\v1\Server\CronJobResource;
 use App\Models\Server;
 
-class ServerCronJobsController extends Controller
+class CronJobsController extends Controller
 {
     /**
      * @param StoreRequest $request

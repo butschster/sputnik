@@ -91,7 +91,7 @@ Artisan::command('server:sync-keys {server}', function ($server) {
 
     foreach ($server->keys as $key) {
         app(\App\Listeners\Server\AddPublicKeyToServer::class)->handle(
-            new \App\Events\Server\Key\AttachedToServer($server, $key)
+            new \App\Events\Server\PublicKey\AttachedToServer($server, $key)
         );
     }
 

@@ -24,10 +24,10 @@ class EventServiceProvider extends ServiceProvider
         KeysInstalled::class => [
 
         ],
-        Server\Key\AttachedToServer::class => [
+        Server\PublicKey\AttachedToServer::class => [
             AddPublicKeyToServer::class,
         ],
-        Server\Key\DetachedFromServer::class => [
+        Server\PublicKey\DetachedFromServer::class => [
             RemovePublicKeyFromServer::class,
         ],
         Server\Configured::class => [
@@ -48,8 +48,8 @@ class EventServiceProvider extends ServiceProvider
             \App\Observers\Server\GenerateDatabasePassword::class,
         ]);
 
-        \App\Models\Server\Key::observe([
-            \App\Observers\Server\Key\FireEventsObserver::class,
+        \App\Models\Server\PublicKey::observe([
+            \App\Observers\Server\PublicKey\FireEventsObserver::class,
         ]);
 
         \App\Models\Server\Site::observe([

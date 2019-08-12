@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\API\v1;
 
-use App\Events\Server\Key\AttachedToServer;
+use App\Events\Server\PublicKey\AttachedToServer;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
