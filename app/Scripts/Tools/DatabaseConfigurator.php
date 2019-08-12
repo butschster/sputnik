@@ -3,6 +3,7 @@
 namespace App\Scripts\Tools;
 
 use App\Exceptions\Scrpits\ConfigurationNotFoundException;
+use App\Models\Server\Database;
 
 class DatabaseConfigurator extends Configurator
 {
@@ -62,12 +63,29 @@ class DatabaseConfigurator extends Configurator
     }
 
     /**
+     * @param Database $database
+     *
      * @return string
      * @throws \Throwable
      */
-    public function createDatabase(): string
+    public function createDatabase(Database $database): string
     {
-        return $this->render('tools.database.' . $this->type() . '.create_database');
+        return $this->render('tools.database.' . $this->type() . '.database.create', [
+            'database' => $database
+        ]);
+    }
+
+    /**
+     * @param Database $database
+     *
+     * @return string
+     * @throws \Throwable
+     */
+    public function dropDatabase(Database $database): string
+    {
+        return $this->render('tools.database.' . $this->type() . '.database.drop', [
+            'database' => $database
+        ]);
     }
 
     /**

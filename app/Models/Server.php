@@ -12,6 +12,7 @@ use App\Models\Concerns\HasConfiguration;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server\CronJob;
+use App\Models\Server\Database;
 use App\Models\Server\Event;
 use App\Models\Server\Firewall\Rule as FirewallRule;
 use App\Models\Server\PublicKey;
@@ -105,6 +106,16 @@ class Server extends Model implements ServerConfiguration
     public function sites(): HasMany
     {
         return $this->hasMany(Site::class)->latest();
+    }
+
+    /**
+     * Get the databases that belong to the server.
+     *
+     * @return HasMany
+     */
+    public function databases(): HasMany
+    {
+        return $this->hasMany(Database::class)->latest();
     }
 
     /**

@@ -25,5 +25,5 @@ mysql --user="root" --password="{!! $password !!}" -e "GRANT ALL ON *.* TO root@
 mysql --user="root" --password="{!! $password !!}" -e "FLUSH PRIVILEGES;"
 
 @foreach($users as $user)
-@include('scripts.tools.database.mysql.create_user', ['user' => $user])
+@include('scripts.tools.database.mysql.user.create', ['user' => $user])
 @endforeach
