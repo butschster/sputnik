@@ -28,7 +28,7 @@ abstract class Script implements ScriptContract
      *
      * @var string
      */
-    protected $sshAs = self::USER_ROOT;
+    protected $sshAs;
 
     /**
      * Get the user that the script should be run as.
@@ -37,7 +37,7 @@ abstract class Script implements ScriptContract
      */
     public function getUser(): string
     {
-        return $this->sshAs;
+        return $this->sshAs ?? static::USER_ROOT;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Server\Site;
 
 use App\Models\Server\Site;
+use App\Validation\Rules\Server\Site\RepositoryUrl;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -16,7 +17,7 @@ class UpdateRepositoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'repository' => ['required', 'string'],
+            'repository' => ['required', 'string', RepositoryUrl::class],
             'repository_branch' => 'required|string|alpha_dash'
         ];
     }

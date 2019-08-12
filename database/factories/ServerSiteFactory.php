@@ -11,7 +11,7 @@ $factory->define(Site::class, function (Faker $faker) {
     return [
         'server_id' => factory(Server::class),
         'domain' => $faker->domainName,
-        'environment' => Dotenv::create(base_path('tests/fixtures'))->load(),
+        'environment' => Dotenv::create(base_path('tests/fixtures'), 'env')->load(),
         'public_dir' => '/public',
         'repository' => 'SleepingOwlAdmin/sleepingowladmin.ru',
         'repository_provider' => 'github',

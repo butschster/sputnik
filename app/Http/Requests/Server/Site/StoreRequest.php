@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Server\Site;
 
 use App\Models\Server\Site;
+use App\Validation\Rules\Server\Site\PublicPath;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -17,7 +18,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'domain' => ['required', 'string', Rule::unique('server_sites')],
-            'public_dir' => 'required|string|alpha_dash'
+            'public_dir' => ['required', 'string', PublicPath::class]
         ];
     }
 

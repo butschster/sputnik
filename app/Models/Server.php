@@ -284,7 +284,7 @@ class Server extends Model implements ServerConfiguration
         return new SystemInformation(
             $this->os_information['os'],
             $this->os_information['version'],
-            $this->os_information['architecture'],
+            $this->os_information['architecture']
         );
     }
 }
