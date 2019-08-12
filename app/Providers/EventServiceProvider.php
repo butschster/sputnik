@@ -7,6 +7,7 @@ use App\Events\Server\KeysInstalled;
 use App\Listeners\Server\AddPublicKeyToServer;
 use App\Listeners\Server\CreateHttpFirewallRules;
 use App\Listeners\Server\RemovePublicKeyFromServer;
+use App\Listeners\Server\ScheduleSystemJobs;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -32,6 +33,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         Server\Configured::class => [
             CreateHttpFirewallRules::class,
+            ScheduleSystemJobs::class
         ],
     ];
 
@@ -63,6 +65,10 @@ class EventServiceProvider extends ServiceProvider
             \App\Observers\Server\Cron\FireEventsObserver::class,
         ]);
 
+        \App\Models\Server\Database::observe([
+            \App\Observers\Server\Database\FireEventsObserver::class,
+            \App\Observers\Server\Database\SyncDatabaseObserver::class,
+        ]);
 
         \App\Models\Server\Firewall\Rule::observe([
             \App\Observers\Server\Firewall\SyncFirewallRuleObserver::class,

@@ -17,7 +17,7 @@ class UpdateRepositoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'repository' => ['required', 'string', RepositoryUrl::class],
+            'repository' => ['required', 'string', new RepositoryUrl()],
             'repository_branch' => 'required|string|alpha_dash'
         ];
     }

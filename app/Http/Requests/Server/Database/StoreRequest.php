@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Server\Site;
+namespace App\Http\Requests\Server\Database;
 
-use App\Models\Server\Site;
-use App\Validation\Rules\Server\Site\PublicPath;
+use App\Models\Server\Database;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -17,19 +16,23 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'domain' => ['required', 'string', Rule::unique('server_sites')],
-            'public_dir' => ['required', 'string', new PublicPath()]
+            'name' => [
+                'required',
+                'string',
+                'alpha_dash',
+                Rule::unique('server_databases')->where('server_id', $this->route('server')->id)
+            ],
         ];
     }
 
     /**
-     * @return Site
+     * @return Database
      */
-    public function persist(): Site
+    public function persist(): Database
     {
         $server = $this->route('server');
 
-        return $server->sites()->create(
+        return $server->databases()->create(
             $this->validationData()
         );
     }

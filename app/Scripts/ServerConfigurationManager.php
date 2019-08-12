@@ -2,12 +2,13 @@
 
 namespace App\Scripts;
 
-use App\Scripts\Contracts\ServerConfiguration;
+use App\Contracts\Server\ServerConfiguration;
+use App\Contracts\Server\ServerConfigurationManager as ServerConfigurationManagerContract;
 use App\Scripts\Tools\DatabaseConfigurator;
 use App\Scripts\Tools\PHPConfigurator;
 use App\Scripts\Tools\WebServerConfigurator;
 
-class ServerConfigurationManager
+class ServerConfigurationManager implements ServerConfigurationManagerContract
 {
     /**
      * @var ServerConfiguration

@@ -1,4 +1,5 @@
 <div class="card">
+    @if($server->sites->count() > 0)
     <div class="card-header">
         Sites
     </div>
@@ -9,6 +10,7 @@
             </a>
         @endforeach
     </div>
+    @endif
     <div class="card-header border-top">
         Create site
     </div>

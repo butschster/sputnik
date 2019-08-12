@@ -28,8 +28,8 @@ class Create extends Script
      */
     public function getScript(): string
     {
-        $configurator = server_configurator($this->database->server);
-
-        return $configurator->database()->createDatabase($this->database);
+        return server_configurator($this->database->server)
+            ->database()
+            ->createDatabase($this->database);
     }
 }

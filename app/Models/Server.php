@@ -18,7 +18,7 @@ use App\Models\Server\Firewall\Rule as FirewallRule;
 use App\Models\Server\PublicKey;
 use App\Models\Server\Site;
 use App\Models\Server\Task;
-use App\Scripts\Contracts\ServerConfiguration;
+use App\Contracts\Server\ServerConfiguration;
 use App\Utils\SSH\ValueObjects\KeyPair;
 use App\Utils\SSH\ValueObjects\PrivateKey;
 use App\Utils\SSH\ValueObjects\SystemInformation;

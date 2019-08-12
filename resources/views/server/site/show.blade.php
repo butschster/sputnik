@@ -26,8 +26,12 @@
                     <td><a target="_blank" href="{{ $site->url() }}">{{ $site->domain }}</a></td>
                 </tr>
                 <tr>
+                    <th>Public path</th>
+                    <td>{{ $site->publicPath() }}</td>
+                </tr>
+                <tr>
                     <th>Status</th>
-                    <td>{{ $site->task->status }}</td>
+                    <td><span class="badge badge-dark">{{ $site->taskStatus() }}</span></td>
                 </tr>
             </table>
         </div>
@@ -76,10 +80,10 @@
                     <button class="btn btn-primary">Update</button>
                 </div>
             </form>
-            <div class="alert bg-white rounded-0 mb-0">
+            <div class="alert rounded-0 mb-0">
                 <p>Use this public key for access deployment</p>
-                <code class="card-body">{{ $site->server->public_key }}</code>
             </div>
+            <pre class="card-body text-danger mb-0" style="white-space: normal;">{{ $site->server->public_key }}</pre>
         </div>
 
         <div class="card mt-4">

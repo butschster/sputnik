@@ -1,6 +1,6 @@
 <?php
 
-use App\Scripts\Contracts\ServerConfiguration;
+use App\Contracts\Server\ServerConfiguration;
 use App\Scripts\ServerConfigurationManager;
 
 /**

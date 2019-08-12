@@ -3,7 +3,7 @@
         <i class="fas fa-key fa-lg mr-3"></i> SSH keys
     </div>
 
-    <table class="table table-dark mb-0">
+    <table class="table mb-0">
         <col>
         <col width="300px">
         @foreach($server->keys as $key)

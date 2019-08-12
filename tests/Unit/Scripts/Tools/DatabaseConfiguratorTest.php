@@ -3,7 +3,7 @@
 namespace Tests\Unit\Scripts\Tools;
 
 use App\Exceptions\Scrpits\ConfigurationNotFoundException;
-use App\Scripts\Contracts\ServerConfiguration;
+use App\Contracts\Server\ServerConfiguration;
 use App\Scripts\Tools\DatabaseConfigurator;
 use App\Utils\SSH\ValueObjects\PublicKey;
 use Tests\TestCase;

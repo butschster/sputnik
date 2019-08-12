@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Scripts\Contracts;
+namespace App\Contracts\Server;
 
 use App\Utils\SSH\ValueObjects\PublicKey;
 

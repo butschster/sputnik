@@ -21,6 +21,7 @@ use Illuminate\Support\Str;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Symfony\Component\Process\Process;
 use Tests\Concerns\CronJobFactory;
+use Tests\Concerns\ServerDatabaseFactory;
 use Tests\Concerns\ServerEventFactory;
 use Tests\Concerns\ServerFactory;
 use Tests\Concerns\ServerFirewallFactory;
@@ -41,6 +42,7 @@ abstract class TestCase extends BaseTestCase
         ServerFirewallFactory,
         CronJobFactory,
         ServerSiteFactory,
+        ServerDatabaseFactory,
         ServerSiteDeploymentFactory;
 
     protected function setUp(): void

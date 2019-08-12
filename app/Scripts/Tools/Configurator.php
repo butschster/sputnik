@@ -3,7 +3,7 @@
 namespace App\Scripts\Tools;
 
 use App\Exceptions\Scrpits\ConfigurationNotFoundException;
-use App\Scripts\Contracts\ServerConfiguration;
+use App\Contracts\Server\ServerConfiguration;
 
 abstract class Configurator
 {

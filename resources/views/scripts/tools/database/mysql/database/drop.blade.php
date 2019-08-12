@@ -1,1 +1,1 @@
-DROP DATABASE {{ $database->name }};
+mysql --user="root" --password="{!! $password !!}" -e "DROP DATABASE IF EXISTS {{ $database->name }};"

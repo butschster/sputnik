@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Scripts;
 
-use App\Scripts\Contracts\ServerConfiguration;
+use App\Contracts\Server\ServerConfiguration;
 use App\Scripts\ServerConfigurationManager;
 use App\Scripts\Tools\DatabaseConfigurator;
 use App\Scripts\Tools\PHPConfigurator;

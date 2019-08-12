@@ -27,8 +27,8 @@ class Drop extends Script
      */
     public function getScript(): string
     {
-        $configurator = server_configurator($this->database->server);
-
-        return $configurator->database()->dropDatabase($this->database);
+        return server_configurator($this->database->server)
+            ->database()
+            ->dropDatabase($this->database);
     }
 }

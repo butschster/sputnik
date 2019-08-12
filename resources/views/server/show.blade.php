@@ -4,8 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-3">
-
+                @if($server->isConfigured())
                 @include('server.partials.sites')
+                @endif
             </div>
             <div class="col-9">
                 <div class="card">
@@ -21,6 +22,15 @@
                     @if($server->isPending())
                         <div class="alert alert-warning mb-0">
                             <code>wget -O sputnik.sh "{{ route('server.install_script', $server) }}"; bash sputnik.sh</code>
+                        </div>
+                    @endif
+
+                    @if($server->isConfiguring())
+                        <div class="progress rounded-0">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                 role="progressbar" aria-valuenow="75"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width: 45%"></div>
                         </div>
                     @endif
                     <table class="table">
@@ -74,6 +84,7 @@
                 @include('server.partials.firewall')
                 @include('server.partials.scheduler')
                 @include('server.partials.keys')
+                @include('server.partials.databases')
                 @endif
 
                 <div class="card mt-3">

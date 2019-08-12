@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Server\Database;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -18,9 +19,8 @@ class CreateServerDatabasesTable extends Migration
             $table->belongsToServer();
 
             $table->string('name');
-            $table->string('password');
-            $table->string('character_set')->default('utf8');
-            $table->string('collation')->default('utf8_unicode_ci');
+            $table->string('character_set')->default(Database::DEFAULT_CHARACTER_SET);
+            $table->string('collation')->default(Database::DEFAULT_COLLATION);
 
             $table->timestamps();
         });
