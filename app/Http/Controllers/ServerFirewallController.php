@@ -11,8 +11,9 @@ class ServerFirewallController extends Controller
 
     /**
      * @param StoreRequest $request
+     * @param Server $server
      *
-     * @return ServerResource
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(StoreRequest $request, Server $server)
     {
