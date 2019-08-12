@@ -40,12 +40,14 @@
             <div class="card-header">
                 Git repository details
 
+                <a href="{{ route('server.site.deploy.config', [$site->server_id, $site]) }}" class="float-right btn btn-sm btn-primary ml-3">Config</a>
                 <form class="float-right" action="{{ route('server.site.deploy', [$site->server_id, $site]) }}"
                       method="POST">
                     @csrf
 
-                    <button class="btn btn-warning"><i class="fas fa-play-circle mr-2"></i> Deploy!</button>
+                    <button class="btn btn-warning btn-sm"><i class="fas fa-play-circle mr-2"></i> Deploy!</button>
                 </form>
+
             </div>
             <form action="{{ route('server.site.update_repository', [$site->server_id, $site]) }}" method="POST"
                   class="card-body">
@@ -80,10 +82,10 @@
                     <button class="btn btn-primary">Update</button>
                 </div>
             </form>
-            <div class="alert rounded-0 mb-0">
-                <p>Use this public key for access deployment</p>
+            <div class="alert alert-info rounded-0 mb-0">
+                Use this public key for access deployment
             </div>
-            <pre class="card-body text-danger mb-0" style="white-space: normal;">{{ $site->server->public_key }}</pre>
+            <pre class="card-body bg-dark text-white mb-0" style="white-space: normal;">{{ $site->server->public_key }}</pre>
         </div>
 
         <div class="card mt-4">
@@ -171,13 +173,13 @@
                 Deployment Trigger URL
             </div>
             <div class="alert bg-white rounded-0 mb-0">
-                <p>Using a custom Git service, or want a service like Travis CI to run your tests before your
+                Using a custom Git service, or want a service like Travis CI to run your tests before your
                     application is deployed to Forge? It's simple. When you commit fresh code, or when your continuous
                     integration service finishes testing your application, instruct the service to make a GET or POST
                     request to the following URL. Making a request to this URL will trigger your Forge deployment
-                    script:</p>
-                <code>{{ $site->hooksHandlerUrl() }}</code>
+                    script:
             </div>
+            <pre class="card-body bg-dark text-white mb-0" style="white-space: normal;">{{ $site->hooksHandlerUrl() }}</pre>
         </div>
     </div>
 @endsection

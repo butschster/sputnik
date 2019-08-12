@@ -52,6 +52,21 @@ class ServerSitesController extends Controller
     }
 
     /**
+     * @param $server
+     * @param Server\Site $site
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deployConfig($server, Server\Site $site)
+    {
+        return view('server.site.deploy_config', [
+            'script' => view('scripts.server.site.deploy', [
+                'server' => $site->server,
+                'site' => $site,
+            ])
+        ]);
+    }
+
+    /**
      * @param UpdateRepositoryRequest $request
      * @param $server
      * @param Server\Site $site
