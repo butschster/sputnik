@@ -3,4 +3,4 @@
 # Restart Nginx Service
 # ================================================
 
-service nginx reload
+systemctl reload nginx.service

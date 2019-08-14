@@ -3,6 +3,10 @@
 # Deploy site {{ $site->domain }}
 # ================================================
 
+// TODO
+ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+ssh-keyscan -H bitbucket.com >> ~/.ssh/known_hosts
+
 if [ ! -d {{ $site->path() }} ]
 then
     mkdir -p {{ $site->path() }}
@@ -14,7 +18,10 @@ then
 fi
 
 cat > {{ $site->path() }}/deploy.php << EOF
-<?php echo '<?php'; ?>
+
+@php
+    echo '<?php';
+@endphp
 
 namespace Deployer;
 
@@ -54,3 +61,6 @@ EOF
 
 
 cd {{ $site->path() }} && dep deploy:unlock && dep deploy
+
+{!! $configurator->php()->restart() !!}
+{!! $configurator->webserver()->restart() !!}

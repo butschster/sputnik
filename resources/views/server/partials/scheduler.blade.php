@@ -21,12 +21,12 @@
         </thead>
         @foreach($server->cronJobs as $job)
             <tr>
-                <th>{{ $job->name }} <br><small>{{ $job->id }}</small></th>
+                <th>{{ $job->name }} <br><small class="text-muted">{{ $job->id }}</small></th>
                 <th>{{ $job->cron }}</th>
                 <td>{{ $job->user }}</td>
                 <td>{{ $job->command }}</td>
                 <td>{{ $job->nextRunDate() }}</td>
-                <td>{{ $job->taskStatus() }}</td>
+                <td><span class="badge badge-dark">{{ $job->taskStatus() }}</span></td>
             </tr>
         @endforeach
     </table>

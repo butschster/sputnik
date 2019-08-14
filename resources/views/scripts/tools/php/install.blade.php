@@ -51,9 +51,7 @@ cat > /etc/php/{!! $version !!}/fpm/pool.d/www.conf << EOF
 
 EOF
 
-# Restart FPM
-
-service php{!! $version !!}-fpm restart > /dev/null 2>&1
+{!! $config->restart() !!}
 
 # Configure Sudoers Entries
 

@@ -13,6 +13,7 @@ EOF
 
 # Write The Nginx Server Block For The Site
 rm -f "/etc/nginx/sites-available/{{ $site->domain }}"
+rm -f "/etc/nginx/sites-available/www.{{ $site->domain }}"
 
 touch /etc/nginx/sites-available/{{ $site->domain }}
 cat > /etc/nginx/sites-available/{{ $site->domain }} << EOF
@@ -76,12 +77,16 @@ mkdir -p {{ $config->configPath($site, $folder) }}
 rm -f "/etc/nginx/sites-enabled/{{ $site->domain }}"
 ln -s /etc/nginx/sites-available/{{ $site->domain }} /etc/nginx/sites-enabled/{{ $site->domain }}
 
+rm -f "/etc/nginx/sites-enabled/www.{{ $site->domain }}"
+
+
 # Write The Base Redirector For The Site
 
 rm -f /etc/nginx/configs/{{ $site->domain }}/before/redirect.conf
 rm -f /etc/nginx/configs/{{ $site->domain }}/before/ssl_redirect.conf
 
 cat > /etc/nginx/configs/{{ $site->domain }}/before/redirect.conf << EOF
+
 server {
     listen 80;
     listen [::]:80;

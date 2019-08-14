@@ -54,6 +54,7 @@ mkdir /home/sputnik/.caddy
 # Write The Caddy Supervisor Configuration
 
 cat > /etc/supervisor/conf.d/caddy.conf << EOF
+
 [program:caddy]
 command=/usr/local/bin/caddy -conf="/home/sputnik/Caddyfile" -pidfile="/home/sputnik/caddy.pid" -log="/home/sputnik/caddy.log" -agree -email="letsencrypt@sputnik.com"
 user=sputnik
@@ -69,4 +70,5 @@ stopasgroup=false
 redirect_stderr=true
 stdout_logfile=/home/sputnik/caddy.stdout
 stderr_logfile=/home/sputnik/caddy.stderr
+
 EOF

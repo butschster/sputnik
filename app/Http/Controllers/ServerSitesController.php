@@ -62,6 +62,7 @@ class ServerSitesController extends Controller
             'script' => view('scripts.server.site.deploy', [
                 'server' => $site->server,
                 'site' => $site,
+                'configurator' => server_configurator($site->server)
             ])
         ]);
     }

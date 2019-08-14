@@ -7,9 +7,12 @@
 # ================================================
 
 apt-add-repository ppa:nginx/development -y
+apt-add-repository universe -y
+apt-add-repository ppa:certbot/certbot -y
+
 apt-get update
 
-apt-get install -y --force-yes nginx
+apt-get install -y --force-yes nginx certbot python-certbot-nginx
 
 {!! $configurator->php()->installModules('fpm') !!}
 systemctl enable nginx.service
@@ -36,7 +39,7 @@ EOF
 
 ln -s /etc/nginx/sites-available/catch-all /etc/nginx/sites-enabled/catch-all
 
-{!! $configurator->webserver()->restart() !!}
+{!! $config->restart() !!}
 
 {!! $configurator->php()->restart() !!}
 

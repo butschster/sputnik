@@ -3,4 +3,4 @@
 # Restart Memcached Beanstalk
 # ================================================
 
-service beanstalkd restart
+systemctl restart beanstalkd
