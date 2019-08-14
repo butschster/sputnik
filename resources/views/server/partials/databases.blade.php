@@ -6,10 +6,12 @@
     <table class="table mb-0">
         <col>
         <col width="100px">
+        <col width="100px">
         <col width="50px">
         <thead class="thead-dark">
         <tr>
             <th>Name</th>
+            <th>Password</th>
             <th>Status</th>
             <th></th>
         </tr>
@@ -17,6 +19,7 @@
         @foreach($server->databases as $database)
             <tr>
                 <th>{{ $database->name }}</th>
+                <td>{{ $server->database_password }}</td>
                 <td><span class="badge badge-dark">{{ $database->taskStatus() }}</span></td>
                 <td>
                     <form class="float-right" action="{{ route('server.database.delete', [$database->server_id, $database]) }}" method="POST">

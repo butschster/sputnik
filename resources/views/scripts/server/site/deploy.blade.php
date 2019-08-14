@@ -12,16 +12,13 @@ then
     mkdir -p {{ $site->path() }}
 fi
 
-if [ -d {{ $site->path().'/current' }} ]
+if [ -d {{ $site->path().'/current' }} ] && [ ! -L {{ $site->path().'/current' }} ]
 then
     rm -rf {{ $site->path().'/current' }}
 fi
 
 cat > {{ $site->path() }}/deploy.php << EOF
-
-@php
-    echo '<?php';
-@endphp
+@php echo '<?php'; @endphp
 
 namespace Deployer;
 
@@ -49,7 +46,7 @@ before('deploy:symlink', 'artisan:migrate');
 
 EOF
 
-if [! -d {{ $site->path().'/shared' }} ]
+if [ ! -d {{ $site->path().'/shared' }} ]
 then
     mkdir -p {{ $site->path().'/shared' }}
 fi
@@ -64,3 +61,4 @@ cd {{ $site->path() }} && dep deploy:unlock && dep deploy
 
 {!! $configurator->php()->restart() !!}
 {!! $configurator->webserver()->restart() !!}
+

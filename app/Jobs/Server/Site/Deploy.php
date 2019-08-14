@@ -42,6 +42,7 @@ class Deploy
         $data = [
             'branch' => $this->site->repositoryBranch(),
             'initiator_id' => $this->initiator ? $this->initiator->id : null,
+            'commit_hash' => ''
         ];
 
         $service->deploy(

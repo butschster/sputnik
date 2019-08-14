@@ -52,10 +52,12 @@ class Site extends Model
     public function sourceProvider(): BelongsTo
     {
         return $this->belongsTo(SourceProvider::class, 'repository_provider', 'type')
-            ->where('user_id', $this->server->user_id);
+            ->where('user_id', $this->server()->first()->user_id);
     }
 
     /**
+     * Get repository branch name
+     *
      * @return string
      */
     public function repositoryBranch(): string

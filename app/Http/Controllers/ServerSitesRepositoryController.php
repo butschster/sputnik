@@ -45,7 +45,7 @@ class ServerSitesRepositoryController extends Controller
      */
     public function registerWebhook(Factory $factory, $server, Server\Site $site)
     {
-        $factory->make($site->sourceProvider)->addWebhook(
+        $factory->make($site->sourceProvider)->addHook(
             $site->repository,
             $site->hooksHandlerUrl()
         );

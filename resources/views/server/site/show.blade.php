@@ -53,13 +53,13 @@
                 </form>
 
             </div>
-            <form action="{{ route('server.site.repository.update', [$site->server_id, $site]) }}" method="POST"
-                  class="card-body">
+            <form action="{{ route('server.site.repository.update', [$site->server_id, $site]) }}" method="POST">
                 @csrf
 
-                <div class="form-group">
-                    <label class="mr-4">Source provider <a class="ml-3 btn btn-sm btn-outline-primary" href="{{ route('user.profile') }}"><i class="fas fa-cog"></i> Configure</a></label>
+                <div class="form-group bg-light p-3 shadow">
+                    <label class="mr-4">Source provider</label>
 
+                    {{--
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio"
                                name="repository_provider"
@@ -72,6 +72,7 @@
                         >
                         <label class="custom-control-label" for="providerCustom">Custom</label>
                     </div>
+                    --}}
                     @foreach($site->server->user->sourceProviders as $provider)
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio"
@@ -90,6 +91,8 @@
                         </div>
                     @endforeach
 
+                    <a class="ml-3 btn btn-sm btn-outline-primary float-right" href="{{ route('user.profile') }}"><i class="fas fa-cog"></i> Configure</a>
+
                     @error('repository_provider')
                     <span class="text-danger" role="alert">
                         <strong>{{ $message }}</strong>
@@ -97,33 +100,37 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <label>Repository</label>
-                    <input type="text" class="form-control @error('repository') is-invalid @enderror" name="repository"
-                           value="{{ old('repository', $site->repository) }}" required autofocus>
+                <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-9">
+                        <label>Repository</label>
+                        <input type="text" class="form-control @error('repository') is-invalid @enderror" name="repository"
+                               value="{{ old('repository', $site->repository) }}" required autofocus>
 
-                    @error('repository')
-                    <span class="invalid-feedback" role="alert">
+                        @error('repository')
+                        <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
-                    @enderror
-                </div>
+                        @enderror
+                    </div>
 
-                <div class="form-group">
-                    <label>Branch</label>
-                    <input type="text" class="form-control @error('repository_branch') is-invalid @enderror"
-                           name="repository_branch" value="{{ old('repository_branch', $site->repository_branch) }}"
-                           required autofocus>
+                    <div class="form-group col-3">
+                        <label>Branch</label>
+                        <input type="text" class="form-control @error('repository_branch') is-invalid @enderror"
+                               name="repository_branch" value="{{ old('repository_branch', $site->repositoryBranch()) }}"
+                               required autofocus>
 
-                    @error('repository_branch')
-                    <span class="invalid-feedback" role="alert">
+                        @error('repository_branch')
+                        <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
-                    @enderror
+                        @enderror
+                    </div>
                 </div>
-
                 <div class="form-group mb-0">
                     <button class="btn btn-primary">Update</button>
+                </div>
+
                 </div>
             </form>
             <div class="card-header border-top">

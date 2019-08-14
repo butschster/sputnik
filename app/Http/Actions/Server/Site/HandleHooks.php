@@ -30,8 +30,8 @@ class HandleHooks extends Action
     {
         $site = Server\Site::findOrFail($request->site_id);
 
-        dispatch(
-            new Deploy($site, $request->user())
-        );
+//        dispatch(
+//            new Deploy($site)
+//        );
     }
 }
