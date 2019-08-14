@@ -5,6 +5,7 @@ namespace Tests\Unit\Models\Server;
 use App\Events\Server\Site\Created;
 use App\Events\Server\Site\Deleted;
 use App\Models\Server;
+use App\Models\User\SourceProvider;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
@@ -23,7 +24,7 @@ class SiteTest extends TestCase
     function test_get_domain_url()
     {
         $site = $this->createServerSite([
-            'domain' => 'site.com'
+            'domain' => 'site.com',
         ]);
 
         $this->assertEquals('http://site.com', $site->url());
@@ -32,7 +33,7 @@ class SiteTest extends TestCase
     function test_get_domain_secure_url()
     {
         $site = $this->createServerSite([
-            'domain' => 'site.com'
+            'domain' => 'site.com',
         ]);
 
         $this->assertEquals('https://site.com', $site->secureUrl());
@@ -80,7 +81,7 @@ class SiteTest extends TestCase
         $site = $this->createServerSite([
             'id' => 'uuid',
             'domain' => 'site.com',
-            'public_dir' => '/public'
+            'public_dir' => '/public',
         ]);
 
         $site->token = 'abc';
@@ -137,5 +138,47 @@ class SiteTest extends TestCase
         Event::assertDispatched(Deleted::class, function ($event) use ($site) {
             return $site->is($event->site);
         });
+    }
+
+    function test_get_source_provider()
+    {
+        $provider = $this->createSourceProvider();
+
+        $server = $this->createServer([
+            'user_id' => $provider->user_id,
+        ]);
+
+        $site = $this->createServerSite([
+            'server_id' => $server->id,
+            'repository_provider' => $provider->type
+        ]);
+
+        $server = $this->createServer();
+        $site1 = $this->createServerSite([
+            'server_id' => $server->id,
+        ]);
+
+        $this->assertInstanceOf(SourceProvider::class, $site->sourceProvider);
+        $this->assertEquals($site->sourceProvider->access_token, $provider->access_token);
+        $this->assertNull($site1->sourceProvider);
+    }
+
+    function test_get_clone_url()
+    {
+        $provider = $this->createSourceProvider([
+            'type' => 'github'
+        ]);
+
+        $server = $this->createServer([
+            'user_id' => $provider->user_id,
+        ]);
+
+        $site = $this->createServerSite([
+            'server_id' => $server->id,
+            'repository_provider' => $provider->type,
+            'repository' => 'test/repo'
+        ]);
+
+        $this->assertEquals('git@github.com:test/repo.git', $site->cloneUrl());
     }
 }

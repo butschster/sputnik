@@ -23,6 +23,7 @@ use App\Utils\SSH\ValueObjects\KeyPair;
 use App\Utils\SSH\ValueObjects\PrivateKey;
 use App\Utils\SSH\ValueObjects\SystemInformation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Server extends Model implements ServerConfiguration
@@ -96,6 +97,16 @@ class Server extends Model implements ServerConfiguration
     public function hasKeyPair(): bool
     {
         return !empty($this->public_key) && !empty($this->private_key);
+    }
+
+    /**
+     * Get owner
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

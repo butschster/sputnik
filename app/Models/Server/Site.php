@@ -6,7 +6,10 @@ use App\Models\Concerns\HasServer;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server\Site\Deployment;
+use App\Models\User\SourceProvider;
+use App\Services\SourceProviders\Factory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Site extends Model
@@ -42,11 +45,35 @@ class Site extends Model
     }
 
     /**
+     * Get site repository source provider
+     *
+     * @return BelongsTo
+     */
+    public function sourceProvider(): BelongsTo
+    {
+        return $this->belongsTo(SourceProvider::class, 'repository_provider', 'type')
+            ->where('user_id', $this->server->user_id);
+    }
+
+    /**
      * @return string
      */
     public function repositoryBranch(): string
     {
         return $this->repository_branch ?? 'master';
+    }
+
+    /**
+     * Get clone url
+     *
+     * @return string
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function cloneUrl(): string
+    {
+        return app(Factory::class)
+            ->make($this->sourceProvider)
+            ->cloneUrl($this->repository);
     }
 
     /**
@@ -60,8 +87,8 @@ class Site extends Model
         $urlSigner = app(\App\Contracts\Request\RequestSignatureHandler::class);
 
         return route('callback', $urlSigner->signParameters([
-            'action' => 'hook'
-        ]) + ['token' => $this->token, 'site_id' => $this->id,]);
+                'action' => 'hook',
+            ]) + ['token' => $this->token, 'site_id' => $this->id,]);
     }
 
     /**
@@ -69,7 +96,7 @@ class Site extends Model
      */
     public function url(): string
     {
-        return 'http://'.$this->domain;
+        return 'http://' . $this->domain;
     }
 
     /**
@@ -77,7 +104,7 @@ class Site extends Model
      */
     public function secureUrl(): string
     {
-        return 'https://'.$this->domain;
+        return 'https://' . $this->domain;
     }
 
     /**

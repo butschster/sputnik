@@ -128,11 +128,11 @@ class WebServerConfiguratorTest extends TestCase
                 [
                     'delete_site' => 'rm "/etc/nginx/sites-enabled/localhost"',
                     'create_site' => 'cat > /etc/nginx/sites-available/localhost << EOF',
-                    'restart' => 'service nginx reload',
+                    'restart' => 'systemctl reload nginx.service',
                     'uninstall' => 'apt-get purge --auto-remove -y --force-yes nginx*',
                     'install' => [
                         'apt-get install -y --force-yes nginx',
-                        'service php1.1-fpm restart > /dev/null 2>&1'
+                        'systemctl restart php1.1-fpm > /dev/null 2>&1'
                     ]
                 ]
             ],

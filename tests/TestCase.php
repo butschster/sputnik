@@ -18,6 +18,7 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Symfony\Component\Process\Process;
 use Tests\Concerns\CronJobFactory;
@@ -30,6 +31,7 @@ use Tests\Concerns\ServerSiteDeploymentFactory;
 use Tests\Concerns\ServerSiteFactory;
 use Tests\Concerns\TaskFactory;
 use Tests\Concerns\UserFactory;
+use Tests\Concerns\UserSourceProviderFactory;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -43,7 +45,8 @@ abstract class TestCase extends BaseTestCase
         CronJobFactory,
         ServerSiteFactory,
         ServerDatabaseFactory,
-        ServerSiteDeploymentFactory;
+        ServerSiteDeploymentFactory,
+        UserSourceProviderFactory;
 
     protected function setUp(): void
     {
@@ -202,6 +205,21 @@ abstract class TestCase extends BaseTestCase
                 );
             });
         });
+    }
+
+    protected function mockSocialite(string $driver): void
+    {
+        $user = $this->mock('Laravel\Socialite\Two\User', function ($user) {
+            $user->shouldReceive('getId')
+                ->andReturn('user-id')
+                ->set('token', 'token-hash');
+        });
+
+        $provider = $this->mock('Laravel\Socialite\Contracts\Provider', function ($provider) use ($user) {
+            $provider->shouldReceive('user')->andReturn($user);
+        });
+
+        Socialite::shouldReceive('driver')->with($driver)->andReturn($provider);
     }
 }
 

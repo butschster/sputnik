@@ -26,6 +26,10 @@
                     <td><a target="_blank" href="{{ $site->url() }}">{{ $site->domain }}</a></td>
                 </tr>
                 <tr>
+                    <th>Path</th>
+                    <td>{{ $site->path() }}</td>
+                </tr>
+                <tr>
                     <th>Public path</th>
                     <td>{{ $site->publicPath() }}</td>
                 </tr>
@@ -49,9 +53,49 @@
                 </form>
 
             </div>
-            <form action="{{ route('server.site.update_repository', [$site->server_id, $site]) }}" method="POST"
+            <form action="{{ route('server.site.repository.update', [$site->server_id, $site]) }}" method="POST"
                   class="card-body">
                 @csrf
+
+                <div class="form-group">
+                    <label class="mr-4">Source provider <a class="ml-3 btn btn-sm btn-outline-primary" href="{{ route('user.profile') }}"><i class="fas fa-cog"></i> Configure</a></label>
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio"
+                               name="repository_provider"
+                               id="providerCustom"
+                               value=""
+                               class="custom-control-input"
+                               @if(!$site->repository_provider)
+                                   checked
+                                @endif
+                        >
+                        <label class="custom-control-label" for="providerCustom">Custom</label>
+                    </div>
+                    @foreach($site->server->user->sourceProviders as $provider)
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio"
+                                   name="repository_provider"
+                                   id="provider{{ $provider->type }}"
+                                   value="{{ $provider->type }}"
+                                   class="custom-control-input"
+                                   @if($provider->type == $site->repository_provider)
+                                       checked
+                                   @endif
+                            >
+                            <label class="custom-control-label" for="provider{{ $provider->type }}">
+                                <i class="fab fa-{{ $provider->type }}"></i>
+                                {{ $provider->name }}
+                            </label>
+                        </div>
+                    @endforeach
+
+                    @error('repository_provider')
+                    <span class="text-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
 
                 <div class="form-group">
                     <label>Repository</label>
@@ -82,10 +126,35 @@
                     <button class="btn btn-primary">Update</button>
                 </div>
             </form>
-            <div class="alert alert-info rounded-0 mb-0">
+            <div class="card-header border-top">
                 Use this public key for access deployment
+
+                @if($site->sourceProvider)
+                <form class="float-right" action="{{ route('server.site.repository.add_key', [$site->server_id, $site]) }}" method="POST">
+                    @csrf
+                    <button class="btn btn-sm btn-primary">Register</button>
+                </form>
+                @endif
             </div>
             <pre class="card-body bg-dark text-white mb-0" style="white-space: normal;">{{ $site->server->public_key }}</pre>
+            <div class="card-header">
+                Deployment Trigger URL
+
+                @if($site->sourceProvider)
+                    <form class="float-right" action="{{ route('server.site.repository.add_webhook', [$site->server_id, $site]) }}" method="POST">
+                        @csrf
+                        <button class="btn btn-sm btn-primary">Register</button>
+                    </form>
+                @endif
+            </div>
+            <div class="alert bg-white rounded-0 mb-0">
+                Using a custom Git service, or want a service like Travis CI to run your tests before your
+                application is deployed to Forge? It's simple. When you commit fresh code, or when your continuous
+                integration service finishes testing your application, instruct the service to make a GET or POST
+                request to the following URL. Making a request to this URL will trigger your Forge deployment
+                script:
+            </div>
+            <pre class="card-body bg-dark text-white mb-0" style="white-space: normal;">{{ $site->hooksHandlerUrl() }}</pre>
         </div>
 
         <div class="card mt-4">
@@ -168,18 +237,37 @@
             </form>
         </div>
 
-        <div class="card mt-4">
+        <div class="card mt-3">
             <div class="card-header">
-                Deployment Trigger URL
+                <i class="fas fa-database mr-3"></i> Deployments
             </div>
-            <div class="alert bg-white rounded-0 mb-0">
-                Using a custom Git service, or want a service like Travis CI to run your tests before your
-                    application is deployed to Forge? It's simple. When you commit fresh code, or when your continuous
-                    integration service finishes testing your application, instruct the service to make a GET or POST
-                    request to the following URL. Making a request to this URL will trigger your Forge deployment
-                    script:
-            </div>
-            <pre class="card-body bg-dark text-white mb-0" style="white-space: normal;">{{ $site->hooksHandlerUrl() }}</pre>
+
+            <table class="table mb-0">
+                <col>
+                <col width="100px">
+                <col width="100px">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                @foreach($site->deployments as $deployment)
+                    <tr>
+                        <th>
+                            @if($deployment->task)
+                            <a href="{{ route('task.show', $deployment->task) }}">{{ $deployment->branch }}</a>
+                            @else
+                            {{ $deployment->branch }}
+                            @endif
+                        </th>
+                        <td><span class="badge badge-dark">{{ $deployment->taskStatus() }}</span></td>
+                        <td class="text-right"><small class="badge">{{ $deployment->created_at }}</small></td>
+                    </tr>
+                @endforeach
+            </table>
         </div>
+
     </div>
 @endsection

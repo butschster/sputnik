@@ -58,6 +58,11 @@
                         </div>
                     </form>
                 </div>
+
+                <div class="card-body">
+                    <a class="btn btn-outline-dark" href="{{ route('login.github') }}">Github</a>
+                    <a class="btn btn-outline-dark" href="{{ route('login.bitbucket') }}">Bitbucket</a>
+                </div>
             </div>
         </div>
     </div>

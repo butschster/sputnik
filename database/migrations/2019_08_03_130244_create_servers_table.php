@@ -17,7 +17,7 @@ class CreateServersTable extends Migration
         Schema::create('servers', function (Blueprint $table) {
             $table->primaryUuid('id');
 
-            $table->uuid('user_id')->index();
+            $table->belongsToUser();
 
             $table->string('name');
             $table->ipAddress('ip')->unique();
@@ -38,11 +38,6 @@ class CreateServersTable extends Migration
 
             $table->timestamp('configuring_job_dispatched_at')->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
         });
     }
 

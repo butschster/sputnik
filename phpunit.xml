@@ -33,5 +33,12 @@
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
+
+        <server name="GITHUB_CLIENT_ID" value="GITHUB_CLIENT_ID"/>
+        <server name="GITHUB_CLIENT_SECRET" value="GITHUB_CLIENT_SECRET"/>
+        <server name="GITHUB_CALLBACK_URL" value="GITHUB_CALLBACK_URL"/>
+        <server name="BITBUCKET_CLIENT_ID" value="BITBUCKET_CLIENT_ID"/>
+        <server name="BITBUCKET_CLIENT_SECRET" value="BITBUCKET_CLIENT_SECRET"/>
+        <server name="BITBUCKET_CALLBACK_URL" value="BITBUCKET_CALLBACK_URL"/>
     </php>
 </phpunit>

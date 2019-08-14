@@ -10,6 +10,18 @@
  */
 
 
+namespace App\Models\User{
+/**
+ * App\Models\User\SourceProvider
+ *
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\SourceProvider newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\SourceProvider newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\SourceProvider query()
+ */
+	class SourceProvider extends \Eloquent {}
+}
+
 namespace App\Models{
 /**
  * App\Models\Server
@@ -148,7 +160,6 @@ namespace App\Models\Server{
  * @property string $id
  * @property string $server_id
  * @property string $name
- * @property string $password
  * @property string $character_set
  * @property string $collation
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -163,7 +174,6 @@ namespace App\Models\Server{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereServerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereUpdatedAt($value)
  */
@@ -345,6 +355,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server[] $servers
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\SourceProvider[] $sourceProviders
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()

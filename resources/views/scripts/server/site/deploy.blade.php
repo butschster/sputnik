@@ -28,7 +28,7 @@ namespace Deployer;
 require 'recipe/laravel.php';
 
 set('application', '{{ $server->name  }}');
-set('repository', '{{ $site->repository }}');
+set('repository', '{{ $site->cloneUrl() }}');
 set('git_tty', false);
 set('keep_releases', 5);
 add('shared_files', []);
@@ -39,7 +39,7 @@ set('allow_anonymous_stats', false);
 host('{{ $server->ip  }}')
     ->port({{ $server->ssh_port  }})
     ->user('root')
-    ->set('branch', '{{ $site->repository_branch }}')
+    ->set('branch', '{{ $site->repositoryBranch() }}')
     ->identityFile('/root/.ssh/id_rsa')
     ->set('deploy_path', '{{ $site->path() }}')
     ->addSshOption('StrictHostKeyChecking', 'no');

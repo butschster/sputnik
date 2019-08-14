@@ -29,11 +29,19 @@ class SchemaServiceProvider extends ServiceProvider
         });
 
         Blueprint::macro('belongsToServer', function () {
-            $this->uuid('server_id');
+            $this->uuid('server_id')->index();
 
             $this->foreign('server_id')
                 ->references('id')
                 ->on('servers')
+                ->onDelete('cascade');
+        });
+
+        Blueprint::macro('belongsToUser', function () {
+            $this->uuid('user_id')->index();
+            $this->foreign('user_id')
+                ->references('id')
+                ->on('users')
                 ->onDelete('cascade');
         });
     }

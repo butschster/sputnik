@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Server\Site\StoreRequest;
 use App\Http\Requests\Server\Site\UpdateRepositoryRequest;
+use App\Jobs\Server\Site\Deploy;
 use App\Models\Server;
 use App\Services\Server\Site\DeploymentService;
 use Illuminate\Http\Request;
@@ -40,13 +41,7 @@ class ServerSitesController extends Controller
      */
     public function deploy(DeploymentService $service, Request $request, $server, Server\Site $site)
     {
-        $service->deploy(
-            $site->deployments()->create([
-                'initiator_id' => $request->user()->id,
-                'branch' => $site->repositoryBranch(),
-                'commit_hash' => 'abc'
-            ])
-        );
+        dispatch(new Deploy($site, $request->user()));
 
         return back();
     }
@@ -65,19 +60,6 @@ class ServerSitesController extends Controller
                 'configurator' => server_configurator($site->server)
             ])
         ]);
-    }
-
-    /**
-     * @param UpdateRepositoryRequest $request
-     * @param $server
-     * @param Server\Site $site
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function updateRepository(UpdateRepositoryRequest $request, $server, Server\Site $site)
-    {
-        $request->persist();
-
-        return back();
     }
 
     /**

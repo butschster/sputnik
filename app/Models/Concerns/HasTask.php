@@ -11,6 +11,10 @@ trait HasTask
      */
     public function isSuccessful(): bool
     {
+        if (!$this->task) {
+            return false;
+        }
+
         return $this->task->isSuccessful();
     }
 
@@ -19,6 +23,10 @@ trait HasTask
      */
     public function taskStatus(): string
     {
+        if (!$this->task) {
+            return '';
+        }
+
         return $this->task->status;
     }
 

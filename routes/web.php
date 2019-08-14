@@ -5,7 +5,15 @@ Route::any('/callback', 'CallbackController')->name('callback');
 
 Auth::routes();
 
+Route::get('login/github', 'Auth\GithubLoginController@redirectToProvider')->name('login.github');
+Route::get('login/github/callback', 'Auth\GithubLoginController@handleProviderCallback')->name('login.github.callback');
+
+Route::get('login/bitbucket', 'Auth\BitbucketLoginController@redirectToProvider')->name('login.bitbucket');
+Route::get('login/bitbucket/callback', 'Auth\BitbucketLoginController@handleProviderCallback')->name('login.bitbucket.callback');
+
 Route::middleware('auth')->group(function () {
+    Route::get('profile', 'UserController@profile')->name('user.profile');
+
     Route::get('/server/{server}', 'ServerController@show')->name('server.show');
     Route::get('/server/{server}/config', 'ServerController@config')->name('server.config');
     Route::post('/server', 'ServerController@store')->name('server.store');
@@ -20,11 +28,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/server/{server}/site/{site}', 'ServerSitesController@show')->name('server.site.show');
     Route::post('/server/{server}/site', 'ServerSitesController@store')->name('server.site.store');
-    Route::post('/server/{server}/site/{site}/repository', 'ServerSitesController@updateRepository')->name('server.site.update_repository');
     Route::delete('/server/site/{site}', 'ServerSitesController@delete')->name('server.site.delete');
     Route::post('/server/{server}/site/{site}/deploy', 'ServerSitesController@deploy')->name('server.site.deploy');
     Route::get('/server/{server}/site/{site}/deploy/config', 'ServerSitesController@deployConfig')->name('server.site.deploy.config');
 
+    Route::post('/server/{server}/site/{site}/repository', 'ServerSitesRepositoryController@update')->name('server.site.repository.update');
+    Route::post('/server/{server}/site/{site}/repository/add-key', 'ServerSitesRepositoryController@registerKey')->name('server.site.repository.add_key');
+    Route::post('/server/{server}/site/{site}/repository/add-webhook', 'ServerSitesRepositoryController@registerWebhook')->name('server.site.repository.add_webhook');
 
     Route::post('/server/{server}/site/{site}/environment', 'ServerSiteEnvironmentController@update')->name('server.site.environment.update');
     Route::delete('/server/{server}/site/{site}/environment', 'ServerSiteEnvironmentController@delete')->name('server.site.environment.delete');

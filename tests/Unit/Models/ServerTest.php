@@ -6,6 +6,7 @@ use App\Events\Server\Configured;
 use App\Events\Server\Configuring;
 use App\Events\Server\Failed;
 use App\Models\Server;
+use App\Models\User;
 use App\Utils\SSH\Contracts\KeyStorage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Event;
@@ -232,12 +233,18 @@ class ServerTest extends TestCase
             'os_information' => [
                 'os' => 'Name',
                 'version' => '0.1',
-                'architecture' => '64'
-            ]
+                'architecture' => '64',
+            ],
         ]);
 
         $this->assertEquals('Name', $server->systemInformation()->getOs());
         $this->assertEquals('0.1', $server->systemInformation()->getVersion());
         $this->assertEquals('64', $server->systemInformation()->getArchitecture());
+    }
+
+    function test_get_user()
+    {
+        $server = $this->createServer();
+        $this->assertInstanceOf(User::class, $server->user);
     }
 }

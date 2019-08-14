@@ -7,7 +7,6 @@ use App\Utils\SSH\Script;
 
 class Deployment extends Script
 {
-    protected $name = 'Site deployment';
     /**
      * @var DeploymentModel
      */
@@ -22,15 +21,28 @@ class Deployment extends Script
     }
 
     /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return "Site {$this->deployment->site->domain} deployment";
+    }
+
+    /**
      * Get the contents of the script.
      *
      * @return string
      */
     public function getScript(): string
     {
+        $server = $this->deployment->site->server;
+
+        $configurator = server_configurator($server);
+
         return view('scripts.server.site.deploy', [
-            'server' => $this->deployment->site->server,
+            'server' => $server,
             'site' => $this->deployment->site,
+            'configurator' => $configurator
         ]);
     }
 }

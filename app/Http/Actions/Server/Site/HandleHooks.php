@@ -2,7 +2,11 @@
 
 namespace App\Http\Actions\Server\Site;
 
+use App\Contracts\Http\WebHooks\WebHookManager;
+use App\Jobs\Server\Site\Deploy;
 use App\Models\Server;
+use App\Services\SourceProviders\Factory;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\Action;
 
@@ -18,10 +22,16 @@ class HandleHooks extends Action
         ];
     }
 
-    public function handle(): void
+    /**
+     * @param Request $request
+     * @param Factory $factory
+     */
+    public function handle(Request $request, Factory $factory): void
     {
-        $site = Server\Site::findOrFail($this->site_id);
+        $site = Server\Site::findOrFail($request->site_id);
 
-
+        dispatch(
+            new Deploy($site, $request->user())
+        );
     }
 }

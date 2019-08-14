@@ -53,4 +53,15 @@ class PublicKey
 
         return implode(':', str_split(md5(base64_decode($content[1])), 2));
     }
+
+    /**
+     * Compare public keys
+     *
+     * @param PublicKey $publicKey
+     * @return bool
+     */
+    public function is(PublicKey $publicKey): bool
+    {
+        return $this->getFingerprint() === $publicKey->getFingerprint();
+    }
 }

@@ -110,7 +110,7 @@ class PHPConfiguratorTest extends TestCase
                 '71',
                 [
                     'modules' => 'apt-get install -y --force-yes php7.1-test-module php7.1-bcmath',
-                    'restart' => 'service php7.1-fpm restart > /dev/null 2>&1',
+                    'restart' => 'systemctl restart php7.1-fpm > /dev/null 2>&1',
                     'uninstall' => 'apt-get purge -y --force-yes --auto-remove php7.1-common',
                     'install' => [
                         '# PHP 7.1',
@@ -122,7 +122,7 @@ class PHPConfiguratorTest extends TestCase
                 '72',
                 [
                     'modules' => 'apt-get install -y --force-yes php7.2-test-module',
-                    'restart' => 'service php7.2-fpm restart > /dev/null 2>&1',
+                    'restart' => 'systemctl restart php7.2-fpm > /dev/null 2>&1',
                     'uninstall' => 'apt-get purge -y --force-yes --auto-remove php7.2-common',
                     'install' => [
                         '# PHP 7.2',
@@ -134,7 +134,7 @@ class PHPConfiguratorTest extends TestCase
                 '74',
                 [
                     'modules' => 'apt-get install -y --force-yes php7.4-test-module',
-                    'restart' => 'service php7.4-fpm restart > /dev/null 2>&1',
+                    'restart' => 'systemctl restart php7.4-fpm > /dev/null 2>&1',
                     'uninstall' => 'apt-get purge -y --force-yes --auto-remove php7.4-common',
                     'install' => [
                         '# PHP 7.4',

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User\SourceProvider;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Passport\HasApiTokens;
 use App\Models\Concerns\UsesUuid;
@@ -48,5 +49,15 @@ class User extends Authenticatable
     public function servers(): HasMany
     {
         return $this->hasMany(Server::class);
+    }
+
+    /**
+     * Get connected source providers
+     *
+     * @return HasMany
+     */
+    public function sourceProviders(): HasMany
+    {
+        return $this->hasMany(SourceProvider::class);
     }
 }
