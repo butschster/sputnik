@@ -85,6 +85,7 @@
                 @include('server.partials.scheduler')
                 @include('server.partials.keys')
                 @include('server.partials.databases')
+                @include('server.partials.supervisor')
                 @endif
 
                 <div class="card mt-3">

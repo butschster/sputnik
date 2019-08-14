@@ -21,6 +21,13 @@ class RemovePublicKey extends Script
     protected $key;
 
     /**
+     * The user that the script should be run as.
+     *
+     * @var string
+     */
+    protected $sshAs = self::USER_SPUTNIK;
+
+    /**
      * Create a new script instance.
      * Remove public ket from remove server
      *

@@ -269,7 +269,7 @@
                             {{ $deployment->branch }}
                             @endif
                         </th>
-                        <td><span class="badge badge-dark">{{ $deployment->taskStatus() }}</span></td>
+                        <td><span class="badge badge-dark">{{ $deployment->status }}</span></td>
                         <td class="text-right"><small class="badge">{{ $deployment->created_at }}</small></td>
                     </tr>
                 @endforeach

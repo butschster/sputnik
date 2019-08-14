@@ -21,6 +21,13 @@ class AddPublicKey extends Script
     protected $key;
 
     /**
+     * The user that the script should be run as.
+     *
+     * @var string
+     */
+    protected $sshAs = self::USER_SPUTNIK;
+
+    /**
      * Create a new script instance.
      * Upload public key to remove server
      *

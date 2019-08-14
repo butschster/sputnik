@@ -42,4 +42,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/server/{server}/database', 'ServerDatabaseController@store')->name('server.database.store');
     Route::delete('/server/{server}/database/{database}', 'ServerDatabaseController@delete')->name('server.database.delete');
+
+
+    Route::post('/server/{server}/supervisor', 'ServerSupervisorController@store')->name('server.supervisor.store');
+    Route::delete('/server/{server}/supervisor/{daemon}', 'ServerSupervisorController@delete')->name('server.supervisor.delete');
 });

@@ -13,6 +13,13 @@ class Deployment extends Script
     protected $deployment;
 
     /**
+     * The user that the script should be run as.
+     *
+     * @var string
+     */
+    //protected $sshAs = self::USER_SPUTNIK;
+
+    /**
      * @param DeploymentModel $deployment
      */
     public function __construct(DeploymentModel $deployment)

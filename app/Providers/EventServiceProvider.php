@@ -2,12 +2,15 @@
 
 namespace App\Providers;
 
+use App\Events\Task;
 use App\Events\Server;
 use App\Events\Server\KeysInstalled;
 use App\Listeners\Server\AddPublicKeyToServer;
 use App\Listeners\Server\CreateHttpFirewallRules;
 use App\Listeners\Server\RemovePublicKeyFromServer;
+use App\Listeners\Server\RestartSupervisor;
 use App\Listeners\Server\ScheduleSystemJobs;
+use App\Listeners\Server\Site\UpdateDeploymentStatus;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -35,6 +38,15 @@ class EventServiceProvider extends ServiceProvider
             CreateHttpFirewallRules::class,
             ScheduleSystemJobs::class
         ],
+        Server\Site\Deployment\Finished::class => [
+            RestartSupervisor::class
+        ],
+        Task\Running::class => [
+            UpdateDeploymentStatus::class
+        ],
+        Task\Finished::class => [
+            UpdateDeploymentStatus::class
+        ]
     ];
 
     /**
@@ -52,6 +64,11 @@ class EventServiceProvider extends ServiceProvider
 
         \App\Models\Server\PublicKey::observe([
             \App\Observers\Server\PublicKey\FireEventsObserver::class,
+        ]);
+
+        \App\Models\Server\Daemon::observe([
+            \App\Observers\Server\Supervisor\FireEventsObserver::class,
+            \App\Observers\Server\Supervisor\SyncDaemonObserver::class,
         ]);
 
         \App\Models\Server\Site::observe([
