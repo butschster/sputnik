@@ -34,14 +34,12 @@ class KeyGenerator implements KeyGeneratorContract
     /**
      * Generate key-pair for the server
      *
-     * @param Server $server
+     * @param string $name
      * @return KeyPair
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function generateForServer(Server $server): KeyPair
+    public function generate(string $name): KeyPair
     {
-        $name = $server->id;
-
         // Generate password for key
         $password = Str::random(20);
 

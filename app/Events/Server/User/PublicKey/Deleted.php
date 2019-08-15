@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Events\Server\PublicKey;
+namespace App\Events\Server\User\PublicKey;
 
-use App\Models\Server\PublicKey;
+use App\Models\Server\User\PublicKey;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 
-class DetachedFromServer
+class Deleted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -17,7 +17,7 @@ class DetachedFromServer
     public $key;
 
     /**
-     * This event fires when key detached from the server
+     * Created constructor.
      *
      * @param PublicKey $key
      */
@@ -26,3 +26,4 @@ class DetachedFromServer
         $this->key = $key;
     }
 }
+

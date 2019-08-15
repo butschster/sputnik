@@ -25,7 +25,10 @@ class RegisterNewKey extends Action
     {
         $server = Server::findOrFail($this->server_id);
 
-        $server->addPublicKey(
+        /** @var Server\User $user */
+        $user = $server->users()->where('name', 'root')->firstOrFail();
+
+        $user->addPublicKey(
             Str::random(20), $this->key
         );
     }

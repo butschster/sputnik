@@ -56,5 +56,5 @@ EOF
 # Configure Sudoers Entries
 
 @foreach($users as $user)
-    echo "{{ $user }} ALL=NOPASSWD: /usr/sbin/service php{!! $version !!}-fpm reload" > /etc/sudoers.d/php-fpm
+echo "{{ $user->name }} ALL=NOPASSWD: /usr/sbin/service php{!! $version !!}-fpm reload" > /etc/sudoers.d/php-fpm
 @endforeach

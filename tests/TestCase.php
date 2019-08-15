@@ -26,7 +26,6 @@ use Tests\Concerns\ServerDatabaseFactory;
 use Tests\Concerns\ServerEventFactory;
 use Tests\Concerns\ServerFactory;
 use Tests\Concerns\ServerFirewallFactory;
-use Tests\Concerns\ServerKeyFactory;
 use Tests\Concerns\ServerSiteDeploymentFactory;
 use Tests\Concerns\ServerSiteFactory;
 use Tests\Concerns\TaskFactory;
@@ -39,7 +38,6 @@ abstract class TestCase extends BaseTestCase
         ServerFactory,
         TaskFactory,
         UserFactory,
-        ServerKeyFactory,
         ServerEventFactory,
         ServerFirewallFactory,
         CronJobFactory,
@@ -61,7 +59,7 @@ abstract class TestCase extends BaseTestCase
         });
 
         $this->mock(KeyGenerator::class, function($mock) {
-            $mock->shouldReceive('generateForServer')->andReturnUsing(function() {
+            $mock->shouldReceive('generate')->andReturnUsing(function() {
 
                 return new KeyPair(
                     $this->getPublicKey(),

@@ -17,7 +17,7 @@ class KeyGeneratorTest extends TestCase
         /** @var KeyGenerator $generator */
         $generator = $this->app[KeyGenerator::class];
 
-        $keypair = $generator->generateForServer($server);
+        $keypair = $generator->generate($server);
 
         $this->assertNotNull($keypair->getPublicKey());
         $this->assertNotNull($keypair->getPrivateKey());

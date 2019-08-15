@@ -8,7 +8,5 @@ service supervisor start
 chmod 777 /etc/supervisor/conf.d
 
 @foreach($users as $user)
-echo "{{ $user }} ALL=NOPASSWD: /usr/bin/supervisorctl *" > /etc/sudoers.d/supervisorctl
+echo "{{ $user->name }} ALL=NOPASSWD: /usr/bin/supervisorctl *" > /etc/sudoers.d/supervisorctl
 @endforeach
-
-

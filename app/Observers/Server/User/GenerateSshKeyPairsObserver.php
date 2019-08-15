@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Observers\Server;
+namespace App\Observers\Server\User;
 
-use App\Models\Server;
+use App\Models\Server\User;
 use App\Utils\SSH\Contracts\KeyGenerator;
 use App\Utils\SSH\Contracts\KeyStorage;
 
@@ -29,23 +29,24 @@ class GenerateSshKeyPairsObserver
     }
 
     /**
-     * @param Server $server
+     * @param User $user
+     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function creating(Server $server): void
+    public function creating(User $user): void
     {
-        if (!$server->hasKeyPair()) {
-            $server->keypair = $this->generator->generate($server->id);
+        if (!$user->hasKeyPair()) {
+            $user->keypair = $this->generator->generate($user->id);
         }
     }
 
     /**
-     * @param Server $server
+     * @param User $user
      */
-    public function created(Server $server): void
+    public function created(User $user): void
     {
         $this->keyStorage->store(
-            $server->privateKey()
+            $user->privateKey()
         );
     }
 }

@@ -151,39 +151,6 @@ class ServerTest extends TestCase
         $this->assertFalse($server->tasks->contains($task2));
     }
 
-    function test_it_has_ssh_keys()
-    {
-        $server = $this->createServer();
-
-        $key = $this->createSSHKeyForServer($server);
-        $key1 = $this->createSSHKeyForServer($server);
-        $key2 = $this->createSSHKey();
-
-        $this->assertTrue($server->keys->contains($key));
-        $this->assertTrue($server->keys->contains($key1));
-        $this->assertFalse($server->keys->contains($key2));
-    }
-
-    function test_a_public_key_can_be_created()
-    {
-        $server = $this->createServer();
-
-        $server->addPublicKey('test', 'test');
-
-        $this->assertCount(1, $server->keys);
-    }
-
-    function test_a_public_key_can_be_removed()
-    {
-        $server = $this->createServer();
-
-        $key = $server->addPublicKey('test', 'test');
-
-        $server->removePublicKey($key);
-
-        $this->assertCount(0, $server->keys);
-    }
-
     function test_get_events()
     {
         $server = $this->createServer();

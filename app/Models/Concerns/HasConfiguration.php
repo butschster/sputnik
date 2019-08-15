@@ -84,7 +84,7 @@ trait HasConfiguration
      */
     public function systemUsers(): array
     {
-        return config('configurations.system_users');
+        return $this->users()->where('is_system', true)->get()->all();
     }
 
     /**

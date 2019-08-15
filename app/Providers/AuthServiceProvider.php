@@ -17,7 +17,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Server::class => ServerPolicy::class,
-        Server\PublicKey::class => ServerPublicKeyPolicy::class,
         Server\CronJob::class => ServerCronJobPolicy::class,
     ];
 

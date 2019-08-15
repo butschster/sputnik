@@ -7,6 +7,7 @@ use App\Events\Server;
 use App\Events\Server\KeysInstalled;
 use App\Listeners\Server\AddPublicKeyToServer;
 use App\Listeners\Server\CreateHttpFirewallRules;
+use App\Listeners\Server\RegisterSystemUsers;
 use App\Listeners\Server\RemovePublicKeyFromServer;
 use App\Listeners\Server\RestartSupervisor;
 use App\Listeners\Server\ScheduleSystemJobs;
@@ -28,15 +29,12 @@ class EventServiceProvider extends ServiceProvider
         KeysInstalled::class => [
 
         ],
-        Server\PublicKey\AttachedToServer::class => [
-            AddPublicKeyToServer::class,
-        ],
-        Server\PublicKey\DetachedFromServer::class => [
-            RemovePublicKeyFromServer::class,
-        ],
         Server\Configured::class => [
             CreateHttpFirewallRules::class,
             ScheduleSystemJobs::class
+        ],
+        Server\Created::class => [
+            RegisterSystemUsers::class
         ],
         Server\Site\Deployment\Finished::class => [
             RestartSupervisor::class
@@ -62,8 +60,14 @@ class EventServiceProvider extends ServiceProvider
             \App\Observers\Server\GenerateDatabasePassword::class,
         ]);
 
-        \App\Models\Server\PublicKey::observe([
-            \App\Observers\Server\PublicKey\FireEventsObserver::class,
+        \App\Models\Server\User::observe([
+            \App\Observers\Server\User\GenerateSshKeyPairsObserver::class,
+            \App\Observers\Server\User\GenerateUserPassword::class,
+            \App\Observers\Server\User\SyncUserObserver::class,
+        ]);
+
+        \App\Models\Server\User\PublicKey::observe([
+            \App\Observers\Server\User\PublicKey\FireEventsObserver::class,
         ]);
 
         \App\Models\Server\Daemon::observe([

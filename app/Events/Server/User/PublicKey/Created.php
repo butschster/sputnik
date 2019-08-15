@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Events\Server\PublicKey;
+namespace App\Events\Server\User\PublicKey;
 
-use App\Models\Server\PublicKey;
+use App\Models\Server\User\PublicKey;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 
-class AttachedToServer
+class Created
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -17,7 +17,7 @@ class AttachedToServer
     public $key;
 
     /**
-     * This event fires when key created and attached to the server
+     * Created constructor.
      *
      * @param PublicKey $key
      */

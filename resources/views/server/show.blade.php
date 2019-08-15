@@ -9,13 +9,14 @@
                 @endif
             </div>
             <div class="col-9">
+                <h2 class="mb-4">
+                    <i class="fas fa-hdd mr-3"></i> {{ $server->name }}
+                    <span class="badge float-right @if($server->isConfigured()) badge-success @else badge-warning @endif">{{ $server->status }}</span>
+                </h2>
                 <div class="card">
                     <div class="card-header">
-                        Server {{ $server->name }}
-
-                        <span
-                            class="badge @if($server->isConfigured()) badge-success @else badge-warning @endif">{{ $server->status }}</span>
-
+                        <i class="fas fa-clipboard-list fa-lg mr-3"></i>
+                        System information
                         <a href="{{ route('server.config', $server) }}" class="btn btn-sm btn-primary float-right">Configuration
                             script</a>
                     </div>
@@ -79,6 +80,7 @@
                     </table>
                 </div>
 
+                @include('server.partials.users')
 
                 @if($server->isConfigured())
                 @include('server.partials.firewall')
@@ -106,7 +108,10 @@
                 </div>
 
                 <div class="card mt-3">
-                    <div class="card-header">Server Events</div>
+                    <div class="card-header">
+                        <i class="fas fa-archive fa-lg mr-3"></i>
+                        Server Events
+                    </div>
 
                     <table class="table table-hover mb-0">
                         <col>

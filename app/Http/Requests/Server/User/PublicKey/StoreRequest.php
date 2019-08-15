@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Requests\Server\PublicKey;
+namespace App\Http\Requests\Server\User\PublicKey;
 
 use App\Http\Requests\SanitizesInput;
-use App\Models\Server\PublicKey;
+use App\Models\Server\User;
 use App\Validation\Rules\Server\PublicKey as PublicKeyRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -19,7 +19,7 @@ class StoreRequest extends FormRequest
     public function filters()
     {
         return [
-            'content' => 'trim|remove_new_lines',
+            'key' => 'trim|remove_new_lines',
         ];
     }
 
@@ -31,33 +31,38 @@ class StoreRequest extends FormRequest
      */
     public function rules()
     {
-        $serverID = $this->route('server')->id;
+        $userId = $this->getServerUser()->id;
 
         return [
             'name' => [
                 'required',
                 'string',
-                Rule::unique('server_public_keys')->where('server_id', $serverID),
+                Rule::unique('server_user_public_keys')->where('user_id', $userId),
             ],
-            'content' => [
+            'key' => [
                 'required',
                 'string',
                 new PublicKeyRule,
-                //Rule::unique('servers', 'public_key'),
-                Rule::unique('server_public_keys')->where('server_id', $serverID),
+                Rule::unique('server_user_public_keys')->where('user_id', $userId),
             ],
         ];
     }
 
     /**
-     * @return PublicKey
+     * @return User\PublicKey
      */
-    public function persist(): PublicKey
+    public function persist(): User\PublicKey
     {
-        $server = $this->route('server');
-
-        return $server->addPublicKey(
-            $this->name, $this->input('content')
+        return $this->getServerUser()->addPublicKey(
+            $this->name, $this->input('key')
         );
+    }
+
+    /**
+     * @return User
+     */
+    protected function getServerUser(): User
+    {
+        return $this->route('user');
     }
 }

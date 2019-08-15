@@ -39,7 +39,7 @@ echo "{!! $server->private_key !!}" > /root/.ssh/id_rsa
 chmod 600 /root/.ssh/id_rsa
 
 @foreach($users as $user)
-@include('scripts.server.create_user')
+@include('scripts.server.user.create')
 @endforeach
 
 @include('scripts.server.configuration.supervisor')
@@ -68,6 +68,8 @@ APT::Periodic::Unattended-Upgrade "1";
 EOF
 
 # Make Sure Directories Have Correct Permissions
+@foreach($users as $user)
 @include('scripts.tools.chown')
+@endforeach
 
 {!! callback_url('server.event', ['server_id' => $server->id, 'message' => 'base.installed'], 10) !!}

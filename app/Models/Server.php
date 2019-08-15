@@ -9,6 +9,7 @@ use App\Events\Server\Deleted;
 use App\Events\Server\Failed;
 use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\HasConfiguration;
+use App\Models\Concerns\HasKeyPair;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server\CronJob;
@@ -16,12 +17,9 @@ use App\Models\Server\Daemon;
 use App\Models\Server\Database;
 use App\Models\Server\Event;
 use App\Models\Server\Firewall\Rule as FirewallRule;
-use App\Models\Server\PublicKey;
 use App\Models\Server\Site;
 use App\Models\Server\Task;
 use App\Contracts\Server\ServerConfiguration;
-use App\Utils\SSH\ValueObjects\KeyPair;
-use App\Utils\SSH\ValueObjects\PrivateKey;
 use App\Utils\SSH\ValueObjects\SystemInformation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,7 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Server extends Model implements ServerConfiguration
 {
-    use UsesUuid, DeterminesAge, HasTask, HasConfiguration;
+    use UsesUuid, DeterminesAge, HasTask, HasConfiguration, HasKeyPair;
 
     const STATUS_PENDING = 'pending';
     const STATUS_CONFIGUTING = 'configuring';
@@ -79,28 +77,6 @@ class Server extends Model implements ServerConfiguration
     }
 
     /**
-     * Set the SSH key attributes on the model from Key pair value object
-     *
-     * @param KeyPair $keyPair
-     * @return void
-     */
-    public function setKeypairAttribute(KeyPair $keyPair): void
-    {
-        $this->public_key = $keyPair->getPublicKey();
-        $this->private_key = $keyPair->getPrivateKey();
-    }
-
-    /**
-     * Check if server has key pair
-     *
-     * @return bool
-     */
-    public function hasKeyPair(): bool
-    {
-        return !empty($this->public_key) && !empty($this->private_key);
-    }
-
-    /**
      * Get owner
      *
      * @return BelongsTo
@@ -108,6 +84,16 @@ class Server extends Model implements ServerConfiguration
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the sites that belong to the server.
+     *
+     * @return HasMany
+     */
+    public function users(): HasMany
+    {
+        return $this->hasMany(\App\Models\Server\User::class);
     }
 
     /**
@@ -171,16 +157,6 @@ class Server extends Model implements ServerConfiguration
     }
 
     /**
-     * Get the keys that belong to the server.
-     *
-     * @return HasMany
-     */
-    public function keys(): HasMany
-    {
-        return $this->hasMany(PublicKey::class)->with('task');
-    }
-
-    /**
      * Get the cron jobs that belong to the server.
      *
      * @return HasMany
@@ -188,16 +164,6 @@ class Server extends Model implements ServerConfiguration
     public function cronJobs(): HasMany
     {
         return $this->hasMany(CronJob::class)->with('task');
-    }
-
-    /**
-     * Get private key
-     *
-     * @return PrivateKey
-     */
-    public function privateKey(): PrivateKey
-    {
-        return new PrivateKey($this->id, $this->private_key);
     }
 
     /**
@@ -275,32 +241,6 @@ class Server extends Model implements ServerConfiguration
         $this->update(['status' => static::STATUS_FAILED]);
 
         event(new Failed($this));
-    }
-
-    /**
-     * Attach public key to server
-     *
-     * @param string $name
-     * @param string $content
-     * @return PublicKey
-     */
-    public function addPublicKey(string $name, string $content): PublicKey
-    {
-        return $this->keys()->create([
-            'name' => $name,
-            'content' => $content,
-        ]);
-    }
-
-    /**
-     * Remove public key from server
-     *
-     * @param PublicKey $key
-     * @throws \Exception
-     */
-    public function removePublicKey(PublicKey $key): void
-    {
-        $key->delete();
     }
 
     /**

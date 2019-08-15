@@ -19,11 +19,6 @@ echo "default_password_lifetime = 0" >> /etc/mysql/mysql.conf.d/mysqld.cnf
 
 sed -i '/^bind-address/s/bind-address.*=.*/bind-address = */' /etc/mysql/mysql.conf.d/mysqld.cnf
 
-@foreach($hosts as $host)
-mysql --user="root" --password="{!! $password !!}" -e "GRANT ALL ON *.* TO root@'{{ $host }}' IDENTIFIED BY '{!! $password !!}';"
-@endforeach
-mysql --user="root" --password="{!! $password !!}" -e "FLUSH PRIVILEGES;"
-
 @foreach($users as $user)
 @include('scripts.tools.database.mysql.user.create', ['user' => $user])
 @endforeach
