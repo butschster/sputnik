@@ -60,8 +60,14 @@
                 </div>
 
                 <div class="card-body">
-                    <a class="btn btn-outline-dark" href="{{ route('login.github') }}">Github</a>
-                    <a class="btn btn-outline-dark" href="{{ route('login.bitbucket') }}">Bitbucket</a>
+                    <a class="btn btn-outline-dark" href="{{ route('login.github') }}">
+                        <i class="fab fa-github mr-1"></i>
+                        Github
+                    </a>
+                    <a class="btn btn-outline-dark" href="{{ route('login.bitbucket') }}">
+                        <i class="fab fa-bitbucket mr-1"></i>
+                        Bitbucket
+                    </a>
                 </div>
             </div>
         </div>
