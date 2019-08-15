@@ -247,4 +247,10 @@ class ServerTest extends TestCase
         $server = $this->createServer();
         $this->assertInstanceOf(User::class, $server->user);
     }
+
+    function test_get_daemons()
+    {
+        $this->markTestSkipped('Add tests for daemons relation');
+    }
+
 }

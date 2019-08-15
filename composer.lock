@@ -5587,51 +5587,6 @@
             "time": "2019-03-07T21:35:13+00:00"
         },
         {
-            "name": "obrignoni/webhooks",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/obrignoni/laravel-webhooks.git",
-                "reference": "227eac70ce7a37e22784e849e596ec8e05a843f2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/obrignoni/laravel-webhooks/zipball/227eac70ce7a37e22784e849e596ec8e05a843f2",
-                "reference": "227eac70ce7a37e22784e849e596ec8e05a843f2",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^5.3"
-            },
-            "require-dev": {
-                "mockery/mockery": "^0.9.5",
-                "phpunit/phpunit": "~5.4"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Obrignoni\\Webhooks\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Osvaldo Brignoni",
-                    "email": "hello@obrignoni.com"
-                }
-            ],
-            "description": "This Laravel package helps you organize, secure and map webhooks to events.",
-            "time": "2017-09-04T02:27:04+00:00"
-        },
-        {
             "name": "phar-io/manifest",
             "version": "1.0.3",
             "source": {
@@ -6942,63 +6897,6 @@
                 "phra"
             ],
             "time": "2015-10-13T18:44:15+00:00"
-        },
-        {
-            "name": "spatie/laravel-webhook-client",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-webhook-client.git",
-                "reference": "5cb7b0e5eed4e770355ecb59687baeca572be5a2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-webhook-client/zipball/5cb7b0e5eed4e770355ecb59687baeca572be5a2",
-                "reference": "5cb7b0e5eed4e770355ecb59687baeca572be5a2",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/bus": "^5.8",
-                "illuminate/database": "^5.8",
-                "illuminate/support": "^5.8",
-                "php": "^7.2"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^3.8",
-                "phpunit/phpunit": "^8.2"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\WebhookClient\\WebhookClientServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\WebhookClient\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "role": "Developer",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be"
-                }
-            ],
-            "description": "Receive webhoops in Laravel apps",
-            "homepage": "https://github.com/spatie/laravel-webhook-client",
-            "keywords": [
-                "laravel-webhook-client",
-                "spatie"
-            ],
-            "time": "2019-07-09T16:09:58+00:00"
         },
         {
             "name": "symfony/filesystem",

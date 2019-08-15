@@ -25,4 +25,10 @@ class DeploymentTest extends TestCase
 
         $this->assertInstanceOf(User::class, $deployment->initiator);
     }
+
+
+    // TODO
+    // Check Events (Failed, Finished, Running)
+    // Check Statuses
+
 }
