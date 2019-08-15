@@ -41,6 +41,14 @@ class User extends Model
     ];
 
     /**
+     * @var array
+     */
+    protected $attributes = [
+        'is_system' => false,
+        'sudo' => false
+    ];
+
+    /**
      * Check if user is root
      * @return bool
      */
@@ -54,7 +62,7 @@ class User extends Model
      */
     public function isSystem(): bool
     {
-        return $this->is_system;
+        return (bool) $this->is_system;
     }
 
     /**
