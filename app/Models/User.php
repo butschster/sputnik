@@ -63,19 +63,20 @@ class User extends Authenticatable
     }
 
     /**
-     * @param string $feature
+     * @param string $featureCode
      * @return bool
      */
-    public function canUseFeature(string $feature): bool
+    public function canUseFeature(string $featureCode): bool
     {
-        if (!$this->hasActiveSubscription()) {
+        $subscription = $this->activeSubscription();
+
+        if (!(bool)$subscription) {
             return false;
         }
 
-        $subscription = $this->activeSubscription();
-        $feature = $subscription->features()->code($feature)->first();
+        $feature = $subscription->features()->code($featureCode)->first();
 
-        if (! $feature) {
+        if (!$feature) {
             return false;
         }
 
@@ -87,9 +88,13 @@ class User extends Authenticatable
             return true;
         }
 
-        $usage = $subscription->usages()->code($feature)->first();
+        $usage = $subscription->usages()->code($featureCode)->first();
 
-        return $usage > 0;
+        if (!$usage) {
+            return $feature->limit;
+        }
+
+        return ($usage->usage - $feature->limit) > 0;
     }
 
     /**
