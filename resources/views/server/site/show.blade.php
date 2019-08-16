@@ -45,13 +45,15 @@
                 Git repository details
 
                 <a href="{{ route('server.site.deploy.config', [$site->server_id, $site]) }}" class="float-right btn btn-sm btn-primary ml-3">Config</a>
+
+                @can('deploy', $site)
                 <form class="float-right" action="{{ route('server.site.deploy', [$site->server_id, $site]) }}"
                       method="POST">
                     @csrf
 
                     <button class="btn btn-warning btn-sm"><i class="fas fa-play-circle mr-2"></i> Deploy!</button>
                 </form>
-
+                @endcan
             </div>
             <form action="{{ route('server.site.repository.update', [$site->server_id, $site]) }}" method="POST">
                 @csrf
