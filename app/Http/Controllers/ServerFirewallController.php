@@ -8,6 +8,13 @@ use App\Models\Server;
 
 class ServerFirewallController extends Controller
 {
+    public function index(Server $server)
+    {
+        return view('server.firewall.index', [
+            'server' => $server,
+            'rules' => $server->firewallRules
+        ]);
+    }
 
     /**
      * @param StoreRequest $request
@@ -19,7 +26,7 @@ class ServerFirewallController extends Controller
     {
         $request->persist();
 
-        return redirect(route('server.show', $server));
+        return back();
     }
 
 }

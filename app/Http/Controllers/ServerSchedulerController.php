@@ -8,6 +8,13 @@ use App\Models\Server;
 
 class ServerSchedulerController extends Controller
 {
+    public function index(Server $server)
+    {
+        return view('server.scheduler.index', [
+            'server' => $server,
+            'jobs' => $server->cronJobs
+        ]);
+    }
 
     /**
      * @param StoreRequest $request
@@ -18,7 +25,7 @@ class ServerSchedulerController extends Controller
     {
         $request->persist();
 
-        return redirect(route('server.show', $server));
+        return back();
     }
 
 }

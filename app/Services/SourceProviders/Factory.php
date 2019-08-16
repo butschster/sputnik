@@ -14,7 +14,7 @@ class Factory
      * @param SourceProvider $source
      * @return SourceProviderContract
      */
-    public function make(SourceProvider $source)
+    public function make(SourceProvider $source): SourceProviderContract
     {
         switch (strtolower($source->type)) {
             case 'github':

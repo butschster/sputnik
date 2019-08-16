@@ -35,6 +35,30 @@ class Site extends Model
     ];
 
     /**
+     * @return bool
+     */
+    public function isValidRepository(): bool
+    {
+        if (empty($this->repository)) {
+            return false;
+        }
+
+        if (!$this->sourceProvider) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasEnvironmentVariables(): bool
+    {
+        return !empty($this->environment);
+    }
+
+    /**
      * Get the deployments that belong to the site.
      *
      * @return HasMany

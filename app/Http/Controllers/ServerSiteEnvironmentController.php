@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
 
 class ServerSiteEnvironmentController extends Controller
 {
+    public function index($server, Site $site)
+    {
+        return view('server.site.environment.index', [
+            'site' => $site,
+        ]);
+    }
+
     /**
      * @param Request $request
      * @param $server

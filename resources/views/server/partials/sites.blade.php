@@ -1,4 +1,5 @@
-<div class="card">
+@if($server->isConfigured())
+<div class="card mb-4">
     @if($server->sites->count() > 0)
     <div class="card-header">
         Sites
@@ -49,3 +50,4 @@
     </form>
     @endcan
 </div>
+@endif

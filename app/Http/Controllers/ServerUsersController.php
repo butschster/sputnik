@@ -8,6 +8,14 @@ use Illuminate\Validation\Rule;
 
 class ServerUsersController extends Controller
 {
+    public function index(Server $server)
+    {
+        return view('server.user.index', [
+            'server' => $server,
+            'users' => $server->users
+        ]);
+    }
+
     /**
      * @param Request $request
      * @param Server $server

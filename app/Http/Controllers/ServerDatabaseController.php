@@ -7,6 +7,14 @@ use App\Models\Server;
 
 class ServerDatabaseController extends Controller
 {
+    public function index(Server $server)
+    {
+        return view('server.database.index', [
+            'server' => $server,
+            'databases' => $server->databases
+        ]);
+    }
+
     /**
      * @param StoreRequest $request
      * @param Server $server

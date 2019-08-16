@@ -152,7 +152,7 @@ class SeedSubscriptionPlans extends Migration
                 'value' => 3,
             ]),
             new Plan\Feature([
-                'code' => 'server.site.deployments',
+                'code' => 'server.deployments',
                 'value' => 3,
                 'renewable' => true
             ]),

@@ -124,7 +124,7 @@ class Bitbucket extends SourceProvider
         }
 
         try {
-            $response = $this->request('get', "/repos/{$repository}/branches");
+            $response = $this->request('get', "/repositories/{$repository}/refs/branches");
         } catch (ClientException $e) {
             return false;
         }
@@ -133,7 +133,7 @@ class Bitbucket extends SourceProvider
             return true;
         }
 
-        return collect($response)->contains(function ($b) use ($branch) {
+        return collect($response['values'])->contains(function ($b) use ($branch) {
             return $b['name'] === $branch;
         });
     }

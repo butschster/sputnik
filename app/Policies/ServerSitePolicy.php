@@ -37,6 +37,10 @@ class ServerSitePolicy
             return false;
         }
 
+        if (!$site->isValidRepository()) {
+            return false;
+        }
+
         return $site->server->user_id == $user->id &&
             $user->canUseFeature('server.deployments');
     }
@@ -50,6 +54,10 @@ class ServerSitePolicy
     public function pushDeploy(?User $user, Site $site): bool
     {
         if (!$site->server->isConfigured()) {
+            return false;
+        }
+
+        if (!$site->isValidRepository()) {
             return false;
         }
 

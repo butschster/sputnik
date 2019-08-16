@@ -2,13 +2,11 @@
 
 @section('content')
     <div class="container">
-        @if($server->isConfigured())
         <div class="row">
             <div class="col-3">
-                @include('server.partials.sites')
+                @include('server.partials.nav')
             </div>
             <div class="col-9">
-                @endif
                 <h2 class="mb-4">
                     <i class="fas fa-hdd mr-3"></i> {{ $server->name }}
                     <span class="badge float-right @if($server->isConfigured()) badge-success @else badge-warning @endif">{{ $server->status }}</span>
@@ -22,7 +20,8 @@
                     </div>
                     @if($server->isPending())
                         <div class="alert alert-warning mb-0">
-                            <code>wget -O sputnik.sh "{{ route('server.install_script', $server) }}"; bash sputnik.sh</code>
+                            <code>wget -O sputnik.sh "{{ route('server.install_script', $server) }}"; bash
+                                sputnik.sh</code>
                         </div>
                     @endif
 
@@ -80,14 +79,6 @@
                     </table>
                 </div>
 
-                @include('server.partials.users')
-
-                @if($server->isConfigured())
-                @include('server.partials.firewall')
-                @include('server.partials.scheduler')
-                @include('server.partials.databases')
-                @include('server.partials.supervisor')
-                @endif
 
                 <div class="card mt-3">
                     <div class="card-header">
@@ -99,7 +90,9 @@
                         <col width="100px">
                         @foreach($server->tasks as $task)
                             <tr>
-                                <td><small class="badge">{{ $task->created_at }}</small> <a href="{{ route('task.show', $task) }}"><strong>{{ $task->name }}</strong></a></td>
+                                <td><small class="badge">{{ $task->created_at }}</small> <a
+                                            href="{{ route('task.show', $task) }}"><strong>{{ $task->name }}</strong></a>
+                                </td>
                                 <td class="text-right"><span class="badge badge-dark">{{ $task->status }}</span></td>
                             </tr>
                         @endforeach
@@ -123,9 +116,7 @@
                         @endforeach
                     </table>
                 </div>
-        @if($server->isConfigured())
             </div>
         </div>
-        @endif
     </div>
 @endsection

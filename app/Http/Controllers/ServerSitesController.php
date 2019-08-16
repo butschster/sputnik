@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
 
 class ServerSitesController extends Controller
 {
+    public function deployments($server, Server\Site $site)
+    {
+        return view('server.site.deployments.index', [
+            'site' => $site,
+            'deployments' => $site->deployments,
+        ]);
+    }
+
     /**
      * @param Server\Site $site
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -57,8 +65,8 @@ class ServerSitesController extends Controller
             'script' => view('scripts.server.site.deploy', [
                 'server' => $site->server,
                 'site' => $site,
-                'configurator' => server_configurator($site->server)
-            ])
+                'configurator' => server_configurator($site->server),
+            ]),
         ]);
     }
 

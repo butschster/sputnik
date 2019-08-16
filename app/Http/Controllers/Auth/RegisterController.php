@@ -6,11 +6,11 @@ use App\Models\Subscription\Plan;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Validation\Rule;
-use Rennokki\Plans\Models\PlanModel;
 
 class RegisterController extends Controller
 {
@@ -45,7 +45,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         return view('auth.register', [
-            'plans' => Plan::orderBy('sort_order')->onlyActive()->get()
+            'plans' => Plan::orderBy('sort_order')->onlyActive()->get(),
         ]);
     }
 
@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'plan' => ['required', 'numeric', Rule::exists('plans', 'id')],
+            'plan' => ['required', 'string', Rule::exists('plans', 'id')],
         ]);
     }
 
@@ -81,26 +81,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
+        return DB::transaction(function () use ($data) {
 
-    /**
-     * The user has been registered.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param User $user
-     * @return mixed
-     */
-    protected function registered(Request $request, $user)
-    {
-        $user->subscribeTo(
-            PlanModel::findOrFail($request->plan)
-        );
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
 
-        return redirect($this->redirectPath());
+            $user->subscribeTo(
+                Plan::findOrFail($data['plan'])
+            );
+
+            return $user;
+        });
     }
 }

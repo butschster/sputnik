@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class ServerSupervisorController extends Controller
 {
+    public function index(Server $server)
+    {
+        return view('server.supervisor.index', [
+            'server' => $server,
+            'daemons' => $server->daemons
+        ]);
+    }
+
     /**
      * @param Request $request
      * @param Server $server
