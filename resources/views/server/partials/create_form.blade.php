@@ -1,3 +1,6 @@
+
+@can('store', \App\Models\Server::class)
+
 <div class="card mt-4">
     <div class="card-header">Create server</div>
 
@@ -78,3 +81,4 @@
         </div>
     </form>
 </div>
+@endcan

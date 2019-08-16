@@ -30,6 +30,7 @@
             </tr>
         @endforeach
     </table>
+    @can('store', [\App\Models\Server\CronJob::class, $server])
     <div class="card-header">New scheduled task</div>
     <form action="{{ route('server.scheduler.store', $server) }}" method="POST" class="card-body">
         @csrf
@@ -80,4 +81,5 @@
             <button class="btn btn-primary">Schedule</button>
         </div>
     </form>
+    @endcan
 </div>

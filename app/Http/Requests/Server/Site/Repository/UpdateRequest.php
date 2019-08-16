@@ -1,14 +1,20 @@
 <?php
 
-namespace App\Http\Requests\Server\Site;
+namespace App\Http\Requests\Server\Site\Repository;
 
 use App\Models\Server\Site;
 use App\Validation\Rules\Server\Site\RepositoryName;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
-class UpdateRepositoryRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
+    public function authorize()
+    {
+        return Gate::allows('update', $this->getSite());
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *

@@ -2,11 +2,18 @@
 
 namespace App\Http\Requests\Server\Firewall;
 
+use App\Models\Server;
 use App\Models\Server\Firewall\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class StoreRequest extends FormRequest
 {
+    public function authorize()
+    {
+        return Gate::allows('store', [Rule::class, $this->getServer()]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -27,10 +34,16 @@ class StoreRequest extends FormRequest
      */
     public function persist(): Rule
     {
-        $server = $this->route('server');
-
-        return $server->firewallRules()->create(
+        return $this->getServer()->firewallRules()->create(
             $this->validationData()
         );
+    }
+
+    /**
+     * @return Server
+     */
+    protected function getServer(): Server
+    {
+        return $this->route('server');
     }
 }

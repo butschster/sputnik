@@ -6,7 +6,7 @@
             <div class="card-header">Hello {{ $user->name }}</div>
 
             <div class="card-body">
-
+                <h4>Current subscription: <strong>{{ $user->activeSubscription()->plan->name }}</strong></h4>
             </div>
         </div>
 

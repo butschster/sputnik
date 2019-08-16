@@ -4,10 +4,19 @@ namespace App\Http\Requests\Server;
 
 use App\Models\Server;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
 class StoreRequest extends FormRequest
 {
+    /**
+     * @return bool
+     */
+    public function authorize(): bool
+    {
+        return Gate::allows('store', Server::class);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      * @return array
@@ -21,7 +30,7 @@ class StoreRequest extends FormRequest
             'sudo_password' => 'nullable|string',
             'php_version' => ['required', Rule::in(config('configurations.php', []))],
             'database_type' => ['required', Rule::in(config('configurations.database', []))],
-            'meta' => 'nullable|array'
+            'meta' => 'nullable|array',
         ];
     }
 

@@ -11,6 +11,16 @@ class ServerCronJobPolicy
     use HandlesAuthorization;
 
     /**
+     * @param User|null $user
+     * @param Server\CronJob $job
+     * @return bool
+     */
+    public function show(?User $user, Server\CronJob $job): bool
+    {
+        return $user->id === $job->server->user_id;
+    }
+
+    /**
      * Check if user can create public keys for the given server
      *
      * @param User $user
@@ -19,7 +29,12 @@ class ServerCronJobPolicy
      */
     public function store(User $user, Server $server): bool
     {
-        return $user->id === $server->user_id;
+        if (!$server->isConfigured()) {
+            return false;
+        }
+
+        return $user->id === $server->user_id &&
+            $user->canUseFeature('server.cron_job.create');
     }
 
     /**

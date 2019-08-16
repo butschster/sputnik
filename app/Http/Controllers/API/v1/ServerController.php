@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\API\Controller;
 use App\Http\Requests\Server\StoreRequest;
+use App\Http\Resources\v1\Server\EventsCollection;
 use App\Http\Resources\v1\ServerCollection;
 use App\Http\Resources\v1\ServerResource;
 use App\Models\Server;
@@ -16,9 +17,9 @@ class ServerController extends Controller
      *
      * @return ServerCollection
      */
-    public function index(Request $request)
+    public function index(Request $request): ServerCollection
     {
-        $servers = $request->user()->servers;
+        $servers = $request->user()->servers()->paginate();
 
         return ServerCollection::make($servers);
     }
@@ -29,7 +30,20 @@ class ServerController extends Controller
      * @return ServerResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show(Server $server)
+    public function events(Server $server): ServerResource
+    {
+        $this->authorize('show', $server);
+
+        return EventsCollection::make($server->events()->paginate(50));
+    }
+
+    /**
+     * @param Server $server
+     *
+     * @return ServerResource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function show(Server $server): ServerResource
     {
         $this->authorize('show', $server);
 
@@ -41,10 +55,23 @@ class ServerController extends Controller
      *
      * @return ServerResource
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): ServerResource
     {
         $server = $request->persist();
 
         return ServerResource::make($server);
+    }
+
+    /**
+     * @param Server $server
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function delete(Server $server)
+    {
+        $this->authorize('delete');
+
+        return $this->responseDeleted();
     }
 }

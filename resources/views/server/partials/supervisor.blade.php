@@ -1,3 +1,4 @@
+@can('store', [\App\Models\Server\Daemon::class, $server])
 <div class="card mt-3">
     <div class="card-header">
         <i class="fas fa-clock fa-lg mr-3"></i> Supervisor
@@ -70,3 +71,4 @@
         </div>
     </form>
 </div>
+@endcan

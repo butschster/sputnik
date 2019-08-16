@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Rennokki\Plans\Models\PlanModel;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +16,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@site.com',
             'name' => 'Pavel Buchnev',
         ]);
+
+        $user->subscribeTo(
+            PlanModel::where('name', 'Artisan')->first()
+        );
 
 //        $server = factory(\App\Models\Server::class)->create([
 //            'user_id' => $user->id,

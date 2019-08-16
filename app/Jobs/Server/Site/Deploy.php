@@ -39,10 +39,14 @@ class Deploy
      */
     public function handle(DeploymentService $service): void
     {
+        if (!\Gate::allows('deploy', $this->site)) {
+            return false;
+        }
+
         $data = [
             'branch' => $this->site->repositoryBranch(),
             'initiator_id' => $this->initiator ? $this->initiator->id : null,
-            'commit_hash' => ''
+            'commit_hash' => '',
         ];
 
         $service->deploy(

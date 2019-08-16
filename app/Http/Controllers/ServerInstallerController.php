@@ -9,12 +9,11 @@ class ServerInstallerController extends Controller
     /**
      * @param Server $server
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function __invoke(Server $server)
     {
-        if (!$server->isPending()) {
-            abort(404, 'Server has already configured');
-        }
+        $this->authorize('install-keys', $server);
 
         return view('scripts.server.key_installation', compact('server'));
     }

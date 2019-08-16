@@ -3,13 +3,20 @@
 namespace App\Http\Requests\Server\CronJob;
 
 use App\Http\Requests\SanitizesInput;
+use App\Models\Server;
 use App\Models\Server\CronJob;
 use App\Validation\Rules\Server\CronExpression;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class StoreRequest extends FormRequest
 {
     use SanitizesInput;
+
+    public function authorize()
+    {
+        return Gate::allows('store', [CronJob::class, $this->getServer()]);
+    }
 
     /**
      *  Filters to be applied to the input.
@@ -44,10 +51,18 @@ class StoreRequest extends FormRequest
      */
     public function persist(): CronJob
     {
-        $server = $this->route('server');
-
         $data = $this->validationData();
 
-        return $server->cronJobs()->create($data);
+        return $this->getServer()
+            ->cronJobs()
+            ->create($data);
+    }
+
+    /**
+     * @return Server
+     */
+    protected function getServer(): Server
+    {
+        return $this->route('server');
     }
 }

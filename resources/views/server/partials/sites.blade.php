@@ -11,6 +11,8 @@
         @endforeach
     </div>
     @endif
+
+    @can('store', [\App\Models\Server\Site::class, $server])
     <div class="card-header border-top">
         Create site
     </div>
@@ -45,4 +47,5 @@
             <button class="btn btn-primary">Create</button>
         </div>
     </form>
+    @endcan
 </div>

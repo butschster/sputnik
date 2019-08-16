@@ -46,28 +46,6 @@ class ServerControllerTest extends TestCase
         $this->getJson(api_route('server.show', $server))->assertUnauthorized();
     }
 
-    // An authenticated user can view information about own server
-    function test_an_authenticated_user_can_view_information_only_about_own_server()
-    {
-        $user = $this->signInAPI();
-        $server = $this->createServer([
-            'user_id' => $user->id,
-        ]);
-
-        $response = $this->getJson(api_route('server.show', $server));
-        $response->assertOk();
-
-        $response->assertJson([
-            'data' => [
-                'id' => $server->id,
-            ],
-        ]);
-
-        // An authenticated user can not view information about foreigner server
-        $serverForeign = $this->createServer();
-        $this->getJson(api_route('server.show', $serverForeign))->assertForbidden();
-    }
-
     function test_a_guest_cannot_create_server()
     {
         $server = $this->createServer();

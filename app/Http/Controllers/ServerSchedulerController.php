@@ -11,8 +11,8 @@ class ServerSchedulerController extends Controller
 
     /**
      * @param StoreRequest $request
-     *
-     * @return ServerResource
+     * @param Server $server
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(StoreRequest $request, Server $server)
     {

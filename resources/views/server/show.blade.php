@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="container">
+        @if($server->isConfigured())
         <div class="row">
             <div class="col-3">
-                @if($server->isConfigured())
                 @include('server.partials.sites')
-                @endif
             </div>
             <div class="col-9">
+                @endif
                 <h2 class="mb-4">
                     <i class="fas fa-hdd mr-3"></i> {{ $server->name }}
                     <span class="badge float-right @if($server->isConfigured()) badge-success @else badge-warning @endif">{{ $server->status }}</span>
@@ -123,7 +123,9 @@
                         @endforeach
                     </table>
                 </div>
+        @if($server->isConfigured())
             </div>
         </div>
+        @endif
     </div>
 @endsection

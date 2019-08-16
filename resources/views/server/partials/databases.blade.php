@@ -31,6 +31,7 @@
             </tr>
         @endforeach
     </table>
+    @can('store', [\App\Models\Server\Database::class, $server])
     <div class="card-header">Create a new one</div>
     <form action="{{ route('server.database.store', $server) }}" method="POST" class="card-body">
         @csrf
@@ -51,4 +52,5 @@
             <button class="btn btn-primary">Store</button>
         </div>
     </form>
+    @endcan
 </div>

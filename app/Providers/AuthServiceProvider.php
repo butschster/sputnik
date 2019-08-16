@@ -3,9 +3,17 @@
 namespace App\Providers;
 
 use App\Models\Server;
+use App\Models\User;
 use App\Policies\ServerCronJobPolicy;
+use App\Policies\ServerDaemonPolicy;
+use App\Policies\ServerDatabasePolicy;
+use App\Policies\ServerFirewallPolicy;
 use App\Policies\ServerPublicKeyPolicy;
 use App\Policies\ServerPolicy;
+use App\Policies\ServerSitePolicy;
+use App\Policies\ServerTaskPolicy;
+use App\Policies\ServerUserPolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
 
@@ -16,8 +24,15 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        User::class => UserPolicy::class,
         Server::class => ServerPolicy::class,
         Server\CronJob::class => ServerCronJobPolicy::class,
+        Server\Site::class => ServerSitePolicy::class,
+        Server\Database::class => ServerDatabasePolicy::class,
+        Server\Daemon::class => ServerDaemonPolicy::class,
+        Server\User::class => ServerUserPolicy::class,
+        Server\Task::class => ServerTaskPolicy::class,
+        Server\Firewall\Rule::class => ServerFirewallPolicy::class,
     ];
 
     /**

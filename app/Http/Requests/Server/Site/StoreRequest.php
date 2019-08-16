@@ -2,13 +2,20 @@
 
 namespace App\Http\Requests\Server\Site;
 
+use App\Models\Server;
 use App\Models\Server\Site;
 use App\Validation\Rules\Server\Site\PublicPath;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
 class StoreRequest extends FormRequest
 {
+    public function authorize()
+    {
+        return Gate::allows('store', [Site::class, $this->getServer()]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -27,10 +34,16 @@ class StoreRequest extends FormRequest
      */
     public function persist(): Site
     {
-        $server = $this->route('server');
-
-        return $server->sites()->create(
+        return $this->getServer()->sites()->create(
             $this->validationData()
         );
+    }
+
+    /**
+     * @return Server
+     */
+    protected function getServer(): Server
+    {
+        return $this->route('server');
     }
 }

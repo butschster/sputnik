@@ -9,10 +9,11 @@ use App\Models\Concerns\UsesUuid;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Rennokki\Plans\Traits\HasPlans;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, UsesUuid;
+    use HasApiTokens, Notifiable, UsesUuid, HasPlans;
 
     /**
      * The attributes that are mass assignable.
@@ -59,5 +60,46 @@ class User extends Authenticatable
     public function sourceProviders(): HasMany
     {
         return $this->hasMany(SourceProvider::class);
+    }
+
+    /**
+     * @param string $feature
+     * @return bool
+     */
+    public function canUseFeature(string $feature): bool
+    {
+        if ($this->hasActiveSubscription()) {
+            return false;
+        }
+
+        $usage = $this->activeSubscription()->getRemainingOf($feature);
+
+        if ($usage === -1) {
+            return true;
+        }
+
+        return $usage > 0;
+    }
+
+    /**
+     * @param string $feature
+     * @param int $times
+     */
+    public function useFeature(string $feature, int $times = 1): void
+    {
+        if ($this->hasActiveSubscription()) {
+            $this->activeSubscription()->consumeFeature($feature, $times);
+        }
+    }
+
+    /**
+     * @param string $feature
+     * @param int $times
+     */
+    public function returnFeature(string $feature, int $times = 1): void
+    {
+        if ($this->hasActiveSubscription()) {
+            $this->activeSubscription()->unconsumeFeature($feature, $times);
+        }
     }
 }
