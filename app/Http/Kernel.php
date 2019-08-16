@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\HasSubscription;
 use App\Http\Middleware\LogHttpRequestMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -64,6 +65,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'log' => LogHttpRequestMiddleware::class,
+        'has-subscription' => HasSubscription::class
     ];
 
     /**

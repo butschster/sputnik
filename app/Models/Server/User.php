@@ -49,6 +49,14 @@ class User extends Model
     ];
 
     /**
+     * @return mixed|string
+     */
+    public function getSudoPasswordAttribute()
+    {
+        return $this->isRoot() ? '' : $this->attributes['sudo_password'];
+    }
+
+    /**
      * Check if user is root
      * @return bool
      */

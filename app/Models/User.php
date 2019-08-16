@@ -9,11 +9,12 @@ use App\Models\Concerns\UsesUuid;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Rennokki\Plans\Traits\HasPlans;
+use Rinvex\Subscriptions\Models\PlanSubscription;
+use Rinvex\Subscriptions\Traits\HasSubscriptions;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, UsesUuid, HasPlans;
+    use HasApiTokens, Notifiable, UsesUuid, HasSubscriptions;
 
     /**
      * The attributes that are mass assignable.
@@ -63,38 +64,28 @@ class User extends Authenticatable
     }
 
     /**
+     * @return bool
+     */
+    public function hasActiveSubscription(): bool
+    {
+        return $this->subscription('main')->active();
+    }
+
+    /**
+     * @return \Rinvex\Subscriptions\Models\PlanSubscription|null
+     */
+    public function activeSubscription(): ?PlanSubscription
+    {
+        return $this->subscription('main');
+    }
+
+    /**
      * @param string $featureCode
      * @return bool
      */
     public function canUseFeature(string $featureCode): bool
     {
-        $subscription = $this->activeSubscription();
-
-        if (!(bool)$subscription) {
-            return false;
-        }
-
-        $feature = $subscription->features()->code($featureCode)->first();
-
-        if (!$feature) {
-            return false;
-        }
-
-        if ($feature->type == 'feature') {
-            return true;
-        }
-
-        if ($feature->isUnlimited()) {
-            return true;
-        }
-
-        $usage = $subscription->usages()->code($featureCode)->first();
-
-        if (!$usage) {
-            return $feature->limit;
-        }
-
-        return ($usage->usage - $feature->limit) > 0;
+        return $this->activeSubscription()->canUseFeature($featureCode);
     }
 
     /**

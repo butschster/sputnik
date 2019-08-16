@@ -2,8 +2,18 @@
 
 @section('content')
     <div class="container">
+
+        @if($subscription)
         <div class="card">
-            <div class="card-header">Current subscription: <strong>{{ $subscription->plan->name }}</strong></div>
+            <div class="card-header">
+                Current subscription: <strong>{{ $subscription->plan->name }}</strong>
+
+                <form class="float-right" action="{{ route('user.subscription.cancel') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger btn-sm">Cancel</button>
+                </form>
+            </div>
 
             <table class="table">
                 <col width="200px">
@@ -34,7 +44,20 @@
                 </tbody>
             </table>
         </div>
+        @else
 
+        <div class="card">
+            <div class="card-header">
+                Subscription
+            </div>
+            <form action="{{ route('user.subscribe') }}" method="POST" class="card-body">
+                @csrf
+                @include('user.partials.plans')
+                <button class="btn btn-primary btn-lg">Subscribe</button>
+            </form>
+        </div>
+
+        @endif
         <div class="card mt-4">
             <div class="card-header">Source Control</div>
 
