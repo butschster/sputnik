@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subscription\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Rennokki\Plans\Models\PlanModel;
 
 class UserController extends Controller
 {
@@ -16,8 +16,16 @@ class UserController extends Controller
     {
         return view('user.profile', [
             'user' => $request->user(),
-            'subscription' => $request->user()->activeSubscription()
+            'plans' => Plan::orderBy('sort_order')->onlyActive()->get(),
+            'subscription' => $request->user()->subscription,
         ]);
+    }
+
+    public function renew(Request $request)
+    {
+        $request->user()->subscription->renew();
+
+        return back();
     }
 
     /**
@@ -28,11 +36,13 @@ class UserController extends Controller
     public function subscribe(Request $request)
     {
         $this->validate($request, [
-            'plan' => ['required', 'numeric', Rule::exists('plans', 'id')],
+            'plan' => ['required', Rule::exists('plans', 'id')],
         ]);
 
+        $plan = Plan::findOrFail($request->plan);
+        $plan->trial_period = 0;
         $request->user()->subscribeTo(
-            PlanModel::findOrFail($request->plan)
+            $plan
         );
 
         return back();

@@ -14,24 +14,23 @@ class CreatePlanFeaturesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('rinvex.subscriptions.tables.plan_features'), function (Blueprint $table) {
-            // Columns
-            $table->increments('id');
-            $table->integer('plan_id')->unsigned();
-            $table->string('slug');
-            $table->string('name');
-            $table->string('description')->nullable();
+        Schema::create('plan_features', function (Blueprint $table) {
+            $table->primaryUuid('id');
+            $table->uuid('plan_id');
+            $table->string('code');
             $table->string('value');
+            $table->boolean('renewable')->default(false);
             $table->smallInteger('resettable_period')->unsigned()->default(0);
             $table->string('resettable_interval')->default('month');
             $table->mediumInteger('sort_order')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();
 
-            // Indexes
-            $table->unique(['plan_id', 'slug']);
-            $table->foreign('plan_id')->references('id')->on(config('rinvex.subscriptions.tables.plans'))
-                  ->onDelete('cascade')->onUpdate('cascade');
+            $table->unique(['plan_id', 'code']);
+            $table->foreign('plan_id')
+                ->references('id')
+                ->on('plans')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -42,6 +41,6 @@ class CreatePlanFeaturesTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(config('rinvex.subscriptions.tables.plan_features'));
+        Schema::dropIfExists('plan_features');
     }
 }

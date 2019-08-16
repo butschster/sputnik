@@ -14,26 +14,28 @@ class CreatePlanSubscriptionsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('rinvex.subscriptions.tables.plan_subscriptions'), function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuidMorphs('user');
-            $table->integer('plan_id')->unsigned();
-            $table->string('slug');
-            $table->{$this->jsonable()}('name');
-            $table->{$this->jsonable()}('description')->nullable();
+        Schema::create('plan_subscriptions', function (Blueprint $table) {
+            $table->primaryUuid('id');
+            $table->uuid('user_id');
+            $table->uuid('plan_id');
             $table->dateTime('trial_ends_at')->nullable();
             $table->dateTime('starts_at')->nullable();
             $table->dateTime('ends_at')->nullable();
             $table->dateTime('cancels_at')->nullable();
             $table->dateTime('canceled_at')->nullable();
-            $table->string('timezone')->nullable();
             $table->timestamps();
-            $table->softDeletes();
 
-            // Indexes
-            $table->unique('slug');
-            $table->foreign('plan_id')->references('id')->on(config('rinvex.subscriptions.tables.plans'))
-                  ->onDelete('cascade')->onUpdate('cascade');
+            $table->unique(['plan_id', 'user_id']);
+
+            $table->foreign('plan_id')
+                ->references('id')
+                ->on('plans')
+                ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 
@@ -44,7 +46,7 @@ class CreatePlanSubscriptionsTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(config('rinvex.subscriptions.tables.plan_subscriptions'));
+        Schema::dropIfExists('plan_subscriptions');
     }
 
     /**

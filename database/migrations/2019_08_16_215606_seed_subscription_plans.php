@@ -1,10 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Subscription\Plan;
 use Illuminate\Database\Migrations\Migration;
-use Rinvex\Subscriptions\Models\Plan;
-use Rinvex\Subscriptions\Models\PlanFeature;
 
 class SeedSubscriptionPlans extends Migration
 {
@@ -33,10 +30,8 @@ class SeedSubscriptionPlans extends Migration
     protected function createUnlimitedPlan()
     {
         $plan = Plan::create([
-            'name' => 'Unlimited',
-            'description' => 'Free plan for 1 server with unlimited sites and databases.',
+            'name' => 'unlimited',
             'price' => 30,
-            'signup_fee' => 0,
             'invoice_period' => 1,
             'invoice_interval' => 'month',
             'trial_period' => 5,
@@ -46,36 +41,36 @@ class SeedSubscriptionPlans extends Migration
         ]);
 
         $plan->features()->saveMany([
-            new PlanFeature([
-                'name' => 'server_create',
+            new Plan\Feature([
+                'code' => 'server.create',
                 'value' => 'Y',
             ]),
-            new PlanFeature([
-                'name' => 'server_site_create',
+            new Plan\Feature([
+                'code' => 'server.site.create',
                 'value' => 'Y',
             ]),
-            new PlanFeature([
-                'name' => 'server_database_create',
+            new Plan\Feature([
+                'code' => 'server.database.create',
                 'value' => 'Y',
             ]),
-            new PlanFeature([
-                'name' => 'server_cron_job_create',
+            new Plan\Feature([
+                'code' => 'server.cron_job.create',
                 'value' => 'Y',
             ]),
-            new PlanFeature([
-                'name' => 'server_daemon_create',
+            new Plan\Feature([
+                'code' => 'server.daemon.create',
                 'value' => 'Y',
             ]),
-            new PlanFeature([
-                'name' => 'server_deployments',
+            new Plan\Feature([
+                'code' => 'server.deployments',
                 'value' => 'Y',
             ]),
-            new PlanFeature([
-                'name' => 'server_deployments_push',
+            new Plan\Feature([
+                'code' => 'server.deployments.push',
                 'value' => 'Y',
             ]),
-            new PlanFeature([
-                'name' => 'server_site_monitoring',
+            new Plan\Feature([
+                'code' => 'server.site.monitoring',
                 'value' => 'Y',
             ]),
         ]);
@@ -84,45 +79,43 @@ class SeedSubscriptionPlans extends Migration
     protected function createArtisanPlan()
     {
         $plan = Plan::create([
-            'name' => 'Artisan',
-            'description' => 'Free plan for 1 server with unlimited sites and databases.',
+            'name' => 'artisan',
             'price' => 10,
-            'signup_fee' => 0,
             'invoice_period' => 1,
             'invoice_interval' => 'month',
             'trial_period' => 5,
             'trial_interval' => 'day',
-            'sort_order' => 3,
+            'sort_order' => 2,
             'currency' => 'USD',
         ]);
 
         $plan->features()->saveMany([
-            new PlanFeature([
-                'name' => 'server_create',
+            new Plan\Feature([
+                'code' => 'server.create',
                 'value' => 1,
             ]),
-            new PlanFeature([
-                'name' => 'server_site_create',
+            new Plan\Feature([
+                'code' => 'server.site.create',
                 'value' => 'Y',
             ]),
-            new PlanFeature([
-                'name' => 'server_database_create',
+            new Plan\Feature([
+                'code' => 'server.database.create',
                 'value' => 'Y',
             ]),
-            new PlanFeature([
-                'name' => 'server_cron_job_create',
+            new Plan\Feature([
+                'code' => 'server.cron_job.create',
                 'value' => 'Y',
             ]),
-            new PlanFeature([
-                'name' => 'server_daemon_create',
+            new Plan\Feature([
+                'code' => 'server.daemon.create',
                 'value' => 'Y',
             ]),
-            new PlanFeature([
-                'name' => 'server_deployments',
+            new Plan\Feature([
+                'code' => 'server.deployments',
                 'value' => 'Y',
             ]),
-            new PlanFeature([
-                'name' => 'server_daemon_create',
+            new Plan\Feature([
+                'code' => 'server.deployments.push',
                 'value' => 'Y',
             ]),
         ]);
@@ -131,37 +124,37 @@ class SeedSubscriptionPlans extends Migration
     protected function createFreePlan(): void
     {
         $plan = Plan::create([
-            'name' => 'Free',
-            'description' => 'Free plan for 1 server and 1 site and 1 database.',
+            'name' => 'free',
             'price' => 0,
-            'signup_fee' => 0,
-            'invoice_period' => 1,
-            'invoice_interval' => 'month',
+            'invoice_period' => 100,
+            'invoice_interval' => 'year',
+            'trial_period' => 0,
             'trial_interval' => 'day',
-            'sort_order' => 3,
+            'sort_order' => 1,
             'currency' => 'USD',
         ]);
 
         $plan->features()->saveMany([
-            new PlanFeature([
-                'name' => 'server_create',
+            new Plan\Feature([
+                'code' => 'server.create',
                 'value' => 1,
             ]),
-            new PlanFeature([
-                'name' => 'server_site_create',
+            new Plan\Feature([
+                'code' => 'server.site.create',
                 'value' => 1,
             ]),
-            new PlanFeature([
-                'name' => 'server_database_create',
+            new Plan\Feature([
+                'code' => 'server.database.create',
                 'value' => 1,
             ]),
-            new PlanFeature([
-                'name' => 'server_cron_job_create',
+            new Plan\Feature([
+                'code' => 'server.cron_job.create',
                 'value' => 3,
             ]),
-            new PlanFeature([
-                'name' => 'server_site_deployments',
+            new Plan\Feature([
+                'code' => 'server.site.deployments',
                 'value' => 3,
+                'renewable' => true
             ]),
         ]);
     }

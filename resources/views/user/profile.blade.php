@@ -2,17 +2,36 @@
 
 @section('content')
     <div class="container">
+        @if(!$subscription->isActive())
+            <div class="alert alert-warning">
+                Your subscription is expired. Please renew it.
 
-        @if($subscription)
+                <form class="float-right" action="{{ route('user.subscription.renew') }}" method="POST">
+                    @csrf
+                    <button class="btn btn-success btn-sm">Renew</button>
+                </form>
+            </div>
+        @endif
+
         <div class="card">
             <div class="card-header">
                 Current subscription: <strong>{{ $subscription->plan->name }}</strong>
 
-                <form class="float-right" action="{{ route('user.subscription.cancel') }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger btn-sm">Cancel</button>
-                </form>
+                @if($subscription->onTrial())
+                    <span class="badge badge-warning">Trial ends at {{ $subscription->trial_ends_at }}</span>
+                @elseif(!$subscription->isEnded())
+                    <span class="badge badge-primary">Ends at {{ $subscription->ends_at }}</span>
+                @endif
+
+                @if(!$subscription->isCanceled())
+                    <form class="float-right" action="{{ route('user.subscription.cancel') }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-sm">Cancel</button>
+                    </form>
+                @else
+                    <span class="badge badge-danger">Canceled</span>
+                @endif
             </div>
 
             <table class="table">
@@ -28,15 +47,13 @@
                 @foreach($subscription->plan->features as $feature)
                     <tr>
                         <th>
-                            {{ $feature->name }}
+                            {{ $feature->code }}
                         </th>
                         <td>
                             @if($feature->isUnlimited())
                                 <small>Unlimited</small>
-                            @elseif($feature->type == 'feature')
-                                <i class="fas fa-check text-success"></i>
                             @else
-                                <small>{{ $subscription->getRemainingOf($feature->code) }} remains</small>
+                                <small>{{ $user->getRemainingOf($feature->code) }} remains</small>
                             @endif
                         </td>
                     </tr>
@@ -44,20 +61,13 @@
                 </tbody>
             </table>
         </div>
-        @else
 
-        <div class="card">
-            <div class="card-header">
-                Subscription
-            </div>
-            <form action="{{ route('user.subscribe') }}" method="POST" class="card-body">
-                @csrf
-                @include('user.partials.plans')
-                <button class="btn btn-primary btn-lg">Subscribe</button>
-            </form>
-        </div>
+        <form action="{{ route('user.subscribe') }}" method="POST">
+            @csrf
+            @include('user.partials.plans')
+            <button class="btn btn-primary btn-lg">Change subscription</button>
+        </form>
 
-        @endif
         <div class="card mt-4">
             <div class="card-header">Source Control</div>
 

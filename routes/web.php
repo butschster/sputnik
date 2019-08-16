@@ -14,9 +14,10 @@ Route::get('login/bitbucket/callback', 'Auth\BitbucketLoginController@handleProv
 Route::middleware('auth')->group(function () {
     Route::get('profile', 'UserController@profile')->name('user.profile');
     Route::post('profile/subscribe', 'UserController@subscribe')->name('user.subscribe');
+    Route::post('profile/subscription/renew', 'UserController@renew')->name('user.subscription.renew');
 
     Route::middleware('has-subscription')->group(function () {
-        Route::delete('profile/cancel-subscription', 'UserController@cancelSubscription')->name('user.subscription.cancel');
+        Route::delete('profile/subscription/cancel', 'UserController@cancelSubscription')->name('user.subscription.cancel');
 
         Route::get('/server/{server}', 'ServerController@show')->name('server.show');
         Route::get('/server/{server}/config', 'ServerController@config')->name('server.config');

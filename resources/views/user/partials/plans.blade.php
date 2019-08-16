@@ -1,5 +1,5 @@
 <div class="card-deck mt-4">
-    @foreach(\Rennokki\Plans\Models\PlanModel::get() as $plan)
+    @foreach($plans as $plan)
         <div class="card mb-4">
             <div class="card-header">
                 <h4 class="my-0">
@@ -8,7 +8,7 @@
                                name="plan"
                                class="custom-control-input"
                                value="{{ $plan->id }}"
-                               @if($plan->name == 'Artisan') checked @endif
+                               @if($plan->name == 'artisan') checked @endif
                         >
                         <label class="custom-control-label" for="plan{{ $plan->id }}">{{ $plan->name }}</label>
                     </div>
@@ -20,7 +20,7 @@
                 <ul class="list-unstyled mt-3 mb-4">
                     @foreach($plan->features as $feature)
                         <li>
-                            <i class="fas fa-check text-success mr-3"></i> {{ $feature->name }}
+                            <i class="fas fa-check text-success mr-3"></i> {{ $feature->code }}
                         </li>
                     @endforeach
                 </ul>

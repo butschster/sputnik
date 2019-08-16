@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Subscription\Plan;
 use Illuminate\Database\Seeder;
-use Rinvex\Subscriptions\Models\Plan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,9 +17,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Pavel Buchnev',
         ]);
 
-        $user->newSubscription(
-            'main',
-            Plan::where('slug', 'artisan')->first()
+        $user->subscribeTo(
+            Plan::where('name', 'artisan')->first()
         );
 
 //        $server = factory(\App\Models\Server::class)->create([

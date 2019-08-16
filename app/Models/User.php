@@ -2,19 +2,21 @@
 
 namespace App\Models;
 
+use App\Models\Subscription\Plan;
 use App\Models\User\SourceProvider;
+use App\Models\User\Subscription;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Passport\HasApiTokens;
 use App\Models\Concerns\UsesUuid;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Rinvex\Subscriptions\Models\PlanSubscription;
-use Rinvex\Subscriptions\Traits\HasSubscriptions;
+use Rinvex\Subscriptions\Services\Period;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, UsesUuid, HasSubscriptions;
+    use HasApiTokens, Notifiable, UsesUuid;
 
     /**
      * The attributes that are mass assignable.
@@ -64,28 +66,87 @@ class User extends Authenticatable
     }
 
     /**
+     * The user may have subscription.
+     *
+     * @return HasOne
+     */
+    public function subscription(): HasOne
+    {
+        return $this->hasOne(Subscription::class);
+    }
+
+    /**
+     * Subscribe user to a new plan.
+     *
+     * @param Plan $plan
+     * @param bool $isPaid
+     *
+     * @return Subscription
+     */
+    public function subscribeTo(Plan $plan, bool $isPaid = false): Subscription
+    {
+        if ($this->subscription) {
+
+            $this->subscription->changePlan($plan);
+
+            return $this->subscription;
+        }
+
+        $trial = new Period($plan->trial_interval, $plan->trial_period, now());
+        $data = [
+            'trial_ends_at' => $trial->getEndDate(),
+            'starts_at' => $trial->getStartDate(),
+            'ends_at' => $trial->getEndDate(),
+        ];
+
+        if ($isPaid) {
+            $period = new Period($plan->invoice_interval, $plan->invoice_period, $trial->getEndDate());
+            $data = array_merge($data, [
+                'starts_at' => $period->getStartDate(),
+                'ends_at' => $period->getEndDate(),
+            ]);
+        }
+
+        $subscription = new Subscription($data);
+        $subscription->plan()->associate($plan);
+        $subscription->user()->associate($this);
+
+        $subscription->save();
+
+        return $subscription;
+    }
+
+    public function cancelCurrentSubscription()
+    {
+        $this->subscription->cancel();
+    }
+
+    /**
      * @return bool
      */
     public function hasActiveSubscription(): bool
     {
-        return $this->subscription('main')->active();
+        return $this->subscription ? $this->subscription->isActive() : false;
     }
 
     /**
-     * @return \Rinvex\Subscriptions\Models\PlanSubscription|null
-     */
-    public function activeSubscription(): ?PlanSubscription
-    {
-        return $this->subscription('main');
-    }
-
-    /**
-     * @param string $featureCode
+     * @param string $code
      * @return bool
      */
-    public function canUseFeature(string $featureCode): bool
+    public function canUseFeature(string $code): bool
     {
-        return $this->activeSubscription()->canUseFeature($featureCode);
+        if (!$this->hasActiveSubscription()) {
+            return false;
+        }
+
+        return $this->subscription->canUseFeature($code);
+    }
+
+    public function getRemainingOf(string $code)
+    {
+        if ($this->hasActiveSubscription()) {
+            return $this->subscription->getFeatureRemains($code);
+        }
     }
 
     /**
@@ -95,7 +156,7 @@ class User extends Authenticatable
     public function useFeature(string $feature, int $times = 1): void
     {
         if ($this->hasActiveSubscription()) {
-            $this->activeSubscription()->consumeFeature($feature, $times);
+            $this->subscription->recordFeatureUsage($feature, $times);
         }
     }
 
@@ -106,7 +167,7 @@ class User extends Authenticatable
     public function returnFeature(string $feature, int $times = 1): void
     {
         if ($this->hasActiveSubscription()) {
-            $this->activeSubscription()->unconsumeFeature($feature, $times);
+            $this->subscription->reduceFeatureUsage($feature, $times);
         }
     }
 }
