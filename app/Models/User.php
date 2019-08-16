@@ -72,11 +72,22 @@ class User extends Authenticatable
             return false;
         }
 
-        $usage = $this->activeSubscription()->getRemainingOf($feature);
+        $subscription = $this->activeSubscription();
+        $feature = $subscription->features()->code($feature)->first();
 
-        if ($usage === -1) {
+        if (! $feature) {
+            return false;
+        }
+
+        if ($feature->type == 'feature') {
             return true;
         }
+
+        if ($feature->isUnlimited()) {
+            return true;
+        }
+
+        $usage = $subscription->usages()->code($feature)->first();
 
         return $usage > 0;
     }
