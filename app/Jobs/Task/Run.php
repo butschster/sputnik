@@ -32,6 +32,8 @@ class Run implements ShouldQueue
      */
     public function handle(ExecutorService $service): void
     {
+        set_time_limit($this->task->timeout());
+
         $service->run(
             $this->task
         );
