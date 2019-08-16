@@ -42,6 +42,21 @@ class ServerSitePolicy
     }
 
 
+    /**
+     * @param User|null $user
+     * @param Site $site
+     * @return bool
+     */
+    public function pushDeploy(?User $user, Site $site): bool
+    {
+        if (!$site->server->isConfigured()) {
+            return false;
+        }
+
+        return $site->server->user_id == $user->id &&
+            $user->canUseFeature('server.deployments.push');
+    }
+
 
     /**
      * @param User|null $user

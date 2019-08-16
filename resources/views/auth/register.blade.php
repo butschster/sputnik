@@ -85,7 +85,7 @@
                                             <ul class="list-unstyled mt-3 mb-4">
                                                 @foreach($plan->features as $feature)
                                                 <li>
-                                                    <i class="fas fa-check text-success"></i> <strong>{{ $feature->description }}</strong>
+                                                    <i class="fas fa-check text-success"></i> {{ $feature->name }}
                                                 </li>
                                                 @endforeach
                                             </ul>
