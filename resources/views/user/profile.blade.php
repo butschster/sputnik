@@ -11,7 +11,7 @@
                 <thead>
                 <tr>
                     <th>Feature</th>
-                    <th>Remains</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,9 +22,11 @@
                         </th>
                         <td>
                             @if($feature->isUnlimited())
-                                Unlimited
+                                <small>Unlimited</small>
+                            @elseif($feature->type == 'feature')
+                                <i class="fas fa-check text-success"></i>
                             @else
-                                {{ $subscription->getRemainingOf($feature->code) }}
+                                <small>{{ $subscription->getRemainingOf($feature->code) }} remains</small>
                             @endif
                         </td>
                     </tr>
