@@ -63,6 +63,17 @@ class ServerSitePolicy
      * @param Site $site
      * @return bool
      */
+    public function update(?User $user, Site $site): bool
+    {
+        return $site->server->user_id == $user->id;
+    }
+
+
+    /**
+     * @param User|null $user
+     * @param Site $site
+     * @return bool
+     */
     public function show(?User $user, Site $site): bool
     {
         return $site->server->user_id == $user->id;

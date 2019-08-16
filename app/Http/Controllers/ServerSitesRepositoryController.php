@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Server\Site\UpdateRepositoryRequest;
+use App\Http\Requests\Server\Site\Repository\UpdateRequest;
 use App\Models\Server;
 use App\Services\SourceProviders\Factory;
 
 class ServerSitesRepositoryController extends Controller
 {
     /**
-     * @param UpdateRepositoryRequest $request
+     * @param UpdateRequest $request
      * @param $server
      * @param Server\Site $site
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateRepositoryRequest $request, $server, Server\Site $site)
+    public function update(UpdateRequest $request, $server, Server\Site $site)
     {
         $request->persist();
 

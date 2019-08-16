@@ -40,7 +40,7 @@ class Deploy
     public function handle(DeploymentService $service): void
     {
         if (!\Gate::allows('deploy', $this->site)) {
-            return false;
+            return;
         }
 
         $data = [

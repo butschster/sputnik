@@ -68,7 +68,7 @@ class User extends Authenticatable
      */
     public function canUseFeature(string $feature): bool
     {
-        if ($this->hasActiveSubscription()) {
+        if (!$this->hasActiveSubscription()) {
             return false;
         }
 

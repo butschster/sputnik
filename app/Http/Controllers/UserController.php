@@ -10,6 +10,7 @@ class UserController extends Controller
     {
         return view('user.profile', [
             'user' => $request->user(),
+            'subscription' => $request->user()->activeSubscription()
         ]);
     }
 }
