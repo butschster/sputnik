@@ -54,6 +54,11 @@ Route::middleware('auth:api')->group(function () {
     Route::get('server/supervisor/{daemon}', 'Server\SupervisorController@show')->name('server.supervisor.show');
     Route::delete('server/supervisor/{daemon}', 'Server\SupervisorController@delete')->name('server.supervisor.delete');
 
+    // Site
+    Route::get('/server/site/{site}', 'Server\SiteController@show')->name('server.site.show');
+    Route::post('/server/{server}/site', 'Server\SiteController@store')->name('server.site.store');
+    Route::delete('/server/site/{site}', 'Server\SiteController@delete')->name('server.site.delete');
+
     // Site deployment
     Route::get('/server/site/{site}/deploy/config', 'Server\Site\DeploymentsController@config')->name('server.site.deploy.config');
     Route::post('/server/site/{site}/deploy', 'Server\Site\DeploymentsController@deploy')->name('server.site.deploy');
