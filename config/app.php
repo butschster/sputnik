@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\SSHServiceProvider::class,
         App\Providers\ActionsServiceProvider::class,
+        App\Providers\WhoisServiceProvider::class,
     ],
 
     /*

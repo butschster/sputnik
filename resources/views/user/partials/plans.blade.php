@@ -11,16 +11,22 @@
                                @if($plan->name == 'artisan') checked @endif
                         >
                         <label class="custom-control-label" for="plan{{ $plan->id }}">{{ $plan->name }}</label>
+
+                        @if(!$plan->isFree())
+                           <div class="float-right"> ${{ $plan->price }} <small class="text-muted">/mo</small></div>
+                        @endif
                     </div>
                 </h4>
                 <small class="text-muted">{{ $plan->description }}</small>
             </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">${{ $plan->price }} <small class="text-muted">/mo</small></h1>
+            <div class="card-body px-5 py-3">
                 <ul class="list-unstyled mt-3 mb-4">
-                    @foreach($plan->features as $feature)
+                @foreach($plan->features as $feature)
                         <li>
-                            <i class="fas fa-check text-success mr-3"></i> {{ $feature->code }}
+                            <i class="fas fa-check text-success mr-3"></i> {{ $feature->name() }}
+                        @if(!$feature->isUnlimited())
+                                [{{ $feature->value }} times]
+                            @endif
                         </li>
                     @endforeach
                 </ul>

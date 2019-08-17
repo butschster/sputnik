@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/server/{server}/users', 'ServerUsersController@index')->name('server.user.index');
         Route::post('/server/{server}/user', 'ServerUsersController@store')->name('server.user.store');
         Route::delete('/server/{server}/user/{user}', 'ServerUsersController@delete')->name('server.user.delete');
+        Route::get('/server/{server}/user/{user}/download', 'ServerUsersController@downloadPrivateKey')->name('server.user.download');
 
         Route::get('/server/{server}/site/{site}', 'ServerSitesController@show')->name('server.site.show');
         Route::post('/server/{server}/site', 'ServerSitesController@store')->name('server.site.store');

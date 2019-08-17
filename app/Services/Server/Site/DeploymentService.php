@@ -12,13 +12,14 @@ class DeploymentService
 
     /**
      * @param Deployment $deployment
+     * @throws \Throwable
      */
     public function deploy(Deployment $deployment)
     {
         $this->setServer($deployment->site->server);
         $this->setOwner($deployment);
 
-        $this->runJob(
+        $this->runInBackground(
             new DeploymentScript($deployment)
         );
     }

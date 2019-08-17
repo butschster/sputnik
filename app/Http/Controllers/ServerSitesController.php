@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Server\Site\WhoisService;
 use App\Http\Requests\Server\Site\StoreRequest;
-use App\Http\Requests\Server\Site\UpdateRepositoryRequest;
 use App\Jobs\Server\Site\Deploy;
 use App\Models\Server;
 use App\Services\Server\Site\DeploymentService;
 use Illuminate\Http\Request;
+use Iodev\Whois\Whois;
 
 class ServerSitesController extends Controller
 {
@@ -20,6 +21,7 @@ class ServerSitesController extends Controller
     }
 
     /**
+     * @param string $server
      * @param Server\Site $site
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -49,6 +51,8 @@ class ServerSitesController extends Controller
      */
     public function deploy(DeploymentService $service, Request $request, $server, Server\Site $site)
     {
+        $this->authorize('deploy', $site);
+        
         dispatch(new Deploy($site, $request->user()));
 
         return back();

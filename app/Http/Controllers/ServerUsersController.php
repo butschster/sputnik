@@ -12,7 +12,7 @@ class ServerUsersController extends Controller
     {
         return view('server.user.index', [
             'server' => $server,
-            'users' => $server->users
+            'users' => $server->users,
         ]);
     }
 
@@ -30,13 +30,23 @@ class ServerUsersController extends Controller
             'name' => [
                 'required',
                 'string',
-                Rule::unique('server_users')->where('server_id', $server->id)
-            ]
+                Rule::unique('server_users')->where('server_id', $server->id),
+            ],
         ]);
 
         $server->users()->create($data);
 
         return back();
+    }
+
+    public function downloadPrivateKey($server, Server\User $user)
+    {
+        $headers = [
+            'Content-type' => 'text/plain',
+            'Content-Disposition' => 'attachment; filename="'.$user->name.'_id_rsa.key"',
+        ];
+
+        return \Response::make($user->private_key, 200, $headers);
     }
 
     /**

@@ -11,6 +11,6 @@ class ConsumeSubscriptionFeaturesObserver
      */
     public function created(Deployment $deployment): void
     {
-        $deployment->site->server->user->useFeature('server.deployments');
+        $deployment->site->server->user->useFeature('server.deployments.run');
     }
 }

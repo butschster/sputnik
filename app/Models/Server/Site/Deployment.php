@@ -5,6 +5,7 @@ namespace App\Models\Server\Site;
 use App\Events\Server\Site\Deployment\Failed;
 use App\Events\Server\Site\Deployment\Finished;
 use App\Events\Server\Site\Deployment\Running;
+use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server\Site;
@@ -14,12 +15,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Deployment extends Model
 {
-    use UsesUuid, HasTask;
+    use UsesUuid, HasTask, DeterminesAge;
 
     const STATUS_PENDING = 'pending';
     const STATUS_RUNNING = 'running';
     const STATUS_FINISHED = 'finished';
     const STATUS_FAILED = 'failed';
+    const STATUS_TIMEOUT = 'timeout';
 
     protected static function boot()
     {

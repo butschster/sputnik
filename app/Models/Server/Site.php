@@ -32,6 +32,8 @@ class Site extends Model
     protected $casts = [
         'aliases' => 'array',
         'environment' => 'array',
+        'domain_expires_at' => 'date',
+        'ssl_certificate_expires_at' => 'date',
     ];
 
     /**
@@ -66,6 +68,16 @@ class Site extends Model
     public function deployments(): HasMany
     {
         return $this->hasMany(Deployment::class, 'server_site_id')->latest();
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRunningDeployment(): bool
+    {
+        return $this->deployments()
+            ->whereIn('status', [Deployment::STATUS_RUNNING, Deployment::STATUS_PENDING])
+            ->exists();
     }
 
     /**

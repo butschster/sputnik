@@ -30,6 +30,10 @@
                         <col width="200px">
                         <col>
                         <tr>
+                            <th>Expires At</th>
+                            <td>{{ $site->domain_expires_at ?? 'Unknown' }}</td>
+                        </tr>
+                        <tr>
                             <th>Path</th>
                             <td>{{ $site->path() }}</td>
                         </tr>
@@ -58,6 +62,15 @@
                             </form>
                         @endcan
                     </div>
+
+                    @if($site->hasRunningDeployment())
+                        <div class="progress rounded-0">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                 role="progressbar" aria-valuenow="75"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width: 45%">Deployment</div>
+                        </div>
+                    @endif
                     @if(!$site->hasEnvironmentVariables())
                     <div class="alert alert-warning">
                         Site doesn't have environment variables

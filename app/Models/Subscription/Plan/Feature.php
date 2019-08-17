@@ -36,6 +36,14 @@ class Feature extends Model
     ];
 
     /**
+     * @return array|\Illuminate\Contracts\Translation\Translator|string|null
+     */
+    public function name()
+    {
+        return trans('plans.'. $this->code);
+    }
+
+    /**
      * The model always belongs to a plan.
      *
      * @return BelongsTo

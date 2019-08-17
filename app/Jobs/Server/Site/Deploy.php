@@ -6,11 +6,12 @@ use App\Models\Server\Site;
 use App\Models\User;
 use App\Services\Server\Site\DeploymentService;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class Deploy
+class Deploy implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -36,13 +37,10 @@ class Deploy
 
     /**
      * @param DeploymentService $service
+     * @throws \Throwable
      */
     public function handle(DeploymentService $service): void
     {
-        if (!\Gate::allows('deploy', $this->site)) {
-            return;
-        }
-
         $data = [
             'branch' => $this->site->repositoryBranch(),
             'initiator_id' => $this->initiator ? $this->initiator->id : null,

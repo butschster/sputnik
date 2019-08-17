@@ -5,15 +5,7 @@ namespace App\Providers;
 use App\Events\Task;
 use App\Events\Server;
 use App\Events\Server\KeysInstalled;
-use App\Listeners\Server\AddPublicKeyToServer;
-use App\Listeners\Server\CreateHttpFirewallRules;
-use App\Listeners\Server\RegisterSystemUsers;
-use App\Listeners\Server\RemovePublicKeyFromServer;
-use App\Listeners\Server\RestartSupervisor;
-use App\Listeners\Server\ScheduleSystemJobs;
-use App\Listeners\Server\Site\UpdateDeploymentStatus;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -24,26 +16,29 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            \Illuminate\Auth\Listeners\SendEmailVerificationNotification::class,
         ],
         KeysInstalled::class => [
 
         ],
         Server\Configured::class => [
-            CreateHttpFirewallRules::class,
-            ScheduleSystemJobs::class
+            \App\Listeners\Server\CreateHttpFirewallRules::class,
+            \App\Listeners\Server\ScheduleSystemJobs::class
         ],
         Server\Created::class => [
-            RegisterSystemUsers::class
+            \App\Listeners\Server\RegisterSystemUsers::class
+        ],
+        Server\Site\Created::class => [
+            \App\Listeners\Server\Site\LookupDomainInformation::class
         ],
         Server\Site\Deployment\Finished::class => [
-            RestartSupervisor::class
+            \App\Listeners\Server\RestartSupervisor::class
         ],
         Task\Running::class => [
-            UpdateDeploymentStatus::class
+            \App\Listeners\Server\Site\UpdateDeploymentStatus::class
         ],
         Task\Finished::class => [
-            UpdateDeploymentStatus::class
+            \App\Listeners\Server\Site\UpdateDeploymentStatus::class
         ]
     ];
 

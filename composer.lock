@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f738dcc1676f9a2583b2c8c363967f05",
+    "content-hash": "01939ce39fd19f68a9810f8c7e3b952d",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -850,6 +850,63 @@
                 "youtube"
             ],
             "time": "2019-04-03T13:40:29+00:00"
+        },
+        {
+            "name": "io-developer/php-whois",
+            "version": "3.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/io-developer/php-whois.git",
+                "reference": "31ba654cf0a9d2ae1eceaf1a24b3bb8c1ad3e902"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/io-developer/php-whois/zipball/31ba654cf0a9d2ae1eceaf1a24b3bb8c1ad3e902",
+                "reference": "31ba654cf0a9d2ae1eceaf1a24b3bb8c1ad3e902",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-intl": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Iodev\\": "src/Iodev/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergey Sedyshev",
+                    "email": "i.o.developer@gmail.com",
+                    "homepage": "https://github.com/io-developer"
+                }
+            ],
+            "description": "PHP WHOIS provides parsed and raw whois lookup of domains and ASN routes. PHP 5.4+ and 7+ compatible ",
+            "homepage": "https://github.com/io-developer/php-whois",
+            "keywords": [
+                "asn",
+                "domain",
+                "info",
+                "lookup",
+                "parser",
+                "php",
+                "query",
+                "routes",
+                "tld",
+                "whois",
+                "црщшы"
+            ],
+            "time": "2019-08-15T13:37:25+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1749,16 +1806,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.22.3",
+            "version": "2.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "738fbd8d80b2c5e158fda76c29c2de432fcc6f7e"
+                "reference": "97a08830a22ce0b69549a4966773c0eae900468d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/738fbd8d80b2c5e158fda76c29c2de432fcc6f7e",
-                "reference": "738fbd8d80b2c5e158fda76c29c2de432fcc6f7e",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/97a08830a22ce0b69549a4966773c0eae900468d",
+                "reference": "97a08830a22ce0b69549a4966773c0eae900468d",
                 "shasum": ""
             },
             "require": {
@@ -1805,14 +1862,14 @@
                     "homepage": "http://github.com/kylekatarnls"
                 }
             ],
-            "description": "A simple API extension for DateTime.",
+            "description": "A API extension for DateTime that supports 281 different languages.",
             "homepage": "http://carbon.nesbot.com",
             "keywords": [
                 "date",
                 "datetime",
                 "time"
             ],
-            "time": "2019-08-07T12:36:44+00:00"
+            "time": "2019-08-12T17:19:41+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -5908,6 +5965,39 @@
             "time": "2016-01-20T08:20:44+00:00"
         },
         {
+            "name": "jakeasmith/http_build_url",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jakeasmith/http_build_url.git",
+                "reference": "93c273e77cb1edead0cf8bcf8cd2003428e74e37"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jakeasmith/http_build_url/zipball/93c273e77cb1edead0cf8bcf8cd2003428e74e37",
+                "reference": "93c273e77cb1edead0cf8bcf8cd2003428e74e37",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/http_build_url.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jake A. Smith",
+                    "email": "theman@jakeasmith.com"
+                }
+            ],
+            "description": "Provides functionality for http_build_url() to environments without pecl_http.",
+            "time": "2017-05-01T15:36:40+00:00"
+        },
+        {
             "name": "justinrainbow/json-schema",
             "version": "5.2.8",
             "source": {
@@ -6098,6 +6188,59 @@
                 "testing"
             ],
             "time": "2019-08-07T15:01:07+00:00"
+        },
+        {
+            "name": "mso/idna-convert",
+            "version": "v3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/algo26-matthias/idna-convert.git",
+                "reference": "262d9e4d8bde4f76c60825ee4b32cb5a7cded53b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/algo26-matthias/idna-convert/zipball/262d9e4d8bde4f76c60825ee4b32cb5a7cded53b",
+                "reference": "262d9e4d8bde4f76c60825ee4b32cb5a7cded53b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcre": "*",
+                "jakeasmith/http_build_url": "^1",
+                "php": "^7.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7.5.14"
+            },
+            "suggest": {
+                "ext-iconv": "Install ext/iconv for using input / output other than UTF-8 or ISO-8859-1",
+                "ext-mbstring": "Install ext/mbstring for using input / output other than UTF-8 or ISO-8859-1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Algo26\\IdnaConvert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1+"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Sommerfeld",
+                    "role": "Developer",
+                    "email": "matthias.sommerfeld@algo26.de"
+                }
+            ],
+            "description": "A library for encoding and decoding internationalized domain names",
+            "homepage": "http://idnaconv.net/",
+            "keywords": [
+                "idn",
+                "idna",
+                "php"
+            ],
+            "abandoned": "algo26-matthias/idna-convert",
+            "time": "2019-07-29T15:11:31+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -6312,6 +6455,48 @@
             ],
             "description": "Library for handling version information and constraints",
             "time": "2018-07-08T19:19:57+00:00"
+        },
+        {
+            "name": "phois/whois",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/regru/php-whois.git",
+                "reference": "1b321ec3551ac54cc790f8a5d7945ff5bc8a916c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/regru/php-whois/zipball/1b321ec3551ac54cc790f8a5d7945ff5bc8a916c",
+                "reference": "1b321ec3551ac54cc790f8a5d7945ff5bc8a916c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Phois\\Whois": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Rivera",
+                    "role": "Systems Developer",
+                    "email": "David.R.Rivera193@gmail.com",
+                    "homepage": "http://www.protodx.com"
+                }
+            ],
+            "description": "Whois client.",
+            "keywords": [
+                "whois"
+            ],
+            "time": "2016-06-16T06:23:22+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -6863,6 +7048,67 @@
                 "xunit"
             ],
             "time": "2019-07-15T06:24:08+00:00"
+        },
+        {
+            "name": "phpwhois/phpwhois",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpWhois/phpWhois.git",
+                "reference": "32a5e85cc833f9b886c86123f7be5ada3d326272"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpWhois/phpWhois/zipball/32a5e85cc833f9b886c86123f7be5ada3d326272",
+                "reference": "32a5e85cc833f9b886c86123f7be5ada3d326272",
+                "shasum": ""
+            },
+            "require": {
+                "mso/idna-convert": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.4.1"
+            },
+            "suggest": {
+                "lib-openssl": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "phpWhois\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Jeftovic",
+                    "email": "markjr@easydns.com"
+                },
+                {
+                    "name": "David Saez Padros",
+                    "email": "david@ols.es"
+                },
+                {
+                    "name": "Ross Golder",
+                    "email": "ross@golder.org"
+                },
+                {
+                    "name": "Dmitry Lukashin",
+                    "email": "dmitry@lukashin.ru"
+                }
+            ],
+            "description": "phpWhois - library for querying whois services and parsing results. Based on phpwhois.org",
+            "homepage": "http://phpwhois.pw",
+            "keywords": [
+                "php",
+                "phpwhois",
+                "whois"
+            ],
+            "time": "2015-07-10T18:53:02+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

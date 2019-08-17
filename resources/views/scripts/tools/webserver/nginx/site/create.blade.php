@@ -24,13 +24,6 @@ server {
     server_name {{ $site->domain }};
     root {{ $site->publicPath() }};
 
-    # ssl_certificate;
-    # ssl_certificate_key;
-    ssl_protocols TLSv1.2;
-    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384;
-    ssl_prefer_server_ciphers on;
-    ssl_dhparam /etc/nginx/dhparams.pem;
-
     add_header X-Frame-Options "SAMEORIGIN";
     add_header X-XSS-Protection "1; mode=block";
     add_header X-Content-Type-Options "nosniff";

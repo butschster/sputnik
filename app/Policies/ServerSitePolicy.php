@@ -41,8 +41,12 @@ class ServerSitePolicy
             return false;
         }
 
+        if ($site->hasRunningDeployment()) {
+            return false;
+        }
+
         return $site->server->user_id == $user->id &&
-            $user->canUseFeature('server.deployments');
+            $user->canUseFeature('server.deployments.run');
     }
 
 

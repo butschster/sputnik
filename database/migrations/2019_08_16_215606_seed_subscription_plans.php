@@ -62,7 +62,7 @@ class SeedSubscriptionPlans extends Migration
                 'value' => 'Y',
             ]),
             new Plan\Feature([
-                'code' => 'server.deployments',
+                'code' => 'server.deployments.run',
                 'value' => 'Y',
             ]),
             new Plan\Feature([
@@ -111,7 +111,7 @@ class SeedSubscriptionPlans extends Migration
                 'value' => 'Y',
             ]),
             new Plan\Feature([
-                'code' => 'server.deployments',
+                'code' => 'server.deployments.run',
                 'value' => 'Y',
             ]),
             new Plan\Feature([
@@ -152,7 +152,7 @@ class SeedSubscriptionPlans extends Migration
                 'value' => 3,
             ]),
             new Plan\Feature([
-                'code' => 'server.deployments',
+                'code' => 'server.deployments.run',
                 'value' => 3,
                 'renewable' => true
             ]),

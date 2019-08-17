@@ -47,11 +47,11 @@
                         <col>
                         <col width="100px">
                         <col width="100px">
-                        <col width="50px">
+                        <col width="100px">
                         <thead class="thead-dark">
                         <tr>
                             <th>Name</th>
-                            <th>Password</th>
+                            <th>Sudo password</th>
                             <th>Home</th>
                             <th></th>
                         </tr>
@@ -61,7 +61,8 @@
                                 <th>{{ $user->name }}</th>
                                 <td>{{ $user->sudo_password }}</td>
                                 <td>{{ $user->homeDir() }}</td>
-                                <td>
+                                <td class="text-right">
+                                    <a href="{{ route('server.user.download', [$server, $user]) }}" class="btn btn-primary btn-sm"><i class="fas fa-download"></i></a>
                                     @if(!$user->isSystem())
                                         <form class="float-right" action="{{ route('server.user.delete', [$server, $user]) }}"
                                               method="POST">

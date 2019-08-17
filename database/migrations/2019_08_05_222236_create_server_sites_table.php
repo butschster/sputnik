@@ -28,6 +28,11 @@ class CreateServerSitesTable extends Migration
             $table->string('repository_provider')->nullable();
             $table->string('repository_branch')->nullable();
 
+            $table->boolean('use_ssl')->default(false);
+
+            $table->date('domain_expires_at')->nullable();
+            $table->date('ssl_certificate_expires_at')->nullable();
+
             $table->timestamps();
         });
     }
