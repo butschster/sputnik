@@ -56,9 +56,4 @@ cat > {{ $site->path().'/shared/.env' }} << EOF
 
 EOF
 
-
 cd {{ $site->path() }} && dep deploy:unlock && dep deploy
-
-{!! $configurator->php()->restart() !!}
-{!! $configurator->webserver()->restart() !!}
-

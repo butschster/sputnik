@@ -11,6 +11,7 @@ class ServerSupervisorController extends Controller
     {
         return view('server.supervisor.index', [
             'server' => $server,
+            'tasks' => $server->tasks()->for(Server\Daemon::class)->paginate(),
             'daemons' => $server->daemons
         ]);
     }

@@ -5,5 +5,6 @@
 
 {!! $task->script !!}
 
-STATUS=$?
-{!! callback_url('task.finished', ['task_id' => $task->id, 'exit_code' => '$STATUS']) !!}
+EXIT_CODE=$?
+
+{!! callback_url('task.finished', ['task_id' => $task->id, 'exit_code' => '$EXIT_CODE']) !!}

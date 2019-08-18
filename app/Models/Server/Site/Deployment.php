@@ -5,6 +5,7 @@ namespace App\Models\Server\Site;
 use App\Events\Server\Site\Deployment\Failed;
 use App\Events\Server\Site\Deployment\Finished;
 use App\Events\Server\Site\Deployment\Running;
+use App\Events\Server\Site\Deployment\Timeout;
 use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
@@ -133,6 +134,20 @@ class Deployment extends Model
     }
 
     /**
+     * Mark the deployment as finished.
+     */
+    public function markAsTimedOut(): void
+    {
+        $this->update([
+            'status' => static::STATUS_TIMEOUT,
+        ]);
+
+        event(
+            new Timeout($this)
+        );
+    }
+
+    /**
      * Determine if the deployment is finished.
      *
      * @return bool
@@ -140,5 +155,15 @@ class Deployment extends Model
     public function isFailed(): bool
     {
         return $this->status === static::STATUS_FAILED;
+    }
+
+    /**
+     * Check if deployment has been failed or finished
+     *
+     * @return bool
+     */
+    public function hasEnded(): bool
+    {
+        return $this->isFinished() || $this->isFailed();
     }
 }

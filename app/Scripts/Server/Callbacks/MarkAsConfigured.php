@@ -2,9 +2,10 @@
 
 namespace App\Scripts\Server\Callbacks;
 
+use App\Contracts\Scripts\Callback;
 use App\Models\Server\Task;
 
-class MarkAsConfigured
+class MarkAsConfigured implements Callback
 {
     /**
      * When the task "Configuring Web Server" is finished it runs this callback
@@ -15,8 +16,6 @@ class MarkAsConfigured
      */
     public function handle(Task $task): void
     {
-        if ($task->server) {
-            $task->server->markAsConfigured();
-        }
+        $task->server->markAsConfigured();
     }
 }

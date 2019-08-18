@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Server\Site\WhoisService;
 use App\Http\Requests\Server\Site\StoreRequest;
-use App\Jobs\Server\Site\Deploy;
+use App\Jobs\Server\Site\Deployment\Run as Deploy;
 use App\Models\Server;
 use App\Services\Server\Site\DeploymentService;
 use Illuminate\Http\Request;
-use Iodev\Whois\Whois;
 
 class ServerSitesController extends Controller
 {

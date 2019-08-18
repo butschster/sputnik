@@ -12,6 +12,7 @@ class ServerSchedulerController extends Controller
     {
         return view('server.scheduler.index', [
             'server' => $server,
+            'tasks' => $server->tasks()->for(Server\CronJob::class)->paginate(),
             'jobs' => $server->cronJobs
         ]);
     }

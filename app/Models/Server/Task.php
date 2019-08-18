@@ -13,6 +13,7 @@ use App\Services\Task\Contracts\Task as TaskContract;
 use App\Utils\SSH\Script;
 use App\Utils\SSH\Shell\Response;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -61,6 +62,16 @@ class Task extends Model implements TaskContract
     public function owner(): MorphTo
     {
         return $this->morphTo('owner');
+    }
+
+    /**
+     * @param Builder $builder
+     * @param string $class
+     * @return Builder
+     */
+    public function scopeFor(Builder $builder, string $class)
+    {
+        return $builder->where('owner_type', $class);
     }
 
     /**

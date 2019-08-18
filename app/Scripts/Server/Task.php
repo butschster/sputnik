@@ -12,11 +12,6 @@ class Task extends Script
     protected $task;
 
     /**
-     * @var string
-     */
-    protected $name = 'Callback from server';
-
-    /**
      * @param \App\Services\Task\Contracts\Task $task
      */
     public function __construct(\App\Services\Task\Contracts\Task $task)

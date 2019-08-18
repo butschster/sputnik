@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs\Server\Site;
+namespace App\Jobs\Server\Site\Deployment;
 
 use App\Models\Server\Site;
 use App\Models\User;
@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class Deploy implements ShouldQueue
+class Run implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 

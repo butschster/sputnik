@@ -12,6 +12,7 @@ class ServerUsersController extends Controller
     {
         return view('server.user.index', [
             'server' => $server,
+            'tasks' => $server->tasks()->for(Server\User::class)->paginate(),
             'users' => $server->users,
         ]);
     }

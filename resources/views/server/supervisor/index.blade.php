@@ -32,8 +32,8 @@
 
                                 @error('command')
                                 <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
 
@@ -45,8 +45,8 @@
 
                                 @error('processes')
                                 <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
 
@@ -99,6 +99,7 @@
                     </table>
                 </div>
 
+                @include('server.partials.tasks')
             </div>
         </div>
     </div>

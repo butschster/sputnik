@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Server\Firewall\StoreRequest;
-use App\Http\Resources\v1\ServerResource;
 use App\Models\Server;
 
 class ServerFirewallController extends Controller
@@ -12,6 +11,7 @@ class ServerFirewallController extends Controller
     {
         return view('server.firewall.index', [
             'server' => $server,
+            'tasks' => $server->tasks()->for(Server\Firewall\Rule::class)->paginate(),
             'rules' => $server->firewallRules
         ]);
     }

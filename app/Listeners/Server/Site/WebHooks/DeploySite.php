@@ -3,7 +3,7 @@
 namespace App\Listeners\Server\Site\WebHooks;
 
 use App\Events\WebHooks\Push;
-use App\Jobs\Server\Site\Deploy;
+use App\Jobs\Server\Site\Deployment\Run as Deploy;
 use Illuminate\Support\Facades\Gate;
 
 class DeploySite

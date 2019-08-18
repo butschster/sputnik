@@ -102,8 +102,9 @@
                             </tr>
                         @endforeach
                     </table>
-
                 </div>
+
+                @include('server.partials.tasks')
 
             </div>
         </div>

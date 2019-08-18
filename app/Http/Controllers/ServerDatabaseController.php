@@ -11,6 +11,7 @@ class ServerDatabaseController extends Controller
     {
         return view('server.database.index', [
             'server' => $server,
+            'tasks' => $server->tasks()->for(Server\Database::class)->paginate(),
             'databases' => $server->databases
         ]);
     }

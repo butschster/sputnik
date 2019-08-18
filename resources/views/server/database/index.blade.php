@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label>Password (Optional)</label>
                                 <input type="text" class="form-control @error('password') is-invalid @enderror" name="password"
-                                       value="{{ old('password') }}" required autofocus>
+                                       value="{{ old('password') }}">
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -87,6 +87,7 @@
                     </table>
                 </div>
 
+                @include('server.partials.tasks')
             </div>
         </div>
     </div>

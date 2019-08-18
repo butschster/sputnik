@@ -96,6 +96,7 @@
                     </form>
                 </div>
 
+                @include('server.partials.tasks')
             </div>
         </div>
     </div>
