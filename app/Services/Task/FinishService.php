@@ -49,11 +49,15 @@ class FinishService
      * Download the output of the task from the remote server.
      *
      * @param Task $task
+     * @param int $bytes
      * @return string
      */
-    protected function retrieveOutput(Task $task): string
+    protected function retrieveOutput(Task $task, int $bytes = 20000000): string
     {
-        return $this->runInline('tail --bytes=2000000 ' . $task->outputFile(), 10)->getOutput();
+        return $this->runInline(
+            sprintf('tail --bytes=%d %s', $bytes, $task->outputFile()),
+            10
+        )->getOutput();
     }
 
     /**

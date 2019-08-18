@@ -1,1 +1,2 @@
-DROP DATABASE IF EXISTS {{ $database->name }};
+
+@include('scripts.tools.database.mysql.database.drop')

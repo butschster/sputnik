@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Subscription\Period;
 use App\Models\Subscription\Plan;
 use App\Models\User\SourceProvider;
 use App\Models\User\Subscription;
@@ -12,7 +13,6 @@ use App\Models\Concerns\UsesUuid;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Rinvex\Subscriptions\Services\Period;
 
 class User extends Authenticatable
 {
@@ -116,7 +116,7 @@ class User extends Authenticatable
         return $subscription;
     }
 
-    public function cancelCurrentSubscription()
+    public function cancelCurrentSubscription(): void
     {
         $this->subscription->cancel();
     }
@@ -142,11 +142,17 @@ class User extends Authenticatable
         return $this->subscription->canUseFeature($code);
     }
 
-    public function getRemainingOf(string $code)
+    /**
+     * @param string $code
+     * @return int
+     */
+    public function getRemainingOf(string $code): int
     {
         if ($this->hasActiveSubscription()) {
             return $this->subscription->getFeatureRemains($code);
         }
+
+        return 0;
     }
 
     /**

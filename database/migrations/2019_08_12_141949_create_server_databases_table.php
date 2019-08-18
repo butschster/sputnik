@@ -19,6 +19,7 @@ class CreateServerDatabasesTable extends Migration
             $table->belongsToServer();
 
             $table->string('name');
+            $table->string('password');
             $table->string('character_set')->default(Database::DEFAULT_CHARACTER_SET);
             $table->string('collation')->default(Database::DEFAULT_COLLATION);
 

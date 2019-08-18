@@ -21,13 +21,19 @@ use App\Models\Server\Site;
 use App\Models\Server\Task;
 use App\Contracts\Server\ServerConfiguration;
 use App\Utils\SSH\ValueObjects\SystemInformation;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Server extends Model implements ServerConfiguration
 {
-    use UsesUuid, DeterminesAge, HasTask, HasConfiguration, HasKeyPair;
+    use UsesUuid,
+        DeterminesAge,
+        HasTask,
+        HasConfiguration,
+        HasKeyPair,
+        Cachable;
 
     const STATUS_PENDING = 'pending';
     const STATUS_CONFIGUTING = 'configuring';

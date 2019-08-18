@@ -35,6 +35,18 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group">
+                                <label>Password (Optional)</label>
+                                <input type="text" class="form-control @error('password') is-invalid @enderror" name="password"
+                                       value="{{ old('password') }}" required autofocus>
+
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
                             <div class="form-group mb-0">
                                 <button class="btn btn-primary">Store</button>
                             </div>
@@ -46,10 +58,12 @@
                         <col>
                         <col width="100px">
                         <col width="100px">
+                        <col width="100px">
                         <col width="50px">
                         <thead class="thead-dark">
                         <tr>
                             <th>Name</th>
+                            <th>User</th>
                             <th>Password</th>
                             <th>Status</th>
                             <th></th>
@@ -58,7 +72,8 @@
                         @foreach($databases as $database)
                             <tr>
                                 <th>{{ $database->name }}</th>
-                                <td>{{ $server->database_password }}</td>
+                                <th>{{ $database->name }}</th>
+                                <td>{{ $database->password }}</td>
                                 <td><span class="badge badge-dark">{{ $database->taskStatus() }}</span></td>
                                 <td>
                                     <form class="float-right" action="{{ route('server.database.delete', [$database->server_id, $database]) }}" method="POST">

@@ -4,13 +4,14 @@ namespace App\Models\Subscription;
 
 use App\Models\Concerns\UsesUuid;
 use App\Models\Subscription\Plan\Feature;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Plan extends Model
 {
-    use UsesUuid;
+    use UsesUuid, Cachable;
 
     /**
      * {@inheritdoc}

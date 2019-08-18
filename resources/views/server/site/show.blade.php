@@ -74,7 +74,7 @@
                     @if(!$site->hasEnvironmentVariables())
                     <div class="alert alert-warning">
                         Site doesn't have environment variables
-                        <a href="{{ route('server.site.deployments.index', [$site->server_id, $site]) }}" class="btn btn-warning btn-sm">Configure</a>
+                        <a href="{{ route('server.site.environment.index', [$site->server_id, $site]) }}" class="btn btn-warning btn-sm">Configure</a>
                     </div>
                     @endif
                     <form action="{{ route('server.site.repository.update', [$site->server_id, $site]) }}" method="POST">
@@ -83,7 +83,6 @@
                         <div class="form-group bg-light p-3 shadow">
                             <label class="mr-4">Source provider</label>
 
-                            {{--
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio"
                                        name="repository_provider"
@@ -96,7 +95,6 @@
                                 >
                                 <label class="custom-control-label" for="providerCustom">Custom</label>
                             </div>
-                            --}}
                             @foreach($site->server->user->sourceProviders as $provider)
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio"

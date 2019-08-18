@@ -29,6 +29,10 @@ class StoreRequest extends FormRequest
                 'alpha_dash',
                 Rule::unique('server_databases')->where('server_id', $this->route('server')->id)
             ],
+            'password' => [
+                'nullable',
+                'string',
+            ]
         ];
     }
 

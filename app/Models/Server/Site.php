@@ -8,6 +8,8 @@ use App\Models\Concerns\UsesUuid;
 use App\Models\Server\Site\Deployment;
 use App\Models\User\SourceProvider;
 use App\Services\SourceProviders\Factory;
+use App\Validation\Rules\Server\Site\RepositoryName;
+use App\Validation\Rules\Server\Site\RepositoryUrl;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -37,19 +39,35 @@ class Site extends Model
     ];
 
     /**
+     * Check if repository is valid
+     *
      * @return bool
      */
     public function isValidRepository(): bool
     {
-        if (empty($this->repository)) {
-            return false;
+        if ($this->isCustomRepository()) {
+            return true;
         }
 
-        if (!$this->sourceProvider) {
-            return false;
-        }
+        return $this->isSourceProviderRepository();
+    }
 
-        return true;
+    /**
+     * Check if repository owns to source provider (Github, Bitbucket, ....)
+     *
+     * @return bool
+     */
+    public function isSourceProviderRepository(): bool
+    {
+        return (new RepositoryName())->passes('', $this->repository) && $this->sourceProvider;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCustomRepository(): bool
+    {
+        return (new RepositoryUrl())->passes('', $this->repository);
     }
 
     /**
@@ -109,9 +127,17 @@ class Site extends Model
      */
     public function cloneUrl(): string
     {
-        return app(Factory::class)
-            ->make($this->sourceProvider)
-            ->cloneUrl($this->repository);
+        if ($this->isCustomRepository()) {
+            return $this->repository;
+        }
+
+        if ($this->isSourceProviderRepository()) {
+            return $this->sourceProvider
+                ->getClient()
+                ->cloneUrl($this->repository);
+        }
+
+        throw new \InvalidArgumentException('Repository URL not exists');
     }
 
     /**
@@ -163,5 +189,21 @@ class Site extends Model
     public function publicPath(): string
     {
         return '/var/www/' . $this->domain . '/current/' . ltrim($this->public_dir, '/ ');
+    }
+
+    /**
+     * @return string
+     */
+    public function sslCertPath(): string
+    {
+        return '/etc/letsencrypt/live/' . $this->domain . '/server.pem';
+    }
+
+    /**
+     * @return string
+     */
+    public function sslKeyPath(): string
+    {
+        return '/etc/letsencrypt/live/' . $this->domain . '/server.key';
     }
 }

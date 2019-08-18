@@ -4,6 +4,8 @@ namespace App\Models\User;
 
 use App\Models\Concerns\UsesUuid;
 use App\Models\User;
+use App\Services\SourceProviders\Contracts\SourceProvider as SourceProviderContract;
+use App\Services\SourceProviders\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -27,5 +29,15 @@ class SourceProvider extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return SourceProviderContract
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function getClient(): SourceProviderContract
+    {
+        return app(Factory::class)->make($this);
     }
 }

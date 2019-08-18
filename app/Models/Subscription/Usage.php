@@ -3,12 +3,13 @@
 namespace App\Models\Subscription;
 
 use App\Models\Concerns\UsesUuid;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Usage extends Model
 {
-    use UsesUuid;
+    use UsesUuid, Cachable;
 
     /**
      * {@inheritdoc}

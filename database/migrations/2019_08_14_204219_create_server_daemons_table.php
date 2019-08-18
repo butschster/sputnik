@@ -16,7 +16,7 @@ class CreateServerDaemonsTable extends Migration
         Schema::create('server_daemons', function (Blueprint $table) {
             $table->primaryUuid('id');
             $table->belongsToServer();
-
+ 
             $table->text('command');
             $table->string('user');
             $table->string('directory')->nullable();

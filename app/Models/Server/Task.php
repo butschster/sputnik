@@ -11,6 +11,7 @@ use App\Models\Server;
 use App\Services\Task\Contracts\Task as TaskContract;
 use App\Utils\SSH\Script;
 use App\Utils\SSH\Shell\Response;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -18,7 +19,7 @@ use Illuminate\Support\Collection;
 
 class Task extends Model implements TaskContract
 {
-    use UsesUuid, HasServer;
+    use UsesUuid, HasServer, Cachable;
 
     const STATUS_PENDING = 'pending';
     const STATUS_RUNNING = 'running';

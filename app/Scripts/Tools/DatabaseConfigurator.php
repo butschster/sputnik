@@ -4,6 +4,7 @@ namespace App\Scripts\Tools;
 
 use App\Exceptions\Scrpits\ConfigurationNotFoundException;
 use App\Models\Server\Database;
+use App\Services\Server\Database\ValueObjects\User;
 
 class DatabaseConfigurator extends Configurator
 {
@@ -71,7 +72,8 @@ class DatabaseConfigurator extends Configurator
     public function createDatabase(Database $database): string
     {
         return $this->render('tools.database.' . $this->type() . '.database.create', [
-            'database' => $database
+            'database' => $database,
+            'user' => new User($database->name, $database->password, [$database->name.'.*'])
         ]);
     }
 
@@ -84,7 +86,8 @@ class DatabaseConfigurator extends Configurator
     public function dropDatabase(Database $database): string
     {
         return $this->render('tools.database.' . $this->type() . '.database.drop', [
-            'database' => $database
+            'database' => $database,
+            'user' => new User($database->name, $database->password, [$database->name.'.*'])
         ]);
     }
 
@@ -97,7 +100,10 @@ class DatabaseConfigurator extends Configurator
     {
         return [
             'password' => $this->password(),
-            'hosts' => $this->configuration->databaseHosts()
+            'hosts' => $this->configuration->databaseHosts(),
+            'databaseUsers' => collect($this->configuration->systemUsers())->map(function($user) {
+                return new User($user->name, $this->password(), ['*.*']);
+            })
         ];
     }
 

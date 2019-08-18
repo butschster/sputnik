@@ -3,13 +3,10 @@
 namespace App\Http\Requests\Server\Site\Repository;
 
 use App\Models\Server\Site;
-use App\Models\User\SourceProvider;
-use App\Services\SourceProviders\Factory;
 use App\Validation\Rules\Server\Site\RepositoryName;
+use App\Validation\Rules\Server\Site\RepositoryUrl;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\ValidationException;
 
 class UpdateRequest extends FormRequest
 {
@@ -27,17 +24,38 @@ class UpdateRequest extends FormRequest
     {
         return [
             'repository_provider' => [
-                'required',
+                'nullable',
                 'string',
-                Rule::exists('user_source_providers', 'type')->where('user_id', $this->getSite()->server->user_id),
-            ],
-            'repository' => [
-                'required',
-                'string',
-                new RepositoryName(),
             ],
             'repository_branch' => 'required|string|alpha_dash',
         ];
+    }
+
+    /**
+     * @param \Illuminate\Validation\Validator $validator
+     * @return mixed
+     */
+    public function withValidator(\Illuminate\Validation\Validator $validator): void
+    {
+        $validator->sometimes('repository', ['required', 'string', new RepositoryUrl()], function ($input) {
+            return empty($input->repository_provider);
+        })->sometimes('repository', ['required', 'string', new RepositoryName()], function ($input) {
+            if (empty($this->repository_provider)) {
+                return false;
+            }
+
+            return $this->user()->sourceProviders()->where('type', $this->repository_provider)->exists();
+        })->after(function ($validator) {
+            if (!empty($this->repository_provider)) {
+                $provider = $this->user()->sourceProviders()->where('type', $this->repository_provider)->firstOrFail();
+
+                $isValid = $provider->getClient()->validRepository($this->repository, $this->repository_branch);
+
+                if (!$isValid) {
+                    $validator->errors()->add('repository', 'Repository not found');
+                }
+            }
+        });
     }
 
     /**
@@ -45,18 +63,6 @@ class UpdateRequest extends FormRequest
      */
     public function persist(): Site
     {
-        $provider = $this->user()->sourceProviders()->where('type', $this->repository_provider)->firstOrFail();
-
-        $isValid = (new Factory())->make($provider)
-            ->validRepository($this->repository, $this->repository_branch);
-
-        if (!$isValid) {
-            $validator = $this->getValidatorInstance();
-            $validator->errors()->add('repository', 'Repository not found');
-
-            $this->failedValidation($validator);
-        }
-
         $site = $this->getSite();
 
         $site->update($this->validationData());

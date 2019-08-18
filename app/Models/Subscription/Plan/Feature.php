@@ -3,15 +3,16 @@
 namespace App\Models\Subscription\Plan;
 
 use App\Models\Concerns\UsesUuid;
+use App\Models\Subscription\Period;
 use App\Models\Subscription\Plan;
 use Carbon\Carbon;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Rinvex\Subscriptions\Services\Period;
 
 class Feature extends Model
 {
-    use UsesUuid;
+    use UsesUuid, Cachable;
 
     /**
      * {@inheritdoc}
@@ -38,7 +39,7 @@ class Feature extends Model
     /**
      * @return array|\Illuminate\Contracts\Translation\Translator|string|null
      */
-    public function name()
+    public function name(): string
     {
         return trans('plans.'. $this->code);
     }
@@ -53,6 +54,11 @@ class Feature extends Model
         return $this->belongsTo(Plan::class);
     }
 
+    /**
+     * Check if feature is unlimited
+     *
+     * @return bool
+     */
     public function isUnlimited(): bool
     {
         return $this->value === 'Y';

@@ -3,19 +3,20 @@
 namespace App\Models\User;
 
 use App\Models\Concerns\UsesUuid;
+use App\Models\Subscription\Period;
 use App\Models\Subscription\Plan;
 use App\Models\Subscription\Usage;
 use App\Models\User;
 use DB;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Rinvex\Subscriptions\Services\Period;
 
 class Subscription extends Model
 {
-    use UsesUuid;
+    use UsesUuid, Cachable;
 
     /**
      * {@inheritdoc}
@@ -180,23 +181,23 @@ class Subscription extends Model
     /**
      * Set new subscription period.
      *
-     * @param string $invoice_interval
-     * @param int $invoice_period
+     * @param string $invoiceInterval
+     * @param int $invoicePeriod
      * @param string $start
      *
      * @return void
      */
-    protected function setNewPeriod($invoice_interval = '', $invoice_period = '', $start = ''): void
+    protected function setNewPeriod(string $invoiceInterval = '', int $invoicePeriod = null, $start = null): void
     {
-        if (empty($invoice_interval)) {
-            $invoice_interval = $this->plan->invoice_interval;
+        if (empty($invoiceInterval)) {
+            $invoiceInterval = $this->plan->invoice_interval;
         }
 
-        if (empty($invoice_period)) {
-            $invoice_period = $this->plan->invoice_period;
+        if (empty($invoicePeriod)) {
+            $invoicePeriod = $this->plan->invoice_period;
         }
 
-        $period = new Period($invoice_interval, $invoice_period, $start);
+        $period = new Period($invoiceInterval, $invoicePeriod, $start);
 
         $this->starts_at = $period->getStartDate();
         $this->ends_at = $period->getEndDate();
