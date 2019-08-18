@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('server:site:deployments:timeout-expired')->hourly();
+        $schedule->command('servers:ping')->hourly();
     }
 
     /**

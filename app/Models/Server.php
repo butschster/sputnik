@@ -20,8 +20,10 @@ use App\Models\Server\Firewall\Rule as FirewallRule;
 use App\Models\Server\Site;
 use App\Models\Server\Task;
 use App\Contracts\Server\ServerConfiguration;
+use App\Models\Subscription\Plan;
 use App\Utils\SSH\ValueObjects\SystemInformation;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -32,8 +34,7 @@ class Server extends Model implements ServerConfiguration
         DeterminesAge,
         HasTask,
         HasConfiguration,
-        HasKeyPair,
-        Cachable;
+        HasKeyPair;
 
     const STATUS_PENDING = 'pending';
     const STATUS_CONFIGUTING = 'configuring';
@@ -90,6 +91,16 @@ class Server extends Model implements ServerConfiguration
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the pings that belong to the server.
+     *
+     * @return HasMany
+     */
+    public function pings(): HasMany
+    {
+        return $this->hasMany(\App\Models\Server\Ping::class);
     }
 
     /**
@@ -265,5 +276,29 @@ class Server extends Model implements ServerConfiguration
             $this->os_information['version'],
             $this->os_information['architecture']
         );
+    }
+
+    /**
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeConfigured(Builder $builder)
+    {
+        return $builder->where('status', static::STATUS_CONFIGURED);
+    }
+
+    /**
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeWithMonitoring(Builder $builder)
+    {
+        return $builder->whereHas('user', function($q) {
+            return $q->whereHas('subscription', function ($q) {
+                return $q->whereIn(
+                    'plan_id', Plan::onlyActive()->withMonitoring()->pluck('id')
+                );
+            });
+        });
     }
 }

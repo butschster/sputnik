@@ -24,6 +24,6 @@ echo "default_password_lifetime = 0" >> /etc/mysql/mysql.conf.d/mysqld.cnf
 
 sed -i '/^bind-address/s/bind-address.*=.*/bind-address = */' /etc/mysql/mysql.conf.d/mysqld.cnf
 
-@foreach($users as $user)
+@foreach($databaseUsers as $user)
 @include('scripts.tools.database.mysql.user.create', ['user' => $user])
 @endforeach

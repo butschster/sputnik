@@ -27,13 +27,14 @@ namespace App\Models\User{
  * @property-read \App\Models\Subscription\Plan $plan
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subscription\Usage[] $usage
  * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription disableCache()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription findEndedPeriod()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription findEndedTrial()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription findEndingPeriod($dayRange = 3)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription findEndingTrial($dayRange = 3)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription query()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\User\Subscription newModelQuery()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\User\Subscription newQuery()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\User\Subscription query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription whereCanceledAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription whereCancelsAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription whereCreatedAt($value)
@@ -44,6 +45,7 @@ namespace App\Models\User{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription whereTrialEndsAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription withCacheCooldownSeconds($seconds = null)
  */
 	class Subscription extends \Eloquent {}
 }
@@ -103,12 +105,14 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Database[] $databases
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Event[] $events
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Firewall\Rule[] $firewallRules
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Ping[] $pings
  * @property-write mixed $keypair
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Site[] $sites
  * @property-read \App\Models\Server\Task $task
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Task[] $tasks
  * @property-read \App\Models\User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\User[] $users
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server configured()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server query()
@@ -130,6 +134,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereWebserverType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server withMonitoring()
  */
 	class Server extends \Eloquent {}
 }
@@ -240,6 +245,7 @@ namespace App\Models\Server{
  * @property string $id
  * @property string $server_id
  * @property string $name
+ * @property string $password
  * @property string $character_set
  * @property string $collation
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -254,6 +260,7 @@ namespace App\Models\Server{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereServerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereUpdatedAt($value)
  */
@@ -338,9 +345,10 @@ namespace App\Models\Server{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Task[] $owner
  * @property-read \App\Models\Server $server
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task disableCache()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Server\Task newModelQuery()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Server\Task newQuery()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Server\Task query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task whereExitCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task whereId($value)
@@ -354,6 +362,7 @@ namespace App\Models\Server{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task whereUser($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task withCacheCooldownSeconds($seconds = null)
  */
 	class Task extends \Eloquent {}
 }
@@ -405,6 +414,9 @@ namespace App\Models\Server{
  * @property string|null $repository
  * @property string|null $repository_provider
  * @property string|null $repository_branch
+ * @property int $use_ssl
+ * @property \Illuminate\Support\Carbon|null $domain_expires_at
+ * @property \Illuminate\Support\Carbon|null $ssl_certificate_expires_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Site\Deployment[] $deployments
@@ -417,6 +429,7 @@ namespace App\Models\Server{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereAliases($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereDomain($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereDomainExpiresAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereEnvironment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site wherePublicDir($value)
@@ -424,8 +437,11 @@ namespace App\Models\Server{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereRepositoryBranch($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereRepositoryProvider($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereSslCertificateExpiresAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereUseSsl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site withMonitoring()
  */
 	class Site extends \Eloquent {}
 }
@@ -449,6 +465,24 @@ namespace App\Models\Server{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereUpdatedAt($value)
  */
 	class Event extends \Eloquent {}
+}
+
+namespace App\Models\Server{
+/**
+ * App\Models\Server\Ping
+ *
+ * @property string $server_id
+ * @property int $success
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property-read \App\Models\Server $server
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping whereSuccess($value)
+ */
+	class Ping extends \Eloquent {}
 }
 
 namespace App\Models\Server{
@@ -508,9 +542,11 @@ namespace App\Models\Subscription{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subscription\Plan\Feature[] $features
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan disableCache()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Plan newModelQuery()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Plan newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan onlyActive()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Plan query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereCurrency($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereId($value)
@@ -526,6 +562,8 @@ namespace App\Models\Subscription{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereTrialInterval($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereTrialPeriod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan withCacheCooldownSeconds($seconds = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan withMonitoring()
  */
 	class Plan extends \Eloquent {}
 }
@@ -542,9 +580,10 @@ namespace App\Models\Subscription{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage byFeature($code)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage disableCache()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Usage newModelQuery()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Usage newQuery()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Usage query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereId($value)
@@ -552,6 +591,7 @@ namespace App\Models\Subscription{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereUsed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereValidUntil($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage withCacheCooldownSeconds($seconds = null)
  */
 	class Usage extends \Eloquent {}
 }
@@ -572,9 +612,10 @@ namespace App\Models\Subscription\Plan{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $deleted_at
  * @property-read \App\Models\Subscription\Plan $plan
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan\Feature newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan\Feature newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan\Feature query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan\Feature disableCache()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Plan\Feature newModelQuery()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Plan\Feature newQuery()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Plan\Feature query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan\Feature whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan\Feature whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan\Feature whereDeletedAt($value)
@@ -586,6 +627,7 @@ namespace App\Models\Subscription\Plan{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan\Feature whereSortOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan\Feature whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan\Feature whereValue($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan\Feature withCacheCooldownSeconds($seconds = null)
  */
 	class Feature extends \Eloquent {}
 }

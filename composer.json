@@ -11,6 +11,7 @@
         "php": "^7.1.3",
         "deployer/deployer": "^6.4",
         "fideloper/proxy": "^4.0",
+        "geerlingguy/ping": "^1.2",
         "genealabs/laravel-model-caching": "^0.6.2",
         "hashids/hashids": "^4.0",
         "io-developer/php-whois": "^3.4",

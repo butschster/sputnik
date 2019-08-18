@@ -15,25 +15,24 @@ class User extends Model
     use UsesUuid, HasServer, HasTask, HasKeyPair;
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'server_users';
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $guarded = ['public_key', 'private_key'];
 
     /**
-     * The attributes that should be hidden for arrays.
-     * @var array
+     * {@inheritdoc}
      */
     protected $hidden = [
         'private_key',
     ];
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $casts = [
         'is_system' => 'bool',
@@ -41,7 +40,7 @@ class User extends Model
     ];
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $attributes = [
         'is_system' => false,
@@ -91,7 +90,7 @@ class User extends Model
      */
     public function keys(): HasMany
     {
-        return $this->hasMany(UserPublicKey::class)->with('task');
+        return $this->hasMany(UserPublicKey::class, 'server_user_id');
     }
 
     /**

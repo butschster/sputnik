@@ -15,12 +15,12 @@ class Database extends Model
     const DEFAULT_CHARACTER_SET = 'utf8';
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'server_databases';
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $guarded = [];
 }

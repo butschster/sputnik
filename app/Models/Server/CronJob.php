@@ -14,17 +14,17 @@ class CronJob extends Model
     use UsesUuid, HasTask, HasServer;
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'server_jobs';
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $guarded = [];
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $attributes = [
         'user' => 'root'

@@ -33,12 +33,12 @@ class Deployment extends Model
     }
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'server_site_deployments';
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $guarded = [];
 

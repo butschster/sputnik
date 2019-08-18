@@ -6,6 +6,7 @@ use App\Events\Task\Finished;
 use App\Events\Task\Running;
 use App\Events\Task\Timeout;
 use App\Models\Concerns\HasServer;
+use App\Models\Concerns\Prunable;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server;
 use App\Services\Task\Contracts\Task as TaskContract;
@@ -19,7 +20,7 @@ use Illuminate\Support\Collection;
 
 class Task extends Model implements TaskContract
 {
-    use UsesUuid, HasServer, Cachable;
+    use UsesUuid, HasServer, Cachable, Prunable;
 
     const STATUS_PENDING = 'pending';
     const STATUS_RUNNING = 'running';
@@ -36,19 +37,17 @@ class Task extends Model implements TaskContract
     }
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'server_tasks';
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $guarded = [];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * {@inheritdoc}
      */
     protected $hidden = [
         'options',

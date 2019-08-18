@@ -12,9 +12,12 @@ class Daemon extends Model
     use UsesUuid, HasServer, HasTask;
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'server_daemons';
 
+    /**
+     * {@inheritdoc}
+     */
     protected $guarded = [];
 }

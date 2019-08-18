@@ -13,12 +13,12 @@ class PublicKey extends Model
     use UsesUuid, HasTask, HasServer;
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'server_public_keys';
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $guarded = [];
 

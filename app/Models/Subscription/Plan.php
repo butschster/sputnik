@@ -55,6 +55,17 @@ class Plan extends Model
     }
 
     /**
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeWithMonitoring(Builder $builder)
+    {
+        return $builder->whereHas('features', function($q) {
+            return $q->where('code', 'server.site.monitoring');
+        });
+    }
+
+    /**
      * Check if plan is free.
      *
      * @return bool

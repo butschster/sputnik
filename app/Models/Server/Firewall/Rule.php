@@ -14,17 +14,17 @@ class Rule extends Model implements UfwRule
     use UsesUuid, HasTask, HasServer;
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'server_firewall_rules';
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $guarded = [];
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $attributes = [
         'from' => null,

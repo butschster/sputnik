@@ -10,6 +10,7 @@ use App\Models\User\SourceProvider;
 use App\Services\SourceProviders\Factory;
 use App\Validation\Rules\Server\Site\RepositoryName;
 use App\Validation\Rules\Server\Site\RepositoryUrl;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,17 +20,17 @@ class Site extends Model
     use UsesUuid, HasTask, HasServer;
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'server_sites';
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $guarded = ['token'];
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $casts = [
         'aliases' => 'array',
@@ -37,6 +38,17 @@ class Site extends Model
         'domain_expires_at' => 'date',
         'ssl_certificate_expires_at' => 'date',
     ];
+
+    /**
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeWithMonitoring(Builder $builder)
+    {
+        return $builder->whereHas('server', function($q) {
+           return $q->withMonitoring()->configured();
+        });
+    }
 
     /**
      * Check if repository is valid

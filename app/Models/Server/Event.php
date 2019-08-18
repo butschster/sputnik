@@ -2,20 +2,21 @@
 
 namespace App\Models\Server;
 
+use App\Models\Concerns\Prunable;
 use App\Models\Concerns\UsesUuid;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    use UsesUuid;
+    use UsesUuid, Prunable;
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'server_events';
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $guarded = [];
 }
