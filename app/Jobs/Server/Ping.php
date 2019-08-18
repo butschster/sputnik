@@ -2,6 +2,8 @@
 
 namespace App\Jobs\Server;
 
+use App\Events\Server\Ping\Failed;
+use App\Events\Server\Ping\Succeeded;
 use App\Models\Server;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -41,18 +43,22 @@ class Ping implements ShouldQueue
     }
 
     /**
-     * Execute the job.
-     *
-     * @return void
+     * @throws \Exception
      */
     public function handle()
     {
         $ping = new \JJG\Ping($this->server->ip, 128, 1);
 
-        $latency = $ping->ping();
+        $status = (bool)$ping->ping();
 
         $this->server->pings()->create([
-            'success' => (bool)$latency,
+            'success' => $status,
         ]);
+
+        if ($status) {
+            event(new Succeeded($this->server));
+        } else {
+            event(new Failed($this->server));
+        }
     }
 }

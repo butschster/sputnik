@@ -178,6 +178,7 @@ return [
         App\Providers\SSHServiceProvider::class,
         App\Providers\ActionsServiceProvider::class,
         App\Providers\WhoisServiceProvider::class,
+        App\Providers\WebHooksServiceProvider::class,
     ],
 
     /*

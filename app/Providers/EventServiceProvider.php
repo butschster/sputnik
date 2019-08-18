@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\WebHooks;
 use App\Events\Task;
 use App\Events\Server;
 use App\Events\Server\KeysInstalled;
@@ -39,6 +40,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         Task\Finished::class => [
             \App\Listeners\Server\Site\UpdateDeploymentStatus::class
+        ],
+        WebHooks\Ping::class => [
+
+        ],
+        WebHooks\Push::class => [
+            \App\Listeners\Server\Site\WebHooks\DeploySite::class
         ]
     ];
 

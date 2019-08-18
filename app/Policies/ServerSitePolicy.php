@@ -65,8 +65,7 @@ class ServerSitePolicy
             return false;
         }
 
-        return $site->server->user_id == $user->id &&
-            $user->canUseFeature('server.deployments.push');
+        return $site->server->user->canUseFeature('server.deployments.push');
     }
 
 

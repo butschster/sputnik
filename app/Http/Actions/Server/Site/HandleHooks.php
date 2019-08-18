@@ -2,10 +2,8 @@
 
 namespace App\Http\Actions\Server\Site;
 
-use App\Contracts\Http\WebHooks\WebHookManager;
-use App\Jobs\Server\Site\Deploy;
+use App\Contracts\Http\WebHooks\Manager;
 use App\Models\Server;
-use App\Services\SourceProviders\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
@@ -25,18 +23,11 @@ class HandleHooks extends Action
 
     /**
      * @param Request $request
-     * @param Factory $factory
+     * @param Manager $manager
      */
-    public function handle(Request $request, Factory $factory): void
+    public function handle(Request $request, Manager $manager): void
     {
         $site = Server\Site::findOrFail($request->site_id);
-
-        if (!Gate::allows('push-deploy', $site)) {
-            return;
-        }
-
-//        dispatch(
-//            new Deploy($site)
-//        );
+        $manager->call($request, $site);
     }
 }
