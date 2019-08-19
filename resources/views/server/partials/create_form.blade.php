@@ -1,4 +1,4 @@
-@can('store', \App\Models\Server::class)
+@can('create', \App\Models\Server::class)
 
 <div class="card mt-4">
     <div class="card-header">Create server</div>

@@ -22,12 +22,24 @@ class ServerPolicy
 
     /**
      * @param User|null $user
-     *
      * @return bool
      */
-    public function store(?User $user): bool
+    public function create(?User $user): bool
     {
-        return $user->canUseFeature('server.create');
+        return $user->can('server.create') &&
+            $user->canUseFeature('server.create');
+    }
+
+
+    /**
+     * @param User|null $user
+     * @param User\Team $team
+     * @return bool
+     */
+    public function store(?User $user, User\Team $team): bool
+    {
+        return $user->can('server.create', $team) &&
+            $user->canUseFeature('server.create');
     }
 
     /**

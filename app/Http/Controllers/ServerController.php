@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Server\StoreRequest;
 use App\Http\Resources\v1\ServerResource;
 use App\Models\Server;
+use App\Models\User\Team;
 use App\Scripts\Server\Configure;
 use App\Services\Server\FirewallService;
 use Illuminate\Http\Request;
@@ -15,9 +16,8 @@ use Illuminate\Http\Request;
 class ServerController extends Controller
 {
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -25,14 +25,16 @@ class ServerController extends Controller
 
         return view('home', [
             'servers' => $servers,
-            'teams' => $request->user()->rolesTeams
+            'teams' => $request->user()->rolesTeams->filter(function (Team $team) {
+                return \Gate::allows('store', [Server::class, $team]);
+            })
         ]);
     }
 
     /**
      * @param StoreRequest $request
-     *
-     * @return ServerResource
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreRequest $request)
     {
