@@ -73,6 +73,10 @@ class SeedSubscriptionPlans extends Migration
                 'code' => 'server.site.monitoring',
                 'value' => 'Y',
             ]),
+            new Plan\Feature([
+                'code' => 'teams',
+                'value' => 'Y',
+            ]),
         ]);
     }
 

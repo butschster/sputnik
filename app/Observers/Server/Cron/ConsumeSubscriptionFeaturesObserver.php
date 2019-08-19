@@ -11,7 +11,7 @@ class ConsumeSubscriptionFeaturesObserver
      */
     public function created(CronJob $cronJob): void
     {
-        $cronJob->server->user->useFeature('server.cron_job.create');
+        $cronJob->server->team->useFeature('server.cron_job.create');
     }
 
     /**
@@ -19,6 +19,6 @@ class ConsumeSubscriptionFeaturesObserver
      */
     public function deleted(CronJob $cronJob): void
     {
-        $cronJob->server->user->returnFeature('server.cron_job.create');
+        $cronJob->server->team->returnFeature('server.cron_job.create');
     }
 }

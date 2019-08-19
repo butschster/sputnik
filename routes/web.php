@@ -12,12 +12,13 @@ Route::get('login/bitbucket', 'Auth\BitbucketLoginController@redirectToProvider'
 Route::get('login/bitbucket/callback', 'Auth\BitbucketLoginController@handleProviderCallback')->name('login.bitbucket.callback');
 
 Route::middleware('auth')->group(function () {
+    Route::get('profile/team/{team}', 'UserTeamController@show')->name('team.show');
     Route::get('profile', 'UserController@profile')->name('user.profile');
-    Route::post('profile/subscribe', 'UserController@subscribe')->name('user.subscribe');
-    Route::post('profile/subscription/renew', 'UserController@renew')->name('user.subscription.renew');
+    Route::post('team/{team}/subscribe', 'UserTeamController@subscribe')->name('team.subscribe');
+    Route::post('team/{team}/subscription/renew', 'UserTeamController@renew')->name('team.subscription.renew');
 
     Route::middleware('has-subscription')->group(function () {
-        Route::delete('profile/subscription/cancel', 'UserController@cancelSubscription')->name('user.subscription.cancel');
+        Route::delete('team/{team}/subscription/cancel', 'UserController@cancelSubscription')->name('user.subscription.cancel');
 
         Route::get('/server/{server}', 'ServerController@show')->name('server.show');
         Route::get('/server/{server}/config', 'ServerController@config')->name('server.config');
@@ -59,7 +60,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/server/{server}/database', 'ServerDatabaseController@index')->name('server.database.index');
         Route::post('/server/{server}/database', 'ServerDatabaseController@store')->name('server.database.store');
         Route::delete('/server/{server}/database/{database}', 'ServerDatabaseController@delete')->name('server.database.delete');
-
 
         Route::get('/server/{server}/supervisor', 'ServerSupervisorController@index')->name('server.supervisor.index');
         Route::post('/server/{server}/supervisor', 'ServerSupervisorController@store')->name('server.supervisor.store');

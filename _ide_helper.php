@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.32 on 2019-08-18 11:18:07.
+ * Generated for Laravel 5.8.32 on 2019-08-19 09:12:04.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -7905,74 +7905,6 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Migrate the delayed jobs that are ready to the regular queue.
-         *
-         * @param string $from
-         * @param string $to
-         * @return array 
-         * @static 
-         */ 
-        public static function migrateExpiredJobs($from, $to)
-        {
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
-                        return $instance->migrateExpiredJobs($from, $to);
-        }
-        
-        /**
-         * Delete a reserved job from the queue.
-         *
-         * @param string $queue
-         * @param \Illuminate\Queue\Jobs\RedisJob $job
-         * @return void 
-         * @static 
-         */ 
-        public static function deleteReserved($queue, $job)
-        {
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
-                        $instance->deleteReserved($queue, $job);
-        }
-        
-        /**
-         * Delete a reserved job from the reserved queue and release it.
-         *
-         * @param string $queue
-         * @param \Illuminate\Queue\Jobs\RedisJob $job
-         * @param int $delay
-         * @return void 
-         * @static 
-         */ 
-        public static function deleteAndRelease($queue, $job, $delay)
-        {
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
-                        $instance->deleteAndRelease($queue, $job, $delay);
-        }
-        
-        /**
-         * Get the queue or return the default.
-         *
-         * @param string|null $queue
-         * @return string 
-         * @static 
-         */ 
-        public static function getQueue($queue)
-        {
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
-                        return $instance->getQueue($queue);
-        }
-        
-        /**
-         * Get the underlying Redis instance.
-         *
-         * @return \Illuminate\Contracts\Redis\Factory 
-         * @static 
-         */ 
-        public static function getRedis()
-        {
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
-                        return $instance->getRedis();
-        }
-        
-        /**
          * Get the retry delay for an object-based queue handler.
          *
          * @param mixed $job
@@ -7982,7 +7914,7 @@ namespace Illuminate\Support\Facades {
         public static function getJobRetryDelay($job)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
+                        /** @var \Illuminate\Queue\SyncQueue $instance */
                         return $instance->getJobRetryDelay($job);
         }
         
@@ -7996,7 +7928,7 @@ namespace Illuminate\Support\Facades {
         public static function getJobExpiration($job)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
+                        /** @var \Illuminate\Queue\SyncQueue $instance */
                         return $instance->getJobExpiration($job);
         }
         
@@ -8010,7 +7942,7 @@ namespace Illuminate\Support\Facades {
         public static function createPayloadUsing($callback)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-                        \Illuminate\Queue\RedisQueue::createPayloadUsing($callback);
+                        \Illuminate\Queue\SyncQueue::createPayloadUsing($callback);
         }
         
         /**
@@ -8023,7 +7955,7 @@ namespace Illuminate\Support\Facades {
         public static function setContainer($container)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
+                        /** @var \Illuminate\Queue\SyncQueue $instance */
                         $instance->setContainer($container);
         }
          
@@ -15467,6 +15399,118 @@ namespace Laravel\Socialite\Facades {
  
 }
 
+namespace Laratrust { 
+
+    /**
+     * This file is part of Laratrust,
+     * a role & permission management solution for Laravel.
+     *
+     * @license MIT
+     * @package Laratrust
+     */ 
+    class LaratrustFacade {
+        
+        /**
+         * Checks if the current user has a role by its name.
+         *
+         * @param string $role Role name.
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasRole($role, $team = null, $requireAll = false)
+        {
+                        /** @var \Laratrust\Laratrust $instance */
+                        return $instance->hasRole($role, $team, $requireAll);
+        }
+        
+        /**
+         * Check if the current user has a permission by its name.
+         *
+         * @param string $permission Permission string.
+         * @return bool 
+         * @static 
+         */ 
+        public static function can($permission, $team = null, $requireAll = false)
+        {
+                        /** @var \Laratrust\Laratrust $instance */
+                        return $instance->can($permission, $team, $requireAll);
+        }
+        
+        /**
+         * Check if the current user has a role or permission by its name.
+         *
+         * @param array|string $roles The role(s) needed.
+         * @param array|string $permissions The permission(s) needed.
+         * @param array $options The Options.
+         * @return bool 
+         * @static 
+         */ 
+        public static function ability($roles, $permissions, $team = null, $options = array())
+        {
+                        /** @var \Laratrust\Laratrust $instance */
+                        return $instance->ability($roles, $permissions, $team, $options);
+        }
+        
+        /**
+         * Checks if the user owns the thing.
+         *
+         * @param Object $thing
+         * @param string $foreignKeyName
+         * @return boolean 
+         * @static 
+         */ 
+        public static function owns($thing, $foreignKeyName = null)
+        {
+                        /** @var \Laratrust\Laratrust $instance */
+                        return $instance->owns($thing, $foreignKeyName);
+        }
+        
+        /**
+         * Checks if the user has some role and if he owns the thing.
+         *
+         * @param string|array $role
+         * @param Object $thing
+         * @param array $options
+         * @return boolean 
+         * @static 
+         */ 
+        public static function hasRoleAndOwns($role, $thing, $options = array())
+        {
+                        /** @var \Laratrust\Laratrust $instance */
+                        return $instance->hasRoleAndOwns($role, $thing, $options);
+        }
+        
+        /**
+         * Checks if the user can do something and if he owns the thing.
+         *
+         * @param string|array $permission
+         * @param Object $thing
+         * @param array $options
+         * @return boolean 
+         * @static 
+         */ 
+        public static function canAndOwns($permission, $thing, $options = array())
+        {
+                        /** @var \Laratrust\Laratrust $instance */
+                        return $instance->canAndOwns($permission, $thing, $options);
+        }
+        
+        /**
+         * Get the currently authenticated user or null.
+         *
+         * @return \Illuminate\Auth\UserInterface|null 
+         * @static 
+         */ 
+        public static function user()
+        {
+                        /** @var \Laratrust\Laratrust $instance */
+                        return $instance->user();
+        }
+         
+    }
+ 
+}
+
 namespace Waavi\Sanitizer\Laravel { 
 
     /**
@@ -18297,6 +18341,8 @@ namespace  {
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
 
     class Socialite extends \Laravel\Socialite\Facades\Socialite {}
+
+    class Laratrust extends \Laratrust\LaratrustFacade {}
 
     class Sanitizer extends \Waavi\Sanitizer\Laravel\Facade {}
  

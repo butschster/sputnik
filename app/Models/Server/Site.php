@@ -7,7 +7,6 @@ use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Server\Site\Deployment;
 use App\Models\User\SourceProvider;
-use App\Services\SourceProviders\Factory;
 use App\Validation\Rules\Server\Site\RepositoryName;
 use App\Validation\Rules\Server\Site\RepositoryUrl;
 use Illuminate\Database\Eloquent\Builder;
@@ -38,6 +37,17 @@ class Site extends Model
         'domain_expires_at' => 'date',
         'ssl_certificate_expires_at' => 'date',
     ];
+
+    /**
+     * Get owner
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
+
 
     /**
      * @param Builder $builder

@@ -21,6 +21,7 @@ use App\Models\Server\Site;
 use App\Models\Server\Task;
 use App\Contracts\Server\ServerConfiguration;
 use App\Models\Subscription\Plan;
+use App\Models\User\Team;
 use App\Utils\SSH\ValueObjects\SystemInformation;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Builder;
@@ -42,7 +43,7 @@ class Server extends Model implements ServerConfiguration
     const STATUS_FAILED = 'failed';
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $casts = [
         'meta' => 'array',
@@ -51,9 +52,7 @@ class Server extends Model implements ServerConfiguration
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * {@inheritdoc}
      */
     protected $hidden = [
         'private_key',
@@ -62,7 +61,7 @@ class Server extends Model implements ServerConfiguration
     ];
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $guarded = [];
 
@@ -92,6 +91,17 @@ class Server extends Model implements ServerConfiguration
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get owner team
+     *
+     * @return BelongsTo
+     */
+    public function team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class);
+    }
+
 
     /**
      * Get the pings that belong to the server.

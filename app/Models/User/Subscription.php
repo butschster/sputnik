@@ -6,7 +6,7 @@ use App\Models\Concerns\UsesUuid;
 use App\Models\Subscription\Period;
 use App\Models\Subscription\Plan;
 use App\Models\Subscription\Usage;
-use App\Models\User;
+use Carbon\Carbon;
 use DB;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Builder;
@@ -40,8 +40,6 @@ class Subscription extends Model
     ];
 
     /**
-     * Get the owning user.
-     *
      * @return BelongsTo
      */
     public function plan(): BelongsTo
@@ -50,13 +48,13 @@ class Subscription extends Model
     }
 
     /**
-     * Get the owning user.
+     * Get the owning team.
      *
      * @return BelongsTo
      */
-    public function user(): BelongsTo
+    public function team(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Team::class);
     }
 
     /**
@@ -66,7 +64,7 @@ class Subscription extends Model
      */
     public function usage(): hasMany
     {
-        return $this->hasMany(Usage::class, 'user_id', 'user_id');
+        return $this->hasMany(Usage::class, 'team_id', 'team_id');
     }
 
     /**
@@ -183,11 +181,11 @@ class Subscription extends Model
      *
      * @param string $invoiceInterval
      * @param int $invoicePeriod
-     * @param string $start
+     * @param Carbon $start
      *
      * @return void
      */
-    protected function setNewPeriod(string $invoiceInterval = '', int $invoicePeriod = null, $start = null): void
+    protected function setNewPeriod(string $invoiceInterval = '', int $invoicePeriod = null, Carbon $start = null): void
     {
         if (empty($invoiceInterval)) {
             $invoiceInterval = $this->plan->invoice_interval;

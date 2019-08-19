@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Subscription\Plan;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,19 +13,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user = factory(\App\Models\User::class)->create([
+        $team = User\Team::create([
+            'name' => 'Awesome project',
+        ]);
+
+        $owner = User\Role::where('name', 'owner')->firstOrFail();
+
+        $user = factory(User::class)->create([
             'email' => 'admin@site.com',
             'name' => 'Pavel Buchnev',
         ]);
 
-        $user->subscribeTo(
+        $user->attachRole($owner, $team);
+
+        $team->subscribeTo(
             Plan::where('name', 'artisan')->first()
         );
-
-//        $server = factory(\App\Models\Server::class)->create([
-//            'user_id' => $user->id,
-//            'name' => 'test',
-//            'ip' => '167.71.3.113',
-//        ]);
     }
 }

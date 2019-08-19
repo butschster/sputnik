@@ -1,4 +1,3 @@
-
 @can('store', \App\Models\Server::class)
 
 <div class="card mt-4">
@@ -9,7 +8,7 @@
 
         <div class="form-group">
             <label>Server name</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', 'Test server') }}" required autofocus>
+            <input type="text" class="form-control form-group-lg @error('name') is-invalid @enderror" name="name" value="{{ old('name', 'Test server') }}" required autofocus>
 
             @error('name')
             <span class="invalid-feedback" role="alert">
@@ -17,6 +16,22 @@
             </span>
             @enderror
         </div>
+        <div class="form-group">
+            <label>Project</label>
+
+            <select name="team_id" class="form-control @error('team_id') is-invalid @enderror">
+                @foreach($teams as $project)
+                    <option value="{{ $project->id }}">{{ $project->name }}</option>
+                @endforeach
+            </select>
+
+            @error('team_id')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+
 
         <div class="form-row">
             <div class="form-group col-md-9">

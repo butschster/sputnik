@@ -11,7 +11,7 @@ class ConsumeSubscriptionFeaturesObserver
      */
     public function created(Server $server): void
     {
-        $server->user->useFeature('server.create');
+        $server->team->useFeature('server.create');
     }
 
     /**
@@ -19,6 +19,6 @@ class ConsumeSubscriptionFeaturesObserver
      */
     public function deleted(Server $server): void
     {
-        $server->user->returnFeature('server.create');
+        $server->team->returnFeature('server.create');
     }
 }

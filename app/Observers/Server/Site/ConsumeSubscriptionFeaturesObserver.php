@@ -12,7 +12,7 @@ class ConsumeSubscriptionFeaturesObserver
      */
     public function created(Site $site): void
     {
-        $site->server->user->useFeature('server.site.create');
+        $site->server->team->useFeature('server.site.create');
     }
 
     /**
@@ -20,6 +20,6 @@ class ConsumeSubscriptionFeaturesObserver
      */
     public function deleted(Site $site): void
     {
-        $site->server->user->returnFeature('server.site.create');
+        $site->server->team->returnFeature('server.site.create');
     }
 }

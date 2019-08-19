@@ -10,12 +10,73 @@
  */
 
 
+namespace App\Models{
+/**
+ * App\Models\User
+ *
+ * @property string $id
+ * @property string $name
+ * @property string $email
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property string $password
+ * @property string|null $remember_token
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\Permission[] $permissions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\Role[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\Team[] $rolesTeams
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server[] $servers
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\SourceProvider[] $sourceProviders
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User orWherePermissionIs($permission = '')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User orWhereRoleIs($role = '', $team = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePermissionIs($permission = '', $boolean = 'and')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRoleIs($role = '', $team = null, $boolean = 'and')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
+ */
+	class User extends \Eloquent {}
+}
+
+namespace App\Models\User{
+/**
+ * App\Models\User\Team
+ *
+ * @property string $id
+ * @property string $name
+ * @property string|null $description
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User\Subscription $subscription
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Team newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Team newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Team query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Team whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Team whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Team whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Team whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Team whereUpdatedAt($value)
+ */
+	class Team extends \Eloquent {}
+}
+
 namespace App\Models\User{
 /**
  * App\Models\User\Subscription
  *
  * @property string $id
- * @property string $user_id
+ * @property string $team_id
  * @property string $plan_id
  * @property \Illuminate\Support\Carbon|null $trial_ends_at
  * @property \Illuminate\Support\Carbon|null $starts_at
@@ -25,8 +86,8 @@ namespace App\Models\User{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Subscription\Plan $plan
+ * @property-read \App\Models\User\Team $team
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subscription\Usage[] $usage
- * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription disableCache()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription findEndedPeriod()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription findEndedTrial()
@@ -42,12 +103,36 @@ namespace App\Models\User{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription wherePlanId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription whereStartsAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription whereTeamId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription whereTrialEndsAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Subscription withCacheCooldownSeconds($seconds = null)
  */
 	class Subscription extends \Eloquent {}
+}
+
+namespace App\Models\User{
+/**
+ * App\Models\User\Role
+ *
+ * @property string $id
+ * @property string $name
+ * @property string|null $display_name
+ * @property string|null $description
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\Permission[] $permissions
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Role newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Role newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Role query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Role whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Role whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Role whereDisplayName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Role whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Role whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Role whereUpdatedAt($value)
+ */
+	class Role extends \Eloquent {}
 }
 
 namespace App\Models\User{
@@ -78,12 +163,37 @@ namespace App\Models\User{
 	class SourceProvider extends \Eloquent {}
 }
 
+namespace App\Models\User{
+/**
+ * App\Models\User\Permission
+ *
+ * @property string $id
+ * @property string $name
+ * @property string|null $display_name
+ * @property string|null $description
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\Role[] $roles
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Permission newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Permission newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Permission query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Permission whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Permission whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Permission whereDisplayName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Permission whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Permission whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Permission whereUpdatedAt($value)
+ */
+	class Permission extends \Eloquent {}
+}
+
 namespace App\Models{
 /**
  * App\Models\Server
  *
  * @property string $id
  * @property string $user_id
+ * @property string $team_id
  * @property string $name
  * @property string $ip
  * @property int $ssh_port
@@ -131,6 +241,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereSshPort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereSudoPassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereTeamId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereWebserverType($value)
@@ -162,84 +273,6 @@ namespace App\Models{
 
 namespace App\Models\Server{
 /**
- * App\Models\Server\CronJob
- *
- * @property string $id
- * @property string $server_id
- * @property string|null $name
- * @property string $command
- * @property string $user
- * @property string $cron
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Server $server
- * @property-read \App\Models\Server\Task $task
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereCommand($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereCron($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereServerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereUser($value)
- */
-	class CronJob extends \Eloquent {}
-}
-
-namespace App\Models\Server{
-/**
- * App\Models\Server\PublicKey
- *
- * @property string $id
- * @property string $server_id
- * @property string $name
- * @property string $content
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Server $server
- * @property-read \App\Models\Server\Task $task
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey whereServerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey whereUpdatedAt($value)
- */
-	class PublicKey extends \Eloquent {}
-}
-
-namespace App\Models\Server\User{
-/**
- * App\Models\Server\User\PublicKey
- *
- * @property string $id
- * @property string $server_user_id
- * @property string $name
- * @property string $key
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Server\Task $task
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereServerUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereUpdatedAt($value)
- */
-	class PublicKey extends \Eloquent {}
-}
-
-namespace App\Models\Server{
-/**
  * App\Models\Server\Database
  *
  * @property string $id
@@ -267,63 +300,166 @@ namespace App\Models\Server{
 	class Database extends \Eloquent {}
 }
 
-namespace App\Models\Server\Site{
+namespace App\Models\Server{
 /**
- * App\Models\Server\Site\Deployment
+ * App\Models\Server\User
  *
  * @property string $id
- * @property string $server_site_id
- * @property string|null $initiator_id
- * @property string|null $branch
- * @property string $commit_hash
- * @property string $status
+ * @property string $server_id
+ * @property string $name
+ * @property mixed|string $sudo_password
+ * @property string $public_key
+ * @property string $private_key
+ * @property string|null $home_dir
+ * @property bool $sudo
+ * @property bool $is_system
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\User|null $initiator
- * @property-read \App\Models\Server\Site $site
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\User\PublicKey[] $keys
+ * @property-read \App\Models\Server $server
+ * @property-write mixed $keypair
  * @property-read \App\Models\Server\Task $task
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereBranch($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereCommitHash($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereInitiatorId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereServerSiteId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereHomeDir($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereIsSystem($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User wherePrivateKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User wherePublicKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereSudo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereSudoPassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereUpdatedAt($value)
  */
-	class Deployment extends \Eloquent {}
+	class User extends \Eloquent {}
 }
 
 namespace App\Models\Server{
 /**
- * App\Models\Server\Daemon
+ * App\Models\Server\Ping
+ *
+ * @property string $server_id
+ * @property int $success
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property-read \App\Models\Server $server
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping whereSuccess($value)
+ */
+	class Ping extends \Eloquent {}
+}
+
+namespace App\Models\Server\User{
+/**
+ * App\Models\Server\User\PublicKey
+ *
+ * @property string $id
+ * @property string $server_user_id
+ * @property string $name
+ * @property string $key
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereServerUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereUpdatedAt($value)
+ */
+	class PublicKey extends \Eloquent {}
+}
+
+namespace App\Models\Server\Firewall{
+/**
+ * App\Models\Server\Firewall\Rule
  *
  * @property string $id
  * @property string $server_id
- * @property string $command
- * @property string $user
- * @property string|null $directory
- * @property int $processes
+ * @property int $editable
+ * @property string $name
+ * @property string|null $port
+ * @property string|null $protocol
+ * @property string|null $from
+ * @property string $policy
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Server $server
  * @property-read \App\Models\Server\Task $task
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereCommand($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereDirectory($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereProcesses($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereServerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereUser($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereEditable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereFrom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule wherePolicy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule wherePort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereProtocol($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereUpdatedAt($value)
  */
-	class Daemon extends \Eloquent {}
+	class Rule extends \Eloquent {}
+}
+
+namespace App\Models\Server{
+/**
+ * App\Models\Server\Event
+ *
+ * @property string $id
+ * @property string $server_id
+ * @property string $message
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereUpdatedAt($value)
+ */
+	class Event extends \Eloquent {}
+}
+
+namespace App\Models\Server{
+/**
+ * App\Models\Server\CronJob
+ *
+ * @property string $id
+ * @property string $server_id
+ * @property string|null $name
+ * @property string $command
+ * @property string $user
+ * @property string $cron
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Server $server
+ * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereCommand($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereCron($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereUser($value)
+ */
+	class CronJob extends \Eloquent {}
 }
 
 namespace App\Models\Server{
@@ -367,37 +503,88 @@ namespace App\Models\Server{
 	class Task extends \Eloquent {}
 }
 
-namespace App\Models\Server\Firewall{
+namespace App\Models\Server{
 /**
- * App\Models\Server\Firewall\Rule
+ * App\Models\Server\Daemon
  *
  * @property string $id
  * @property string $server_id
- * @property int $editable
- * @property string $name
- * @property string|null $port
- * @property string|null $protocol
- * @property string|null $from
- * @property string $policy
+ * @property string $command
+ * @property string $user
+ * @property string|null $directory
+ * @property int $processes
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Server $server
  * @property-read \App\Models\Server\Task $task
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereEditable($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereFrom($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule wherePolicy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule wherePort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereProtocol($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereServerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereCommand($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereDirectory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereProcesses($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereUser($value)
  */
-	class Rule extends \Eloquent {}
+	class Daemon extends \Eloquent {}
+}
+
+namespace App\Models\Server{
+/**
+ * App\Models\Server\PublicKey
+ *
+ * @property string $id
+ * @property string $server_id
+ * @property string $name
+ * @property string $content
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Server $server
+ * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\PublicKey whereUpdatedAt($value)
+ */
+	class PublicKey extends \Eloquent {}
+}
+
+namespace App\Models\Server\Site{
+/**
+ * App\Models\Server\Site\Deployment
+ *
+ * @property string $id
+ * @property string $server_site_id
+ * @property string|null $initiator_id
+ * @property string|null $branch
+ * @property string $commit_hash
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User|null $initiator
+ * @property-read \App\Models\Server\Site $site
+ * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereBranch($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereCommitHash($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereInitiatorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereServerSiteId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereUpdatedAt($value)
+ */
+	class Deployment extends \Eloquent {}
 }
 
 namespace App\Models\Server{
@@ -406,6 +593,7 @@ namespace App\Models\Server{
  *
  * @property string $id
  * @property string $server_id
+ * @property string $user_id
  * @property string $token
  * @property string $domain
  * @property array|null $aliases
@@ -423,6 +611,7 @@ namespace App\Models\Server{
  * @property-read \App\Models\Server $server
  * @property-read \App\Models\User\SourceProvider|null $sourceProvider
  * @property-read \App\Models\Server\Task $task
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site query()
@@ -441,85 +630,10 @@ namespace App\Models\Server{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereUseSsl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site withMonitoring()
  */
 	class Site extends \Eloquent {}
-}
-
-namespace App\Models\Server{
-/**
- * App\Models\Server\Event
- *
- * @property string $id
- * @property string $server_id
- * @property string $message
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereMessage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereServerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Event whereUpdatedAt($value)
- */
-	class Event extends \Eloquent {}
-}
-
-namespace App\Models\Server{
-/**
- * App\Models\Server\Ping
- *
- * @property string $server_id
- * @property int $success
- * @property \Illuminate\Support\Carbon $created_at
- * @property-read \App\Models\Server $server
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping whereServerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping whereSuccess($value)
- */
-	class Ping extends \Eloquent {}
-}
-
-namespace App\Models\Server{
-/**
- * App\Models\Server\User
- *
- * @property string $id
- * @property string $server_id
- * @property string $name
- * @property mixed|string $sudo_password
- * @property string $public_key
- * @property string $private_key
- * @property string|null $home_dir
- * @property bool $sudo
- * @property bool $is_system
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\User\PublicKey[] $keys
- * @property-read \App\Models\Server $server
- * @property-write mixed $keypair
- * @property-read \App\Models\Server\Task $task
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereHomeDir($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereIsSystem($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User wherePrivateKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User wherePublicKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereServerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereSudo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereSudoPassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User whereUpdatedAt($value)
- */
-	class User extends \Eloquent {}
 }
 
 namespace App\Models\Subscription{
@@ -568,34 +682,6 @@ namespace App\Models\Subscription{
 	class Plan extends \Eloquent {}
 }
 
-namespace App\Models\Subscription{
-/**
- * App\Models\Subscription\Usage
- *
- * @property string $id
- * @property string $user_id
- * @property string $code
- * @property int $used
- * @property \Illuminate\Support\Carbon|null $valid_until
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage byFeature($code)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage disableCache()
- * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Usage newModelQuery()
- * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Usage newQuery()
- * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Usage query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereUsed($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereValidUntil($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage withCacheCooldownSeconds($seconds = null)
- */
-	class Usage extends \Eloquent {}
-}
-
 namespace App\Models\Subscription\Plan{
 /**
  * App\Models\Subscription\Plan\Feature
@@ -632,36 +718,31 @@ namespace App\Models\Subscription\Plan{
 	class Feature extends \Eloquent {}
 }
 
-namespace App\Models{
+namespace App\Models\Subscription{
 /**
- * App\Models\User
+ * App\Models\Subscription\Usage
  *
  * @property string $id
- * @property string $name
- * @property string $email
- * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string $password
- * @property string|null $remember_token
+ * @property string $team_id
+ * @property string $code
+ * @property int $used
+ * @property \Illuminate\Support\Carbon|null $valid_until
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server[] $servers
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\SourceProvider[] $sourceProviders
- * @property-read \App\Models\User\Subscription $subscription
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage byFeature($code)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage disableCache()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Usage newModelQuery()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Usage newQuery()
+ * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Subscription\Usage query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereTeamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereUsed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage whereValidUntil($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Usage withCacheCooldownSeconds($seconds = null)
  */
-	class User extends \Eloquent {}
+	class Usage extends \Eloquent {}
 }
 

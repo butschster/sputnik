@@ -2,44 +2,39 @@
 
 namespace App\Models;
 
-use App\Models\Subscription\Period;
-use App\Models\Subscription\Plan;
 use App\Models\User\SourceProvider;
-use App\Models\User\Subscription;
+use App\Models\User\Team;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Passport\HasApiTokens;
 use App\Models\Concerns\UsesUuid;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laratrust\Traits\LaratrustUserTrait;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, UsesUuid;
+    use LaratrustUserTrait,
+        HasApiTokens,
+        Notifiable,
+        UsesUuid;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * {@inheritdoc}
      */
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * {@inheritdoc}
      */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
+     * {@inheritdoc}
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
@@ -66,114 +61,24 @@ class User extends Authenticatable
     }
 
     /**
-     * The user may have subscription.
-     *
-     * @return HasOne
-     */
-    public function subscription(): HasOne
-    {
-        return $this->hasOne(Subscription::class);
-    }
-
-    /**
-     * Subscribe user to a new plan.
-     *
-     * @param Plan $plan
-     * @param bool $isPaid
-     *
-     * @return Subscription
-     */
-    public function subscribeTo(Plan $plan, bool $isPaid = false): Subscription
-    {
-        if ($this->subscription) {
-
-            $this->subscription->changePlan($plan);
-
-            return $this->subscription;
-        }
-
-        $trial = new Period($plan->trial_interval, $plan->trial_period, now());
-        $data = [
-            'trial_ends_at' => $trial->getEndDate(),
-            'starts_at' => $trial->getStartDate(),
-            'ends_at' => $trial->getEndDate(),
-        ];
-
-        if ($isPaid) {
-            $period = new Period($plan->invoice_interval, $plan->invoice_period, $trial->getEndDate());
-            $data = array_merge($data, [
-                'starts_at' => $period->getStartDate(),
-                'ends_at' => $period->getEndDate(),
-            ]);
-        }
-
-        $subscription = new Subscription($data);
-        $subscription->plan()->associate($plan);
-        $subscription->user()->associate($this);
-
-        $subscription->save();
-
-        return $subscription;
-    }
-
-    public function cancelCurrentSubscription(): void
-    {
-        $this->subscription->cancel();
-    }
-
-    /**
      * @return bool
      */
     public function hasActiveSubscription(): bool
     {
-        return $this->subscription ? $this->subscription->isActive() : false;
+        return $this->rolesTeams->filter(function(Team $team) {
+            return $team->hasActiveSubscription();
+        })->count() > 0;
     }
 
     /**
      * @param string $code
+     *
      * @return bool
      */
     public function canUseFeature(string $code): bool
     {
-        if (!$this->hasActiveSubscription()) {
-            return false;
-        }
-
-        return $this->subscription->canUseFeature($code);
-    }
-
-    /**
-     * @param string $code
-     * @return int
-     */
-    public function getRemainingOf(string $code): int
-    {
-        if ($this->hasActiveSubscription()) {
-            return $this->subscription->getFeatureRemains($code);
-        }
-
-        return 0;
-    }
-
-    /**
-     * @param string $feature
-     * @param int $times
-     */
-    public function useFeature(string $feature, int $times = 1): void
-    {
-        if ($this->hasActiveSubscription()) {
-            $this->subscription->recordFeatureUsage($feature, $times);
-        }
-    }
-
-    /**
-     * @param string $feature
-     * @param int $times
-     */
-    public function returnFeature(string $feature, int $times = 1): void
-    {
-        if ($this->hasActiveSubscription()) {
-            $this->subscription->reduceFeatureUsage($feature, $times);
-        }
+        return $this->rolesTeams->filter(function(Team $team) use($code) {
+            return $team->canUseFeature($code);
+        })->count() > 0;
     }
 }

@@ -16,17 +16,17 @@ class CreatePlanSubscriptionUsageTable extends Migration
     {
         Schema::create('plan_subscription_usage', function (Blueprint $table) {
             $table->primaryUuid('id');
-            $table->uuid('user_id');
+            $table->uuid('team_id');
             $table->string('code');
             $table->smallInteger('used')->unsigned();
             $table->dateTime('valid_until')->nullable();
             $table->timestamps();
 
-            $table->unique(['user_id', 'code']);
+            $table->unique(['team_id', 'code']);
 
-            $table->foreign('user_id')
+            $table->foreign('team_id')
                 ->references('id')
-                ->on('users')
+                ->on('teams')
                 ->onDelete('cascade');
         });
     }

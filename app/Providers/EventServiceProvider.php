@@ -59,8 +59,8 @@ class EventServiceProvider extends ServiceProvider
 
         \App\Models\Server::observe([
             \App\Observers\Server\GenerateSshKeyPairsObserver::class,
+            \App\Observers\Server\ConsumeSubscriptionFeaturesObserver::class,
             \App\Observers\Server\GenerateDatabasePassword::class,
-            \App\Observers\Server\ConsumeSubscriptionFeaturesObserver::class
         ]);
 
         \App\Models\Server\User::observe([
@@ -74,16 +74,16 @@ class EventServiceProvider extends ServiceProvider
         ]);
 
         \App\Models\Server\Daemon::observe([
+            \App\Observers\Server\Supervisor\ConsumeSubscriptionFeaturesObserver::class,
             \App\Observers\Server\Supervisor\FireEventsObserver::class,
             \App\Observers\Server\Supervisor\SyncDaemonObserver::class,
-            \App\Observers\Server\Supervisor\ConsumeSubscriptionFeaturesObserver::class
         ]);
 
         \App\Models\Server\Site::observe([
             \App\Observers\Server\Site\GenerateRandomTokenObserver::class,
+            \App\Observers\Server\Site\ConsumeSubscriptionFeaturesObserver::class,
             \App\Observers\Server\Site\FireEventsObserver::class,
             \App\Observers\Server\Site\SyncSiteObserver::class,
-            \App\Observers\Server\Site\ConsumeSubscriptionFeaturesObserver::class
         ]);
 
         \App\Models\Server\Site\Deployment::observe([
@@ -91,15 +91,15 @@ class EventServiceProvider extends ServiceProvider
         ]);
 
         \App\Models\Server\CronJob::observe([
-            \App\Observers\Server\Cron\SyncCronJobsObserver::class,
-            \App\Observers\Server\Cron\FireEventsObserver::class,
             \App\Observers\Server\Cron\ConsumeSubscriptionFeaturesObserver::class,
+            \App\Observers\Server\Cron\FireEventsObserver::class,
+            \App\Observers\Server\Cron\SyncCronJobsObserver::class,
         ]);
 
         \App\Models\Server\Database::observe([
+            \App\Observers\Server\Database\ConsumeSubscriptionFeaturesObserver::class,
             \App\Observers\Server\Database\FireEventsObserver::class,
             \App\Observers\Server\Database\SyncDatabaseObserver::class,
-            \App\Observers\Server\Database\ConsumeSubscriptionFeaturesObserver::class
         ]);
 
         \App\Models\Server\Firewall\Rule::observe([

@@ -16,6 +16,7 @@ class CreateServerSitesTable extends Migration
         Schema::create('server_sites', function (Blueprint $table) {
             $table->primaryUuid('id');
             $table->belongsToServer();
+            $table->belongsToUser();
 
             $table->string('token');
 

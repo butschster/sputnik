@@ -6,7 +6,6 @@ use App\Http\Resources\v1\PlanCollection;
 use App\Http\Resources\v1\SubscriptionResource;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Rennokki\Plans\Models\PlanModel;
 
 class SubscriptionController extends Controller
 {
@@ -27,7 +26,7 @@ class SubscriptionController extends Controller
      */
     public function cancel(Request $request)
     {
-        $this->authorize('cancel-subscription', User::class);
+        $this->authorize('cancel-subscription', $request->user());
 
         $request->user()->cancelCurrentSubscription();
 

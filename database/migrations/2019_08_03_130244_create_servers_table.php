@@ -18,6 +18,7 @@ class CreateServersTable extends Migration
             $table->primaryUuid('id');
 
             $table->belongsToUser();
+            $table->belongsToTeam();
 
             $table->string('name');
             $table->ipAddress('ip')->unique();

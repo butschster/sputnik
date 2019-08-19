@@ -22,6 +22,7 @@
         "lorisleiva/laravel-actions": "^0.1.4",
         "predis/predis": "^1.1",
         "rinvex/laravel-subscriptions": "^2.1",
+        "santigarcor/laratrust": "^5.2",
         "violuke/rsa-ssh-key-fingerprint": "^1.1",
         "waavi/sanitizer": "^1.0"
     },

@@ -9,6 +9,8 @@
             <div class="col-9">
                 <h2 class="mb-4">
                     <i class="fas fa-hdd mr-3"></i> {{ $server->name }}
+                    <br><small class="text-muted">{{ $server->team->name }}</small>
+
                     <span class="badge float-right @if($server->isConfigured()) badge-success @else badge-warning @endif">{{ $server->status }}</span>
                 </h2>
                 <div class="card">
