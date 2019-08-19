@@ -25,6 +25,7 @@ class ServerController extends Controller
 
         return view('home', [
             'servers' => $servers,
+            'teams' => $request->user()->rolesTeams
         ]);
     }
 

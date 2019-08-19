@@ -22,7 +22,7 @@ class HasSubscription
             throw new AuthenticationException();
         }
 
-        if (!Auth::user()->hasActiveSubscription()) {
+        if (!$request->user()->hasActiveSubscription()) {
             throw new ActiveSubscriptionNotFound(302);
         }
 

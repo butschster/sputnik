@@ -16,42 +16,7 @@ class UserController extends Controller
     {
         return view('user.profile', [
             'user' => $request->user(),
-            'plans' => Plan::orderBy('sort_order')->onlyActive()->get(),
-            'subscription' => $request->user()->subscription,
+            'teams' => $request->user()->rolesTeams,
         ]);
-    }
-
-    public function renew(Request $request)
-    {
-        $request->user()->subscription->renew();
-
-        return back();
-    }
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function subscribe(Request $request)
-    {
-        $this->validate($request, [
-            'plan' => ['required', Rule::exists('plans', 'id')],
-        ]);
-
-        $plan = Plan::findOrFail($request->plan);
-        $plan->trial_period = 0;
-        $request->user()->subscribeTo(
-            $plan
-        );
-
-        return back();
-    }
-
-    public function cancelSubscription(Request $request)
-    {
-        $request->user()->cancelCurrentSubscription();
-
-        return back();
     }
 }

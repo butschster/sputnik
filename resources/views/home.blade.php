@@ -18,7 +18,10 @@
                 </thead>
                 @foreach($servers as $server)
                     <tr>
-                        <th><a href="{{ route('server.show', $server) }}">{{ $server->name }}</a></th>
+                        <th>
+                            <a href="{{ route('server.show', $server) }}">{{ $server->name }}</a>
+                            <br><small class="text-muted">{{ $server->team->name }}</small>
+                        </th>
                         <td>{{ $server->ip }}</td>
                         <td><span class="badge badge-dark">{{ $server->status }}</span></td>
                     </tr>

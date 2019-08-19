@@ -12,4 +12,23 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .browserSync({
+        proxy: 'localhost:8000',
+        files: [
+            'app/**/*.php',
+            'resources/views/**/*.php',
+            'public/js/**/*.js',
+            'public/css/**/*.css',
+            'public/admin/js/**/*.js',
+            'public/admin/css/**/*.css'
+        ],
+    });
+
+if (!mix.inProduction()) {
+    mix.webpackConfig({
+        devtool: 'source-map'
+    }).sourceMaps()
+} else {
+    mix.version()
+}

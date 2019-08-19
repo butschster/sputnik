@@ -66,10 +66,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'project_name' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'plan' => ['required', 'string', Rule::exists('plans', 'id')],
         ]);
     }
 
@@ -83,14 +83,22 @@ class RegisterController extends Controller
     {
         return DB::transaction(function () use ($data) {
 
+            $team = User\Team::create([
+                'name' => $data['project_name'],
+            ]);
+
+            $owner = User\Role::where('name', 'owner')->firstOrFail();
+
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
 
-            $user->subscribeTo(
-                Plan::findOrFail($data['plan'])
+            $user->attachRole($owner, $team);
+
+            $team->subscribeTo(
+                Plan::where('name', 'free')->firstOrFail()
             );
 
             return $user;

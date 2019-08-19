@@ -34,9 +34,15 @@ class StoreRequest extends FormRequest
      */
     public function persist(): Site
     {
-        return $this->getServer()->sites()->create(
+        $site = new Site(
             $this->validationData()
         );
+
+        $site->server()->associate($this->getServer());
+        $site->user()->associate($this->user());
+        $site->save();
+
+        return $site;
     }
 
     /**

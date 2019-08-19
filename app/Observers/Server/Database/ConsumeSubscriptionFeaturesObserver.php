@@ -11,7 +11,7 @@ class ConsumeSubscriptionFeaturesObserver
      */
     public function created(Database $database): void
     {
-        $database->server->user->useFeature('server.database.create');
+        $database->server->team->useFeature('server.database.create');
     }
 
     /**
@@ -19,6 +19,6 @@ class ConsumeSubscriptionFeaturesObserver
      */
     public function deleted(Database $database): void
     {
-        $database->server->user->returnFeature('server.database.create');
+        $database->server->team->returnFeature('server.database.create');
     }
 }

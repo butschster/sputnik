@@ -12,6 +12,19 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
+                            <div class="form-group">
+                                <label for="project_name">{{ __('Project name') }}</label>
+
+                                <input id="project_name" type="text" class="form-control form-control-lg @error('project_name') is-invalid @enderror"
+                                       name="project_name" value="{{ old('project_name') }}" autocomplete="project_name" autofocus>
+
+                                @error('project_name')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
                             <div class="row">
                                 <div class="form-group col">
                                     <label for="name">{{ __('Name') }}</label>
@@ -62,8 +75,6 @@
                                            name="password_confirmation" autocomplete="new-password">
                                 </div>
                             </div>
-
-                            @include('user.partials.plans')
 
                             <div class="form-group mb-0">
                                 <button type="submit" class="btn btn-primary">

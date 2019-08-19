@@ -27,7 +27,7 @@ class ServerPolicy
      */
     public function store(?User $user): bool
     {
-        return $user->canUseFeature('server.create');
+        return $user->canUseFeature('server.create');;
     }
 
     /**
