@@ -76,8 +76,6 @@
                                 </div>
                             </div>
 
-                            @include('user.partials.plans')
-
                             <div class="form-group mb-0">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}

@@ -3,9 +3,7 @@
 namespace App\Models\Subscription\Plan;
 
 use App\Models\Concerns\UsesUuid;
-use App\Models\Subscription\Period;
 use App\Models\Subscription\Plan;
-use Carbon\Carbon;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,8 +29,6 @@ class Feature extends Model
         'plan_id' => 'integer',
         'code' => 'string',
         'value' => 'string',
-        'resettable_period' => 'integer',
-        'resettable_interval' => 'string',
         'sort_order' => 'integer',
     ];
 
@@ -41,12 +37,11 @@ class Feature extends Model
      */
     public function name(): string
     {
-        return trans('plans.'. $this->code);
+        return trans('plans.' . $this->code);
     }
 
     /**
      * The model always belongs to a plan.
-     *
      * @return BelongsTo
      */
     public function plan(): BelongsTo
@@ -56,24 +51,10 @@ class Feature extends Model
 
     /**
      * Check if feature is unlimited
-     *
      * @return bool
      */
     public function isUnlimited(): bool
     {
         return $this->value === 'Y';
-    }
-
-    /**
-     * Get feature's reset date.
-     *
-     * @param Carbon $dateFrom
-     * @return \Carbon\Carbon
-     */
-    public function getResetDate(Carbon $dateFrom): Carbon
-    {
-        $period = new Period($this->resettable_interval, $this->resettable_period, $dateFrom ?? now());
-
-        return $period->getEndDate();
     }
 }

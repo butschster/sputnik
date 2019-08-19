@@ -26,12 +26,6 @@ class Plan extends Model
         'price' => 'float',
         'currency' => 'string',
         'trial_period' => 'integer',
-        'trial_interval' => 'string',
-        'invoice_period' => 'integer',
-        'invoice_interval' => 'string',
-        'prorate_day' => 'integer',
-        'prorate_period' => 'integer',
-        'prorate_extend_due' => 'integer',
         'sort_order' => 'integer',
     ];
 
@@ -52,6 +46,15 @@ class Plan extends Model
     public function scopeOnlyActive(Builder $builder)
     {
         return $builder->where('is_active', true);
+    }
+
+    /**
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeWithoutFree(Builder $builder)
+    {
+        return $builder->where('price', '>', 0);
     }
 
     /**
@@ -82,7 +85,7 @@ class Plan extends Model
      */
     public function hasTrial(): bool
     {
-        return $this->trial_period && $this->trial_interval;
+        return $this->trial_period > 0;
     }
 
 

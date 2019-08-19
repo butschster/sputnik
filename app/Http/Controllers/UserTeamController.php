@@ -14,8 +14,9 @@ class UserTeamController extends Controller
         return view('user.team.show', [
             'team' => $team,
             'users' => $team->users,
-            'plans' => Plan::orderBy('sort_order')->onlyActive()->get(),
-            'subscription' => $team->subscription,
+            'plans' => Plan::orderBy('sort_order')->onlyActive()->withoutFree()->get(),
+            'subscription' => $team->getActiveSubscription(),
+            'intent' => $team->createSetupIntent()
         ]);
     }
 
@@ -35,6 +36,8 @@ class UserTeamController extends Controller
      */
     public function subscribe(Request $request, Team $team)
     {
+        dd($request->all());
+
         $this->validate($request, [
             'plan' => ['required', Rule::exists('plans', 'id')],
         ]);

@@ -14,23 +14,21 @@ class CreatePlanSubscriptionsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('plan_subscriptions', function (Blueprint $table) {
+        Schema::create('subscriptions', function (Blueprint $table) {
             $table->primaryUuid('id');
             $table->uuid('team_id');
-            $table->uuid('plan_id');
-            $table->dateTime('trial_ends_at')->nullable();
-            $table->dateTime('starts_at')->nullable();
-            $table->dateTime('ends_at')->nullable();
-            $table->dateTime('cancels_at')->nullable();
-            $table->dateTime('canceled_at')->nullable();
+
+            $table->string('name');
+            $table->string('stripe_id')->collation('utf8mb4_bin')->nullable();
+            $table->string('stripe_status')->nullable();
+            $table->string('stripe_plan');
+            $table->integer('quantity');
+
+            $table->timestamp('trial_ends_at')->nullable();
+            $table->timestamp('ends_at')->nullable();
             $table->timestamps();
 
-            $table->unique(['plan_id', 'team_id']);
-
-            $table->foreign('plan_id')
-                ->references('id')
-                ->on('plans')
-                ->onDelete('cascade');
+            $table->index(['team_id', 'stripe_status']);
 
             $table->foreign('team_id')
                 ->references('id')
@@ -46,6 +44,6 @@ class CreatePlanSubscriptionsTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('plan_subscriptions');
+        Schema::dropIfExists('subscriptions');
     }
 }

@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         $user->attachRole($owner, $team);
 
         $team->subscribeTo(
-            Plan::where('name', 'artisan')->first()
+            Plan::where('name', 'free')->first()
         );
     }
 }

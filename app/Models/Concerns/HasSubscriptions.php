@@ -2,67 +2,60 @@
 
 namespace App\Models\Concerns;
 
-use App\Models\User\Subscription;
 use App\Models\Subscription\Plan;
-use App\Models\Subscription\Period;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\User\Subscription;
 
 trait HasSubscriptions
 {
     /**
-     * The user may have subscription.
-     *
-     * @return HasOne
-     */
-    public function subscription(): HasOne
-    {
-        return $this->hasOne(Subscription::class);
-    }
-
-    /**
-     * Subscribe user to a new plan.
-     *
      * @param Plan $plan
-     * @param bool $isPaid
+     * @param \Stripe\PaymentMethod|string|null $paymentMethod
      *
-     * @return Subscription
+     * @return \Laravel\Cashier\Subscription
      */
-    public function subscribeTo(Plan $plan, bool $isPaid = false): Subscription
+    public function subscribeTo(Plan $plan, $paymentMethod = null): \Laravel\Cashier\Subscription
     {
-        if ($this->subscription) {
+        $name = 'main';
 
-            $this->subscription->changePlan($plan);
-
-            return $this->subscription;
-        }
-
-        $trial = new Period($plan->trial_interval, $plan->trial_period, now());
-        $data = [
-            'trial_ends_at' => $trial->getEndDate(),
-            'starts_at' => $trial->getStartDate(),
-            'ends_at' => $trial->getEndDate(),
-        ];
-
-        if ($isPaid) {
-            $period = new Period($plan->invoice_interval, $plan->invoice_period, $trial->getEndDate());
-            $data = array_merge($data, [
-                'starts_at' => $period->getStartDate(),
-                'ends_at' => $period->getEndDate(),
+        if ($plan->isFree()) {
+            return $this->subscriptions()->create([
+                'name' => $name,
+                'stripe_id' => null,
+                'stripe_status' => 'complete',
+                'stripe_plan' => $plan->name,
+                'quantity' => 1,
+                'trial_ends_at' => null,
+                'ends_at' => null,
             ]);
         }
 
-        $subscription = new Subscription($data);
-        $subscription->plan()->associate($plan);
-        $subscription->team()->associate($this);
+        $builder = $this->newSubscription('main', $plan->name);
 
-        $subscription->save();
+        if ($plan->hasTrial()) {
+            $builder->trialDays($name);
+        } else {
+            $builder->skipTrial();
+        }
 
-        return $subscription;
+        return $builder->create($paymentMethod);
+    }
+
+    /**
+     * @return Subscription|null
+     */
+    public function getActiveSubscription(): ?Subscription
+    {
+        return $this->subscription('main');
     }
 
     public function cancelCurrentSubscription(): void
     {
-        $this->subscription->cancel();
+        $this->getActiveSubscription()->cancel();
+    }
+
+    public function resumeCurrentSubscription(): void
+    {
+        $this->getActiveSubscription()->resume();
     }
 
     /**
@@ -70,11 +63,12 @@ trait HasSubscriptions
      */
     public function hasActiveSubscription(): bool
     {
-        return $this->subscription ? $this->subscription->isActive() : false;
+        return $this->getActiveSubscription() ? $this->getActiveSubscription()->valid() : false;
     }
 
     /**
      * @param string $code
+     *
      * @return bool
      */
     public function canUseFeature(string $code): bool
@@ -83,17 +77,18 @@ trait HasSubscriptions
             return false;
         }
 
-        return $this->subscription->canUseFeature($code);
+        return $this->getActiveSubscription()->canUseFeature($code);
     }
 
     /**
      * @param string $code
+     *
      * @return int
      */
     public function getRemainingOf(string $code): int
     {
         if ($this->hasActiveSubscription()) {
-            return $this->subscription->getFeatureRemains($code);
+            return $this->getActiveSubscription()->getFeatureRemains($code);
         }
 
         return 0;
@@ -106,7 +101,7 @@ trait HasSubscriptions
     public function useFeature(string $feature, int $times = 1): void
     {
         if ($this->hasActiveSubscription()) {
-            $this->subscription->recordFeatureUsage($feature, $times);
+            $this->getActiveSubscription()->recordFeatureUsage($feature, $times);
         }
     }
 
@@ -117,7 +112,7 @@ trait HasSubscriptions
     public function returnFeature(string $feature, int $times = 1): void
     {
         if ($this->hasActiveSubscription()) {
-            $this->subscription->reduceFeatureUsage($feature, $times);
+            $this->getActiveSubscription()->reduceFeatureUsage($feature, $times);
         }
     }
 }

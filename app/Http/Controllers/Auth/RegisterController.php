@@ -70,7 +70,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'plan' => ['required', 'string', Rule::exists('plans', 'id')],
         ]);
     }
 
@@ -99,7 +98,7 @@ class RegisterController extends Controller
             $user->attachRole($owner, $team);
 
             $team->subscribeTo(
-                Plan::findOrFail($data['plan'])
+                Plan::where('name', 'free')->firstOrFail()
             );
 
             return $user;

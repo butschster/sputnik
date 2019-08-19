@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        @if(!$subscription->isActive())
+        @if(!$subscription->valid())
             <div class="alert alert-warning">
                 Your subscription is expired. Please renew it.
 
@@ -34,11 +34,9 @@
 
                 @if($subscription->onTrial())
                     <span class="badge badge-warning">Trial ends at {{ $subscription->trial_ends_at }}</span>
-                @elseif(!$subscription->isEnded())
-                    <span class="badge badge-primary">Ends at {{ $subscription->ends_at }}</span>
                 @endif
 
-                @if(!$subscription->isCanceled())
+                @if(!$subscription->cancelled())
                     <form class="float-right" action="{{ route('user.subscription.cancel', $team) }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -77,10 +75,53 @@
             </table>
         </div>
 
-        <form action="{{ route('team.subscribe', $team) }}" method="POST">
+        <form action="{{ route('team.subscribe', $team) }}" method="POST" class="card mt-5">
             @csrf
-            @include('user.partials.plans')
-            <button class="btn btn-primary btn-lg">Change subscription</button>
+
+            <div class="card-body">
+                <input id="card-holder-name" class="form-control" type="text" value="{{ $team->name }}">
+
+                <!-- Stripe Elements Placeholder -->
+                <div id="card-element"></div>
+            </div>
+
+            <div class="card-body">
+                @include('user.partials.plans')
+                <button type="button" id="card-button" data-secret="{{ $intent->client_secret }}" class="btn btn-primary btn-lg">
+                    Change subscription
+                </button>
+            </div>
         </form>
     </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <script>
+        const stripe = Stripe('{{ config('services.stripe.key') }}');
+
+        const elements = stripe.elements();
+        const cardElement = elements.create('card');
+
+        cardElement.mount('#card-element');
+
+        const cardHolderName = document.getElementById('card-holder-name');
+        const cardButton = document.getElementById('card-button');
+        const clientSecret = cardButton.dataset.secret;
+
+        cardButton.addEventListener('click', async (e) => {
+            const { setupIntent, error } = await stripe.handleCardSetup(
+                clientSecret, cardElement, {
+                    payment_method_data: {
+                        billing_details: { name: cardHolderName.value }
+                    }
+                }
+            );
+
+            if (error) {
+                console.log(error)
+            } else {
+                console.log(setupIntent)
+            }
+        });
+    </script>
 @endsection
