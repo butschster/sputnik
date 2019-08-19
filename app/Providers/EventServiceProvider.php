@@ -98,13 +98,9 @@ class EventServiceProvider extends ServiceProvider
 
         \App\Models\Server\Database::observe([
             \App\Observers\Server\Database\ConsumeSubscriptionFeaturesObserver::class,
+            \App\Observers\Server\Database\GenerateDatabasePassword::class,
             \App\Observers\Server\Database\FireEventsObserver::class,
             \App\Observers\Server\Database\SyncDatabaseObserver::class,
-<<<<<<< HEAD
-            \App\Observers\Server\Database\ConsumeSubscriptionFeaturesObserver::class,
-            \App\Observers\Server\Database\GenerateDatabasePassword::class,
-=======
->>>>>>> f812ae1cb72d07afb3c712ce7cadafcb95e1c9d0
         ]);
 
         \App\Models\Server\Firewall\Rule::observe([
