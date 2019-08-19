@@ -22,8 +22,10 @@
         "laravel/tinker": "^1.0",
         "lorisleiva/laravel-actions": "^0.1.4",
         "predis/predis": "^1.1",
+        "pusher/pusher-php-server": "^4.0",
         "rinvex/laravel-subscriptions": "^2.1",
         "santigarcor/laratrust": "^5.2",
+        "tightenco/ziggy": "^0.7.1",
         "violuke/rsa-ssh-key-fingerprint": "^1.1",
         "waavi/sanitizer": "^1.0"
     },

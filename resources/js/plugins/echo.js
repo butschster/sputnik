@@ -1,0 +1,9 @@
+import Vue from "vue";
+import Echo from 'laravel-echo'
+
+Vue.prototype.$eecho = new Echo({
+    broadcaster: 'pusher',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    encrypted: true
+});

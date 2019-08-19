@@ -1,4 +1,7 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
+const tailwindcss = require('tailwindcss')
+const webpackConfig = require('./webpack.config.js')
+
 
 /*
  |--------------------------------------------------------------------------
@@ -13,6 +16,10 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
+    .options({
+        processCssUrls: false,
+        postCss: [ tailwindcss('./tailwind.config.js') ],
+    })
     .browserSync({
         proxy: 'localhost:8000',
         files: [
@@ -23,7 +30,8 @@ mix.js('resources/js/app.js', 'public/js')
             'public/admin/js/**/*.js',
             'public/admin/css/**/*.css'
         ],
-    });
+    })
+    .webpackConfig(webpackConfig)
 
 if (!mix.inProduction()) {
     mix.webpackConfig({
