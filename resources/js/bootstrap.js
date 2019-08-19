@@ -15,6 +15,3 @@ if (token) {
 
 Vue.use(VeeValidate)
 Vue.use(VueSweetalert2)
-
-// window.Pusher = require('pusher-js');
-

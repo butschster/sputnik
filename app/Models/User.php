@@ -81,4 +81,13 @@ class User extends Authenticatable
             return $team->canUseFeature($code);
         })->count() > 0;
     }
+
+    /**
+     * @param Server $server
+     * @return bool
+     */
+    public function canManageServer(Server $server): bool
+    {
+        return $this->can('server.manage', $server->team);
+    }
 }

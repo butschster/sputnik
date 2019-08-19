@@ -13,6 +13,7 @@ use App\Policies\ServerPolicy;
 use App\Policies\ServerSitePolicy;
 use App\Policies\ServerTaskPolicy;
 use App\Policies\ServerUserPolicy;
+use App\Policies\TeamPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
@@ -25,6 +26,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         User::class => UserPolicy::class,
+        User\Team::class => TeamPolicy::class,
         Server::class => ServerPolicy::class,
         Server\CronJob::class => ServerCronJobPolicy::class,
         Server\Site::class => ServerSitePolicy::class,

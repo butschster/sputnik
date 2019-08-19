@@ -21,7 +21,7 @@ class ServerUserPolicy
             return false;
         }
 
-        return $server->user_id == $user->id;
+        return $user->canManageServer($server);
     }
 
     /**
@@ -31,7 +31,7 @@ class ServerUserPolicy
      */
     public function show(?User $user, Server\User $serverUser): bool
     {
-        return $serverUser->server->user_id == $user->id;
+        return $user->canManageServer($serverUser->server);
     }
 
     /**
@@ -41,6 +41,6 @@ class ServerUserPolicy
      */
     public function delete(?User $user, Server\User $serverUser): bool
     {
-        return $serverUser->server->user_id == $user->id;
+        return $user->canManageServer($serverUser->server);
     }
 }

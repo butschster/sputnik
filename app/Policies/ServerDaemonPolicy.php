@@ -18,7 +18,7 @@ class ServerDaemonPolicy
      */
     public function show(?User $user, Server\Daemon $daemon): bool
     {
-        return $daemon->server->user_id == $user->id;
+        return $user->canManageServer($daemon->server);
     }
 
     /**
@@ -32,7 +32,7 @@ class ServerDaemonPolicy
             return false;
         }
 
-        return $server->user_id == $user->id &&
+        return $user->canManageServer($server) &&
             $user->canUseFeature('server.daemon.create');
     }
 
@@ -43,6 +43,6 @@ class ServerDaemonPolicy
      */
     public function delete(?User $user, Server\Daemon $daemon): bool
     {
-        return $daemon->server->user_id == $user->id;
+        return $user->canManageServer($daemon);
     }
 }

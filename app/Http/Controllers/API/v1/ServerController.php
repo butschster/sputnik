@@ -52,8 +52,8 @@ class ServerController extends Controller
 
     /**
      * @param StoreRequest $request
-     *
      * @return ServerResource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreRequest $request): ServerResource
     {

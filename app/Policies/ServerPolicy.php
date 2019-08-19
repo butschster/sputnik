@@ -27,7 +27,7 @@ class ServerPolicy
      */
     public function store(?User $user): bool
     {
-        return $user->canUseFeature('server.create');;
+        return $user->canUseFeature('server.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class ServerPolicy
      */
     public function show(?User $user, Server $server): bool
     {
-        return $server->user_id == $user->id;
+        return $user->canManageServer($server);
     }
 
     /**
@@ -47,6 +47,6 @@ class ServerPolicy
      */
     public function delete(?User $user, Server $server): bool
     {
-        return false; //$server->user_id == $user->id;
+        return $user->can('server.delete', $server->team);
     }
 }

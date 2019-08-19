@@ -18,7 +18,7 @@ class ServerTaskPolicy
      */
     public function show(?User $user, Server\Task $task): bool
     {
-        return $task->server->user_id == $user->id;
+        return $user->canManageServer($task->server);
     }
 
     /**

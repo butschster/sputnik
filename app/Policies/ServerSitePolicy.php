@@ -22,7 +22,8 @@ class ServerSitePolicy
             return false;
         }
 
-        return $server->user_id == $user->id &&
+
+        return $user->canManageServer($server) &&
             $user->canUseFeature('server.site.create');
     }
 
@@ -45,7 +46,7 @@ class ServerSitePolicy
             return false;
         }
 
-        return $site->server->user_id == $user->id &&
+        return $user->canManageServer($site->server) &&
             $user->canUseFeature('server.deployments.run');
     }
 
@@ -65,7 +66,8 @@ class ServerSitePolicy
             return false;
         }
 
-        return $site->server->user->canUseFeature('server.deployments.push');
+        return $user->canManageServer($site->server) &&
+            $site->server->user->canUseFeature('server.deployments.push');
     }
 
 
@@ -76,7 +78,7 @@ class ServerSitePolicy
      */
     public function update(?User $user, Site $site): bool
     {
-        return $site->server->user_id == $user->id;
+        return $user->canManageServer($site->server);
     }
 
 

@@ -17,7 +17,7 @@ class ServerFirewallPolicy
      */
     public function show(?User $user, Server\Firewall\Rule $rule): bool
     {
-        return $rule->server->user_id == $user->id;
+        return $user->canManageServer($rule->server);
     }
 
     /**
@@ -31,7 +31,7 @@ class ServerFirewallPolicy
             return false;
         }
 
-        return $server->user_id == $user->id;
+        return $user->canManageServer($server);
     }
 
     /**
@@ -41,6 +41,6 @@ class ServerFirewallPolicy
      */
     public function delete(?User $user, Server\Firewall\Rule $rule): bool
     {
-        return $rule->server->user_id == $user->id;
+        return $user->canManageServer($rule->server);
     }
 }

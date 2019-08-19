@@ -18,7 +18,7 @@ class ServerDatabasePolicy
      */
     public function show(?User $user, Database $database): bool
     {
-        return $database->server->user_id == $user->id;
+        return $user->canManageServer($database->server);
     }
 
     /**
@@ -32,7 +32,7 @@ class ServerDatabasePolicy
             return false;
         }
 
-        return $server->user_id == $user->id &&
+        return $user->canManageServer($server) &&
             $user->canUseFeature('server.database.create');
     }
 
@@ -43,6 +43,6 @@ class ServerDatabasePolicy
      */
     public function delete(?User $user, Database $database): bool
     {
-        return $database->server->user_id == $user->id;
+        return $user->canManageServer($database->server);
     }
 }

@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Echo from 'laravel-echo'
+import Pusher from 'pusher-js'
 
 Vue.prototype.$eecho = new Echo({
     broadcaster: 'pusher',

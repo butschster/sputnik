@@ -36,8 +36,6 @@ class UserTeamController extends Controller
      */
     public function subscribe(Request $request, Team $team)
     {
-        dd($request->all());
-
         $this->validate($request, [
             'plan' => ['required', Rule::exists('plans', 'id')],
         ]);

@@ -21,7 +21,7 @@ mix.js('resources/js/app.js', 'public/js')
         postCss: [ tailwindcss('./tailwind.config.js') ],
     })
     .browserSync({
-        proxy: 'localhost:8000',
+        proxy: process.env.APP_URL,
         files: [
             'app/**/*.php',
             'resources/views/**/*.php',

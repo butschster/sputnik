@@ -17,7 +17,7 @@ class ServerCronJobPolicy
      */
     public function show(?User $user, Server\CronJob $job): bool
     {
-        return $user->id === $job->server->user_id;
+        return $user->canManageServer($job->server);
     }
 
     /**
@@ -33,7 +33,7 @@ class ServerCronJobPolicy
             return false;
         }
 
-        return $user->id === $server->user_id &&
+        return $user->canManageServer($server) &&
             $user->canUseFeature('server.cron_job.create');
     }
 
@@ -47,6 +47,6 @@ class ServerCronJobPolicy
      */
     public function delete(User $user, Server\CronJob $job): bool
     {
-        return $user->id === $job->server->user_id;
+        return $user->canManageServer($job->server);
     }
 }
