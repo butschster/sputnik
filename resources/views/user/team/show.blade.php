@@ -1,97 +1,75 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        @if(!$subscription->valid())
-            <div class="alert alert-warning">
-                Your subscription is expired. Please renew it.
+    @if(!$subscription->valid())
+        <div class="alert alert-warning">
+            Your subscription is expired. Please renew it.
 
-                <form class="float-right" action="{{ route('user.subscription.renew') }}" method="POST">
-                    @csrf
-                    <button class="btn btn-success btn-sm">Renew</button>
-                </form>
-            </div>
-        @endif
+            <form class="float-right" action="{{ route('user.subscription.renew') }}" method="POST">
+                @csrf
+                <button class="btn btn-success btn-sm">Renew</button>
+            </form>
+        </div>
+    @endif
 
-        <div class="card mb-4">
-            <div class="card-header">Members</div>
-            <div class="list-group list-group-flush">
-                @foreach($users as $user)
-                    <div class="list-group-item">
-                        {{ $user->name }}
+    <div class="card mb-4">
+        <div class="card-header">Members</div>
+        <div class="list-group list-group-flush">
+            @foreach($users as $user)
+                <div class="list-group-item">
+                    {{ $user->name }}
 
-                        @role('owner')
-                        <span class="badge badge-primary float-right">owner</span>
-                        @endrole
+                    @role('owner')
+                    <span class="badge badge-primary float-right">owner</span>
+                    @endrole
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    @include('user.partials.plans')
+
+    <div class="card mb-4">
+        <div class="card-header">
+            Payment method
+            <p>This will replace your current payment method.</p>
+        </div>
+        <div class="card-body">
+            <form action="" class="mt-8">
+                <div class="flex">
+                    <div class="form-group flex-1 mr-5">
+                        <input type="text" id="card" class="form-control" name="card" autofocus
+                               placeholder="Card number">
                     </div>
-                @endforeach
-            </div>
+                    <div class="form-group mr-5">
+                        <input type="text" id="date" class="form-control" name="date"
+                               placeholder="MM/YY">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="cvc" class="form-control" name="cvc"
+                               placeholder="CVC">
+                    </div>
+                </div>
+                <div class="form-group mt-2">
+                    <button class="btn btn-primary btn-lg">Update</button>
+                </div>
+            </form>
         </div>
+    </div>
 
-        <div class="card">
-            <div class="card-header">
-                Current subscription: <strong>{{ $subscription->plan->name }}</strong>
 
-                @if($subscription->onTrial())
-                    <span class="badge badge-warning">Trial ends at {{ $subscription->trial_ends_at }}</span>
-                @endif
-
-                @if(!$subscription->cancelled())
-                    <form class="float-right" action="{{ route('user.subscription.cancel', $team) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-sm">Cancel</button>
-                    </form>
-                @else
-                    <span class="badge badge-danger">Canceled</span>
-                @endif
-            </div>
-
-            <table class="table">
-                <col width="200px">
-                <col>
-                <thead>
-                <tr>
-                    <th>Feature</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($subscription->plan->features as $feature)
-                    <tr>
-                        <th>
-                            {{ $feature->code }}
-                        </th>
-                        <td>
-                            @if($feature->isUnlimited())
-                                <small>Unlimited</small>
-                            @else
-                                <small>{{ $team->getRemainingOf($feature->code) }} remains</small>
-                            @endif
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+    <div class="border-gray-300 bg-gray-100 py-8 px-8 my-12 flex items-center">
+        <div class="flex-1">
+            <h2>Cancel subscription</h2>
+            <p>Pavel, just before you go, here are some courses we've got coming up that you might be interested in.</p>
         </div>
-
-        <form action="{{ route('team.subscribe', $team) }}" method="POST" class="card mt-5">
-            @csrf
-
-            <div class="card-body">
-                <input id="card-holder-name" class="form-control" type="text" value="{{ $team->name }}">
-
-                <!-- Stripe Elements Placeholder -->
-                <div id="card-element"></div>
-            </div>
-
-            <div class="card-body">
-                @include('user.partials.plans')
-                <button type="button" id="card-button" data-secret="{{ $intent->client_secret }}" class="btn btn-primary btn-lg">
-                    Change subscription
+        <div>
+            <form action="">
+                <button class="btn btn-lg btn-danger">
+                    Cancel :(
                 </button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <script src="https://js.stripe.com/v3/"></script>
@@ -109,10 +87,10 @@
         const clientSecret = cardButton.dataset.secret;
 
         cardButton.addEventListener('click', async (e) => {
-            const { setupIntent, error } = await stripe.handleCardSetup(
+            const {setupIntent, error} = await stripe.handleCardSetup(
                 clientSecret, cardElement, {
                     payment_method_data: {
-                        billing_details: { name: cardHolderName.value }
+                        billing_details: {name: cardHolderName.value}
                     }
                 }
             );

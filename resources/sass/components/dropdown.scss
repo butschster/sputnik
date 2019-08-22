@@ -1,0 +1,19 @@
+.dropdown {
+    @apply relative;
+
+    &-menu {
+        @apply absolute py-3 top-0 right-0 w-64 border border-gray-300 rounded bg-white shadow-xl;
+    }
+
+    &-divider {
+        @apply h-0 my-2 overflow-hidden border-t border-gray-300;
+    }
+
+    &-link {
+        @apply block px-6 py-2;
+
+        &:hover {
+            @apply bg-gray-100;
+        }
+    }
+}

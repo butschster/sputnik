@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=cyrillic);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=cyrillic);@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap);@charset "UTF-8";
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
@@ -569,7 +569,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: Source Code Pro, monospace;
 }
 
 /**
@@ -641,6 +641,17 @@ a {
 
 button, input, optgroup, select, textarea {
   font-size: 1rem;
+}
+
+pre {
+  font-size: 0.875rem;
+  font-family: Source Code Pro, monospace;
+  color: #1a202c;
+  white-space: pre-wrap;
+  border-radius: 0.25rem;
+  padding: 2rem;
+  background-color: #f7fafc;
+  overflow-x: scroll;
 }
 
 .container{
@@ -3908,6 +3919,10 @@ button, input, optgroup, select, textarea {
 
 .font-body{
   font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.font-mono{
+  font-family: Source Code Pro, monospace;
 }
 
 .font-hairline{
@@ -14635,6 +14650,10 @@ button, input, optgroup, select, textarea {
 
   .sm\:font-body{
     font-family: Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .sm\:font-mono{
+    font-family: Source Code Pro, monospace;
   }
 
   .sm\:font-hairline{
@@ -25365,6 +25384,10 @@ button, input, optgroup, select, textarea {
     font-family: Roboto, Helvetica, Arial, sans-serif;
   }
 
+  .md\:font-mono{
+    font-family: Source Code Pro, monospace;
+  }
+
   .md\:font-hairline{
     font-weight: 100;
   }
@@ -36093,6 +36116,10 @@ button, input, optgroup, select, textarea {
     font-family: Roboto, Helvetica, Arial, sans-serif;
   }
 
+  .lg\:font-mono{
+    font-family: Source Code Pro, monospace;
+  }
+
   .lg\:font-hairline{
     font-weight: 100;
   }
@@ -46819,6 +46846,10 @@ button, input, optgroup, select, textarea {
 
   .xl\:font-body{
     font-family: Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .xl\:font-mono{
+    font-family: Source Code Pro, monospace;
   }
 
   .xl\:font-hairline{
@@ -60545,12 +60576,12 @@ readers do not read off random characters that represent icons */
   color: #2b6cb0;
 }
 
-.form-group-labeled .form-control:not(:placeholder-shown) {
+.form-group-labeled .form-control:focus, .form-group-labeled .form-control:not(:placeholder-shown) {
   padding-bottom: 0.25rem;
   padding-top: 1.5rem;
 }
 
-.form-group-labeled .form-control:not(:placeholder-shown) + label {
+.form-group-labeled .form-control:focus + label, .form-group-labeled .form-control:not(:placeholder-shown) + label {
   color: #718096;
   font-weight: 700;
   padding-top: 0.65rem;
@@ -60755,6 +60786,129 @@ readers do not read off random characters that represent icons */
 
 .status-indicator.pending {
   background-color: #a0aec0;
+}
+
+.navbar {
+  background-color: #fff;
+  border-bottom-width: 1px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar__profile {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  display: flex;
+}
+
+.navbar__profile--avatar {
+  height: 2.5rem;
+  border-radius: 9999px;
+}
+
+.sidebar {
+  width: 16rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background: linear-gradient(150deg, #2b6cb0 15%, #2a4365 94%);
+}
+
+.sidebar h5 {
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: #a0aec0;
+  letter-spacing: 0.05em;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.sidebar .nav a {
+  display: block;
+  color: #fff;
+  font-size: 1.125rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.sidebar .nav a:hover {
+  background-color: #2a4365;
+}
+
+.sidebar .nav a.active {
+  background-color: #4299e1;
+}
+
+.sidebar-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+}
+
+.sidebar-section:not(:last-child) {
+  border-bottom-width: 1px;
+  border-color: #3182ce;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  top: 0;
+  right: 0;
+  width: 16rem;
+  border-width: 1px;
+  border-color: #e2e8f0;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.dropdown-divider {
+  height: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  border-top-width: 1px;
+  border-color: #e2e8f0;
+}
+
+.dropdown-link {
+  display: block;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.dropdown-link:hover {
+  background-color: #f7fafc;
+}
+
+.user-info {
+  display: flex;
+}
+
+.user-info--avatar {
+  height: 2.5rem;
+  border-radius: 9999px;
+}
+
+.user-info--name {
+  margin-left: 1rem;
+}
+
+.user-info--email {
+  font-size: 0.875rem;
+  color: #718096;
 }
 
 .page-login-container {

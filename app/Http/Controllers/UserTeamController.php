@@ -11,10 +11,12 @@ class UserTeamController extends Controller
 {
     public function show(Team $team)
     {
+        $subscription = $team->getActiveSubscription();
+
         return view('user.team.show', [
             'team' => $team,
             'users' => $team->users,
-            'plans' => Plan::orderBy('sort_order')->onlyActive()->withoutFree()->get(),
+            'plans' => Plan::orderBy('sort_order')->onlyActive()->get(),
             'subscription' => $team->getActiveSubscription(),
             'intent' => $team->createSetupIntent()
         ]);

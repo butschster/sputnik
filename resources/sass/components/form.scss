@@ -76,6 +76,7 @@
                 }
             }
 
+            &:focus,
             &:not(:placeholder-shown) {
                 @apply pb-1 pt-6;
 

@@ -4,6 +4,7 @@ namespace App\Models\Subscription\Plan;
 
 use App\Models\Concerns\UsesUuid;
 use App\Models\Subscription\Plan;
+use Carbon\Carbon;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -30,6 +31,7 @@ class Feature extends Model
         'code' => 'string',
         'value' => 'string',
         'sort_order' => 'integer',
+        'renewable' => 'bool'
     ];
 
     /**
@@ -56,5 +58,14 @@ class Feature extends Model
     public function isUnlimited(): bool
     {
         return $this->value === 'Y';
+    }
+
+    /**
+     * @param Carbon $date
+     * @return Carbon
+     */
+    public function getResetDate(Carbon $date): Carbon
+    {
+        return $date->addMonth();
     }
 }

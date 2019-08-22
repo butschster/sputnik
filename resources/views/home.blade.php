@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="servers-list">
+    <section class="servers-list">
         <h4>Servers</h4>
         <div class="servers-list-items">
         @foreach($servers as $server)
@@ -19,6 +19,6 @@
             </div>
         @endforeach
         </div>
-    </div>
+    </section>
     @include('server.partials.create_form')
 @endsection

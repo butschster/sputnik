@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('sidebar')
-    @include('server.partials.nav')
+    @include('server.partials.server_nav')
 @endsection
 
 @section('content')

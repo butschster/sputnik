@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header">Server configuration script</div>
 
-            <pre class="card-body" style="white-space: pre-wrap;">{!! $script !!}</pre>
+            <pre class="card-body">{!! $script !!}</pre>
         </div>
     </div>
 @endsection

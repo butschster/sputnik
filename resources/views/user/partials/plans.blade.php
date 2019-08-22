@@ -1,36 +1,32 @@
-<div class="card-deck mt-4">
-    @foreach($plans as $plan)
-        <div class="card mb-4">
-            <div class="card-header">
-                <h4 class="my-0">
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="plan{{ $plan->id }}"
-                               name="plan"
-                               class="custom-control-input"
-                               value="{{ $plan->id }}"
-                               @if($plan->name == 'artisan') checked @endif
-                        >
-                        <label class="custom-control-label" for="plan{{ $plan->id }}">{{ $plan->name }}</label>
-
+<div class="my-8">
+    <h2 class="font-light">Available plans</h2>
+    <div class="flex justify-center">
+        @foreach($plans as $plan)
+            <div class="flex flex-col justify-between @if($subscription->hasPlan($plan)) border-4 border-green-400  @else border  @endif bg-white transition @if($subscription->canBeUpgradeTo($plan)) hover:shadow-2xl @endif w-1/4 p-8 mr-8 rounded-lg">
+                <div>
+                    <h3 class="mb-6 text-2xl">{{ ucfirst($plan->name) }}
                         @if(!$plan->isFree())
-                           <div class="float-right"> ${{ $plan->price }} <small class="text-muted">/mo</small></div>
+                            <strong class="ml-3">${{ $plan->price }}</strong> <span class="text-xs">/mo</span>
                         @endif
+                    </h3>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        @foreach($plan->features as $feature)
+                            <li class="font-bold text-gray-600">
+                                <i class="fas fa-check-circle text-green-400 py-3 mr-3"></i> {{ $feature->name() }}
+                                @if(!$feature->isUnlimited())
+                                    [{{ $feature->value }} times]
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                @if($subscription->canBeUpgradeTo($plan))
+                    <div class="text-center mt-5">
+                        <button class="btn btn-primary btn-rounded btn-lg">Order now</button>
                     </div>
-                </h4>
-                <small class="text-muted">{{ $plan->description }}</small>
+                @endif
             </div>
-            <div class="card-body px-5 py-3">
-                <ul class="list-unstyled mt-3 mb-4">
-                    @foreach($plan->features as $feature)
-                        <li>
-                            <i class="fas fa-check text-success mr-3"></i> {{ $feature->name() }}
-                        @if(!$feature->isUnlimited())
-                                [{{ $feature->value }} times]
-                            @endif
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    @endforeach
+        @endforeach
+    </div>
 </div>

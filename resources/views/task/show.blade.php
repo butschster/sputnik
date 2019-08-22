@@ -24,13 +24,13 @@
         <div class="card mt-3">
             <div class="card-header">Command</div>
 
-            <pre class="card-body" style="white-space: pre-wrap;">{{ $task->script }}</pre>
+            <pre class="card-body">{{ $task->script }}</pre>
         </div>
 
         <div class="card mt-3">
             <div class="card-header">Output</div>
 
-            <pre class="card-body" style="white-space: pre-wrap;">{{ $task->output }}</pre>
+            <pre class="card-body">{{ $task->output }}</pre>
         </div>
     </div>
 @endsection

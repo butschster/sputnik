@@ -1,0 +1,11 @@
+.navbar {
+    @apply bg-white border-b mb-8 flex justify-between;
+
+    &__profile {
+        @apply py-4 px-6 flex;
+
+        &--avatar {
+            @apply h-10 rounded-full;
+        }
+    }
+}

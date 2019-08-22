@@ -2,6 +2,7 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
 
 html {
     @apply font-body text-sm text-gray-800;
@@ -31,6 +32,10 @@ button, input, optgroup, select, textarea {
     @apply text-base;
 }
 
+pre {
+    @apply text-sm font-mono text-gray-900 whitespace-pre-wrap rounded p-8 bg-gray-100 overflow-x-scroll;
+}
+
 @tailwind components;
 @tailwind utilities;
 @tailwind screens;
@@ -47,6 +52,11 @@ button, input, optgroup, select, textarea {
 @import "components/buttons";
 @import "components/cards";
 @import "components/servers";
+@import "components/nav";
+@import "components/sidebar";
+@import "components/dropdown";
+@import "components/user";
+
 @import "pages/logins";
 
 

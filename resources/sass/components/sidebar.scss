@@ -1,0 +1,30 @@
+.sidebar {
+    @apply w-64 py-8;
+    background: linear-gradient(150deg, theme('colors.blue.700') 15%, theme('colors.blue.900') 94%);
+
+    h5 {
+        @apply uppercase mb-2 text-sm text-gray-500 tracking-wider px-8;
+    }
+
+    .nav {
+        a {
+            @apply block text-white text-lg py-2 px-8;
+
+            &:hover {
+                @apply bg-blue-900;
+            }
+
+            &.active {
+                @apply bg-blue-500;
+            }
+        }
+    }
+
+    &-section {
+        @apply mb-8 pb-5;
+
+        &:not(:last-child) {
+            @apply border-b border-blue-600;
+        }
+    }
+}

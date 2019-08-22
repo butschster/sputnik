@@ -13,6 +13,31 @@ class Subscription extends SubscriptionBase
     use UsesUuid;
 
     /**
+     * @param Plan $plan
+     * @return bool
+     */
+    public function hasPlan(Plan $plan): bool
+    {
+        return $this->stripe_plan === $plan->name;
+    }
+
+    /**
+     * @param Plan $plan
+     * @return bool
+     */
+    public function canBeUpgradeTo(Plan $plan): bool
+    {
+        switch ($this->stripe_plan) {
+            case 'free':
+                return !$this->hasPlan($plan);
+            case 'artisan':
+                return $plan->name == 'unlimited';
+        }
+
+        return false;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function plan()
@@ -46,7 +71,7 @@ class Subscription extends SubscriptionBase
             'code' => $code,
         ]);
 
-        if ($feature->resettable_period) {
+        if ($feature->renewable) {
             // Set expiration date when the usage record is new or doesn't have one.
             if (is_null($usage->valid_until)) {
                 // Set date from subscription creation date so the reset

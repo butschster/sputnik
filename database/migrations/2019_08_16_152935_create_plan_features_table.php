@@ -20,8 +20,6 @@ class CreatePlanFeaturesTable extends Migration
             $table->string('code');
             $table->string('value');
             $table->boolean('renewable')->default(false);
-            $table->smallInteger('resettable_period')->unsigned()->default(0);
-            $table->string('resettable_interval')->default('month');
             $table->mediumInteger('sort_order')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();
