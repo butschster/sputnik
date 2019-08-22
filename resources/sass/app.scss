@@ -4,25 +4,36 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=cyrillic');
 
 html {
-    @apply font-body;
+    @apply font-body text-sm text-gray-800;
 }
 
 h1 {
-    @apply text-2xl;
+    @apply text-3xl mb-5;
 }
+
 h2 {
-    @apply text-xl;
+    @apply text-2xl mb-4;
 }
+
 h3 {
-    @apply text-lg;
+    @apply text-xl mb-3;
 }
+
+h4 {
+    @apply uppercase mb-2 text-sm text-gray-600 font-bold tracking-wider;
+}
+
 a {
     @apply text-blue-500;
 }
 
+button, input, optgroup, select, textarea {
+    @apply text-base;
+}
 
 @tailwind components;
 @tailwind utilities;
+@tailwind screens;
 
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';
@@ -33,6 +44,7 @@ a {
 @import 'variables';
 
 @import "components/form";
+@import "components/buttons";
 @import "components/cards";
 @import "components/servers";
 @import "pages/logins";

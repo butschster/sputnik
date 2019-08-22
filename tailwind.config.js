@@ -1,12 +1,10 @@
-const {colors, fontFamily} = require('tailwindcss/defaultTheme')
+const {boxShadow} = require('tailwindcss/defaultTheme')
 
 module.exports = {
     theme: {
-        colors: colors,
         fontFamily: {
             body: ['Roboto', 'Helvetica', 'Arial', 'sans-serif'],
-        },
-        extend: {}
+        }
     },
     variants: {},
     plugins: [

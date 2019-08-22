@@ -1,11 +1,11 @@
 .card {
-    @apply bg-white border border-2 border-gray-200 rounded mb-5 p-8;
+    @apply bg-white border border-2 border-gray-200 rounded mb-5 p-10;
 
     &-header {
-        @apply mb-6 text-2xl font-light text-gray-800;
+        @apply mb-6 text-xl font-light text-gray-800;
 
         p {
-            @apply text-sm text-gray-600;
+            @apply text-base text-gray-600;
         }
     }
 

@@ -62978,8 +62978,8 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$eecho = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
   broadcaster: 'pusher',
-  key: "022ab1e9258e471d631a",
-  cluster: "eu",
+  key: "",
+  cluster: "mt1",
   encrypted: true
 });
 
@@ -63423,8 +63423,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/pbuchnev/webserver/sputnik/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/pbuchnev/webserver/sputnik/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

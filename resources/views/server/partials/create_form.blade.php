@@ -12,7 +12,7 @@
 
         <div class="flex">
             <div class="form-group form-group-labeled w-full @error('name') is-invalid @enderror">
-                <input type="text" id="name" class="form-control form-control-lg" name="name" value="{{ old('name') }}" autofocus placeholder="Server name">
+                <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}" autofocus placeholder="Server name">
                 <label for="name">Server name</label>
 
                 @error('name')
@@ -23,7 +23,7 @@
             </div>
 
             <div class="form-group form-group-labeled ml-5 w-full @error('team_id') is-invalid @enderror">
-                <select name="team_id" id="project" class="form-control form-control-lg">
+                <select name="team_id" id="project" class="form-control">
                     @foreach($teams as $project)
                         <option value="{{ $project->id }}">{{ $project->name }}</option>
                     @endforeach
@@ -94,7 +94,10 @@
             </div>
         </div>
 
-        <button class="btn btn-blue shadow-lg">Создать</button>
+        <button class="btn btn-blue btn-rounded shadow-lg">
+            <i class="fas fa-plus"></i>
+            Create
+        </button>
     </form>
 </div>
 @endcan

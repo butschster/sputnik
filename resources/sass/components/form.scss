@@ -10,7 +10,7 @@
     }
 
     .form-control {
-        @apply appearance-none border w-full p-3 h-12 text-gray-700 rounded block border-gray-200 bg-gray-200 text-sm transition;
+        @apply appearance-none border w-full py-3 px-5 h-16 text-gray-700 rounded block border-gray-200 bg-gray-200 transition;
 
         &:focus,
         &:hover {
@@ -22,11 +22,11 @@
         }
 
         &-lg {
-            @apply text-lg py-4;
+            @apply text-xl py-4;
             height: 3.5rem;
 
             + label {
-                @apply text-lg;
+                @apply text-xl;
                 line-height: 3.5rem;
             }
         }
@@ -51,14 +51,13 @@
     }
 
     .invalid-feedback {
-        @apply text-red-500 ml-3;
-        font-size: .6rem;
+        @apply text-red-500 ml-3 text-sm;
     }
 
     &-labeled {
         label {
-            @apply absolute top-0 left-0 block w-full px-3 text-sm;
-            line-height: 3rem;
+            @apply absolute top-0 left-0 block w-full px-5;
+            line-height: 4rem;
         }
 
         .form-control {
@@ -69,15 +68,21 @@
             &:focus,
             &:hover {
                 @apply outline-none border-blue-500 bg-white;
+
+                &:not(:placeholder-shown) {
+                    + label {
+                        @apply text-blue-700;
+                    }
+                }
             }
 
             &:not(:placeholder-shown) {
-                @apply pb-1 pt-4;
+                @apply pb-1 pt-6;
 
                 + label {
-                    @apply text-gray-700 font-bold;
-                    padding-top: .4rem;
-                    font-size: .6rem;
+                    @apply text-gray-600 font-bold;
+                    padding-top: .65rem;
+                    font-size: .8rem;
                     line-height: 1rem !important;
                 }
             }
@@ -88,55 +93,7 @@
         @apply inline-flex items-center;
 
         label {
-            @apply text-gray-700 text-sm;
+            @apply text-gray-700;
         }
-    }
-}
-
-.btn {
-    @apply inline-block text-center rounded py-2 px-6 tracking-wider transition;
-
-    &:focus {
-        @apply outline-none shadow-outline;
-    }
-
-    &:hover {
-        transform: translateY(-3px);
-    }
-
-    &-block {
-        @apply w-full;
-    }
-
-    &-sm {
-        @apply text-xs py-1 px-4;
-    }
-
-    &-blue {
-        @apply bg-blue-500 text-white;
-
-        &:hover {
-            @apply bg-blue-600;
-        }
-    }
-
-    &-link {
-        @apply bg-transparent shadow-none text-blue-800;
-
-        &:hover {
-            @apply underline;
-        }
-    }
-
-    &-outline {
-        @apply shadow-none border border-gray-400;
-
-        &:hover {
-            @apply border-indigo-500 shadow-lg;
-        }
-    }
-
-    &-shadow {
-        box-shadow: 0 10px 20px 0 rgba(163, 191, 250, 0.14), 0 40px 40px -5px rgba(127, 156, 245, 0.4);
     }
 }
