@@ -1,0 +1,142 @@
+.form-group {
+    @apply relative mb-5;
+
+    label {
+        @apply block w-full text-gray-700;
+    }
+
+    &:last-child {
+        @apply mb-0;
+    }
+
+    .form-control {
+        @apply appearance-none border w-full p-3 h-12 text-gray-700 rounded block border-gray-200 bg-gray-200 text-sm transition;
+
+        &:focus,
+        &:hover {
+            @apply outline-none border-blue-500 bg-white;
+        }
+
+        &.is-invalid {
+            @apply border-red-500;
+        }
+
+        &-lg {
+            @apply text-lg py-4;
+            height: 3.5rem;
+
+            + label {
+                @apply text-lg;
+                line-height: 3.5rem;
+            }
+        }
+    }
+
+    select.form-control {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0aec0'%3e%3cpath d='M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 0.5rem center;
+        background-size: 1.5rem 1.5rem;
+    }
+
+
+    &.is-invalid {
+        .form-control {
+            @apply border-red-500;
+        }
+
+        label {
+            @apply text-red-700;
+        }
+    }
+
+    .invalid-feedback {
+        @apply text-red-500 ml-3;
+        font-size: .6rem;
+    }
+
+    &-labeled {
+        label {
+            @apply absolute top-0 left-0 block w-full px-3 text-sm;
+            line-height: 3rem;
+        }
+
+        .form-control {
+            &::placeholder {
+                color: transparent;
+            }
+
+            &:focus,
+            &:hover {
+                @apply outline-none border-blue-500 bg-white;
+            }
+
+            &:not(:placeholder-shown) {
+                @apply pb-1 pt-4;
+
+                + label {
+                    @apply text-gray-700 font-bold;
+                    padding-top: .4rem;
+                    font-size: .6rem;
+                    line-height: 1rem !important;
+                }
+            }
+        }
+    }
+
+    &-checkbox {
+        @apply inline-flex items-center;
+
+        label {
+            @apply text-gray-700 text-sm;
+        }
+    }
+}
+
+.btn {
+    @apply inline-block text-center rounded py-2 px-6 tracking-wider transition;
+
+    &:focus {
+        @apply outline-none shadow-outline;
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+
+    &-block {
+        @apply w-full;
+    }
+
+    &-sm {
+        @apply text-xs py-1 px-4;
+    }
+
+    &-blue {
+        @apply bg-blue-500 text-white;
+
+        &:hover {
+            @apply bg-blue-600;
+        }
+    }
+
+    &-link {
+        @apply bg-transparent shadow-none text-blue-800;
+
+        &:hover {
+            @apply underline;
+        }
+    }
+
+    &-outline {
+        @apply shadow-none border border-gray-400;
+
+        &:hover {
+            @apply border-indigo-500 shadow-lg;
+        }
+    }
+
+    &-shadow {
+        box-shadow: 0 10px 20px 0 rgba(163, 191, 250, 0.14), 0 40px 40px -5px rgba(127, 156, 245, 0.4);
+    }
+}

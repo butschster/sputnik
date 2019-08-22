@@ -1,0 +1,15 @@
+.page-login-container {
+    @apply w-full h-screen bg-blue-700 flex justify-center items-center flex-col shadow-md;
+
+    .form-container {
+        @apply bg-white shadow-xl rounded w-full max-w-md;
+
+        h1 {
+            @apply my-4 text-3xl text-center font-thin px-4;
+        }
+
+        form {
+            @apply p-8 w-full;
+        }
+    }
+}

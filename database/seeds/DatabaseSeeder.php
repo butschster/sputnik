@@ -26,8 +26,22 @@ class DatabaseSeeder extends Seeder
 
         $user->attachRole($owner, $team);
 
-        $team->subscribeTo(
-            Plan::where('name', 'free')->first()
-        );
+        $plan = Plan::where('name', 'unlimited')->first();
+
+        $team->subscriptions()->create([
+            'name' => 'main',
+            'stripe_id' => null,
+            'stripe_status' => 'complete',
+            'stripe_plan' => $plan->name,
+            'quantity' => 1,
+            'trial_ends_at' => null,
+            'ends_at' => null,
+        ]);
+
+        factory(\App\Models\Server::class)->times(10)->create([
+            'user_id' => $user->id,
+            'team_id' => $team->id,
+            'status' => 'configured'
+        ]);
     }
 }

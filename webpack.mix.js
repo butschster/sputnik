@@ -16,6 +16,7 @@ const webpackConfig = require('./webpack.config.js')
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
+    .copy('node_modules/@fortawesome/fontawesome-free/webfonts/', 'public/webfonts')
     .options({
         processCssUrls: false,
         postCss: [ tailwindcss('./tailwind.config.js') ],
@@ -32,11 +33,10 @@ mix.js('resources/js/app.js', 'public/js')
         ],
     })
     .webpackConfig(webpackConfig)
+    .version()
 
 if (!mix.inProduction()) {
     mix.webpackConfig({
         devtool: 'source-map'
     }).sourceMaps()
-} else {
-    mix.version()
 }

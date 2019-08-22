@@ -1,0 +1,15 @@
+.card {
+    @apply bg-white border border-2 border-gray-200 rounded mb-5 p-8;
+
+    &-header {
+        @apply mb-6 text-2xl font-light text-gray-800;
+
+        p {
+            @apply text-sm text-gray-600;
+        }
+    }
+
+    &-body {
+
+    }
+}

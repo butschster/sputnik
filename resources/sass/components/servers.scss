@@ -1,0 +1,45 @@
+.servers-list {
+    @apply mb-5;
+
+    &-item {
+        &-wrapper {
+            @apply border border-gray-200 shadow-lg bg-white flex transition items-center justify-between py-2;
+
+            &:not(:last-child) {
+                @apply border-b-0;
+            }
+
+            &:hover {
+                @apply shadow-xl;
+            }
+        }
+
+        &__status {
+            @apply px-4;
+        }
+
+        &__name {
+            @apply flex-1;
+
+            a {
+                @apply font-bold;
+            }
+        }
+
+        &__address {
+            @apply text-xs text-gray-600 w-32;
+        }
+    }
+}
+
+.status-indicator {
+    @apply rounded-full h-2 w-2;
+
+    &.active {
+        @apply bg-green-500;
+    }
+
+    &.pending {
+        @apply bg-gray-500;
+    }
+}

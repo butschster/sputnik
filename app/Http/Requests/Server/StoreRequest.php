@@ -15,7 +15,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('store', Server::class);
+        return Gate::allows('create', Server::class);
     }
 
     /**
@@ -43,7 +43,11 @@ class StoreRequest extends FormRequest
     public function persist(): Server
     {
         $team = Team::findOrFail($this->team_id);
-        if(!$this->user()->can('server.create', $team)) {
+        if (!Gate::allows('store', [Server::class, $team])) {
+            $this->failedAuthorization();
+        }
+
+        if (!$this->user()->can('server.create', $team)) {
             $this->failedAuthorization();
         }
 
