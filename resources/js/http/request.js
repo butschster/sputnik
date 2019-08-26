@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from "@js/store";
+import store from "@js/vue/store";
 
 axios.interceptors.request.use((config) => {
     store.dispatch('validation/clear')

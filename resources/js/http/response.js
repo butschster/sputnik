@@ -1,7 +1,7 @@
 import axios from "axios";
 import {ErrorBag} from "vee-validate";
 import {forEach} from "lodash";
-import store from "@js/store";
+import store from "@js/vue/store";
 
 axios.interceptors.response.use(response => response, error => {
 

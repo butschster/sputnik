@@ -1709,14 +1709,28 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_components_Header_Navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/components/Header/Navbar */ "./resources/vue/components/Header/Navbar.vue");
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {}
+  components: {
+    Navbar: _vue_components_Header_Navbar__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
 });
 
 /***/ }),
@@ -1764,6 +1778,195 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Servers/Index.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Servers/Index.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_components_Server_List__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/components/Server/List */ "./resources/vue/components/Server/List.vue");
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    List: _vue_components_Server_List__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Header/Navbar.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/Header/Navbar.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_components_UI_Tooltip__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/components/UI/Tooltip */ "./resources/vue/components/UI/Tooltip.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Tooltip: _vue_components_UI_Tooltip__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      dropdownOpen: false
+    };
+  },
+  methods: {
+    toggleDropdown: function toggleDropdown() {
+      this.dropdownOpen = !this.dropdownOpen;
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('auth', {
+    user: 'getUser'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Server/List.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/Server/List.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      servers: [],
+      loading: false
+    };
+  },
+  mounted: function mounted() {
+    this.load();
+  },
+  methods: {
+    load: function () {
+      var _load = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.loading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return this.$api('v1.servers').request();
+
+              case 4:
+                response = _context.sent;
+                this.servers = response.data.data;
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](1);
+                console.error(_context.t0);
+
+              case 11:
+                this.loading = false;
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 8]]);
+      }));
+
+      function load() {
+        return _load.apply(this, arguments);
+      }
+
+      return load;
+    }()
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/UI/Loader.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/UI/Loader.vue?vue&type=script&lang=js& ***!
@@ -1785,6 +1988,73 @@ __webpack_require__.r(__webpack_exports__);
     VueElementLoading: vue_element_loading__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   props: ['loading']
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/UI/Tooltip.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/UI/Tooltip.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var popper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js");
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    show: {
+      type: Boolean,
+      "default": function _default() {
+        return true;
+      }
+    },
+    reference: {
+      required: true
+    },
+    placement: {
+      type: String,
+      "default": function _default() {
+        return 'bottom-end';
+      }
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$nextTick(function () {
+      _this.setupPopper(_this.reference.dropdown);
+    });
+  },
+  methods: {
+    toggle: function toggle() {
+      this.show = !this.show;
+    },
+    hide: function hide() {
+      this.show = false;
+    },
+    setupPopper: function setupPopper(ref) {
+      ref.style.position = 'relative';
+
+      if (this.popper === undefined) {
+        if (this.show) {
+          this.popper = new popper_js__WEBPACK_IMPORTED_MODULE_0__["default"](ref, this.$el, {
+            placement: this.placement
+          });
+        }
+      } else {
+        this.popper.scheduleUpdate();
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -20777,6 +21047,2624 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, 
 });
 
 
+
+/***/ }),
+
+/***/ "./node_modules/popper.js/dist/esm/popper.js":
+/*!***************************************************!*\
+  !*** ./node_modules/popper.js/dist/esm/popper.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/**!
+ * @fileOverview Kickass library to create and place poppers near their reference elements.
+ * @version 1.15.0
+ * @license
+ * Copyright (c) 2016 Federico Zivolo and contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
+
+var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+var timeoutDuration = 0;
+for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
+  if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
+    timeoutDuration = 1;
+    break;
+  }
+}
+
+function microtaskDebounce(fn) {
+  var called = false;
+  return function () {
+    if (called) {
+      return;
+    }
+    called = true;
+    window.Promise.resolve().then(function () {
+      called = false;
+      fn();
+    });
+  };
+}
+
+function taskDebounce(fn) {
+  var scheduled = false;
+  return function () {
+    if (!scheduled) {
+      scheduled = true;
+      setTimeout(function () {
+        scheduled = false;
+        fn();
+      }, timeoutDuration);
+    }
+  };
+}
+
+var supportsMicroTasks = isBrowser && window.Promise;
+
+/**
+* Create a debounced version of a method, that's asynchronously deferred
+* but called in the minimum time possible.
+*
+* @method
+* @memberof Popper.Utils
+* @argument {Function} fn
+* @returns {Function}
+*/
+var debounce = supportsMicroTasks ? microtaskDebounce : taskDebounce;
+
+/**
+ * Check if the given variable is a function
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Any} functionToCheck - variable to check
+ * @returns {Boolean} answer to: is a function?
+ */
+function isFunction(functionToCheck) {
+  var getType = {};
+  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+}
+
+/**
+ * Get CSS computed property of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Eement} element
+ * @argument {String} property
+ */
+function getStyleComputedProperty(element, property) {
+  if (element.nodeType !== 1) {
+    return [];
+  }
+  // NOTE: 1 DOM access here
+  var window = element.ownerDocument.defaultView;
+  var css = window.getComputedStyle(element, null);
+  return property ? css[property] : css;
+}
+
+/**
+ * Returns the parentNode or the host of the element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} parent
+ */
+function getParentNode(element) {
+  if (element.nodeName === 'HTML') {
+    return element;
+  }
+  return element.parentNode || element.host;
+}
+
+/**
+ * Returns the scrolling parent of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} scroll parent
+ */
+function getScrollParent(element) {
+  // Return body, `getScroll` will take care to get the correct `scrollTop` from it
+  if (!element) {
+    return document.body;
+  }
+
+  switch (element.nodeName) {
+    case 'HTML':
+    case 'BODY':
+      return element.ownerDocument.body;
+    case '#document':
+      return element.body;
+  }
+
+  // Firefox want us to check `-x` and `-y` variations as well
+
+  var _getStyleComputedProp = getStyleComputedProperty(element),
+      overflow = _getStyleComputedProp.overflow,
+      overflowX = _getStyleComputedProp.overflowX,
+      overflowY = _getStyleComputedProp.overflowY;
+
+  if (/(auto|scroll|overlay)/.test(overflow + overflowY + overflowX)) {
+    return element;
+  }
+
+  return getScrollParent(getParentNode(element));
+}
+
+var isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
+var isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
+
+/**
+ * Determines if the browser is Internet Explorer
+ * @method
+ * @memberof Popper.Utils
+ * @param {Number} version to check
+ * @returns {Boolean} isIE
+ */
+function isIE(version) {
+  if (version === 11) {
+    return isIE11;
+  }
+  if (version === 10) {
+    return isIE10;
+  }
+  return isIE11 || isIE10;
+}
+
+/**
+ * Returns the offset parent of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} offset parent
+ */
+function getOffsetParent(element) {
+  if (!element) {
+    return document.documentElement;
+  }
+
+  var noOffsetParent = isIE(10) ? document.body : null;
+
+  // NOTE: 1 DOM access here
+  var offsetParent = element.offsetParent || null;
+  // Skip hidden elements which don't have an offsetParent
+  while (offsetParent === noOffsetParent && element.nextElementSibling) {
+    offsetParent = (element = element.nextElementSibling).offsetParent;
+  }
+
+  var nodeName = offsetParent && offsetParent.nodeName;
+
+  if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
+    return element ? element.ownerDocument.documentElement : document.documentElement;
+  }
+
+  // .offsetParent will return the closest TH, TD or TABLE in case
+  // no offsetParent is present, I hate this job...
+  if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
+    return getOffsetParent(offsetParent);
+  }
+
+  return offsetParent;
+}
+
+function isOffsetContainer(element) {
+  var nodeName = element.nodeName;
+
+  if (nodeName === 'BODY') {
+    return false;
+  }
+  return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
+}
+
+/**
+ * Finds the root node (document, shadowDOM root) of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} node
+ * @returns {Element} root node
+ */
+function getRoot(node) {
+  if (node.parentNode !== null) {
+    return getRoot(node.parentNode);
+  }
+
+  return node;
+}
+
+/**
+ * Finds the offset parent common to the two provided nodes
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element1
+ * @argument {Element} element2
+ * @returns {Element} common offset parent
+ */
+function findCommonOffsetParent(element1, element2) {
+  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+  if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
+    return document.documentElement;
+  }
+
+  // Here we make sure to give as "start" the element that comes first in the DOM
+  var order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
+  var start = order ? element1 : element2;
+  var end = order ? element2 : element1;
+
+  // Get common ancestor container
+  var range = document.createRange();
+  range.setStart(start, 0);
+  range.setEnd(end, 0);
+  var commonAncestorContainer = range.commonAncestorContainer;
+
+  // Both nodes are inside #document
+
+  if (element1 !== commonAncestorContainer && element2 !== commonAncestorContainer || start.contains(end)) {
+    if (isOffsetContainer(commonAncestorContainer)) {
+      return commonAncestorContainer;
+    }
+
+    return getOffsetParent(commonAncestorContainer);
+  }
+
+  // one of the nodes is inside shadowDOM, find which one
+  var element1root = getRoot(element1);
+  if (element1root.host) {
+    return findCommonOffsetParent(element1root.host, element2);
+  } else {
+    return findCommonOffsetParent(element1, getRoot(element2).host);
+  }
+}
+
+/**
+ * Gets the scroll value of the given element in the given side (top and left)
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @argument {String} side `top` or `left`
+ * @returns {number} amount of scrolled pixels
+ */
+function getScroll(element) {
+  var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
+
+  var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
+  var nodeName = element.nodeName;
+
+  if (nodeName === 'BODY' || nodeName === 'HTML') {
+    var html = element.ownerDocument.documentElement;
+    var scrollingElement = element.ownerDocument.scrollingElement || html;
+    return scrollingElement[upperSide];
+  }
+
+  return element[upperSide];
+}
+
+/*
+ * Sum or subtract the element scroll values (left and top) from a given rect object
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} rect - Rect object you want to change
+ * @param {HTMLElement} element - The element from the function reads the scroll values
+ * @param {Boolean} subtract - set to true if you want to subtract the scroll values
+ * @return {Object} rect - The modifier rect object
+ */
+function includeScroll(rect, element) {
+  var subtract = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  var scrollTop = getScroll(element, 'top');
+  var scrollLeft = getScroll(element, 'left');
+  var modifier = subtract ? -1 : 1;
+  rect.top += scrollTop * modifier;
+  rect.bottom += scrollTop * modifier;
+  rect.left += scrollLeft * modifier;
+  rect.right += scrollLeft * modifier;
+  return rect;
+}
+
+/*
+ * Helper to detect borders of a given element
+ * @method
+ * @memberof Popper.Utils
+ * @param {CSSStyleDeclaration} styles
+ * Result of `getStyleComputedProperty` on the given element
+ * @param {String} axis - `x` or `y`
+ * @return {number} borders - The borders size of the given axis
+ */
+
+function getBordersSize(styles, axis) {
+  var sideA = axis === 'x' ? 'Left' : 'Top';
+  var sideB = sideA === 'Left' ? 'Right' : 'Bottom';
+
+  return parseFloat(styles['border' + sideA + 'Width'], 10) + parseFloat(styles['border' + sideB + 'Width'], 10);
+}
+
+function getSize(axis, body, html, computedStyle) {
+  return Math.max(body['offset' + axis], body['scroll' + axis], html['client' + axis], html['offset' + axis], html['scroll' + axis], isIE(10) ? parseInt(html['offset' + axis]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Top' : 'Left')]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Bottom' : 'Right')]) : 0);
+}
+
+function getWindowSizes(document) {
+  var body = document.body;
+  var html = document.documentElement;
+  var computedStyle = isIE(10) && getComputedStyle(html);
+
+  return {
+    height: getSize('Height', body, html, computedStyle),
+    width: getSize('Width', body, html, computedStyle)
+  };
+}
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+
+
+
+
+var defineProperty = function (obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+/**
+ * Given element offsets, generate an output similar to getBoundingClientRect
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Object} offsets
+ * @returns {Object} ClientRect like output
+ */
+function getClientRect(offsets) {
+  return _extends({}, offsets, {
+    right: offsets.left + offsets.width,
+    bottom: offsets.top + offsets.height
+  });
+}
+
+/**
+ * Get bounding client rect of given element
+ * @method
+ * @memberof Popper.Utils
+ * @param {HTMLElement} element
+ * @return {Object} client rect
+ */
+function getBoundingClientRect(element) {
+  var rect = {};
+
+  // IE10 10 FIX: Please, don't ask, the element isn't
+  // considered in DOM in some circumstances...
+  // This isn't reproducible in IE10 compatibility mode of IE11
+  try {
+    if (isIE(10)) {
+      rect = element.getBoundingClientRect();
+      var scrollTop = getScroll(element, 'top');
+      var scrollLeft = getScroll(element, 'left');
+      rect.top += scrollTop;
+      rect.left += scrollLeft;
+      rect.bottom += scrollTop;
+      rect.right += scrollLeft;
+    } else {
+      rect = element.getBoundingClientRect();
+    }
+  } catch (e) {}
+
+  var result = {
+    left: rect.left,
+    top: rect.top,
+    width: rect.right - rect.left,
+    height: rect.bottom - rect.top
+  };
+
+  // subtract scrollbar size from sizes
+  var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
+  var width = sizes.width || element.clientWidth || result.right - result.left;
+  var height = sizes.height || element.clientHeight || result.bottom - result.top;
+
+  var horizScrollbar = element.offsetWidth - width;
+  var vertScrollbar = element.offsetHeight - height;
+
+  // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
+  // we make this check conditional for performance reasons
+  if (horizScrollbar || vertScrollbar) {
+    var styles = getStyleComputedProperty(element);
+    horizScrollbar -= getBordersSize(styles, 'x');
+    vertScrollbar -= getBordersSize(styles, 'y');
+
+    result.width -= horizScrollbar;
+    result.height -= vertScrollbar;
+  }
+
+  return getClientRect(result);
+}
+
+function getOffsetRectRelativeToArbitraryNode(children, parent) {
+  var fixedPosition = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  var isIE10 = isIE(10);
+  var isHTML = parent.nodeName === 'HTML';
+  var childrenRect = getBoundingClientRect(children);
+  var parentRect = getBoundingClientRect(parent);
+  var scrollParent = getScrollParent(children);
+
+  var styles = getStyleComputedProperty(parent);
+  var borderTopWidth = parseFloat(styles.borderTopWidth, 10);
+  var borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
+
+  // In cases where the parent is fixed, we must ignore negative scroll in offset calc
+  if (fixedPosition && isHTML) {
+    parentRect.top = Math.max(parentRect.top, 0);
+    parentRect.left = Math.max(parentRect.left, 0);
+  }
+  var offsets = getClientRect({
+    top: childrenRect.top - parentRect.top - borderTopWidth,
+    left: childrenRect.left - parentRect.left - borderLeftWidth,
+    width: childrenRect.width,
+    height: childrenRect.height
+  });
+  offsets.marginTop = 0;
+  offsets.marginLeft = 0;
+
+  // Subtract margins of documentElement in case it's being used as parent
+  // we do this only on HTML because it's the only element that behaves
+  // differently when margins are applied to it. The margins are included in
+  // the box of the documentElement, in the other cases not.
+  if (!isIE10 && isHTML) {
+    var marginTop = parseFloat(styles.marginTop, 10);
+    var marginLeft = parseFloat(styles.marginLeft, 10);
+
+    offsets.top -= borderTopWidth - marginTop;
+    offsets.bottom -= borderTopWidth - marginTop;
+    offsets.left -= borderLeftWidth - marginLeft;
+    offsets.right -= borderLeftWidth - marginLeft;
+
+    // Attach marginTop and marginLeft because in some circumstances we may need them
+    offsets.marginTop = marginTop;
+    offsets.marginLeft = marginLeft;
+  }
+
+  if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== 'BODY') {
+    offsets = includeScroll(offsets, parent);
+  }
+
+  return offsets;
+}
+
+function getViewportOffsetRectRelativeToArtbitraryNode(element) {
+  var excludeScroll = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  var html = element.ownerDocument.documentElement;
+  var relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
+  var width = Math.max(html.clientWidth, window.innerWidth || 0);
+  var height = Math.max(html.clientHeight, window.innerHeight || 0);
+
+  var scrollTop = !excludeScroll ? getScroll(html) : 0;
+  var scrollLeft = !excludeScroll ? getScroll(html, 'left') : 0;
+
+  var offset = {
+    top: scrollTop - relativeOffset.top + relativeOffset.marginTop,
+    left: scrollLeft - relativeOffset.left + relativeOffset.marginLeft,
+    width: width,
+    height: height
+  };
+
+  return getClientRect(offset);
+}
+
+/**
+ * Check if the given element is fixed or is inside a fixed parent
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @argument {Element} customContainer
+ * @returns {Boolean} answer to "isFixed?"
+ */
+function isFixed(element) {
+  var nodeName = element.nodeName;
+  if (nodeName === 'BODY' || nodeName === 'HTML') {
+    return false;
+  }
+  if (getStyleComputedProperty(element, 'position') === 'fixed') {
+    return true;
+  }
+  var parentNode = getParentNode(element);
+  if (!parentNode) {
+    return false;
+  }
+  return isFixed(parentNode);
+}
+
+/**
+ * Finds the first parent of an element that has a transformed property defined
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} first transformed parent or documentElement
+ */
+
+function getFixedPositionOffsetParent(element) {
+  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+  if (!element || !element.parentElement || isIE()) {
+    return document.documentElement;
+  }
+  var el = element.parentElement;
+  while (el && getStyleComputedProperty(el, 'transform') === 'none') {
+    el = el.parentElement;
+  }
+  return el || document.documentElement;
+}
+
+/**
+ * Computed the boundaries limits and return them
+ * @method
+ * @memberof Popper.Utils
+ * @param {HTMLElement} popper
+ * @param {HTMLElement} reference
+ * @param {number} padding
+ * @param {HTMLElement} boundariesElement - Element used to define the boundaries
+ * @param {Boolean} fixedPosition - Is in fixed position mode
+ * @returns {Object} Coordinates of the boundaries
+ */
+function getBoundaries(popper, reference, padding, boundariesElement) {
+  var fixedPosition = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+
+  // NOTE: 1 DOM access here
+
+  var boundaries = { top: 0, left: 0 };
+  var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+
+  // Handle viewport case
+  if (boundariesElement === 'viewport') {
+    boundaries = getViewportOffsetRectRelativeToArtbitraryNode(offsetParent, fixedPosition);
+  } else {
+    // Handle other cases based on DOM element used as boundaries
+    var boundariesNode = void 0;
+    if (boundariesElement === 'scrollParent') {
+      boundariesNode = getScrollParent(getParentNode(reference));
+      if (boundariesNode.nodeName === 'BODY') {
+        boundariesNode = popper.ownerDocument.documentElement;
+      }
+    } else if (boundariesElement === 'window') {
+      boundariesNode = popper.ownerDocument.documentElement;
+    } else {
+      boundariesNode = boundariesElement;
+    }
+
+    var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
+
+    // In case of HTML, we need a different computation
+    if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
+      var _getWindowSizes = getWindowSizes(popper.ownerDocument),
+          height = _getWindowSizes.height,
+          width = _getWindowSizes.width;
+
+      boundaries.top += offsets.top - offsets.marginTop;
+      boundaries.bottom = height + offsets.top;
+      boundaries.left += offsets.left - offsets.marginLeft;
+      boundaries.right = width + offsets.left;
+    } else {
+      // for all the other DOM elements, this one is good
+      boundaries = offsets;
+    }
+  }
+
+  // Add paddings
+  padding = padding || 0;
+  var isPaddingNumber = typeof padding === 'number';
+  boundaries.left += isPaddingNumber ? padding : padding.left || 0;
+  boundaries.top += isPaddingNumber ? padding : padding.top || 0;
+  boundaries.right -= isPaddingNumber ? padding : padding.right || 0;
+  boundaries.bottom -= isPaddingNumber ? padding : padding.bottom || 0;
+
+  return boundaries;
+}
+
+function getArea(_ref) {
+  var width = _ref.width,
+      height = _ref.height;
+
+  return width * height;
+}
+
+/**
+ * Utility used to transform the `auto` placement to the placement with more
+ * available space.
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function computeAutoPlacement(placement, refRect, popper, reference, boundariesElement) {
+  var padding = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+
+  if (placement.indexOf('auto') === -1) {
+    return placement;
+  }
+
+  var boundaries = getBoundaries(popper, reference, padding, boundariesElement);
+
+  var rects = {
+    top: {
+      width: boundaries.width,
+      height: refRect.top - boundaries.top
+    },
+    right: {
+      width: boundaries.right - refRect.right,
+      height: boundaries.height
+    },
+    bottom: {
+      width: boundaries.width,
+      height: boundaries.bottom - refRect.bottom
+    },
+    left: {
+      width: refRect.left - boundaries.left,
+      height: boundaries.height
+    }
+  };
+
+  var sortedAreas = Object.keys(rects).map(function (key) {
+    return _extends({
+      key: key
+    }, rects[key], {
+      area: getArea(rects[key])
+    });
+  }).sort(function (a, b) {
+    return b.area - a.area;
+  });
+
+  var filteredAreas = sortedAreas.filter(function (_ref2) {
+    var width = _ref2.width,
+        height = _ref2.height;
+    return width >= popper.clientWidth && height >= popper.clientHeight;
+  });
+
+  var computedPlacement = filteredAreas.length > 0 ? filteredAreas[0].key : sortedAreas[0].key;
+
+  var variation = placement.split('-')[1];
+
+  return computedPlacement + (variation ? '-' + variation : '');
+}
+
+/**
+ * Get offsets to the reference element
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} state
+ * @param {Element} popper - the popper element
+ * @param {Element} reference - the reference element (the popper will be relative to this)
+ * @param {Element} fixedPosition - is in fixed position mode
+ * @returns {Object} An object containing the offsets which will be applied to the popper
+ */
+function getReferenceOffsets(state, popper, reference) {
+  var fixedPosition = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+  var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+  return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
+}
+
+/**
+ * Get the outer sizes of the given element (offset size + margins)
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Object} object containing width and height properties
+ */
+function getOuterSizes(element) {
+  var window = element.ownerDocument.defaultView;
+  var styles = window.getComputedStyle(element);
+  var x = parseFloat(styles.marginTop || 0) + parseFloat(styles.marginBottom || 0);
+  var y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
+  var result = {
+    width: element.offsetWidth + y,
+    height: element.offsetHeight + x
+  };
+  return result;
+}
+
+/**
+ * Get the opposite placement of the given one
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement
+ * @returns {String} flipped placement
+ */
+function getOppositePlacement(placement) {
+  var hash = { left: 'right', right: 'left', bottom: 'top', top: 'bottom' };
+  return placement.replace(/left|right|bottom|top/g, function (matched) {
+    return hash[matched];
+  });
+}
+
+/**
+ * Get offsets to the popper
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} position - CSS position the Popper will get applied
+ * @param {HTMLElement} popper - the popper element
+ * @param {Object} referenceOffsets - the reference offsets (the popper will be relative to this)
+ * @param {String} placement - one of the valid placement options
+ * @returns {Object} popperOffsets - An object containing the offsets which will be applied to the popper
+ */
+function getPopperOffsets(popper, referenceOffsets, placement) {
+  placement = placement.split('-')[0];
+
+  // Get popper node sizes
+  var popperRect = getOuterSizes(popper);
+
+  // Add position, width and height to our offsets object
+  var popperOffsets = {
+    width: popperRect.width,
+    height: popperRect.height
+  };
+
+  // depending by the popper placement we have to compute its offsets slightly differently
+  var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
+  var mainSide = isHoriz ? 'top' : 'left';
+  var secondarySide = isHoriz ? 'left' : 'top';
+  var measurement = isHoriz ? 'height' : 'width';
+  var secondaryMeasurement = !isHoriz ? 'height' : 'width';
+
+  popperOffsets[mainSide] = referenceOffsets[mainSide] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
+  if (placement === secondarySide) {
+    popperOffsets[secondarySide] = referenceOffsets[secondarySide] - popperRect[secondaryMeasurement];
+  } else {
+    popperOffsets[secondarySide] = referenceOffsets[getOppositePlacement(secondarySide)];
+  }
+
+  return popperOffsets;
+}
+
+/**
+ * Mimics the `find` method of Array
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Array} arr
+ * @argument prop
+ * @argument value
+ * @returns index or -1
+ */
+function find(arr, check) {
+  // use native find if supported
+  if (Array.prototype.find) {
+    return arr.find(check);
+  }
+
+  // use `filter` to obtain the same behavior of `find`
+  return arr.filter(check)[0];
+}
+
+/**
+ * Return the index of the matching object
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Array} arr
+ * @argument prop
+ * @argument value
+ * @returns index or -1
+ */
+function findIndex(arr, prop, value) {
+  // use native findIndex if supported
+  if (Array.prototype.findIndex) {
+    return arr.findIndex(function (cur) {
+      return cur[prop] === value;
+    });
+  }
+
+  // use `find` + `indexOf` if `findIndex` isn't supported
+  var match = find(arr, function (obj) {
+    return obj[prop] === value;
+  });
+  return arr.indexOf(match);
+}
+
+/**
+ * Loop trough the list of modifiers and run them in order,
+ * each of them will then edit the data object.
+ * @method
+ * @memberof Popper.Utils
+ * @param {dataObject} data
+ * @param {Array} modifiers
+ * @param {String} ends - Optional modifier name used as stopper
+ * @returns {dataObject}
+ */
+function runModifiers(modifiers, data, ends) {
+  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
+
+  modifiersToRun.forEach(function (modifier) {
+    if (modifier['function']) {
+      // eslint-disable-line dot-notation
+      console.warn('`modifier.function` is deprecated, use `modifier.fn`!');
+    }
+    var fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
+    if (modifier.enabled && isFunction(fn)) {
+      // Add properties to offsets to make them a complete clientRect object
+      // we do this before each modifier to make sure the previous one doesn't
+      // mess with these values
+      data.offsets.popper = getClientRect(data.offsets.popper);
+      data.offsets.reference = getClientRect(data.offsets.reference);
+
+      data = fn(data, modifier);
+    }
+  });
+
+  return data;
+}
+
+/**
+ * Updates the position of the popper, computing the new offsets and applying
+ * the new style.<br />
+ * Prefer `scheduleUpdate` over `update` because of performance reasons.
+ * @method
+ * @memberof Popper
+ */
+function update() {
+  // if popper is destroyed, don't perform any further update
+  if (this.state.isDestroyed) {
+    return;
+  }
+
+  var data = {
+    instance: this,
+    styles: {},
+    arrowStyles: {},
+    attributes: {},
+    flipped: false,
+    offsets: {}
+  };
+
+  // compute reference element offsets
+  data.offsets.reference = getReferenceOffsets(this.state, this.popper, this.reference, this.options.positionFixed);
+
+  // compute auto placement, store placement inside the data object,
+  // modifiers will be able to edit `placement` if needed
+  // and refer to originalPlacement to know the original value
+  data.placement = computeAutoPlacement(this.options.placement, data.offsets.reference, this.popper, this.reference, this.options.modifiers.flip.boundariesElement, this.options.modifiers.flip.padding);
+
+  // store the computed placement inside `originalPlacement`
+  data.originalPlacement = data.placement;
+
+  data.positionFixed = this.options.positionFixed;
+
+  // compute the popper offsets
+  data.offsets.popper = getPopperOffsets(this.popper, data.offsets.reference, data.placement);
+
+  data.offsets.popper.position = this.options.positionFixed ? 'fixed' : 'absolute';
+
+  // run the modifiers
+  data = runModifiers(this.modifiers, data);
+
+  // the first `update` will call `onCreate` callback
+  // the other ones will call `onUpdate` callback
+  if (!this.state.isCreated) {
+    this.state.isCreated = true;
+    this.options.onCreate(data);
+  } else {
+    this.options.onUpdate(data);
+  }
+}
+
+/**
+ * Helper used to know if the given modifier is enabled.
+ * @method
+ * @memberof Popper.Utils
+ * @returns {Boolean}
+ */
+function isModifierEnabled(modifiers, modifierName) {
+  return modifiers.some(function (_ref) {
+    var name = _ref.name,
+        enabled = _ref.enabled;
+    return enabled && name === modifierName;
+  });
+}
+
+/**
+ * Get the prefixed supported property name
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} property (camelCase)
+ * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor prefix)
+ */
+function getSupportedPropertyName(property) {
+  var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
+  var upperProp = property.charAt(0).toUpperCase() + property.slice(1);
+
+  for (var i = 0; i < prefixes.length; i++) {
+    var prefix = prefixes[i];
+    var toCheck = prefix ? '' + prefix + upperProp : property;
+    if (typeof document.body.style[toCheck] !== 'undefined') {
+      return toCheck;
+    }
+  }
+  return null;
+}
+
+/**
+ * Destroys the popper.
+ * @method
+ * @memberof Popper
+ */
+function destroy() {
+  this.state.isDestroyed = true;
+
+  // touch DOM only if `applyStyle` modifier is enabled
+  if (isModifierEnabled(this.modifiers, 'applyStyle')) {
+    this.popper.removeAttribute('x-placement');
+    this.popper.style.position = '';
+    this.popper.style.top = '';
+    this.popper.style.left = '';
+    this.popper.style.right = '';
+    this.popper.style.bottom = '';
+    this.popper.style.willChange = '';
+    this.popper.style[getSupportedPropertyName('transform')] = '';
+  }
+
+  this.disableEventListeners();
+
+  // remove the popper if user explicity asked for the deletion on destroy
+  // do not use `remove` because IE11 doesn't support it
+  if (this.options.removeOnDestroy) {
+    this.popper.parentNode.removeChild(this.popper);
+  }
+  return this;
+}
+
+/**
+ * Get the window associated with the element
+ * @argument {Element} element
+ * @returns {Window}
+ */
+function getWindow(element) {
+  var ownerDocument = element.ownerDocument;
+  return ownerDocument ? ownerDocument.defaultView : window;
+}
+
+function attachToScrollParents(scrollParent, event, callback, scrollParents) {
+  var isBody = scrollParent.nodeName === 'BODY';
+  var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
+  target.addEventListener(event, callback, { passive: true });
+
+  if (!isBody) {
+    attachToScrollParents(getScrollParent(target.parentNode), event, callback, scrollParents);
+  }
+  scrollParents.push(target);
+}
+
+/**
+ * Setup needed event listeners used to update the popper position
+ * @method
+ * @memberof Popper.Utils
+ * @private
+ */
+function setupEventListeners(reference, options, state, updateBound) {
+  // Resize event listener on window
+  state.updateBound = updateBound;
+  getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
+
+  // Scroll event listener on scroll parents
+  var scrollElement = getScrollParent(reference);
+  attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
+  state.scrollElement = scrollElement;
+  state.eventsEnabled = true;
+
+  return state;
+}
+
+/**
+ * It will add resize/scroll events and start recalculating
+ * position of the popper element when they are triggered.
+ * @method
+ * @memberof Popper
+ */
+function enableEventListeners() {
+  if (!this.state.eventsEnabled) {
+    this.state = setupEventListeners(this.reference, this.options, this.state, this.scheduleUpdate);
+  }
+}
+
+/**
+ * Remove event listeners used to update the popper position
+ * @method
+ * @memberof Popper.Utils
+ * @private
+ */
+function removeEventListeners(reference, state) {
+  // Remove resize event listener on window
+  getWindow(reference).removeEventListener('resize', state.updateBound);
+
+  // Remove scroll event listener on scroll parents
+  state.scrollParents.forEach(function (target) {
+    target.removeEventListener('scroll', state.updateBound);
+  });
+
+  // Reset state
+  state.updateBound = null;
+  state.scrollParents = [];
+  state.scrollElement = null;
+  state.eventsEnabled = false;
+  return state;
+}
+
+/**
+ * It will remove resize/scroll events and won't recalculate popper position
+ * when they are triggered. It also won't trigger `onUpdate` callback anymore,
+ * unless you call `update` method manually.
+ * @method
+ * @memberof Popper
+ */
+function disableEventListeners() {
+  if (this.state.eventsEnabled) {
+    cancelAnimationFrame(this.scheduleUpdate);
+    this.state = removeEventListeners(this.reference, this.state);
+  }
+}
+
+/**
+ * Tells if a given input is a number
+ * @method
+ * @memberof Popper.Utils
+ * @param {*} input to check
+ * @return {Boolean}
+ */
+function isNumeric(n) {
+  return n !== '' && !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+/**
+ * Set the style to the given popper
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element - Element to apply the style to
+ * @argument {Object} styles
+ * Object with a list of properties and values which will be applied to the element
+ */
+function setStyles(element, styles) {
+  Object.keys(styles).forEach(function (prop) {
+    var unit = '';
+    // add unit if the value is numeric and is one of the following
+    if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
+      unit = 'px';
+    }
+    element.style[prop] = styles[prop] + unit;
+  });
+}
+
+/**
+ * Set the attributes to the given popper
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element - Element to apply the attributes to
+ * @argument {Object} styles
+ * Object with a list of properties and values which will be applied to the element
+ */
+function setAttributes(element, attributes) {
+  Object.keys(attributes).forEach(function (prop) {
+    var value = attributes[prop];
+    if (value !== false) {
+      element.setAttribute(prop, attributes[prop]);
+    } else {
+      element.removeAttribute(prop);
+    }
+  });
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} data.styles - List of style properties - values to apply to popper element
+ * @argument {Object} data.attributes - List of attribute properties - values to apply to popper element
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The same data object
+ */
+function applyStyle(data) {
+  // any property present in `data.styles` will be applied to the popper,
+  // in this way we can make the 3rd party modifiers add custom styles to it
+  // Be aware, modifiers could override the properties defined in the previous
+  // lines of this modifier!
+  setStyles(data.instance.popper, data.styles);
+
+  // any property present in `data.attributes` will be applied to the popper,
+  // they will be set as HTML attributes of the element
+  setAttributes(data.instance.popper, data.attributes);
+
+  // if arrowElement is defined and arrowStyles has some properties
+  if (data.arrowElement && Object.keys(data.arrowStyles).length) {
+    setStyles(data.arrowElement, data.arrowStyles);
+  }
+
+  return data;
+}
+
+/**
+ * Set the x-placement attribute before everything else because it could be used
+ * to add margins to the popper margins needs to be calculated to get the
+ * correct popper offsets.
+ * @method
+ * @memberof Popper.modifiers
+ * @param {HTMLElement} reference - The reference element used to position the popper
+ * @param {HTMLElement} popper - The HTML element used as popper
+ * @param {Object} options - Popper.js options
+ */
+function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
+  // compute reference element offsets
+  var referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
+
+  // compute auto placement, store placement inside the data object,
+  // modifiers will be able to edit `placement` if needed
+  // and refer to originalPlacement to know the original value
+  var placement = computeAutoPlacement(options.placement, referenceOffsets, popper, reference, options.modifiers.flip.boundariesElement, options.modifiers.flip.padding);
+
+  popper.setAttribute('x-placement', placement);
+
+  // Apply `position` to popper before anything else because
+  // without the position applied we can't guarantee correct computations
+  setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
+
+  return options;
+}
+
+/**
+ * @function
+ * @memberof Popper.Utils
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Boolean} shouldRound - If the offsets should be rounded at all
+ * @returns {Object} The popper's position offsets rounded
+ *
+ * The tale of pixel-perfect positioning. It's still not 100% perfect, but as
+ * good as it can be within reason.
+ * Discussion here: https://github.com/FezVrasta/popper.js/pull/715
+ *
+ * Low DPI screens cause a popper to be blurry if not using full pixels (Safari
+ * as well on High DPI screens).
+ *
+ * Firefox prefers no rounding for positioning and does not have blurriness on
+ * high DPI screens.
+ *
+ * Only horizontal placement and left/right values need to be considered.
+ */
+function getRoundedOffsets(data, shouldRound) {
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+  var round = Math.round,
+      floor = Math.floor;
+
+  var noRound = function noRound(v) {
+    return v;
+  };
+
+  var referenceWidth = round(reference.width);
+  var popperWidth = round(popper.width);
+
+  var isVertical = ['left', 'right'].indexOf(data.placement) !== -1;
+  var isVariation = data.placement.indexOf('-') !== -1;
+  var sameWidthParity = referenceWidth % 2 === popperWidth % 2;
+  var bothOddWidth = referenceWidth % 2 === 1 && popperWidth % 2 === 1;
+
+  var horizontalToInteger = !shouldRound ? noRound : isVertical || isVariation || sameWidthParity ? round : floor;
+  var verticalToInteger = !shouldRound ? noRound : round;
+
+  return {
+    left: horizontalToInteger(bothOddWidth && !isVariation && shouldRound ? popper.left - 1 : popper.left),
+    top: verticalToInteger(popper.top),
+    bottom: verticalToInteger(popper.bottom),
+    right: horizontalToInteger(popper.right)
+  };
+}
+
+var isFirefox = isBrowser && /Firefox/i.test(navigator.userAgent);
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function computeStyle(data, options) {
+  var x = options.x,
+      y = options.y;
+  var popper = data.offsets.popper;
+
+  // Remove this legacy support in Popper.js v2
+
+  var legacyGpuAccelerationOption = find(data.instance.modifiers, function (modifier) {
+    return modifier.name === 'applyStyle';
+  }).gpuAcceleration;
+  if (legacyGpuAccelerationOption !== undefined) {
+    console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
+  }
+  var gpuAcceleration = legacyGpuAccelerationOption !== undefined ? legacyGpuAccelerationOption : options.gpuAcceleration;
+
+  var offsetParent = getOffsetParent(data.instance.popper);
+  var offsetParentRect = getBoundingClientRect(offsetParent);
+
+  // Styles
+  var styles = {
+    position: popper.position
+  };
+
+  var offsets = getRoundedOffsets(data, window.devicePixelRatio < 2 || !isFirefox);
+
+  var sideA = x === 'bottom' ? 'top' : 'bottom';
+  var sideB = y === 'right' ? 'left' : 'right';
+
+  // if gpuAcceleration is set to `true` and transform is supported,
+  //  we use `translate3d` to apply the position to the popper we
+  // automatically use the supported prefixed version if needed
+  var prefixedProperty = getSupportedPropertyName('transform');
+
+  // now, let's make a step back and look at this code closely (wtf?)
+  // If the content of the popper grows once it's been positioned, it
+  // may happen that the popper gets misplaced because of the new content
+  // overflowing its reference element
+  // To avoid this problem, we provide two options (x and y), which allow
+  // the consumer to define the offset origin.
+  // If we position a popper on top of a reference element, we can set
+  // `x` to `top` to make the popper grow towards its top instead of
+  // its bottom.
+  var left = void 0,
+      top = void 0;
+  if (sideA === 'bottom') {
+    // when offsetParent is <html> the positioning is relative to the bottom of the screen (excluding the scrollbar)
+    // and not the bottom of the html element
+    if (offsetParent.nodeName === 'HTML') {
+      top = -offsetParent.clientHeight + offsets.bottom;
+    } else {
+      top = -offsetParentRect.height + offsets.bottom;
+    }
+  } else {
+    top = offsets.top;
+  }
+  if (sideB === 'right') {
+    if (offsetParent.nodeName === 'HTML') {
+      left = -offsetParent.clientWidth + offsets.right;
+    } else {
+      left = -offsetParentRect.width + offsets.right;
+    }
+  } else {
+    left = offsets.left;
+  }
+  if (gpuAcceleration && prefixedProperty) {
+    styles[prefixedProperty] = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
+    styles[sideA] = 0;
+    styles[sideB] = 0;
+    styles.willChange = 'transform';
+  } else {
+    // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
+    var invertTop = sideA === 'bottom' ? -1 : 1;
+    var invertLeft = sideB === 'right' ? -1 : 1;
+    styles[sideA] = top * invertTop;
+    styles[sideB] = left * invertLeft;
+    styles.willChange = sideA + ', ' + sideB;
+  }
+
+  // Attributes
+  var attributes = {
+    'x-placement': data.placement
+  };
+
+  // Update `data` attributes, styles and arrowStyles
+  data.attributes = _extends({}, attributes, data.attributes);
+  data.styles = _extends({}, styles, data.styles);
+  data.arrowStyles = _extends({}, data.offsets.arrow, data.arrowStyles);
+
+  return data;
+}
+
+/**
+ * Helper used to know if the given modifier depends from another one.<br />
+ * It checks if the needed modifier is listed and enabled.
+ * @method
+ * @memberof Popper.Utils
+ * @param {Array} modifiers - list of modifiers
+ * @param {String} requestingName - name of requesting modifier
+ * @param {String} requestedName - name of requested modifier
+ * @returns {Boolean}
+ */
+function isModifierRequired(modifiers, requestingName, requestedName) {
+  var requesting = find(modifiers, function (_ref) {
+    var name = _ref.name;
+    return name === requestingName;
+  });
+
+  var isRequired = !!requesting && modifiers.some(function (modifier) {
+    return modifier.name === requestedName && modifier.enabled && modifier.order < requesting.order;
+  });
+
+  if (!isRequired) {
+    var _requesting = '`' + requestingName + '`';
+    var requested = '`' + requestedName + '`';
+    console.warn(requested + ' modifier is required by ' + _requesting + ' modifier in order to work, be sure to include it before ' + _requesting + '!');
+  }
+  return isRequired;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function arrow(data, options) {
+  var _data$offsets$arrow;
+
+  // arrow depends on keepTogether in order to work
+  if (!isModifierRequired(data.instance.modifiers, 'arrow', 'keepTogether')) {
+    return data;
+  }
+
+  var arrowElement = options.element;
+
+  // if arrowElement is a string, suppose it's a CSS selector
+  if (typeof arrowElement === 'string') {
+    arrowElement = data.instance.popper.querySelector(arrowElement);
+
+    // if arrowElement is not found, don't run the modifier
+    if (!arrowElement) {
+      return data;
+    }
+  } else {
+    // if the arrowElement isn't a query selector we must check that the
+    // provided DOM node is child of its popper node
+    if (!data.instance.popper.contains(arrowElement)) {
+      console.warn('WARNING: `arrow.element` must be child of its popper element!');
+      return data;
+    }
+  }
+
+  var placement = data.placement.split('-')[0];
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var isVertical = ['left', 'right'].indexOf(placement) !== -1;
+
+  var len = isVertical ? 'height' : 'width';
+  var sideCapitalized = isVertical ? 'Top' : 'Left';
+  var side = sideCapitalized.toLowerCase();
+  var altSide = isVertical ? 'left' : 'top';
+  var opSide = isVertical ? 'bottom' : 'right';
+  var arrowElementSize = getOuterSizes(arrowElement)[len];
+
+  //
+  // extends keepTogether behavior making sure the popper and its
+  // reference have enough pixels in conjunction
+  //
+
+  // top/left side
+  if (reference[opSide] - arrowElementSize < popper[side]) {
+    data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowElementSize);
+  }
+  // bottom/right side
+  if (reference[side] + arrowElementSize > popper[opSide]) {
+    data.offsets.popper[side] += reference[side] + arrowElementSize - popper[opSide];
+  }
+  data.offsets.popper = getClientRect(data.offsets.popper);
+
+  // compute center of the popper
+  var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
+
+  // Compute the sideValue using the updated popper offsets
+  // take popper margin in account because we don't have this info available
+  var css = getStyleComputedProperty(data.instance.popper);
+  var popperMarginSide = parseFloat(css['margin' + sideCapitalized], 10);
+  var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width'], 10);
+  var sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
+
+  // prevent arrowElement from being placed not contiguously to its popper
+  sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
+
+  data.arrowElement = arrowElement;
+  data.offsets.arrow = (_data$offsets$arrow = {}, defineProperty(_data$offsets$arrow, side, Math.round(sideValue)), defineProperty(_data$offsets$arrow, altSide, ''), _data$offsets$arrow);
+
+  return data;
+}
+
+/**
+ * Get the opposite placement variation of the given one
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement variation
+ * @returns {String} flipped placement variation
+ */
+function getOppositeVariation(variation) {
+  if (variation === 'end') {
+    return 'start';
+  } else if (variation === 'start') {
+    return 'end';
+  }
+  return variation;
+}
+
+/**
+ * List of accepted placements to use as values of the `placement` option.<br />
+ * Valid placements are:
+ * - `auto`
+ * - `top`
+ * - `right`
+ * - `bottom`
+ * - `left`
+ *
+ * Each placement can have a variation from this list:
+ * - `-start`
+ * - `-end`
+ *
+ * Variations are interpreted easily if you think of them as the left to right
+ * written languages. Horizontally (`top` and `bottom`), `start` is left and `end`
+ * is right.<br />
+ * Vertically (`left` and `right`), `start` is top and `end` is bottom.
+ *
+ * Some valid examples are:
+ * - `top-end` (on top of reference, right aligned)
+ * - `right-start` (on right of reference, top aligned)
+ * - `bottom` (on bottom, centered)
+ * - `auto-end` (on the side with more space available, alignment depends by placement)
+ *
+ * @static
+ * @type {Array}
+ * @enum {String}
+ * @readonly
+ * @method placements
+ * @memberof Popper
+ */
+var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
+
+// Get rid of `auto` `auto-start` and `auto-end`
+var validPlacements = placements.slice(3);
+
+/**
+ * Given an initial placement, returns all the subsequent placements
+ * clockwise (or counter-clockwise).
+ *
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement - A valid placement (it accepts variations)
+ * @argument {Boolean} counter - Set to true to walk the placements counterclockwise
+ * @returns {Array} placements including their variations
+ */
+function clockwise(placement) {
+  var counter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  var index = validPlacements.indexOf(placement);
+  var arr = validPlacements.slice(index + 1).concat(validPlacements.slice(0, index));
+  return counter ? arr.reverse() : arr;
+}
+
+var BEHAVIORS = {
+  FLIP: 'flip',
+  CLOCKWISE: 'clockwise',
+  COUNTERCLOCKWISE: 'counterclockwise'
+};
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function flip(data, options) {
+  // if `inner` modifier is enabled, we can't use the `flip` modifier
+  if (isModifierEnabled(data.instance.modifiers, 'inner')) {
+    return data;
+  }
+
+  if (data.flipped && data.placement === data.originalPlacement) {
+    // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
+    return data;
+  }
+
+  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, options.boundariesElement, data.positionFixed);
+
+  var placement = data.placement.split('-')[0];
+  var placementOpposite = getOppositePlacement(placement);
+  var variation = data.placement.split('-')[1] || '';
+
+  var flipOrder = [];
+
+  switch (options.behavior) {
+    case BEHAVIORS.FLIP:
+      flipOrder = [placement, placementOpposite];
+      break;
+    case BEHAVIORS.CLOCKWISE:
+      flipOrder = clockwise(placement);
+      break;
+    case BEHAVIORS.COUNTERCLOCKWISE:
+      flipOrder = clockwise(placement, true);
+      break;
+    default:
+      flipOrder = options.behavior;
+  }
+
+  flipOrder.forEach(function (step, index) {
+    if (placement !== step || flipOrder.length === index + 1) {
+      return data;
+    }
+
+    placement = data.placement.split('-')[0];
+    placementOpposite = getOppositePlacement(placement);
+
+    var popperOffsets = data.offsets.popper;
+    var refOffsets = data.offsets.reference;
+
+    // using floor because the reference offsets may contain decimals we are not going to consider here
+    var floor = Math.floor;
+    var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'top' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.top) < floor(refOffsets.bottom);
+
+    var overflowsLeft = floor(popperOffsets.left) < floor(boundaries.left);
+    var overflowsRight = floor(popperOffsets.right) > floor(boundaries.right);
+    var overflowsTop = floor(popperOffsets.top) < floor(boundaries.top);
+    var overflowsBottom = floor(popperOffsets.bottom) > floor(boundaries.bottom);
+
+    var overflowsBoundaries = placement === 'left' && overflowsLeft || placement === 'right' && overflowsRight || placement === 'top' && overflowsTop || placement === 'bottom' && overflowsBottom;
+
+    // flip the variation if required
+    var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+
+    // flips variation if reference element overflows boundaries
+    var flippedVariationByRef = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
+
+    // flips variation if popper content overflows boundaries
+    var flippedVariationByContent = !!options.flipVariationsByContent && (isVertical && variation === 'start' && overflowsRight || isVertical && variation === 'end' && overflowsLeft || !isVertical && variation === 'start' && overflowsBottom || !isVertical && variation === 'end' && overflowsTop);
+
+    var flippedVariation = flippedVariationByRef || flippedVariationByContent;
+
+    if (overlapsRef || overflowsBoundaries || flippedVariation) {
+      // this boolean to detect any flip loop
+      data.flipped = true;
+
+      if (overlapsRef || overflowsBoundaries) {
+        placement = flipOrder[index + 1];
+      }
+
+      if (flippedVariation) {
+        variation = getOppositeVariation(variation);
+      }
+
+      data.placement = placement + (variation ? '-' + variation : '');
+
+      // this object contains `position`, we want to preserve it along with
+      // any additional property we may add in the future
+      data.offsets.popper = _extends({}, data.offsets.popper, getPopperOffsets(data.instance.popper, data.offsets.reference, data.placement));
+
+      data = runModifiers(data.instance.modifiers, data, 'flip');
+    }
+  });
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function keepTogether(data) {
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var placement = data.placement.split('-')[0];
+  var floor = Math.floor;
+  var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+  var side = isVertical ? 'right' : 'bottom';
+  var opSide = isVertical ? 'left' : 'top';
+  var measurement = isVertical ? 'width' : 'height';
+
+  if (popper[side] < floor(reference[opSide])) {
+    data.offsets.popper[opSide] = floor(reference[opSide]) - popper[measurement];
+  }
+  if (popper[opSide] > floor(reference[side])) {
+    data.offsets.popper[opSide] = floor(reference[side]);
+  }
+
+  return data;
+}
+
+/**
+ * Converts a string containing value + unit into a px value number
+ * @function
+ * @memberof {modifiers~offset}
+ * @private
+ * @argument {String} str - Value + unit string
+ * @argument {String} measurement - `height` or `width`
+ * @argument {Object} popperOffsets
+ * @argument {Object} referenceOffsets
+ * @returns {Number|String}
+ * Value in pixels, or original string if no values were extracted
+ */
+function toValue(str, measurement, popperOffsets, referenceOffsets) {
+  // separate value from unit
+  var split = str.match(/((?:\-|\+)?\d*\.?\d*)(.*)/);
+  var value = +split[1];
+  var unit = split[2];
+
+  // If it's not a number it's an operator, I guess
+  if (!value) {
+    return str;
+  }
+
+  if (unit.indexOf('%') === 0) {
+    var element = void 0;
+    switch (unit) {
+      case '%p':
+        element = popperOffsets;
+        break;
+      case '%':
+      case '%r':
+      default:
+        element = referenceOffsets;
+    }
+
+    var rect = getClientRect(element);
+    return rect[measurement] / 100 * value;
+  } else if (unit === 'vh' || unit === 'vw') {
+    // if is a vh or vw, we calculate the size based on the viewport
+    var size = void 0;
+    if (unit === 'vh') {
+      size = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    } else {
+      size = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    }
+    return size / 100 * value;
+  } else {
+    // if is an explicit pixel unit, we get rid of the unit and keep the value
+    // if is an implicit unit, it's px, and we return just the value
+    return value;
+  }
+}
+
+/**
+ * Parse an `offset` string to extrapolate `x` and `y` numeric offsets.
+ * @function
+ * @memberof {modifiers~offset}
+ * @private
+ * @argument {String} offset
+ * @argument {Object} popperOffsets
+ * @argument {Object} referenceOffsets
+ * @argument {String} basePlacement
+ * @returns {Array} a two cells array with x and y offsets in numbers
+ */
+function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
+  var offsets = [0, 0];
+
+  // Use height if placement is left or right and index is 0 otherwise use width
+  // in this way the first offset will use an axis and the second one
+  // will use the other one
+  var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
+
+  // Split the offset string to obtain a list of values and operands
+  // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
+  var fragments = offset.split(/(\+|\-)/).map(function (frag) {
+    return frag.trim();
+  });
+
+  // Detect if the offset string contains a pair of values or a single one
+  // they could be separated by comma or space
+  var divider = fragments.indexOf(find(fragments, function (frag) {
+    return frag.search(/,|\s/) !== -1;
+  }));
+
+  if (fragments[divider] && fragments[divider].indexOf(',') === -1) {
+    console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
+  }
+
+  // If divider is found, we divide the list of values and operands to divide
+  // them by ofset X and Y.
+  var splitRegex = /\s*,\s*|\s+/;
+  var ops = divider !== -1 ? [fragments.slice(0, divider).concat([fragments[divider].split(splitRegex)[0]]), [fragments[divider].split(splitRegex)[1]].concat(fragments.slice(divider + 1))] : [fragments];
+
+  // Convert the values with units to absolute pixels to allow our computations
+  ops = ops.map(function (op, index) {
+    // Most of the units rely on the orientation of the popper
+    var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
+    var mergeWithPrevious = false;
+    return op
+    // This aggregates any `+` or `-` sign that aren't considered operators
+    // e.g.: 10 + +5 => [10, +, +5]
+    .reduce(function (a, b) {
+      if (a[a.length - 1] === '' && ['+', '-'].indexOf(b) !== -1) {
+        a[a.length - 1] = b;
+        mergeWithPrevious = true;
+        return a;
+      } else if (mergeWithPrevious) {
+        a[a.length - 1] += b;
+        mergeWithPrevious = false;
+        return a;
+      } else {
+        return a.concat(b);
+      }
+    }, [])
+    // Here we convert the string values into number values (in px)
+    .map(function (str) {
+      return toValue(str, measurement, popperOffsets, referenceOffsets);
+    });
+  });
+
+  // Loop trough the offsets arrays and execute the operations
+  ops.forEach(function (op, index) {
+    op.forEach(function (frag, index2) {
+      if (isNumeric(frag)) {
+        offsets[index] += frag * (op[index2 - 1] === '-' ? -1 : 1);
+      }
+    });
+  });
+  return offsets;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @argument {Number|String} options.offset=0
+ * The offset value as described in the modifier description
+ * @returns {Object} The data object, properly modified
+ */
+function offset(data, _ref) {
+  var offset = _ref.offset;
+  var placement = data.placement,
+      _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var basePlacement = placement.split('-')[0];
+
+  var offsets = void 0;
+  if (isNumeric(+offset)) {
+    offsets = [+offset, 0];
+  } else {
+    offsets = parseOffset(offset, popper, reference, basePlacement);
+  }
+
+  if (basePlacement === 'left') {
+    popper.top += offsets[0];
+    popper.left -= offsets[1];
+  } else if (basePlacement === 'right') {
+    popper.top += offsets[0];
+    popper.left += offsets[1];
+  } else if (basePlacement === 'top') {
+    popper.left += offsets[0];
+    popper.top -= offsets[1];
+  } else if (basePlacement === 'bottom') {
+    popper.left += offsets[0];
+    popper.top += offsets[1];
+  }
+
+  data.popper = popper;
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function preventOverflow(data, options) {
+  var boundariesElement = options.boundariesElement || getOffsetParent(data.instance.popper);
+
+  // If offsetParent is the reference element, we really want to
+  // go one step up and use the next offsetParent as reference to
+  // avoid to make this modifier completely useless and look like broken
+  if (data.instance.reference === boundariesElement) {
+    boundariesElement = getOffsetParent(boundariesElement);
+  }
+
+  // NOTE: DOM access here
+  // resets the popper's position so that the document size can be calculated excluding
+  // the size of the popper element itself
+  var transformProp = getSupportedPropertyName('transform');
+  var popperStyles = data.instance.popper.style; // assignment to help minification
+  var top = popperStyles.top,
+      left = popperStyles.left,
+      transform = popperStyles[transformProp];
+
+  popperStyles.top = '';
+  popperStyles.left = '';
+  popperStyles[transformProp] = '';
+
+  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, boundariesElement, data.positionFixed);
+
+  // NOTE: DOM access here
+  // restores the original style properties after the offsets have been computed
+  popperStyles.top = top;
+  popperStyles.left = left;
+  popperStyles[transformProp] = transform;
+
+  options.boundaries = boundaries;
+
+  var order = options.priority;
+  var popper = data.offsets.popper;
+
+  var check = {
+    primary: function primary(placement) {
+      var value = popper[placement];
+      if (popper[placement] < boundaries[placement] && !options.escapeWithReference) {
+        value = Math.max(popper[placement], boundaries[placement]);
+      }
+      return defineProperty({}, placement, value);
+    },
+    secondary: function secondary(placement) {
+      var mainSide = placement === 'right' ? 'left' : 'top';
+      var value = popper[mainSide];
+      if (popper[placement] > boundaries[placement] && !options.escapeWithReference) {
+        value = Math.min(popper[mainSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
+      }
+      return defineProperty({}, mainSide, value);
+    }
+  };
+
+  order.forEach(function (placement) {
+    var side = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
+    popper = _extends({}, popper, check[side](placement));
+  });
+
+  data.offsets.popper = popper;
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function shift(data) {
+  var placement = data.placement;
+  var basePlacement = placement.split('-')[0];
+  var shiftvariation = placement.split('-')[1];
+
+  // if shift shiftvariation is specified, run the modifier
+  if (shiftvariation) {
+    var _data$offsets = data.offsets,
+        reference = _data$offsets.reference,
+        popper = _data$offsets.popper;
+
+    var isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
+    var side = isVertical ? 'left' : 'top';
+    var measurement = isVertical ? 'width' : 'height';
+
+    var shiftOffsets = {
+      start: defineProperty({}, side, reference[side]),
+      end: defineProperty({}, side, reference[side] + reference[measurement] - popper[measurement])
+    };
+
+    data.offsets.popper = _extends({}, popper, shiftOffsets[shiftvariation]);
+  }
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function hide(data) {
+  if (!isModifierRequired(data.instance.modifiers, 'hide', 'preventOverflow')) {
+    return data;
+  }
+
+  var refRect = data.offsets.reference;
+  var bound = find(data.instance.modifiers, function (modifier) {
+    return modifier.name === 'preventOverflow';
+  }).boundaries;
+
+  if (refRect.bottom < bound.top || refRect.left > bound.right || refRect.top > bound.bottom || refRect.right < bound.left) {
+    // Avoid unnecessary DOM access if visibility hasn't changed
+    if (data.hide === true) {
+      return data;
+    }
+
+    data.hide = true;
+    data.attributes['x-out-of-boundaries'] = '';
+  } else {
+    // Avoid unnecessary DOM access if visibility hasn't changed
+    if (data.hide === false) {
+      return data;
+    }
+
+    data.hide = false;
+    data.attributes['x-out-of-boundaries'] = false;
+  }
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function inner(data) {
+  var placement = data.placement;
+  var basePlacement = placement.split('-')[0];
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var isHoriz = ['left', 'right'].indexOf(basePlacement) !== -1;
+
+  var subtractLength = ['top', 'left'].indexOf(basePlacement) === -1;
+
+  popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
+
+  data.placement = getOppositePlacement(placement);
+  data.offsets.popper = getClientRect(popper);
+
+  return data;
+}
+
+/**
+ * Modifier function, each modifier can have a function of this type assigned
+ * to its `fn` property.<br />
+ * These functions will be called on each update, this means that you must
+ * make sure they are performant enough to avoid performance bottlenecks.
+ *
+ * @function ModifierFn
+ * @argument {dataObject} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {dataObject} The data object, properly modified
+ */
+
+/**
+ * Modifiers are plugins used to alter the behavior of your poppers.<br />
+ * Popper.js uses a set of 9 modifiers to provide all the basic functionalities
+ * needed by the library.
+ *
+ * Usually you don't want to override the `order`, `fn` and `onLoad` props.
+ * All the other properties are configurations that could be tweaked.
+ * @namespace modifiers
+ */
+var modifiers = {
+  /**
+   * Modifier used to shift the popper on the start or end of its reference
+   * element.<br />
+   * It will read the variation of the `placement` property.<br />
+   * It can be one either `-end` or `-start`.
+   * @memberof modifiers
+   * @inner
+   */
+  shift: {
+    /** @prop {number} order=100 - Index used to define the order of execution */
+    order: 100,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: shift
+  },
+
+  /**
+   * The `offset` modifier can shift your popper on both its axis.
+   *
+   * It accepts the following units:
+   * - `px` or unit-less, interpreted as pixels
+   * - `%` or `%r`, percentage relative to the length of the reference element
+   * - `%p`, percentage relative to the length of the popper element
+   * - `vw`, CSS viewport width unit
+   * - `vh`, CSS viewport height unit
+   *
+   * For length is intended the main axis relative to the placement of the popper.<br />
+   * This means that if the placement is `top` or `bottom`, the length will be the
+   * `width`. In case of `left` or `right`, it will be the `height`.
+   *
+   * You can provide a single value (as `Number` or `String`), or a pair of values
+   * as `String` divided by a comma or one (or more) white spaces.<br />
+   * The latter is a deprecated method because it leads to confusion and will be
+   * removed in v2.<br />
+   * Additionally, it accepts additions and subtractions between different units.
+   * Note that multiplications and divisions aren't supported.
+   *
+   * Valid examples are:
+   * ```
+   * 10
+   * '10%'
+   * '10, 10'
+   * '10%, 10'
+   * '10 + 10%'
+   * '10 - 5vh + 3%'
+   * '-10px + 5vh, 5px - 6%'
+   * ```
+   * > **NB**: If you desire to apply offsets to your poppers in a way that may make them overlap
+   * > with their reference element, unfortunately, you will have to disable the `flip` modifier.
+   * > You can read more on this at this [issue](https://github.com/FezVrasta/popper.js/issues/373).
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  offset: {
+    /** @prop {number} order=200 - Index used to define the order of execution */
+    order: 200,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: offset,
+    /** @prop {Number|String} offset=0
+     * The offset value as described in the modifier description
+     */
+    offset: 0
+  },
+
+  /**
+   * Modifier used to prevent the popper from being positioned outside the boundary.
+   *
+   * A scenario exists where the reference itself is not within the boundaries.<br />
+   * We can say it has "escaped the boundaries" — or just "escaped".<br />
+   * In this case we need to decide whether the popper should either:
+   *
+   * - detach from the reference and remain "trapped" in the boundaries, or
+   * - if it should ignore the boundary and "escape with its reference"
+   *
+   * When `escapeWithReference` is set to`true` and reference is completely
+   * outside its boundaries, the popper will overflow (or completely leave)
+   * the boundaries in order to remain attached to the edge of the reference.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  preventOverflow: {
+    /** @prop {number} order=300 - Index used to define the order of execution */
+    order: 300,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: preventOverflow,
+    /**
+     * @prop {Array} [priority=['left','right','top','bottom']]
+     * Popper will try to prevent overflow following these priorities by default,
+     * then, it could overflow on the left and on top of the `boundariesElement`
+     */
+    priority: ['left', 'right', 'top', 'bottom'],
+    /**
+     * @prop {number} padding=5
+     * Amount of pixel used to define a minimum distance between the boundaries
+     * and the popper. This makes sure the popper always has a little padding
+     * between the edges of its container
+     */
+    padding: 5,
+    /**
+     * @prop {String|HTMLElement} boundariesElement='scrollParent'
+     * Boundaries used by the modifier. Can be `scrollParent`, `window`,
+     * `viewport` or any DOM element.
+     */
+    boundariesElement: 'scrollParent'
+  },
+
+  /**
+   * Modifier used to make sure the reference and its popper stay near each other
+   * without leaving any gap between the two. Especially useful when the arrow is
+   * enabled and you want to ensure that it points to its reference element.
+   * It cares only about the first axis. You can still have poppers with margin
+   * between the popper and its reference element.
+   * @memberof modifiers
+   * @inner
+   */
+  keepTogether: {
+    /** @prop {number} order=400 - Index used to define the order of execution */
+    order: 400,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: keepTogether
+  },
+
+  /**
+   * This modifier is used to move the `arrowElement` of the popper to make
+   * sure it is positioned between the reference element and its popper element.
+   * It will read the outer size of the `arrowElement` node to detect how many
+   * pixels of conjunction are needed.
+   *
+   * It has no effect if no `arrowElement` is provided.
+   * @memberof modifiers
+   * @inner
+   */
+  arrow: {
+    /** @prop {number} order=500 - Index used to define the order of execution */
+    order: 500,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: arrow,
+    /** @prop {String|HTMLElement} element='[x-arrow]' - Selector or node used as arrow */
+    element: '[x-arrow]'
+  },
+
+  /**
+   * Modifier used to flip the popper's placement when it starts to overlap its
+   * reference element.
+   *
+   * Requires the `preventOverflow` modifier before it in order to work.
+   *
+   * **NOTE:** this modifier will interrupt the current update cycle and will
+   * restart it if it detects the need to flip the placement.
+   * @memberof modifiers
+   * @inner
+   */
+  flip: {
+    /** @prop {number} order=600 - Index used to define the order of execution */
+    order: 600,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: flip,
+    /**
+     * @prop {String|Array} behavior='flip'
+     * The behavior used to change the popper's placement. It can be one of
+     * `flip`, `clockwise`, `counterclockwise` or an array with a list of valid
+     * placements (with optional variations)
+     */
+    behavior: 'flip',
+    /**
+     * @prop {number} padding=5
+     * The popper will flip if it hits the edges of the `boundariesElement`
+     */
+    padding: 5,
+    /**
+     * @prop {String|HTMLElement} boundariesElement='viewport'
+     * The element which will define the boundaries of the popper position.
+     * The popper will never be placed outside of the defined boundaries
+     * (except if `keepTogether` is enabled)
+     */
+    boundariesElement: 'viewport',
+    /**
+     * @prop {Boolean} flipVariations=false
+     * The popper will switch placement variation between `-start` and `-end` when
+     * the reference element overlaps its boundaries.
+     *
+     * The original placement should have a set variation.
+     */
+    flipVariations: false,
+    /**
+     * @prop {Boolean} flipVariationsByContent=false
+     * The popper will switch placement variation between `-start` and `-end` when
+     * the popper element overlaps its reference boundaries.
+     *
+     * The original placement should have a set variation.
+     */
+    flipVariationsByContent: false
+  },
+
+  /**
+   * Modifier used to make the popper flow toward the inner of the reference element.
+   * By default, when this modifier is disabled, the popper will be placed outside
+   * the reference element.
+   * @memberof modifiers
+   * @inner
+   */
+  inner: {
+    /** @prop {number} order=700 - Index used to define the order of execution */
+    order: 700,
+    /** @prop {Boolean} enabled=false - Whether the modifier is enabled or not */
+    enabled: false,
+    /** @prop {ModifierFn} */
+    fn: inner
+  },
+
+  /**
+   * Modifier used to hide the popper when its reference element is outside of the
+   * popper boundaries. It will set a `x-out-of-boundaries` attribute which can
+   * be used to hide with a CSS selector the popper when its reference is
+   * out of boundaries.
+   *
+   * Requires the `preventOverflow` modifier before it in order to work.
+   * @memberof modifiers
+   * @inner
+   */
+  hide: {
+    /** @prop {number} order=800 - Index used to define the order of execution */
+    order: 800,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: hide
+  },
+
+  /**
+   * Computes the style that will be applied to the popper element to gets
+   * properly positioned.
+   *
+   * Note that this modifier will not touch the DOM, it just prepares the styles
+   * so that `applyStyle` modifier can apply it. This separation is useful
+   * in case you need to replace `applyStyle` with a custom implementation.
+   *
+   * This modifier has `850` as `order` value to maintain backward compatibility
+   * with previous versions of Popper.js. Expect the modifiers ordering method
+   * to change in future major versions of the library.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  computeStyle: {
+    /** @prop {number} order=850 - Index used to define the order of execution */
+    order: 850,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: computeStyle,
+    /**
+     * @prop {Boolean} gpuAcceleration=true
+     * If true, it uses the CSS 3D transformation to position the popper.
+     * Otherwise, it will use the `top` and `left` properties
+     */
+    gpuAcceleration: true,
+    /**
+     * @prop {string} [x='bottom']
+     * Where to anchor the X axis (`bottom` or `top`). AKA X offset origin.
+     * Change this if your popper should grow in a direction different from `bottom`
+     */
+    x: 'bottom',
+    /**
+     * @prop {string} [x='left']
+     * Where to anchor the Y axis (`left` or `right`). AKA Y offset origin.
+     * Change this if your popper should grow in a direction different from `right`
+     */
+    y: 'right'
+  },
+
+  /**
+   * Applies the computed styles to the popper element.
+   *
+   * All the DOM manipulations are limited to this modifier. This is useful in case
+   * you want to integrate Popper.js inside a framework or view library and you
+   * want to delegate all the DOM manipulations to it.
+   *
+   * Note that if you disable this modifier, you must make sure the popper element
+   * has its position set to `absolute` before Popper.js can do its work!
+   *
+   * Just disable this modifier and define your own to achieve the desired effect.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  applyStyle: {
+    /** @prop {number} order=900 - Index used to define the order of execution */
+    order: 900,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: applyStyle,
+    /** @prop {Function} */
+    onLoad: applyStyleOnLoad,
+    /**
+     * @deprecated since version 1.10.0, the property moved to `computeStyle` modifier
+     * @prop {Boolean} gpuAcceleration=true
+     * If true, it uses the CSS 3D transformation to position the popper.
+     * Otherwise, it will use the `top` and `left` properties
+     */
+    gpuAcceleration: undefined
+  }
+};
+
+/**
+ * The `dataObject` is an object containing all the information used by Popper.js.
+ * This object is passed to modifiers and to the `onCreate` and `onUpdate` callbacks.
+ * @name dataObject
+ * @property {Object} data.instance The Popper.js instance
+ * @property {String} data.placement Placement applied to popper
+ * @property {String} data.originalPlacement Placement originally defined on init
+ * @property {Boolean} data.flipped True if popper has been flipped by flip modifier
+ * @property {Boolean} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper
+ * @property {HTMLElement} data.arrowElement Node used as arrow by arrow modifier
+ * @property {Object} data.styles Any CSS property defined here will be applied to the popper. It expects the JavaScript nomenclature (eg. `marginBottom`)
+ * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow. It expects the JavaScript nomenclature (eg. `marginBottom`)
+ * @property {Object} data.boundaries Offsets of the popper boundaries
+ * @property {Object} data.offsets The measurements of popper, reference and arrow elements
+ * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
+ * @property {Object} data.offsets.reference `top`, `left`, `width`, `height` values
+ * @property {Object} data.offsets.arrow] `top` and `left` offsets, only one of them will be different from 0
+ */
+
+/**
+ * Default options provided to Popper.js constructor.<br />
+ * These can be overridden using the `options` argument of Popper.js.<br />
+ * To override an option, simply pass an object with the same
+ * structure of the `options` object, as the 3rd argument. For example:
+ * ```
+ * new Popper(ref, pop, {
+ *   modifiers: {
+ *     preventOverflow: { enabled: false }
+ *   }
+ * })
+ * ```
+ * @type {Object}
+ * @static
+ * @memberof Popper
+ */
+var Defaults = {
+  /**
+   * Popper's placement.
+   * @prop {Popper.placements} placement='bottom'
+   */
+  placement: 'bottom',
+
+  /**
+   * Set this to true if you want popper to position it self in 'fixed' mode
+   * @prop {Boolean} positionFixed=false
+   */
+  positionFixed: false,
+
+  /**
+   * Whether events (resize, scroll) are initially enabled.
+   * @prop {Boolean} eventsEnabled=true
+   */
+  eventsEnabled: true,
+
+  /**
+   * Set to true if you want to automatically remove the popper when
+   * you call the `destroy` method.
+   * @prop {Boolean} removeOnDestroy=false
+   */
+  removeOnDestroy: false,
+
+  /**
+   * Callback called when the popper is created.<br />
+   * By default, it is set to no-op.<br />
+   * Access Popper.js instance with `data.instance`.
+   * @prop {onCreate}
+   */
+  onCreate: function onCreate() {},
+
+  /**
+   * Callback called when the popper is updated. This callback is not called
+   * on the initialization/creation of the popper, but only on subsequent
+   * updates.<br />
+   * By default, it is set to no-op.<br />
+   * Access Popper.js instance with `data.instance`.
+   * @prop {onUpdate}
+   */
+  onUpdate: function onUpdate() {},
+
+  /**
+   * List of modifiers used to modify the offsets before they are applied to the popper.
+   * They provide most of the functionalities of Popper.js.
+   * @prop {modifiers}
+   */
+  modifiers: modifiers
+};
+
+/**
+ * @callback onCreate
+ * @param {dataObject} data
+ */
+
+/**
+ * @callback onUpdate
+ * @param {dataObject} data
+ */
+
+// Utils
+// Methods
+var Popper = function () {
+  /**
+   * Creates a new Popper.js instance.
+   * @class Popper
+   * @param {Element|referenceObject} reference - The reference element used to position the popper
+   * @param {Element} popper - The HTML / XML element used as the popper
+   * @param {Object} options - Your custom options to override the ones defined in [Defaults](#defaults)
+   * @return {Object} instance - The generated Popper.js instance
+   */
+  function Popper(reference, popper) {
+    var _this = this;
+
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    classCallCheck(this, Popper);
+
+    this.scheduleUpdate = function () {
+      return requestAnimationFrame(_this.update);
+    };
+
+    // make update() debounced, so that it only runs at most once-per-tick
+    this.update = debounce(this.update.bind(this));
+
+    // with {} we create a new object with the options inside it
+    this.options = _extends({}, Popper.Defaults, options);
+
+    // init state
+    this.state = {
+      isDestroyed: false,
+      isCreated: false,
+      scrollParents: []
+    };
+
+    // get reference and popper elements (allow jQuery wrappers)
+    this.reference = reference && reference.jquery ? reference[0] : reference;
+    this.popper = popper && popper.jquery ? popper[0] : popper;
+
+    // Deep merge modifiers options
+    this.options.modifiers = {};
+    Object.keys(_extends({}, Popper.Defaults.modifiers, options.modifiers)).forEach(function (name) {
+      _this.options.modifiers[name] = _extends({}, Popper.Defaults.modifiers[name] || {}, options.modifiers ? options.modifiers[name] : {});
+    });
+
+    // Refactoring modifiers' list (Object => Array)
+    this.modifiers = Object.keys(this.options.modifiers).map(function (name) {
+      return _extends({
+        name: name
+      }, _this.options.modifiers[name]);
+    })
+    // sort the modifiers by order
+    .sort(function (a, b) {
+      return a.order - b.order;
+    });
+
+    // modifiers have the ability to execute arbitrary code when Popper.js get inited
+    // such code is executed in the same order of its modifier
+    // they could add new properties to their options configuration
+    // BE AWARE: don't add options to `options.modifiers.name` but to `modifierOptions`!
+    this.modifiers.forEach(function (modifierOptions) {
+      if (modifierOptions.enabled && isFunction(modifierOptions.onLoad)) {
+        modifierOptions.onLoad(_this.reference, _this.popper, _this.options, modifierOptions, _this.state);
+      }
+    });
+
+    // fire the first update to position the popper in the right place
+    this.update();
+
+    var eventsEnabled = this.options.eventsEnabled;
+    if (eventsEnabled) {
+      // setup event listeners, they will take care of update the position in specific situations
+      this.enableEventListeners();
+    }
+
+    this.state.eventsEnabled = eventsEnabled;
+  }
+
+  // We can't use class properties because they don't get listed in the
+  // class prototype and break stuff like Sinon stubs
+
+
+  createClass(Popper, [{
+    key: 'update',
+    value: function update$$1() {
+      return update.call(this);
+    }
+  }, {
+    key: 'destroy',
+    value: function destroy$$1() {
+      return destroy.call(this);
+    }
+  }, {
+    key: 'enableEventListeners',
+    value: function enableEventListeners$$1() {
+      return enableEventListeners.call(this);
+    }
+  }, {
+    key: 'disableEventListeners',
+    value: function disableEventListeners$$1() {
+      return disableEventListeners.call(this);
+    }
+
+    /**
+     * Schedules an update. It will run on the next UI update available.
+     * @method scheduleUpdate
+     * @memberof Popper
+     */
+
+
+    /**
+     * Collection of utilities useful when writing custom modifiers.
+     * Starting from version 1.7, this method is available only if you
+     * include `popper-utils.js` before `popper.js`.
+     *
+     * **DEPRECATION**: This way to access PopperUtils is deprecated
+     * and will be removed in v2! Use the PopperUtils module directly instead.
+     * Due to the high instability of the methods contained in Utils, we can't
+     * guarantee them to follow semver. Use them at your own risk!
+     * @static
+     * @private
+     * @type {Object}
+     * @deprecated since version 1.8
+     * @member Utils
+     * @memberof Popper
+     */
+
+  }]);
+  return Popper;
+}();
+
+/**
+ * The `referenceObject` is an object that provides an interface compatible with Popper.js
+ * and lets you use it as replacement of a real DOM node.<br />
+ * You can use this method to position a popper relatively to a set of coordinates
+ * in case you don't have a DOM node to use as reference.
+ *
+ * ```
+ * new Popper(referenceObject, popperNode);
+ * ```
+ *
+ * NB: This feature isn't supported in Internet Explorer 10.
+ * @name referenceObject
+ * @property {Function} data.getBoundingClientRect
+ * A function that returns a set of coordinates compatible with the native `getBoundingClientRect` method.
+ * @property {number} data.clientWidth
+ * An ES6 getter that will return the width of the virtual reference element.
+ * @property {number} data.clientHeight
+ * An ES6 getter that will return the height of the virtual reference element.
+ */
+
+
+Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
+Popper.placements = placements;
+Popper.Defaults = Defaults;
+
+/* harmony default export */ __webpack_exports__["default"] = (Popper);
+//# sourceMappingURL=popper.js.map
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -42657,1949 +45545,6 @@ VeeValidate$1.withValidation = withValidation;
 
 /***/ }),
 
-/***/ "./node_modules/vue-i18n/dist/vue-i18n.esm.js":
-/*!****************************************************!*\
-  !*** ./node_modules/vue-i18n/dist/vue-i18n.esm.js ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/*!
- * vue-i18n v8.14.0 
- * (c) 2019 kazuya kawaguchi
- * Released under the MIT License.
- */
-/*  */
-
-/**
- * constants
- */
-
-var numberFormatKeys = [
-  'style',
-  'currency',
-  'currencyDisplay',
-  'useGrouping',
-  'minimumIntegerDigits',
-  'minimumFractionDigits',
-  'maximumFractionDigits',
-  'minimumSignificantDigits',
-  'maximumSignificantDigits',
-  'localeMatcher',
-  'formatMatcher'
-];
-
-/**
- * utilities
- */
-
-function warn (msg, err) {
-  if (typeof console !== 'undefined') {
-    console.warn('[vue-i18n] ' + msg);
-    /* istanbul ignore if */
-    if (err) {
-      console.warn(err.stack);
-    }
-  }
-}
-
-function error (msg, err) {
-  if (typeof console !== 'undefined') {
-    console.error('[vue-i18n] ' + msg);
-    /* istanbul ignore if */
-    if (err) {
-      console.error(err.stack);
-    }
-  }
-}
-
-function isObject (obj) {
-  return obj !== null && typeof obj === 'object'
-}
-
-var toString = Object.prototype.toString;
-var OBJECT_STRING = '[object Object]';
-function isPlainObject (obj) {
-  return toString.call(obj) === OBJECT_STRING
-}
-
-function isNull (val) {
-  return val === null || val === undefined
-}
-
-function parseArgs () {
-  var args = [], len = arguments.length;
-  while ( len-- ) args[ len ] = arguments[ len ];
-
-  var locale = null;
-  var params = null;
-  if (args.length === 1) {
-    if (isObject(args[0]) || Array.isArray(args[0])) {
-      params = args[0];
-    } else if (typeof args[0] === 'string') {
-      locale = args[0];
-    }
-  } else if (args.length === 2) {
-    if (typeof args[0] === 'string') {
-      locale = args[0];
-    }
-    /* istanbul ignore if */
-    if (isObject(args[1]) || Array.isArray(args[1])) {
-      params = args[1];
-    }
-  }
-
-  return { locale: locale, params: params }
-}
-
-function looseClone (obj) {
-  return JSON.parse(JSON.stringify(obj))
-}
-
-function remove (arr, item) {
-  if (arr.length) {
-    var index = arr.indexOf(item);
-    if (index > -1) {
-      return arr.splice(index, 1)
-    }
-  }
-}
-
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-function hasOwn (obj, key) {
-  return hasOwnProperty.call(obj, key)
-}
-
-function merge (target) {
-  var arguments$1 = arguments;
-
-  var output = Object(target);
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments$1[i];
-    if (source !== undefined && source !== null) {
-      var key = (void 0);
-      for (key in source) {
-        if (hasOwn(source, key)) {
-          if (isObject(source[key])) {
-            output[key] = merge(output[key], source[key]);
-          } else {
-            output[key] = source[key];
-          }
-        }
-      }
-    }
-  }
-  return output
-}
-
-function looseEqual (a, b) {
-  if (a === b) { return true }
-  var isObjectA = isObject(a);
-  var isObjectB = isObject(b);
-  if (isObjectA && isObjectB) {
-    try {
-      var isArrayA = Array.isArray(a);
-      var isArrayB = Array.isArray(b);
-      if (isArrayA && isArrayB) {
-        return a.length === b.length && a.every(function (e, i) {
-          return looseEqual(e, b[i])
-        })
-      } else if (!isArrayA && !isArrayB) {
-        var keysA = Object.keys(a);
-        var keysB = Object.keys(b);
-        return keysA.length === keysB.length && keysA.every(function (key) {
-          return looseEqual(a[key], b[key])
-        })
-      } else {
-        /* istanbul ignore next */
-        return false
-      }
-    } catch (e) {
-      /* istanbul ignore next */
-      return false
-    }
-  } else if (!isObjectA && !isObjectB) {
-    return String(a) === String(b)
-  } else {
-    return false
-  }
-}
-
-/*  */
-
-function extend (Vue) {
-  if (!Vue.prototype.hasOwnProperty('$i18n')) {
-    // $FlowFixMe
-    Object.defineProperty(Vue.prototype, '$i18n', {
-      get: function get () { return this._i18n }
-    });
-  }
-
-  Vue.prototype.$t = function (key) {
-    var values = [], len = arguments.length - 1;
-    while ( len-- > 0 ) values[ len ] = arguments[ len + 1 ];
-
-    var i18n = this.$i18n;
-    return i18n._t.apply(i18n, [ key, i18n.locale, i18n._getMessages(), this ].concat( values ))
-  };
-
-  Vue.prototype.$tc = function (key, choice) {
-    var values = [], len = arguments.length - 2;
-    while ( len-- > 0 ) values[ len ] = arguments[ len + 2 ];
-
-    var i18n = this.$i18n;
-    return i18n._tc.apply(i18n, [ key, i18n.locale, i18n._getMessages(), this, choice ].concat( values ))
-  };
-
-  Vue.prototype.$te = function (key, locale) {
-    var i18n = this.$i18n;
-    return i18n._te(key, i18n.locale, i18n._getMessages(), locale)
-  };
-
-  Vue.prototype.$d = function (value) {
-    var ref;
-
-    var args = [], len = arguments.length - 1;
-    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
-    return (ref = this.$i18n).d.apply(ref, [ value ].concat( args ))
-  };
-
-  Vue.prototype.$n = function (value) {
-    var ref;
-
-    var args = [], len = arguments.length - 1;
-    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
-    return (ref = this.$i18n).n.apply(ref, [ value ].concat( args ))
-  };
-}
-
-/*  */
-
-var mixin = {
-  beforeCreate: function beforeCreate () {
-    var options = this.$options;
-    options.i18n = options.i18n || (options.__i18n ? {} : null);
-
-    if (options.i18n) {
-      if (options.i18n instanceof VueI18n) {
-        // init locale messages via custom blocks
-        if (options.__i18n) {
-          try {
-            var localeMessages = {};
-            options.__i18n.forEach(function (resource) {
-              localeMessages = merge(localeMessages, JSON.parse(resource));
-            });
-            Object.keys(localeMessages).forEach(function (locale) {
-              options.i18n.mergeLocaleMessage(locale, localeMessages[locale]);
-            });
-          } catch (e) {
-            if (true) {
-              warn("Cannot parse locale messages via custom blocks.", e);
-            }
-          }
-        }
-        this._i18n = options.i18n;
-        this._i18nWatcher = this._i18n.watchI18nData();
-      } else if (isPlainObject(options.i18n)) {
-        // component local i18n
-        if (this.$root && this.$root.$i18n && this.$root.$i18n instanceof VueI18n) {
-          options.i18n.root = this.$root;
-          options.i18n.formatter = this.$root.$i18n.formatter;
-          options.i18n.fallbackLocale = this.$root.$i18n.fallbackLocale;
-          options.i18n.formatFallbackMessages = this.$root.$i18n.formatFallbackMessages;
-          options.i18n.silentTranslationWarn = this.$root.$i18n.silentTranslationWarn;
-          options.i18n.silentFallbackWarn = this.$root.$i18n.silentFallbackWarn;
-          options.i18n.pluralizationRules = this.$root.$i18n.pluralizationRules;
-          options.i18n.preserveDirectiveContent = this.$root.$i18n.preserveDirectiveContent;
-        }
-
-        // init locale messages via custom blocks
-        if (options.__i18n) {
-          try {
-            var localeMessages$1 = {};
-            options.__i18n.forEach(function (resource) {
-              localeMessages$1 = merge(localeMessages$1, JSON.parse(resource));
-            });
-            options.i18n.messages = localeMessages$1;
-          } catch (e) {
-            if (true) {
-              warn("Cannot parse locale messages via custom blocks.", e);
-            }
-          }
-        }
-
-        var ref = options.i18n;
-        var sharedMessages = ref.sharedMessages;
-        if (sharedMessages && isPlainObject(sharedMessages)) {
-          options.i18n.messages = merge(options.i18n.messages, sharedMessages);
-        }
-
-        this._i18n = new VueI18n(options.i18n);
-        this._i18nWatcher = this._i18n.watchI18nData();
-
-        if (options.i18n.sync === undefined || !!options.i18n.sync) {
-          this._localeWatcher = this.$i18n.watchLocale();
-        }
-      } else {
-        if (true) {
-          warn("Cannot be interpreted 'i18n' option.");
-        }
-      }
-    } else if (this.$root && this.$root.$i18n && this.$root.$i18n instanceof VueI18n) {
-      // root i18n
-      this._i18n = this.$root.$i18n;
-    } else if (options.parent && options.parent.$i18n && options.parent.$i18n instanceof VueI18n) {
-      // parent i18n
-      this._i18n = options.parent.$i18n;
-    }
-  },
-
-  beforeMount: function beforeMount () {
-    var options = this.$options;
-    options.i18n = options.i18n || (options.__i18n ? {} : null);
-
-    if (options.i18n) {
-      if (options.i18n instanceof VueI18n) {
-        // init locale messages via custom blocks
-        this._i18n.subscribeDataChanging(this);
-        this._subscribing = true;
-      } else if (isPlainObject(options.i18n)) {
-        this._i18n.subscribeDataChanging(this);
-        this._subscribing = true;
-      } else {
-        if (true) {
-          warn("Cannot be interpreted 'i18n' option.");
-        }
-      }
-    } else if (this.$root && this.$root.$i18n && this.$root.$i18n instanceof VueI18n) {
-      this._i18n.subscribeDataChanging(this);
-      this._subscribing = true;
-    } else if (options.parent && options.parent.$i18n && options.parent.$i18n instanceof VueI18n) {
-      this._i18n.subscribeDataChanging(this);
-      this._subscribing = true;
-    }
-  },
-
-  beforeDestroy: function beforeDestroy () {
-    if (!this._i18n) { return }
-
-    var self = this;
-    this.$nextTick(function () {
-      if (self._subscribing) {
-        self._i18n.unsubscribeDataChanging(self);
-        delete self._subscribing;
-      }
-
-      if (self._i18nWatcher) {
-        self._i18nWatcher();
-        self._i18n.destroyVM();
-        delete self._i18nWatcher;
-      }
-
-      if (self._localeWatcher) {
-        self._localeWatcher();
-        delete self._localeWatcher;
-      }
-
-      self._i18n = null;
-    });
-  }
-};
-
-/*  */
-
-var interpolationComponent = {
-  name: 'i18n',
-  functional: true,
-  props: {
-    tag: {
-      type: String
-    },
-    path: {
-      type: String,
-      required: true
-    },
-    locale: {
-      type: String
-    },
-    places: {
-      type: [Array, Object]
-    }
-  },
-  render: function render (h, ref) {
-    var data = ref.data;
-    var parent = ref.parent;
-    var props = ref.props;
-    var slots = ref.slots;
-
-    var $i18n = parent.$i18n;
-    if (!$i18n) {
-      if (true) {
-        warn('Cannot find VueI18n instance!');
-      }
-      return
-    }
-
-    var path = props.path;
-    var locale = props.locale;
-    var places = props.places;
-    var params = slots();
-    var children = $i18n.i(
-      path,
-      locale,
-      onlyHasDefaultPlace(params) || places
-        ? useLegacyPlaces(params.default, places)
-        : params
-    );
-
-    var tag = props.tag || 'span';
-    return tag ? h(tag, data, children) : children
-  }
-};
-
-function onlyHasDefaultPlace (params) {
-  var prop;
-  for (prop in params) {
-    if (prop !== 'default') { return false }
-  }
-  return Boolean(prop)
-}
-
-function useLegacyPlaces (children, places) {
-  var params = places ? createParamsFromPlaces(places) : {};
-  if (!children) { return params }
-
-  var everyPlace = children.every(vnodeHasPlaceAttribute);
-  if ( true && everyPlace) {
-    warn('`place` attribute is deprecated in next major version. Please switch to Vue slots.');
-  }
-
-  return children.reduce(
-    everyPlace ? assignChildPlace : assignChildIndex,
-    params
-  )
-}
-
-function createParamsFromPlaces (places) {
-  if (true) {
-    warn('`places` prop is deprecated in next majaor version. Please switch to Vue slots.');
-  }
-
-  return Array.isArray(places)
-    ? places.reduce(assignChildIndex, {})
-    : Object.assign({}, places)
-}
-
-function assignChildPlace (params, child) {
-  if (child.data && child.data.attrs && child.data.attrs.place) {
-    params[child.data.attrs.place] = child;
-  }
-  return params
-}
-
-function assignChildIndex (params, child, index) {
-  params[index] = child;
-  return params
-}
-
-function vnodeHasPlaceAttribute (vnode) {
-  return Boolean(vnode.data && vnode.data.attrs && vnode.data.attrs.place)
-}
-
-/*  */
-
-var numberComponent = {
-  name: 'i18n-n',
-  functional: true,
-  props: {
-    tag: {
-      type: String,
-      default: 'span'
-    },
-    value: {
-      type: Number,
-      required: true
-    },
-    format: {
-      type: [String, Object]
-    },
-    locale: {
-      type: String
-    }
-  },
-  render: function render (h, ref) {
-    var props = ref.props;
-    var parent = ref.parent;
-    var data = ref.data;
-
-    var i18n = parent.$i18n;
-
-    if (!i18n) {
-      if (true) {
-        warn('Cannot find VueI18n instance!');
-      }
-      return null
-    }
-
-    var key = null;
-    var options = null;
-
-    if (typeof props.format === 'string') {
-      key = props.format;
-    } else if (isObject(props.format)) {
-      if (props.format.key) {
-        key = props.format.key;
-      }
-
-      // Filter out number format options only
-      options = Object.keys(props.format).reduce(function (acc, prop) {
-        var obj;
-
-        if (numberFormatKeys.includes(prop)) {
-          return Object.assign({}, acc, ( obj = {}, obj[prop] = props.format[prop], obj ))
-        }
-        return acc
-      }, null);
-    }
-
-    var locale = props.locale || i18n.locale;
-    var parts = i18n._ntp(props.value, locale, key, options);
-
-    var values = parts.map(function (part, index) {
-      var obj;
-
-      var slot = data.scopedSlots && data.scopedSlots[part.type];
-      return slot ? slot(( obj = {}, obj[part.type] = part.value, obj.index = index, obj.parts = parts, obj )) : part.value
-    });
-
-    return h(props.tag, {
-      attrs: data.attrs,
-      'class': data['class'],
-      staticClass: data.staticClass
-    }, values)
-  }
-};
-
-/*  */
-
-function bind (el, binding, vnode) {
-  if (!assert(el, vnode)) { return }
-
-  t(el, binding, vnode);
-}
-
-function update (el, binding, vnode, oldVNode) {
-  if (!assert(el, vnode)) { return }
-
-  var i18n = vnode.context.$i18n;
-  if (localeEqual(el, vnode) &&
-    (looseEqual(binding.value, binding.oldValue) &&
-     looseEqual(el._localeMessage, i18n.getLocaleMessage(i18n.locale)))) { return }
-
-  t(el, binding, vnode);
-}
-
-function unbind (el, binding, vnode, oldVNode) {
-  var vm = vnode.context;
-  if (!vm) {
-    warn('Vue instance does not exists in VNode context');
-    return
-  }
-
-  var i18n = vnode.context.$i18n || {};
-  if (!binding.modifiers.preserve && !i18n.preserveDirectiveContent) {
-    el.textContent = '';
-  }
-  el._vt = undefined;
-  delete el['_vt'];
-  el._locale = undefined;
-  delete el['_locale'];
-  el._localeMessage = undefined;
-  delete el['_localeMessage'];
-}
-
-function assert (el, vnode) {
-  var vm = vnode.context;
-  if (!vm) {
-    warn('Vue instance does not exists in VNode context');
-    return false
-  }
-
-  if (!vm.$i18n) {
-    warn('VueI18n instance does not exists in Vue instance');
-    return false
-  }
-
-  return true
-}
-
-function localeEqual (el, vnode) {
-  var vm = vnode.context;
-  return el._locale === vm.$i18n.locale
-}
-
-function t (el, binding, vnode) {
-  var ref$1, ref$2;
-
-  var value = binding.value;
-
-  var ref = parseValue(value);
-  var path = ref.path;
-  var locale = ref.locale;
-  var args = ref.args;
-  var choice = ref.choice;
-  if (!path && !locale && !args) {
-    warn('value type not supported');
-    return
-  }
-
-  if (!path) {
-    warn('`path` is required in v-t directive');
-    return
-  }
-
-  var vm = vnode.context;
-  if (choice) {
-    el._vt = el.textContent = (ref$1 = vm.$i18n).tc.apply(ref$1, [ path, choice ].concat( makeParams(locale, args) ));
-  } else {
-    el._vt = el.textContent = (ref$2 = vm.$i18n).t.apply(ref$2, [ path ].concat( makeParams(locale, args) ));
-  }
-  el._locale = vm.$i18n.locale;
-  el._localeMessage = vm.$i18n.getLocaleMessage(vm.$i18n.locale);
-}
-
-function parseValue (value) {
-  var path;
-  var locale;
-  var args;
-  var choice;
-
-  if (typeof value === 'string') {
-    path = value;
-  } else if (isPlainObject(value)) {
-    path = value.path;
-    locale = value.locale;
-    args = value.args;
-    choice = value.choice;
-  }
-
-  return { path: path, locale: locale, args: args, choice: choice }
-}
-
-function makeParams (locale, args) {
-  var params = [];
-
-  locale && params.push(locale);
-  if (args && (Array.isArray(args) || isPlainObject(args))) {
-    params.push(args);
-  }
-
-  return params
-}
-
-var Vue;
-
-function install (_Vue) {
-  /* istanbul ignore if */
-  if ( true && install.installed && _Vue === Vue) {
-    warn('already installed.');
-    return
-  }
-  install.installed = true;
-
-  Vue = _Vue;
-
-  var version = (Vue.version && Number(Vue.version.split('.')[0])) || -1;
-  /* istanbul ignore if */
-  if ( true && version < 2) {
-    warn(("vue-i18n (" + (install.version) + ") need to use Vue 2.0 or later (Vue: " + (Vue.version) + ")."));
-    return
-  }
-
-  extend(Vue);
-  Vue.mixin(mixin);
-  Vue.directive('t', { bind: bind, update: update, unbind: unbind });
-  Vue.component(interpolationComponent.name, interpolationComponent);
-  Vue.component(numberComponent.name, numberComponent);
-
-  // use simple mergeStrategies to prevent i18n instance lose '__proto__'
-  var strats = Vue.config.optionMergeStrategies;
-  strats.i18n = function (parentVal, childVal) {
-    return childVal === undefined
-      ? parentVal
-      : childVal
-  };
-}
-
-/*  */
-
-var BaseFormatter = function BaseFormatter () {
-  this._caches = Object.create(null);
-};
-
-BaseFormatter.prototype.interpolate = function interpolate (message, values) {
-  if (!values) {
-    return [message]
-  }
-  var tokens = this._caches[message];
-  if (!tokens) {
-    tokens = parse(message);
-    this._caches[message] = tokens;
-  }
-  return compile(tokens, values)
-};
-
-
-
-var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
-var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
-
-function parse (format) {
-  var tokens = [];
-  var position = 0;
-
-  var text = '';
-  while (position < format.length) {
-    var char = format[position++];
-    if (char === '{') {
-      if (text) {
-        tokens.push({ type: 'text', value: text });
-      }
-
-      text = '';
-      var sub = '';
-      char = format[position++];
-      while (char !== undefined && char !== '}') {
-        sub += char;
-        char = format[position++];
-      }
-      var isClosed = char === '}';
-
-      var type = RE_TOKEN_LIST_VALUE.test(sub)
-        ? 'list'
-        : isClosed && RE_TOKEN_NAMED_VALUE.test(sub)
-          ? 'named'
-          : 'unknown';
-      tokens.push({ value: sub, type: type });
-    } else if (char === '%') {
-      // when found rails i18n syntax, skip text capture
-      if (format[(position)] !== '{') {
-        text += char;
-      }
-    } else {
-      text += char;
-    }
-  }
-
-  text && tokens.push({ type: 'text', value: text });
-
-  return tokens
-}
-
-function compile (tokens, values) {
-  var compiled = [];
-  var index = 0;
-
-  var mode = Array.isArray(values)
-    ? 'list'
-    : isObject(values)
-      ? 'named'
-      : 'unknown';
-  if (mode === 'unknown') { return compiled }
-
-  while (index < tokens.length) {
-    var token = tokens[index];
-    switch (token.type) {
-      case 'text':
-        compiled.push(token.value);
-        break
-      case 'list':
-        compiled.push(values[parseInt(token.value, 10)]);
-        break
-      case 'named':
-        if (mode === 'named') {
-          compiled.push((values)[token.value]);
-        } else {
-          if (true) {
-            warn(("Type of token '" + (token.type) + "' and format of value '" + mode + "' don't match!"));
-          }
-        }
-        break
-      case 'unknown':
-        if (true) {
-          warn("Detect 'unknown' type of token!");
-        }
-        break
-    }
-    index++;
-  }
-
-  return compiled
-}
-
-/*  */
-
-/**
- *  Path parser
- *  - Inspired:
- *    Vue.js Path parser
- */
-
-// actions
-var APPEND = 0;
-var PUSH = 1;
-var INC_SUB_PATH_DEPTH = 2;
-var PUSH_SUB_PATH = 3;
-
-// states
-var BEFORE_PATH = 0;
-var IN_PATH = 1;
-var BEFORE_IDENT = 2;
-var IN_IDENT = 3;
-var IN_SUB_PATH = 4;
-var IN_SINGLE_QUOTE = 5;
-var IN_DOUBLE_QUOTE = 6;
-var AFTER_PATH = 7;
-var ERROR = 8;
-
-var pathStateMachine = [];
-
-pathStateMachine[BEFORE_PATH] = {
-  'ws': [BEFORE_PATH],
-  'ident': [IN_IDENT, APPEND],
-  '[': [IN_SUB_PATH],
-  'eof': [AFTER_PATH]
-};
-
-pathStateMachine[IN_PATH] = {
-  'ws': [IN_PATH],
-  '.': [BEFORE_IDENT],
-  '[': [IN_SUB_PATH],
-  'eof': [AFTER_PATH]
-};
-
-pathStateMachine[BEFORE_IDENT] = {
-  'ws': [BEFORE_IDENT],
-  'ident': [IN_IDENT, APPEND],
-  '0': [IN_IDENT, APPEND],
-  'number': [IN_IDENT, APPEND]
-};
-
-pathStateMachine[IN_IDENT] = {
-  'ident': [IN_IDENT, APPEND],
-  '0': [IN_IDENT, APPEND],
-  'number': [IN_IDENT, APPEND],
-  'ws': [IN_PATH, PUSH],
-  '.': [BEFORE_IDENT, PUSH],
-  '[': [IN_SUB_PATH, PUSH],
-  'eof': [AFTER_PATH, PUSH]
-};
-
-pathStateMachine[IN_SUB_PATH] = {
-  "'": [IN_SINGLE_QUOTE, APPEND],
-  '"': [IN_DOUBLE_QUOTE, APPEND],
-  '[': [IN_SUB_PATH, INC_SUB_PATH_DEPTH],
-  ']': [IN_PATH, PUSH_SUB_PATH],
-  'eof': ERROR,
-  'else': [IN_SUB_PATH, APPEND]
-};
-
-pathStateMachine[IN_SINGLE_QUOTE] = {
-  "'": [IN_SUB_PATH, APPEND],
-  'eof': ERROR,
-  'else': [IN_SINGLE_QUOTE, APPEND]
-};
-
-pathStateMachine[IN_DOUBLE_QUOTE] = {
-  '"': [IN_SUB_PATH, APPEND],
-  'eof': ERROR,
-  'else': [IN_DOUBLE_QUOTE, APPEND]
-};
-
-/**
- * Check if an expression is a literal value.
- */
-
-var literalValueRE = /^\s?(?:true|false|-?[\d.]+|'[^']*'|"[^"]*")\s?$/;
-function isLiteral (exp) {
-  return literalValueRE.test(exp)
-}
-
-/**
- * Strip quotes from a string
- */
-
-function stripQuotes (str) {
-  var a = str.charCodeAt(0);
-  var b = str.charCodeAt(str.length - 1);
-  return a === b && (a === 0x22 || a === 0x27)
-    ? str.slice(1, -1)
-    : str
-}
-
-/**
- * Determine the type of a character in a keypath.
- */
-
-function getPathCharType (ch) {
-  if (ch === undefined || ch === null) { return 'eof' }
-
-  var code = ch.charCodeAt(0);
-
-  switch (code) {
-    case 0x5B: // [
-    case 0x5D: // ]
-    case 0x2E: // .
-    case 0x22: // "
-    case 0x27: // '
-      return ch
-
-    case 0x5F: // _
-    case 0x24: // $
-    case 0x2D: // -
-      return 'ident'
-
-    case 0x09: // Tab
-    case 0x0A: // Newline
-    case 0x0D: // Return
-    case 0xA0:  // No-break space
-    case 0xFEFF:  // Byte Order Mark
-    case 0x2028:  // Line Separator
-    case 0x2029:  // Paragraph Separator
-      return 'ws'
-  }
-
-  return 'ident'
-}
-
-/**
- * Format a subPath, return its plain form if it is
- * a literal string or number. Otherwise prepend the
- * dynamic indicator (*).
- */
-
-function formatSubPath (path) {
-  var trimmed = path.trim();
-  // invalid leading 0
-  if (path.charAt(0) === '0' && isNaN(path)) { return false }
-
-  return isLiteral(trimmed) ? stripQuotes(trimmed) : '*' + trimmed
-}
-
-/**
- * Parse a string path into an array of segments
- */
-
-function parse$1 (path) {
-  var keys = [];
-  var index = -1;
-  var mode = BEFORE_PATH;
-  var subPathDepth = 0;
-  var c;
-  var key;
-  var newChar;
-  var type;
-  var transition;
-  var action;
-  var typeMap;
-  var actions = [];
-
-  actions[PUSH] = function () {
-    if (key !== undefined) {
-      keys.push(key);
-      key = undefined;
-    }
-  };
-
-  actions[APPEND] = function () {
-    if (key === undefined) {
-      key = newChar;
-    } else {
-      key += newChar;
-    }
-  };
-
-  actions[INC_SUB_PATH_DEPTH] = function () {
-    actions[APPEND]();
-    subPathDepth++;
-  };
-
-  actions[PUSH_SUB_PATH] = function () {
-    if (subPathDepth > 0) {
-      subPathDepth--;
-      mode = IN_SUB_PATH;
-      actions[APPEND]();
-    } else {
-      subPathDepth = 0;
-      key = formatSubPath(key);
-      if (key === false) {
-        return false
-      } else {
-        actions[PUSH]();
-      }
-    }
-  };
-
-  function maybeUnescapeQuote () {
-    var nextChar = path[index + 1];
-    if ((mode === IN_SINGLE_QUOTE && nextChar === "'") ||
-      (mode === IN_DOUBLE_QUOTE && nextChar === '"')) {
-      index++;
-      newChar = '\\' + nextChar;
-      actions[APPEND]();
-      return true
-    }
-  }
-
-  while (mode !== null) {
-    index++;
-    c = path[index];
-
-    if (c === '\\' && maybeUnescapeQuote()) {
-      continue
-    }
-
-    type = getPathCharType(c);
-    typeMap = pathStateMachine[mode];
-    transition = typeMap[type] || typeMap['else'] || ERROR;
-
-    if (transition === ERROR) {
-      return // parse error
-    }
-
-    mode = transition[0];
-    action = actions[transition[1]];
-    if (action) {
-      newChar = transition[2];
-      newChar = newChar === undefined
-        ? c
-        : newChar;
-      if (action() === false) {
-        return
-      }
-    }
-
-    if (mode === AFTER_PATH) {
-      return keys
-    }
-  }
-}
-
-
-
-
-
-var I18nPath = function I18nPath () {
-  this._cache = Object.create(null);
-};
-
-/**
- * External parse that check for a cache hit first
- */
-I18nPath.prototype.parsePath = function parsePath (path) {
-  var hit = this._cache[path];
-  if (!hit) {
-    hit = parse$1(path);
-    if (hit) {
-      this._cache[path] = hit;
-    }
-  }
-  return hit || []
-};
-
-/**
- * Get path value from path string
- */
-I18nPath.prototype.getPathValue = function getPathValue (obj, path) {
-  if (!isObject(obj)) { return null }
-
-  var paths = this.parsePath(path);
-  if (paths.length === 0) {
-    return null
-  } else {
-    var length = paths.length;
-    var last = obj;
-    var i = 0;
-    while (i < length) {
-      var value = last[paths[i]];
-      if (value === undefined) {
-        return null
-      }
-      last = value;
-      i++;
-    }
-
-    return last
-  }
-};
-
-/*  */
-
-
-
-var htmlTagMatcher = /<\/?[\w\s="/.':;#-\/]+>/;
-var linkKeyMatcher = /(?:@(?:\.[a-z]+)?:(?:[\w\-_|.]+|\([\w\-_|.]+\)))/g;
-var linkKeyPrefixMatcher = /^@(?:\.([a-z]+))?:/;
-var bracketsMatcher = /[()]/g;
-var formatters = {
-  'upper': function (str) { return str.toLocaleUpperCase(); },
-  'lower': function (str) { return str.toLocaleLowerCase(); }
-};
-
-var defaultFormatter = new BaseFormatter();
-
-var VueI18n = function VueI18n (options) {
-  var this$1 = this;
-  if ( options === void 0 ) options = {};
-
-  // Auto install if it is not done yet and `window` has `Vue`.
-  // To allow users to avoid auto-installation in some cases,
-  // this code should be placed here. See #290
-  /* istanbul ignore if */
-  if (!Vue && typeof window !== 'undefined' && window.Vue) {
-    install(window.Vue);
-  }
-
-  var locale = options.locale || 'en-US';
-  var fallbackLocale = options.fallbackLocale || 'en-US';
-  var messages = options.messages || {};
-  var dateTimeFormats = options.dateTimeFormats || {};
-  var numberFormats = options.numberFormats || {};
-
-  this._vm = null;
-  this._formatter = options.formatter || defaultFormatter;
-  this._missing = options.missing || null;
-  this._root = options.root || null;
-  this._sync = options.sync === undefined ? true : !!options.sync;
-  this._fallbackRoot = options.fallbackRoot === undefined
-    ? true
-    : !!options.fallbackRoot;
-  this._formatFallbackMessages = options.formatFallbackMessages === undefined
-    ? false
-    : !!options.formatFallbackMessages;
-  this._silentTranslationWarn = options.silentTranslationWarn === undefined
-    ? false
-    : options.silentTranslationWarn;
-  this._silentFallbackWarn = options.silentFallbackWarn === undefined
-    ? false
-    : !!options.silentFallbackWarn;
-  this._dateTimeFormatters = {};
-  this._numberFormatters = {};
-  this._path = new I18nPath();
-  this._dataListeners = [];
-  this._preserveDirectiveContent = options.preserveDirectiveContent === undefined
-    ? false
-    : !!options.preserveDirectiveContent;
-  this.pluralizationRules = options.pluralizationRules || {};
-  this._warnHtmlInMessage = options.warnHtmlInMessage || 'off';
-
-  this._exist = function (message, key) {
-    if (!message || !key) { return false }
-    if (!isNull(this$1._path.getPathValue(message, key))) { return true }
-    // fallback for flat key
-    if (message[key]) { return true }
-    return false
-  };
-
-  if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
-    Object.keys(messages).forEach(function (locale) {
-      this$1._checkLocaleMessage(locale, this$1._warnHtmlInMessage, messages[locale]);
-    });
-  }
-
-  this._initVM({
-    locale: locale,
-    fallbackLocale: fallbackLocale,
-    messages: messages,
-    dateTimeFormats: dateTimeFormats,
-    numberFormats: numberFormats
-  });
-};
-
-var prototypeAccessors = { vm: { configurable: true },messages: { configurable: true },dateTimeFormats: { configurable: true },numberFormats: { configurable: true },availableLocales: { configurable: true },locale: { configurable: true },fallbackLocale: { configurable: true },formatFallbackMessages: { configurable: true },missing: { configurable: true },formatter: { configurable: true },silentTranslationWarn: { configurable: true },silentFallbackWarn: { configurable: true },preserveDirectiveContent: { configurable: true },warnHtmlInMessage: { configurable: true } };
-
-VueI18n.prototype._checkLocaleMessage = function _checkLocaleMessage (locale, level, message) {
-  var paths = [];
-
-  var fn = function (level, locale, message, paths) {
-    if (isPlainObject(message)) {
-      Object.keys(message).forEach(function (key) {
-        var val = message[key];
-        if (isPlainObject(val)) {
-          paths.push(key);
-          paths.push('.');
-          fn(level, locale, val, paths);
-          paths.pop();
-          paths.pop();
-        } else {
-          paths.push(key);
-          fn(level, locale, val, paths);
-          paths.pop();
-        }
-      });
-    } else if (Array.isArray(message)) {
-      message.forEach(function (item, index) {
-        if (isPlainObject(item)) {
-          paths.push(("[" + index + "]"));
-          paths.push('.');
-          fn(level, locale, item, paths);
-          paths.pop();
-          paths.pop();
-        } else {
-          paths.push(("[" + index + "]"));
-          fn(level, locale, item, paths);
-          paths.pop();
-        }
-      });
-    } else if (typeof message === 'string') {
-      var ret = htmlTagMatcher.test(message);
-      if (ret) {
-        var msg = "Detected HTML in message '" + message + "' of keypath '" + (paths.join('')) + "' at '" + locale + "'. Consider component interpolation with '<i18n>' to avoid XSS. See https://bit.ly/2ZqJzkp";
-        if (level === 'warn') {
-          warn(msg);
-        } else if (level === 'error') {
-          error(msg);
-        }
-      }
-    }
-  };
-
-  fn(level, locale, message, paths);
-};
-
-VueI18n.prototype._initVM = function _initVM (data) {
-  var silent = Vue.config.silent;
-  Vue.config.silent = true;
-  this._vm = new Vue({ data: data });
-  Vue.config.silent = silent;
-};
-
-VueI18n.prototype.destroyVM = function destroyVM () {
-  this._vm.$destroy();
-};
-
-VueI18n.prototype.subscribeDataChanging = function subscribeDataChanging (vm) {
-  this._dataListeners.push(vm);
-};
-
-VueI18n.prototype.unsubscribeDataChanging = function unsubscribeDataChanging (vm) {
-  remove(this._dataListeners, vm);
-};
-
-VueI18n.prototype.watchI18nData = function watchI18nData () {
-  var self = this;
-  return this._vm.$watch('$data', function () {
-    var i = self._dataListeners.length;
-    while (i--) {
-      Vue.nextTick(function () {
-        self._dataListeners[i] && self._dataListeners[i].$forceUpdate();
-      });
-    }
-  }, { deep: true })
-};
-
-VueI18n.prototype.watchLocale = function watchLocale () {
-  /* istanbul ignore if */
-  if (!this._sync || !this._root) { return null }
-  var target = this._vm;
-  return this._root.$i18n.vm.$watch('locale', function (val) {
-    target.$set(target, 'locale', val);
-    target.$forceUpdate();
-  }, { immediate: true })
-};
-
-prototypeAccessors.vm.get = function () { return this._vm };
-
-prototypeAccessors.messages.get = function () { return looseClone(this._getMessages()) };
-prototypeAccessors.dateTimeFormats.get = function () { return looseClone(this._getDateTimeFormats()) };
-prototypeAccessors.numberFormats.get = function () { return looseClone(this._getNumberFormats()) };
-prototypeAccessors.availableLocales.get = function () { return Object.keys(this.messages).sort() };
-
-prototypeAccessors.locale.get = function () { return this._vm.locale };
-prototypeAccessors.locale.set = function (locale) {
-  this._vm.$set(this._vm, 'locale', locale);
-};
-
-prototypeAccessors.fallbackLocale.get = function () { return this._vm.fallbackLocale };
-prototypeAccessors.fallbackLocale.set = function (locale) {
-  this._vm.$set(this._vm, 'fallbackLocale', locale);
-};
-
-prototypeAccessors.formatFallbackMessages.get = function () { return this._formatFallbackMessages };
-prototypeAccessors.formatFallbackMessages.set = function (fallback) { this._formatFallbackMessages = fallback; };
-
-prototypeAccessors.missing.get = function () { return this._missing };
-prototypeAccessors.missing.set = function (handler) { this._missing = handler; };
-
-prototypeAccessors.formatter.get = function () { return this._formatter };
-prototypeAccessors.formatter.set = function (formatter) { this._formatter = formatter; };
-
-prototypeAccessors.silentTranslationWarn.get = function () { return this._silentTranslationWarn };
-prototypeAccessors.silentTranslationWarn.set = function (silent) { this._silentTranslationWarn = silent; };
-
-prototypeAccessors.silentFallbackWarn.get = function () { return this._silentFallbackWarn };
-prototypeAccessors.silentFallbackWarn.set = function (silent) { this._silentFallbackWarn = silent; };
-
-prototypeAccessors.preserveDirectiveContent.get = function () { return this._preserveDirectiveContent };
-prototypeAccessors.preserveDirectiveContent.set = function (preserve) { this._preserveDirectiveContent = preserve; };
-
-prototypeAccessors.warnHtmlInMessage.get = function () { return this._warnHtmlInMessage };
-prototypeAccessors.warnHtmlInMessage.set = function (level) {
-    var this$1 = this;
-
-  var orgLevel = this._warnHtmlInMessage;
-  this._warnHtmlInMessage = level;
-  if (orgLevel !== level && (level === 'warn' || level === 'error')) {
-    var messages = this._getMessages();
-    Object.keys(messages).forEach(function (locale) {
-      this$1._checkLocaleMessage(locale, this$1._warnHtmlInMessage, messages[locale]);
-    });
-  }
-};
-
-VueI18n.prototype._getMessages = function _getMessages () { return this._vm.messages };
-VueI18n.prototype._getDateTimeFormats = function _getDateTimeFormats () { return this._vm.dateTimeFormats };
-VueI18n.prototype._getNumberFormats = function _getNumberFormats () { return this._vm.numberFormats };
-
-VueI18n.prototype._warnDefault = function _warnDefault (locale, key, result, vm, values) {
-  if (!isNull(result)) { return result }
-  if (this._missing) {
-    var missingRet = this._missing.apply(null, [locale, key, vm, values]);
-    if (typeof missingRet === 'string') {
-      return missingRet
-    }
-  } else {
-    if ( true && !this._isSilentTranslationWarn(key)) {
-      warn(
-        "Cannot translate the value of keypath '" + key + "'. " +
-        'Use the value of keypath as default.'
-      );
-    }
-  }
-
-  if (this._formatFallbackMessages) {
-    var parsedArgs = parseArgs.apply(void 0, values);
-    return this._render(key, 'string', parsedArgs.params, key)
-  } else {
-    return key
-  }
-};
-
-VueI18n.prototype._isFallbackRoot = function _isFallbackRoot (val) {
-  return !val && !isNull(this._root) && this._fallbackRoot
-};
-
-VueI18n.prototype._isSilentFallbackWarn = function _isSilentFallbackWarn (key) {
-  return this._silentFallbackWarn instanceof RegExp
-    ? this._silentFallbackWarn.test(key)
-    : this._silentFallbackWarn
-};
-
-VueI18n.prototype._isSilentFallback = function _isSilentFallback (locale, key) {
-  return this._isSilentFallbackWarn(key) && (this._isFallbackRoot() || locale !== this.fallbackLocale)
-};
-
-VueI18n.prototype._isSilentTranslationWarn = function _isSilentTranslationWarn (key) {
-  return this._silentTranslationWarn instanceof RegExp
-    ? this._silentTranslationWarn.test(key)
-    : this._silentTranslationWarn
-};
-
-VueI18n.prototype._interpolate = function _interpolate (
-  locale,
-  message,
-  key,
-  host,
-  interpolateMode,
-  values,
-  visitedLinkStack
-) {
-  if (!message) { return null }
-
-  var pathRet = this._path.getPathValue(message, key);
-  if (Array.isArray(pathRet) || isPlainObject(pathRet)) { return pathRet }
-
-  var ret;
-  if (isNull(pathRet)) {
-    /* istanbul ignore else */
-    if (isPlainObject(message)) {
-      ret = message[key];
-      if (typeof ret !== 'string') {
-        if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallback(locale, key)) {
-          warn(("Value of key '" + key + "' is not a string!"));
-        }
-        return null
-      }
-    } else {
-      return null
-    }
-  } else {
-    /* istanbul ignore else */
-    if (typeof pathRet === 'string') {
-      ret = pathRet;
-    } else {
-      if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallback(locale, key)) {
-        warn(("Value of key '" + key + "' is not a string!"));
-      }
-      return null
-    }
-  }
-
-  // Check for the existence of links within the translated string
-  if (ret.indexOf('@:') >= 0 || ret.indexOf('@.') >= 0) {
-    ret = this._link(locale, message, ret, host, 'raw', values, visitedLinkStack);
-  }
-
-  return this._render(ret, interpolateMode, values, key)
-};
-
-VueI18n.prototype._link = function _link (
-  locale,
-  message,
-  str,
-  host,
-  interpolateMode,
-  values,
-  visitedLinkStack
-) {
-  var ret = str;
-
-  // Match all the links within the local
-  // We are going to replace each of
-  // them with its translation
-  var matches = ret.match(linkKeyMatcher);
-  for (var idx in matches) {
-    // ie compatible: filter custom array
-    // prototype method
-    if (!matches.hasOwnProperty(idx)) {
-      continue
-    }
-    var link = matches[idx];
-    var linkKeyPrefixMatches = link.match(linkKeyPrefixMatcher);
-    var linkPrefix = linkKeyPrefixMatches[0];
-      var formatterName = linkKeyPrefixMatches[1];
-
-    // Remove the leading @:, @.case: and the brackets
-    var linkPlaceholder = link.replace(linkPrefix, '').replace(bracketsMatcher, '');
-
-    if (visitedLinkStack.includes(linkPlaceholder)) {
-      if (true) {
-        warn(("Circular reference found. \"" + link + "\" is already visited in the chain of " + (visitedLinkStack.reverse().join(' <- '))));
-      }
-      return ret
-    }
-    visitedLinkStack.push(linkPlaceholder);
-
-    // Translate the link
-    var translated = this._interpolate(
-      locale, message, linkPlaceholder, host,
-      interpolateMode === 'raw' ? 'string' : interpolateMode,
-      interpolateMode === 'raw' ? undefined : values,
-      visitedLinkStack
-    );
-
-    if (this._isFallbackRoot(translated)) {
-      if ( true && !this._isSilentTranslationWarn(linkPlaceholder)) {
-        warn(("Fall back to translate the link placeholder '" + linkPlaceholder + "' with root locale."));
-      }
-      /* istanbul ignore if */
-      if (!this._root) { throw Error('unexpected error') }
-      var root = this._root.$i18n;
-      translated = root._translate(
-        root._getMessages(), root.locale, root.fallbackLocale,
-        linkPlaceholder, host, interpolateMode, values
-      );
-    }
-    translated = this._warnDefault(
-      locale, linkPlaceholder, translated, host,
-      Array.isArray(values) ? values : [values]
-    );
-    if (formatters.hasOwnProperty(formatterName)) {
-      translated = formatters[formatterName](translated);
-    }
-
-    visitedLinkStack.pop();
-
-    // Replace the link with the translated
-    ret = !translated ? ret : ret.replace(link, translated);
-  }
-
-  return ret
-};
-
-VueI18n.prototype._render = function _render (message, interpolateMode, values, path) {
-  var ret = this._formatter.interpolate(message, values, path);
-
-  // If the custom formatter refuses to work - apply the default one
-  if (!ret) {
-    ret = defaultFormatter.interpolate(message, values, path);
-  }
-
-  // if interpolateMode is **not** 'string' ('row'),
-  // return the compiled data (e.g. ['foo', VNode, 'bar']) with formatter
-  return interpolateMode === 'string' ? ret.join('') : ret
-};
-
-VueI18n.prototype._translate = function _translate (
-  messages,
-  locale,
-  fallback,
-  key,
-  host,
-  interpolateMode,
-  args
-) {
-  var res =
-    this._interpolate(locale, messages[locale], key, host, interpolateMode, args, [key]);
-  if (!isNull(res)) { return res }
-
-  res = this._interpolate(fallback, messages[fallback], key, host, interpolateMode, args, [key]);
-  if (!isNull(res)) {
-    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
-      warn(("Fall back to translate the keypath '" + key + "' with '" + fallback + "' locale."));
-    }
-    return res
-  } else {
-    return null
-  }
-};
-
-VueI18n.prototype._t = function _t (key, _locale, messages, host) {
-    var ref;
-
-    var values = [], len = arguments.length - 4;
-    while ( len-- > 0 ) values[ len ] = arguments[ len + 4 ];
-  if (!key) { return '' }
-
-  var parsedArgs = parseArgs.apply(void 0, values);
-  var locale = parsedArgs.locale || _locale;
-
-  var ret = this._translate(
-    messages, locale, this.fallbackLocale, key,
-    host, 'string', parsedArgs.params
-  );
-  if (this._isFallbackRoot(ret)) {
-    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
-      warn(("Fall back to translate the keypath '" + key + "' with root locale."));
-    }
-    /* istanbul ignore if */
-    if (!this._root) { throw Error('unexpected error') }
-    return (ref = this._root).$t.apply(ref, [ key ].concat( values ))
-  } else {
-    return this._warnDefault(locale, key, ret, host, values)
-  }
-};
-
-VueI18n.prototype.t = function t (key) {
-    var ref;
-
-    var values = [], len = arguments.length - 1;
-    while ( len-- > 0 ) values[ len ] = arguments[ len + 1 ];
-  return (ref = this)._t.apply(ref, [ key, this.locale, this._getMessages(), null ].concat( values ))
-};
-
-VueI18n.prototype._i = function _i (key, locale, messages, host, values) {
-  var ret =
-    this._translate(messages, locale, this.fallbackLocale, key, host, 'raw', values);
-  if (this._isFallbackRoot(ret)) {
-    if ( true && !this._isSilentTranslationWarn(key)) {
-      warn(("Fall back to interpolate the keypath '" + key + "' with root locale."));
-    }
-    if (!this._root) { throw Error('unexpected error') }
-    return this._root.$i18n.i(key, locale, values)
-  } else {
-    return this._warnDefault(locale, key, ret, host, [values])
-  }
-};
-
-VueI18n.prototype.i = function i (key, locale, values) {
-  /* istanbul ignore if */
-  if (!key) { return '' }
-
-  if (typeof locale !== 'string') {
-    locale = this.locale;
-  }
-
-  return this._i(key, locale, this._getMessages(), null, values)
-};
-
-VueI18n.prototype._tc = function _tc (
-  key,
-  _locale,
-  messages,
-  host,
-  choice
-) {
-    var ref;
-
-    var values = [], len = arguments.length - 5;
-    while ( len-- > 0 ) values[ len ] = arguments[ len + 5 ];
-  if (!key) { return '' }
-  if (choice === undefined) {
-    choice = 1;
-  }
-
-  var predefined = { 'count': choice, 'n': choice };
-  var parsedArgs = parseArgs.apply(void 0, values);
-  parsedArgs.params = Object.assign(predefined, parsedArgs.params);
-  values = parsedArgs.locale === null ? [parsedArgs.params] : [parsedArgs.locale, parsedArgs.params];
-  return this.fetchChoice((ref = this)._t.apply(ref, [ key, _locale, messages, host ].concat( values )), choice)
-};
-
-VueI18n.prototype.fetchChoice = function fetchChoice (message, choice) {
-  /* istanbul ignore if */
-  if (!message && typeof message !== 'string') { return null }
-  var choices = message.split('|');
-
-  choice = this.getChoiceIndex(choice, choices.length);
-  if (!choices[choice]) { return message }
-  return choices[choice].trim()
-};
-
-/**
- * @param choice {number} a choice index given by the input to $tc: `$tc('path.to.rule', choiceIndex)`
- * @param choicesLength {number} an overall amount of available choices
- * @returns a final choice index
-*/
-VueI18n.prototype.getChoiceIndex = function getChoiceIndex (choice, choicesLength) {
-  // Default (old) getChoiceIndex implementation - english-compatible
-  var defaultImpl = function (_choice, _choicesLength) {
-    _choice = Math.abs(_choice);
-
-    if (_choicesLength === 2) {
-      return _choice
-        ? _choice > 1
-          ? 1
-          : 0
-        : 1
-    }
-
-    return _choice ? Math.min(_choice, 2) : 0
-  };
-
-  if (this.locale in this.pluralizationRules) {
-    return this.pluralizationRules[this.locale].apply(this, [choice, choicesLength])
-  } else {
-    return defaultImpl(choice, choicesLength)
-  }
-};
-
-VueI18n.prototype.tc = function tc (key, choice) {
-    var ref;
-
-    var values = [], len = arguments.length - 2;
-    while ( len-- > 0 ) values[ len ] = arguments[ len + 2 ];
-  return (ref = this)._tc.apply(ref, [ key, this.locale, this._getMessages(), null, choice ].concat( values ))
-};
-
-VueI18n.prototype._te = function _te (key, locale, messages) {
-    var args = [], len = arguments.length - 3;
-    while ( len-- > 0 ) args[ len ] = arguments[ len + 3 ];
-
-  var _locale = parseArgs.apply(void 0, args).locale || locale;
-  return this._exist(messages[_locale], key)
-};
-
-VueI18n.prototype.te = function te (key, locale) {
-  return this._te(key, this.locale, this._getMessages(), locale)
-};
-
-VueI18n.prototype.getLocaleMessage = function getLocaleMessage (locale) {
-  return looseClone(this._vm.messages[locale] || {})
-};
-
-VueI18n.prototype.setLocaleMessage = function setLocaleMessage (locale, message) {
-  if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
-    this._checkLocaleMessage(locale, this._warnHtmlInMessage, message);
-    if (this._warnHtmlInMessage === 'error') { return }
-  }
-  this._vm.$set(this._vm.messages, locale, message);
-};
-
-VueI18n.prototype.mergeLocaleMessage = function mergeLocaleMessage (locale, message) {
-  if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
-    this._checkLocaleMessage(locale, this._warnHtmlInMessage, message);
-    if (this._warnHtmlInMessage === 'error') { return }
-  }
-  this._vm.$set(this._vm.messages, locale, merge(this._vm.messages[locale] || {}, message));
-};
-
-VueI18n.prototype.getDateTimeFormat = function getDateTimeFormat (locale) {
-  return looseClone(this._vm.dateTimeFormats[locale] || {})
-};
-
-VueI18n.prototype.setDateTimeFormat = function setDateTimeFormat (locale, format) {
-  this._vm.$set(this._vm.dateTimeFormats, locale, format);
-};
-
-VueI18n.prototype.mergeDateTimeFormat = function mergeDateTimeFormat (locale, format) {
-  this._vm.$set(this._vm.dateTimeFormats, locale, merge(this._vm.dateTimeFormats[locale] || {}, format));
-};
-
-VueI18n.prototype._localizeDateTime = function _localizeDateTime (
-  value,
-  locale,
-  fallback,
-  dateTimeFormats,
-  key
-) {
-  var _locale = locale;
-  var formats = dateTimeFormats[_locale];
-
-  // fallback locale
-  if (isNull(formats) || isNull(formats[key])) {
-    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
-      warn(("Fall back to '" + fallback + "' datetime formats from '" + locale + "' datetime formats."));
-    }
-    _locale = fallback;
-    formats = dateTimeFormats[_locale];
-  }
-
-  if (isNull(formats) || isNull(formats[key])) {
-    return null
-  } else {
-    var format = formats[key];
-    var id = _locale + "__" + key;
-    var formatter = this._dateTimeFormatters[id];
-    if (!formatter) {
-      formatter = this._dateTimeFormatters[id] = new Intl.DateTimeFormat(_locale, format);
-    }
-    return formatter.format(value)
-  }
-};
-
-VueI18n.prototype._d = function _d (value, locale, key) {
-  /* istanbul ignore if */
-  if ( true && !VueI18n.availabilities.dateTimeFormat) {
-    warn('Cannot format a Date value due to not supported Intl.DateTimeFormat.');
-    return ''
-  }
-
-  if (!key) {
-    return new Intl.DateTimeFormat(locale).format(value)
-  }
-
-  var ret =
-    this._localizeDateTime(value, locale, this.fallbackLocale, this._getDateTimeFormats(), key);
-  if (this._isFallbackRoot(ret)) {
-    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
-      warn(("Fall back to datetime localization of root: key '" + key + "'."));
-    }
-    /* istanbul ignore if */
-    if (!this._root) { throw Error('unexpected error') }
-    return this._root.$i18n.d(value, key, locale)
-  } else {
-    return ret || ''
-  }
-};
-
-VueI18n.prototype.d = function d (value) {
-    var args = [], len = arguments.length - 1;
-    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
-
-  var locale = this.locale;
-  var key = null;
-
-  if (args.length === 1) {
-    if (typeof args[0] === 'string') {
-      key = args[0];
-    } else if (isObject(args[0])) {
-      if (args[0].locale) {
-        locale = args[0].locale;
-      }
-      if (args[0].key) {
-        key = args[0].key;
-      }
-    }
-  } else if (args.length === 2) {
-    if (typeof args[0] === 'string') {
-      key = args[0];
-    }
-    if (typeof args[1] === 'string') {
-      locale = args[1];
-    }
-  }
-
-  return this._d(value, locale, key)
-};
-
-VueI18n.prototype.getNumberFormat = function getNumberFormat (locale) {
-  return looseClone(this._vm.numberFormats[locale] || {})
-};
-
-VueI18n.prototype.setNumberFormat = function setNumberFormat (locale, format) {
-  this._vm.$set(this._vm.numberFormats, locale, format);
-};
-
-VueI18n.prototype.mergeNumberFormat = function mergeNumberFormat (locale, format) {
-  this._vm.$set(this._vm.numberFormats, locale, merge(this._vm.numberFormats[locale] || {}, format));
-};
-
-VueI18n.prototype._getNumberFormatter = function _getNumberFormatter (
-  value,
-  locale,
-  fallback,
-  numberFormats,
-  key,
-  options
-) {
-  var _locale = locale;
-  var formats = numberFormats[_locale];
-
-  // fallback locale
-  if (isNull(formats) || isNull(formats[key])) {
-    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
-      warn(("Fall back to '" + fallback + "' number formats from '" + locale + "' number formats."));
-    }
-    _locale = fallback;
-    formats = numberFormats[_locale];
-  }
-
-  if (isNull(formats) || isNull(formats[key])) {
-    return null
-  } else {
-    var format = formats[key];
-
-    var formatter;
-    if (options) {
-      // If options specified - create one time number formatter
-      formatter = new Intl.NumberFormat(_locale, Object.assign({}, format, options));
-    } else {
-      var id = _locale + "__" + key;
-      formatter = this._numberFormatters[id];
-      if (!formatter) {
-        formatter = this._numberFormatters[id] = new Intl.NumberFormat(_locale, format);
-      }
-    }
-    return formatter
-  }
-};
-
-VueI18n.prototype._n = function _n (value, locale, key, options) {
-  /* istanbul ignore if */
-  if (!VueI18n.availabilities.numberFormat) {
-    if (true) {
-      warn('Cannot format a Number value due to not supported Intl.NumberFormat.');
-    }
-    return ''
-  }
-
-  if (!key) {
-    var nf = !options ? new Intl.NumberFormat(locale) : new Intl.NumberFormat(locale, options);
-    return nf.format(value)
-  }
-
-  var formatter = this._getNumberFormatter(value, locale, this.fallbackLocale, this._getNumberFormats(), key, options);
-  var ret = formatter && formatter.format(value);
-  if (this._isFallbackRoot(ret)) {
-    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
-      warn(("Fall back to number localization of root: key '" + key + "'."));
-    }
-    /* istanbul ignore if */
-    if (!this._root) { throw Error('unexpected error') }
-    return this._root.$i18n.n(value, Object.assign({}, { key: key, locale: locale }, options))
-  } else {
-    return ret || ''
-  }
-};
-
-VueI18n.prototype.n = function n (value) {
-    var args = [], len = arguments.length - 1;
-    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
-
-  var locale = this.locale;
-  var key = null;
-  var options = null;
-
-  if (args.length === 1) {
-    if (typeof args[0] === 'string') {
-      key = args[0];
-    } else if (isObject(args[0])) {
-      if (args[0].locale) {
-        locale = args[0].locale;
-      }
-      if (args[0].key) {
-        key = args[0].key;
-      }
-
-      // Filter out number format options only
-      options = Object.keys(args[0]).reduce(function (acc, key) {
-          var obj;
-
-        if (numberFormatKeys.includes(key)) {
-          return Object.assign({}, acc, ( obj = {}, obj[key] = args[0][key], obj ))
-        }
-        return acc
-      }, null);
-    }
-  } else if (args.length === 2) {
-    if (typeof args[0] === 'string') {
-      key = args[0];
-    }
-    if (typeof args[1] === 'string') {
-      locale = args[1];
-    }
-  }
-
-  return this._n(value, locale, key, options)
-};
-
-VueI18n.prototype._ntp = function _ntp (value, locale, key, options) {
-  /* istanbul ignore if */
-  if (!VueI18n.availabilities.numberFormat) {
-    if (true) {
-      warn('Cannot format to parts a Number value due to not supported Intl.NumberFormat.');
-    }
-    return []
-  }
-
-  if (!key) {
-    var nf = !options ? new Intl.NumberFormat(locale) : new Intl.NumberFormat(locale, options);
-    return nf.formatToParts(value)
-  }
-
-  var formatter = this._getNumberFormatter(value, locale, this.fallbackLocale, this._getNumberFormats(), key, options);
-  var ret = formatter && formatter.formatToParts(value);
-  if (this._isFallbackRoot(ret)) {
-    if ( true && !this._isSilentTranslationWarn(key)) {
-      warn(("Fall back to format number to parts of root: key '" + key + "' ."));
-    }
-    /* istanbul ignore if */
-    if (!this._root) { throw Error('unexpected error') }
-    return this._root.$i18n._ntp(value, locale, key, options)
-  } else {
-    return ret || []
-  }
-};
-
-Object.defineProperties( VueI18n.prototype, prototypeAccessors );
-
-var availabilities;
-// $FlowFixMe
-Object.defineProperty(VueI18n, 'availabilities', {
-  get: function get () {
-    if (!availabilities) {
-      var intlDefined = typeof Intl !== 'undefined';
-      availabilities = {
-        dateTimeFormat: intlDefined && typeof Intl.DateTimeFormat !== 'undefined',
-        numberFormat: intlDefined && typeof Intl.NumberFormat !== 'undefined'
-      };
-    }
-
-    return availabilities
-  }
-});
-
-VueI18n.install = install;
-VueI18n.version = '8.14.0';
-
-/* harmony default export */ __webpack_exports__["default"] = (VueI18n);
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Layouts/Basic.vue?vue&type=template&id=eab267d2&":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Layouts/Basic.vue?vue&type=template&id=eab267d2& ***!
@@ -44615,7 +45560,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("router-view")], 1)
+  return _c(
+    "div",
+    { staticClass: "min-w-full min-h-screen", attrs: { id: "app" } },
+    [
+      _c("div", { staticClass: "flex min-h-screen" }, [
+        _c("aside", { staticClass: "sidebar" }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "flex-1" },
+          [
+            _c("Navbar"),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "container pt-10 px-12 m-auto" },
+              [_c("router-view")],
+              1
+            )
+          ],
+          1
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -44703,6 +45672,204 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Servers/Index.vue?vue&type=template&id=4495f617&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Servers/Index.vue?vue&type=template&id=4495f617& ***!
+  \************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_c("List")], 1)
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Header/Navbar.vue?vue&type=template&id=19d38bba&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/Header/Navbar.vue?vue&type=template&id=19d38bba& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("nav", { staticClass: "navbar" }, [
+    _c("div", { staticClass: "flex-1" }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { ref: "dropdown", staticClass: "navbar__profile dropdown" },
+      [
+        _c("img", {
+          staticClass: "user-info--avatar",
+          attrs: { src: _vm.user.avatar, alt: "" },
+          on: { click: _vm.toggleDropdown }
+        }),
+        _vm._v(" "),
+        _c(
+          "Tooltip",
+          {
+            staticClass: "dropdown-menu",
+            attrs: { reference: _vm.$refs, show: _vm.dropdownOpen }
+          },
+          [
+            _c("div", { staticClass: "user-info px-6 py-2" }, [
+              _c("img", {
+                staticClass: "user-info--avatar",
+                attrs: { src: _vm.user.avatar, alt: "" }
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "user-info--name" },
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "user.profile" } } },
+                    [_vm._v(_vm._s(_vm.user.name))]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "user-info--email" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.user.email) +
+                        "\n                    "
+                    )
+                  ])
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "dropdown-divider" }),
+            _vm._v(" "),
+            _c("a", { staticClass: "dropdown-link", attrs: { href: "" } }, [
+              _vm._v("Teams")
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "dropdown-link", attrs: { href: "" } }, [
+              _vm._v("Account")
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "dropdown-link", attrs: { href: "" } }, [
+              _vm._v("Sign out")
+            ])
+          ]
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Server/List.vue?vue&type=template&id=18dae5d2&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/Server/List.vue?vue&type=template&id=18dae5d2& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    { staticClass: "servers-list" },
+    [
+      _c("loader", { attrs: { loading: _vm.loading } }),
+      _vm._v(" "),
+      _c("h4", [_vm._v("Servers")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "servers-list-items" },
+        _vm._l(_vm.servers, function(server) {
+          return _c("div", { staticClass: "servers-list-item-wrapper" }, [
+            _c("div", { staticClass: "servers-list-item__status" }, [
+              _c("div", {
+                staticClass: "status-indicator",
+                class: server.status
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "servers-list-item__name" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: { name: "server.show", params: { id: server.id } }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(server.name) +
+                        "\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "servers-list-item__address" }, [
+                  _vm._v(_vm._s(server.ip))
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "servers-list-item__project" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(server.team.name) +
+                  "\n            "
+              )
+            ])
+          ])
+        }),
+        0
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/UI/Loader.vue?vue&type=template&id=19e7abf6&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/UI/Loader.vue?vue&type=template&id=19e7abf6& ***!
@@ -44722,6 +45889,47 @@ var render = function() {
     staticClass: "preloader",
     attrs: { active: _vm.loading }
   })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/UI/Tooltip.vue?vue&type=template&id=329e17b0&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/UI/Tooltip.vue?vue&type=template&id=329e17b0& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.show
+    ? _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "click-outside",
+              rawName: "v-click-outside",
+              value: _vm.hide,
+              expression: "hide"
+            }
+          ],
+          on: { toggle: _vm.toggle }
+        },
+        [_vm._t("default")],
+        2
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -62409,7 +63617,7 @@ function (_String) {
 }(_wrapNativeSuper(String));
 
 function api_route(name, params) {
-  return new Router(name, params);
+  return new Router('api.' + name, params);
 }
 
 
@@ -62511,224 +63719,224 @@ __webpack_require__.r(__webpack_exports__);
 var Ziggy = {
   namedRoutes: {
     "api.v1.subscription.plans": {
-      "uri": "api\/subscription\/plans",
+      "uri": "api\/v1\/subscription\/plans",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.user.profile": {
-      "uri": "api\/profile",
+      "uri": "api\/v1\/profile",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.user.source_providers": {
-      "uri": "api\/user\/source-providers",
+      "uri": "api\/v1\/user\/source-providers",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.subscription.cancel": {
-      "uri": "api\/subscription\/cancel",
+      "uri": "api\/v1\/subscription\/cancel",
       "methods": ["DELETE"],
       "domain": null
     },
     "api.v1.subscription.subscribe": {
-      "uri": "api\/subscription\/subscribe",
+      "uri": "api\/v1\/subscription\/subscribe",
       "methods": ["POST"],
       "domain": null
     },
     "api.v1.servers": {
-      "uri": "api\/servers",
+      "uri": "api\/v1\/servers",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.events": {
-      "uri": "api\/server\/{server}\/events",
+      "uri": "api\/v1\/server\/{server}\/events",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.show": {
-      "uri": "api\/server\/{server}",
+      "uri": "api\/v1\/server\/{server}",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.store": {
-      "uri": "api\/server",
+      "uri": "api\/v1\/server",
       "methods": ["POST"],
       "domain": null
     },
     "api.v1.server.delete": {
-      "uri": "api\/server\/{server}",
+      "uri": "api\/v1\/server\/{server}",
       "methods": ["DELETE"],
       "domain": null
     },
     "api.v1.server.cron_job.index": {
-      "uri": "api\/server\/{server}\/cron",
+      "uri": "api\/v1\/server\/{server}\/cron",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.cron_job.store": {
-      "uri": "api\/server\/{server}\/cron",
+      "uri": "api\/v1\/server\/{server}\/cron",
       "methods": ["POST"],
       "domain": null
     },
     "api.v1.server.cron_job.show": {
-      "uri": "api\/server\/cron\/{job}",
+      "uri": "api\/v1\/server\/cron\/{job}",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.cron_job.delete": {
-      "uri": "api\/server\/cron\/{job}",
+      "uri": "api\/v1\/server\/cron\/{job}",
       "methods": ["DELETE"],
       "domain": null
     },
     "api.v1.server.database.index": {
-      "uri": "api\/server\/{server}\/databases",
+      "uri": "api\/v1\/server\/{server}\/databases",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.database.store": {
-      "uri": "api\/server\/{server}\/database",
+      "uri": "api\/v1\/server\/{server}\/database",
       "methods": ["POST"],
       "domain": null
     },
     "api.v1.server.database.show": {
-      "uri": "api\/server\/database\/{database}",
+      "uri": "api\/v1\/server\/database\/{database}",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.database.delete": {
-      "uri": "api\/server\/database\/{database}",
+      "uri": "api\/v1\/server\/database\/{database}",
       "methods": ["DELETE"],
       "domain": null
     },
     "api.v1.server.firewall.index": {
-      "uri": "api\/server\/{server}\/firewall\/rules",
+      "uri": "api\/v1\/server\/{server}\/firewall\/rules",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.firewall.store": {
-      "uri": "api\/server\/{server}\/firewall",
+      "uri": "api\/v1\/server\/{server}\/firewall",
       "methods": ["POST"],
       "domain": null
     },
     "api.v1.server.firewall.show": {
-      "uri": "api\/server\/firewall\/{rule}",
+      "uri": "api\/v1\/server\/firewall\/{rule}",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.firewall.delete": {
-      "uri": "api\/server\/firewall\/{rule}",
+      "uri": "api\/v1\/server\/firewall\/{rule}",
       "methods": ["DELETE"],
       "domain": null
     },
     "api.v1.server.user.index": {
-      "uri": "api\/server\/{server}\/users",
+      "uri": "api\/v1\/server\/{server}\/users",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.user.store": {
-      "uri": "api\/server\/{server}\/user",
+      "uri": "api\/v1\/server\/{server}\/user",
       "methods": ["POST"],
       "domain": null
     },
     "api.v1.server.user.show": {
-      "uri": "api\/server\/user\/{user}",
+      "uri": "api\/v1\/server\/user\/{user}",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.user.delete": {
-      "uri": "api\/server\/user\/{user}",
+      "uri": "api\/v1\/server\/user\/{user}",
       "methods": ["DELETE"],
       "domain": null
     },
     "api.v1.server.task.index": {
-      "uri": "api\/server\/{server}\/tasks",
+      "uri": "api\/v1\/server\/{server}\/tasks",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.task.show": {
-      "uri": "api\/server\/task\/{task}",
+      "uri": "api\/v1\/server\/task\/{task}",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.task.delete": {
-      "uri": "api\/server\/task\/{task}",
+      "uri": "api\/v1\/server\/task\/{task}",
       "methods": ["DELETE"],
       "domain": null
     },
     "api.v1.server.supervisor.index": {
-      "uri": "api\/server\/{server}\/supervisor\/list",
+      "uri": "api\/v1\/server\/{server}\/supervisor\/list",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.supervisor.store": {
-      "uri": "api\/server\/{server}\/supervisor\/daemon",
+      "uri": "api\/v1\/server\/{server}\/supervisor\/daemon",
       "methods": ["POST"],
       "domain": null
     },
     "api.v1.server.supervisor.show": {
-      "uri": "api\/server\/supervisor\/{daemon}",
+      "uri": "api\/v1\/server\/supervisor\/{daemon}",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.supervisor.delete": {
-      "uri": "api\/server\/supervisor\/{daemon}",
+      "uri": "api\/v1\/server\/supervisor\/{daemon}",
       "methods": ["DELETE"],
       "domain": null
     },
     "api.v1.server.site.show": {
-      "uri": "api\/server\/site\/{site}",
+      "uri": "api\/v1\/server\/site\/{site}",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.site.store": {
-      "uri": "api\/server\/{server}\/site",
+      "uri": "api\/v1\/server\/{server}\/site",
       "methods": ["POST"],
       "domain": null
     },
     "api.v1.server.site.delete": {
-      "uri": "api\/server\/site\/{site}",
+      "uri": "api\/v1\/server\/site\/{site}",
       "methods": ["DELETE"],
       "domain": null
     },
     "api.v1.server.site.deploy.config": {
-      "uri": "api\/server\/site\/{site}\/deploy\/config",
+      "uri": "api\/v1\/server\/site\/{site}\/deploy\/config",
       "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.site.deploy": {
-      "uri": "api\/server\/site\/{site}\/deploy",
+      "uri": "api\/v1\/server\/site\/{site}\/deploy",
       "methods": ["POST"],
       "domain": null
     },
     "api.v1.server.site.environment.upload": {
-      "uri": "api\/server\/site\/{site}\/environment\/upload",
+      "uri": "api\/v1\/server\/site\/{site}\/environment\/upload",
       "methods": ["POST"],
       "domain": null
     },
     "api.v1.server.site.environment.update": {
-      "uri": "api\/server\/site\/{site}\/environment",
+      "uri": "api\/v1\/server\/site\/{site}\/environment",
       "methods": ["POST"],
       "domain": null
     },
     "api.v1.server.site.environment.delete": {
-      "uri": "api\/server\/site\/{site}\/environment",
+      "uri": "api\/v1\/server\/site\/{site}\/environment",
       "methods": ["DELETE"],
       "domain": null
     },
     "api.v1.server.site.repository.sync": {
-      "uri": "api\/server\/site\/{site}\/repository\/sync-remote",
+      "uri": "api\/v1\/server\/site\/{site}\/repository\/sync-remote",
       "methods": ["POST"],
       "domain": null
     },
     "api.v1.server.site.repository.update": {
-      "uri": "api\/server\/site\/{site}\/repository",
+      "uri": "api\/v1\/server\/site\/{site}\/repository",
       "methods": ["POST"],
       "domain": null
     }
   },
-  baseUrl: 'http://sputnik-dev.superprojects.space/',
+  baseUrl: 'http://localhost/',
   baseProtocol: 'http',
-  baseDomain: 'sputnik-dev.superprojects.space',
+  baseDomain: 'localhost',
   basePort: false,
   defaultParameters: []
 };
@@ -62755,10 +63963,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
-/* harmony import */ var _plugins_18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./plugins/18n */ "./resources/js/plugins/18n.js");
-/* harmony import */ var _vue_components_UI_Loader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vue/components/UI/Loader */ "./resources/vue/components/UI/Loader.vue");
-
+/* harmony import */ var _policies_Gate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./policies/Gate */ "./resources/js/policies/Gate.js");
+/* harmony import */ var _vue_components_UI_Loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vue/components/UI/Loader */ "./resources/vue/components/UI/Loader.vue");
+/* harmony import */ var _vue_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./vue/store */ "./resources/js/vue/store/index.js");
 
 
 
@@ -62768,19 +63975,29 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./http */ "./resources/js/http/index.js");
 
-__webpack_require__(/*! ./api */ "./resources/js/api/index.js");
+__webpack_require__(/*! ./api */ "./resources/js/api/index.js"); //import i18n from './vue/plugins/18n'
 
-__webpack_require__(/*! ./plugins/echo */ "./resources/js/plugins/echo.js");
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Loader', _vue_components_UI_Loader__WEBPACK_IMPORTED_MODULE_4__["default"]);
+__webpack_require__(/*! ./vue/plugins/echo */ "./resources/js/vue/plugins/echo.js");
+
+__webpack_require__(/*! ./vue/directives/click-ouside */ "./resources/js/vue/directives/click-ouside.js");
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_policies_Gate__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  store: _vue_store__WEBPACK_IMPORTED_MODULE_4__["default"]
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Loader', _vue_components_UI_Loader__WEBPACK_IMPORTED_MODULE_3__["default"]);
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: _router__WEBPACK_IMPORTED_MODULE_1__["default"],
-  store: _store__WEBPACK_IMPORTED_MODULE_2__["default"],
-  i18n: _plugins_18n__WEBPACK_IMPORTED_MODULE_3__["default"],
+  store: _vue_store__WEBPACK_IMPORTED_MODULE_4__["default"],
+  //i18n,
   metaInfo: {
     title: '',
     titleTemplate: '%s | SputnikCloud'
+  },
+  created: function created() {
+    this.$store.dispatch('auth/loadUser');
   }
 });
 
@@ -62845,13 +64062,13 @@ __webpack_require__(/*! ./validation */ "./resources/js/http/validation.js");
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _js_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @js/store */ "./resources/js/store/index.js");
+/* harmony import */ var _js_vue_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @js/vue/store */ "./resources/js/vue/store/index.js");
 
 
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.request.use(function (config) {
-  _js_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('validation/clear'); // Do something before request is sent
+  _js_vue_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('validation/clear'); // Do something before request is sent
 
-  var token = _js_store__WEBPACK_IMPORTED_MODULE_1__["default"].getters['auth/token'];
+  var token = _js_vue_store__WEBPACK_IMPORTED_MODULE_1__["default"].getters['auth/token'];
 
   if (token) {
     config.headers.common['Authorization'] = "Bearer ".concat(token);
@@ -62878,7 +64095,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _js_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @js/store */ "./resources/js/store/index.js");
+/* harmony import */ var _js_vue_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @js/vue/store */ "./resources/js/vue/store/index.js");
 
 
 
@@ -62898,7 +64115,7 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.response.use(function 
           });
         });
       });
-      _js_store__WEBPACK_IMPORTED_MODULE_3__["default"].dispatch('validation/setErrors', bag);
+      _js_vue_store__WEBPACK_IMPORTED_MODULE_3__["default"].dispatch('validation/setErrors', bag);
       break;
   }
 
@@ -62935,53 +64152,110 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin({
 
 /***/ }),
 
-/***/ "./resources/js/plugins/18n.js":
-/*!*************************************!*\
-  !*** ./resources/js/plugins/18n.js ***!
-  \*************************************/
+/***/ "./resources/js/policies/Gate.js":
+/*!***************************************!*\
+  !*** ./resources/js/policies/Gate.js ***!
+  \***************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
+/* harmony import */ var _ServerPolicy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ServerPolicy */ "./resources/js/policies/ServerPolicy.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
-var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  locale: 'en',
-  messages: {
-    en: __webpack_require__(/*! ../../lang/en.json */ "./resources/lang/en.json")
+
+var Gate =
+/*#__PURE__*/
+function () {
+  function Gate(store) {
+    _classCallCheck(this, Gate);
+
+    this.store = store;
+    this.policies = {
+      server: _ServerPolicy__WEBPACK_IMPORTED_MODULE_0__["default"]
+    };
+  }
+
+  _createClass(Gate, [{
+    key: "before",
+    value: function before() {
+      return false;
+    }
+  }, {
+    key: "allow",
+    value: function allow(action, type) {
+      var model = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+      if (this.before()) {
+        return true;
+      }
+
+      return this.policies[type][action](this.user, model);
+    }
+  }, {
+    key: "deny",
+    value: function deny(action, type) {
+      var model = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      return !this.allow(action, type, model);
+    }
+  }, {
+    key: "user",
+    get: function get() {
+      return this.store.getters['auth/getUser'];
+    }
+  }]);
+
+  return Gate;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  install: function install(Vue, options) {
+    Vue.prototype.$gate = new Gate(options.store);
   }
 });
-/* harmony default export */ __webpack_exports__["default"] = (i18n);
 
 /***/ }),
 
-/***/ "./resources/js/plugins/echo.js":
-/*!**************************************!*\
-  !*** ./resources/js/plugins/echo.js ***!
-  \**************************************/
-/*! no exports provided */
+/***/ "./resources/js/policies/ServerPolicy.js":
+/*!***********************************************!*\
+  !*** ./resources/js/policies/ServerPolicy.js ***!
+  \***********************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
-/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ServerPolicy; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ServerPolicy =
+/*#__PURE__*/
+function () {
+  function ServerPolicy() {
+    _classCallCheck(this, ServerPolicy);
+  }
+
+  _createClass(ServerPolicy, null, [{
+    key: "create",
+    value: function create(user) {
+      return user.can.server_create === true;
+    }
+  }]);
+
+  return ServerPolicy;
+}();
 
 
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$eecho = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  broadcaster: 'pusher',
-  key: "022ab1e9258e471d631a",
-  cluster: "eu",
-  encrypted: true
-});
 
 /***/ }),
 
@@ -63075,10 +64349,84 @@ index.afterEach(function (to, from) {
 
 /***/ }),
 
-/***/ "./resources/js/store/index.js":
-/*!*************************************!*\
-  !*** ./resources/js/store/index.js ***!
-  \*************************************/
+/***/ "./resources/js/vue/directives/click-ouside.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/vue/directives/click-ouside.js ***!
+  \*****************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive('click-outside', {
+  bind: function bind(el, binding, vNode) {
+    // Provided expression must evaluate to a function.
+    if (typeof binding.value !== 'function') {
+      var compName = vNode.context.name;
+      var warn = "[Vue-click-outside:] provided expression '".concat(binding.expression, "' is not a function, but has to be");
+
+      if (compName) {
+        warn += "Found in component '".concat(compName, "'");
+      }
+
+      console.warn(warn);
+    } // Define Handler and cache it on the element
+
+
+    var bubble = binding.modifiers.bubble;
+
+    var handler = function handler(e) {
+      if (bubble || !el.contains(e.target) && el !== e.target) {
+        binding.value(e);
+      }
+    };
+
+    el.__vueClickOutside__ = handler; // add Event Listeners
+
+    document.addEventListener('click', handler);
+  },
+  unbind: function unbind(el, binding) {
+    // Remove Event Listeners
+    document.removeEventListener('click', el.__vueClickOutside__);
+    el.__vueClickOutside__ = null;
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/vue/plugins/echo.js":
+/*!******************************************!*\
+  !*** ./resources/js/vue/plugins/echo.js ***!
+  \******************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$eecho = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  broadcaster: 'pusher',
+  key: "",
+  cluster: "mt1",
+  encrypted: true
+});
+
+/***/ }),
+
+/***/ "./resources/js/vue/store/index.js":
+/*!*****************************************!*\
+  !*** ./resources/js/vue/store/index.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63087,23 +64435,129 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/validation */ "./resources/js/store/modules/validation.js");
+/* harmony import */ var _modules_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/validation */ "./resources/js/vue/store/modules/validation.js");
+/* harmony import */ var _modules_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/auth */ "./resources/js/vue/store/modules/auth.js");
+
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
-    validation: _modules_validation__WEBPACK_IMPORTED_MODULE_2__["default"]
+    validation: _modules_validation__WEBPACK_IMPORTED_MODULE_2__["default"],
+    auth: _modules_auth__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 }));
 
 /***/ }),
 
-/***/ "./resources/js/store/modules/validation.js":
-/*!**************************************************!*\
-  !*** ./resources/js/store/modules/validation.js ***!
-  \**************************************************/
+/***/ "./resources/js/vue/store/modules/auth.js":
+/*!************************************************!*\
+  !*** ./resources/js/vue/store/modules/auth.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_api_Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @js/api/Router */ "./resources/js/api/Router.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var state = {
+  user: null // getters
+
+};
+var getters = {
+  getUser: function getUser(state) {
+    return state.user;
+  }
+};
+var actions = {
+  loadUser: function () {
+    var _loadUser = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              commit('setUser', window.user);
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    function loadUser(_x) {
+      return _loadUser.apply(this, arguments);
+    }
+
+    return loadUser;
+  }(),
+  updateUser: function () {
+    var _updateUser = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2) {
+      var commit, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context2.next = 3;
+              return Object(_js_api_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.user.profile').request();
+
+            case 3:
+              response = _context2.sent;
+              commit('setUser', response.data.data);
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    function updateUser(_x2) {
+      return _updateUser.apply(this, arguments);
+    }
+
+    return updateUser;
+  }()
+}; // mutations
+
+var mutations = {
+  setUser: function setUser(state, user) {
+    state.user = user;
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/vue/store/modules/validation.js":
+/*!******************************************************!*\
+  !*** ./resources/js/vue/store/modules/validation.js ***!
+  \******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63155,17 +64609,6 @@ var mutations = {
   actions: actions,
   mutations: mutations
 });
-
-/***/ }),
-
-/***/ "./resources/lang/en.json":
-/*!********************************!*\
-  !*** ./resources/lang/en.json ***!
-  \********************************/
-/*! exports provided: auth, pagination, passwords, plans, validation, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"auth\":{\"failed\":\"These credentials do not match our records.\",\"throttle\":\"Too many login attempts. Please try again in :seconds seconds.\"},\"pagination\":{\"previous\":\"&laquo; Previous\",\"next\":\"Next &raquo;\"},\"passwords\":{\"password\":\"Passwords must be at least eight characters and match the confirmation.\",\"reset\":\"Your password has been reset!\",\"sent\":\"We have e-mailed your password reset link!\",\"token\":\"This password reset token is invalid.\",\"user\":\"We can't find a user with that e-mail address.\"},\"plans\":{\"server\":{\"create\":\"Create servers\",\"cron_job\":{\"create\":\"Schedule cron jobs\"},\"daemon\":{\"create\":\"Use Superviser\"},\"database\":{\"create\":\"Create database\"},\"site\":{\"create\":\"Crete sites\",\"monitoring\":\"Sites monitoring\"},\"deployments\":{\"run\":\"Deploy\",\"push\":\"Push to deploy\"}}},\"validation\":{\"accepted\":\"The :attribute must be accepted.\",\"active_url\":\"The :attribute is not a valid URL.\",\"after\":\"The :attribute must be a date after :date.\",\"after_or_equal\":\"The :attribute must be a date after or equal to :date.\",\"alpha\":\"The :attribute may only contain letters.\",\"alpha_dash\":\"The :attribute may only contain letters, numbers, dashes and underscores.\",\"alpha_num\":\"The :attribute may only contain letters and numbers.\",\"array\":\"The :attribute must be an array.\",\"before\":\"The :attribute must be a date before :date.\",\"before_or_equal\":\"The :attribute must be a date before or equal to :date.\",\"between\":{\"numeric\":\"The :attribute must be between :min and :max.\",\"file\":\"The :attribute must be between :min and :max kilobytes.\",\"string\":\"The :attribute must be between :min and :max characters.\",\"array\":\"The :attribute must have between :min and :max items.\"},\"boolean\":\"The :attribute field must be true or false.\",\"confirmed\":\"The :attribute confirmation does not match.\",\"date\":\"The :attribute is not a valid date.\",\"date_equals\":\"The :attribute must be a date equal to :date.\",\"date_format\":\"The :attribute does not match the format :format.\",\"different\":\"The :attribute and :other must be different.\",\"digits\":\"The :attribute must be :digits digits.\",\"digits_between\":\"The :attribute must be between :min and :max digits.\",\"dimensions\":\"The :attribute has invalid image dimensions.\",\"distinct\":\"The :attribute field has a duplicate value.\",\"email\":\"The :attribute must be a valid email address.\",\"ends_with\":\"The :attribute must end with one of the following: :values\",\"exists\":\"The selected :attribute is invalid.\",\"file\":\"The :attribute must be a file.\",\"filled\":\"The :attribute field must have a value.\",\"gt\":{\"numeric\":\"The :attribute must be greater than :value.\",\"file\":\"The :attribute must be greater than :value kilobytes.\",\"string\":\"The :attribute must be greater than :value characters.\",\"array\":\"The :attribute must have more than :value items.\"},\"gte\":{\"numeric\":\"The :attribute must be greater than or equal :value.\",\"file\":\"The :attribute must be greater than or equal :value kilobytes.\",\"string\":\"The :attribute must be greater than or equal :value characters.\",\"array\":\"The :attribute must have :value items or more.\"},\"image\":\"The :attribute must be an image.\",\"in\":\"The selected :attribute is invalid.\",\"in_array\":\"The :attribute field does not exist in :other.\",\"integer\":\"The :attribute must be an integer.\",\"ip\":\"The :attribute must be a valid IP address.\",\"ipv4\":\"The :attribute must be a valid IPv4 address.\",\"ipv6\":\"The :attribute must be a valid IPv6 address.\",\"json\":\"The :attribute must be a valid JSON string.\",\"lt\":{\"numeric\":\"The :attribute must be less than :value.\",\"file\":\"The :attribute must be less than :value kilobytes.\",\"string\":\"The :attribute must be less than :value characters.\",\"array\":\"The :attribute must have less than :value items.\"},\"lte\":{\"numeric\":\"The :attribute must be less than or equal :value.\",\"file\":\"The :attribute must be less than or equal :value kilobytes.\",\"string\":\"The :attribute must be less than or equal :value characters.\",\"array\":\"The :attribute must not have more than :value items.\"},\"max\":{\"numeric\":\"The :attribute may not be greater than :max.\",\"file\":\"The :attribute may not be greater than :max kilobytes.\",\"string\":\"The :attribute may not be greater than :max characters.\",\"array\":\"The :attribute may not have more than :max items.\"},\"mimes\":\"The :attribute must be a file of type: :values.\",\"mimetypes\":\"The :attribute must be a file of type: :values.\",\"min\":{\"numeric\":\"The :attribute must be at least :min.\",\"file\":\"The :attribute must be at least :min kilobytes.\",\"string\":\"The :attribute must be at least :min characters.\",\"array\":\"The :attribute must have at least :min items.\"},\"not_in\":\"The selected :attribute is invalid.\",\"not_regex\":\"The :attribute format is invalid.\",\"numeric\":\"The :attribute must be a number.\",\"present\":\"The :attribute field must be present.\",\"regex\":\"The :attribute format is invalid.\",\"required\":\"The :attribute field is required.\",\"required_if\":\"The :attribute field is required when :other is :value.\",\"required_unless\":\"The :attribute field is required unless :other is in :values.\",\"required_with\":\"The :attribute field is required when :values is present.\",\"required_with_all\":\"The :attribute field is required when :values are present.\",\"required_without\":\"The :attribute field is required when :values is not present.\",\"required_without_all\":\"The :attribute field is required when none of :values are present.\",\"same\":\"The :attribute and :other must match.\",\"size\":{\"numeric\":\"The :attribute must be :size.\",\"file\":\"The :attribute must be :size kilobytes.\",\"string\":\"The :attribute must be :size characters.\",\"array\":\"The :attribute must contain :size items.\"},\"starts_with\":\"The :attribute must start with one of the following: :values\",\"string\":\"The :attribute must be a string.\",\"timezone\":\"The :attribute must be a valid zone.\",\"unique\":\"The :attribute has already been taken.\",\"uploaded\":\"The :attribute failed to upload.\",\"url\":\"The :attribute format is invalid.\",\"uuid\":\"The :attribute must be a valid UUID.\",\"custom\":{\"attribute-name\":{\"rule-name\":\"custom-message\"}},\"attributes\":[]}}");
 
 /***/ }),
 
@@ -63318,6 +64761,213 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/vue/Pages/Servers/Index.vue":
+/*!***********************************************!*\
+  !*** ./resources/vue/Pages/Servers/Index.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Index_vue_vue_type_template_id_4495f617___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=4495f617& */ "./resources/vue/Pages/Servers/Index.vue?vue&type=template&id=4495f617&");
+/* harmony import */ var _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Index.vue?vue&type=script&lang=js& */ "./resources/vue/Pages/Servers/Index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Index_vue_vue_type_template_id_4495f617___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Index_vue_vue_type_template_id_4495f617___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/Pages/Servers/Index.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/Pages/Servers/Index.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/vue/Pages/Servers/Index.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Servers/Index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/Pages/Servers/Index.vue?vue&type=template&id=4495f617&":
+/*!******************************************************************************!*\
+  !*** ./resources/vue/Pages/Servers/Index.vue?vue&type=template&id=4495f617& ***!
+  \******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_4495f617___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=template&id=4495f617& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Servers/Index.vue?vue&type=template&id=4495f617&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_4495f617___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_4495f617___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/components/Header/Navbar.vue":
+/*!****************************************************!*\
+  !*** ./resources/vue/components/Header/Navbar.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Navbar_vue_vue_type_template_id_19d38bba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Navbar.vue?vue&type=template&id=19d38bba& */ "./resources/vue/components/Header/Navbar.vue?vue&type=template&id=19d38bba&");
+/* harmony import */ var _Navbar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Navbar.vue?vue&type=script&lang=js& */ "./resources/vue/components/Header/Navbar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Navbar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Navbar_vue_vue_type_template_id_19d38bba___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Navbar_vue_vue_type_template_id_19d38bba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/components/Header/Navbar.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/components/Header/Navbar.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/vue/components/Header/Navbar.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Navbar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Header/Navbar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/components/Header/Navbar.vue?vue&type=template&id=19d38bba&":
+/*!***********************************************************************************!*\
+  !*** ./resources/vue/components/Header/Navbar.vue?vue&type=template&id=19d38bba& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_template_id_19d38bba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Navbar.vue?vue&type=template&id=19d38bba& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Header/Navbar.vue?vue&type=template&id=19d38bba&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_template_id_19d38bba___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_template_id_19d38bba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/components/Server/List.vue":
+/*!**************************************************!*\
+  !*** ./resources/vue/components/Server/List.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _List_vue_vue_type_template_id_18dae5d2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./List.vue?vue&type=template&id=18dae5d2& */ "./resources/vue/components/Server/List.vue?vue&type=template&id=18dae5d2&");
+/* harmony import */ var _List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./List.vue?vue&type=script&lang=js& */ "./resources/vue/components/Server/List.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _List_vue_vue_type_template_id_18dae5d2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _List_vue_vue_type_template_id_18dae5d2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/components/Server/List.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/components/Server/List.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/vue/components/Server/List.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Server/List.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/components/Server/List.vue?vue&type=template&id=18dae5d2&":
+/*!*********************************************************************************!*\
+  !*** ./resources/vue/components/Server/List.vue?vue&type=template&id=18dae5d2& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_18dae5d2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=template&id=18dae5d2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Server/List.vue?vue&type=template&id=18dae5d2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_18dae5d2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_18dae5d2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/vue/components/UI/Loader.vue":
 /*!************************************************!*\
   !*** ./resources/vue/components/UI/Loader.vue ***!
@@ -63387,6 +65037,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/vue/components/UI/Tooltip.vue":
+/*!*************************************************!*\
+  !*** ./resources/vue/components/UI/Tooltip.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Tooltip_vue_vue_type_template_id_329e17b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Tooltip.vue?vue&type=template&id=329e17b0& */ "./resources/vue/components/UI/Tooltip.vue?vue&type=template&id=329e17b0&");
+/* harmony import */ var _Tooltip_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Tooltip.vue?vue&type=script&lang=js& */ "./resources/vue/components/UI/Tooltip.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Tooltip_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Tooltip_vue_vue_type_template_id_329e17b0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Tooltip_vue_vue_type_template_id_329e17b0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/components/UI/Tooltip.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/components/UI/Tooltip.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/vue/components/UI/Tooltip.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Tooltip.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/UI/Tooltip.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/components/UI/Tooltip.vue?vue&type=template&id=329e17b0&":
+/*!********************************************************************************!*\
+  !*** ./resources/vue/components/UI/Tooltip.vue?vue&type=template&id=329e17b0& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_template_id_329e17b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Tooltip.vue?vue&type=template&id=329e17b0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/UI/Tooltip.vue?vue&type=template&id=329e17b0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_template_id_329e17b0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_template_id_329e17b0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/vue/routes.js":
 /*!*********************************!*\
   !*** ./resources/vue/routes.js ***!
@@ -63397,18 +65116,25 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_Layouts_Basic__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/Layouts/Basic */ "./resources/vue/Layouts/Basic.vue");
-/* harmony import */ var _vue_Pages_NotFound__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/Pages/NotFound */ "./resources/vue/Pages/NotFound.vue");
+/* harmony import */ var _vue_Pages_Servers_Index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/Pages/Servers/Index */ "./resources/vue/Pages/Servers/Index.vue");
+/* harmony import */ var _vue_Pages_NotFound__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/Pages/NotFound */ "./resources/vue/Pages/NotFound.vue");
 // Layouts
+ // Servers
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: _vue_Layouts_Basic__WEBPACK_IMPORTED_MODULE_0__["default"],
-  children: []
+  children: [{
+    path: '/',
+    name: 'servers',
+    component: _vue_Pages_Servers_Index__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }]
 }, {
   path: '/404',
   name: '404',
-  component: _vue_Pages_NotFound__WEBPACK_IMPORTED_MODULE_1__["default"]
+  component: _vue_Pages_NotFound__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
   path: '*',
   redirect: '/404'
@@ -63423,8 +65149,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/pbuchnev/webserver/sputnik/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/pbuchnev/webserver/sputnik/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -60881,17 +60881,16 @@ readers do not read off random characters that represent icons */
 }
 
 .dropdown-menu {
-  position: absolute;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  top: 0;
-  right: 0;
   width: 16rem;
+  margin-right: 1rem;
   border-width: 1px;
   border-color: #e2e8f0;
   border-radius: 0.25rem;
   background-color: #fff;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  z-index: 1;
 }
 
 .dropdown-divider {

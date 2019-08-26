@@ -2,7 +2,8 @@
     @apply relative;
 
     &-menu {
-        @apply absolute py-3 top-0 right-0 w-64 border border-gray-300 rounded bg-white shadow-xl;
+        @apply py-3 w-64 mr-4 border border-gray-300 rounded bg-white shadow-xl;
+        z-index: 1;
     }
 
     &-divider {

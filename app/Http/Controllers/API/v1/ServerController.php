@@ -19,22 +19,9 @@ class ServerController extends Controller
      */
     public function index(Request $request): ServerCollection
     {
-        $servers = $request->user()->servers()->paginate();
+        $servers = $request->user()->servers()->with('team', 'user')->paginate();
 
         return ServerCollection::make($servers);
-    }
-
-    /**
-     * @param Server $server
-     *
-     * @return ServerResource
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function events(Server $server): ServerResource
-    {
-        $this->authorize('show', $server);
-
-        return EventsCollection::make($server->events()->paginate(50));
     }
 
     /**

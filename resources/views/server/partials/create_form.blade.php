@@ -1,6 +1,6 @@
 @can('create', \App\Models\Server::class)
 
-<div class="sectio">
+<div class="section">
     <div class="section-header">
         Create server
 

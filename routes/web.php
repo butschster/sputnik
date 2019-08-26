@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\v1\UserProfileResource;
+
 Route::get('/server/{server}/install', 'ServerInstallerController')->name('server.install_script');
 Route::any('/callback', 'CallbackController')->name('callback');
 
@@ -12,6 +14,14 @@ Route::get('login/bitbucket', 'Auth\BitbucketLoginController@redirectToProvider'
 Route::get('login/bitbucket/callback', 'Auth\BitbucketLoginController@handleProviderCallback')->name('login.bitbucket.callback');
 
 Route::middleware('auth')->group(function () {
+
+    Route::any('{vue?}', function (\Illuminate\Http\Request $request) {
+        return view('app', [
+            'user' => UserProfileResource::make($request->user())
+        ]);
+    })->where('vue', '[\/\w\.-]*')->name('app');
+
+
     Route::get('profile/team/{team}', 'UserTeamController@show')->name('team.show');
     Route::get('profile', 'UserController@profile')->name('user.profile');
     Route::post('team/{team}/subscribe', 'UserTeamController@subscribe')->name('team.subscribe');
@@ -67,6 +77,3 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::any('{vue?}', function () {
-    return view('app');
-})->where('vue', '[\/\w\.-]*')->name('app');

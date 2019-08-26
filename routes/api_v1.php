@@ -2,7 +2,7 @@
 
 Route::get('subscription/plans', 'SubscriptionController@plans')->name('subscription.plans');
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth')->group(function () {
 
     // User
     Route::get('profile', 'UserController@profile')->name('user.profile');
@@ -15,10 +15,12 @@ Route::middleware('auth:api')->group(function () {
     Route::middleware('has-subscription')->group(function () {
         // Servers
         Route::get('servers', 'ServerController@index')->name('servers');
-        Route::get('server/{server}/events', 'ServerController@events')->name('server.events');
         Route::get('server/{server}', 'ServerController@show')->name('server.show');
         Route::post('server', 'ServerController@store')->name('server.store');
         Route::delete('server/{server}', 'ServerController@delete')->name('server.delete');
+
+        // Events
+        Route::get('server/{server}/events', 'Server\EventsController@index')->name('server.events');
 
         // Cron jobs
         Route::get('server/{server}/cron', 'Server\SchedulerController@index')->name('server.cron_job.index');

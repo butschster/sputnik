@@ -198,7 +198,7 @@ class Router extends String {
 }
 
 function api_route(name, params) {
-    return new Router(name, params)
+    return new Router('api.' + name, params)
 }
 
 export {
