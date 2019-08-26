@@ -52,6 +52,9 @@ code {
 // Variables
 @import 'variables';
 
+@import "modules/ngprogress";
+@import "modules/vue-select.scss";
+
 @import "components/form";
 @import "components/buttons";
 @import "components/cards";

@@ -1,0 +1,25 @@
+#nprogress {
+    @apply pointer-events-none;
+
+    .bar {
+        @apply bg-blue-600 fixed left-0 top-0 w-full h-1;
+        z-index: 1031;
+    }
+}
+
+.nprogress-custom-parent {
+    @apply overflow-hidden relative;
+
+    #nprogress .bar {
+        @apply absolute;
+    }
+}
+
+@keyframes nprogress-spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

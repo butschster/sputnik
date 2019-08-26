@@ -3,106 +3,84 @@
         <div class="section-header">
             Create server
 
-            <p>Standard virtual machines with a mix of memory and compute resources. Best for small projects that can handle variable levels of CPU performance, like blogs, web apps and dev/test environments.</p>
+            <p>Standard virtual machines with a mix of memory and compute resources. Best for small projects that can
+                handle variable levels of CPU performance, like blogs, web apps and dev/test environments.</p>
         </div>
 
-        <form action="{{ route('server.store') }}" method="POST" class="card-body">
-            @csrf
-
+        <div class="card-body">
             <div class="flex">
-                <div class="form-group form-group-labeled w-full is-required @error('name') is-invalid @enderror">
-                    <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}" autofocus placeholder="Server name">
-                    <label for="name">Server name</label>
-
-                    @error('name')
-                    <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                    @enderror
-                </div>
-
-                <div class="form-group form-group-labeled ml-5 w-full @error('team_id') is-invalid @enderror">
-                    <select name="team_id" id="project" class="form-control">
-                        @foreach($teams as $project)
-                        <option value="{{ $project->id }}">{{ $project->name }}</option>
-                        @endforeach
-                    </select>
-                    <label for="project">Project</label>
-
-                    @error('team_id')
-                    <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                    @enderror
-                </div>
+                <FormInput v-model="form.name" :label="label.name" name="name" class="w-full mr-8" required autofocus/>
+                <FormSelect v-model="form.team_id" :label="label.team" name="team_id" class="w-full" :options="teams" required/>
             </div>
 
             <div class="flex">
-                <div class="form-group form-group-labeled is-required w-full mr-5 @error('ip') is-invalid @enderror">
-                    <input type="text" id="ip_address" class="form-control" name="ip" value="{{ old('ip', '167.71.3.113') }}" placeholder="IP Addrress">
-                    <label for="ip_address">IP Addrress</label>
-
-                    @error('ip')
-                    <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                    @enderror
-                </div>
-
-                <div class="form-group form-group-labeled is-required @error('port') is-invalid @enderror">
-                    <input type="number" id="ssh_port" class="form-control" name="ssh_port" value="{{ old('port', 22) }}" placeholder="SSH port">
-                    <label for="ssh_port">SSH port</label>
-
-                    @error('port')
-                    <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                    @enderror
-                </div>
+                <FormInput v-model="form.ip" :label="label.ip" name="ip" class="w-full mr-8" required/>
+                <FormInput v-model="form.ssh_port" :label="label.ssh_port" name="ssh_port" required/>
             </div>
 
             <div class="flex">
-                <div class="form-group w-full form-group-labeled mr-5 @error('php_version') is-invalid @enderror">
-                    <select name="php_version" id="php_version" class="form-control">
-                        <option value="72">PHP 7.2</option>
-                        <option value="73" selected>PHP 7.3</option>
-                    </select>
-                    <label for="php_version">PHP version</label>
-
-                    @error('php_version')
-                    <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                    @enderror
-                </div>
-
-                <div class="form-group w-full form-group-labeled @error('database_type') is-invalid @enderror">
-                    <select name="database_type" id="database_type" class="form-control">
-                        <option value="mysql" selected>MySQL</option>
-                        <option value="mariadb">MariaDB</option>
-                        <option value="mysql8">MySQL 8</option>
-                        <option value="pgsql">PostgreSQL</option>
-                    </select>
-                    <label for="database_type">Database</label>
-
-                    @error('database_type')
-                    <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                    @enderror
-                </div>
+                <FormSelect v-model="form.php_version" :label="label.php_version" name="php_version" class="w-full mr-8"
+                            :options="php_versions" required/>
+                <FormSelect v-model="form.database_type" :label="label.database_type" name="database_type"
+                            class="w-full" :options="database_types" required/>
             </div>
 
-            <button class="btn btn-blue shadow-lg">
+            <button class="btn btn-blue shadow-lg" @click="onSubmit">
                 <i class="fas fa-plus"></i>
                 Create
             </button>
-        </form>
+        </div>
     </div>
 </template>
 
 <script>
-    export default {
+    import FormInput from '@vue/components/Form/Input'
+    import FormSelect from '@vue/components/Form/Select'
+    import {mapGetters} from 'vuex'
 
+    export default {
+        components: {FormInput, FormSelect},
+        data() {
+            return {
+                form: {
+                    name: 'Test server',
+                    team_id: null,
+                    ip: null,
+                    ssh_port: 22,
+                    php_version: 73,
+                    database_type: 'mysql'
+                },
+                label: {
+                    name: 'Name',
+                    team: 'Team',
+                    ip: 'IP Address',
+                    ssh_port: 'SSH port',
+                    php_version: 'PHP version',
+                    database_type: 'Database'
+                },
+                php_versions: [
+                    {label: 'PHP 7.2', value: 72},
+                    {label: 'PHP 7.3', value: 73}
+                ],
+                database_types: [
+                    {label: 'MySQL 5.7', value: 'mysql'},
+                    {label: 'MySQL 8', value: 'mysql8'},
+                    {label: 'MariaDB', value: 'mariadb'},
+                    {label: 'PostgreSQL', value: 'pgsql'},
+                ],
+            }
+        },
+        methods: {
+            async onSubmit() {
+                const server = await this.$store.dispatch('servers/createServer', this.form)
+
+                console.log(server)
+            }
+        },
+        computed: {
+            ...mapGetters('auth', {
+                teams: 'getTeamsOptions',
+            })
+        }
     }
 </script>

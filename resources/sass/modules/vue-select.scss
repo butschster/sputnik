@@ -1,0 +1,108 @@
+@import "~vue-select/src/scss/global/variables";
+@import "~vue-select/src/scss/global/component";
+@import "~vue-select/src/scss/global/animations";
+@import "~vue-select/src/scss/global/states";
+@import "~vue-select/src/scss/modules/open-indicator";
+@import "~vue-select/src/scss/modules/clear";
+@import "~vue-select/src/scss/modules/dropdown-option";
+@import "~vue-select/src/scss/modules/search-input";
+@import "~vue-select/src/scss/modules/spinner";
+
+.vs--open {
+    @apply bg-white;
+}
+
+.vs__dropdown-menu {
+    @apply block rounded-b bg-white absolute left-0 shadow-lg w-full;
+    top: calc(100% - 1px); // -{#$border-width} here ensures the left and right borders of the dropdown appear flush with the toggle.
+    z-index: $vs-dropdown-z-index;
+    padding: 5px 0;
+    max-height: $vs-dropdown-max-height;
+    min-width: $vs-dropdown-min-width;
+    overflow-y: auto;
+    text-align: left;
+    list-style: none;
+    margin-left: -1px;
+    margin-right: -1px;
+    border: 1px solid theme('colors.blue.500');
+    border-top-width: 0;
+}
+
+.vs__no-options {
+    text-align: center;
+}
+
+.vs__dropdown-toggle {
+    appearance: none;
+    display: flex;
+    background: none;
+    white-space: normal;
+}
+
+.vs__selected-options {
+    display: flex;
+    flex-basis: 100%;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.vs__actions {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: -15px;
+}
+
+/* Dropdown Toggle States */
+.vs--searchable .vs__dropdown-toggle {
+    cursor: text;
+}
+
+.vs--unsearchable .vs__dropdown-toggle {
+    cursor: pointer;
+}
+
+.vs--open .vs__dropdown-toggle {
+    border-bottom-color: transparent;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Selected Tags */
+.vs__selected {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    line-height: 7px;
+}
+
+.vs__deselect {
+    display: inline-flex;
+    appearance: none;
+    margin-left: 4px;
+    border: 0;
+    cursor: pointer;
+    padding: 3px;
+    border-radius: 999px;
+    line-height: 7px;
+    background: #ffffff;
+}
+
+/* States */
+
+.vs--single {
+    .vs__selected {
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    &.vs--open .vs__selected {
+        position: absolute;
+        opacity: .4;
+    }
+
+    &.vs--searching .vs__selected {
+        display: none;
+    }
+}

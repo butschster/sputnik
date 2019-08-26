@@ -3,47 +3,27 @@
         <loader :loading="loading"/>
         <h4>Servers</h4>
         <div class="servers-list-items">
-            <div class="servers-list-item-wrapper" v-for="server in servers">
-                <div class="servers-list-item__status">
-                    <div class="status-indicator" :class="server.status"></div>
-                </div>
-                <div class="servers-list-item__name">
-                    <router-link :to="{name: 'server.show', params: {id: server.id }}">
-                        {{ server.name }}
-                    </router-link>
-                    <div class="servers-list-item__address">{{ server.ip }}</div>
-                </div>
-                <div class="servers-list-item__project">
-                    {{ server.team.name }}
-                </div>
-            </div>
+            <ListItem v-for="server in servers" :server="server" :key="server.id"/>
         </div>
     </section>
 </template>
 <script>
+    import {mapGetters} from 'vuex'
+    import ListItem from './partials/ListItem'
+
     export default {
-        data() {
-            return {
-                servers: [],
-                loading: false
-            }
-        },
+        components: {ListItem},
         mounted() {
-            this.load()
+
         },
         methods: {
-            async load() {
-                this.loading = true
 
-                try {
-                    const response = await this.$api('v1.servers').request();
-                    this.servers = response.data.data
-                } catch (e) {
-                    console.error(e)
-                }
-
-                this.loading = false
-            }
         },
+        computed: {
+            ...mapGetters('servers', {
+                servers: 'getServers',
+                loading: 'isLoading'
+            })
+        }
     }
 </script>

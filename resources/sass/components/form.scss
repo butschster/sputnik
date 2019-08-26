@@ -31,6 +31,13 @@
                 line-height: 3.5rem;
             }
         }
+
+        &-ip {
+            input {
+                background: none;
+                width: 30px;
+            }
+        }
     }
 
     &.is-required {

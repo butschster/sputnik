@@ -3,13 +3,7 @@ import router from './router'
 import Gate from './policies/Gate'
 import Loader from '@vue/components/UI/Loader'
 
-
 require('./bootstrap')
-require('./http')
-require('./api')
-//import i18n from './vue/plugins/18n'
-require('./vue/plugins/echo')
-require('./vue/directives/click-ouside')
 
 import store from './vue/store'
 
@@ -28,5 +22,6 @@ new Vue({
     },
     created: function () {
         this.$store.dispatch('auth/loadUser')
+        this.$store.dispatch('servers/loadServers')
     }
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\v1;
 
+use App\Http\Resources\v1\User\TeamsCollection;
 use Illuminate\Support\Facades\Gate;
 
 class UserProfileResource extends UserResource
@@ -16,10 +17,11 @@ class UserProfileResource extends UserResource
     public function toArray($request)
     {
         return parent::toArray($request) + [
-                'email' => $this->email,
-                'can' => [
-                    'server_create' => Gate::allows('create', \App\Models\Server::class),
-                ],
-            ];
+            'email' => $this->email,
+            'teams' => TeamsCollection::make($this->rolesTeams),
+            'can' => [
+                'server_create' => Gate::allows('create', \App\Models\Server::class),
+            ],
+        ];
     }
 }

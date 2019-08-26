@@ -15,3 +15,9 @@ if (token) {
 
 Vue.use(VeeValidate)
 Vue.use(VueSweetalert2)
+
+require('./http')
+require('./api')
+//import i18n from './vue/plugins/18n'
+require('./vue/plugins/echo')
+require('./vue/directives/click-ouside')
