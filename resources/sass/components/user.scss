@@ -15,4 +15,24 @@
             @apply text-sm text-gray-600;
         }
     }
+
+    &-block {
+        > h2 {
+            @apply font-light;
+        }
+
+        &__list {
+            @apply flex;
+        }
+
+        &__item {
+            @apply bg-white border rounded p-6 mr-5 shadow-lg relative;
+
+            &--role {
+                @apply bg-blue-500 py-1 px-2 text-white absolute text-xs;
+                top: -5px;
+                right: -10px;
+            }
+        }
+    }
 }

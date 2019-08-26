@@ -612,17 +612,18 @@ html {
 }
 
 h1 {
-  font-size: 1.875rem;
+  font-size: 2.25rem;
   margin-bottom: 1.25rem;
+  font-weight: 300;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.875rem;
   margin-bottom: 1rem;
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-bottom: 0.75rem;
 }
 
@@ -651,7 +652,14 @@ pre {
   border-radius: 0.25rem;
   padding: 2rem;
   background-color: #f7fafc;
-  overflow-x: scroll;
+  overflow-x: auto;
+}
+
+code {
+  font-size: 0.875rem;
+  font-family: Source Code Pro, monospace;
+  border-radius: 0.25rem;
+  display: inline-block;
 }
 
 .container{
@@ -60490,6 +60498,7 @@ readers do not read off random characters that represent icons */
   border-color: #edf2f7;
   background-color: #edf2f7;
   transition: all 0.2s linear;
+  height: 3.5rem;
 }
 
 .form-group .form-control:focus, .form-group .form-control:hover {
@@ -60506,7 +60515,7 @@ readers do not read off random characters that represent icons */
   font-size: 1.25rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  height: 3.5rem;
+  height: 4rem;
 }
 
 .form-group .form-control-lg + label {
@@ -60514,11 +60523,25 @@ readers do not read off random characters that represent icons */
   line-height: 3.5rem;
 }
 
+.form-group.is-required::before {
+  position: absolute;
+  font-size: 1.5rem;
+  color: #4299e1;
+  transition: all 0.2s linear;
+  content: "*";
+  right: 13px;
+  top: 12px;
+}
+
 .form-group select.form-control {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0aec0'%3e%3cpath d='M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 0.5rem center;
   background-size: 1.5rem 1.5rem;
+}
+
+.form-group.is-invalid.is-required::before {
+  color: #c53030;
 }
 
 .form-group.is-invalid .form-control {
@@ -60543,7 +60566,7 @@ readers do not read off random characters that represent icons */
   width: 100%;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-  line-height: 4rem;
+  line-height: 3.5rem;
 }
 
 .form-group-labeled .form-control::-webkit-input-placeholder {
@@ -60602,10 +60625,10 @@ readers do not read off random characters that represent icons */
   display: inline-block;
   text-align: center;
   border-radius: 0.25rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
   letter-spacing: 0.05em;
   transition: all 0.2s linear;
   color: #4a5568;
@@ -60629,10 +60652,10 @@ readers do not read off random characters that represent icons */
 }
 
 .btn-lg {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 .btn-default {
@@ -60791,7 +60814,6 @@ readers do not read off random characters that represent icons */
 .navbar {
   background-color: #fff;
   border-bottom-width: 1px;
-  margin-bottom: 2rem;
   display: flex;
   justify-content: space-between;
 }
@@ -60909,6 +60931,193 @@ readers do not read off random characters that represent icons */
 .user-info--email {
   font-size: 0.875rem;
   color: #718096;
+}
+
+.user-block > h2 {
+  font-weight: 300;
+}
+
+.user-block__list {
+  display: flex;
+}
+
+.user-block__item {
+  background-color: #fff;
+  border-width: 1px;
+  border-radius: 0.25rem;
+  padding: 1.5rem;
+  margin-right: 1.25rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.user-block__item--role {
+  background-color: #4299e1;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  color: #fff;
+  position: absolute;
+  font-size: 0.75rem;
+  top: -5px;
+  right: -10px;
+}
+
+.price-table {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.price-table > h2 {
+  font-weight: 300;
+}
+
+.price-table__items {
+  display: flex;
+  justify-content: center;
+}
+
+.price-table__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-width: 1px;
+  background-color: #fff;
+  transition: all 0.2s linear;
+  width: 33.333333%;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.price-table__item--title {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.price-table__item--features {
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.price-table__item--feature {
+  font-weight: 700;
+  color: #718096;
+}
+
+.price-table__item--feature .icon {
+  color: #68d391;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+.price-table__item:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.price-table__item.current {
+  border-width: 4px;
+  border-color: #68d391;
+}
+
+.price-table__item.changeable:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+  border-width: 0;
+  text-align: left;
+  box-shadow: 0 0 0 2px #e2e8f0;
+  margin-left: 2px;
+  border-style: hidden;
+}
+
+.table thead tr {
+  background-color: #edf2f7;
+}
+
+.table thead tr th, .table thead tr td {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  color: #4a5568;
+  font-size: 0.75rem;
+}
+
+.table thead tr th:first-child, .table thead tr td:first-child {
+  padding-left: 1.25rem;
+}
+
+.table thead tr th:last-child, .table thead tr td:last-child {
+  padding-right: 1.25rem;
+}
+
+.table thead tr:first-child:first-child {
+  border-top-left-radius: 0.25rem;
+}
+
+.table thead tr:first-child:last-child {
+  border-top-right-radius: 0.25rem;
+}
+
+.table tbody tr:not(:last-child) {
+  border-bottom-width: 2px;
+}
+
+.table tbody tr th, .table tbody tr td {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.table tbody tr th:first-child, .table tbody tr td:first-child {
+  padding-left: 1.25rem;
+}
+
+.table tbody tr th:last-child, .table tbody tr td:last-child {
+  padding-right: 1.25rem;
+}
+
+.table tbody tr:last-child:first-child {
+  border-bottom-left-radius: 0.25rem;
+}
+
+.table tbody tr:last-child:last-child {
+  border-bottom-right-radius: 0.25rem;
+}
+
+.section:not(:first-of-type) {
+  border-top-width: 1px;
+  border-color: #e2e8f0;
+}
+
+.section-header {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-header p {
+  color: #718096;
+  font-size: 1.125rem;
+}
+
+.alert {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 1.125rem;
+  font-weight: 300;
+}
+
+.alert-warning {
+  background-color: #faf089;
+}
+
+.alert-primary {
+  background-color: #3182ce;
+  color: #fff;
 }
 
 .page-login-container {

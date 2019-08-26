@@ -1,0 +1,45 @@
+.price-table {
+    @apply my-12;
+
+    > h2 {
+        @apply font-light;
+    }
+
+    &__items {
+        @apply flex justify-center;
+    }
+
+    &__item {
+        @apply flex flex-col justify-between border bg-white transition w-1/3 p-8 rounded-lg;
+
+        &--title {
+            @apply mb-6 text-2xl;
+        }
+
+        &--features {
+            @apply mt-3 mb-4;
+        }
+
+        &--feature {
+            @apply font-bold text-gray-600;
+
+            .icon {
+                @apply text-green-400 py-3 mr-3;
+            }
+        }
+
+        &:not(:last-child) {
+            @apply mr-8;
+        }
+
+        &.current {
+            @apply border-4 border-green-400;
+        }
+
+        &.changeable {
+            &:hover {
+                @apply shadow-2xl;
+            }
+        }
+    }
+}

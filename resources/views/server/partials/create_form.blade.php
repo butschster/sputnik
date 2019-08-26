@@ -1,7 +1,7 @@
 @can('create', \App\Models\Server::class)
 
-<div class="card">
-    <div class="card-header">
+<div class="sectio">
+    <div class="section-header">
         Create server
 
         <p>Standard virtual machines with a mix of memory and compute resources. Best for small projects that can handle variable levels of CPU performance, like blogs, web apps and dev/test environments.</p>
@@ -11,7 +11,7 @@
         @csrf
 
         <div class="flex">
-            <div class="form-group form-group-labeled w-full @error('name') is-invalid @enderror">
+            <div class="form-group form-group-labeled w-full is-required @error('name') is-invalid @enderror">
                 <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}" autofocus placeholder="Server name">
                 <label for="name">Server name</label>
 
@@ -39,7 +39,7 @@
         </div>
 
         <div class="flex">
-            <div class="form-group form-group-labeled w-full mr-5 @error('ip') is-invalid @enderror">
+            <div class="form-group form-group-labeled is-required w-full mr-5 @error('ip') is-invalid @enderror">
                 <input type="text" id="ip_address" class="form-control" name="ip" value="{{ old('ip', '167.71.3.113') }}" placeholder="IP Addrress">
                 <label for="ip_address">IP Addrress</label>
 
@@ -50,7 +50,7 @@
                 @enderror
             </div>
 
-            <div class="form-group form-group-labeled @error('port') is-invalid @enderror">
+            <div class="form-group form-group-labeled is-required @error('port') is-invalid @enderror">
                 <input type="number" id="ssh_port" class="form-control" name="ssh_port" value="{{ old('port', 22) }}" placeholder="SSH port">
                 <label for="ssh_port">SSH port</label>
 
@@ -94,7 +94,7 @@
             </div>
         </div>
 
-        <button class="btn btn-blue btn-rounded shadow-lg">
+        <button class="btn btn-blue shadow-lg">
             <i class="fas fa-plus"></i>
             Create
         </button>

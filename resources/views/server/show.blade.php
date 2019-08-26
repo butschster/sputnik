@@ -10,22 +10,17 @@
         <i class="fas fa-hdd mr-3"></i> {{ $server->name }}
         <br><small class="text-muted">{{ $server->team->name }}</small>
 
-        <span
-            class="badge float-right @if($server->isConfigured()) badge-success @else badge-warning @endif">{{ $server->status }}</span>
+        <span class="badge float-right @if($server->isConfigured()) badge-success @else badge-warning @endif">
+            {{ $server->status }}
+        </span>
     </h1>
-    <div class="card">
-        <div class="card-header">
-            <i class="fas fa-clipboard-list mr-3"></i>
-            System information
-            <a href="{{ route('server.config', $server) }}" class="btn btn-sm btn-primary float-right">Configuration
-                script</a>
+
+    @if($server->isPending())
+        <div class="alert alert-primary mb-8 rounded">
+            <p>Run this code in your server and wait until server configuring</p>
+            <code>wget -O sputnik.sh "{{ route('server.install_script', $server) }}"; bash sputnik.sh</code>
         </div>
-        @if($server->isPending())
-            <div class="alert alert-warning mb-0">
-                <code>wget -O sputnik.sh "{{ route('server.install_script', $server) }}"; bash
-                    sputnik.sh</code>
-            </div>
-        @endif
+    @endif
 
         @if($server->isConfiguring())
             <div class="progress rounded-0">
@@ -35,7 +30,11 @@
                      style="width: 45%"></div>
             </div>
         @endif
-        <table class="table">
+
+    <h4>System information</h4>
+
+
+    <table class="table">
             <col width="200px">
             <col>
             <tr>
@@ -79,25 +78,23 @@
                 <td>{{ $server->webserver_type }}</td>
             </tr>
         </table>
-    </div>
 
     @include('server.partials.tasks', ['tasks' => $server->tasks])
 
-    <div class="card mt-3">
-        <div class="card-header">
-            <i class="fas fa-archive fa-lg mr-3"></i>
-            Server Events
-        </div>
+    <section class="mt-10">
+        <h4>Server Events</h4>
 
-        <table class="table table-hover mb-0">
-            <col>
-            <col width="200px">
-            @foreach($server->events as $event)
-                <tr>
-                    <th>{{ $event->message }}</th>
-                    <td class="text-right"><small class="badge">{{ $event->created_at }}</small></td>
-                </tr>
-            @endforeach
-        </table>
-    </div>
+        <div class="section-body">
+            <table class="table table-hover mb-0">
+                <col>
+                <col width="200px">
+                @foreach($server->events as $event)
+                    <tr>
+                        <th>{{ $event->message }}</th>
+                        <td class="text-right"><small class="badge">{{ $event->created_at }}</small></td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+    </section>
 @endsection

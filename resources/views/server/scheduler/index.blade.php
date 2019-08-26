@@ -5,73 +5,77 @@
 @endsection
 
 @section('content')
-    <div class="mb-4">
-        <a class="btn btn-outline-primary" href="{{ route('server.show', $server) }}">
-            <i class="fas fa-arrow-left"></i> Back to server
-        </a>
+    <div class="flex mb-4">
+        <h1 class="flex-1">
+            Scheduler
+        </h1>
+
+        <div class="mb-4">
+            <a class="btn btn-outline" href="{{ route('server.show', $server) }}">
+                <i class="fas fa-arrow-left"></i> Back to server
+            </a>
+        </div>
     </div>
 
-    <h2 class="mb-4">
-        <i class="fas fa-clock mr-3"></i> Scheduler
-    </h2>
-
     @can('store', [\App\Models\Server\CronJob::class, $server])
-        <div class="card">
-            <div class="card-header">New scheduled task</div>
-            <form action="{{ route('server.scheduler.store', $server) }}" method="POST" class="card-body">
-                @csrf
-                <input type="hidden" name="user" value="root">
-
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                           value="{{ old('name', 'My awesome cron task') }}" required autofocus>
-
-                    @error('name')
-                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label>Command</label>
-                    <input type="text" class="form-control @error('command') is-invalid @enderror"
-                           name="command"
-                           value="{{ old('command', 'apt-get update') }}" required autofocus>
-
-                    @error('command')
-                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label>Cron expression</label>
-                    <input type="text" class="form-control @error('cron') is-invalid @enderror" name="cron"
-                           value="{{ old('cron', '* * * * *') }}" required autofocus>
-
-                    <small id="passwordHelpBlock" class="form-text text-muted">
-                        You can use named expressions like [@hourly, @daily, @monthly]
-                    </small>
-
-                    @error('cron')
-                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                    @enderror
-                </div>
-
-
-                <div class="form-group mb-0">
-                    <button class="btn btn-primary">Schedule</button>
-                </div>
-            </form>
+    <section class="section pb-8 my-10">
+        <div class="section-header">
+            New scheduled task
+            <p>You can easily schedule cron jobs on your server</p>
         </div>
+        <form action="{{ route('server.scheduler.store', $server) }}" method="POST">
+            @csrf
+            <input type="hidden" name="user" value="root">
+
+            <div class="form-group form-group-labeled is-required @error('name') is-invalid @enderror">
+                <input type="text" class="form-control" name="name" id="name"
+                       value="{{ old('name', 'My awesome cron task') }}" placeholder="Name">
+                <label for="name">Name</label>
+
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+
+            <div class="form-group form-group-labeled is-required @error('command') is-invalid @enderror">
+                <input type="text" class="form-control"
+                       name="command" id="command" value="{{ old('command', 'apt-get update') }}" placeholder="Command">
+                <label for="command">Command</label>
+
+                @error('command')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+
+            <div class="form-group form-group-labeled is-required @error('cron') is-invalid @enderror">
+                <input type="text" class="form-control" name="cron" id="cron"
+                       value="{{ old('cron', '* * * * *') }}" placeholder="Cron expression">
+                <label for="cron">Cron expression</label>
+
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    You can use named expressions like [@hourly, @daily, @monthly]
+                </small>
+
+                @error('cron')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+
+            <div class="form-group mb-0">
+                <button class="btn btn-primary">Schedule</button>
+            </div>
+        </form>
+    </section>
     @endcan
 
-    <div class="card mt-3">
+    <div class="mt-10">
+        <h4>Scheduled jobs</h4>
         <table class="table mb-0">
             <col>
             <col width="100px">

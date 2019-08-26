@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="mb-16">
+        @include('server.partials.create_form')
+    </div>
+
     <section class="servers-list">
         <h4>Servers</h4>
         <div class="servers-list-items">
@@ -20,5 +24,4 @@
         @endforeach
         </div>
     </section>
-    @include('server.partials.create_form')
 @endsection

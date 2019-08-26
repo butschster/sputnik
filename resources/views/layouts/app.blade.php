@@ -11,12 +11,11 @@
 <div id="app" class="min-w-full min-h-screen">
     <div class="flex min-h-screen">
         <aside class="sidebar">
-            @yield('sidebar')
 
             <div class="sidebar-section">
                 <h5>Manage</h5>
                 <div class="nav">
-                    <a class="nav-link" href="{{ route('user.profile') }}">
+                    <a class="nav-link" href="{{ route('home') }}">
                         Servers
                     </a>
                     <a class="nav-link" href="#">
@@ -24,6 +23,8 @@
                     </a>
                 </div>
             </div>
+
+            @yield('sidebar')
 
             <div class="sidebar-section">
                 <h5>Account</h5>
@@ -70,7 +71,7 @@
                 </div>
             </nav>
 
-            <div class="container pt-8 px-12 m-auto">
+            <div class="container pt-10 px-12 m-auto">
                 @yield('content')
             </div>
         </div>

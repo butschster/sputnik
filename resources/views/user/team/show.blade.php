@@ -12,16 +12,25 @@
         </div>
     @endif
 
-    <div class="card mb-4">
-        <div class="card-header">Members</div>
-        <div class="list-group list-group-flush">
-            @foreach($users as $user)
-                <div class="list-group-item">
-                    {{ $user->name }}
+    <div class="user-block">
+        <h2>Members</h2>
 
-                    @role('owner')
-                    <span class="badge badge-primary float-right">owner</span>
-                    @endrole
+        <div class="user-block__list">
+            @foreach($users as $user)
+                <div class="user-block__item">
+                    <div class="user-info">
+                        <img src="https://api.adorable.io/avatars/161/abott@adorable.png" alt="" class="user-info--avatar">
+                        <div class="user-info--name">
+                            <a href="{{ route('user.profile') }}">{{ $user->name }}</a>
+                            <div class="user-info--email">
+                                {{ $user->email }}
+                            </div>
+                        </div>
+                    </div>
+
+                    @if($user->hasRole('owner', $team))
+                        <span class="user-block__item--role">owner</span>
+                    @endif
                 </div>
             @endforeach
         </div>

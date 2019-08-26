@@ -11,6 +11,7 @@
 
     .form-control {
         @apply appearance-none border w-full py-3 px-5 h-16 text-gray-700 rounded block border-gray-200 bg-gray-200 transition;
+        height: 3.5rem;
 
         &:focus,
         &:hover {
@@ -23,12 +24,21 @@
 
         &-lg {
             @apply text-xl py-4;
-            height: 3.5rem;
+            height: 4rem;
 
             + label {
                 @apply text-xl;
                 line-height: 3.5rem;
             }
+        }
+    }
+
+    &.is-required {
+        &::before {
+            @apply absolute text-2xl text-blue-500 transition;
+            content: "*";
+            right: 13px;
+            top: 12px;
         }
     }
 
@@ -41,6 +51,12 @@
 
 
     &.is-invalid {
+        &.is-required {
+            &::before {
+                @apply text-red-700;
+            }
+        }
+
         .form-control {
             @apply border-red-500;
         }
@@ -57,7 +73,7 @@
     &-labeled {
         label {
             @apply absolute top-0 left-0 block w-full px-5;
-            line-height: 4rem;
+            line-height: 3.5rem;
         }
 
         .form-control {

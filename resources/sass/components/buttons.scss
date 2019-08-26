@@ -1,5 +1,5 @@
 .btn {
-    @apply inline-block text-center rounded py-3 px-6 tracking-wider transition text-gray-700;
+    @apply inline-block text-center rounded py-4 px-12 tracking-wider transition text-gray-700;
 
     &:focus {
         @apply outline-none shadow-outline;
@@ -14,7 +14,7 @@
     }
 
     &-lg {
-        @apply py-4 px-8;
+        @apply py-6 px-16;
     }
 
     &-default {
@@ -32,7 +32,6 @@
             @apply bg-red-600 text-white;
         }
     }
-
 
     &-blue, &-primary {
         @apply bg-blue-500 text-white;

@@ -25,23 +25,29 @@
         </div>
     </div>
 
-    <div class="mt-12">
-        <h2>Source Control</h2>
+    <section class="section mt-12">
+        <div class="section-header">
+            Source Control
+        </div>
 
-        <a class="btn btn-outline mr-5" href="{{ route('login.github') }}">
-            <i class="fab fa-github mr-1"></i>
-            Github
-        </a>
-        <a class="btn btn-outline" href="{{ route('login.bitbucket') }}">
-            <i class="fab fa-bitbucket mr-1"></i>
-            Bitbucket
-        </a>
-    </div>
+        <div class="section-body">
+            <a class="btn btn-outline mr-5" href="{{ route('login.github') }}">
+                <i class="fab fa-github mr-1"></i>
+                Github
+            </a>
+            <a class="btn btn-outline" href="{{ route('login.bitbucket') }}">
+                <i class="fab fa-bitbucket mr-1"></i>
+                Bitbucket
+            </a>
+        </div>
+    </section>
 
-    <div class="border-t border-gray-300 py-8 my-12 flex items-center">
+    <section class="section flex items-center mt-16 pt-12">
         <div class="flex-1">
-            <h2>Deactivate account</h2>
-            <p class="text-gray-600">This will remove your account from all teams and disable your account.</p>
+            <div class="section-header">
+                Deactivate account
+                <p class="text-gray-600">This will remove your account from all teams and disable your account.</p>
+            </div>
         </div>
         <div>
             <form action="">
@@ -50,5 +56,5 @@
                 </button>
             </form>
         </div>
-    </div>
+    </section>
 @endsection

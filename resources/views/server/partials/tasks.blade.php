@@ -1,9 +1,7 @@
-<div class="card mt-3">
-    <div class="card-header">
-        <i class="fas fa-tasks fa-lg mr-3"></i> Server tasks
-    </div>
+<section class="mt-10">
+    <h4>Server tasks</h4>
 
-    <table class="table table-hover mb-0">
+    <table class="table">
         <col>
         <col width="100px">
         @foreach($tasks as $task)
@@ -18,4 +16,4 @@
             </tr>
         @endforeach
     </table>
-</div>
+</section>
