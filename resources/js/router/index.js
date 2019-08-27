@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import VueMeta from 'vue-meta'
 import routes from '@vue/routes'
 import NProgress from 'nprogress'
+import store from '../vue/store'
 
 Vue.use(VueRouter)
 Vue.use(VueMeta)
@@ -32,6 +33,8 @@ index.beforeEach(async (to, from, next) => {
 
 index.afterEach((to, from) => {
     NProgress.done()
+
+    store.dispatch('server/clearServer')
 })
 
 

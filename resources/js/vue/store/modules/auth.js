@@ -6,12 +6,8 @@ const state = {
 
 // getters
 const getters = {
-    getUser: (state) => {
-        return state.user
-    },
-    getTeams: (state) => {
-        return state.user.teams
-    },
+    getUser: (state) => state.user,
+    getTeams: (state) => state.user.teams,
     getTeamsOptions: (state) => {
         return state.user.teams.map((team) => {
             return {label: team.name, value: team.id}

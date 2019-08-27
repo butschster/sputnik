@@ -19,4 +19,11 @@ class Event extends Model
      * {@inheritdoc}
      */
     protected $guarded = [];
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $casts = [
+        'meta' => 'array',
+    ];
 }

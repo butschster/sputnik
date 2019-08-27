@@ -64,4 +64,12 @@
     &-rounded {
         @apply rounded-full;
     }
+
+    &-copy {
+        @apply cursor-pointer uppercase font-bold text-sm;
+
+        &--copied {
+            @include bounceIn();
+        }
+    }
 }

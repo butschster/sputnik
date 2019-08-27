@@ -20,7 +20,7 @@ class TasksController extends Controller
 
         $tasks = $server->tasks()->paginate();
 
-        return TasksCollection::class($tasks);
+        return TasksCollection::make($tasks);
     }
 
     /**
@@ -32,7 +32,7 @@ class TasksController extends Controller
     {
         $this->authorize('show', $task);
 
-        return TaskResource::class($task);
+        return TaskResource::make($task);
     }
 
     /**

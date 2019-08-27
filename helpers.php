@@ -32,6 +32,21 @@ function callback_url(string $action, array $parameters = [], int $lifeTime = 60
 }
 
 /**
+ * Generate curl callback event string
+ *
+ * @param string $serverId
+ * @param string $message
+ * @param int $progress
+ * @return string
+ */
+function callback_event(string $serverId, string $message, int $progress = 0): string
+{
+    return callback_url('server.event', [
+        'server_id' => $serverId, 'message' => $message, 'progress' => $progress,
+    ], 10);
+}
+
+/**
  * Get server configurator
  *
  * @param ServerConfiguration $configuration

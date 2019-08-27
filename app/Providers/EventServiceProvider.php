@@ -24,29 +24,29 @@ class EventServiceProvider extends ServiceProvider
         ],
         Server\Configured::class => [
             \App\Listeners\Server\CreateHttpFirewallRules::class,
-            \App\Listeners\Server\ScheduleSystemJobs::class
+            \App\Listeners\Server\ScheduleSystemJobs::class,
         ],
         Server\Created::class => [
-            \App\Listeners\Server\RegisterSystemUsers::class
+            \App\Listeners\Server\RegisterSystemUsers::class,
         ],
         Server\Site\Created::class => [
-            \App\Listeners\Server\Site\LookupDomainInformation::class
+            \App\Listeners\Server\Site\LookupDomainInformation::class,
         ],
         Server\Site\Deployment\Finished::class => [
-            \App\Listeners\Server\RestartSupervisor::class
+            \App\Listeners\Server\RestartSupervisor::class,
         ],
         Task\Running::class => [
-            \App\Listeners\Server\Site\UpdateDeploymentStatus::class
+            \App\Listeners\Server\Site\UpdateDeploymentStatus::class,
         ],
         Task\Finished::class => [
-            \App\Listeners\Server\Site\UpdateDeploymentStatus::class
+            \App\Listeners\Server\Site\UpdateDeploymentStatus::class,
         ],
         WebHooks\Ping::class => [
 
         ],
         WebHooks\Push::class => [
-            \App\Listeners\Server\Site\WebHooks\DeploySite::class
-        ]
+            \App\Listeners\Server\Site\WebHooks\DeploySite::class,
+        ],
     ];
 
     /**
@@ -61,6 +61,10 @@ class EventServiceProvider extends ServiceProvider
             \App\Observers\Server\GenerateSshKeyPairsObserver::class,
             \App\Observers\Server\ConsumeSubscriptionFeaturesObserver::class,
             \App\Observers\Server\GenerateDatabasePassword::class,
+        ]);
+
+        \App\Models\Server\Event::observe([
+            \App\Observers\Server\Event\FireEventsObserver::class,
         ]);
 
         \App\Models\Server\User::observe([
@@ -87,7 +91,7 @@ class EventServiceProvider extends ServiceProvider
         ]);
 
         \App\Models\Server\Site\Deployment::observe([
-            \App\Observers\Server\Site\Deployment\ConsumeSubscriptionFeaturesObserver::class
+            \App\Observers\Server\Site\Deployment\ConsumeSubscriptionFeaturesObserver::class,
         ]);
 
         \App\Models\Server\CronJob::observe([

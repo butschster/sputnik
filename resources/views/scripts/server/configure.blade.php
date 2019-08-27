@@ -24,3 +24,5 @@ export DEBIAN_FRONTEND=noninteractive
 # Run Redis Installation Script
 
 @include('scripts.tools.redis.install')
+
+{!! callback_event($server->id, 'server.configured', 100) !!}

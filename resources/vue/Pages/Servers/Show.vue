@@ -1,66 +1,35 @@
 <template>
     <div>
-        <Loader :loading="loading" />
+        <Loader :loading="loading"/>
         <div v-if="server">
             <h1 class="mb-4">
-                <i class="fas fa-hdd mr-3"></i> {{ server.name }}
-
-                <span class="badge float-right @if($server->isConfigured()) badge-success @else badge-warning @endif">
-                {{ server.status }}
-            </span>
+                <i class="fas fa-hdd mr-3"></i>
+                {{ server.name }}
             </h1>
 
+            <div class="alert alert-primary mb-8 rounded" v-if="isPending">
+                <p>Run this code in your server and wait until server configuring</p>
+                <code>{{ installScript }}</code>
+                <Copy :text="installScript" />
+            </div>
 
+            <InstallProgress v-if="isConfiguring" :server="server" />
+            <SystemInformation :server="server"/>
 
-
-            <h4>System information</h4>
-
-            <table class="table">
-                <col width="200px">
-                <col>
-                @if($sysInfo)
-                <tr>
-                    <th>OS</th>
-                    <td>
-                        {{ $sysInfo->getOs() }}
-                        {{ $sysInfo->getVersion() }}
-                        [{{ $sysInfo->getArchitecture() }} bits]
-
-                        @if($sysInfo->isSupported())
-                        <span class="badge badge-success">Supported</span>
-                        @else
-                        <span class="badge badge-danger">Not supported</span>
-                        @endif
-                    </td>
-                </tr>
-                @endif
-                <tr>
-                    <th>SSH Port</th>
-                    <td>{{ $server->ssh_port }}</td>
-                </tr>
-                <tr>
-                    <th>IP Address</th>
-                    <td>{{ $server->ip }}</td>
-                </tr>
-                <tr>
-                    <th>PHP Version</th>
-                    <td>{{ $server->php_version }} </td>
-                </tr>
-                <tr>
-                    <th>Database</th>
-                    <td>{{ $server->database_type }}</td>
-                </tr>
-                <tr>
-                    <th>Webserver</th>
-                    <td>{{ $server->webserver_type }}</td>
-                </tr>
-            </table>
+            <TasksList :server="server" class="mt-10"/>
+            <EventsList :server="server" class="mt-10" />
         </div>
     </div>
 </template>
 <script>
+    import TasksList from "@vue/components/Server/Tasks/List";
+    import EventsList from "@vue/components/Server/Events/List";
+    import Copy from "@vue/components/UI/Copy";
+    import InstallProgress from "@vue/components/Server/partials/InstallProgress"
+    import SystemInformation from "@vue/components/Server/partials/SystemInformation"
+
     export default {
-        components: {},
+        components: {SystemInformation, InstallProgress, TasksList, EventsList, Copy},
         data() {
             return {
                 server: null,
@@ -71,12 +40,22 @@
             this.load()
         },
         methods: {
+            loaded() {
+                this.$echo.channel('server.' + this.server.id)
+                    .listen('.App\\Events\\Server\\StatusChanged', (e) => {
+                        this.server.status = e.status
+                        console.log(e)
+                    })
+
+                this.$store.dispatch('server/setServer', this.server)
+            },
             async load() {
                 this.loading = true
 
                 try {
                     const response = await this.$api('v1.server.show', {server: this.$route.params.id}).request()
                     this.server = response.data.data
+                    this.loaded()
                 } catch (e) {
                     console.error(e)
                     this.$router.replace({name: "404"})
@@ -85,6 +64,21 @@
                 this.loading = false
             }
         },
+        computed: {
+            installScript() {
+                return `wget -O sputnik.sh "${this.server.links.install_script}"; bash sputnik.sh`
+            },
+            isPending() {
+                return this.server.status == 'pending'
+            },
+            isConfiguring() {
+                return this.server.status == 'configuring'
+            },
+            isConfigured() {
+                return this.server.status == 'configured'
+            }
+        },
+
         watch: {
             '$route': 'load'
         }

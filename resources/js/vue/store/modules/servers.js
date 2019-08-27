@@ -7,12 +7,9 @@ const state = {
 
 // getters
 const getters = {
-    getServers: (state) => {
-        return state.servers
-    },
-    isLoading: (state) => {
-        return state.loading
-    }
+    hasServers: (state) => state.servers && state.servers.length > 0,
+    getServers: (state) => state.servers,
+    isLoading: (state) => state.loading
 }
 
 const actions = {

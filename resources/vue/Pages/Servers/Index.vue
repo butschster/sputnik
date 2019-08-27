@@ -1,7 +1,7 @@
 <template>
     <div>
-        <CreateForm class="mb-10"/>
         <List />
+        <CreateForm class="mt-10"/>
     </div>
 </template>
 <script>

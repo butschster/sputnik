@@ -7,6 +7,7 @@ use App\Events\Server\Configuring;
 use App\Events\Server\Created;
 use App\Events\Server\Deleted;
 use App\Events\Server\Failed;
+use App\Events\Server\StatusChanged;
 use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\HasConfiguration;
 use App\Models\Concerns\HasKeyPair;
@@ -224,6 +225,7 @@ class Server extends Model implements ServerConfiguration
         ]);
 
         event(new Configuring($this));
+        event(new StatusChanged($this, static::STATUS_CONFIGUTING));
     }
 
     /**
@@ -246,6 +248,7 @@ class Server extends Model implements ServerConfiguration
         $this->update(['status' => static::STATUS_CONFIGURED]);
 
         event(new Configured($this));
+        event(new StatusChanged($this, static::STATUS_CONFIGURED));
     }
 
     /**
@@ -268,6 +271,7 @@ class Server extends Model implements ServerConfiguration
         $this->update(['status' => static::STATUS_FAILED]);
 
         event(new Failed($this));
+        event(new StatusChanged($this, static::STATUS_FAILED));
     }
 
     /**
@@ -303,10 +307,10 @@ class Server extends Model implements ServerConfiguration
      */
     public function scopeWithMonitoring(Builder $builder)
     {
-        return $builder->whereHas('user', function($q) {
-            return $q->whereHas('subscription', function ($q) {
+        return $builder->whereHas('team', function ($q) {
+            return $q->whereHas('subscriptions', function ($q) {
                 return $q->whereIn(
-                    'plan_id', Plan::onlyActive()->withMonitoring()->pluck('id')
+                    'stripe_plan', Plan::onlyActive()->withMonitoring()->pluck('name')
                 );
             });
         });

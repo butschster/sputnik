@@ -26,12 +26,12 @@ class ServerResource extends JsonResource
             'name' => $this->name,
             'ip' => $this->ip,
             'ssh_port' => $this->ssh_port,
-            'sys_info' => $this->when(!empty($sysInfo), function() use($sysInfo) {
+            'sys_info' => $this->when(!empty($sysInfo), function () use ($sysInfo) {
                 return [
-                    'name' => $sysInfo->getOs(),
+                    'os' => $sysInfo->getOs(),
                     'version' => $sysInfo->getVersion(),
                     'architecture' => $sysInfo->getArchitecture(),
-                    'supported' => $sysInfo->isSupported(),
+                    'is_supported' => $sysInfo->isSupported(),
                 ];
             }),
             'php_version' => $this->php_version,
@@ -43,6 +43,9 @@ class ServerResource extends JsonResource
             'updated_at' => $this->updated_at,
             'team' => TeamResource::make($this->whenLoaded('team')),
             'owner' => UserResource::make($this->whenLoaded('user')),
+            'links' => [
+                'install_script' => route('server.install_script', $this),
+            ],
         ];
     }
 }

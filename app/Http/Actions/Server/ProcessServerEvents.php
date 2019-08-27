@@ -25,6 +25,7 @@ class ProcessServerEvents extends Action
 
         $server->events()->create([
             'message' => $this->message,
+            'meta' => $this->only('progress')
         ]);
     }
 }

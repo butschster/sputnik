@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
 
         // Events
         Route::get('server/{server}/events', 'Server\EventsController@index')->name('server.events');
+        Route::get('server/{server}/last-event', 'Server\EventsController@last')->name('server.event.last');
 
         // Cron jobs
         Route::get('server/{server}/cron', 'Server\SchedulerController@index')->name('server.cron_job.index');
@@ -47,7 +48,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('server/user/{user}', 'Server\UserController@delete')->name('server.user.delete');
 
         // Server tasks
-        Route::get('server/{server}/tasks', 'Server\TasksController@index')->name('server.task.index');
+        Route::get('server/{server}/tasks', 'Server\TasksController@index')->name('server.tasks');
         Route::get('server/task/{task}', 'Server\TasksController@show')->name('server.task.show');
         Route::delete('server/task/{task}', 'Server\TasksController@delete')->name('server.task.delete');
 

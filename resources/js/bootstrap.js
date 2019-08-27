@@ -20,4 +20,5 @@ require('./http')
 require('./api')
 //import i18n from './vue/plugins/18n'
 require('./vue/plugins/echo')
+require('./vue/plugins/clipboard')
 require('./vue/directives/click-ouside')

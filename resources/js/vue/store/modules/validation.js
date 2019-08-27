@@ -6,12 +6,8 @@ const state = {
 
 // getters
 const getters = {
-    getErrors: (state) => {
-        return state.errors
-    },
-    hasErrors: state => scope => {
-        return state.errors.any(scope)
-    }
+    getErrors: (state) => state.errors,
+    hasErrors: state => scope => state.errors.any(scope)
 }
 
 const actions = {

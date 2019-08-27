@@ -95,8 +95,6 @@ trait HasConfiguration
      */
     public function callbackUrl(string $message): string
     {
-        return callback_url('server.event', [
-            'server_id' => $this->id, 'message' => $message,
-        ], 10);
+        return callback_event($this->id, $message, 80, 10);
     }
 }

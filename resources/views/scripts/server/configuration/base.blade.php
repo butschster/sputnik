@@ -22,6 +22,7 @@ whois \
 unzip
 
 @include('scripts.server.configuration.ssh')
+{!! callback_event($server->id, 'ssh.configured', 10) !!}
 
 # Set The Hostname
 
@@ -41,12 +42,16 @@ chmod 600 /root/.ssh/id_rsa
 @foreach($users as $user)
 @include('scripts.server.user.create')
 @endforeach
+{!! callback_event($server->id, 'users.created', 20) !!}
 
 @include('scripts.server.configuration.supervisor')
+{!! callback_event($server->id, 'supervisor.installed', 30) !!}
 
 @include('scripts.server.configuration.firewall', ['ports' => [$server->ssh_port]])
+{!! callback_event($server->id, 'firewall.configured', 40) !!}
 
 @include('scripts.server.configuration.swap')
+{!! callback_event($server->id, 'swap.created', 50) !!}
 
 # Setup Unattended Security Upgrades
 
@@ -72,4 +77,4 @@ EOF
 @include('scripts.tools.chown')
 @endforeach
 
-{!! callback_url('server.event', ['server_id' => $server->id, 'message' => 'base.installed'], 10) !!}
+{!! callback_event($server->id, 'base.installed', 60) !!}

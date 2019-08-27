@@ -22,62 +22,61 @@
         </div>
     @endif
 
-        @if($server->isConfiguring())
-            <div class="progress rounded-0">
-                <div class="progress-bar progress-bar-striped progress-bar-animated"
-                     role="progressbar" aria-valuenow="75"
-                     aria-valuemin="0" aria-valuemax="100"
-                     style="width: 45%"></div>
-            </div>
-        @endif
+    @if($server->isConfiguring())
+        <div class="progress rounded-0">
+            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                 role="progressbar" aria-valuenow="75"
+                 aria-valuemin="0" aria-valuemax="100"
+                 style="width: 45%"></div>
+        </div>
+    @endif
 
     <h4>System information</h4>
 
-
     <table class="table">
-            <col width="200px">
-            <col>
+        <col width="200px">
+        <col>
+        <tr>
+            <th>Name</th>
+            <td>{{ $server->name }}</td>
+        </tr>
+        @if($sysInfo)
             <tr>
-                <th>Name</th>
-                <td>{{ $server->name }}</td>
-            </tr>
-            @if($sysInfo)
-                <tr>
-                    <th>OS</th>
-                    <td>
-                        {{ $sysInfo->getOs() }}
-                        {{ $sysInfo->getVersion() }}
-                        [{{ $sysInfo->getArchitecture() }} bits]
+                <th>OS</th>
+                <td>
+                    {{ $sysInfo->getOs() }}
+                    {{ $sysInfo->getVersion() }}
+                    [{{ $sysInfo->getArchitecture() }} bits]
 
-                        @if($sysInfo->isSupported())
-                            <span class="badge badge-success">Supported</span>
-                        @else
-                            <span class="badge badge-danger">Not supported</span>
-                        @endif
-                    </td>
-                </tr>
-            @endif
-            <tr>
-                <th>SSH Port</th>
-                <td>{{ $server->ssh_port }}</td>
+                    @if($sysInfo->isSupported())
+                        <span class="badge badge-success">Supported</span>
+                    @else
+                        <span class="badge badge-danger">Not supported</span>
+                    @endif
+                </td>
             </tr>
-            <tr>
-                <th>IP Address</th>
-                <td>{{ $server->ip }}</td>
-            </tr>
-            <tr>
-                <th>PHP Version</th>
-                <td>{{ $server->php_version }} </td>
-            </tr>
-            <tr>
-                <th>Database</th>
-                <td>{{ $server->database_type }}</td>
-            </tr>
-            <tr>
-                <th>Webserver</th>
-                <td>{{ $server->webserver_type }}</td>
-            </tr>
-        </table>
+        @endif
+        <tr>
+            <th>SSH Port</th>
+            <td>{{ $server->ssh_port }}</td>
+        </tr>
+        <tr>
+            <th>IP Address</th>
+            <td>{{ $server->ip }}</td>
+        </tr>
+        <tr>
+            <th>PHP Version</th>
+            <td>{{ $server->php_version }} </td>
+        </tr>
+        <tr>
+            <th>Database</th>
+            <td>{{ $server->database_type }}</td>
+        </tr>
+        <tr>
+            <th>Webserver</th>
+            <td>{{ $server->webserver_type }}</td>
+        </tr>
+    </table>
 
     @include('server.partials.tasks', ['tasks' => $server->tasks])
 

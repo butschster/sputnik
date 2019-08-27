@@ -29,6 +29,8 @@ class StoreServerInformation extends Action
             'os_information' => $this->only('os', 'version', 'architecture')
         ]);
 
+        event();
+
         if (!$server->refresh()->systemInformation()->isSupported()) {
             $server->markAsFailed();
         }

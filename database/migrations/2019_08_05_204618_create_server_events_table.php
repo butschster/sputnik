@@ -17,6 +17,7 @@ class CreateServerEventsTable extends Migration
             $table->primaryUuid('id');
             $table->belongsToServer();
             $table->text('message');
+            $table->json('meta')->nullable();
             $table->timestamps();
         });
     }

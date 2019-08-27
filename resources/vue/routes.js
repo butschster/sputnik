@@ -5,6 +5,10 @@ import LayoutBasic from '@vue/Layouts/Basic'
 import ServersList from '@vue/Pages/Servers/Index'
 import ServerShow from '@vue/Pages/Servers/Show'
 
+// Profile
+import ProfileShow from "@vue/Pages/Profile/Show";
+import ProfileTeams from "@vue/Pages/Profile/Teams";
+
 import NotFoundPage from '@vue/Pages/NotFound'
 
 export default [
@@ -22,6 +26,16 @@ export default [
                 name: 'server.show',
                 component: ServerShow
             },
+            {
+                path: '/account',
+                name: 'profile',
+                component: ProfileShow
+            },
+            {
+                path: '/account/teams',
+                name: 'profile.teams',
+                component: ProfileTeams
+            }
         ]
     },
     {

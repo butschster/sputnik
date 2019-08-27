@@ -1,16 +1,16 @@
 <template>
     <div class="section">
         <div class="section-header">
-            Create server
+            {{ title }}
 
-            <p>Standard virtual machines with a mix of memory and compute resources. Best for small projects that can
-                handle variable levels of CPU performance, like blogs, web apps and dev/test environments.</p>
+            <p>You can connect any server with public IP address and opened ssh port with public key authentication.</p>
         </div>
 
         <div class="card-body">
             <div class="flex">
                 <FormInput v-model="form.name" :label="label.name" name="name" class="w-full mr-8" required autofocus/>
-                <FormSelect v-model="form.team_id" :label="label.team" name="team_id" class="w-full" :options="teams" required/>
+                <FormSelect v-model="form.team_id" :label="label.team" name="team_id" class="w-full" :options="teams"
+                            required/>
             </div>
 
             <div class="flex">
@@ -78,9 +78,19 @@
             }
         },
         computed: {
+            ...mapGetters('servers', {
+                hasServers: 'hasServers',
+            }),
             ...mapGetters('auth', {
                 teams: 'getTeamsOptions',
-            })
+            }),
+            title() {
+                if (this.hasServers) {
+                    return 'Connect another one'
+                }
+
+                return 'Connect your first server'
+            }
         }
     }
 </script>

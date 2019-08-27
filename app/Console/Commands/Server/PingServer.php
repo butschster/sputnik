@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Server;
 
 use App\Jobs\Server\Ping;
+use App\Jobs\Server\Telnet;
 use App\Models\Concerns\Prunable;
 use App\Models\Server;
 use Illuminate\Console\Command;
@@ -26,7 +27,7 @@ class PingServer extends Command
     public function handle()
     {
         Server::withMonitoring()->configured()->get()->each(function(Server $server) {
-            dispatch(new Ping($server));
+            dispatch(new Telnet($server));
         });
     }
 }
