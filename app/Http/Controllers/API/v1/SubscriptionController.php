@@ -17,7 +17,7 @@ class SubscriptionController extends Controller
     public function plans(): PlanCollection
     {
         return PlanCollection::make(
-            Plan::orderBy('sort_order')->onlyActive()->withoutFree()->get()
+            Plan::onlyActive()->orderBy('sort_order')->get()
         );
     }
 

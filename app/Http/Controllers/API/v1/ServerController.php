@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\API\Controller;
 use App\Http\Requests\Server\StoreRequest;
-use App\Http\Resources\v1\Server\EventsCollection;
+use App\Http\Requests\Server\UpdateRequest;
 use App\Http\Resources\v1\ServerCollection;
 use App\Http\Resources\v1\ServerResource;
 use App\Models\Server;
@@ -45,6 +45,19 @@ class ServerController extends Controller
     public function store(StoreRequest $request): ServerResource
     {
         $server = $request->persist();
+
+        return ServerResource::make($server);
+    }
+
+    /**
+     * @param UpdateRequest $request
+     * @param Server $server
+     * @return ServerResource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(UpdateRequest $request, Server $server): ServerResource
+    {
+        $request->persist();
 
         return ServerResource::make($server);
     }

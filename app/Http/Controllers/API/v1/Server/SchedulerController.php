@@ -21,7 +21,7 @@ class SchedulerController extends Controller
 
         $jobs = $server->cronJobs()->paginate();
 
-        return CronJobCollection::class($jobs);
+        return CronJobCollection::make($jobs);
     }
 
     /**

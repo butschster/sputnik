@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h4>Server tasks</h4>
+        <h4>Recent Tasks</h4>
 
         <div class="section-body">
             <Loader :loading="loading" />

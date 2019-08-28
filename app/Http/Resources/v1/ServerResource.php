@@ -5,6 +5,7 @@ namespace App\Http\Resources\v1;
 use App\Http\Resources\v1\User\TeamResource;
 use App\Models\Server;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Gate;
 
 /**
  * @mixin Server
@@ -46,6 +47,9 @@ class ServerResource extends JsonResource
             'links' => [
                 'install_script' => route('server.install_script', $this),
             ],
+            'can' => [
+                'create_site' => Gate::allows('store', [\App\Models\Server\Site::class, $this->resource])
+            ]
         ];
     }
 }

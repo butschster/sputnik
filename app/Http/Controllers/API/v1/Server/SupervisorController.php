@@ -21,7 +21,7 @@ class SupervisorController extends Controller
 
         $daemons = $server->daemons()->paginate();
 
-        return DaemonsCollection::class($daemons);
+        return DaemonsCollection::make($daemons);
     }
 
     /**

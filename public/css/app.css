@@ -62949,28 +62949,6 @@ readers do not read off random characters that represent icons */
   margin-right: 8px;
 }
 
-/* List Items */
-
-.vs__dropdown-option {
-  line-height: 1.42857143;
-  /* Normalize line height */
-  display: block;
-  padding: 3px 20px;
-  clear: both;
-  color: #333;
-  /* Overrides most CSS frameworks */
-  white-space: nowrap;
-}
-
-.vs__dropdown-option:hover {
-  cursor: pointer;
-}
-
-.vs__dropdown-option--highlight {
-  background: #5897fb;
-  color: #fff;
-}
-
 /* Search Input */
 
 .vs__search::-webkit-search-decoration,
@@ -63080,22 +63058,17 @@ readers do not read off random characters that represent icons */
   left: 0;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   width: 100%;
-  top: calc(100% - 1px);
+  top: calc(100% - 2px);
   z-index: 1000;
-  padding: 5px 0;
+  padding: 5px;
   max-height: 350px;
   min-width: 160px;
   overflow-y: auto;
   text-align: left;
   list-style: none;
   margin-left: -1px;
-  margin-right: -1px;
   border: 1px solid #4299e1;
-  border-top-width: 0;
-}
-
-.vs__no-options {
-  text-align: center;
+  width: calc(100% + 2px);
 }
 
 .vs__dropdown-toggle {
@@ -63107,12 +63080,29 @@ readers do not read off random characters that represent icons */
   white-space: normal;
 }
 
-.vs__selected-options {
-  display: flex;
-  flex-basis: 100%;
-  flex-grow: 1;
-  flex-wrap: wrap;
-  position: relative;
+.vs__dropdown-option {
+  border-radius: 0.25rem;
+  line-height: 1.42857143;
+  /* Normalize line height */
+  display: block;
+  padding: 6px 20px;
+  clear: both;
+  color: #333;
+  /* Overrides most CSS frameworks */
+  white-space: nowrap;
+}
+
+.vs__dropdown-option:hover {
+  cursor: pointer;
+}
+
+.vs__dropdown-option--highlight {
+  background: #5897fb;
+  color: #fff;
+}
+
+.vs__no-options {
+  text-align: center;
 }
 
 .vs__actions {
@@ -63120,6 +63110,14 @@ readers do not read off random characters that represent icons */
   align-items: center;
   cursor: pointer;
   margin-top: -15px;
+}
+
+.vs__selected-options {
+  display: flex;
+  flex-basis: 100%;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  position: relative;
 }
 
 /* Dropdown Toggle States */
@@ -63144,7 +63142,6 @@ readers do not read off random characters that represent icons */
   display: flex;
   align-items: center;
   margin-right: 5px;
-  line-height: 7px;
 }
 
 .vs__deselect {
@@ -63175,6 +63172,53 @@ readers do not read off random characters that represent icons */
 
 .vs--single.vs--searching .vs__selected {
   display: none;
+}
+
+.notifications {
+  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.notifications .vue-notification {
+  background-color: #fff;
+  color: #1a202c;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  border-width: 2px;
+}
+
+.notifications .vue-notification .notification-title {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+
+.notifications .vue-notification .notification-content {
+  font-size: 1rem;
+  color: #718096;
+}
+
+.notifications .vue-notification.warn {
+  background-color: #fff;
+  border-color: #ecc94b;
+}
+
+.notifications .vue-notification.error {
+  background-color: #fff;
+  color: #e53e3e;
+  border-color: #e53e3e;
+}
+
+.notifications .vue-notification.success {
+  background-color: #fff;
+  color: #48bb78;
+  border-color: #68d391;
 }
 
 .form-group {
@@ -63841,8 +63885,8 @@ readers do not read off random characters that represent icons */
 }
 
 .table tbody tr th, .table tbody tr td {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .table tbody tr th:first-child, .table tbody tr td:first-child {
@@ -63958,6 +64002,39 @@ readers do not read off random characters that represent icons */
   font-weight: bold;
   line-height: 1.4;
   margin-bottom: 20px;
+}
+
+.tabs {
+  width: 100%;
+  display: flex;
+  border-bottom-width: 2px;
+  border-color: #edf2f7;
+  margin-bottom: 2rem;
+}
+
+.tabs .tab {
+  border-bottom-width: 2px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 1.125rem;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  color: #718096;
+  margin-bottom: -2px;
+}
+
+.tabs .tab:first-child {
+  margin-left: 0;
+}
+
+.tabs .tab:hover {
+  border-color: #a0aec0;
+  color: #2d3748;
+}
+
+.tabs .tab.router-link-exact-active {
+  border-color: #4299e1;
+  color: #4299e1;
 }
 
 .page-login-container {

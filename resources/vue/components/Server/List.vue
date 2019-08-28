@@ -1,7 +1,7 @@
 <template>
     <section class="servers-list">
         <loader :loading="loading"/>
-        <h4>Servers</h4>
+        <h4>Active Servers</h4>
         <div class="servers-list-items" v-if="hasServers">
             <ListItem v-for="server in servers" :server="server" :key="server.id"/>
         </div>

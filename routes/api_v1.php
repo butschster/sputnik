@@ -12,6 +12,11 @@ Route::middleware('auth')->group(function () {
     Route::get('profile/source-providers', 'User\SourceProvidersController@connected')->name('user.source_providers');
     Route::delete('profile', 'UserController@delete')->name('user.delete');
 
+    // Team
+    Route::get('profile/teams', 'User\TeamController@show')->name('teams');
+    Route::get('profile/team/{team}', 'User\TeamController@show')->name('team.show');
+    Route::get('profile/team/{team}/members', 'User\Team\MembersController@index')->name('team.members');
+
     // Subscription
     Route::delete('subscription/cancel', 'SubscriptionController@cancel')->name('subscription.cancel');
     Route::post('subscription/subscribe', 'SubscriptionController@subscribe')->name('subscription.subscribe');
@@ -20,6 +25,7 @@ Route::middleware('auth')->group(function () {
         // Servers
         Route::get('servers', 'ServerController@index')->name('servers');
         Route::get('server/{server}', 'ServerController@show')->name('server.show');
+        Route::put('server/{server}', 'ServerController@update')->name('server.update');
         Route::post('server', 'ServerController@store')->name('server.store');
         Route::delete('server/{server}', 'ServerController@delete')->name('server.delete');
 

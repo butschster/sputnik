@@ -57,6 +57,16 @@ class ServerPolicy
      * @param Server $server
      * @return bool
      */
+    public function update(?User $user, Server $server): bool
+    {
+        return $user->canManageServer($server);
+    }
+
+    /**
+     * @param User|null $user
+     * @param Server $server
+     * @return bool
+     */
     public function delete(?User $user, Server $server): bool
     {
         return $user->can('server.delete', $server->team);

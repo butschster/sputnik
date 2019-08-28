@@ -7,6 +7,14 @@
                 {{ server.name }}
             </h1>
 
+            <div class="tabs" role="tabs">
+                <router-link :to="{name: 'server.show', params: {id: server.id }}" class="tab">Sites</router-link>
+                <router-link :to="{name: 'server.information', params: {id: server.id }}" class="tab">Information</router-link>
+                <router-link :to="{name: 'server.events', params: {id: server.id }}" class="tab">Events</router-link>
+                <router-link :to="{name: 'server.tasks', params: {id: server.id }}" class="tab">Tasks</router-link>
+                <router-link :to="{name: 'server.settings', params: {id: server.id }}" class="tab">Settings</router-link>
+            </div>
+
             <div class="alert alert-primary mb-8 rounded" v-if="isPending">
                 <p>Run this code in your server and wait until server configuring</p>
                 <code>{{ installScript }}</code>
@@ -14,22 +22,17 @@
             </div>
 
             <InstallProgress v-if="isConfiguring" :server="server" />
-            <SystemInformation :server="server"/>
 
-            <TasksList :server="server" class="mt-10"/>
-            <EventsList :server="server" class="mt-10" />
+            <router-view />
         </div>
     </div>
 </template>
 <script>
-    import TasksList from "@vue/components/Server/Tasks/List";
-    import EventsList from "@vue/components/Server/Events/List";
     import Copy from "@vue/components/UI/Copy";
     import InstallProgress from "@vue/components/Server/partials/InstallProgress"
-    import SystemInformation from "@vue/components/Server/partials/SystemInformation"
 
     export default {
-        components: {SystemInformation, InstallProgress, TasksList, EventsList, Copy},
+        components: {InstallProgress, Copy},
         data() {
             return {
                 server: null,

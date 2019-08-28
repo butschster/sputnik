@@ -67,7 +67,7 @@ namespace App\Models\User{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Team whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Team whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User\Team whereUpdatedAt($value)
- */
+getActiveSubscription()
 	class Team extends \Eloquent {}
 }
 

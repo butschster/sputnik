@@ -88,7 +88,6 @@ class Plan extends Model
         return $this->trial_period > 0;
     }
 
-
     /**
      * Activate the plan.
      *

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API\v1\Server\Site;
 
 use App\Http\Controllers\API\Controller;
-use App\Jobs\Server\Site\Deploy;
+use App\Jobs\Server\Site\Deployment\Run;
 use App\Models\Server\Site;
 use App\Services\Server\Site\DeploymentService;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class DeploymentsController extends Controller
         $this->authorize('deploy', $site);
 
         dispatch(
-            new Deploy($site, $request->user())
+            new Run($site, $request->user())
         );
 
         return ['status' => 'ok'];

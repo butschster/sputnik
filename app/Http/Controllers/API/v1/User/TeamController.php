@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API\v1\User;
 
 use App\Http\Controllers\API\Controller;
-use App\Http\Resources\v1\User\TeamResource;
 use App\Http\Resources\v1\User\TeamsCollection;
+use App\Http\Resources\v1\User\TeamWithSubscriptionResource;
 use App\Models\User\Team;
 use Illuminate\Http\Request;
 
@@ -24,13 +24,13 @@ class TeamController extends Controller
     /**
      * @param Request $request
      * @param Team $team
-     * @return TeamResource
+     * @return TeamWithSubscriptionResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show(Request $request, Team $team): TeamResource
+    public function show(Request $request, Team $team): TeamWithSubscriptionResource
     {
         $this->authorize('show', $team);
 
-        return TeamResource::make($team);
+        return TeamWithSubscriptionResource::make($team);
     }
 }

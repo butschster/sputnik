@@ -4,7 +4,6 @@
 @import "~vue-select/src/scss/global/states";
 @import "~vue-select/src/scss/modules/open-indicator";
 @import "~vue-select/src/scss/modules/clear";
-@import "~vue-select/src/scss/modules/dropdown-option";
 @import "~vue-select/src/scss/modules/search-input";
 @import "~vue-select/src/scss/modules/spinner";
 
@@ -12,32 +11,63 @@
     @apply bg-white;
 }
 
-.vs__dropdown-menu {
-    @apply block rounded-b bg-white absolute left-0 shadow-lg w-full;
-    top: calc(100% - 1px); // -{#$border-width} here ensures the left and right borders of the dropdown appear flush with the toggle.
-    z-index: $vs-dropdown-z-index;
-    padding: 5px 0;
-    max-height: $vs-dropdown-max-height;
-    min-width: $vs-dropdown-min-width;
-    overflow-y: auto;
-    text-align: left;
-    list-style: none;
-    margin-left: -1px;
-    margin-right: -1px;
-    border: 1px solid theme('colors.blue.500');
-    border-top-width: 0;
+.vs {
+    &__dropdown {
+        &-menu {
+            @apply block rounded-b bg-white absolute left-0 shadow-lg w-full;
+            top: calc(100% - 2px); // -{#$border-width} here ensures the left and right borders of the dropdown appear flush with the toggle.
+            z-index: $vs-dropdown-z-index;
+            padding: 5px;
+            max-height: $vs-dropdown-max-height;
+            min-width: $vs-dropdown-min-width;
+            overflow-y: auto;
+            text-align: left;
+            list-style: none;
+            margin-left: -1px;
+            border: 1px solid theme('colors.blue.500');
+            width: calc(100% + 2px);
+        }
+
+        &-toggle {
+            appearance: none;
+            display: flex;
+            background: none;
+            white-space: normal;
+        }
+
+        &-option {
+            @apply rounded;
+
+            line-height: 1.42857143; /* Normalize line height */
+            display: block;
+            padding: 6px 20px;
+            clear: both;
+            color: #333; /* Overrides most CSS frameworks */
+            white-space: nowrap;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &--highlight {
+                background: $vs-state-active-bg;
+                color: $vs-state-active-color;
+            }
+        }
+    }
+
+    &__no-options {
+        text-align: center;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-top: -15px;
+    }
 }
 
-.vs__no-options {
-    text-align: center;
-}
-
-.vs__dropdown-toggle {
-    appearance: none;
-    display: flex;
-    background: none;
-    white-space: normal;
-}
 
 .vs__selected-options {
     display: flex;
@@ -45,13 +75,6 @@
     flex-grow: 1;
     flex-wrap: wrap;
     position: relative;
-}
-
-.vs__actions {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    margin-top: -15px;
 }
 
 /* Dropdown Toggle States */
@@ -74,7 +97,6 @@
     display: flex;
     align-items: center;
     margin-right: 5px;
-    line-height: 7px;
 }
 
 .vs__deselect {

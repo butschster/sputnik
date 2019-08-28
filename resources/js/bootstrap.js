@@ -3,6 +3,7 @@ import Vue from 'vue'
 import VueSweetalert2 from 'vue-sweetalert2'
 import VeeValidate from 'vee-validate'
 import PortalVue from 'portal-vue'
+import Notifications from 'vue-notification'
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
@@ -17,6 +18,7 @@ if (token) {
 Vue.use(VeeValidate)
 Vue.use(VueSweetalert2)
 Vue.use(PortalVue)
+Vue.use(Notifications)
 
 require('./http')
 require('./api')

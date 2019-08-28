@@ -1,11 +1,13 @@
 import ServerPolicy from './ServerPolicy';
+import SitePolicy from "./SitePolicy";
 
 class Gate {
     constructor(store) {
         this.store = store
 
         this.policies = {
-            server: ServerPolicy
+            server: ServerPolicy,
+            site: SitePolicy
         };
     }
 

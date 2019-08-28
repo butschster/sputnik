@@ -3,10 +3,10 @@
         <div class="section-header">
             {{ title }}
 
-            <p>You can connect any server with public IP address and opened ssh port with public key authentication.</p>
+            <p>You can connect any server with public IP address and opened ssh port. Your server must run a fresh installation of Ubuntu 18.04 x64 and must have a root user.</p>
         </div>
 
-        <div class="card-body">
+        <div class="card-body" v-if="$gate.allow('create', 'server')">
             <div class="flex">
                 <FormInput v-model="form.name" :label="label.name" name="name" class="w-full mr-8" required autofocus/>
                 <FormSelect v-model="form.team_id" :label="label.team" name="team_id" class="w-full" :options="teams"
@@ -29,6 +29,9 @@
                 <i class="fas fa-plus"></i>
                 Create
             </button>
+        </div>
+        <div v-else class="alert alert-primary">
+            <p>Upgrade your subscription to connect more servers</p>
         </div>
     </div>
 </template>

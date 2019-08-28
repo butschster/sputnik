@@ -2,8 +2,12 @@
 
 namespace App\Http\Resources\v1;
 
+use App\Models\User\Subscription;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin Subscription
+ */
 class SubscriptionResource extends JsonResource
 {
     /**
@@ -14,6 +18,13 @@ class SubscriptionResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'is_valid' => $this->valid(),
+            'plan' => PlanResource::make($this->plan),
+            'trial_ends_at' => $this->trial_ends_at,
+            'ends_at' => $this->ends_at,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

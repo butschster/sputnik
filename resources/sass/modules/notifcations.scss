@@ -1,0 +1,27 @@
+.notifications {
+    @apply pr-2 pt-2;
+
+    .vue-notification {
+        @apply bg-white text-gray-900 px-6 py-4 shadow-lg text-lg mb-6 mx-2 border-2;
+
+        .notification-title {
+            @apply text-lg mb-2;
+        }
+
+        .notification-content {
+            @apply text-base text-gray-600;
+        }
+
+        &.warn {
+            @apply bg-white border-yellow-500;
+        }
+
+        &.error {
+            @apply bg-white text-red-600 border-red-600;
+        }
+
+        &.success {
+            @apply bg-white text-green-500 border-green-400;
+        }
+    }
+}

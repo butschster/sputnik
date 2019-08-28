@@ -21,7 +21,7 @@ class FirewallController extends Controller
 
         $rules = $server->firewallRules()->paginate();
 
-        return RulesCollection::class($rules);
+        return RulesCollection::make($rules);
     }
 
     /**

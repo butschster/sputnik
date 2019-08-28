@@ -21,7 +21,7 @@ class UserController extends Controller
 
         $users = $server->users()->paginate();
 
-        return UserCollection::class($users);
+        return UserCollection::make($users);
     }
 
     /**

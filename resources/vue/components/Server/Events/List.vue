@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h4>Server Events</h4>
+        <h4>Recent Events</h4>
 
         <div class="section-body">
             <Loader :loading="loading" />

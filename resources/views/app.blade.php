@@ -12,6 +12,8 @@
 <body>
 <div id="app">
     <router-view></router-view>
+    <portal-target name="modals"></portal-target>
+    <notifications />
 </div>
 <script type="text/javascript" src="{{ mix("js/app.js" )}}"></script>
 </body>

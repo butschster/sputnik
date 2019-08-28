@@ -21,7 +21,7 @@ class DatabaseController extends Controller
 
         $databases = $server->databases()->paginate();
 
-        return DatabaseCollection::class($databases);
+        return DatabaseCollection::make($databases);
     }
 
     /**
