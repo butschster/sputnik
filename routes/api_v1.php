@@ -2,11 +2,15 @@
 
 Route::get('subscription/plans', 'SubscriptionController@plans')->name('subscription.plans');
 
+// Source providers
+Route::get('source-providers', 'User\SourceProvidersController@available')->name('source_providers');
+
 Route::middleware('auth')->group(function () {
 
     // User
     Route::get('profile', 'UserController@profile')->name('user.profile');
-    Route::get('user/source-providers', 'User\SourceProvidersController@connected')->name('user.source_providers');
+    Route::get('profile/source-providers', 'User\SourceProvidersController@connected')->name('user.source_providers');
+    Route::delete('profile', 'UserController@delete')->name('user.delete');
 
     // Subscription
     Route::delete('subscription/cancel', 'SubscriptionController@cancel')->name('subscription.cancel');

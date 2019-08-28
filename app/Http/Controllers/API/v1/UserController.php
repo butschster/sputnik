@@ -16,4 +16,22 @@ class UserController extends Controller
     {
         return UserProfileResource::make($request->user());
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function delete(Request $request)
+    {
+        $this->validate($request, [
+            'email' => ['required', 'email', function ($attribute, $value, $fail) use ($request) {
+                if ($value != $request->user()->email) {
+                    $fail('Email address is not correct.');
+                }
+            }],
+        ]);
+
+        return $this->responseDeleted();
+    }
 }

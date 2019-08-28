@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="min-w-full min-h-screen">
+    <div class="min-w-full min-h-screen">
         <div class="flex min-h-screen">
             <aside class="sidebar">
                 <div class="sidebar-section">
@@ -21,6 +21,8 @@
                 </div>
             </div>
         </div>
+
+        <portal-target name="modals"></portal-target>
     </div>
 </template>
 

@@ -2,6 +2,7 @@ import axios from 'axios'
 import Vue from 'vue'
 import VueSweetalert2 from 'vue-sweetalert2'
 import VeeValidate from 'vee-validate'
+import PortalVue from 'portal-vue'
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
@@ -15,10 +16,12 @@ if (token) {
 
 Vue.use(VeeValidate)
 Vue.use(VueSweetalert2)
+Vue.use(PortalVue)
 
 require('./http')
 require('./api')
 //import i18n from './vue/plugins/18n'
 require('./vue/plugins/echo')
 require('./vue/plugins/clipboard')
+require('./vue/plugins/modal')
 require('./vue/directives/click-ouside')

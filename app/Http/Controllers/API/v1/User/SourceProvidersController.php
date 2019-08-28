@@ -22,8 +22,23 @@ class SourceProvidersController extends Controller
     /**
      * @return array
      */
-    public function available()
+    public function available(): array
     {
-        return ['github', 'bitbucket'];
+        return [
+            [
+                'name' => 'Github',
+                'icon' => 'fa-github',
+                'links' => [
+                    'connect' => route('login.github'),
+                ],
+            ],
+            [
+                'name' => 'Bitbucket',
+                'icon' => 'fa-bitbucket',
+                'links' => [
+                    'connect' => route('login.bitbucket'),
+                ],
+            ],
+        ];
     }
 }
