@@ -1,3 +1,8 @@
+$circle-size: 35px;
+$circle-dot-size: 15px;
+$server-icon-size: 20px;
+$server-icon-color: theme('colors.indigo.400');
+
 .servers-list {
     @apply mb-8;
 
@@ -24,7 +29,20 @@
         }
 
         &__status {
-            @apply px-6;
+            @apply border-2 rounded-full mx-3;
+
+            width: $circle-size;
+            height: $circle-size;
+            position: relative;
+            border-color: $server-icon-color;
+
+            .icon {
+                @apply absolute text-2xl;
+                top: 6px;
+                left: 6px;
+                font-size: $server-icon-size;
+                color: $server-icon-color;
+            }
         }
 
         &__name {
@@ -46,10 +64,22 @@
 }
 
 .status-indicator {
-    @apply rounded-full h-2 w-2;
+    @apply rounded-full border-2 border-white absolute;
+    height: $circle-dot-size;
+    width: $circle-dot-size;
+    bottom: -3px;
+    right: -3px;
 
-    &.active {
+    &.configured {
         @apply bg-green-500;
+    }
+
+    &.configuring {
+        @apply bg-blue-500;
+    }
+
+    &.failed {
+        @apply bg-red-500;
     }
 
     &.pending {

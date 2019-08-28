@@ -1,13 +1,15 @@
 <template>
     <div>
-        <h1 class="mb-4">
-            Teams
-        </h1>
+        <h1>Teams</h1>
+
+        <Teams />
     </div>
 </template>
 
 <script>
-    export default {
+    import Teams from "@vue/components/User/Teams/List";
 
+    export default {
+        components: {Teams}
     }
 </script>

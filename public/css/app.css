@@ -63520,8 +63520,23 @@ readers do not read off random characters that represent icons */
 }
 
 .servers-list-item__status {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  border-width: 2px;
+  border-radius: 9999px;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  width: 35px;
+  height: 35px;
+  position: relative;
+  border-color: #7f9cf5;
+}
+
+.servers-list-item__status .icon {
+  position: absolute;
+  font-size: 1.5rem;
+  top: 6px;
+  left: 6px;
+  font-size: 20px;
+  color: #7f9cf5;
 }
 
 .servers-list-item__name {
@@ -63545,12 +63560,25 @@ readers do not read off random characters that represent icons */
 
 .status-indicator {
   border-radius: 9999px;
-  height: 0.5rem;
-  width: 0.5rem;
+  border-width: 2px;
+  border-color: #fff;
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  bottom: -3px;
+  right: -3px;
 }
 
-.status-indicator.active {
+.status-indicator.configured {
   background-color: #48bb78;
+}
+
+.status-indicator.configuring {
+  background-color: #4299e1;
+}
+
+.status-indicator.failed {
+  background-color: #f56565;
 }
 
 .status-indicator.pending {

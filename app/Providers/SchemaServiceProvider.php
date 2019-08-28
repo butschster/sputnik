@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class SchemaServiceProvider extends ServiceProvider
@@ -24,6 +25,8 @@ class SchemaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
+
         Blueprint::macro('primaryUuid', function ($column) {
             $this->uuid($column)->primary();
         });

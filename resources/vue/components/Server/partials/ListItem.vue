@@ -1,6 +1,7 @@
 <template>
     <div class="servers-list-item-wrapper">
         <div class="servers-list-item__status">
+            <i class="icon fas fa-server"></i>
             <div class="status-indicator" :class="server.status"></div>
         </div>
         <div class="servers-list-item__name">

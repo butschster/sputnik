@@ -38,10 +38,10 @@ class DatabaseSeeder extends Seeder
             'ends_at' => null,
         ]);
 
-//        factory(\App\Models\Server::class)->times(10)->create([
-//            'user_id' => $user->id,
-//            'team_id' => $team->id,
-//            'status' => 'configured'
-//        ]);
+        factory(\App\Models\Server::class)->times(10)->create([
+            'user_id' => $user->id,
+            'team_id' => $team->id,
+            'status' => 'configured'
+        ]);
     }
 }
