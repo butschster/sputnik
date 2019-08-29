@@ -63082,13 +63082,14 @@ readers do not read off random characters that represent icons */
 
 .vs__dropdown-option {
   border-radius: 0.25rem;
-  line-height: 1.42857143;
-  /* Normalize line height */
+  color: #2d3748;
   display: block;
-  padding: 6px 20px;
+  font-size: 0.875rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   clear: both;
-  color: #333;
-  /* Overrides most CSS frameworks */
   white-space: nowrap;
 }
 
@@ -63097,7 +63098,7 @@ readers do not read off random characters that represent icons */
 }
 
 .vs__dropdown-option--highlight {
-  background: #5897fb;
+  background-color: #4299e1;
   color: #fff;
 }
 
@@ -63391,7 +63392,8 @@ readers do not read off random characters that represent icons */
   padding-right: 3rem;
   letter-spacing: 0.05em;
   transition: all 0.2s linear;
-  color: #4a5568;
+  color: #718096;
+  font-weight: 500;
 }
 
 .btn:focus {
@@ -63490,8 +63492,8 @@ readers do not read off random characters that represent icons */
 }
 
 .btn-copy--copied {
-  -webkit-animation-name: bounceIn;
-  animation-name: bounceIn;
+  -webkit-animation-name: fadeOutUp;
+  animation-name: fadeOutUp;
   -webkit-animation-iteration-count: 1s;
   animation-iteration-count: 1s;
   -webkit-animation-duration: 1s;
@@ -63566,21 +63568,19 @@ readers do not read off random characters that represent icons */
 .servers-list-item__status {
   border-width: 2px;
   border-radius: 9999px;
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   position: relative;
-  border-color: #7f9cf5;
+  border-color: #63b3ed;
 }
 
 .servers-list-item__status .icon {
   position: absolute;
   font-size: 1.5rem;
-  top: 6px;
-  left: 6px;
-  font-size: 20px;
-  color: #7f9cf5;
+  top: 8px;
+  left: 8px;
+  font-size: 25px;
+  color: #63b3ed;
 }
 
 .servers-list-item__name {
@@ -63611,6 +63611,7 @@ readers do not read off random characters that represent icons */
   width: 15px;
   bottom: -3px;
   right: -3px;
+  border-width: 3px;
 }
 
 .status-indicator.configured {
@@ -63634,6 +63635,14 @@ readers do not read off random characters that represent icons */
   border-bottom-width: 1px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__divider {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-left-width: 2px;
+  height: 30px;
 }
 
 .navbar__profile {
@@ -63645,7 +63654,7 @@ readers do not read off random characters that represent icons */
 }
 
 .navbar__profile--avatar {
-  height: 2.5rem;
+  height: 3rem;
   border-radius: 9999px;
 }
 
@@ -63699,6 +63708,21 @@ readers do not read off random characters that represent icons */
   position: relative;
 }
 
+.dropdown-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-title .icon {
+  margin-left: 0.75rem;
+  color: #cbd5e0;
+}
+
+.dropdown-title:hover .icon {
+  color: #90cdf4;
+}
+
 .dropdown-menu {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -63709,7 +63733,30 @@ readers do not read off random characters that represent icons */
   border-radius: 0.25rem;
   background-color: #fff;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  z-index: 1;
+  position: absolute;
+  display: none;
+  z-index: 100;
+  right: 0;
+  top: calc(50% + 30px);
+  left: inherit;
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-iteration-count: 1s;
+  animation-iteration-count: 1s;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.dropdown.open .dropdown-menu {
+  display: block;
 }
 
 .dropdown-divider {
@@ -63727,10 +63774,13 @@ readers do not read off random characters that represent icons */
   padding-right: 1.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 .dropdown-link:hover {
-  background-color: #f7fafc;
+  background-color: #ebf4ff;
 }
 
 .user-info {
@@ -63738,7 +63788,7 @@ readers do not read off random characters that represent icons */
 }
 
 .user-info--avatar {
-  height: 2.5rem;
+  height: 3rem;
   border-radius: 9999px;
 }
 
@@ -63925,12 +63975,18 @@ readers do not read off random characters that represent icons */
   padding-bottom: 1.5rem;
   padding-left: 2rem;
   padding-right: 2rem;
+  background-color: #f7fafc;
   font-size: 1.125rem;
   font-weight: 300;
 }
 
 .alert-warning {
   background-color: #faf089;
+}
+
+.alert-danger {
+  background-color: #e53e3e;
+  color: #fff;
 }
 
 .alert-primary {
@@ -63958,8 +64014,20 @@ readers do not read off random characters that represent icons */
   border-radius: 0.5rem;
   overflow: hidden;
   width: 33.333333%;
-  -webkit-animation: 300ms ease-out 0s 1 slideInFromLeft;
-          animation: 300ms ease-out 0s 1 slideInFromLeft;
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-iteration-count: 1s;
+  animation-iteration-count: 1s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .modal__close {
@@ -64034,6 +64102,56 @@ readers do not read off random characters that represent icons */
 
 .tabs .tab.router-link-exact-active {
   border-color: #4299e1;
+  color: #4299e1;
+}
+
+.pulse-preloader {
+  background-color: #3182ce;
+  border-radius: 9999px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: sk-scaleout 1s infinite ease-in-out;
+          animation: sk-scaleout 1s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.well {
+  padding: 1.5rem;
+  background-color: #f7fafc;
+  border-radius: 0.25rem;
+}
+
+.notifications-link {
+  font-size: 1.25rem;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  color: #cbd5e0;
+}
+
+.notifications-link:hover {
   color: #4299e1;
 }
 

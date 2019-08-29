@@ -18,8 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::get('profile/team/{team}/members', 'User\Team\MembersController@index')->name('team.members');
 
     // Subscription
-    Route::delete('subscription/cancel', 'SubscriptionController@cancel')->name('subscription.cancel');
-    Route::post('subscription/subscribe', 'SubscriptionController@subscribe')->name('subscription.subscribe');
+    Route::delete('profile/team/{team}/cancel-subscription', 'SubscriptionController@cancel')->name('team.subscription.cancel');
+    Route::post('profile/team/{team}/subscribe/{plan}', 'SubscriptionController@subscribe')->name('team.subscribe');
 
     Route::middleware('has-subscription')->group(function () {
         // Servers
@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('server/supervisor/{daemon}', 'Server\SupervisorController@delete')->name('server.supervisor.delete');
 
         // Site
+        Route::get('/server/{server}/sites', 'Server\SiteController@index')->name('server.sites');
         Route::get('/server/site/{site}', 'Server\SiteController@show')->name('server.site.show');
         Route::post('/server/{server}/site', 'Server\SiteController@store')->name('server.site.store');
         Route::delete('/server/site/{site}', 'Server\SiteController@delete')->name('server.site.delete');

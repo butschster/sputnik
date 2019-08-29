@@ -10,6 +10,7 @@
     </script>
 </head>
 <body>
+@csrf
 <div id="app">
     <router-view></router-view>
     <portal-target name="modals"></portal-target>

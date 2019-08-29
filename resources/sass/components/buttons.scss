@@ -1,5 +1,5 @@
 .btn {
-    @apply inline-block text-center rounded py-4 px-12 tracking-wider transition text-gray-700;
+    @apply inline-block text-center rounded py-4 px-12 tracking-wider transition text-gray-600 font-medium;
 
     &:focus {
         @apply outline-none shadow-outline;
@@ -73,7 +73,7 @@
         @apply cursor-pointer uppercase font-bold text-sm;
 
         &--copied {
-            @include bounceIn();
+            @include fadeOutUp();
         }
     }
 }

@@ -1,8 +1,12 @@
 .alert {
-    @apply py-6 px-8 text-lg font-light;
+    @apply py-6 px-8 bg-gray-100 text-lg font-light;
 
     &-warning {
         @apply bg-yellow-300;
+    }
+
+    &-danger {
+        @apply bg-red-600 text-white;
     }
 
     &-primary {

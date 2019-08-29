@@ -4,6 +4,8 @@ import VueSweetalert2 from 'vue-sweetalert2'
 import VeeValidate from 'vee-validate'
 import PortalVue from 'portal-vue'
 import Notifications from 'vue-notification'
+import Moment from 'vue-moment'
+
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
@@ -19,6 +21,7 @@ Vue.use(VeeValidate)
 Vue.use(VueSweetalert2)
 Vue.use(PortalVue)
 Vue.use(Notifications)
+Vue.use(Moment)
 
 require('./http')
 require('./api')
@@ -26,4 +29,5 @@ require('./api')
 require('./vue/plugins/echo')
 require('./vue/plugins/clipboard')
 require('./vue/plugins/modal')
+require('./vue/plugins/dropdown')
 require('./vue/directives/click-ouside')

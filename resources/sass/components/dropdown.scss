@@ -1,9 +1,34 @@
 .dropdown {
     @apply relative;
 
+    &-title {
+        @apply cursor-pointer flex items-center;
+
+        .icon {
+            @apply ml-3 text-gray-400;
+        }
+
+        &:hover {
+            .icon {
+                @apply text-blue-300;
+            }
+        }
+    }
+
     &-menu {
-        @apply py-3 w-64 mr-4 border border-gray-300 rounded bg-white shadow-xl;
-        z-index: 1;
+        @apply py-3 w-64 mr-4 border border-gray-300 rounded bg-white shadow-xl absolute hidden;
+        z-index: 100;
+        right: 0;
+        top: calc(50% + 30px);
+        left: inherit;
+
+        @include fadeInDown(
+            $duration: .3s
+        );
+    }
+
+    &.open &-menu {
+        @apply block;
     }
 
     &-divider {
@@ -11,10 +36,10 @@
     }
 
     &-link {
-        @apply block px-6 py-2;
+        @apply block px-6 py-2 mx-2 rounded;
 
         &:hover {
-            @apply bg-gray-100;
+            @apply bg-indigo-100;
         }
     }
 }

@@ -12,6 +12,7 @@ Vue.directive('click-outside', {
 
             console.warn(warn)
         }
+
         // Define Handler and cache it on the element
         const bubble = binding.modifiers.bubble
         const handler = (e) => {

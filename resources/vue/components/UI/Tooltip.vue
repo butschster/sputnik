@@ -1,5 +1,5 @@
 <template>
-    <div v-if="show" v-click-outside="hide" v-on:toggle="toggle">
+    <div v-show="show">
         <slot></slot>
     </div>
 </template>
@@ -9,11 +9,9 @@
 
     export default {
         props: {
-            show: {
+            state: {
                 type: Boolean,
-                default() {
-                    return true;
-                }
+                default: false
             },
             reference: {
                 required: true,
@@ -25,10 +23,15 @@
                 }
             }
         },
-        mounted() {
-            this.$nextTick(() => {
-                this.setupPopper(this.reference.dropdown)
-            })
+        watch: {
+            state(state) {
+                this.show = state
+            }
+        },
+        data() {
+            return {
+                show: true
+            }
         },
         methods: {
             toggle() {
@@ -36,18 +39,6 @@
             },
             hide() {
                 this.show = false
-            },
-            setupPopper(ref) {
-                ref.style.position = 'relative'
-                if (this.popper === undefined) {
-                    if (this.show) {
-                        this.popper = new Popper(ref, this.$el, {
-                            placement: this.placement
-                        })
-                    }
-                } else {
-                    this.popper.scheduleUpdate()
-                }
             }
         }
     }

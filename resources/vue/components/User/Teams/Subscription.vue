@@ -26,25 +26,15 @@
             </div>
         </div>
 
-        <div class="border-gray-300 bg-gray-100 py-8 px-8 my-12 flex items-center">
-            <div class="flex-1">
-                <h2>Cancel subscription</h2>
-                <p>Pavel, just before you go, here are some courses we've got coming up that you might be interested
-                    in.</p>
-            </div>
-            <div>
-                <form action="">
-                    <button class="btn btn-danger">
-                        Cancel :(
-                    </button>
-                </form>
-            </div>
-        </div>
+        <CancelSubscription v-if="!team.subscription.is_invalid" :team="team"/>
     </div>
 </template>
 
 <script>
+    import CancelSubscription from "@vue/components/User/Teams/CancelSubscription"
+
     export default {
+        components: {CancelSubscription},
         props: {
             team: Object
         },
@@ -71,6 +61,10 @@
                 this.loading = false
             },
             isCurrentPlan(plan) {
+                if (this.team.subscription.is_invalid) {
+                    return false
+                }
+
                 return plan.id == this.team.subscription.plan.id
             },
             canBeUpgradedTo(plan) {

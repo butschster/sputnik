@@ -2,12 +2,12 @@
     <div>
         <Loader :loading="loading"/>
         <div v-if="server">
-            <h1 class="mb-4">
-                <i class="fas fa-hdd mr-3"></i>
+            <h1 class="mb-8 flex items-center">
+                <ServerStatus :server="server" class="mr-3" />
                 {{ server.name }}
             </h1>
 
-            <div class="tabs" role="tabs">
+            <div class="tabs" role="tabs" v-if="!isPending">
                 <router-link :to="{name: 'server.show', params: {id: server.id }}" class="tab">Sites</router-link>
                 <router-link :to="{name: 'server.information', params: {id: server.id }}" class="tab">Information</router-link>
                 <router-link :to="{name: 'server.events', params: {id: server.id }}" class="tab">Events</router-link>
@@ -15,24 +15,19 @@
                 <router-link :to="{name: 'server.settings', params: {id: server.id }}" class="tab">Settings</router-link>
             </div>
 
-            <div class="alert alert-primary mb-8 rounded" v-if="isPending">
-                <p>Run this code in your server and wait until server configuring</p>
-                <code>{{ installScript }}</code>
-                <Copy :text="installScript" />
-            </div>
-
-            <InstallProgress v-if="isConfiguring" :server="server" />
+            <InstallProgress :server="server" />
 
             <router-view />
         </div>
     </div>
 </template>
 <script>
-    import Copy from "@vue/components/UI/Copy";
+
+    import ServerStatus from "@vue/components/Server/partials/ServerStatus"
     import InstallProgress from "@vue/components/Server/partials/InstallProgress"
 
     export default {
-        components: {InstallProgress, Copy},
+        components: {InstallProgress, ServerStatus},
         data() {
             return {
                 server: null,
@@ -68,9 +63,6 @@
             }
         },
         computed: {
-            installScript() {
-                return `wget -O sputnik.sh "${this.server.links.install_script}"; bash sputnik.sh`
-            },
             isPending() {
                 return this.server.status == 'pending'
             },

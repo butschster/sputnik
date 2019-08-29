@@ -71,9 +71,11 @@ code {
 @import "components/alerts";
 @import "components/modal";
 @import "components/tabs";
+@import "components/preloader";
+@import "components/well";
+@import "components/notifications";
 
 @import "pages/logins";
-
 
 .transition {
     transition: all 0.2s linear;

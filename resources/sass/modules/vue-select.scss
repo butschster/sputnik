@@ -36,13 +36,8 @@
         }
 
         &-option {
-            @apply rounded;
-
-            line-height: 1.42857143; /* Normalize line height */
-            display: block;
-            padding: 6px 20px;
+            @apply rounded text-gray-800 block text-sm px-3 py-2;
             clear: both;
-            color: #333; /* Overrides most CSS frameworks */
             white-space: nowrap;
 
             &:hover {
@@ -50,8 +45,7 @@
             }
 
             &--highlight {
-                background: $vs-state-active-bg;
-                color: $vs-state-active-color;
+                @apply bg-blue-500 text-white;
             }
         }
     }

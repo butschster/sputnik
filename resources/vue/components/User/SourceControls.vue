@@ -8,7 +8,7 @@
             <Loader :loading="loading" />
 
             <a class="btn btn-outline mr-5" :href="provider.links.connect" v-for="provider in providers">
-                <i class="fab mr-1" :class="`${provider.icon}`"></i>
+                <i class="fab mr-1 fa-lg" :class="`${provider.icon}`"></i>
                 {{ provider.name }}
             </a>
         </div>

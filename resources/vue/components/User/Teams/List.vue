@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="list-group list-group-flush">
-            <router-link :to="{name: 'profile.team.show', params: {id: team.id }}"
+            <router-link :to="{name: 'profile.team.show', params: {id: team.id }}" :key="team.id"
                          class="list-group-item"
                          v-for="team in teams">
                 {{ team.name }}

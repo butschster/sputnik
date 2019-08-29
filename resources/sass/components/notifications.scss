@@ -1,0 +1,9 @@
+.notifications {
+    &-link {
+        @apply text-xl mx-3 text-gray-400;
+
+        &:hover {
+            @apply text-blue-500;
+        }
+    }
+}
