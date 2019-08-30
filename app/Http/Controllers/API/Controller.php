@@ -10,6 +10,14 @@ class Controller extends BaseController
     /**
      * @return JsonResponse
      */
+    public function responseOk(): JsonResponse
+    {
+        return new JsonResponse('', 201);
+    }
+
+    /**
+     * @return JsonResponse
+     */
     public function responseDeleted(): JsonResponse
     {
         return new JsonResponse('', 202);

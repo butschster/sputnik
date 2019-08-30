@@ -1896,8 +1896,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _vue_components_User_Teams_Subscription__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/User/Teams/Subscription */ "./resources/vue/components/User/Teams/Subscription.vue");
-/* harmony import */ var _vue_components_User_Teams_Members__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/User/Teams/Members */ "./resources/vue/components/User/Teams/Members.vue");
+/* harmony import */ var _vue_components_User_Teams_PaymentMethods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/User/Teams/PaymentMethods */ "./resources/vue/components/User/Teams/PaymentMethods.vue");
+/* harmony import */ var _vue_components_User_Teams_Subscription__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/User/Teams/Subscription */ "./resources/vue/components/User/Teams/Subscription.vue");
+/* harmony import */ var _vue_components_User_Teams_Members__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vue/components/User/Teams/Members */ "./resources/vue/components/User/Teams/Members.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1930,39 +1931,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Members: _vue_components_User_Teams_Members__WEBPACK_IMPORTED_MODULE_2__["default"],
-    Subscription: _vue_components_User_Teams_Subscription__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Members: _vue_components_User_Teams_Members__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Subscription: _vue_components_User_Teams_Subscription__WEBPACK_IMPORTED_MODULE_2__["default"],
+    PaymentMethods: _vue_components_User_Teams_PaymentMethods__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -5932,6 +5908,319 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return load;
     }()
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    team: Object
+  },
+  data: function data() {
+    return {
+      loading: false,
+      secret: null,
+      paymentMethods: [],
+      card_holder: null,
+      stripeError: null
+    };
+  },
+  mounted: function mounted() {
+    this.loadPaymentMethods();
+  },
+  methods: {
+    deletePaymentMethod: function () {
+      var _deletePaymentMethod = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(method) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.loading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return this.$api('v1.team.payment.method.delete', {
+                  team: this.team.id,
+                  id: method.id
+                }).request();
+
+              case 4:
+                response = _context.sent;
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](1);
+                console.error(_context.t0);
+
+              case 10:
+                this.loading = false;
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 7]]);
+      }));
+
+      function deletePaymentMethod(_x) {
+        return _deletePaymentMethod.apply(this, arguments);
+      }
+
+      return deletePaymentMethod;
+    }(),
+    loadPaymentMethods: function () {
+      var _loadPaymentMethods = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                this.loading = true;
+                _context2.prev = 1;
+                _context2.next = 4;
+                return this.$api('v1.team.payment.methods', {
+                  team: this.team.id
+                }).request();
+
+              case 4:
+                response = _context2.sent;
+                this.paymentMethods = response.data;
+                _context2.next = 11;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](1);
+                console.error(_context2.t0);
+
+              case 11:
+                this.loading = false;
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[1, 8]]);
+      }));
+
+      function loadPaymentMethods() {
+        return _loadPaymentMethods.apply(this, arguments);
+      }
+
+      return loadPaymentMethods;
+    }(),
+    intent: function () {
+      var _intent = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var _this = this;
+
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                this.loading = true;
+                _context3.prev = 1;
+                _context3.next = 4;
+                return this.$api('v1.team.payment.method.intent', {
+                  team: this.team.id
+                }).request();
+
+              case 4:
+                response = _context3.sent;
+                this.secret = response.data;
+                setTimeout(function () {
+                  _this.initStripe();
+                }, 200);
+                _context3.next = 12;
+                break;
+
+              case 9:
+                _context3.prev = 9;
+                _context3.t0 = _context3["catch"](1);
+                console.error(_context3.t0);
+
+              case 12:
+                this.loading = false;
+
+              case 13:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[1, 9]]);
+      }));
+
+      function intent() {
+        return _intent.apply(this, arguments);
+      }
+
+      return intent;
+    }(),
+    initStripe: function initStripe() {
+      var elements = this.$stripe.elements();
+      this.cardElement = elements.create('card');
+      this.cardElement.mount('#card-element');
+    },
+    addPaymentMethod: function () {
+      var _addPaymentMethod = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(e) {
+        var _ref, setupIntent, error, response;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                this.stripeError = null;
+                _context4.next = 3;
+                return this.$stripe.handleCardSetup(this.secret, this.cardElement, {
+                  payment_method_data: {
+                    billing_details: {
+                      name: this.card_holder
+                    }
+                  }
+                });
+
+              case 3:
+                _ref = _context4.sent;
+                setupIntent = _ref.setupIntent;
+                error = _ref.error;
+                console.log(setupIntent);
+
+                if (!error) {
+                  _context4.next = 11;
+                  break;
+                }
+
+                this.stripeError = error;
+                _context4.next = 15;
+                break;
+
+              case 11:
+                _context4.next = 13;
+                return this.$api('v1.team.payment.method.store', {
+                  team: this.team.id
+                }).request(setupIntent);
+
+              case 13:
+                response = _context4.sent;
+                this.secret = null;
+
+              case 15:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function addPaymentMethod(_x2) {
+        return _addPaymentMethod.apply(this, arguments);
+      }
+
+      return addPaymentMethod;
+    }()
+  },
+  computed: {
+    hasPaymentMethod: function hasPaymentMethod() {
+      return this.paymentMethods.length > 0;
+    },
+    hasSecret: function hasSecret() {
+      return this.secret && this.secret.length > 0;
+    },
+    hasStripeError: function hasStripeError() {
+      return this.stripeError !== null;
+    }
   }
 });
 
@@ -49444,7 +49733,7 @@ var render = function() {
                 attrs: { team: _vm.team }
               }),
               _vm._v(" "),
-              _vm._m(0),
+              _c("PaymentMethods", { attrs: { team: _vm.team } }),
               _vm._v(" "),
               _c("Subscription", { attrs: { team: _vm.team } })
             ],
@@ -49455,66 +49744,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card mb-4" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _vm._v("\n                Payment method\n                "),
-        _c("p", [_vm._v("This will replace your current payment method.")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("form", { staticClass: "mt-8", attrs: { action: "" } }, [
-          _c("div", { staticClass: "flex" }, [
-            _c("div", { staticClass: "form-group flex-1 mr-5" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "card",
-                  name: "card",
-                  autofocus: "",
-                  placeholder: "Card number"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group mr-5" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "date",
-                  name: "date",
-                  placeholder: "MM/YY"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "cvc",
-                  name: "cvc",
-                  placeholder: "CVC"
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group mt-2" }, [
-            _c("button", { staticClass: "btn btn-primary" }, [_vm._v("Update")])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -52452,6 +52682,226 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=template&id=3a78da91&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=template&id=3a78da91& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    { staticClass: "section" },
+    [
+      _c("Loader", { attrs: { loading: _vm.loading } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "section-header flex items-center" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        !_vm.hasSecret
+          ? _c(
+              "button",
+              { staticClass: "btn btn-primary", on: { click: _vm.intent } },
+              [_vm._v("\n            Add\n        ")]
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      !_vm.hasPaymentMethod
+        ? _c("div", { staticClass: "well well-lg text-center" }, [
+            _c("img", {
+              staticClass: "mx-auto mb-10",
+              attrs: {
+                src: "https://image.flaticon.com/icons/svg/1421/1421309.svg",
+                alt: "",
+                width: "100px"
+              }
+            }),
+            _vm._v(" "),
+            _c("h3", { staticClass: "mb-0" }, [
+              _vm._v(
+                "\n            Looks like you don't have any payment methods :(\n        "
+              )
+            ])
+          ])
+        : _c(
+            "div",
+            { staticClass: "well well-lg" },
+            _vm._l(_vm.paymentMethods, function(method) {
+              return _c(
+                "div",
+                {
+                  staticClass:
+                    "border-2 px-4 py-3 mb-2 bg-white rounded-lg flex"
+                },
+                [
+                  _c("div", { staticClass: "flex-1" }, [
+                    _c("h4", [
+                      _vm._v(
+                        _vm._s(method.name) +
+                          " xxxx-" +
+                          _vm._s(method.card.last4)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-gray-600" }, [
+                      _vm._v(
+                        "Expired " +
+                          _vm._s(method.card.exp_month) +
+                          "/" +
+                          _vm._s(method.card.exp_year) +
+                          " • Created\n                    on " +
+                          _vm._s(
+                            _vm._f("moment")(method.created_at, "DD MMM YYYY")
+                          ) +
+                          "\n                "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger btn-sm",
+                      on: {
+                        click: function($event) {
+                          return _vm.deletePaymentMethod(method)
+                        }
+                      }
+                    },
+                    [_vm._v("\n                Delete\n            ")]
+                  )
+                ]
+              )
+            }),
+            0
+          ),
+      _vm._v(" "),
+      _vm.hasSecret
+        ? _c("div", { staticClass: "well well-lg mt-5" }, [
+            _c("h3", [_vm._v("Add new card")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-lg mb-3" }, [
+              _vm._v("All major credit / debit cards accepted.")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex items-start" }, [
+              _c("div", { staticClass: "form-group is-required flex-1" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm.hasStripeError
+                  ? _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.stripeError.message) +
+                          "\n                "
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "form-group form-group-labeled ml-8 is-required"
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      },
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.card_holder,
+                        expression: "card_holder"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "card-holder-name",
+                      type: "text",
+                      name: "card_holder",
+                      placeholder: "Card Holder"
+                    },
+                    domProps: { value: _vm.card_holder },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.card_holder = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", { attrs: { for: "card-holder-name" } }, [
+                    _vm._v("Card Holder")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(_vm.errors.first("card_holder")))
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary mt-6",
+                attrs: { "data-secret": _vm.secret },
+                on: { click: _vm.addPaymentMethod }
+              },
+              [_vm._v("\n            Add\n        ")]
+            )
+          ])
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex-1" }, [
+      _vm._v("\n            Payment methods\n            "),
+      _c("p", [
+        _vm._v(
+          "Please enter your preferred payment method below. You can use a credit / debit card."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-control" }, [
+      _c("div", { staticClass: "pt-1", attrs: { id: "card-element" } })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -76974,6 +77424,26 @@ var Ziggy = {
       "methods": ["GET", "HEAD"],
       "domain": null
     },
+    "api.v1.team.payment.methods": {
+      "uri": "api\/v1\/profile\/team\/{team}\/payment\/methods",
+      "methods": ["GET", "HEAD"],
+      "domain": null
+    },
+    "api.v1.team.payment.method.intent": {
+      "uri": "api\/v1\/profile\/team\/{team}\/payment\/intention",
+      "methods": ["POST"],
+      "domain": null
+    },
+    "api.v1.team.payment.method.store": {
+      "uri": "api\/v1\/profile\/team\/{team}\/payment\/method",
+      "methods": ["POST"],
+      "domain": null
+    },
+    "api.v1.team.payment.method.delete": {
+      "uri": "api\/v1\/profile\/team\/{team}\/payment\/method\/{id}",
+      "methods": ["DELETE"],
+      "domain": null
+    },
     "api.v1.team.subscription.cancel": {
       "uri": "api\/v1\/profile\/team\/{team}\/cancel-subscription",
       "methods": ["DELETE"],
@@ -77306,6 +77776,8 @@ __webpack_require__(/*! ./vue/plugins/clipboard */ "./resources/js/vue/plugins/c
 __webpack_require__(/*! ./vue/plugins/modal */ "./resources/js/vue/plugins/modal.js");
 
 __webpack_require__(/*! ./vue/plugins/dropdown */ "./resources/js/vue/plugins/dropdown.js");
+
+__webpack_require__(/*! ./vue/plugins/stripe */ "./resources/js/vue/plugins/stripe.js");
 
 __webpack_require__(/*! ./vue/directives/click-ouside */ "./resources/js/vue/directives/click-ouside.js");
 
@@ -77837,6 +78309,22 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$modal = {
 
 /***/ }),
 
+/***/ "./resources/js/vue/plugins/stripe.js":
+/*!********************************************!*\
+  !*** ./resources/js/vue/plugins/stripe.js ***!
+  \********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$stripe = new Stripe("pk_test_J469PrfS100qrBJvESLjiqNZ");
+
+/***/ }),
+
 /***/ "./resources/js/vue/store/index.js":
 /*!*****************************************!*\
   !*** ./resources/js/vue/store/index.js ***!
@@ -78249,7 +78737,7 @@ var mutations = {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/src/index.js):\nSyntaxError\n\n(5:8) `@apply` cannot be used with `.py-\\43F\\448\\435` because `.py-\\43F\\448\\435` either cannot be found, or its actual definition includes a pseudo-selector like :hover, :active, etc. If you're sure that `.py-\\43F\\448\\435` exists, make sure that any `@import` statements are being properly processed *before* Tailwind CSS sees your CSS, as `@apply` can only be used for classes in the same CSS tree.\n\n \u001b[90m 3 | \u001b[39m\n \u001b[90m 4 | \u001b[39m    \u001b[33m.tab\u001b[39m \u001b[33m{\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 | \u001b[39m        \u001b[36m@apply\u001b[39m border-b-2 py-пше 4 text-lg mx-3 text-gray-600\u001b[33m;\u001b[39m\n \u001b[90m   | \u001b[39m       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 | \u001b[39m        margin-bottom\u001b[33m:\u001b[39m -2px\u001b[33m;\u001b[39m\n \u001b[90m 7 | \u001b[39m\n\n    at runLoaders (/home/bustchster/webserver/laravel-sputnik/node_modules/webpack/lib/NormalModule.js:313:20)\n    at /home/bustchster/webserver/laravel-sputnik/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /home/bustchster/webserver/laravel-sputnik/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/home/bustchster/webserver/laravel-sputnik/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Promise.resolve.then.then.catch (/home/bustchster/webserver/laravel-sputnik/node_modules/postcss-loader/src/index.js:207:9)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -81146,6 +81634,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_template_id_c0713eb8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_template_id_c0713eb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/PaymentMethods.vue":
+/*!****************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/PaymentMethods.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PaymentMethods_vue_vue_type_template_id_3a78da91___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PaymentMethods.vue?vue&type=template&id=3a78da91& */ "./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=template&id=3a78da91&");
+/* harmony import */ var _PaymentMethods_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PaymentMethods.vue?vue&type=script&lang=js& */ "./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PaymentMethods_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PaymentMethods_vue_vue_type_template_id_3a78da91___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PaymentMethods_vue_vue_type_template_id_3a78da91___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/components/User/Teams/PaymentMethods.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentMethods_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PaymentMethods.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentMethods_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=template&id=3a78da91&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=template&id=3a78da91& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentMethods_vue_vue_type_template_id_3a78da91___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PaymentMethods.vue?vue&type=template&id=3a78da91& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=template&id=3a78da91&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentMethods_vue_vue_type_template_id_3a78da91___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentMethods_vue_vue_type_template_id_3a78da91___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

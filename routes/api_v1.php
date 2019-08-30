@@ -17,6 +17,11 @@ Route::middleware('auth')->group(function () {
     Route::get('profile/team/{team}', 'User\TeamController@show')->name('team.show');
     Route::get('profile/team/{team}/members', 'User\Team\MembersController@index')->name('team.members');
 
+    Route::get('profile/team/{team}/payment/methods', 'User\Team\PaymentMethodsController@paymentMethods')->name('team.payment.methods');
+    Route::post('profile/team/{team}/payment/intention', 'User\Team\PaymentMethodsController@createIntenttion')->name('team.payment.method.intent');
+    Route::post('profile/team/{team}/payment/method', 'User\Team\PaymentMethodsController@store')->name('team.payment.method.store');
+    Route::delete('profile/team/{team}/payment/method/{id}', 'User\Team\PaymentMethodsController@delete')->name('team.payment.method.delete');
+
     // Subscription
     Route::delete('profile/team/{team}/cancel-subscription', 'SubscriptionController@cancel')->name('team.subscription.cancel');
     Route::post('profile/team/{team}/subscribe/{plan}', 'SubscriptionController@subscribe')->name('team.subscribe');

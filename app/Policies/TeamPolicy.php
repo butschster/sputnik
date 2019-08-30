@@ -16,6 +16,10 @@ class TeamPolicy
      */
     public function show(User $user, User\Team $team): bool
     {
+        if ($team->isOwner($user)) {
+            return true;
+        }
+
         return $user->hasRole(['owner', 'member'], $team);
     }
 
@@ -26,6 +30,10 @@ class TeamPolicy
      */
     public function invite(User $user, User\Team $team): bool
     {
+        if ($team->isOwner($user)) {
+            return true;
+        }
+
         return $user->can('team.manage', $team);
     }
 
@@ -36,6 +44,10 @@ class TeamPolicy
      */
     public function cancelSubscription(User $user, User\Team $team): bool
     {
+        if ($team->isOwner($user)) {
+            return true;
+        }
+
         return $user->can('subscriptions.manage', $team)
             && $user->hasActiveSubscription();
     }
@@ -47,6 +59,10 @@ class TeamPolicy
      */
     public function subscribe(User $user, User\Team $team): bool
     {
+        if ($team->isOwner($user)) {
+            return true;
+        }
+
         return $user->can('subscriptions.manage', $team);
     }
 }

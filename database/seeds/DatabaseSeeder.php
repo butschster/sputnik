@@ -13,15 +13,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $team = User\Team::create([
-            'name' => 'Awesome project',
-        ]);
-
         $owner = User\Role::where('name', 'owner')->firstOrFail();
 
         $user = factory(User::class)->create([
             'email' => 'admin@site.com',
             'name' => 'Pavel Buchnev',
+        ]);
+
+        $team = User\Team::create([
+            'name' => 'Awesome project',
+            'owner_id' => $user->id,
         ]);
 
         $user->attachRole($owner, $team);

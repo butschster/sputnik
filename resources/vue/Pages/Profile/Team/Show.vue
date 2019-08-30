@@ -17,34 +17,7 @@
 
             <Members :team="team" class="mb-10"/>
 
-            <div class="card mb-4">
-                <div class="card-header">
-                    Payment method
-                    <p>This will replace your current payment method.</p>
-                </div>
-                <div class="card-body">
-                    <form action="" class="mt-8">
-                        <div class="flex">
-                            <div class="form-group flex-1 mr-5">
-                                <input type="text" id="card" class="form-control" name="card" autofocus
-                                       placeholder="Card number">
-                            </div>
-                            <div class="form-group mr-5">
-                                <input type="text" id="date" class="form-control" name="date"
-                                       placeholder="MM/YY">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="cvc" class="form-control" name="cvc"
-                                       placeholder="CVC">
-                            </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <button class="btn btn-primary">Update</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
+            <PaymentMethods :team="team" />
 
             <Subscription :team="team" />
         </div>
@@ -52,11 +25,12 @@
 </template>
 
 <script>
+    import PaymentMethods from "@vue/components/User/Teams/PaymentMethods"
     import Subscription from '@vue/components/User/Teams/Subscription'
     import Members from '@vue/components/User/Teams/Members'
 
     export default {
-        components: {Members, Subscription},
+        components: {Members, Subscription, PaymentMethods},
         data() {
             return {
                 team: null,
