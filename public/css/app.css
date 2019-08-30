@@ -64113,7 +64113,7 @@ readers do not read off random characters that represent icons */
   position: relative;
   border-radius: 0.5rem;
   overflow: hidden;
-  width: 33.333333%;
+  width: 50%;
   -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown;
   -webkit-animation-iteration-count: 1s;
@@ -64178,17 +64178,18 @@ readers do not read off random characters that represent icons */
   border-bottom-width: 2px;
   border-color: #edf2f7;
   margin-bottom: 2rem;
+  border-bottom: 3px solid #edf2f7;
 }
 
 .tabs .tab {
-  border-bottom-width: 2px;
   padding-top: 1rem;
   padding-bottom: 1rem;
   font-size: 1.125rem;
   margin-left: 0.75rem;
   margin-right: 0.75rem;
   color: #718096;
-  margin-bottom: -2px;
+  margin-bottom: -3px;
+  border-bottom: 3px solid #edf2f7;
 }
 
 .tabs .tab:first-child {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\API\Controller;
 use App\Http\Resources\v1\PlanCollection;
+use App\Http\Resources\v1\PlanResource;
 use App\Http\Resources\v1\SubscriptionResource;
 use App\Models\Subscription\Plan;
 use App\Models\User;

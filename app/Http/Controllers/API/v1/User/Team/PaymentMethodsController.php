@@ -63,7 +63,7 @@ class PaymentMethodsController extends Controller
             'payment_method' => 'required|string'
         ]);
 
-        $team->addPaymentMethod($request->payment_method);
+        $team->updateDefaultPaymentMethod($request->payment_method);
 
         return $this->responseOk();
     }
@@ -74,6 +74,6 @@ class PaymentMethodsController extends Controller
 
         $team->removePaymentMethod($id);
 
-        $this->responseDeleted();
+        return $this->responseDeleted();
     }
 }

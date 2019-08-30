@@ -1851,6 +1851,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Billing.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Profile/Team/Billing.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_components_User_Teams_PaymentMethods_List__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/components/User/Teams/PaymentMethods/List */ "./resources/vue/components/User/Teams/PaymentMethods/List.vue");
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    PaymentMethods: _vue_components_User_Teams_PaymentMethods_List__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Index.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Profile/Team/Index.vue?vue&type=script&lang=js& ***!
@@ -1885,6 +1908,29 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Members.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Profile/Team/Members.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_components_User_Teams_Members__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/components/User/Teams/Members */ "./resources/vue/components/User/Teams/Members.vue");
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Members: _vue_components_User_Teams_Members__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Show.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Profile/Team/Show.vue?vue&type=script&lang=js& ***!
@@ -1896,9 +1942,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _vue_components_User_Teams_PaymentMethods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/User/Teams/PaymentMethods */ "./resources/vue/components/User/Teams/PaymentMethods.vue");
-/* harmony import */ var _vue_components_User_Teams_Subscription__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/User/Teams/Subscription */ "./resources/vue/components/User/Teams/Subscription.vue");
-/* harmony import */ var _vue_components_User_Teams_Members__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vue/components/User/Teams/Members */ "./resources/vue/components/User/Teams/Members.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1925,21 +1968,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Members: _vue_components_User_Teams_Members__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Subscription: _vue_components_User_Teams_Subscription__WEBPACK_IMPORTED_MODULE_2__["default"],
-    PaymentMethods: _vue_components_User_Teams_PaymentMethods__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
   data: function data() {
     return {
       team: null,
@@ -1947,10 +1976,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
+    this.$bus.$on('paymentMethodsChanged', function () {
+      _this.load();
+    });
+    this.$bus.$on('subscribed', function () {
+      _this.load();
+    });
     this.load();
   },
   methods: {
-    loaded: function loaded() {},
     load: function () {
       var _load = _asyncToGenerator(
       /*#__PURE__*/
@@ -1970,27 +2006,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 4:
                 response = _context.sent;
                 this.team = response.data.data;
-                this.loaded();
-                _context.next = 13;
+                _context.next = 12;
                 break;
 
-              case 9:
-                _context.prev = 9;
+              case 8:
+                _context.prev = 8;
                 _context.t0 = _context["catch"](1);
                 console.error(_context.t0);
                 this.$router.replace({
                   name: "404"
                 });
 
-              case 13:
+              case 12:
                 this.loading = false;
 
-              case 14:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 9]]);
+        }, _callee, this, [[1, 8]]);
       }));
 
       function load() {
@@ -1999,6 +2034,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return load;
     }()
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Subscription/Index.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Profile/Team/Subscription/Index.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_components_User_Teams_Subscription__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/components/User/Teams/Subscription */ "./resources/vue/components/User/Teams/Subscription.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Subscription: _vue_components_User_Teams_Subscription__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -5708,7 +5776,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5913,10 +5980,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5924,6 +5991,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vue_components_UI_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/UI/Modal */ "./resources/vue/components/UI/Modal.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -5931,319 +5999,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    team: Object
-  },
-  data: function data() {
-    return {
-      loading: false,
-      secret: null,
-      paymentMethods: [],
-      card_holder: null,
-      stripeError: null
-    };
-  },
-  mounted: function mounted() {
-    this.loadPaymentMethods();
-  },
-  methods: {
-    deletePaymentMethod: function () {
-      var _deletePaymentMethod = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(method) {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                this.loading = true;
-                _context.prev = 1;
-                _context.next = 4;
-                return this.$api('v1.team.payment.method.delete', {
-                  team: this.team.id,
-                  id: method.id
-                }).request();
-
-              case 4:
-                response = _context.sent;
-                _context.next = 10;
-                break;
-
-              case 7:
-                _context.prev = 7;
-                _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
-
-              case 10:
-                this.loading = false;
-
-              case 11:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this, [[1, 7]]);
-      }));
-
-      function deletePaymentMethod(_x) {
-        return _deletePaymentMethod.apply(this, arguments);
-      }
-
-      return deletePaymentMethod;
-    }(),
-    loadPaymentMethods: function () {
-      var _loadPaymentMethods = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                this.loading = true;
-                _context2.prev = 1;
-                _context2.next = 4;
-                return this.$api('v1.team.payment.methods', {
-                  team: this.team.id
-                }).request();
-
-              case 4:
-                response = _context2.sent;
-                this.paymentMethods = response.data;
-                _context2.next = 11;
-                break;
-
-              case 8:
-                _context2.prev = 8;
-                _context2.t0 = _context2["catch"](1);
-                console.error(_context2.t0);
-
-              case 11:
-                this.loading = false;
-
-              case 12:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this, [[1, 8]]);
-      }));
-
-      function loadPaymentMethods() {
-        return _loadPaymentMethods.apply(this, arguments);
-      }
-
-      return loadPaymentMethods;
-    }(),
-    intent: function () {
-      var _intent = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var _this = this;
-
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                this.loading = true;
-                _context3.prev = 1;
-                _context3.next = 4;
-                return this.$api('v1.team.payment.method.intent', {
-                  team: this.team.id
-                }).request();
-
-              case 4:
-                response = _context3.sent;
-                this.secret = response.data;
-                setTimeout(function () {
-                  _this.initStripe();
-                }, 200);
-                _context3.next = 12;
-                break;
-
-              case 9:
-                _context3.prev = 9;
-                _context3.t0 = _context3["catch"](1);
-                console.error(_context3.t0);
-
-              case 12:
-                this.loading = false;
-
-              case 13:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this, [[1, 9]]);
-      }));
-
-      function intent() {
-        return _intent.apply(this, arguments);
-      }
-
-      return intent;
-    }(),
-    initStripe: function initStripe() {
-      var elements = this.$stripe.elements();
-      this.cardElement = elements.create('card');
-      this.cardElement.mount('#card-element');
-    },
-    addPaymentMethod: function () {
-      var _addPaymentMethod = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(e) {
-        var _ref, setupIntent, error, response;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                this.stripeError = null;
-                _context4.next = 3;
-                return this.$stripe.handleCardSetup(this.secret, this.cardElement, {
-                  payment_method_data: {
-                    billing_details: {
-                      name: this.card_holder
-                    }
-                  }
-                });
-
-              case 3:
-                _ref = _context4.sent;
-                setupIntent = _ref.setupIntent;
-                error = _ref.error;
-                console.log(setupIntent);
-
-                if (!error) {
-                  _context4.next = 11;
-                  break;
-                }
-
-                this.stripeError = error;
-                _context4.next = 15;
-                break;
-
-              case 11:
-                _context4.next = 13;
-                return this.$api('v1.team.payment.method.store', {
-                  team: this.team.id
-                }).request(setupIntent);
-
-              case 13:
-                response = _context4.sent;
-                this.secret = null;
-
-              case 15:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this);
-      }));
-
-      function addPaymentMethod(_x2) {
-        return _addPaymentMethod.apply(this, arguments);
-      }
-
-      return addPaymentMethod;
-    }()
-  },
-  computed: {
-    hasPaymentMethod: function hasPaymentMethod() {
-      return this.paymentMethods.length > 0;
-    },
-    hasSecret: function hasSecret() {
-      return this.secret && this.secret.length > 0;
-    },
-    hasStripeError: function hasStripeError() {
-      return this.stripeError !== null;
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/Subscription.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _vue_components_User_Teams_CancelSubscription__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/User/Teams/CancelSubscription */ "./resources/vue/components/User/Teams/CancelSubscription.vue");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 //
 //
 //
@@ -6279,23 +6034,237 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    CancelSubscription: _vue_components_User_Teams_CancelSubscription__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Modal: _vue_components_UI_Modal__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
     team: Object
   },
   data: function data() {
     return {
-      plans: [],
-      loading: false
+      loading: false,
+      secret: null,
+      card_holder: null,
+      stripeError: null
+    };
+  },
+  methods: {
+    onStateChanged: function onStateChanged(state) {
+      if (state) {
+        this.intent();
+      }
+    },
+    initStripe: function initStripe() {
+      var elements = this.$stripe.elements();
+      this.cardElement = elements.create('card');
+      this.cardElement.mount('#card-element');
+    },
+    addPaymentMethod: function () {
+      var _addPaymentMethod = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
+        var _ref, setupIntent, error, response;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.loading = true;
+                this.stripeError = null;
+                _context.next = 4;
+                return this.$stripe.handleCardSetup(this.secret, this.cardElement, {
+                  payment_method_data: {
+                    billing_details: {
+                      name: this.card_holder
+                    }
+                  }
+                });
+
+              case 4:
+                _ref = _context.sent;
+                setupIntent = _ref.setupIntent;
+                error = _ref.error;
+
+                if (!error) {
+                  _context.next = 12;
+                  break;
+                }
+
+                this.stripeError = error;
+                this.$emit('error', error);
+                _context.next = 19;
+                break;
+
+              case 12:
+                _context.next = 14;
+                return this.$api('v1.team.payment.method.store', {
+                  team: this.team.id
+                }).request(setupIntent);
+
+              case 14:
+                response = _context.sent;
+                this.secret = null;
+                this.$emit('added', response.data);
+                this.$modal.close('add_payment_method');
+                this.$notify({
+                  type: 'success',
+                  text: 'Payment method successfully added'
+                });
+
+              case 19:
+                this.loading = false;
+
+              case 20:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function addPaymentMethod(_x) {
+        return _addPaymentMethod.apply(this, arguments);
+      }
+
+      return addPaymentMethod;
+    }(),
+    intent: function () {
+      var _intent = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _this = this;
+
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                this.loading = true;
+                _context2.prev = 1;
+                _context2.next = 4;
+                return this.$api('v1.team.payment.method.intent', {
+                  team: this.team.id
+                }).request();
+
+              case 4:
+                response = _context2.sent;
+                this.secret = response.data;
+                setTimeout(function () {
+                  _this.initStripe();
+                }, 200);
+                _context2.next = 12;
+                break;
+
+              case 9:
+                _context2.prev = 9;
+                _context2.t0 = _context2["catch"](1);
+                console.error(_context2.t0);
+
+              case 12:
+                this.loading = false;
+
+              case 13:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[1, 9]]);
+      }));
+
+      function intent() {
+        return _intent.apply(this, arguments);
+      }
+
+      return intent;
+    }()
+  },
+  computed: {
+    hasSecret: function hasSecret() {
+      return this.secret && this.secret.length > 0;
+    },
+    hasStripeError: function hasStripeError() {
+      return this.stripeError !== null;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods/List.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/PaymentMethods/List.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vue_components_User_Teams_PaymentMethods_ListItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/User/Teams/PaymentMethods/ListItem */ "./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue");
+/* harmony import */ var _vue_components_User_Teams_PaymentMethods_AddMethodForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/User/Teams/PaymentMethods/AddMethodForm */ "./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    AddMethodForm: _vue_components_User_Teams_PaymentMethods_AddMethodForm__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ListItem: _vue_components_User_Teams_PaymentMethods_ListItem__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: {
+    team: Object
+  },
+  data: function data() {
+    return {
+      loading: false,
+      paymentMethods: []
     };
   },
   mounted: function mounted() {
-    this.load();
+    this.loadPaymentMethods();
   },
   methods: {
-    load: function () {
-      var _load = _asyncToGenerator(
+    paymentMethodsChanged: function paymentMethodsChanged() {
+      this.loadPaymentMethods();
+      this.$bus.$emit('paymentMethodsChanged');
+    },
+    showForm: function showForm() {
+      this.$modal.show('add_payment_method');
+    },
+    loadPaymentMethods: function () {
+      var _loadPaymentMethods = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
@@ -6306,11 +6275,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.loading = true;
                 _context.prev = 1;
                 _context.next = 4;
-                return this.$api('v1.subscription.plans').request();
+                return this.$api('v1.team.payment.methods', {
+                  team: this.team.id
+                }).request();
 
               case 4:
                 response = _context.sent;
-                this.plans = response.data.data;
+                this.paymentMethods = response.data;
                 _context.next = 11;
                 break;
 
@@ -6330,6 +6301,280 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee, this, [[1, 8]]);
       }));
 
+      function loadPaymentMethods() {
+        return _loadPaymentMethods.apply(this, arguments);
+      }
+
+      return loadPaymentMethods;
+    }()
+  },
+  computed: {
+    hasPaymentMethod: function hasPaymentMethod() {
+      return this.paymentMethods.length > 0;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    team: Object,
+    method: Object
+  },
+  methods: {
+    deletePaymentMethod: function () {
+      var _deletePaymentMethod = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.loading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return this.$api('v1.team.payment.method.delete', {
+                  team: this.team.id,
+                  id: this.method.id
+                }).request();
+
+              case 4:
+                response = _context.sent;
+                this.$emit('deleted', this.method);
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](1);
+                console.error(_context.t0);
+
+              case 11:
+                this.loading = false;
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 8]]);
+      }));
+
+      function deletePaymentMethod() {
+        return _deletePaymentMethod.apply(this, arguments);
+      }
+
+      return deletePaymentMethod;
+    }()
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/Subscription.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vue_components_UI_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/UI/Modal */ "./resources/vue/components/UI/Modal.vue");
+/* harmony import */ var _vue_components_User_Teams_CancelSubscription__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/User/Teams/CancelSubscription */ "./resources/vue/components/User/Teams/CancelSubscription.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    CancelSubscription: _vue_components_User_Teams_CancelSubscription__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Modal: _vue_components_UI_Modal__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: {
+    team: Object
+  },
+  data: function data() {
+    return {
+      plans: [],
+      loading: false
+    };
+  },
+  mounted: function mounted() {
+    this.load();
+  },
+  computed: {
+    canBeCanceled: function canBeCanceled() {
+      if (this.team.subscription.plan.is_free) {
+        return false;
+      }
+
+      return !this.team.subscription.is_cancelled;
+    },
+    hasPaymentMethod: function hasPaymentMethod() {
+      return this.team.has_payment_method;
+    }
+  },
+  methods: {
+    subscribe: function () {
+      var _subscribe = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(plan) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.loading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return this.$api('v1.team.subscribe', {
+                  team: this.team.id,
+                  plan: plan.id
+                }).request();
+
+              case 4:
+                response = _context.sent;
+                this.$bus.$emit('subscribed');
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](1);
+                console.error(_context.t0);
+
+              case 11:
+                this.loading = false;
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 8]]);
+      }));
+
+      function subscribe(_x) {
+        return _subscribe.apply(this, arguments);
+      }
+
+      return subscribe;
+    }(),
+    load: function () {
+      var _load = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                this.loading = true;
+                _context2.prev = 1;
+                _context2.next = 4;
+                return this.$api('v1.subscription.plans').request();
+
+              case 4:
+                response = _context2.sent;
+                this.plans = response.data.data;
+                _context2.next = 11;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](1);
+                console.error(_context2.t0);
+
+              case 11:
+                this.loading = false;
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[1, 8]]);
+      }));
+
       function load() {
         return _load.apply(this, arguments);
       }
@@ -6344,12 +6589,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return plan.id == this.team.subscription.plan.id;
     },
     canBeUpgradedTo: function canBeUpgradedTo(plan) {
+      if (!this.hasPaymentMethod) {
+        return false;
+      }
+
       if (this.isCurrentPlan(plan)) {
         return false;
       }
 
       if (this.team.subscription.plan.key == 'artisan') {
         return plan.key == 'unlimited';
+      }
+
+      if (this.team.subscription.plan.key == 'unlimited') {
+        return false;
       }
 
       return plan.key != 'free';
@@ -49630,6 +49883,30 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Billing.vue?vue&type=template&id=0440277b&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Profile/Team/Billing.vue?vue&type=template&id=0440277b& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("PaymentMethods", { attrs: { team: _vm.$parent.team } })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Index.vue?vue&type=template&id=90e1f75c&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Profile/Team/Index.vue?vue&type=template&id=90e1f75c& ***!
@@ -49678,6 +49955,30 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Members.vue?vue&type=template&id=524a4f19&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Profile/Team/Members.vue?vue&type=template&id=524a4f19& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("Members", { attrs: { team: _vm.$parent.team } })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Show.vue?vue&type=template&id=24c3082d&":
 /*!****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Profile/Team/Show.vue?vue&type=template&id=24c3082d& ***!
@@ -49707,39 +50008,109 @@ var render = function() {
                 _vm._v("\n            " + _vm._s(_vm.team.name) + "\n        ")
               ]),
               _vm._v(" "),
-              _vm.team.subscription.is_invalid
-                ? _c(
-                    "div",
+              _c(
+                "div",
+                { staticClass: "tabs", attrs: { role: "tabs" } },
+                [
+                  _c(
+                    "router-link",
                     {
-                      staticClass:
-                        "alert alert-warning flex justify-between items-center"
+                      staticClass: "tab",
+                      attrs: {
+                        to: {
+                          name: "profile.team.show",
+                          params: { id: _vm.team.id }
+                        }
+                      }
                     },
-                    [
-                      _c("div", [
-                        _vm._v(
-                          "\n                Your subscription is expired. Please renew it.\n            "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("button", { staticClass: "btn btn-danger" }, [
-                        _vm._v("Renew")
-                      ])
-                    ]
+                    [_vm._v("Members")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "tab",
+                      attrs: {
+                        to: {
+                          name: "profile.team.subscription",
+                          params: { id: _vm.team.id }
+                        }
+                      }
+                    },
+                    [_vm._v("Subscription")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "tab",
+                      attrs: {
+                        to: {
+                          name: "profile.team.billing",
+                          params: { id: _vm.team.id }
+                        }
+                      }
+                    },
+                    [_vm._v("Billing")]
                   )
-                : _vm._e(),
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("Members", {
-                staticClass: "mb-10",
-                attrs: { team: _vm.team }
-              }),
-              _vm._v(" "),
-              _c("PaymentMethods", { attrs: { team: _vm.team } }),
-              _vm._v(" "),
-              _c("Subscription", { attrs: { team: _vm.team } })
+              _c("router-view")
             ],
             1
           )
         : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Subscription/Index.vue?vue&type=template&id=8a9e5220&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Profile/Team/Subscription/Index.vue?vue&type=template&id=8a9e5220& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm.$parent.team.subscription.is_invalid
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "alert alert-warning flex justify-between items-center"
+            },
+            [
+              _c("div", [
+                _vm._v(
+                  "\n            Your subscription is expired. Please renew it.\n        "
+                )
+              ]),
+              _vm._v(" "),
+              _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Renew")])
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("Subscription", { attrs: { team: _vm.$parent.team } })
     ],
     1
   )
@@ -52556,7 +52927,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", [
         _vm._v(
-          "Pavel, just before you go, here are some courses we've got coming up that you might be interested\n            in."
+          "Pavel, just before you go, here are some courses we've got coming up that you might be interested in."
         )
       ])
     ])
@@ -52688,10 +53059,136 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=template&id=3a78da91&":
-/*!*****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=template&id=3a78da91& ***!
-  \*****************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue?vue&type=template&id=0704c7b0&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue?vue&type=template&id=0704c7b0& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "Modal",
+    {
+      attrs: { name: "add_payment_method" },
+      on: { visible: _vm.onStateChanged }
+    },
+    [
+      _c("div", { staticClass: "modal__top" }, [
+        _vm._v("\n        Add new card\n    ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "modal__content" },
+        [
+          _c("Loader", { attrs: { loading: _vm.loading } }),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-lg mb-3" }, [
+            _vm._v("All major credit / debit cards accepted.")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex items-start" }, [
+            _c("div", { staticClass: "form-group is-required flex-1" }, [
+              _c("div", { staticClass: "form-control" }, [
+                _c("div", {
+                  staticClass: "pt-1",
+                  attrs: { id: "card-element" }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.hasStripeError
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.stripeError.message) +
+                        "\n                "
+                    )
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group form-group-labeled ml-8 is-required" },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required",
+                      expression: "'required'"
+                    },
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.card_holder,
+                      expression: "card_holder"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "card-holder-name",
+                    type: "text",
+                    name: "card_holder",
+                    placeholder: "Card Holder"
+                  },
+                  domProps: { value: _vm.card_holder },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.card_holder = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "card-holder-name" } }, [
+                  _vm._v("Card Holder")
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "invalid-feedback" }, [
+                  _vm._v(_vm._s(_vm.errors.first("card_holder")))
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary mt-6",
+              attrs: { "data-secret": _vm.secret },
+              on: { click: _vm.addPaymentMethod }
+            },
+            [_vm._v("\n            Add\n        ")]
+          )
+        ],
+        1
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods/List.vue?vue&type=template&id=9558d5a8&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/PaymentMethods/List.vue?vue&type=template&id=9558d5a8& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -52709,17 +53206,27 @@ var render = function() {
     [
       _c("Loader", { attrs: { loading: _vm.loading } }),
       _vm._v(" "),
-      _c("div", { staticClass: "section-header flex items-center" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        !_vm.hasSecret
-          ? _c(
-              "button",
-              { staticClass: "btn btn-primary", on: { click: _vm.intent } },
-              [_vm._v("\n            Add\n        ")]
-            )
-          : _vm._e()
-      ]),
+      _c(
+        "div",
+        { staticClass: "section-header flex items-center" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          !_vm.loading && !_vm.hasPaymentMethod
+            ? _c(
+                "button",
+                { staticClass: "btn btn-primary", on: { click: _vm.showForm } },
+                [_vm._v("\n            Add\n        ")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("AddMethodForm", {
+            attrs: { team: _vm.team },
+            on: { added: _vm.paymentMethodsChanged }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       !_vm.hasPaymentMethod
         ? _c("div", { staticClass: "well well-lg text-center" }, [
@@ -52742,139 +53249,13 @@ var render = function() {
             "div",
             { staticClass: "well well-lg" },
             _vm._l(_vm.paymentMethods, function(method) {
-              return _c(
-                "div",
-                {
-                  staticClass:
-                    "border-2 px-4 py-3 mb-2 bg-white rounded-lg flex"
-                },
-                [
-                  _c("div", { staticClass: "flex-1" }, [
-                    _c("h4", [
-                      _vm._v(
-                        _vm._s(method.name) +
-                          " xxxx-" +
-                          _vm._s(method.card.last4)
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "text-gray-600" }, [
-                      _vm._v(
-                        "Expired " +
-                          _vm._s(method.card.exp_month) +
-                          "/" +
-                          _vm._s(method.card.exp_year) +
-                          " • Created\n                    on " +
-                          _vm._s(
-                            _vm._f("moment")(method.created_at, "DD MMM YYYY")
-                          ) +
-                          "\n                "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger btn-sm",
-                      on: {
-                        click: function($event) {
-                          return _vm.deletePaymentMethod(method)
-                        }
-                      }
-                    },
-                    [_vm._v("\n                Delete\n            ")]
-                  )
-                ]
-              )
+              return _c("ListItem", {
+                attrs: { team: _vm.team, method: method },
+                on: { deleted: _vm.paymentMethodsChanged }
+              })
             }),
-            0
-          ),
-      _vm._v(" "),
-      _vm.hasSecret
-        ? _c("div", { staticClass: "well well-lg mt-5" }, [
-            _c("h3", [_vm._v("Add new card")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-lg mb-3" }, [
-              _vm._v("All major credit / debit cards accepted.")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex items-start" }, [
-              _c("div", { staticClass: "form-group is-required flex-1" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _vm.hasStripeError
-                  ? _c("div", { staticClass: "invalid-feedback" }, [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(_vm.stripeError.message) +
-                          "\n                "
-                      )
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "form-group form-group-labeled ml-8 is-required"
-                },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "validate",
-                        rawName: "v-validate",
-                        value: "required",
-                        expression: "'required'"
-                      },
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.card_holder,
-                        expression: "card_holder"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      id: "card-holder-name",
-                      type: "text",
-                      name: "card_holder",
-                      placeholder: "Card Holder"
-                    },
-                    domProps: { value: _vm.card_holder },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.card_holder = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", { attrs: { for: "card-holder-name" } }, [
-                    _vm._v("Card Holder")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "invalid-feedback" }, [
-                    _vm._v(_vm._s(_vm.errors.first("card_holder")))
-                  ])
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary mt-6",
-                attrs: { "data-secret": _vm.secret },
-                on: { click: _vm.addPaymentMethod }
-              },
-              [_vm._v("\n            Add\n        ")]
-            )
-          ])
-        : _vm._e()
+            1
+          )
     ],
     1
   )
@@ -52892,16 +53273,69 @@ var staticRenderFns = [
         )
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-control" }, [
-      _c("div", { staticClass: "pt-1", attrs: { id: "card-element" } })
-    ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue?vue&type=template&id=7a1a48df&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue?vue&type=template&id=7a1a48df& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "border-2 px-4 py-3 mb-2 bg-white rounded-lg flex" },
+    [
+      _c("div", { staticClass: "flex-1" }, [
+        _c("h4", [
+          _vm._v(
+            _vm._s(_vm.method.name) + " xxxx-" + _vm._s(_vm.method.card.last4)
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-gray-600" }, [
+          _vm._v(
+            "Expired " +
+              _vm._s(_vm.method.card.exp_month) +
+              "/" +
+              _vm._s(_vm.method.card.exp_year) +
+              " • Created\n            on " +
+              _vm._s(_vm._f("moment")(_vm.method.created_at, "DD MMM YYYY")) +
+              "\n        "
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger btn-sm",
+          on: {
+            click: function($event) {
+              return _vm.deletePaymentMethod()
+            }
+          }
+        },
+        [_vm._v("\n        Delete\n    ")]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -52926,76 +53360,126 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "price-table" }, [
-        _c("h2", [_vm._v("Available plans")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "price-table__items" },
-          _vm._l(_vm.plans, function(plan) {
-            return _c(
-              "div",
-              {
-                key: plan.id,
-                staticClass: "price-table__item",
-                class: { current: _vm.isCurrentPlan(plan) }
-              },
-              [
-                _c("div", [
-                  _c("h3", { staticClass: "price-table__item--title" }, [
-                    _vm._v(_vm._s(plan.name) + "\n\n                        "),
-                    !plan.is_free
-                      ? _c("strong", { staticClass: "ml-3" }, [
-                          _vm._v("$" + _vm._s(plan.price))
-                        ])
-                      : _vm._e(),
+      _c(
+        "div",
+        { staticClass: "price-table" },
+        [
+          _c("Loader", { attrs: { loading: _vm.loading } }),
+          _vm._v(" "),
+          _c("h2", [_vm._v("Available plans")]),
+          _vm._v(" "),
+          !_vm.hasPaymentMethod
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "well border-red-300 border-2 rounded-lg mb-8 text-lg"
+                },
+                [
+                  _vm._v("\n            You need to add payment method on "),
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "profile.team.billing",
+                          params: { id: _vm.team.id }
+                        }
+                      }
+                    },
+                    [_vm._v("billing page")]
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "price-table__items" },
+            _vm._l(_vm.plans, function(plan) {
+              return _c(
+                "div",
+                {
+                  key: plan.id,
+                  staticClass: "price-table__item",
+                  class: { current: _vm.isCurrentPlan(plan) }
+                },
+                [
+                  _c("div", [
+                    _c("h3", { staticClass: "price-table__item--title" }, [
+                      _vm._v(
+                        _vm._s(plan.name) + "\n\n                        "
+                      ),
+                      !plan.is_free
+                        ? _c("strong", { staticClass: "ml-3" }, [
+                            _vm._v("$" + _vm._s(plan.price))
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "text-xs" }, [_vm._v("/mo")])
+                    ]),
                     _vm._v(" "),
-                    _c("span", { staticClass: "text-xs" }, [_vm._v("/mo")])
+                    _c(
+                      "ul",
+                      { staticClass: "price-table__item--features" },
+                      _vm._l(plan.features, function(feature) {
+                        return _c(
+                          "li",
+                          { staticClass: "price-table__item--feature" },
+                          [
+                            _c("i", {
+                              staticClass: "icon fas fa-check-circle "
+                            }),
+                            _vm._v(
+                              " " +
+                                _vm._s(feature.name) +
+                                "\n                            "
+                            ),
+                            !feature.is_unlimited
+                              ? _c("span", [
+                                  _vm._v(
+                                    "[" + _vm._s(feature.value) + " times]"
+                                  )
+                                ])
+                              : _vm._e()
+                          ]
+                        )
+                      }),
+                      0
+                    )
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "ul",
-                    { staticClass: "price-table__item--features" },
-                    _vm._l(plan.features, function(feature) {
-                      return _c(
-                        "li",
-                        { staticClass: "price-table__item--feature" },
-                        [
-                          _c("i", { staticClass: "icon fas fa-check-circle " }),
-                          _vm._v(
-                            " " +
-                              _vm._s(feature.name) +
-                              "\n                            "
-                          ),
-                          !feature.is_unlimited
-                            ? _c("span", [
-                                _vm._v("[" + _vm._s(feature.value) + " times]")
-                              ])
-                            : _vm._e()
-                        ]
-                      )
-                    }),
-                    0
-                  )
-                ]),
-                _vm._v(" "),
-                _vm.canBeUpgradedTo(plan)
-                  ? _c("div", { staticClass: "text-center mt-5" }, [
-                      _c(
-                        "button",
-                        { staticClass: "btn btn-primary btn-rounded" },
-                        [_vm._v("Order now")]
-                      )
-                    ])
-                  : _vm._e()
-              ]
-            )
-          }),
-          0
-        )
-      ]),
+                  _vm.canBeUpgradedTo(plan)
+                    ? _c("div", { staticClass: "text-center mt-5" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary btn-rounded",
+                            on: {
+                              click: function($event) {
+                                return _vm.subscribe(plan)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        Subscribe now\n                    "
+                            )
+                          ]
+                        )
+                      ])
+                    : _vm._e()
+                ]
+              )
+            }),
+            0
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
-      !_vm.team.subscription.is_invalid
+      _vm.canBeCanceled
         ? _c("CancelSubscription", { attrs: { team: _vm.team } })
         : _vm._e()
     ],
@@ -77389,6 +77873,11 @@ var Ziggy = {
       "methods": ["GET", "HEAD"],
       "domain": null
     },
+    "api.v1.subscription.plan.show": {
+      "uri": "api\/v1\/subscription\/plan\/{plan}",
+      "methods": ["GET", "HEAD"],
+      "domain": null
+    },
     "api.v1.source_providers": {
       "uri": "api\/v1\/source-providers",
       "methods": ["GET", "HEAD"],
@@ -77778,6 +78267,8 @@ __webpack_require__(/*! ./vue/plugins/modal */ "./resources/js/vue/plugins/modal
 __webpack_require__(/*! ./vue/plugins/dropdown */ "./resources/js/vue/plugins/dropdown.js");
 
 __webpack_require__(/*! ./vue/plugins/stripe */ "./resources/js/vue/plugins/stripe.js");
+
+__webpack_require__(/*! ./vue/plugins/eventBus */ "./resources/js/vue/plugins/eventBus.js");
 
 __webpack_require__(/*! ./vue/directives/click-ouside */ "./resources/js/vue/directives/click-ouside.js");
 
@@ -78276,6 +78767,22 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$echo = new laravel_echo__W
   cluster: "eu",
   encrypted: true
 });
+
+/***/ }),
+
+/***/ "./resources/js/vue/plugins/eventBus.js":
+/*!**********************************************!*\
+  !*** ./resources/js/vue/plugins/eventBus.js ***!
+  \**********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$bus = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
 
 /***/ }),
 
@@ -78948,6 +79455,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/vue/Pages/Profile/Team/Billing.vue":
+/*!******************************************************!*\
+  !*** ./resources/vue/Pages/Profile/Team/Billing.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Billing_vue_vue_type_template_id_0440277b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Billing.vue?vue&type=template&id=0440277b& */ "./resources/vue/Pages/Profile/Team/Billing.vue?vue&type=template&id=0440277b&");
+/* harmony import */ var _Billing_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Billing.vue?vue&type=script&lang=js& */ "./resources/vue/Pages/Profile/Team/Billing.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Billing_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Billing_vue_vue_type_template_id_0440277b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Billing_vue_vue_type_template_id_0440277b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/Pages/Profile/Team/Billing.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/Pages/Profile/Team/Billing.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/vue/Pages/Profile/Team/Billing.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Billing_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Billing.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Billing.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Billing_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/Pages/Profile/Team/Billing.vue?vue&type=template&id=0440277b&":
+/*!*************************************************************************************!*\
+  !*** ./resources/vue/Pages/Profile/Team/Billing.vue?vue&type=template&id=0440277b& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Billing_vue_vue_type_template_id_0440277b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Billing.vue?vue&type=template&id=0440277b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Billing.vue?vue&type=template&id=0440277b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Billing_vue_vue_type_template_id_0440277b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Billing_vue_vue_type_template_id_0440277b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/vue/Pages/Profile/Team/Index.vue":
 /*!****************************************************!*\
   !*** ./resources/vue/Pages/Profile/Team/Index.vue ***!
@@ -79017,6 +79593,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/vue/Pages/Profile/Team/Members.vue":
+/*!******************************************************!*\
+  !*** ./resources/vue/Pages/Profile/Team/Members.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Members_vue_vue_type_template_id_524a4f19___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Members.vue?vue&type=template&id=524a4f19& */ "./resources/vue/Pages/Profile/Team/Members.vue?vue&type=template&id=524a4f19&");
+/* harmony import */ var _Members_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Members.vue?vue&type=script&lang=js& */ "./resources/vue/Pages/Profile/Team/Members.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Members_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Members_vue_vue_type_template_id_524a4f19___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Members_vue_vue_type_template_id_524a4f19___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/Pages/Profile/Team/Members.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/Pages/Profile/Team/Members.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/vue/Pages/Profile/Team/Members.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Members.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Members.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/Pages/Profile/Team/Members.vue?vue&type=template&id=524a4f19&":
+/*!*************************************************************************************!*\
+  !*** ./resources/vue/Pages/Profile/Team/Members.vue?vue&type=template&id=524a4f19& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_template_id_524a4f19___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Members.vue?vue&type=template&id=524a4f19& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Members.vue?vue&type=template&id=524a4f19&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_template_id_524a4f19___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_template_id_524a4f19___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/vue/Pages/Profile/Team/Show.vue":
 /*!***************************************************!*\
   !*** ./resources/vue/Pages/Profile/Team/Show.vue ***!
@@ -79081,6 +79726,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_template_id_24c3082d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_template_id_24c3082d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/Pages/Profile/Team/Subscription/Index.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/vue/Pages/Profile/Team/Subscription/Index.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Index_vue_vue_type_template_id_8a9e5220___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=8a9e5220& */ "./resources/vue/Pages/Profile/Team/Subscription/Index.vue?vue&type=template&id=8a9e5220&");
+/* harmony import */ var _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Index.vue?vue&type=script&lang=js& */ "./resources/vue/Pages/Profile/Team/Subscription/Index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Index_vue_vue_type_template_id_8a9e5220___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Index_vue_vue_type_template_id_8a9e5220___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/Pages/Profile/Team/Subscription/Index.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/Pages/Profile/Team/Subscription/Index.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/vue/Pages/Profile/Team/Subscription/Index.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Subscription/Index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/Pages/Profile/Team/Subscription/Index.vue?vue&type=template&id=8a9e5220&":
+/*!************************************************************************************************!*\
+  !*** ./resources/vue/Pages/Profile/Team/Subscription/Index.vue?vue&type=template&id=8a9e5220& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_8a9e5220___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=template&id=8a9e5220& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Profile/Team/Subscription/Index.vue?vue&type=template&id=8a9e5220&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_8a9e5220___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_8a9e5220___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -81639,18 +82353,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/vue/components/User/Teams/PaymentMethods.vue":
-/*!****************************************************************!*\
-  !*** ./resources/vue/components/User/Teams/PaymentMethods.vue ***!
-  \****************************************************************/
+/***/ "./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue":
+/*!******************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue ***!
+  \******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PaymentMethods_vue_vue_type_template_id_3a78da91___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PaymentMethods.vue?vue&type=template&id=3a78da91& */ "./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=template&id=3a78da91&");
-/* harmony import */ var _PaymentMethods_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PaymentMethods.vue?vue&type=script&lang=js& */ "./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _AddMethodForm_vue_vue_type_template_id_0704c7b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddMethodForm.vue?vue&type=template&id=0704c7b0& */ "./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue?vue&type=template&id=0704c7b0&");
+/* harmony import */ var _AddMethodForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddMethodForm.vue?vue&type=script&lang=js& */ "./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -81659,9 +82373,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _PaymentMethods_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _PaymentMethods_vue_vue_type_template_id_3a78da91___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _PaymentMethods_vue_vue_type_template_id_3a78da91___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _AddMethodForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddMethodForm_vue_vue_type_template_id_0704c7b0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddMethodForm_vue_vue_type_template_id_0704c7b0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -81671,38 +82385,176 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/vue/components/User/Teams/PaymentMethods.vue"
+component.options.__file = "resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************/
+/***/ "./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentMethods_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PaymentMethods.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentMethods_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddMethodForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./AddMethodForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddMethodForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=template&id=3a78da91&":
-/*!***********************************************************************************************!*\
-  !*** ./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=template&id=3a78da91& ***!
-  \***********************************************************************************************/
+/***/ "./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue?vue&type=template&id=0704c7b0&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue?vue&type=template&id=0704c7b0& ***!
+  \*************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentMethods_vue_vue_type_template_id_3a78da91___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PaymentMethods.vue?vue&type=template&id=3a78da91& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods.vue?vue&type=template&id=3a78da91&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentMethods_vue_vue_type_template_id_3a78da91___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddMethodForm_vue_vue_type_template_id_0704c7b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./AddMethodForm.vue?vue&type=template&id=0704c7b0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods/AddMethodForm.vue?vue&type=template&id=0704c7b0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddMethodForm_vue_vue_type_template_id_0704c7b0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentMethods_vue_vue_type_template_id_3a78da91___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddMethodForm_vue_vue_type_template_id_0704c7b0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/PaymentMethods/List.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/PaymentMethods/List.vue ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _List_vue_vue_type_template_id_9558d5a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./List.vue?vue&type=template&id=9558d5a8& */ "./resources/vue/components/User/Teams/PaymentMethods/List.vue?vue&type=template&id=9558d5a8&");
+/* harmony import */ var _List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./List.vue?vue&type=script&lang=js& */ "./resources/vue/components/User/Teams/PaymentMethods/List.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _List_vue_vue_type_template_id_9558d5a8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _List_vue_vue_type_template_id_9558d5a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/components/User/Teams/PaymentMethods/List.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/PaymentMethods/List.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/PaymentMethods/List.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods/List.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/PaymentMethods/List.vue?vue&type=template&id=9558d5a8&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/PaymentMethods/List.vue?vue&type=template&id=9558d5a8& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_9558d5a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=template&id=9558d5a8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods/List.vue?vue&type=template&id=9558d5a8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_9558d5a8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_9558d5a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListItem_vue_vue_type_template_id_7a1a48df___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListItem.vue?vue&type=template&id=7a1a48df& */ "./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue?vue&type=template&id=7a1a48df&");
+/* harmony import */ var _ListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListItem.vue?vue&type=script&lang=js& */ "./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ListItem_vue_vue_type_template_id_7a1a48df___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ListItem_vue_vue_type_template_id_7a1a48df___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/components/User/Teams/PaymentMethods/ListItem.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListItem.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue?vue&type=template&id=7a1a48df&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue?vue&type=template&id=7a1a48df& ***!
+  \********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListItem_vue_vue_type_template_id_7a1a48df___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListItem.vue?vue&type=template&id=7a1a48df& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/PaymentMethods/ListItem.vue?vue&type=template&id=7a1a48df&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListItem_vue_vue_type_template_id_7a1a48df___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListItem_vue_vue_type_template_id_7a1a48df___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -81798,7 +82650,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_Pages_Profile_Show__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @vue/Pages/Profile/Show */ "./resources/vue/Pages/Profile/Show.vue");
 /* harmony import */ var _vue_Pages_Profile_Team_Index__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Index */ "./resources/vue/Pages/Profile/Team/Index.vue");
 /* harmony import */ var _vue_Pages_Profile_Team_Show__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Show */ "./resources/vue/Pages/Profile/Team/Show.vue");
-/* harmony import */ var _vue_Pages_NotFound__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @vue/Pages/NotFound */ "./resources/vue/Pages/NotFound.vue");
+/* harmony import */ var _vue_Pages_Profile_Team_Members__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Members */ "./resources/vue/Pages/Profile/Team/Members.vue");
+/* harmony import */ var _vue_Pages_Profile_Team_Billing__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Billing */ "./resources/vue/Pages/Profile/Team/Billing.vue");
+/* harmony import */ var _vue_Pages_Profile_Team_Subscription_Index__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Subscription/Index */ "./resources/vue/Pages/Profile/Team/Subscription/Index.vue");
+/* harmony import */ var _vue_Pages_NotFound__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @vue/Pages/NotFound */ "./resources/vue/Pages/NotFound.vue");
 // Layouts
  // Servers
 
@@ -81814,6 +82669,9 @@ __webpack_require__.r(__webpack_exports__);
  // Sites
 
  // Profile
+
+
+
 
 
 
@@ -81885,13 +82743,25 @@ __webpack_require__.r(__webpack_exports__);
     component: _vue_Pages_Profile_Team_Index__WEBPACK_IMPORTED_MODULE_10__["default"]
   }, {
     path: '/account/team/:id',
-    name: 'profile.team.show',
-    component: _vue_Pages_Profile_Team_Show__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _vue_Pages_Profile_Team_Show__WEBPACK_IMPORTED_MODULE_11__["default"],
+    children: [{
+      path: '/account/team/:id/members',
+      name: 'profile.team.show',
+      component: _vue_Pages_Profile_Team_Members__WEBPACK_IMPORTED_MODULE_12__["default"]
+    }, {
+      path: '/account/team/:id/subscription',
+      name: 'profile.team.subscription',
+      component: _vue_Pages_Profile_Team_Subscription_Index__WEBPACK_IMPORTED_MODULE_14__["default"]
+    }, {
+      path: '/account/team/:id/billing',
+      name: 'profile.team.billing',
+      component: _vue_Pages_Profile_Team_Billing__WEBPACK_IMPORTED_MODULE_13__["default"]
+    }]
   }]
 }, {
   path: '/404',
   name: '404',
-  component: _vue_Pages_NotFound__WEBPACK_IMPORTED_MODULE_12__["default"]
+  component: _vue_Pages_NotFound__WEBPACK_IMPORTED_MODULE_15__["default"]
 }, {
   path: '*',
   redirect: '/404'

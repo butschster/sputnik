@@ -34,7 +34,7 @@
 <script>
     import {mapGetters} from 'vuex'
     import FormInput from '@vue/components/Form/Input'
-    import Modal from "@vue/components/UI/Modal";
+    import Modal from "@vue/components/UI/Modal"
 
     export default {
         components: {Modal, FormInput},

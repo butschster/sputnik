@@ -24,6 +24,7 @@ class TeamWithSubscriptionResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'subscription' => SubscriptionResource::make($this->getActiveSubscription()),
+            'has_payment_method' => $this->hasPaymentMethod(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

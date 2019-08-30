@@ -2,8 +2,7 @@
     <div class="border-gray-300 bg-gray-100 py-8 px-8 my-12 flex items-center">
         <div class="flex-1">
             <h2>Cancel subscription</h2>
-            <p>Pavel, just before you go, here are some courses we've got coming up that you might be interested
-                in.</p>
+            <p>Pavel, just before you go, here are some courses we've got coming up that you might be interested in.</p>
         </div>
         <div>
             <button class="btn btn-danger" @click="onCancel">

@@ -22,7 +22,10 @@ import ServerSites from '@vue/Pages/Servers/Sites/Index'
 // Profile
 import ProfileShow from "@vue/Pages/Profile/Show";
 import TeamsIndex from "@vue/Pages/Profile/Team/Index";
-import TeamsShow from "@vue/Pages/Profile/Team/Show";
+import TeamShow from "@vue/Pages/Profile/Team/Show";
+import TeamMembers from "@vue/Pages/Profile/Team/Members";
+import TeamBilling from "@vue/Pages/Profile/Team/Billing";
+import TeamSubscription from "@vue/Pages/Profile/Team/Subscription/Index";
 
 import NotFoundPage from '@vue/Pages/NotFound'
 
@@ -106,8 +109,24 @@ export default [
             },
             {
                 path: '/account/team/:id',
-                name: 'profile.team.show',
-                component: TeamsShow
+                component: TeamShow,
+                children: [
+                    {
+                        path: '/account/team/:id/members',
+                        name: 'profile.team.show',
+                        component: TeamMembers
+                    },
+                    {
+                        path: '/account/team/:id/subscription',
+                        name: 'profile.team.subscription',
+                        component: TeamSubscription
+                    },
+                    {
+                        path: '/account/team/:id/billing',
+                        name: 'profile.team.billing',
+                        component: TeamBilling
+                    }
+                ]
             }
         ]
     },

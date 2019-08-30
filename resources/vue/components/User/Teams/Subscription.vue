@@ -1,9 +1,14 @@
 <template>
     <div>
         <div class="price-table">
+            <Loader :loading="loading"/>
             <h2>Available plans</h2>
-            <div class="price-table__items">
 
+            <div class="well border-red-300 border-2 rounded-lg mb-8 text-lg" v-if="!hasPaymentMethod">
+                You need to add payment method on <router-link :to="{name: 'profile.team.billing', params: {id: team.id }}">billing page</router-link>
+            </div>
+
+            <div class="price-table__items">
                 <div class="price-table__item" v-for="plan in plans" :key="plan.id"
                      :class="{'current': isCurrentPlan(plan)}">
                     <div>
@@ -20,21 +25,24 @@
                     </div>
 
                     <div class="text-center mt-5" v-if="canBeUpgradedTo(plan)">
-                        <button class="btn btn-primary btn-rounded">Order now</button>
+                        <button class="btn btn-primary btn-rounded" @click="subscribe(plan)">
+                            Subscribe now
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <CancelSubscription v-if="!team.subscription.is_invalid" :team="team"/>
+        <CancelSubscription v-if="canBeCanceled" :team="team"/>
     </div>
 </template>
 
 <script>
+    import Modal from "@vue/components/UI/Modal"
     import CancelSubscription from "@vue/components/User/Teams/CancelSubscription"
 
     export default {
-        components: {CancelSubscription},
+        components: {CancelSubscription, Modal},
         props: {
             team: Object
         },
@@ -47,7 +55,31 @@
         mounted() {
             this.load()
         },
+        computed: {
+            canBeCanceled() {
+                if (this.team.subscription.plan.is_free) {
+                    return false
+                }
+
+                return !this.team.subscription.is_cancelled
+            },
+            hasPaymentMethod() {
+                return this.team.has_payment_method
+            }
+        },
         methods: {
+            async subscribe(plan) {
+                this.loading = true
+
+                try {
+                    const response = await this.$api('v1.team.subscribe', {team: this.team.id, plan: plan.id}).request()
+                    this.$bus.$emit('subscribed')
+                } catch (e) {
+                    console.error(e)
+                }
+
+                this.loading = false
+            },
             async load() {
                 this.loading = true
 
@@ -68,12 +100,20 @@
                 return plan.id == this.team.subscription.plan.id
             },
             canBeUpgradedTo(plan) {
+                if (!this.hasPaymentMethod) {
+                    return false
+                }
+
                 if (this.isCurrentPlan(plan)) {
                     return false
                 }
 
                 if (this.team.subscription.plan.key == 'artisan') {
                     return plan.key == 'unlimited'
+                }
+
+                if (this.team.subscription.plan.key == 'unlimited') {
+                    return false
                 }
 
                 return plan.key != 'free'

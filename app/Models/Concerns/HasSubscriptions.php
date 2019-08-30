@@ -9,30 +9,22 @@ trait HasSubscriptions
 {
     /**
      * @param Plan $plan
-     * @param \Stripe\PaymentMethod|string|null $paymentMethod
-     *
+     * @param null $paymentMethod
      * @return \Laravel\Cashier\Subscription
+     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
      */
     public function subscribeTo(Plan $plan, $paymentMethod = null): \Laravel\Cashier\Subscription
     {
         $name = 'main';
 
-        if ($plan->isFree()) {
-            return $this->subscriptions()->create([
-                'name' => $name,
-                'stripe_id' => null,
-                'stripe_status' => 'complete',
-                'stripe_plan' => $plan->name,
-                'quantity' => 1,
-                'trial_ends_at' => null,
-                'ends_at' => null,
-            ]);
+        if ($this->hasActiveSubscription()) {
+            return $this->getActiveSubscription()->swap($plan->name);
         }
 
-        $builder = $this->newSubscription('main', $plan->name);
+        $builder = $this->newSubscription($name, $plan->name);
 
         if ($plan->hasTrial()) {
-            $builder->trialDays($name);
+            $builder->trialDays($plan->trial_period);
         } else {
             $builder->skipTrial();
         }
