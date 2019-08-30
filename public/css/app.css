@@ -63735,9 +63735,9 @@ readers do not read off random characters that represent icons */
 }
 
 .sidebar {
-  width: 16rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  width: 250px;
   background: linear-gradient(150deg, #2c5282 15%, #2a4365 94%);
 }
 

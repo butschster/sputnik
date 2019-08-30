@@ -29,9 +29,20 @@ class ProcessExecutor implements ProcessExecutorContract
             $exitCode = 1;
         }
 
+        return $this->makeResponse($exitCode, (string)$output, $timedOut);
+    }
+
+    /**
+     * @param int $exitCode
+     * @param string $output
+     * @param bool $timedOut
+     * @return Response
+     */
+    protected function makeResponse(int $exitCode, string $output, bool $timedOut): Response
+    {
         return new Response(
             $exitCode,
-            (string) $output,
+            $output,
             $timedOut ?? false
         );
     }

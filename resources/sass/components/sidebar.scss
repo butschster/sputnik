@@ -1,5 +1,6 @@
 .sidebar {
-    @apply w-64 py-8;
+    @apply py-8;
+    width: 250px;
     background: linear-gradient(150deg, theme('colors.blue.800') 15%, theme('colors.blue.900') 94%);
 
     h5 {

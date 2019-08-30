@@ -4,8 +4,8 @@ namespace App\Services\Server;
 
 use App\Jobs\Task\Run;
 use App\Models\Server;
+use App\Services\Task\Contracts\ExecutorService;
 use App\Services\Task\Contracts\Task;
-use App\Services\Task\ExecutorService;
 use App\Services\Task\Factory;
 use App\Utils\SSH\Contracts\Script;
 use Illuminate\Database\Eloquent\Model;

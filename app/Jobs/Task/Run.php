@@ -2,13 +2,13 @@
 
 namespace App\Jobs\Task;
 
+use App\Services\Task\Contracts\ExecutorService;
 use App\Services\Task\Contracts\Task;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Services\Task\ExecutorService;
 
 class Run implements ShouldQueue
 {

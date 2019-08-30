@@ -3,13 +3,13 @@
 namespace App\Services\Task;
 
 use App\Scripts\Server\Callback;
+use App\Services\Task\Contracts\ExecutorService as ExecutorServiceContract;
 use App\Services\Task\Contracts\Task;
 use App\Utils\SSH\Contracts\ProcessExecutor;
 use App\Utils\SSH\ScriptsStorage;
-use App\Utils\SSH\Shell\Response;
 use Symfony\Component\Process\Exception\ProcessTimedOutException;
 
-class ExecutorService
+class ExecutorService implements ExecutorServiceContract
 {
     use InteractsWithSsh;
 
