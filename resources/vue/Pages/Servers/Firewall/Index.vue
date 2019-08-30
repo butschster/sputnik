@@ -1,8 +1,8 @@
 <template>
     <div>
-        <CreateForm :server="$parent.server" class="mb-12" @created="load(0)"/>
+        <CreateFormFirewall :server="$parent.server" class="mb-12" @created="load(0)"/>
 
-        <h4>Active users ({{ users.data.length }})</h4>
+        <h4>Active users ({{ rules.data.length }})</h4>
         <div v-if="hasUsers">
             <Loader :loading="loading"/>
             <table class="table mb-10">
@@ -14,26 +14,26 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Sudo password</th>
-                    <th>Home</th>
-                    <th class="text-right">Status</th>
+                    <th>Port</th>
+                    <th>From</th>
+                    <th>Policy</th>
+                    <th>Status</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="user in users.data">
-                    <th>{{ user.name }}</th>
+                <tr v-for="rule in rules.data">
+                    <th>{{ rule.name }}</th>
                     <td>
-                        <Copy :text="user.sudo_password" :label="user.sudo_password"/>
+                        {{rule.port}}
                     </td>
-                    <td>{{ user.home_dir }}</td>
-                    <td class="text-right"><BadgeStatus :status="user.status" /></td>
+                    <td>{{ rule.from }}</td>
                     <td class="text-right">
-                        <a :href="user.links.download_key" class="btn btn-sm">
-                            <i class="fas fa-download"></i>
-                        </a>
+                        <BadgeStatus :status="rule.policy" />
+                    </td>
+                    <td class="text-right"><BadgeStatus :status="rule.task.status" /></td>
 
-                        <button class="btn btn-danger btn-sm" v-if="!user.is_system" @click="remove(user)">
+                     <td>   <button class="btn btn-danger btn-sm" @click="remove(rule)">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -41,7 +41,7 @@
                 </tbody>
             </table>
 
-            <Pagination :data="users" @pagination-change-page="load"/>
+            <Pagination :data="rules" @pagination-change-page="load"/>
         </div>
 
         <div v-else class="well well-lg text-center">
@@ -55,15 +55,15 @@
     import BadgeStatus from "@vue/components/UI/Badge/Status"
     import Copy from "@vue/components/UI/Copy"
     import Pagination from 'laravel-vue-pagination'
-    import CreateForm from "@vue/components/Server/Users/Create"
+    import CreateFormFirewall from "@vue/components/Server/Firewall/CreateForm"
 
     export default {
-        components: {CreateForm, Pagination, Copy, BadgeStatus},
+        components: {CreateFormFirewall, Pagination, Copy, BadgeStatus},
         data() {
             return {
                 loading: false,
                 page: 1,
-                users: {
+                rules: {
                     data: []
                 }
             }
@@ -80,29 +80,30 @@
                 }
 
                 try {
-                    const response = await this.$api('v1.server.users', {server: this.$parent.server.id}).request({
+                    const response = await this.$api('v1.server.firewall.index', {server: this.$parent.server.id}).request({
                         page: this.page
                     })
-                    this.users = response.data
+                    this.rules = response.data
+                    console.log(this.rules.data)
                 } catch (e) {
                     console.error(e)
                 }
 
                 this.loading = false
             },
-            removedUser(user) {
+            removedRule(rule) {
                 this.load(0)
                 this.$notify({
-                    text: 'User successfully deleted',
+                    text: 'Rule successfully deleted',
                     type: 'success'
                 });
             },
-            async remove(user) {
+            async remove(rule) {
                 this.loading = true
 
                 try {
-                    await this.$api('v1.server.user.delete', {user: user.id}).request()
-                    this.removedUser(user)
+                    await this.$api('v1.server.firewall.delete', {rule: rule.id}).request()
+                    this.removedRule(rule)
                 } catch (e) {
                     console.error(e)
                 }
@@ -112,7 +113,7 @@
         },
         computed: {
             hasUsers() {
-                return this.users.data.length > 0
+                return this.rules.data.length > 0
             }
         }
     }

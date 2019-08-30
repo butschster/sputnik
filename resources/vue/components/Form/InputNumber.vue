@@ -1,6 +1,6 @@
 <template>
     <div class="form-group form-group-labeled" :class="{'is-invalid': httpErrors.has(name), 'is-required': required}">
-        <input type="text" :id="name" class="form-control"
+        <input type="number" :id="name" class="form-control"
                :placeholder="label"
                :value="value"
                ref="input"

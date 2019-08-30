@@ -10,6 +10,11 @@ import ServerSettings from '@vue/Pages/Servers/Settings'
 // Server Users
 import ServerUsers from '@vue/Pages/Servers/Users/Index'
 
+//Server Firewall
+
+// Server Users
+import ServerFirewall from '@vue/Pages/Servers/Firewall/Index'
+
 // Server Events
 import ServerEvents from '@vue/Pages/Servers/Events/Index'
 
@@ -92,6 +97,15 @@ export default [
                             server: true
                         }
                     },
+
+                    {
+                        path: '/server/:id/firewall',
+                        name: 'server.firewall',
+                        component: ServerFirewall,
+                        meta: {
+                            server: true
+                        }
+                    }
                 ]
             },
             {
