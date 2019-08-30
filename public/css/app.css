@@ -64203,6 +64203,7 @@ readers do not read off random characters that represent icons */
 .tabs .tab.router-link-exact-active {
   border-color: #4299e1;
   color: #4299e1;
+  font-weight: 500;
 }
 
 .pulse-preloader {

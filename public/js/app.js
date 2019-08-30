@@ -2943,7 +2943,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      events: [],
+      events: {
+        data: []
+      },
       loading: false
     };
   },
@@ -3442,7 +3444,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _vue_components_UI_Badge_Status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/UI/Badge/Status */ "./resources/vue/components/UI/Badge/Status.vue");
+/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js");
+/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _vue_components_UI_Badge_Status__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/UI/Badge/Status */ "./resources/vue/components/UI/Badge/Status.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3486,17 +3490,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    StatusBadge: _vue_components_UI_Badge_Status__WEBPACK_IMPORTED_MODULE_1__["default"]
+    StatusBadge: _vue_components_UI_Badge_Status__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Pagination: laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1___default.a
   },
   props: {
     server: Object
   },
   data: function data() {
     return {
-      tasks: [],
+      tasks: {
+        data: []
+      },
       loading: false
     };
   },
@@ -3505,7 +3515,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     this.load();
     this.$echo.channel('server.' + this.server.id).listen('.App\\Events\\Server\\Task\\Created', function (e) {
-      _this.tasks.unshift(e.task);
+      _this.tasks.data.unshift(e.task);
     });
   },
   methods: {
@@ -3513,38 +3523,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _load = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
+        var page,
+            response,
+            _args = arguments;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                page = _args.length > 0 && _args[0] !== undefined ? _args[0] : 1;
                 this.loading = true;
-                _context.prev = 1;
-                _context.next = 4;
+                _context.prev = 2;
+                _context.next = 5;
                 return this.$api('v1.server.tasks', {
                   server: this.server.id
-                }).request();
+                }).request({
+                  page: page
+                });
 
-              case 4:
+              case 5:
                 response = _context.sent;
-                this.tasks = response.data.data;
-                _context.next = 11;
+                this.tasks = response.data;
+                _context.next = 12;
                 break;
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](1);
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](2);
                 console.error(_context.t0);
 
-              case 11:
+              case 12:
                 this.loading = false;
 
-              case 12:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 8]]);
+        }, _callee, this, [[2, 9]]);
       }));
 
       function load() {
@@ -3753,7 +3768,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this.progress = e.event.meta.progress;
       }
     });
-    this.loadLastEvent();
+    this.isConfiguring && this.loadLastEvent();
   },
   methods: {
     loadLastEvent: function () {
@@ -50869,7 +50884,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.tasks, function(task) {
+            _vm._l(_vm.tasks.data, function(task) {
               return _c("tr", [
                 _c(
                   "th",
@@ -50903,7 +50918,12 @@ var render = function() {
             }),
             0
           )
-        ])
+        ]),
+        _vm._v(" "),
+        _c("Pagination", {
+          attrs: { data: _vm.tasks },
+          on: { "pagination-change-page": _vm.load }
+        })
       ],
       1
     )
@@ -78229,7 +78249,7 @@ var mutations = {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/src/index.js):\nSyntaxError\n\n(5:8) `@apply` cannot be used with `.py-\\43F\\448\\435` because `.py-\\43F\\448\\435` either cannot be found, or its actual definition includes a pseudo-selector like :hover, :active, etc. If you're sure that `.py-\\43F\\448\\435` exists, make sure that any `@import` statements are being properly processed *before* Tailwind CSS sees your CSS, as `@apply` can only be used for classes in the same CSS tree.\n\n \u001b[90m 3 | \u001b[39m\n \u001b[90m 4 | \u001b[39m    \u001b[33m.tab\u001b[39m \u001b[33m{\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 | \u001b[39m        \u001b[36m@apply\u001b[39m border-b-2 py-пше 4 text-lg mx-3 text-gray-600\u001b[33m;\u001b[39m\n \u001b[90m   | \u001b[39m       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 | \u001b[39m        margin-bottom\u001b[33m:\u001b[39m -2px\u001b[33m;\u001b[39m\n \u001b[90m 7 | \u001b[39m\n\n    at runLoaders (/home/bustchster/webserver/laravel-sputnik/node_modules/webpack/lib/NormalModule.js:313:20)\n    at /home/bustchster/webserver/laravel-sputnik/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /home/bustchster/webserver/laravel-sputnik/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/home/bustchster/webserver/laravel-sputnik/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Promise.resolve.then.then.catch (/home/bustchster/webserver/laravel-sputnik/node_modules/postcss-loader/src/index.js:207:9)");
 
 /***/ }),
 

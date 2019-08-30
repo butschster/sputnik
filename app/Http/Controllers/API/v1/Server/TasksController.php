@@ -18,9 +18,9 @@ class TasksController extends Controller
     {
         $this->authorize('show', $server);
 
-        $tasks = $server->tasks()->paginate();
-
-        return TasksCollection::make($tasks);
+        return TasksCollection::make(
+            $server->tasks()->paginate()
+        );
     }
 
     /**

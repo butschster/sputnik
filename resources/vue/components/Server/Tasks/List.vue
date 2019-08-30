@@ -16,7 +16,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="task in tasks">
+                <tr v-for="task in tasks.data">
                     <th>
                         <router-link :to="{name: 'task.show', params: {id: task.id}}">
                             <strong>{{ task.name }}</strong>
@@ -31,21 +31,26 @@
                 </tr>
                 </tbody>
             </table>
+
+            <Pagination :data="tasks" @pagination-change-page="load"/>
         </div>
     </section>
 </template>
 
 <script>
+    import Pagination from 'laravel-vue-pagination'
     import StatusBadge from "@vue/components/UI/Badge/Status";
 
     export default {
-        components: {StatusBadge},
+        components: {StatusBadge, Pagination},
         props: {
             server: Object
         },
         data() {
             return {
-                tasks: [],
+                tasks: {
+                    data: []
+                },
                 loading: false
             }
         },
@@ -54,15 +59,15 @@
 
             this.$echo.channel('server.' + this.server.id)
                 .listen('.App\\Events\\Server\\Task\\Created', (e) => {
-                    this.tasks.unshift(e.task)
+                    this.tasks.data.unshift(e.task)
                 })
         },
         methods: {
-            async load() {
+            async load(page = 1) {
                 this.loading = true
                 try {
-                    const response = await this.$api('v1.server.tasks', {server: this.server.id}).request()
-                    this.tasks = response.data.data
+                    const response = await this.$api('v1.server.tasks', {server: this.server.id}).request({page})
+                    this.tasks = response.data
                 } catch (e) {
                     console.error(e)
                 }

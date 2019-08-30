@@ -54,7 +54,7 @@
                     }
                 })
 
-            this.loadLastEvent()
+            this.isConfiguring && this.loadLastEvent()
         },
         methods: {
             async loadLastEvent() {

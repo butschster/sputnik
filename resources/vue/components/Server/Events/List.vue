@@ -38,7 +38,9 @@
         },
         data() {
             return {
-                events: [],
+                events: {
+                    data: []
+                },
                 loading: false
             }
         },
