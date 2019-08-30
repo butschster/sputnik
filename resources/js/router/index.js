@@ -34,7 +34,9 @@ index.beforeEach(async (to, from, next) => {
 index.afterEach((to, from) => {
     NProgress.done()
 
-    store.dispatch('server/clearServer')
+    if (!to.meta.hasOwnProperty('server')) {
+        store.dispatch('server/clearServer')
+    }
 })
 
 

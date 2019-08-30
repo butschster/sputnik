@@ -35,6 +35,7 @@ class Site extends Model
         'aliases' => 'array',
         'environment' => 'array',
         'domain_expires_at' => 'date',
+        'use_ssl' => 'bool',
         'ssl_certificate_expires_at' => 'date',
     ];
 

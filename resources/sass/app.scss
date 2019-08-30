@@ -53,9 +53,12 @@ code {
 // Variables
 @import 'variables';
 
+@import "mixins/progress";
+
 @import "modules/ngprogress";
-@import "modules/vue-select.scss";
-@import "modules/notifcations.scss";
+@import "modules/vue-select";
+@import "modules/notifcations";
+@import "modules/progress-bar";
 
 @import "components/form";
 @import "components/buttons";
@@ -74,6 +77,8 @@ code {
 @import "components/preloader";
 @import "components/well";
 @import "components/notifications";
+@import "components/pagination";
+@import "components/badges";
 
 @import "pages/logins";
 

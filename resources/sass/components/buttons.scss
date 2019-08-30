@@ -70,9 +70,17 @@
     }
 
     &-copy {
-        @apply cursor-pointer uppercase font-bold text-sm;
+        @apply cursor-pointer;
 
-        &--copied {
+        &__label {
+            @apply text-blue-500 font-medium hidden text-sm;
+        }
+
+        &:hover &__label {
+            @apply inline;
+        }
+
+        &--copied &__label {
             @include fadeOutUp();
         }
     }

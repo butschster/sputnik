@@ -36,7 +36,7 @@ class StoreRequest extends FormRequest
     public function persist(): Daemon
     {
         return $this->getServer()->daemons()->create(
-            $this->validationData()
+            $this->validated()
         );
     }
 

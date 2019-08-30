@@ -4,11 +4,9 @@ $server-icon-size: 25px;
 $server-icon-color: theme('colors.blue.400');
 
 .servers-list {
-    @apply mb-8;
-
     &-item {
         &-wrapper {
-            @apply border border-blue-200 bg-white flex transition items-center justify-between py-2;
+            @apply border border-blue-200 bg-white flex transition items-center justify-between py-3;
 
             &:first-child {
                 @apply rounded-t;
@@ -46,11 +44,7 @@ $server-icon-color: theme('colors.blue.400');
         }
 
         &__name {
-            @apply flex-1;
-
-            a {
-                @apply font-bold;
-            }
+            @apply flex-1 text-blue-600 mb-0 text-lg;
         }
 
         &__project {
@@ -59,6 +53,14 @@ $server-icon-color: theme('colors.blue.400');
 
         &__address {
             @apply text-sm text-gray-600;
+        }
+
+        &__actions {
+            @apply px-6 py-3 text-gray-700 cursor-pointer;
+
+            &:hover {
+                @apply text-blue-500;
+            }
         }
     }
 }

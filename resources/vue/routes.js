@@ -5,10 +5,19 @@ import LayoutBasic from '@vue/Layouts/Basic'
 import ServersList from '@vue/Pages/Servers/Index'
 import ServerShow from '@vue/Pages/Servers/Show'
 import ServerInformation from '@vue/Pages/Servers/Information'
-import ServerEvents from '@vue/Pages/Servers/Events'
-import ServerTasks from '@vue/Pages/Servers/Tasks'
 import ServerSettings from '@vue/Pages/Servers/Settings'
-import ServerSites from '@vue/Pages/Servers/Sites'
+
+// Server Users
+import ServerUsers from '@vue/Pages/Servers/Users/Index'
+
+// Server Events
+import ServerEvents from '@vue/Pages/Servers/Events/Index'
+
+// Server Tasks
+import ServerTasks from '@vue/Pages/Servers/Tasks/Index'
+
+// Sites
+import ServerSites from '@vue/Pages/Servers/Sites/Index'
 
 // Profile
 import ProfileShow from "@vue/Pages/Profile/Show";
@@ -30,31 +39,58 @@ export default [
             {
                 path: '/server/:id',
                 component: ServerShow,
+                meta: {
+                    server: true
+                },
                 children: [
                     {
                         path: '/server/:id',
                         name: 'server.show',
-                        component: ServerSites
+                        component: ServerSites,
+                        meta: {
+                            server: true
+                        }
                     },
                     {
                         path: '/server/:id/events',
                         name: 'server.events',
-                        component: ServerEvents
+                        component: ServerEvents,
+                        meta: {
+                            server: true
+                        }
                     },
                     {
                         path: '/server/:id/tasks',
                         name: 'server.tasks',
-                        component: ServerTasks
+                        component: ServerTasks,
+                        meta: {
+                            server: true
+                        }
                     },
                     {
                         path: '/server/:id/information',
                         name: 'server.information',
-                        component: ServerInformation
+                        component: ServerInformation,
+                        meta: {
+                            server: true
+                        }
                     },
                     {
                         path: '/server/:id/settings',
                         name: 'server.settings',
-                        component: ServerSettings
+                        component: ServerSettings,
+                        meta: {
+                            server: true
+                        }
+                    },
+
+                    {
+                        path: '/server/:id/users',
+                        name: 'server.users',
+                        component: ServerUsers,
+                        meta: {
+                            server: true
+                        }
                     },
                 ]
             },

@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('server/firewall/{rule}', 'Server\FirewallController@delete')->name('server.firewall.delete');
 
         // Server users
-        Route::get('server/{server}/users', 'Server\UserController@index')->name('server.user.index');
+        Route::get('server/{server}/users', 'Server\UserController@index')->name('server.users');
         Route::post('server/{server}/user', 'Server\UserController@store')->name('server.user.store');
         Route::get('server/user/{user}', 'Server\UserController@show')->name('server.user.show');
         Route::delete('server/user/{user}', 'Server\UserController@delete')->name('server.user.delete');

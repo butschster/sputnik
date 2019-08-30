@@ -1,0 +1,23 @@
+.badge {
+    @apply bg-gray-200 py-1 px-3 text-sm rounded-full text-gray-700 whitespace-no-wrap;
+
+    &-dark {
+        @apply bg-gray-800 text-white;
+    }
+
+    &-primary {
+        @apply bg-blue-500 text-white;
+    }
+
+    &-error {
+        @apply bg-red-600 text-white;
+    }
+
+    &-success {
+        @apply bg-green-500 text-white;
+    }
+
+    &-warning {
+        @apply bg-yellow-300 font-medium;
+    }
+}

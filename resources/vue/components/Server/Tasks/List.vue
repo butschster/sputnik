@@ -3,11 +3,18 @@
         <h4>Recent Tasks</h4>
 
         <div class="section-body">
-            <Loader :loading="loading" />
+            <Loader :loading="loading"/>
             <table class="table">
                 <col>
                 <col width="100px">
                 <col width="150px">
+                <thead>
+                <tr>
+                    <th>Task</th>
+                    <th class="text-right">Status</th>
+                    <th class="text-right">Time</th>
+                </tr>
+                </thead>
                 <tbody>
                 <tr v-for="task in tasks">
                     <th>
@@ -16,10 +23,10 @@
                         </router-link>
                     </th>
                     <td class="text-right">
-                        <span class="badge badge-dark">{{ task.status }}</span>
+                        <StatusBadge :status="task.status"/>
                     </td>
                     <td class="text-right">
-                        <small class="badge">{{ task.created_at }}</small>
+                        <small class="badge">{{ task.created_at | moment("from") }}</small>
                     </td>
                 </tr>
                 </tbody>
@@ -29,7 +36,10 @@
 </template>
 
 <script>
+    import StatusBadge from "@vue/components/UI/Badge/Status";
+
     export default {
+        components: {StatusBadge},
         props: {
             server: Object
         },

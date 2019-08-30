@@ -1,7 +1,7 @@
 <template>
     <div v-if="isConfigured">
-        <CreateForm :server="$parent.server" @created="onCreate"/>
         <SitesList :server="$parent.server" />
+        <CreateForm :server="$parent.server" @created="onCreate" class="mt-12"/>
     </div>
 </template>
 

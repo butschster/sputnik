@@ -1,18 +1,18 @@
 <template>
-    <span class="btn-copy"
+    <span class="btn-copy" v-if="text.length > 0"
           :class="{'btn-copy--copied': copied}"
           v-clipboard:copy="text"
           v-clipboard:success="onCopy"
           v-clipboard:error="onError"
     >
-        {{ label }}
+        {{ text }} <span class="btn-copy__label">{{ label }}</span>
     </span>
 </template>
 
 <script>
     export default {
         props: {
-            text: String
+            text: String,
         },
 
         data() {
@@ -26,7 +26,7 @@
 
                 setTimeout(() => {
                     this.copied = false;
-                }, 1500);
+                }, 1000);
             },
             onError: function (e) {
                 console.error(e)

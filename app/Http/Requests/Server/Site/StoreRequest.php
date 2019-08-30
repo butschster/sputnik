@@ -35,7 +35,7 @@ class StoreRequest extends FormRequest
     public function persist(): Site
     {
         $site = new Site(
-            $this->validationData()
+            $this->validated()
         );
 
         $site->server()->associate($this->getServer());

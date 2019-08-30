@@ -65,7 +65,7 @@ class UpdateRequest extends FormRequest
     {
         $site = $this->getSite();
 
-        $site->update($this->validationData());
+        $site->update($this->validated());
 
         return $site;
     }

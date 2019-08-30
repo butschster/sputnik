@@ -20,7 +20,7 @@ class EventsController extends Controller
     {
         $this->authorize('show', $server);
 
-        return EventsCollection::make($server->events()->latest()->paginate(50));
+        return EventsCollection::make($server->events()->latest()->paginate(10));
     }
 
     /**

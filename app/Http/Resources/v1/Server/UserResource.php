@@ -2,8 +2,12 @@
 
 namespace App\Http\Resources\v1\Server;
 
+use App\Models\Server\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin User
+ */
 class UserResource extends JsonResource
 {
     /**
@@ -14,6 +18,20 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'server_id' => $this->server_id,
+            'name' => $this->name,
+            'sudo_password' => $this->sudo_password,
+            'public_key' => $this->public_key,
+            'home_dir' => $this->homeDir(),
+            'is_sudo' => $this->sudo,
+            'is_root' => $this->isRoot(),
+            'is_system' => $this->isSystem(),
+            'status' => $this->taskStatus(),
+            'links' => [
+                'download_key' => route('server.user.delete', [$this->server_id, $this->id])
+            ]
+        ];
     }
 }

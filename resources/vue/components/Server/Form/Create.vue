@@ -1,5 +1,5 @@
 <template>
-    <div class="section">
+    <div class="section well well-lg">
         <div class="section-header">
             {{ title }}
 
@@ -76,8 +76,6 @@
         methods: {
             async onSubmit() {
                 const server = await this.$store.dispatch('servers/createServer', this.form)
-
-                console.log(server)
             }
         },
         computed: {

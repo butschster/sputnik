@@ -2,10 +2,10 @@
     <div class="dropdown" ref="dropdown" :class="{'open': visible}" :id="`dropdown-${name}`">
         <div class="dropdown-title" @click="toggle">
             <slot name="title"></slot>
-            <i class="icon fas" :class="{'fa-chevron-down': !visible, 'fa-chevron-up': visible}"></i>
+            <i v-if="icon" class="icon fas" :class="{'fa-chevron-down': !visible, 'fa-chevron-up': visible}"></i>
         </div>
 
-        <div class="dropdown-menu">
+        <div class="dropdown-menu" :class="{arrow}">
             <slot></slot>
         </div>
     </div>
@@ -18,6 +18,14 @@
             state: {
                 type: Boolean,
                 default: false
+            },
+            icon: {
+                type: Boolean,
+                default: true
+            },
+            arrow: {
+                type: Boolean,
+                default: true
             },
         },
         data() {
@@ -52,7 +60,9 @@
             }
         },
         methods: {
-            toggle() {
+            toggle(e) {
+                e.preventDefault()
+
                 this.visible = !this.visible
             },
             registerOutsideClose() {

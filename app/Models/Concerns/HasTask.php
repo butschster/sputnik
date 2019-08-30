@@ -24,7 +24,7 @@ trait HasTask
     public function taskStatus(): string
     {
         if (!$this->task) {
-            return '';
+            return Task::STATUS_PENDING;
         }
 
         return $this->task->status;

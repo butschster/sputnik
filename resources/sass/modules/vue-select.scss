@@ -7,24 +7,22 @@
 @import "~vue-select/src/scss/modules/search-input";
 @import "~vue-select/src/scss/modules/spinner";
 
-.vs--open {
-    @apply bg-white;
-}
-
 .vs {
+    &--open {
+        @apply bg-white;
+    }
+
     &__dropdown {
         &-menu {
-            @apply block rounded-b bg-white absolute left-0 shadow-lg w-full;
+            @apply block rounded-b bg-white absolute left-0 shadow-lg w-full border-blue-500 border text-left;
             top: calc(100% - 2px); // -{#$border-width} here ensures the left and right borders of the dropdown appear flush with the toggle.
             z-index: $vs-dropdown-z-index;
             padding: 5px;
             max-height: $vs-dropdown-max-height;
             min-width: $vs-dropdown-min-width;
             overflow-y: auto;
-            text-align: left;
             list-style: none;
             margin-left: -1px;
-            border: 1px solid theme('colors.blue.500');
             width: calc(100% + 2px);
         }
 
@@ -58,7 +56,13 @@
         display: flex;
         align-items: center;
         cursor: pointer;
-        margin-top: -15px;
+        margin-top: -18px;
+        margin-right: 10px;
+    }
+
+    &__clear,
+    &__open-indicator {
+        @apply text-gray-500 text-sm;
     }
 }
 

@@ -48,7 +48,7 @@
             server: Object
         },
         mounted() {
-            this.$echo.channel('server').listen('')
+
         },
         computed: {
             hasSysInfo() {

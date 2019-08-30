@@ -35,7 +35,7 @@ class StoreRequest extends FormRequest
     public function persist(): Rule
     {
         return $this->getServer()->firewallRules()->create(
-            $this->validationData()
+            $this->validated()
         );
     }
 

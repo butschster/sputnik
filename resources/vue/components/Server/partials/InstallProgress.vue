@@ -1,20 +1,32 @@
 <template>
     <div>
-        <div class="alert alert-primary mb-8 rounded" v-if="isPending">
-            <p>Run this code in your server and wait until server configuring</p>
-            <code>{{ installScript }}</code>
-            <Copy :text="installScript" />
-        </div>
+        <template v-if="isPending">
+            <div class="alert alert-primary mb-8 rounded">
+                <p>Run this code in your server and wait until server configuring</p>
+                <code>{{ installScript }}</code>
+                <Copy :text="installScript"/>
+            </div>
 
-        <div v-if="isPending" class="py-10 text-center">
-            <Loader :loading="true" />
-            <h2 class="mt-5">Waiting for server response</h2>
-        </div>
+            <div class="py-10 text-center">
+                <Loader :loading="true"/>
+                <h2 class="mt-5">Waiting for server response</h2>
+            </div>
+        </template>
 
-        <div v-if="isConfiguring">
-            <ProgressBar size="medium" :val="progress" :text="`${progress}%`"/>
-            <div class="mb-5" v-if="message">{{ message }}</div>
-        </div>
+
+        <template v-if="isConfiguring">
+            <section class="section well mb-10">
+                <div class="section-header">
+                    Installation is in progress
+                    <p>Please wait for a while</p>
+                </div>
+                <div class="section-body">
+                    <div class="text-center font-bold text-gray-600">{{ progress }}%</div>
+                    <ProgressBar class="mb-5" size="big" :val="progress" :bg-color="null" :bar-color="null" text-position="top" />
+                    <h4 class="mt-5" v-if="message">{{ message }}...</h4>
+                </div>
+            </section>
+        </template>
     </div>
 </template>
 

@@ -16,15 +16,37 @@
     }
 
     &-menu {
-        @apply py-3 w-64 mr-4 border border-gray-300 rounded bg-white shadow-xl absolute hidden;
+        @apply py-2 w-64 border border-gray-300 rounded bg-white shadow-xl absolute hidden;
         z-index: 100;
         right: 0;
         top: calc(50% + 30px);
         left: inherit;
+        margin-right: .5rem;
 
         @include fadeInDown(
             $duration: .3s
         );
+
+        &.arrow:before {
+            @apply absolute;
+            content: '';
+            top: -7px;
+            right: 10px;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid theme('colors.white');
+            z-index: 2;
+        }
+
+        &.arrow:after {
+            content: '';
+            position: absolute;
+            top: -9px;
+            right: 8px;
+            border-left: 9px solid transparent;
+            border-right: 9px solid transparent;
+            border-bottom: 9px solid theme('colors.gray.300');
+        }
     }
 
     &.open &-menu {
@@ -39,7 +61,7 @@
         @apply block px-6 py-2 mx-2 rounded;
 
         &:hover {
-            @apply bg-indigo-100;
+            @apply bg-blue-100;
         }
     }
 }

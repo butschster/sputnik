@@ -10,7 +10,7 @@
     }
 
     .form-control {
-        @apply appearance-none border w-full py-3 px-5 h-16 text-gray-700 rounded block border-gray-200 bg-gray-200 transition;
+        @apply appearance-none border w-full py-3 px-5 h-16 text-gray-700 rounded block border-gray-300 bg-white transition;
         height: 3.5rem;
 
         &:focus,
@@ -46,6 +46,7 @@
             content: "*";
             right: 13px;
             top: 12px;
+            z-index: 1;
         }
     }
 

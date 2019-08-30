@@ -42,7 +42,7 @@ class StoreRequest extends FormRequest
     public function persist(): Database
     {
         return $this->getServer()->databases()->create(
-            $this->validationData()
+            $this->validated()
         );
     }
 

@@ -1,5 +1,5 @@
 <template>
-    <section class="section">
+    <section class="well well-lg">
         <Loader :loading="loading"/>
         <div class="section-header">
             New site

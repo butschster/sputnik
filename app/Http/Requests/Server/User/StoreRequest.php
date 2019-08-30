@@ -3,8 +3,6 @@
 namespace App\Http\Requests\Server\User;
 
 use App\Models\Server;
-use App\Models\Server\Site;
-use App\Validation\Rules\Server\Site\PublicPath;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
@@ -27,18 +25,19 @@ class StoreRequest extends FormRequest
             'name' => [
                 'required',
                 'string',
+                'alpha_dash',
                 Rule::unique('server_users')->where('server_id', $this->getServer()->id)
             ]
         ];
     }
 
     /**
-     * @return Site
+     * @return Server\User
      */
-    public function persist(): Site
+    public function persist(): Server\User
     {
         return $this->getServer()->users()->create(
-            $this->validationData()
+            $this->validated()
         );
     }
 

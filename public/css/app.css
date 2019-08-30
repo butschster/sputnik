@@ -62790,6 +62790,33 @@ readers do not read off random characters that represent icons */
   }
 }
 
+@-webkit-keyframes barberpole {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 60px 30px;
+  }
+}
+
+@keyframes barberpole {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 60px 30px;
+  }
+}
+
+.animated-progress {
+  background-size: 30px 30px;
+  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 75%, transparent 75%, transparent);
+  -webkit-animation: barberpole 0.5s linear infinite;
+          animation: barberpole 0.5s linear infinite;
+}
+
 #nprogress {
   pointer-events: none;
 }
@@ -63058,16 +63085,17 @@ readers do not read off random characters that represent icons */
   left: 0;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   width: 100%;
+  border-color: #4299e1;
+  border-width: 1px;
+  text-align: left;
   top: calc(100% - 2px);
   z-index: 1000;
   padding: 5px;
   max-height: 350px;
   min-width: 160px;
   overflow-y: auto;
-  text-align: left;
   list-style: none;
   margin-left: -1px;
-  border: 1px solid #4299e1;
   width: calc(100% + 2px);
 }
 
@@ -63110,7 +63138,13 @@ readers do not read off random characters that represent icons */
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-top: -15px;
+  margin-top: -18px;
+  margin-right: 10px;
+}
+
+.vs__clear, .vs__open-indicator {
+  color: #a0aec0;
+  font-size: 0.875rem;
 }
 
 .vs__selected-options {
@@ -63222,6 +63256,31 @@ readers do not read off random characters that represent icons */
   border-color: #68d391;
 }
 
+@keyframes barberpole {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 60px 30px;
+  }
+}
+
+.vue-simple-progress {
+  background-color: #fff;
+  border-width: 2px;
+  border-radius: 9999px;
+}
+
+.vue-simple-progress-bar {
+  border-radius: 9999px;
+  background-color: #ed64a6;
+  background-size: 30px 30px;
+  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 75%, transparent 75%, transparent);
+  -webkit-animation: barberpole 0.5s linear infinite;
+          animation: barberpole 0.5s linear infinite;
+}
+
 .form-group {
   position: relative;
   margin-bottom: 1.25rem;
@@ -63251,8 +63310,8 @@ readers do not read off random characters that represent icons */
   color: #4a5568;
   border-radius: 0.25rem;
   display: block;
-  border-color: #edf2f7;
-  background-color: #edf2f7;
+  border-color: #e2e8f0;
+  background-color: #fff;
   transition: all 0.2s linear;
   height: 3.5rem;
 }
@@ -63292,6 +63351,7 @@ readers do not read off random characters that represent icons */
   content: "*";
   right: 13px;
   top: 12px;
+  z-index: 1;
 }
 
 .form-group select.form-control {
@@ -63486,12 +63546,20 @@ readers do not read off random characters that represent icons */
 
 .btn-copy {
   cursor: pointer;
-  text-transform: uppercase;
-  font-weight: 700;
+}
+
+.btn-copy__label {
+  color: #4299e1;
+  font-weight: 500;
+  display: none;
   font-size: 0.875rem;
 }
 
-.btn-copy--copied {
+.btn-copy:hover .btn-copy__label {
+  display: inline;
+}
+
+.btn-copy--copied .btn-copy__label {
   -webkit-animation-name: fadeOutUp;
   animation-name: fadeOutUp;
   -webkit-animation-iteration-count: 1s;
@@ -63530,10 +63598,6 @@ readers do not read off random characters that represent icons */
   color: #718096;
 }
 
-.servers-list {
-  margin-bottom: 2rem;
-}
-
 .servers-list-item-wrapper {
   border-width: 1px;
   border-color: #bee3f8;
@@ -63542,8 +63606,8 @@ readers do not read off random characters that represent icons */
   transition: all 0.2s linear;
   align-items: center;
   justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .servers-list-item-wrapper:first-child {
@@ -63585,10 +63649,9 @@ readers do not read off random characters that represent icons */
 
 .servers-list-item__name {
   flex: 1 1 0%;
-}
-
-.servers-list-item__name a {
-  font-weight: 700;
+  color: #3182ce;
+  margin-bottom: 0;
+  font-size: 1.125rem;
 }
 
 .servers-list-item__project {
@@ -63600,6 +63663,19 @@ readers do not read off random characters that represent icons */
 .servers-list-item__address {
   font-size: 0.875rem;
   color: #718096;
+}
+
+.servers-list-item__actions {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  color: #4a5568;
+  cursor: pointer;
+}
+
+.servers-list-item__actions:hover {
+  color: #4299e1;
 }
 
 .status-indicator {
@@ -63724,10 +63800,9 @@ readers do not read off random characters that represent icons */
 }
 
 .dropdown-menu {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   width: 16rem;
-  margin-right: 1rem;
   border-width: 1px;
   border-color: #e2e8f0;
   border-radius: 0.25rem;
@@ -63739,6 +63814,7 @@ readers do not read off random characters that represent icons */
   right: 0;
   top: calc(50% + 30px);
   left: inherit;
+  margin-right: 0.5rem;
   -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown;
   -webkit-animation-iteration-count: 1s;
@@ -63753,6 +63829,27 @@ readers do not read off random characters that represent icons */
   animation-fill-mode: both;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+.dropdown-menu.arrow:before {
+  position: absolute;
+  content: "";
+  top: -7px;
+  right: 10px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #fff;
+  z-index: 2;
+}
+
+.dropdown-menu.arrow:after {
+  content: "";
+  position: absolute;
+  top: -9px;
+  right: 8px;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-bottom: 9px solid #e2e8f0;
 }
 
 .dropdown.open .dropdown-menu {
@@ -63780,7 +63877,7 @@ readers do not read off random characters that represent icons */
 }
 
 .dropdown-link:hover {
-  background-color: #ebf4ff;
+  background-color: #ebf8ff;
 }
 
 .user-info {
@@ -63898,20 +63995,22 @@ readers do not read off random characters that represent icons */
   table-layout: fixed;
   border-width: 0;
   text-align: left;
-  box-shadow: 0 0 0 2px #e2e8f0;
+  box-shadow: 0 0 0 2px #edf2f7;
   margin-left: 2px;
   border-style: hidden;
 }
 
 .table thead tr {
-  background-color: #edf2f7;
+  background-color: #f7fafc;
+  border-bottom-width: 2px;
+  border-color: #edf2f7;
 }
 
 .table thead tr th, .table thead tr td {
   padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  color: #4a5568;
-  font-size: 0.75rem;
+  padding-bottom: 0.25rem;
+  color: #4299e1;
+  font-weight: 500;
 }
 
 .table thead tr th:first-child, .table thead tr td:first-child {
@@ -63932,11 +64031,12 @@ readers do not read off random characters that represent icons */
 
 .table tbody tr:not(:last-child) {
   border-bottom-width: 2px;
+  border-color: #edf2f7;
 }
 
 .table tbody tr th, .table tbody tr td {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .table tbody tr th:first-child, .table tbody tr td:first-child {
@@ -64144,6 +64244,10 @@ readers do not read off random characters that represent icons */
   border-radius: 0.25rem;
 }
 
+.well-lg {
+  padding: 2.5rem;
+}
+
 .notifications-link {
   font-size: 1.25rem;
   margin-left: 0.75rem;
@@ -64153,6 +64257,43 @@ readers do not read off random characters that represent icons */
 
 .notifications-link:hover {
   color: #4299e1;
+}
+
+.badge {
+  background-color: #edf2f7;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 9999px;
+  color: #4a5568;
+  white-space: nowrap;
+}
+
+.badge-dark {
+  background-color: #2d3748;
+  color: #fff;
+}
+
+.badge-primary {
+  background-color: #4299e1;
+  color: #fff;
+}
+
+.badge-error {
+  background-color: #e53e3e;
+  color: #fff;
+}
+
+.badge-success {
+  background-color: #48bb78;
+  color: #fff;
+}
+
+.badge-warning {
+  background-color: #faf089;
+  font-weight: 500;
 }
 
 .page-login-container {

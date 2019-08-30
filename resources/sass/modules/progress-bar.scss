@@ -1,0 +1,16 @@
+@keyframes barberpole {
+    from { background-position: 0 0; }
+    to   { background-position: 60px 30px; }
+}
+
+.vue-simple-progress {
+    @apply bg-white border-2 rounded-full;
+
+    &-text {
+
+    }
+
+    &-bar {
+        @apply rounded-full bg-pink-500 animated-progress;
+    }
+}

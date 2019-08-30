@@ -13,7 +13,8 @@
             <slot name="selected-option" v-bind="normalizeOptionForSlot(option)">
               {{ getOptionLabel(option) }}
             </slot>
-            <button v-if="multiple" :disabled="disabled" @click="deselect(option)" type="button" class="vs__deselect" aria-label="Deselect option">
+            <button v-if="multiple" :disabled="disabled" @click="deselect(option)" type="button" class="vs__deselect"
+                    aria-label="Deselect option">
               ×
             </button>
           </span>
@@ -33,11 +34,11 @@
                         class="vs__clear"
                         title="Clear selection"
                 >
-                    <component :is="childComponents.Deselect" />
+                    <i class="fas fa-times"></i>
                 </button>
 
                 <slot name="open-indicator" v-bind="scope.openIndicator">
-                    <component :is="childComponents.OpenIndicator" v-if="!noDrop" v-bind="scope.openIndicator.attributes"/>
+                     <i class="fas fa-chevron-down" v-if="!noDrop" v-bind="scope.openIndicator.attributes"></i>
                 </slot>
 
                 <slot name="spinner" v-bind="scope.spinner">
@@ -47,7 +48,8 @@
         </div>
 
         <transition :name="transition">
-            <ul ref="dropdownMenu" v-if="dropdownOpen" class="vs__dropdown-menu" role="listbox" @mousedown="onMousedown" @mouseup="onMouseUp">
+            <ul ref="dropdownMenu" v-if="dropdownOpen" class="vs__dropdown-menu" role="listbox" @mousedown="onMousedown"
+                @mouseup="onMouseUp">
                 <li
                         role="option"
                         v-for="(option, index) in filteredOptions"
@@ -492,7 +494,7 @@
              * @param  {Object|String} option
              * @return {void}
              */
-            deselect (option) {
+            deselect(option) {
                 this.updateValue(this.selectedValue.filter(val => {
                     return !this.optionComparator(val, option);
                 }));
@@ -530,7 +532,7 @@
              * @emits input
              * @param value
              */
-            updateValue (value) {
+            updateValue(value) {
                 if (this.isTrackingValues) {
                     // Vue select has to manage value
                     this.$data._value = value;
@@ -552,21 +554,13 @@
              * @param  {Event} e
              * @return {void}
              */
-            toggleDropdown (e) {
+            toggleDropdown(e) {
                 const target = e.target;
                 const toggleTargets = [
                     this.$el,
                     this.searchEl,
                     this.$refs.toggle.$el,
                 ];
-
-                if (typeof this.$refs.openIndicator !== 'undefined') {
-                    toggleTargets.push(
-                        this.$refs.openIndicator.$el,
-                        // the line below is a bit gross, but required to support IE11 without adding polyfills
-                        ...Array.prototype.slice.call(this.$refs.openIndicator.$el.childNodes),
-                    );
-                }
 
                 if (toggleTargets.indexOf(target) > -1 || target.classList.contains('vs__selected')) {
                     if (this.open) {
@@ -628,7 +622,7 @@
              * @param value {Object}
              * @returns {*}
              */
-            findOptionFromReducedValue (value) {
+            findOptionFromReducedValue(value) {
                 return this.options.find(option => JSON.stringify(this.reduce(option)) === JSON.stringify(value)) || value;
             },
 
@@ -637,7 +631,7 @@
              * @emits  {search:blur}
              * @returns {void}
              */
-            closeSearchOptions(){
+            closeSearchOptions() {
                 this.open = false
                 this.$emit('search:blur')
             },
@@ -681,7 +675,7 @@
              * @param option
              * @return {*}
              */
-            normalizeOptionForSlot (option) {
+            normalizeOptionForSlot(option) {
                 return (typeof option === 'object') ? option : {[this.label]: option};
             },
 
@@ -727,7 +721,7 @@
                     return
                 }
                 // Fixed bug where no-options message could not be closed
-                if (this.search.length === 0 && this.options.length === 0){
+                if (this.search.length === 0 && this.options.length === 0) {
                     this.closeSearchOptions()
                     return
                 }
@@ -769,7 +763,7 @@
              * @param e {KeyboardEvent}
              * @return {Function}
              */
-            onSearchKeyDown (e) {
+            onSearchKeyDown(e) {
                 switch (e.keyCode) {
                     case 8:
                         //  delete
@@ -785,7 +779,7 @@
              * @param e {KeyboardEvent}
              * @return {Function}
              */
-            onSearchKeyUp (e) {
+            onSearchKeyUp(e) {
                 switch (e.keyCode) {
                     case 27:
                         //  esc
@@ -813,7 +807,7 @@
              * track the state of values internally.
              * @return {boolean}
              */
-            isTrackingValues () {
+            isTrackingValues() {
                 return typeof this.value === 'undefined' || this.$options.propsData.hasOwnProperty('reduce');
             },
 
@@ -821,7 +815,7 @@
              * The options that are currently selected.
              * @return {Array}
              */
-            selectedValue () {
+            selectedValue() {
                 let value = this.value;
 
                 if (this.isTrackingValues) {
@@ -843,7 +837,7 @@
              *
              * @return {Array}
              */
-            optionList () {
+            optionList() {
                 return this.options.concat(this.pushedTags);
             },
 
@@ -851,7 +845,7 @@
              * Find the search input DOM element.
              * @returns {HTMLInputElement}
              */
-            searchEl () {
+            searchEl() {
                 return !!this.$scopedSlots['search']
                     ? this.$refs.selectedOptions.querySelector(this.searchInputQuerySelector)
                     : this.$refs.search;
@@ -861,7 +855,7 @@
              * The object to be bound to the $slots.search scoped slot.
              * @returns {Object}
              */
-            scope () {
+            scope() {
                 return {
                     search: {
                         attributes: {
@@ -906,7 +900,7 @@
              *
              * @return {Object}
              */
-            childComponents () {
+            childComponents() {
                 return {
                     ...childComponents,
                     ...this.components
@@ -944,7 +938,7 @@
              * @return {Boolean} True if non empty value
              */
             searching() {
-                return !! this.search
+                return !!this.search
             },
 
             /**
