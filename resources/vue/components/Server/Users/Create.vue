@@ -2,7 +2,7 @@
     <section class="section">
         <Loader :loading="loading"/>
         <div class="section-header">
-            Create a new use
+            Create a new user
             <p>After creating a user you will have public key for auth.</p>
         </div>
         <div class="flex">

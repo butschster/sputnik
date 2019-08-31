@@ -7,9 +7,9 @@
         </div>
         <div class="flex">
             <FormInput v-model="form.name" label="Name" name="name" class="flex-1 mr-8" required autofocus/>
-            <FormInputNumber v-model="form.port" label="Port" name="port" class="flex-1 mr-8" minlength="2" maxlength="4" required autofocus/>
-            <FormInput v-model="form.from" label="From" name="from" class="flex-1 mr-8" autofocus/>
-            <FormSelect v-model="form.policy" label="Policy" name="policy" :options="policy_value"  class="flex-1 mr-8"required autofocus/>
+            <FormInputNumber v-model="form.port" label="Port" name="port" class="flex-1 mr-8" minlength="2" maxlength="4" required/>
+            <FormInput v-model="form.from" label="From" name="from" class="flex-1 mr-8"/>
+            <FormSelect v-model="form.policy" label="Policy" name="policy" :options="policy_value"  class="flex-1 mr-8"required/>
 
             <div class="form-group mb-0">
                 <button class="btn btn-primary" @click="onSubmit">Create</button>
