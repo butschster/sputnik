@@ -4,7 +4,7 @@
 
         <div class="section-body">
             <Loader :loading="loading"/>
-            <table class="table">
+            <table class="table" v-if="hasEvents">
                 <col>
                 <col width="200px">
                 <thead>
@@ -22,6 +22,10 @@
                 </tr>
                 </tbody>
             </table>
+            <div v-else class="well well-lg text-center">
+                <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1871/1871141.svg" alt="" width="100px">
+                <h3 class="mb-0">Looks like you don't have any events yet</h3>
+            </div>
 
             <Pagination :data="events" @pagination-change-page="load" />
         </div>
@@ -51,6 +55,11 @@
                 .listen('.App\\Events\\Server\\Event\\Created', (e) => {
                     this.events.data.unshift(e.event)
                 })
+        },
+        computed: {
+            hasEvents() {
+                return this.events.data.length > 0
+            }
         },
         methods: {
             async load(page = 1) {

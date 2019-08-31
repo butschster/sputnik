@@ -15,9 +15,9 @@
                     </div>
                 </div>
 
-                @if($user->hasRole('owner', $team))
-                <span class="user-block__item--role">owner</span>
-                @endif
+                <div class="mt-5">
+                    <span class="badge" v-for="role in user.roles">{{ role.name }}</span>
+                </div>
             </div>
         </div>
     </div>

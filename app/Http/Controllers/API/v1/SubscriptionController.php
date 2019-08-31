@@ -25,7 +25,7 @@ class SubscriptionController extends Controller
     /**
      * @param Request $request
      * @param User\Team $team
-     * @return array
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function cancel(Request $request, User\Team $team)
@@ -34,7 +34,22 @@ class SubscriptionController extends Controller
 
         $team->cancelCurrentSubscription();
 
-        return ['status' => 'on'];
+        return $this->responseOk();
+    }
+
+    /**
+     * @param Request $request
+     * @param User\Team $team
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function resume(Request $request, User\Team $team)
+    {
+        $this->authorize('resume-subscription', $team);
+
+        $team->resumeCurrentSubscription();
+
+        return $this->responseOk();
     }
 
     /**
@@ -43,6 +58,7 @@ class SubscriptionController extends Controller
      * @param Plan $plan
      * @return SubscriptionResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
      */
     public function subscribe(Request $request, User\Team $team, Plan $plan): SubscriptionResource
     {

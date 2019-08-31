@@ -8,6 +8,8 @@ use App\Models\User\Subscription;
 trait HasSubscriptions
 {
     /**
+     * Subscribe team to selected plan
+     *
      * @param Plan $plan
      * @param null $paymentMethod
      * @return \Laravel\Cashier\Subscription
@@ -40,17 +42,25 @@ trait HasSubscriptions
         return $this->subscription('main');
     }
 
+    /**
+     * Cancel current subscription
+     */
     public function cancelCurrentSubscription(): void
     {
         $this->getActiveSubscription()->cancel();
     }
 
+    /**
+     * Resume current subscription
+     */
     public function resumeCurrentSubscription(): void
     {
         $this->getActiveSubscription()->resume();
     }
 
     /**
+     * Check if team has subscription
+     *
      * @return bool
      */
     public function hasActiveSubscription(): bool

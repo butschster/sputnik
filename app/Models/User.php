@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User\SourceProvider;
 use App\Models\User\Team;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Passport\HasApiTokens;
 use App\Models\Concerns\UsesUuid;
 use Illuminate\Notifications\Notifiable;
@@ -39,6 +40,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the servers that belong to the user.
+     *
+     * @return HasOne
+     */
+    public function team(): HasOne
+    {
+        return $this->hasOne(Team::class, 'owner_id');
+    }
 
     /**
      * Get the servers that belong to the user.

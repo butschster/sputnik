@@ -44,9 +44,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('auth.register', [
-            'plans' => Plan::orderBy('sort_order')->onlyActive()->get(),
-        ]);
+        return view('auth.register');
     }
 
     /**
@@ -95,12 +93,9 @@ class RegisterController extends Controller
             ]);
 
             $owner = User\Role::where('name', 'owner')->firstOrFail();
-
             $user->attachRole($owner, $team);
 
-            $team->subscribeTo(
-                Plan::where('name', 'free')->firstOrFail()
-            );
+            $team->subscribeTo(Plan::findByName('free'));
 
             return $user;
         });

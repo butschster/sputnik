@@ -21,7 +21,12 @@
             </h3>
         </div>
         <div v-else class="well well-lg">
-            <ListItem v-for="method in paymentMethods" :team="team" :method="method" @deleted="paymentMethodsChanged" />
+            <ListItem v-for="method in paymentMethods"
+                      :team="team"
+                      :method="method"
+                      :key="method.id"
+                      @deleted="paymentMethodsChanged"
+            />
         </div>
     </section>
 </template>

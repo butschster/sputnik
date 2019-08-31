@@ -2,10 +2,20 @@
     <div>
         <Loader :loading="loading"/>
         <div v-if="team">
-            <h1 class="mb-4">
-                <i class="fas fa-users mr-3"></i>
+            <h1 class="mb-4 flex items-center">
+                <img src="https://image.flaticon.com/icons/svg/1171/1171856.svg" width="50px">
                 {{ team.name }}
             </h1>
+
+            <div class="mb-10">
+                <span class="badge badge-warning" v-if="team.is_trial_period">
+                    Trial ends at {{ team.subscription.trial_ends_at | moment('DD/MM/YYYY') }}
+                </span>
+
+                <span class="badge badge-error ml-5" v-if="team.is_cancelled">
+                    Subscription cancelled and ends at {{ team.subscription.ends_at | moment('DD/MM/YYYY') }}
+                </span>
+            </div>
 
             <div class="tabs" role="tabs">
                 <router-link :to="{name: 'profile.team.show', params: {id: team.id }}" class="tab">Members</router-link>

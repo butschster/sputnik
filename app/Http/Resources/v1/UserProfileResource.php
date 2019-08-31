@@ -3,6 +3,7 @@
 namespace App\Http\Resources\v1;
 
 use App\Http\Resources\v1\User\SourceProvidersCollection;
+use App\Http\Resources\v1\User\TeamResource;
 use App\Http\Resources\v1\User\TeamsCollection;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
@@ -24,6 +25,7 @@ class UserProfileResource extends UserResource
         return parent::toArray($request) + [
             'email' => $this->email,
             'teams' => TeamsCollection::make($this->rolesTeams),
+            'team' => TeamResource::make($this->team),
             'source_providers' => SourceProvidersCollection::make($this->sourceProviders),
             'can' => [
                 'server_create' => Gate::allows('create', \App\Models\Server::class),

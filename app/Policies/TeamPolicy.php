@@ -57,6 +57,20 @@ class TeamPolicy
      * @param User\Team $team
      * @return bool
      */
+    public function resumeSubscription(User $user, User\Team $team): bool
+    {
+        if ($team->isOwner($user)) {
+            return true;
+        }
+
+        return $user->can('subscriptions.manage', $team);
+    }
+
+    /**
+     * @param User $user
+     * @param User\Team $team
+     * @return bool
+     */
     public function subscribe(User $user, User\Team $team): bool
     {
         if ($team->isOwner($user)) {

@@ -32,17 +32,14 @@
                 </div>
             </div>
         </div>
-
-        <CancelSubscription v-if="canBeCanceled" :team="team"/>
     </div>
 </template>
 
 <script>
     import Modal from "@vue/components/UI/Modal"
-    import CancelSubscription from "@vue/components/User/Teams/CancelSubscription"
 
     export default {
-        components: {CancelSubscription, Modal},
+        components: {Modal},
         props: {
             team: Object
         },
@@ -56,13 +53,6 @@
             this.load()
         },
         computed: {
-            canBeCanceled() {
-                if (this.team.subscription.plan.is_free) {
-                    return false
-                }
-
-                return !this.team.subscription.is_cancelled
-            },
             hasPaymentMethod() {
                 return this.team.has_payment_method
             }

@@ -1968,6 +1968,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2048,7 +2058,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vue_components_User_Teams_Subscription__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/components/User/Teams/Subscription */ "./resources/vue/components/User/Teams/Subscription.vue");
+/* harmony import */ var _vue_components_User_Teams_Subscription_Resume__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/components/User/Teams/Subscription/Resume */ "./resources/vue/components/User/Teams/Subscription/Resume.vue");
+/* harmony import */ var _vue_components_User_Teams_Subscription_Cancel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/User/Teams/Subscription/Cancel */ "./resources/vue/components/User/Teams/Subscription/Cancel.vue");
+/* harmony import */ var _vue_components_User_Teams_Subscription_Plans__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/User/Teams/Subscription/Plans */ "./resources/vue/components/User/Teams/Subscription/Plans.vue");
+//
+//
 //
 //
 //
@@ -2064,9 +2078,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Subscription: _vue_components_User_Teams_Subscription__WEBPACK_IMPORTED_MODULE_0__["default"]
+    CancelSubscription: _vue_components_User_Teams_Subscription_Cancel__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ResumeSubscription: _vue_components_User_Teams_Subscription_Resume__WEBPACK_IMPORTED_MODULE_0__["default"],
+    SubscriptionPlans: _vue_components_User_Teams_Subscription_Plans__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  computed: {
+    canBeCanceled: function canBeCanceled() {
+      if (this.team.subscription.plan.is_free) {
+        return false;
+      }
+
+      return !this.team.subscription.is_cancelled;
+    },
+    canBeResumed: function canBeResumed() {
+      return this.team.subscription.is_cancelled;
+    },
+    team: function team() {
+      return this.$parent.team;
+    }
   }
 });
 
@@ -2977,6 +3010,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3000,6 +3037,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.$echo.channel('server.' + this.server.id).listen('.App\\Events\\Server\\Event\\Created', function (e) {
       _this.events.data.unshift(e.event);
     });
+  },
+  computed: {
+    hasEvents: function hasEvents() {
+      return this.events.data.length > 0;
+    }
   },
   methods: {
     load: function () {
@@ -5725,118 +5767,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/CancelSubscription.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/CancelSubscription.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _vue_components_UI_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/UI/Modal */ "./resources/vue/components/UI/Modal.vue");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Modal: _vue_components_UI_Modal__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  props: {
-    team: Object
-  },
-  methods: {
-    onCancel: function onCancel() {
-      this.$modal.show('cancel');
-    },
-    cancel: function () {
-      var _cancel = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                this.loading = true;
-                _context.prev = 1;
-                _context.next = 4;
-                return this.$api('v1.team.subscription.cancel', {
-                  team: this.team.id
-                }).request();
-
-              case 4:
-                _context.next = 9;
-                break;
-
-              case 6:
-                _context.prev = 6;
-                _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
-
-              case 9:
-                this.loading = false;
-
-              case 10:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this, [[1, 6]]);
-      }));
-
-      function cancel() {
-        return _cancel.apply(this, arguments);
-      }
-
-      return cancel;
-    }(),
-    close: function close() {
-      this.$modal.close('cancel');
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/List.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/List.vue?vue&type=script&lang=js& ***!
@@ -6236,6 +6166,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6348,17 +6283,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     team: Object,
     method: Object
+  },
+  data: function data() {
+    return {
+      loading: false
+    };
   },
   methods: {
     deletePaymentMethod: function () {
       var _deletePaymentMethod = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -6372,25 +6314,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }).request();
 
               case 4:
-                response = _context.sent;
                 this.$emit('deleted', this.method);
-                _context.next = 11;
+                _context.next = 10;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 7:
+                _context.prev = 7;
                 _context.t0 = _context["catch"](1);
                 console.error(_context.t0);
 
-              case 11:
+              case 10:
                 this.loading = false;
 
-              case 12:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 8]]);
+        }, _callee, this, [[1, 7]]);
       }));
 
       function deletePaymentMethod() {
@@ -6404,10 +6345,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/Subscription.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription/Cancel.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/Subscription/Cancel.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6416,7 +6357,127 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _vue_components_UI_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/UI/Modal */ "./resources/vue/components/UI/Modal.vue");
-/* harmony import */ var _vue_components_User_Teams_CancelSubscription__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/User/Teams/CancelSubscription */ "./resources/vue/components/User/Teams/CancelSubscription.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Modal: _vue_components_UI_Modal__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: {
+    team: Object
+  },
+  data: function data() {
+    return {
+      loading: false
+    };
+  },
+  methods: {
+    onCancel: function onCancel() {
+      this.$modal.show('cancel');
+    },
+    cancel: function () {
+      var _cancel = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.loading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return this.$api('v1.team.subscription.cancel', {
+                  team: this.team.id
+                }).request();
+
+              case 4:
+                this.$modal.close('cancel');
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](1);
+                console.error(_context.t0);
+
+              case 10:
+                this.loading = false;
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 7]]);
+      }));
+
+      function cancel() {
+        return _cancel.apply(this, arguments);
+      }
+
+      return cancel;
+    }(),
+    close: function close() {
+      this.$modal.close('cancel');
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription/Plans.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/Subscription/Plans.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vue_components_UI_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/UI/Modal */ "./resources/vue/components/UI/Modal.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -6460,13 +6521,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    CancelSubscription: _vue_components_User_Teams_CancelSubscription__WEBPACK_IMPORTED_MODULE_2__["default"],
     Modal: _vue_components_UI_Modal__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
@@ -6482,13 +6539,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.load();
   },
   computed: {
-    canBeCanceled: function canBeCanceled() {
-      if (this.team.subscription.plan.is_free) {
-        return false;
-      }
-
-      return !this.team.subscription.is_cancelled;
-    },
     hasPaymentMethod: function hasPaymentMethod() {
       return this.team.has_payment_method;
     }
@@ -6607,6 +6657,96 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return plan.key != 'free';
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription/Resume.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/Subscription/Resume.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    team: Object
+  },
+  data: function data() {
+    return {
+      loading: false
+    };
+  },
+  methods: {
+    onResume: function () {
+      var _onResume = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.loading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return this.$api('v1.team.subscription.resume', {
+                  team: this.team.id
+                }).request();
+
+              case 4:
+                _context.next = 9;
+                break;
+
+              case 6:
+                _context.prev = 6;
+                _context.t0 = _context["catch"](1);
+                console.error(_context.t0);
+
+              case 9:
+                this.loading = false;
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 6]]);
+      }));
+
+      function onResume() {
+        return _onResume.apply(this, arguments);
+      }
+
+      return onResume;
+    }()
   }
 });
 
@@ -50003,9 +50143,47 @@ var render = function() {
         ? _c(
             "div",
             [
-              _c("h1", { staticClass: "mb-4" }, [
-                _c("i", { staticClass: "fas fa-users mr-3" }),
+              _c("h1", { staticClass: "mb-4 flex items-center" }, [
+                _c("img", {
+                  attrs: {
+                    src:
+                      "https://image.flaticon.com/icons/svg/1171/1171856.svg",
+                    width: "50px"
+                  }
+                }),
                 _vm._v("\n            " + _vm._s(_vm.team.name) + "\n        ")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-10" }, [
+                _vm.team.is_trial_period
+                  ? _c("span", { staticClass: "badge badge-warning" }, [
+                      _vm._v(
+                        "\n                Trial ends at " +
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.team.subscription.trial_ends_at,
+                              "DD/MM/YYYY"
+                            )
+                          ) +
+                          "\n            "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.team.is_cancelled
+                  ? _c("span", { staticClass: "badge badge-error ml-5" }, [
+                      _vm._v(
+                        "\n                Subscription cancelled and ends at " +
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.team.subscription.ends_at,
+                              "DD/MM/YYYY"
+                            )
+                          ) +
+                          "\n            "
+                      )
+                    ])
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c(
@@ -50091,7 +50269,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm.$parent.team.subscription.is_invalid
+      _vm.team.subscription.is_invalid
         ? _c(
             "div",
             {
@@ -50110,7 +50288,15 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("Subscription", { attrs: { team: _vm.$parent.team } })
+      _c("SubscriptionPlans", { attrs: { team: _vm.team } }),
+      _vm._v(" "),
+      _vm.canBeCanceled
+        ? _c("CancelSubscription", { attrs: { team: _vm.team } })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.canBeResumed
+        ? _c("ResumeSubscription", { attrs: { team: _vm.team } })
+        : _vm._e()
     ],
     1
   )
@@ -50990,29 +51176,44 @@ var render = function() {
       [
         _c("Loader", { attrs: { loading: _vm.loading } }),
         _vm._v(" "),
-        _c("table", { staticClass: "table" }, [
-          _c("col"),
-          _vm._v(" "),
-          _c("col", { attrs: { width: "200px" } }),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.events.data, function(evt) {
-              return _c("tr", { key: evt.id }, [
-                _c("th", [_vm._v(_vm._s(evt.message))]),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-right" }, [
-                  _c("small", { staticClass: "badge" }, [
-                    _vm._v(_vm._s(_vm._f("moment")(evt.created_at, "from")))
+        _vm.hasEvents
+          ? _c("table", { staticClass: "table" }, [
+              _c("col"),
+              _vm._v(" "),
+              _c("col", { attrs: { width: "200px" } }),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.events.data, function(evt) {
+                  return _c("tr", { key: evt.id }, [
+                    _c("th", [_vm._v(_vm._s(evt.message))]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-right" }, [
+                      _c("small", { staticClass: "badge" }, [
+                        _vm._v(_vm._s(_vm._f("moment")(evt.created_at, "from")))
+                      ])
+                    ])
                   ])
-                ])
+                }),
+                0
+              )
+            ])
+          : _c("div", { staticClass: "well well-lg text-center" }, [
+              _c("img", {
+                staticClass: "mx-auto mb-10",
+                attrs: {
+                  src: "https://image.flaticon.com/icons/svg/1871/1871141.svg",
+                  alt: "",
+                  width: "100px"
+                }
+              }),
+              _vm._v(" "),
+              _c("h3", { staticClass: "mb-0" }, [
+                _vm._v("Looks like you don't have any events yet")
               ])
-            }),
-            0
-          )
-        ]),
+            ]),
         _vm._v(" "),
         _c("Pagination", {
           attrs: { data: _vm.events },
@@ -52840,105 +53041,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/CancelSubscription.vue?vue&type=template&id=f5a5f708&":
-/*!*********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/CancelSubscription.vue?vue&type=template&id=f5a5f708& ***!
-  \*********************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass:
-        "border-gray-300 bg-gray-100 py-8 px-8 my-12 flex items-center"
-    },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        [
-          _c(
-            "button",
-            { staticClass: "btn btn-danger", on: { click: _vm.onCancel } },
-            [_vm._v("\n            Cancel :(\n        ")]
-          ),
-          _vm._v(" "),
-          _c("Modal", { attrs: { name: "cancel" } }, [
-            _c("div", { staticClass: "modal__top" }, [
-              _vm._v("\n                Are you absolutely sure?\n            ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal__content" }, [
-              _c("p", { staticClass: "mb-3" }, [
-                _vm._v(
-                  "This action cannot be undone. This will permanently delete your account and remove\n                    all collaborator associations."
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "flex" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger mr-5",
-                    on: { click: _vm.cancel }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Yes\n                    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "btn btn-default", on: { click: _vm.close } },
-                  [
-                    _vm._v(
-                      "\n                        Close\n                    "
-                    )
-                  ]
-                )
-              ])
-            ])
-          ])
-        ],
-        1
-      )
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex-1" }, [
-      _c("h2", [_vm._v("Cancel subscription")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Pavel, just before you go, here are some courses we've got coming up that you might be interested in."
-        )
-      ])
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/List.vue?vue&type=template&id=49cb10ba&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/List.vue?vue&type=template&id=49cb10ba& ***!
@@ -53038,13 +53140,17 @@ var render = function() {
                 ])
               ])
             ]),
-            _vm._v(
-              "\n\n            @if($user->hasRole('owner', $team))\n            "
-            ),
-            _c("span", { staticClass: "user-block__item--role" }, [
-              _vm._v("owner")
-            ]),
-            _vm._v("\n            @endif\n        ")
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "mt-5" },
+              _vm._l(user.roles, function(role) {
+                return _c("span", { staticClass: "badge" }, [
+                  _vm._v(_vm._s(role.name))
+                ])
+              }),
+              0
+            )
           ])
         })
       ],
@@ -53250,6 +53356,7 @@ var render = function() {
             { staticClass: "well well-lg" },
             _vm._l(_vm.paymentMethods, function(method) {
               return _c("ListItem", {
+                key: method.id,
                 attrs: { team: _vm.team, method: method },
                 on: { deleted: _vm.paymentMethodsChanged }
               })
@@ -53298,41 +53405,53 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "border-2 px-4 py-3 mb-2 bg-white rounded-lg flex" },
     [
-      _c("div", { staticClass: "flex-1" }, [
-        _c("h4", [
-          _vm._v(
-            _vm._s(_vm.method.name) + " xxxx-" + _vm._s(_vm.method.card.last4)
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "text-gray-600" }, [
-          _vm._v(
-            "Expired " +
-              _vm._s(_vm.method.card.exp_month) +
-              "/" +
-              _vm._s(_vm.method.card.exp_year) +
-              " • Created\n            on " +
-              _vm._s(_vm._f("moment")(_vm.method.created_at, "DD MMM YYYY")) +
-              "\n        "
-          )
-        ])
-      ]),
+      _c("Loader", { attrs: { loading: _vm.loading } }),
       _vm._v(" "),
       _c(
-        "button",
-        {
-          staticClass: "btn btn-danger btn-sm",
-          on: {
-            click: function($event) {
-              return _vm.deletePaymentMethod()
-            }
-          }
-        },
-        [_vm._v("\n        Delete\n    ")]
+        "div",
+        { staticClass: "border-2 px-4 py-3 mb-2 bg-white rounded-lg flex" },
+        [
+          _c("div", { staticClass: "flex-1" }, [
+            _c("h4", [
+              _vm._v(
+                _vm._s(_vm.method.name) +
+                  " xxxx-" +
+                  _vm._s(_vm.method.card.last4)
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-gray-600" }, [
+              _vm._v(
+                "Expired " +
+                  _vm._s(_vm.method.card.exp_month) +
+                  "/" +
+                  _vm._s(_vm.method.card.exp_year) +
+                  " • Created\n                on " +
+                  _vm._s(
+                    _vm._f("moment")(_vm.method.created_at, "DD MMM YYYY")
+                  ) +
+                  "\n            "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger btn-sm",
+              on: {
+                click: function($event) {
+                  return _vm.deletePaymentMethod()
+                }
+              }
+            },
+            [_vm._v("\n            Delete\n        ")]
+          )
+        ]
       )
-    ]
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -53342,10 +53461,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription.vue?vue&type=template&id=f9efe8bc&":
-/*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/Subscription.vue?vue&type=template&id=f9efe8bc& ***!
-  \***************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription/Cancel.vue?vue&type=template&id=10a40957&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/Subscription/Cancel.vue?vue&type=template&id=10a40957& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -53360,133 +53479,295 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("Loader", { attrs: { loading: _vm.loading } }),
+      _vm._v(" "),
       _c(
         "div",
-        { staticClass: "price-table" },
+        {
+          staticClass:
+            "border-red-300 border-2 bg-gray-100 py-8 px-8 my-12 flex items-center"
+        },
         [
-          _c("Loader", { attrs: { loading: _vm.loading } }),
-          _vm._v(" "),
-          _c("h2", [_vm._v("Available plans")]),
-          _vm._v(" "),
-          !_vm.hasPaymentMethod
-            ? _c(
-                "div",
-                {
-                  staticClass:
-                    "well border-red-300 border-2 rounded-lg mb-8 text-lg"
-                },
-                [
-                  _vm._v("\n            You need to add payment method on "),
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        to: {
-                          name: "profile.team.billing",
-                          params: { id: _vm.team.id }
-                        }
-                      }
-                    },
-                    [_vm._v("billing page")]
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
+          _vm._m(0),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "price-table__items" },
-            _vm._l(_vm.plans, function(plan) {
-              return _c(
-                "div",
-                {
-                  key: plan.id,
-                  staticClass: "price-table__item",
-                  class: { current: _vm.isCurrentPlan(plan) }
-                },
-                [
-                  _c("div", [
-                    _c("h3", { staticClass: "price-table__item--title" }, [
-                      _vm._v(
-                        _vm._s(plan.name) + "\n\n                        "
-                      ),
-                      !plan.is_free
-                        ? _c("strong", { staticClass: "ml-3" }, [
-                            _vm._v("$" + _vm._s(plan.price))
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "text-xs" }, [_vm._v("/mo")])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "ul",
-                      { staticClass: "price-table__item--features" },
-                      _vm._l(plan.features, function(feature) {
-                        return _c(
-                          "li",
-                          { staticClass: "price-table__item--feature" },
-                          [
-                            _c("i", {
-                              staticClass: "icon fas fa-check-circle "
-                            }),
-                            _vm._v(
-                              " " +
-                                _vm._s(feature.name) +
-                                "\n                            "
-                            ),
-                            !feature.is_unlimited
-                              ? _c("span", [
-                                  _vm._v(
-                                    "[" + _vm._s(feature.value) + " times]"
-                                  )
-                                ])
-                              : _vm._e()
-                          ]
-                        )
-                      }),
-                      0
+            [
+              _c(
+                "button",
+                { staticClass: "btn btn-danger", on: { click: _vm.onCancel } },
+                [_vm._v("\n                Cancel :(\n            ")]
+              ),
+              _vm._v(" "),
+              _c("Modal", { attrs: { name: "cancel" } }, [
+                _c("div", { staticClass: "modal__top" }, [
+                  _vm._v(
+                    "\n                    Are you absolutely sure?\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal__content" }, [
+                  _c("p", { staticClass: "mb-3" }, [
+                    _vm._v(
+                      "This action cannot be undone. This will permanently delete your account and remove\n                        all collaborator associations."
                     )
                   ]),
                   _vm._v(" "),
-                  _vm.canBeUpgradedTo(plan)
-                    ? _c("div", { staticClass: "text-center mt-5" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary btn-rounded",
-                            on: {
-                              click: function($event) {
-                                return _vm.subscribe(plan)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Subscribe now\n                    "
-                            )
-                          ]
+                  _c("div", { staticClass: "flex" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger mr-5",
+                        on: { click: _vm.cancel }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Yes\n                        "
                         )
-                      ])
-                    : _vm._e()
-                ]
-              )
-            }),
-            0
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-default",
+                        on: { click: _vm.close }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Close\n                        "
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ],
+            1
           )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _vm.canBeCanceled
-        ? _c("CancelSubscription", { attrs: { team: _vm.team } })
-        : _vm._e()
+        ]
+      )
     ],
     1
   )
 }
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex-1" }, [
+      _c("h2", [_vm._v("Cancel subscription")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Pavel, just before you go, here are some courses we've got coming up that you might be interested in."
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription/Plans.vue?vue&type=template&id=95f9d3c6&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/Subscription/Plans.vue?vue&type=template&id=95f9d3c6& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "price-table" },
+      [
+        _c("Loader", { attrs: { loading: _vm.loading } }),
+        _vm._v(" "),
+        _c("h2", [_vm._v("Available plans")]),
+        _vm._v(" "),
+        !_vm.hasPaymentMethod
+          ? _c(
+              "div",
+              {
+                staticClass:
+                  "well border-red-300 border-2 rounded-lg mb-8 text-lg"
+              },
+              [
+                _vm._v("\n            You need to add payment method on "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "profile.team.billing",
+                        params: { id: _vm.team.id }
+                      }
+                    }
+                  },
+                  [_vm._v("billing page")]
+                )
+              ],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "price-table__items" },
+          _vm._l(_vm.plans, function(plan) {
+            return _c(
+              "div",
+              {
+                key: plan.id,
+                staticClass: "price-table__item",
+                class: { current: _vm.isCurrentPlan(plan) }
+              },
+              [
+                _c("div", [
+                  _c("h3", { staticClass: "price-table__item--title" }, [
+                    _vm._v(_vm._s(plan.name) + "\n\n                        "),
+                    !plan.is_free
+                      ? _c("strong", { staticClass: "ml-3" }, [
+                          _vm._v("$" + _vm._s(plan.price))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "text-xs" }, [_vm._v("/mo")])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    { staticClass: "price-table__item--features" },
+                    _vm._l(plan.features, function(feature) {
+                      return _c(
+                        "li",
+                        { staticClass: "price-table__item--feature" },
+                        [
+                          _c("i", { staticClass: "icon fas fa-check-circle " }),
+                          _vm._v(
+                            " " +
+                              _vm._s(feature.name) +
+                              "\n                            "
+                          ),
+                          !feature.is_unlimited
+                            ? _c("span", [
+                                _vm._v("[" + _vm._s(feature.value) + " times]")
+                              ])
+                            : _vm._e()
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.canBeUpgradedTo(plan)
+                  ? _c("div", { staticClass: "text-center mt-5" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary btn-rounded",
+                          on: {
+                            click: function($event) {
+                              return _vm.subscribe(plan)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Subscribe now\n                    "
+                          )
+                        ]
+                      )
+                    ])
+                  : _vm._e()
+              ]
+            )
+          }),
+          0
+        )
+      ],
+      1
+    )
+  ])
+}
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription/Resume.vue?vue&type=template&id=7edd918a&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/User/Teams/Subscription/Resume.vue?vue&type=template&id=7edd918a& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("Loader", { attrs: { loading: _vm.loading } }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "border-green-300 border-2 bg-gray-100 py-8 px-8 my-12 flex items-center"
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", [
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", on: { click: _vm.onResume } },
+              [_vm._v("\n                Resume :)\n            ")]
+            )
+          ])
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex-1" }, [
+      _c("h2", [_vm._v("Resume subscription")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Pavel, just before you go, here are some courses we've got coming up that you might be interested in."
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -77873,11 +78154,6 @@ var Ziggy = {
       "methods": ["GET", "HEAD"],
       "domain": null
     },
-    "api.v1.subscription.plan.show": {
-      "uri": "api\/v1\/subscription\/plan\/{plan}",
-      "methods": ["GET", "HEAD"],
-      "domain": null
-    },
     "api.v1.source_providers": {
       "uri": "api\/v1\/source-providers",
       "methods": ["GET", "HEAD"],
@@ -77936,6 +78212,11 @@ var Ziggy = {
     "api.v1.team.subscription.cancel": {
       "uri": "api\/v1\/profile\/team\/{team}\/cancel-subscription",
       "methods": ["DELETE"],
+      "domain": null
+    },
+    "api.v1.team.subscription.resume": {
+      "uri": "api\/v1\/profile\/team\/{team}\/resume-subscription",
+      "methods": ["POST"],
       "domain": null
     },
     "api.v1.team.subscribe": {
@@ -82146,75 +82427,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/vue/components/User/Teams/CancelSubscription.vue":
-/*!********************************************************************!*\
-  !*** ./resources/vue/components/User/Teams/CancelSubscription.vue ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CancelSubscription_vue_vue_type_template_id_f5a5f708___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CancelSubscription.vue?vue&type=template&id=f5a5f708& */ "./resources/vue/components/User/Teams/CancelSubscription.vue?vue&type=template&id=f5a5f708&");
-/* harmony import */ var _CancelSubscription_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CancelSubscription.vue?vue&type=script&lang=js& */ "./resources/vue/components/User/Teams/CancelSubscription.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _CancelSubscription_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CancelSubscription_vue_vue_type_template_id_f5a5f708___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CancelSubscription_vue_vue_type_template_id_f5a5f708___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/vue/components/User/Teams/CancelSubscription.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/vue/components/User/Teams/CancelSubscription.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************!*\
-  !*** ./resources/vue/components/User/Teams/CancelSubscription.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CancelSubscription_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CancelSubscription.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/CancelSubscription.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CancelSubscription_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/vue/components/User/Teams/CancelSubscription.vue?vue&type=template&id=f5a5f708&":
-/*!***************************************************************************************************!*\
-  !*** ./resources/vue/components/User/Teams/CancelSubscription.vue?vue&type=template&id=f5a5f708& ***!
-  \***************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CancelSubscription_vue_vue_type_template_id_f5a5f708___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CancelSubscription.vue?vue&type=template&id=f5a5f708& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/CancelSubscription.vue?vue&type=template&id=f5a5f708&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CancelSubscription_vue_vue_type_template_id_f5a5f708___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CancelSubscription_vue_vue_type_template_id_f5a5f708___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/vue/components/User/Teams/List.vue":
 /*!******************************************************!*\
   !*** ./resources/vue/components/User/Teams/List.vue ***!
@@ -82560,18 +82772,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/vue/components/User/Teams/Subscription.vue":
-/*!**************************************************************!*\
-  !*** ./resources/vue/components/User/Teams/Subscription.vue ***!
-  \**************************************************************/
+/***/ "./resources/vue/components/User/Teams/Subscription/Cancel.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/Subscription/Cancel.vue ***!
+  \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Subscription_vue_vue_type_template_id_f9efe8bc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Subscription.vue?vue&type=template&id=f9efe8bc& */ "./resources/vue/components/User/Teams/Subscription.vue?vue&type=template&id=f9efe8bc&");
-/* harmony import */ var _Subscription_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Subscription.vue?vue&type=script&lang=js& */ "./resources/vue/components/User/Teams/Subscription.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Cancel_vue_vue_type_template_id_10a40957___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Cancel.vue?vue&type=template&id=10a40957& */ "./resources/vue/components/User/Teams/Subscription/Cancel.vue?vue&type=template&id=10a40957&");
+/* harmony import */ var _Cancel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cancel.vue?vue&type=script&lang=js& */ "./resources/vue/components/User/Teams/Subscription/Cancel.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -82580,9 +82792,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Subscription_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Subscription_vue_vue_type_template_id_f9efe8bc___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Subscription_vue_vue_type_template_id_f9efe8bc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Cancel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Cancel_vue_vue_type_template_id_10a40957___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Cancel_vue_vue_type_template_id_10a40957___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -82592,38 +82804,176 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/vue/components/User/Teams/Subscription.vue"
+component.options.__file = "resources/vue/components/User/Teams/Subscription/Cancel.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/vue/components/User/Teams/Subscription.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************!*\
-  !*** ./resources/vue/components/User/Teams/Subscription.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************/
+/***/ "./resources/vue/components/User/Teams/Subscription/Cancel.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/Subscription/Cancel.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Subscription_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Subscription.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Subscription_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Cancel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Cancel.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription/Cancel.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Cancel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/vue/components/User/Teams/Subscription.vue?vue&type=template&id=f9efe8bc&":
-/*!*********************************************************************************************!*\
-  !*** ./resources/vue/components/User/Teams/Subscription.vue?vue&type=template&id=f9efe8bc& ***!
-  \*********************************************************************************************/
+/***/ "./resources/vue/components/User/Teams/Subscription/Cancel.vue?vue&type=template&id=10a40957&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/Subscription/Cancel.vue?vue&type=template&id=10a40957& ***!
+  \****************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Subscription_vue_vue_type_template_id_f9efe8bc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Subscription.vue?vue&type=template&id=f9efe8bc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription.vue?vue&type=template&id=f9efe8bc&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Subscription_vue_vue_type_template_id_f9efe8bc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Cancel_vue_vue_type_template_id_10a40957___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Cancel.vue?vue&type=template&id=10a40957& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription/Cancel.vue?vue&type=template&id=10a40957&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Cancel_vue_vue_type_template_id_10a40957___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Subscription_vue_vue_type_template_id_f9efe8bc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Cancel_vue_vue_type_template_id_10a40957___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/Subscription/Plans.vue":
+/*!********************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/Subscription/Plans.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Plans_vue_vue_type_template_id_95f9d3c6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Plans.vue?vue&type=template&id=95f9d3c6& */ "./resources/vue/components/User/Teams/Subscription/Plans.vue?vue&type=template&id=95f9d3c6&");
+/* harmony import */ var _Plans_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Plans.vue?vue&type=script&lang=js& */ "./resources/vue/components/User/Teams/Subscription/Plans.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Plans_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Plans_vue_vue_type_template_id_95f9d3c6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Plans_vue_vue_type_template_id_95f9d3c6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/components/User/Teams/Subscription/Plans.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/Subscription/Plans.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/Subscription/Plans.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Plans_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Plans.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription/Plans.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Plans_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/Subscription/Plans.vue?vue&type=template&id=95f9d3c6&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/Subscription/Plans.vue?vue&type=template&id=95f9d3c6& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Plans_vue_vue_type_template_id_95f9d3c6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Plans.vue?vue&type=template&id=95f9d3c6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription/Plans.vue?vue&type=template&id=95f9d3c6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Plans_vue_vue_type_template_id_95f9d3c6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Plans_vue_vue_type_template_id_95f9d3c6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/Subscription/Resume.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/Subscription/Resume.vue ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Resume_vue_vue_type_template_id_7edd918a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Resume.vue?vue&type=template&id=7edd918a& */ "./resources/vue/components/User/Teams/Subscription/Resume.vue?vue&type=template&id=7edd918a&");
+/* harmony import */ var _Resume_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Resume.vue?vue&type=script&lang=js& */ "./resources/vue/components/User/Teams/Subscription/Resume.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Resume_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Resume_vue_vue_type_template_id_7edd918a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Resume_vue_vue_type_template_id_7edd918a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/components/User/Teams/Subscription/Resume.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/Subscription/Resume.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/Subscription/Resume.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Resume_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Resume.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription/Resume.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Resume_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/components/User/Teams/Subscription/Resume.vue?vue&type=template&id=7edd918a&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/vue/components/User/Teams/Subscription/Resume.vue?vue&type=template&id=7edd918a& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Resume_vue_vue_type_template_id_7edd918a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Resume.vue?vue&type=template&id=7edd918a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/User/Teams/Subscription/Resume.vue?vue&type=template&id=7edd918a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Resume_vue_vue_type_template_id_7edd918a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Resume_vue_vue_type_template_id_7edd918a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
 
     // Subscription
     Route::delete('profile/team/{team}/cancel-subscription', 'SubscriptionController@cancel')->name('team.subscription.cancel');
+    Route::post('profile/team/{team}/resume-subscription', 'SubscriptionController@resume')->name('team.subscription.resume');
     Route::post('profile/team/{team}/subscribe/{plan}', 'SubscriptionController@subscribe')->name('team.subscribe');
 
     Route::middleware('has-subscription')->group(function () {
