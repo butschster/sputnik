@@ -3330,6 +3330,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -51128,8 +51131,7 @@ var render = function() {
               name: "port",
               minlength: "2",
               maxlength: "4",
-              required: "",
-              autofocus: ""
+              required: ""
             },
             model: {
               value: _vm.form.port,
@@ -51158,8 +51160,7 @@ var render = function() {
               label: "Policy",
               name: "policy",
               options: _vm.policy_value,
-              required: "",
-              autofocus: ""
+              required: ""
             },
             model: {
               value: _vm.form.policy,
@@ -51785,7 +51786,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "section-header" }, [
-      _vm._v("\n        Create a new use\n        "),
+      _vm._v("\n        Create a new user\n        "),
       _c("p", [
         _vm._v("After creating a user you will have public key for auth.")
       ])
