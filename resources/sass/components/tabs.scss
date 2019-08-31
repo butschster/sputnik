@@ -1,9 +1,14 @@
+$tabs-line-height: 3px;
+$tabs-line-color: theme('colors.gray.200');
+
 .tabs {
     @apply w-full flex border-b-2 border-gray-200 mb-8;
+    border-bottom: $tabs-line-height solid $tabs-line-color;
 
     .tab {
-        @apply border-b-2 py-4 text-lg mx-3 text-gray-600;
-        margin-bottom: -2px;
+        @apply py-4 text-lg mx-3 text-gray-600;
+        margin-bottom: -$tabs-line-height;
+        border-bottom: $tabs-line-height solid $tabs-line-color;
 
         &:first-child {
             @apply ml-0;

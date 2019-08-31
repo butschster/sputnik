@@ -8,31 +8,25 @@ use App\Models\User\Subscription;
 trait HasSubscriptions
 {
     /**
-     * @param Plan $plan
-     * @param \Stripe\PaymentMethod|string|null $paymentMethod
+     * Subscribe team to selected plan
      *
+     * @param Plan $plan
+     * @param null $paymentMethod
      * @return \Laravel\Cashier\Subscription
+     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
      */
     public function subscribeTo(Plan $plan, $paymentMethod = null): \Laravel\Cashier\Subscription
     {
         $name = 'main';
 
-        if ($plan->isFree()) {
-            return $this->subscriptions()->create([
-                'name' => $name,
-                'stripe_id' => null,
-                'stripe_status' => 'complete',
-                'stripe_plan' => $plan->name,
-                'quantity' => 1,
-                'trial_ends_at' => null,
-                'ends_at' => null,
-            ]);
+        if ($this->hasActiveSubscription()) {
+            return $this->getActiveSubscription()->swap($plan->name);
         }
 
-        $builder = $this->newSubscription('main', $plan->name);
+        $builder = $this->newSubscription($name, $plan->name);
 
         if ($plan->hasTrial()) {
-            $builder->trialDays($name);
+            $builder->trialDays($plan->trial_period);
         } else {
             $builder->skipTrial();
         }
@@ -48,17 +42,25 @@ trait HasSubscriptions
         return $this->subscription('main');
     }
 
+    /**
+     * Cancel current subscription
+     */
     public function cancelCurrentSubscription(): void
     {
         $this->getActiveSubscription()->cancel();
     }
 
+    /**
+     * Resume current subscription
+     */
     public function resumeCurrentSubscription(): void
     {
         $this->getActiveSubscription()->resume();
     }
 
     /**
+     * Check if team has subscription
+     *
      * @return bool
      */
     public function hasActiveSubscription(): bool

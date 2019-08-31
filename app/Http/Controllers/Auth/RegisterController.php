@@ -44,9 +44,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('auth.register', [
-            'plans' => Plan::orderBy('sort_order')->onlyActive()->get(),
-        ]);
+        return view('auth.register');
     }
 
     /**
@@ -83,23 +81,21 @@ class RegisterController extends Controller
     {
         return DB::transaction(function () use ($data) {
 
-            $team = User\Team::create([
-                'name' => $data['project_name'],
-            ]);
-
-            $owner = User\Role::where('name', 'owner')->firstOrFail();
-
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
 
+            $team = User\Team::create([
+                'name' => $data['project_name'],
+                'owner_id' => $user->id
+            ]);
+
+            $owner = User\Role::where('name', 'owner')->firstOrFail();
             $user->attachRole($owner, $team);
 
-            $team->subscribeTo(
-                Plan::where('name', 'free')->firstOrFail()
-            );
+            $team->subscribeTo(Plan::findByName('free'));
 
             return $user;
         });

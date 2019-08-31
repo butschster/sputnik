@@ -13,10 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $team = User\Team::create([
-            'name' => 'Awesome project',
-        ]);
-
         $owner = User\Role::where('name', 'owner')->firstOrFail();
 
         $user = factory(User::class)->create([
@@ -24,24 +20,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Pavel Buchnev',
         ]);
 
-        $user->attachRole($owner, $team);
-
-        $plan = Plan::where('name', 'unlimited')->first();
-
-        $team->subscriptions()->create([
-            'name' => 'main',
-            'stripe_id' => null,
-            'stripe_status' => 'complete',
-            'stripe_plan' => $plan->name,
-            'quantity' => 1,
-            'trial_ends_at' => null,
-            'ends_at' => null,
+        /** @var User\Team $team */
+        $team = User\Team::create([
+            'name' => 'Awesome project',
+            'owner_id' => $user->id,
         ]);
 
-//        factory(\App\Models\Server::class)->times(10)->create([
-//            'user_id' => $user->id,
-//            'team_id' => $team->id,
-//            'status' => 'configured'
-//        ]);
+        $user->attachRole($owner, $team);
+
+        $plan = Plan::findByName('unlimited');
+
+        $team->subscribeTo($plan);
     }
 }

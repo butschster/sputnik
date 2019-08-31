@@ -30,6 +30,17 @@ class Plan extends Model
     ];
 
     /**
+     * Find plan by name
+     *
+     * @param string $name
+     * @return Builder|Model
+     */
+    public static function findByName(string $name)
+    {
+        return static::where('name', $name)->firstOrFail();
+    }
+
+    /**
      * The plan may have many features.
      *
      * @return HasMany
