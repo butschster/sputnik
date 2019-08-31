@@ -2126,6 +2126,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2179,24 +2187,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 6:
                 response = _context.sent;
                 this.rules = response.data;
-                console.log(this.rules.data);
-                _context.next = 14;
+                _context.next = 13;
                 break;
 
-              case 11:
-                _context.prev = 11;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](3);
                 console.error(_context.t0);
 
-              case 14:
+              case 13:
                 this.loading = false;
 
-              case 15:
+              case 14:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[3, 11]]);
+        }, _callee, this, [[3, 10]]);
       }));
 
       function load() {
@@ -2253,7 +2260,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return remove;
-    }()
+    }(),
+    policyBadgeClass: function policyBadgeClass(rule) {
+      if (rule.policy == 'allow') {
+        return 'badge-success';
+      }
+
+      return 'badge-error';
+    }
   },
   computed: {
     hasUsers: function hasUsers() {
@@ -3335,7 +3349,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         name: null,
         port: null,
         from: null,
-        policy: null
+        policy: "allow"
       },
       policy_value: [{
         label: "Allow",
@@ -3366,29 +3380,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 4:
                 response = _context.sent;
                 this.$emit('created', response.data.data);
-                console.log(response);
                 this.$notify({
                   text: 'Rule successfully create',
                   type: 'success'
                 });
                 this.clear();
-                _context.next = 14;
+                _context.next = 13;
                 break;
 
-              case 11:
-                _context.prev = 11;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](1);
                 console.error(_context.t0);
 
-              case 14:
+              case 13:
                 this.loading = false;
 
-              case 15:
+              case 14:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 11]]);
+        }, _callee, this, [[1, 10]]);
       }));
 
       function onSubmit() {
@@ -3402,7 +3415,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         name: null,
         port: null,
         from: null,
-        policy: null,
+        policy: "allow",
         status: null
       };
     }
@@ -49988,13 +50001,15 @@ var render = function() {
               _c("table", { staticClass: "table mb-10" }, [
                 _c("col"),
                 _vm._v(" "),
-                _c("col", { attrs: { width: "200px" } }),
+                _c("col", { staticClass: "w-48" }),
                 _vm._v(" "),
-                _c("col", { attrs: { width: "200px" } }),
+                _c("col", { staticClass: "w-48" }),
                 _vm._v(" "),
-                _c("col", { attrs: { width: "100px" } }),
+                _c("col", { staticClass: "w-48" }),
                 _vm._v(" "),
-                _c("col", { attrs: { width: "100px" } }),
+                _c("col", { staticClass: "w-48" }),
+                _vm._v(" "),
+                _c("col", { staticClass: "w-32" }),
                 _vm._v(" "),
                 _vm._m(0),
                 _vm._v(" "),
@@ -50002,9 +50017,15 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.rules.data, function(rule) {
                     return _c("tr", [
-                      _c("th", [_vm._v(_vm._s(rule.name))]),
+                      _c("th", [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(rule.name) +
+                            "\n                "
+                        )
+                      ]),
                       _vm._v(" "),
-                      _c("td", [
+                      _c("th", [
                         _vm._v(
                           "\n                    " +
                             _vm._s(rule.port) +
@@ -50012,39 +50033,45 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(rule.from))]),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "text-right" },
-                        [_c("BadgeStatus", { attrs: { status: rule.policy } })],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "text-right" },
-                        [
-                          _c("BadgeStatus", {
-                            attrs: { status: rule.task.status }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
                       _c("td", [
+                        _c("span", { staticClass: "badge" }, [
+                          _vm._v(_vm._s(rule.from))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-right" }, [
                         _c(
-                          "button",
+                          "span",
                           {
-                            staticClass: "btn btn-danger btn-sm",
-                            on: {
-                              click: function($event) {
-                                return _vm.remove(rule)
-                              }
-                            }
+                            staticClass: "badge",
+                            class: _vm.policyBadgeClass(rule)
                           },
-                          [_c("i", { staticClass: "fas fa-trash" })]
+                          [_vm._v(_vm._s(rule.policy))]
                         )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticClass: "text-right" },
+                        [_c("BadgeStatus", { attrs: { status: rule.status } })],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-right" }, [
+                        rule.is_editable
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger btn-sm",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.remove(rule)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-trash" })]
+                            )
+                          : _vm._e()
                       ])
                     ])
                   }),
@@ -50090,9 +50117,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("From")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Policy")]),
+        _c("th", { staticClass: "text-right" }, [_vm._v("Policy")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Status")]),
+        _c("th", { staticClass: "text-right" }, [_vm._v("Status")]),
         _vm._v(" "),
         _c("th")
       ])
@@ -51095,7 +51122,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("FormInputNumber", {
-            staticClass: "flex-1 mr-8",
+            staticClass: "mr-8 w-48",
             attrs: {
               label: "Port",
               name: "port",
@@ -51114,7 +51141,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("FormInput", {
-            staticClass: "flex-1 mr-8",
+            staticClass: "mr-8 w-48",
             attrs: { label: "From", name: "from", autofocus: "" },
             model: {
               value: _vm.form.from,
@@ -51126,7 +51153,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("FormSelect", {
-            staticClass: "flex-1 mr-8",
+            staticClass: "mr-8 w-48",
             attrs: {
               label: "Policy",
               name: "policy",
@@ -82303,8 +82330,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! c:\Users\hp\Downloads\OSPanel\domains\sputnik\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! c:\Users\hp\Downloads\OSPanel\domains\sputnik\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

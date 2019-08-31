@@ -41,6 +41,6 @@ class ServerFirewallPolicy
      */
     public function delete(?User $user, Server\Firewall\Rule $rule): bool
     {
-        return $user->canManageServer($rule->server);
+        return $rule->editable && $user->canManageServer($rule->server);
     }
 }

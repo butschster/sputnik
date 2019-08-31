@@ -7,9 +7,9 @@
         </div>
         <div class="flex">
             <FormInput v-model="form.name" label="Name" name="name" class="flex-1 mr-8" required autofocus/>
-            <FormInputNumber v-model="form.port" label="Port" name="port" class="flex-1 mr-8" minlength="2" maxlength="4" required autofocus/>
-            <FormInput v-model="form.from" label="From" name="from" class="flex-1 mr-8" autofocus/>
-            <FormSelect v-model="form.policy" label="Policy" name="policy" :options="policy_value"  class="flex-1 mr-8"required autofocus/>
+            <FormInputNumber v-model="form.port" label="Port" name="port" class="mr-8 w-48" minlength="2" maxlength="4" required autofocus/>
+            <FormInput v-model="form.from" label="From" name="from" class="mr-8 w-48" autofocus/>
+            <FormSelect v-model="form.policy" label="Policy" name="policy" :options="policy_value" class="mr-8 w-48"required autofocus/>
 
             <div class="form-group mb-0">
                 <button class="btn btn-primary" @click="onSubmit">Create</button>
@@ -35,7 +35,7 @@
                     name: null,
                     port: null,
                     from: null,
-                    policy: null
+                    policy: "allow"
 
                 },
                 policy_value: [
@@ -51,7 +51,6 @@
                 try {
                     const response = await this.$api('v1.server.firewall.store', {server: this.server.id}).request(this.form)
                     this.$emit('created', response.data.data)
-                    console.log(response)
 
                     this.$notify({
                         text: 'Rule successfully create',
@@ -70,7 +69,7 @@
                     name: null,
                     port: null,
                     from: null,
-                    policy: null,
+                    policy: "allow",
                     status: null
                 }
             }

@@ -33,6 +33,13 @@ class Rule extends Model implements UfwRule
     ];
 
     /**
+     * {@inheritdoc}
+     */
+    protected $casts = [
+        'editable' => 'bool'
+    ];
+
+    /**
      * Get the policy
      *
      * @return string
