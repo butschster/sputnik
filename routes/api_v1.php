@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('profile/notification', 'User\NotificationController@markAsRead')->name('profile.notifications.read');
 
     // Team
-    Route::get('profile/teams', 'User\TeamController@show')->name('profile.teams');
+    Route::get('profile/teams', 'User\TeamController@index')->name('profile.teams');
     Route::get('team/{team}', 'User\TeamController@show')->name('team.show');
     Route::get('team/{team}/members', 'User\Team\MembersController@index')->name('team.members');
 

@@ -4,7 +4,7 @@
             Users
         </h1>
 
-        <CreateForm :server="$parent.server" class="mb-12" @created="load()"/>
+        <CreateForm :server="$parent.server" class="well well-lg mb-12" @created="load()"/>
 
         <h4>Active users ({{ users.length }})</h4>
         <div v-if="hasUsers">

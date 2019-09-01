@@ -452,17 +452,17 @@
             multiple() {
                 this.clearSelection()
             },
+
+            value(value) {
+                this.selectValue(value)
+            }
         },
 
         created() {
             this.mutableLoading = this.loading;
 
             if (this.$options.propsData.hasOwnProperty('reduce') && this.value) {
-                if (Array.isArray(this.value)) {
-                    this.$data._value = this.value.map(value => this.findOptionFromReducedValue(value));
-                } else {
-                    this.$data._value = this.findOptionFromReducedValue(this.value);
-                }
+                this.selectValue(this.value)
             }
 
             this.$on('option:created', this.maybePushTag)
@@ -532,19 +532,24 @@
              * @emits input
              * @param value
              */
-            updateValue(value) {
-                if (this.isTrackingValues) {
-                    // Vue select has to manage value
-                    this.$data._value = value;
+            selectValue(value) {
+                if (Array.isArray(value)) {
+                    this.$data._value = value.map(value => this.findOptionFromReducedValue(value));
+                } else {
+                    this.$data._value = this.findOptionFromReducedValue(value);
                 }
+            },
 
-                if (value !== null) {
-                    if (Array.isArray(value)) {
-                        value = value.map(val => this.reduce(val));
-                    } else {
-                        value = this.reduce(value);
-                    }
-                }
+            /**
+             * Accepts a selected value, updates local
+             * state when required, and triggers the
+             * input event.
+             *
+             * @emits input
+             * @param value
+             */
+            updateValue(value) {
+                this.selectValue(value)
 
                 this.$emit('input', value);
             },

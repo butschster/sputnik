@@ -19,6 +19,9 @@ import ServerEvents from '@vue/Pages/Servers/Events/Index'
 // Server Tasks
 import ServerTasks from '@vue/Pages/Servers/Tasks/Index'
 
+// Server Supervisor
+import ServerSupervisor from '@vue/Pages/Servers/Supervisor/Index'
+
 // Sites
 import ServerSites from '@vue/Pages/Servers/Sites/Index'
 
@@ -114,6 +117,14 @@ export default [
                         path: '/server/:id/scheduler',
                         name: 'server.scheduler',
                         component: ServerScheduler,
+                        meta: {
+                            server: true
+                        }
+                    },
+                    {
+                        path: '/server/:id/supervisor',
+                        name: 'server.supervisor',
+                        component: ServerSupervisor,
                         meta: {
                             server: true
                         }

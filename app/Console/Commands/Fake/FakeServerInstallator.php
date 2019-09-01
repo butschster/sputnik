@@ -55,6 +55,8 @@ class FakeServerInstallator extends Command
             sleep(10);
         }
 
+        $server->refresh();
+
         if ($server->isConfiguring()) {
             $events = [
                 'ssh.configured' => 10,
@@ -71,9 +73,11 @@ class FakeServerInstallator extends Command
                 $this->sentRequest('server.event', [
                     'server_id' => $server->id, 'message' => $event, 'progress' => $progress,
                 ]);
-                sleep(5);
+                sleep(2);
             }
         }
+
+        $server->refresh();
 
         $server->markAsConfigured();
     }

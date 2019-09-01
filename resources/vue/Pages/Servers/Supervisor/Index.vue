@@ -1,72 +1,69 @@
 <template>
     <div>
         <h1>
-            Scheduler
+            Supervisor
         </h1>
 
         <CreateForm :server="$parent.server" @created="load" class="well well-lg mb-12" />
 
-        <div class="mt-10" v-if="hasJobs">
-            <Loader :loading="loading" />
-            <h4>Scheduled jobs ({{ jobs.length }})</h4>
+        <div class="mt-10" v-if="hasDaemons">
+            <Loader :loading="loading"/>
+
             <table class="table mb-0">
                 <col>
-                <col width="100px">
                 <col>
-                <col width="80px">
-                <col width="150px">
+                <col width="100px">
+                <col width="100px">
                 <col width="100px">
                 <col width="80px">
-                <thead>
+                <thead class="thead-dark">
                 <tr>
-                    <th>Name</th>
-                    <th>Cron</th>
                     <th>Command</th>
+                    <th>Directory</th>
+                    <th class="text-center">Procs</th>
                     <th class="text-right">User</th>
-                    <th class="text-right">Next run</th>
                     <th class="text-right">Status</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="job in jobs" :key="job.id">
-                    <th>{{ job.name }}</th>
-                    <td>{{ job.cron }}</td>
-                    <td>{{ job.command }}</td>
-                    <td class="text-right">{{ job.user }}</td>
+                <tr v-for="daemon in daemons" :key="daemon.id">
+                    <th>{{ daemon.command }}</th>
+                    <td>{{ daemon.directory }}</td>
+                    <td class="text-center">{{ daemon.processes }}</td>
+                    <td class="text-right">{{ daemon.user }}</td>
                     <td class="text-right">
-                        <span class="badge">{{ job.next_run_at | moment('from') }}</span>
-                    </td>
-                    <td class="text-right">
-                        <BadgeStatus :status="job.status" />
+                        <BadgeStatus :status="daemon.status"/>
                     </td>
 
                     <td class="text-right">
-                        <button class="btn btn-danger btn-sm" @click="remove(job)">
+                        <button class="btn btn-danger btn-sm" @click="remove(daemon)">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
                 </tr>
                 </tbody>
             </table>
+
         </div>
 
         <div v-else class="well well-lg text-center">
-            <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1418/1418561.svg" alt="" width="100px">
-            <h3 class="mb-0">Looks like you don't have any scheduled jobs yet</h3>
+            <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1681/1681597.svg" alt="" width="100px">
+            <h3 class="mb-0">Looks like you don't have any daemons yet</h3>
         </div>
     </div>
 </template>
 
 <script>
-    import CreateForm from "@vue/components/Server/Scheduler/CreateForm"
+    import CreateForm from "@vue/components/Server/Supervisor/CreateForm"
     import BadgeStatus from "@vue/components/UI/Badge/Status"
+
     export default {
-        components: {BadgeStatus, CreateForm},
+        components: {CreateForm, BadgeStatus},
         data() {
             return {
                 loading: false,
-                jobs: [],
+                daemons: []
             }
         },
         mounted() {
@@ -77,36 +74,36 @@
                 this.loading = true
 
                 try {
-                   this.jobs = await this.$api.serverCron.list(this.$parent.server.id)
+                    this.daemons = await this.$api.serverSupervisor.list(this.$parent.server.id)
                 } catch (e) {
                     this.$handleError(e)
                 }
 
                 this.loading = false
             },
-            async remove(job) {
+            async remove(daemon) {
                 this.loading = true
 
                 try {
-                    await this.$api.serverCron.remove(job.id)
-                    this.onRemoved(job)
+                    await this.$api.serverSupervisor.remove(daemon.id)
+                    this.onRemoved(daemon)
                 } catch (e) {
                     this.$handleError(e)
                 }
 
                 this.loading = false
             },
-            onRemoved(job) {
+            onRemoved(daemon) {
                 this.load()
                 this.$notify({
-                    text: 'Cron job successfully deleted',
+                    text: 'Daemon successfully deleted',
                     type: 'success'
                 });
             }
         },
         computed: {
-            hasJobs() {
-                return this.jobs.length > 0
+            hasDaemons() {
+                return this.daemons.length > 0
             }
         }
     }

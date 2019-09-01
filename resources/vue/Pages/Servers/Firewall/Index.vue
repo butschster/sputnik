@@ -4,7 +4,7 @@
             Firewall
         </h1>
 
-        <CreateFormFirewall :server="$parent.server" class="mb-12" @created="load"/>
+        <CreateFormFirewall :server="$parent.server" @created="load" class="well well-lg mb-12"/>
 
         <div v-if="hasRules">
             <h4>Active users ({{ rules.length }})</h4>

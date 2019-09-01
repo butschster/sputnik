@@ -7,10 +7,10 @@
         </div>
 
         <div class="card-body" v-if="$gate.allow('create', 'server')">
+            <Loader :loading="loading" />
             <div class="flex">
                 <FormInput v-model="form.name" :label="label.name" name="name" class="w-full mr-8" required autofocus/>
-                <FormSelect v-model="form.team_id" :label="label.team" name="team_id" class="w-full" :options="teams"
-                            required/>
+                <FormSelect v-model="form.team_id" :label="label.team" name="team_id" class="w-full" :options="teams" required/>
             </div>
 
             <div class="flex">
@@ -45,6 +45,8 @@
         components: {FormInput, FormSelect},
         data() {
             return {
+                loading: false,
+                teams: [],
                 form: {
                     name: 'Test server',
                     team_id: null,
@@ -73,7 +75,30 @@
                 ],
             }
         },
+        mounted() {
+            this.loadTeams()
+        },
         methods: {
+            async loadTeams() {
+                this.loading = true
+
+                try {
+
+                    const teams = await this.$api.userProfileTeam.list()
+                    this.teams = teams.map(team => {
+                        return {
+                            label: team.name,
+                            value: team.id
+                        }
+                    })
+
+                    this.form.team_id = this.user.team.id
+                } catch (e) {
+                    this.$handleError(e)
+                }
+
+                this.loading = false
+            },
             async onSubmit() {
                 const server = await this.$store.dispatch('servers/createServer', this.form)
             }
@@ -83,7 +108,7 @@
                 hasServers: 'hasServers',
             }),
             ...mapGetters('auth', {
-                teams: 'getTeamsOptions',
+                user: 'getUser',
             }),
             title() {
                 if (this.hasServers) {

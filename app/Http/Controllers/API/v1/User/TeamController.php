@@ -16,7 +16,7 @@ class TeamController extends Controller
      */
     public function index(Request $request): TeamsCollection
     {
-        $teams = $request->user()->rolesTeams();
+        $teams = $request->user()->rolesTeams;
 
         return TeamsCollection::make($teams);
     }

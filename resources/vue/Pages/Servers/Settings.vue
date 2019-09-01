@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>Settings</h1>
         <section class="section">
             <div class="section-header">
                 Server's Public Key

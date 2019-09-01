@@ -33,6 +33,8 @@
         },
         mounted() {
             this.load()
+
+            this.$api.serverSites.onCreate(site => this.load())
         },
         methods: {
             async load() {

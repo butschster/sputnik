@@ -41,7 +41,10 @@
             loaded() {
                 this.$echo.onServerStatusChanged(this.server.id, (e) => {
                     this.server.status = e.status
-                    console.log(e)
+                })
+
+                this.$echo.onServerConfigured(this.server.id, (e) => {
+                    this.load()
                 })
 
                 this.$store.dispatch('server/setServer', this.server)
@@ -53,8 +56,8 @@
                     this.server = await this.$api.server.show(this.$route.params.id)
                     this.loaded()
                 } catch (e) {
+                    this.$handleError(e)
                     this.$router.replace({name: "404"})
-                    throw e
                 }
 
                 this.loading = false
