@@ -42,8 +42,7 @@
                 this.loading = true
 
                 try {
-                    const response = await this.$api('v1.team.members', {team: this.team.id}).request()
-                    this.users = response.data.data
+                    this.users = await this.$api.team.members(this.team.id)
                 } catch (e) {
                     console.error(e)
                 }

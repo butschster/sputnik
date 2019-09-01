@@ -9,23 +9,24 @@ Route::middleware('auth')->group(function () {
 
     // User
     Route::get('profile', 'UserController@profile')->name('user.profile');
-    Route::get('profile/source-providers', 'User\SourceProvidersController@connected')->name('user.source_providers');
-    Route::delete('profile', 'UserController@delete')->name('user.delete');
+    Route::put('profile', 'UserController@update')->name('user.profile.update');
+    Route::get('profile/source-providers', 'User\SourceProvidersController@connected')->name('profile.source_providers');
+    Route::delete('profile', 'UserController@delete')->name('profile.delete');
 
     // Team
-    Route::get('profile/teams', 'User\TeamController@show')->name('teams');
-    Route::get('profile/team/{team}', 'User\TeamController@show')->name('team.show');
-    Route::get('profile/team/{team}/members', 'User\Team\MembersController@index')->name('team.members');
+    Route::get('profile/teams', 'User\TeamController@show')->name('profile.teams');
+    Route::get('team/{team}', 'User\TeamController@show')->name('team.show');
+    Route::get('team/{team}/members', 'User\Team\MembersController@index')->name('team.members');
 
-    Route::get('profile/team/{team}/payment/methods', 'User\Team\PaymentMethodsController@paymentMethods')->name('team.payment.methods');
-    Route::post('profile/team/{team}/payment/intention', 'User\Team\PaymentMethodsController@createIntenttion')->name('team.payment.method.intent');
-    Route::post('profile/team/{team}/payment/method', 'User\Team\PaymentMethodsController@store')->name('team.payment.method.store');
-    Route::delete('profile/team/{team}/payment/method/{id}', 'User\Team\PaymentMethodsController@delete')->name('team.payment.method.delete');
+    Route::get('team/{team}/payment/methods', 'User\Team\PaymentMethodsController@paymentMethods')->name('team.payment.methods');
+    Route::post('team/{team}/payment/intention', 'User\Team\PaymentMethodsController@createIntenttion')->name('team.payment.method.intent');
+    Route::post('team/{team}/payment/method', 'User\Team\PaymentMethodsController@store')->name('team.payment.method.store');
+    Route::delete('team/{team}/payment/method/{id}', 'User\Team\PaymentMethodsController@delete')->name('team.payment.method.delete');
 
     // Subscription
-    Route::delete('profile/team/{team}/cancel-subscription', 'SubscriptionController@cancel')->name('team.subscription.cancel');
-    Route::post('profile/team/{team}/resume-subscription', 'SubscriptionController@resume')->name('team.subscription.resume');
-    Route::post('profile/team/{team}/subscribe/{plan}', 'SubscriptionController@subscribe')->name('team.subscribe');
+    Route::delete('team/{team}/cancel-subscription', 'SubscriptionController@cancel')->name('team.subscription.cancel');
+    Route::post('team/{team}/resume-subscription', 'SubscriptionController@resume')->name('team.subscription.resume');
+    Route::post('team/{team}/subscribe/{plan}', 'SubscriptionController@subscribe')->name('team.subscribe');
 
     Route::middleware('has-subscription')->group(function () {
         // Servers
@@ -52,7 +53,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('server/database/{database}', 'Server\DatabaseController@delete')->name('server.database.delete');
 
         // Firewall
-        Route::get('server/{server}/firewall/rules', 'Server\FirewallController@index')->name('server.firewall.index');
+        Route::get('server/{server}/firewall/rules', 'Server\FirewallController@index')->name('server.firewall.rules');
         Route::post('server/{server}/firewall', 'Server\FirewallController@store')->name('server.firewall.store');
         Route::get('server/firewall/{rule}', 'Server\FirewallController@show')->name('server.firewall.show');
         Route::delete('server/firewall/{rule}', 'Server\FirewallController@delete')->name('server.firewall.delete');

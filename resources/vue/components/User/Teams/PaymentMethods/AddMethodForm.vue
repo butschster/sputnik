@@ -76,9 +76,9 @@
                     this.stripeError = error
                     this.$emit('error', error)
                 } else {
-                    const response = await this.$api('v1.team.payment.method.store', {team: this.team.id}).request(setupIntent)
+                    const response = await this.$api.teamBilling.storePaymentMethod(this.team.id, setupIntent)
                     this.secret = null
-                    this.$emit('added', response.data)
+                    this.$emit('added', response)
                     this.$modal.close('add_payment_method')
 
                     this.$notify({
@@ -93,8 +93,7 @@
                 this.loading = true
 
                 try {
-                    const response = await this.$api('v1.team.payment.method.intent', {team: this.team.id}).request()
-                    this.secret = response.data
+                    this.secret = await this.$api.teamBilling.createIntentionSecret(this.team.id)
 
                     setTimeout(() => {
                         this.initStripe()

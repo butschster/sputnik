@@ -31,10 +31,7 @@
                 this.loading = true
 
                 try {
-                    await this.$api('v1.team.payment.method.delete', {
-                        team: this.team.id,
-                        id: this.method.id
-                    }).request()
+                    await this.$api.teamBilling.deletePaymentMethod(this.team.id, this.method.id)
                     this.$emit('deleted', this.method)
                 } catch (e) {
                     console.error(e)

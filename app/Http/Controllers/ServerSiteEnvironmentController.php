@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class ServerSiteEnvironmentController extends Controller
 {
+    /**
+     * @param $server
+     * @param Site $site
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index($server, Site $site)
     {
         return view('server.site.environment.index', [
@@ -22,6 +27,7 @@ class ServerSiteEnvironmentController extends Controller
      * @param Request $request
      * @param $server
      * @param Site $site
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Validation\ValidationException
      */
     public function upload(Request $request, $server, Site $site)

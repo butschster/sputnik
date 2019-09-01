@@ -31,8 +31,7 @@
                 this.loading = true
 
                 try {
-                    const response = await this.$api('v1.source_providers').request()
-                    this.providers = response.data
+                    this.providers = await this.$api.sourceProviders.list()
                 } catch (e) {
                     console.error(e)
                 }

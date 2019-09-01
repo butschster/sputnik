@@ -52,8 +52,8 @@
                 this.loading = true
 
                 try {
-                    const response = await this.$api('v1.server.firewall.store', {server: this.server.id}).request(this.form)
-                    this.$emit('created', response.data.data)
+                    const rule = await this.$api.serverFirewall.store(this.server.id, this.form)
+                    this.$emit('created', rule)
 
                     this.$notify({
                         text: 'Rule successfully create',

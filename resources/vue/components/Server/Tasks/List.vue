@@ -66,8 +66,7 @@
             async load(page = 1) {
                 this.loading = true
                 try {
-                    const response = await this.$api('v1.server.tasks', {server: this.server.id}).request({page})
-                    this.tasks = response.data
+                    this.tasks = await this.$api.serverTasks.list(this.server.id, page)
                 } catch (e) {
                     console.error(e)
                 }

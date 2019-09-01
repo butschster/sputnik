@@ -39,8 +39,8 @@
                 this.loading = true
 
                 try {
-                    const response = await this.$api('v1.server.user.store', {server: this.server.id}).request(this.form)
-                    this.$emit('created', response.data.data)
+                    const user = await this.$api.serverUsers.store(this.server.id, this.form)
+                    this.$emit('created', user)
 
                     this.$notify({
                         text: 'User successfully create',

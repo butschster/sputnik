@@ -30,7 +30,7 @@
                 this.loading = true
 
                 try {
-                    await this.$api('v1.team.subscription.resume', {team: this.team.id}).request()
+                    await this.$apiRoute('v1.team.subscription.resume', {team: this.team.id}).request()
                 } catch (e) {
                     console.error(e)
                 }

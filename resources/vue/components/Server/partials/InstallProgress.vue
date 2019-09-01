@@ -58,16 +58,11 @@
         },
         methods: {
             async loadLastEvent() {
-                try {
-                    const response = await this.$api('v1.server.event.last', {server: this.server.id}).request()
-                    this.last_event = response.data.data
+                this.last_event = await this.$api.serverEvents.lastOne(this.server.id)
 
-                    this.message = this.last_event.message
-                    if (typeof this.last_event.meta.progress != "undefined") {
-                        this.progress = this.last_event.meta.progress
-                    }
-                } catch (e) {
-                    console.error(e)
+                this.message = this.last_event.message
+                if (typeof this.last_event.meta.progress != "undefined") {
+                    this.progress = this.last_event.meta.progress
                 }
             }
         },

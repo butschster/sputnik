@@ -60,8 +60,7 @@
                 this.loading = true
 
                 try {
-                    const response = await this.$api('v1.team.payment.methods', {team: this.team.id}).request()
-                    this.paymentMethods = response.data
+                    this.paymentMethods = await this.$api.teamBilling.paymentMethods(this.team.id)
                 } catch (e) {
                     console.error(e)
                 }

@@ -52,8 +52,7 @@
                 this.loading = true
 
                 try {
-                    const response = await this.$api('v1.team.show', {team: this.$route.params.id}).request()
-                    this.team = response.data.data
+                    this.team = await this.$api.team.show(this.$route.params.id)
                 } catch (e) {
                     console.error(e)
                     this.$router.replace({name: "404"})

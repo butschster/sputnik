@@ -54,7 +54,7 @@
                 this.loading = true
 
                 try {
-                    await this.$api('v1.user.delete').request(this.form)
+                    await this.$api.userProfile.remove(this.form)
                 } catch (e) {
                     console.error(e)
                 }

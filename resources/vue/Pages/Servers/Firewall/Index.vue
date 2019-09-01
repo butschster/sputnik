@@ -88,10 +88,7 @@
                 }
 
                 try {
-                    const response = await this.$api('v1.server.firewall.index', {server: this.$parent.server.id}).request({
-                        page: this.page
-                    })
-                    this.rules = response.data
+                    this.rules = await this.$api.serverFirewall.list(this.$parent.server.id, this.page)
                 } catch (e) {
                     console.error(e)
                 }
@@ -109,7 +106,7 @@
                 this.loading = true
 
                 try {
-                    await this.$api('v1.server.firewall.delete', {rule: rule.id}).request()
+                    await this.$api.serverFirewall.remove(rule.id)
                     this.removedRule(rule)
                 } catch (e) {
                     console.error(e)

@@ -1,4 +1,4 @@
-import {api_route} from "@js/api/Router";
+import {api} from "@js/api";
 
 const state = {
     servers: null,
@@ -13,11 +13,11 @@ const getters = {
 }
 
 const actions = {
-    async loadServers({commit}) {
+    async loadServers({commit}, page = 1) {
         commit('setLoading', true)
         try {
-            const response = await api_route('v1.servers').request()
-            commit('setServers', response.data.data)
+            const servers = await api.server.list()
+            commit('setServers', servers)
         } catch (e) {
             console.error(e)
         }
@@ -28,9 +28,9 @@ const actions = {
         return new Promise(async (resolve, reject) => {
             commit('setLoading', true)
             try {
-                const response = await api_route('v1.server.store').request(data)
+                const server = await api.server.store(data)
                 this.dispatch('servers/loadServers')
-                resolve(response.data.data)
+                resolve(server)
             } catch (e) {
                 console.error(e)
                 reject(e)

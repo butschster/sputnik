@@ -1,3 +1,4 @@
 import Vue from 'vue'
 
-Vue.prototype.$bus = new Vue()
+const bus = new Vue()
+Vue.$bus = Vue.prototype.$bus = bus

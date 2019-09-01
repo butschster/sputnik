@@ -80,10 +80,7 @@
                 }
 
                 try {
-                    const response = await this.$api('v1.server.users', {server: this.$parent.server.id}).request({
-                        page: this.page
-                    })
-                    this.users = response.data
+                    this.users = await this.$api.serverUsers.list(this.$parent.server.id, this.page)
                 } catch (e) {
                     console.error(e)
                 }
@@ -101,7 +98,7 @@
                 this.loading = true
 
                 try {
-                    await this.$api('v1.server.user.delete', {user: user.id}).request()
+                    await this.$api.serverUsers.remove(user.id)
                     this.removedUser(user)
                 } catch (e) {
                     console.error(e)

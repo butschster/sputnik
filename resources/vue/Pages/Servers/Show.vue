@@ -51,8 +51,7 @@
                 this.loading = true
 
                 try {
-                    const response = await this.$api('v1.server.show', {server: this.$route.params.id}).request()
-                    this.server = response.data.data
+                    this.server = await this.$api.server.show(this.$route.params.id)
                     this.loaded()
                 } catch (e) {
                     console.error(e)

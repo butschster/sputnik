@@ -23,13 +23,15 @@ Vue.use(PortalVue)
 Vue.use(Notifications)
 Vue.use(Moment)
 
-require('./http')
-require('./api')
-//import i18n from './vue/plugins/18n'
+require('./vue/plugins/eventBus')
 require('./vue/plugins/echo')
-require('./vue/plugins/clipboard')
 require('./vue/plugins/modal')
 require('./vue/plugins/dropdown')
 require('./vue/plugins/stripe')
-require('./vue/plugins/eventBus')
+
+require('./http')
+require('./api')
+
+//import i18n from './vue/plugins/18n'
+require('./vue/plugins/clipboard')
 require('./vue/directives/click-ouside')

@@ -43,7 +43,7 @@
                 this.loading = true
 
                 try {
-                    await this.$api('v1.server.update', {server: this.server.id}).request({name: this.server.name})
+                    await this.$api.server.update(this.server.id, {name: this.server.name})
 
                     this.$notify({
                         text: 'Server settings saved',

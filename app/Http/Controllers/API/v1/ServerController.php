@@ -19,7 +19,7 @@ class ServerController extends Controller
      */
     public function index(Request $request): ServerCollection
     {
-        $servers = $request->user()->servers()->with('team', 'user')->paginate();
+        $servers = $request->user()->servers()->with('team', 'user')->get();
 
         return ServerCollection::make($servers);
     }
