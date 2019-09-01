@@ -41,13 +41,13 @@ Route::middleware('auth')->group(function () {
         Route::get('server/{server}/last-event', 'Server\EventsController@last')->name('server.event.last');
 
         // Cron jobs
-        Route::get('server/{server}/cron', 'Server\SchedulerController@index')->name('server.cron_job.index');
+        Route::get('server/{server}/cron', 'Server\SchedulerController@index')->name('server.cron_jobs');
         Route::post('server/{server}/cron', 'Server\SchedulerController@store')->name('server.cron_job.store');
         Route::get('server/cron/{job}', 'Server\SchedulerController@show')->name('server.cron_job.show');
         Route::delete('server/cron/{job}', 'Server\SchedulerController@delete')->name('server.cron_job.delete');
 
         // Database
-        Route::get('server/{server}/databases', 'Server\DatabaseController@index')->name('server.database.index');
+        Route::get('server/{server}/databases', 'Server\DatabaseController@index')->name('server.databases');
         Route::post('server/{server}/database', 'Server\DatabaseController@store')->name('server.database.store');
         Route::get('server/database/{database}', 'Server\DatabaseController@show')->name('server.database.show');
         Route::delete('server/database/{database}', 'Server\DatabaseController@delete')->name('server.database.delete');
@@ -67,19 +67,18 @@ Route::middleware('auth')->group(function () {
         // Server tasks
         Route::get('server/{server}/tasks', 'Server\TasksController@index')->name('server.tasks');
         Route::get('server/task/{task}', 'Server\TasksController@show')->name('server.task.show');
-        Route::delete('server/task/{task}', 'Server\TasksController@delete')->name('server.task.delete');
 
         // Supervisor
-        Route::get('server/{server}/supervisor/list', 'Server\SupervisorController@index')->name('server.supervisor.index');
+        Route::get('server/{server}/supervisor/list', 'Server\SupervisorController@index')->name('server.supervisors');
         Route::post('server/{server}/supervisor/daemon', 'Server\SupervisorController@store')->name('server.supervisor.store');
         Route::get('server/supervisor/{daemon}', 'Server\SupervisorController@show')->name('server.supervisor.show');
         Route::delete('server/supervisor/{daemon}', 'Server\SupervisorController@delete')->name('server.supervisor.delete');
 
         // Site
-        Route::get('/server/{server}/sites', 'Server\SiteController@index')->name('server.sites');
-        Route::get('/server/site/{site}', 'Server\SiteController@show')->name('server.site.show');
-        Route::post('/server/{server}/site', 'Server\SiteController@store')->name('server.site.store');
-        Route::delete('/server/site/{site}', 'Server\SiteController@delete')->name('server.site.delete');
+        Route::get('server/{server}/sites', 'Server\SiteController@index')->name('server.sites');
+        Route::get('server/site/{site}', 'Server\SiteController@show')->name('server.site.show');
+        Route::post('server/{server}/site', 'Server\SiteController@store')->name('server.site.store');
+        Route::delete('server/site/{site}', 'Server\SiteController@delete')->name('server.site.delete');
 
         // Site deployment
         Route::get('/server/site/{site}/deploy/config', 'Server\Site\DeploymentsController@config')->name('server.site.deploy.config');

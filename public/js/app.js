@@ -2221,10 +2221,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       loading: false,
-      page: 1,
-      rules: {
-        data: []
-      }
+      rules: []
     };
   },
   mounted: function mounted() {
@@ -2235,42 +2232,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _load = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var page,
-            _args = arguments;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                page = _args.length > 0 && _args[0] !== undefined ? _args[0] : 1;
                 this.loading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return this.$api.serverFirewall.list(this.$parent.server.id);
 
-                if (page > 0) {
-                  this.page = page;
-                }
-
-                _context.prev = 3;
-                _context.next = 6;
-                return this.$api.serverFirewall.list(this.$parent.server.id, this.page);
-
-              case 6:
+              case 4:
                 this.rules = _context.sent;
-                _context.next = 12;
+                _context.next = 10;
                 break;
 
-              case 9:
-                _context.prev = 9;
-                _context.t0 = _context["catch"](3);
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](1);
                 console.error(_context.t0);
 
-              case 12:
+              case 10:
                 this.loading = false;
 
-              case 13:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[3, 9]]);
+        }, _callee, this, [[1, 7]]);
       }));
 
       function load() {
@@ -2280,7 +2269,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return load;
     }(),
     removedRule: function removedRule(rule) {
-      this.load(0);
+      this.load();
       this.$notify({
         text: 'Rule successfully deleted',
         type: 'success'
@@ -2336,7 +2325,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     hasUsers: function hasUsers() {
-      return this.rules.data.length > 0;
+      return this.rules.length > 0;
     }
   }
 });
@@ -3750,7 +3739,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _onSubmit = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
+        var site;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -3758,13 +3747,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.loading = true;
                 _context.prev = 1;
                 _context.next = 4;
-                return this.$apiRoute('v1.server.site.store', {
-                  server: this.$route.params.id
-                }).request(this.form);
+                return this.$api.serverSites.store(this.$route.params.id, this.form);
 
               case 4:
-                response = _context.sent;
-                this.created(response.data.data);
+                site = _context.sent;
+                this.created(site);
                 _context.next = 11;
                 break;
 
@@ -3850,7 +3837,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _load = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -3858,30 +3844,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.loading = true;
                 _context.prev = 1;
                 _context.next = 4;
-                return this.$apiRoute('v1.server.sites', {
-                  server: this.$route.params.id
-                }).request();
+                return this.$api.serverSites.list(this.$route.params.id);
 
               case 4:
-                response = _context.sent;
-                this.sites = response.data.data;
-                _context.next = 11;
+                this.sites = _context.sent;
+                _context.next = 10;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 7:
+                _context.prev = 7;
                 _context.t0 = _context["catch"](1);
                 console.error(_context.t0);
 
-              case 11:
+              case 10:
                 this.loading = false;
 
-              case 12:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 8]]);
+        }, _callee, this, [[1, 7]]);
       }));
 
       function load() {
@@ -6768,9 +6751,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.loading = true;
                 _context.prev = 1;
                 _context.next = 4;
-                return this.$apiRoute('v1.team.subscription.cancel', {
-                  team: this.team.id
-                }).request();
+                return this.$api.subscription.cancel(this.team.id);
 
               case 4:
                 this.$modal.close('cancel');
@@ -6889,7 +6870,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _subscribe = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(plan) {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -6897,31 +6877,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.loading = true;
                 _context.prev = 1;
                 _context.next = 4;
-                return this.$apiRoute('v1.team.subscribe', {
-                  team: this.team.id,
-                  plan: plan.id
-                }).request();
+                return this.$api.subscription.subscribe(this.team.id, plan.id);
 
               case 4:
-                response = _context.sent;
                 this.$bus.$emit('subscribed');
-                _context.next = 11;
+                _context.next = 10;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 7:
+                _context.prev = 7;
                 _context.t0 = _context["catch"](1);
                 console.error(_context.t0);
 
-              case 11:
+              case 10:
                 this.loading = false;
 
-              case 12:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 8]]);
+        }, _callee, this, [[1, 7]]);
       }));
 
       function subscribe(_x) {
@@ -6934,7 +6910,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _load = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -6942,28 +6917,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.loading = true;
                 _context2.prev = 1;
                 _context2.next = 4;
-                return this.$apiRoute('v1.subscription.plans').request();
+                return this.$api.subscription.plans();
 
               case 4:
-                response = _context2.sent;
-                this.plans = response.data.data;
-                _context2.next = 11;
+                this.plans = _context2.sent;
+                _context2.next = 10;
                 break;
 
-              case 8:
-                _context2.prev = 8;
+              case 7:
+                _context2.prev = 7;
                 _context2.t0 = _context2["catch"](1);
                 console.error(_context2.t0);
 
-              case 11:
+              case 10:
                 this.loading = false;
 
-              case 12:
+              case 11:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this, [[1, 8]]);
+        }, _callee2, this, [[1, 7]]);
       }));
 
       function load() {
@@ -7058,9 +7032,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.loading = true;
                 _context.prev = 1;
                 _context.next = 4;
-                return this.$apiRoute('v1.team.subscription.resume', {
-                  team: this.team.id
-                }).request();
+                return this.$api.subscription.resume(this.team.id);
 
               case 4:
                 _context.next = 9;
@@ -50697,16 +50669,10 @@ var render = function() {
       _c("CreateFormFirewall", {
         staticClass: "mb-12",
         attrs: { server: _vm.$parent.server },
-        on: {
-          created: function($event) {
-            return _vm.load(0)
-          }
-        }
+        on: { created: _vm.load }
       }),
       _vm._v(" "),
-      _c("h4", [
-        _vm._v("Active users (" + _vm._s(_vm.rules.data.length) + ")")
-      ]),
+      _c("h4", [_vm._v("Active users (" + _vm._s(_vm.rules.length) + ")")]),
       _vm._v(" "),
       _vm.hasUsers
         ? _c(
@@ -78941,14 +78907,30 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$apiRoute = _Router__WEBPAC
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./profile */ "./resources/js/api/methods/profile.js");
 /* harmony import */ var _team__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./team */ "./resources/js/api/methods/team.js");
-/* harmony import */ var _team_billing__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./team/billing */ "./resources/js/api/methods/team/billing.js");
-/* harmony import */ var _profile_teams__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile/teams */ "./resources/js/api/methods/profile/teams.js");
-/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./server */ "./resources/js/api/methods/server.js");
-/* harmony import */ var _server_events__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./server/events */ "./resources/js/api/methods/server/events.js");
-/* harmony import */ var _server_tasks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./server/tasks */ "./resources/js/api/methods/server/tasks.js");
-/* harmony import */ var _server_users__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./server/users */ "./resources/js/api/methods/server/users.js");
-/* harmony import */ var _server_firewall__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./server/firewall */ "./resources/js/api/methods/server/firewall.js");
-/* harmony import */ var _sourceProviders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./sourceProviders */ "./resources/js/api/methods/sourceProviders.js");
+/* harmony import */ var _subscription__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./subscription */ "./resources/js/api/methods/subscription.js");
+/* harmony import */ var _team_billing__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./team/billing */ "./resources/js/api/methods/team/billing.js");
+/* harmony import */ var _profile_teams__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile/teams */ "./resources/js/api/methods/profile/teams.js");
+/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./server */ "./resources/js/api/methods/server.js");
+/* harmony import */ var _server_cron__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./server/cron */ "./resources/js/api/methods/server/cron.js");
+/* harmony import */ var _server_events__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./server/events */ "./resources/js/api/methods/server/events.js");
+/* harmony import */ var _server_tasks__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./server/tasks */ "./resources/js/api/methods/server/tasks.js");
+/* harmony import */ var _server_users__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./server/users */ "./resources/js/api/methods/server/users.js");
+/* harmony import */ var _server_firewall__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./server/firewall */ "./resources/js/api/methods/server/firewall.js");
+/* harmony import */ var _server_database__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./server/database */ "./resources/js/api/methods/server/database.js");
+/* harmony import */ var _server_supervisor__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./server/supervisor */ "./resources/js/api/methods/server/supervisor.js");
+/* harmony import */ var _sourceProviders__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./sourceProviders */ "./resources/js/api/methods/sourceProviders.js");
+/* harmony import */ var _server_sites__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./server/sites */ "./resources/js/api/methods/server/sites.js");
+/* harmony import */ var _server_site_deployment__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./server/site/deployment */ "./resources/js/api/methods/server/site/deployment.js");
+/* harmony import */ var _server_site_environment__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./server/site/environment */ "./resources/js/api/methods/server/site/environment.js");
+/* harmony import */ var _server_site_repository__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./server/site/repository */ "./resources/js/api/methods/server/site/repository.js");
+
+
+
+
+
+
+
+
 
 
 
@@ -78960,16 +78942,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  sourceProviders: _sourceProviders__WEBPACK_IMPORTED_MODULE_9__,
+  subscription: _subscription__WEBPACK_IMPORTED_MODULE_2__,
+  sourceProviders: _sourceProviders__WEBPACK_IMPORTED_MODULE_13__,
   team: _team__WEBPACK_IMPORTED_MODULE_1__,
-  teamBilling: _team_billing__WEBPACK_IMPORTED_MODULE_2__,
+  teamBilling: _team_billing__WEBPACK_IMPORTED_MODULE_3__,
   userProfile: _profile__WEBPACK_IMPORTED_MODULE_0__,
-  userProfileTeam: _profile_teams__WEBPACK_IMPORTED_MODULE_3__,
-  server: _server__WEBPACK_IMPORTED_MODULE_4__,
-  serverEvents: _server_events__WEBPACK_IMPORTED_MODULE_5__,
-  serverTasks: _server_tasks__WEBPACK_IMPORTED_MODULE_6__,
-  serverUsers: _server_users__WEBPACK_IMPORTED_MODULE_7__,
-  serverFirewall: _server_firewall__WEBPACK_IMPORTED_MODULE_8__
+  userProfileTeam: _profile_teams__WEBPACK_IMPORTED_MODULE_4__,
+  server: _server__WEBPACK_IMPORTED_MODULE_5__,
+  serverSites: _server_sites__WEBPACK_IMPORTED_MODULE_14__,
+  serverSiteDeployment: _server_site_deployment__WEBPACK_IMPORTED_MODULE_15__,
+  serverSiteEnvironment: _server_site_environment__WEBPACK_IMPORTED_MODULE_16__,
+  serverSiteRepository: _server_site_repository__WEBPACK_IMPORTED_MODULE_17__,
+  serverEvents: _server_events__WEBPACK_IMPORTED_MODULE_7__,
+  serverTasks: _server_tasks__WEBPACK_IMPORTED_MODULE_8__,
+  serverUsers: _server_users__WEBPACK_IMPORTED_MODULE_9__,
+  serverFirewall: _server_firewall__WEBPACK_IMPORTED_MODULE_10__,
+  serverCron: _server_cron__WEBPACK_IMPORTED_MODULE_6__,
+  serverDatabases: _server_database__WEBPACK_IMPORTED_MODULE_11__,
+  serverSupervisor: _server_supervisor__WEBPACK_IMPORTED_MODULE_12__
 });
 
 /***/ }),
@@ -78978,17 +78968,17 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************!*\
   !*** ./resources/js/api/methods/profile.js ***!
   \*********************************************/
-/*! exports provided: profile, update, ocUpdate, sourceProviders, remove, ocDelete */
+/*! exports provided: profile, update, onUpdate, sourceProviders, remove, onDelete */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profile", function() { return profile; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ocUpdate", function() { return ocUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onUpdate", function() { return onUpdate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sourceProviders", function() { return sourceProviders; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ocDelete", function() { return ocDelete; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onDelete", function() { return onDelete; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Router */ "./resources/js/api/Router.js");
@@ -79093,7 +79083,7 @@ function _update() {
   return _update.apply(this, arguments);
 }
 
-function ocUpdate(callback) {
+function onUpdate(callback) {
   vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$on(PROFILE_UPDATED, callback);
 }
 /**
@@ -79185,7 +79175,7 @@ function _remove() {
   return _remove.apply(this, arguments);
 }
 
-function ocDelete(callback) {
+function onDelete(callback) {
   vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$on(PROFILE_DELETED, callback);
 }
 
@@ -79214,20 +79204,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /**
  * Load user teams
  *
- * @param {String} id
- * @param {Number} page
- *
  * @return {Object}
  */
 
-function list(_x, _x2) {
+function list() {
   return _list.apply(this, arguments);
 }
 
 function _list() {
   _list = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(id, page) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
@@ -79262,7 +79249,7 @@ function _list() {
 /*!********************************************!*\
   !*** ./resources/js/api/methods/server.js ***!
   \********************************************/
-/*! exports provided: list, show, store, ocCreate, update, ocUpdate, remove, ocDelete */
+/*! exports provided: list, show, store, onCreate, update, onUpdate, remove, onDelete */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -79270,11 +79257,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "list", function() { return list; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "show", function() { return show; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ocCreate", function() { return ocCreate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onCreate", function() { return onCreate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ocUpdate", function() { return ocUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onUpdate", function() { return onUpdate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ocDelete", function() { return ocDelete; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onDelete", function() { return onDelete; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Router */ "./resources/js/api/Router.js");
@@ -79303,7 +79290,7 @@ function list() {
 /**
  * Load server information by ID
  *
- * @param {String} id
+ * @param {String} serverId
  * @return {Object}
  */
 
@@ -79352,7 +79339,7 @@ function show(_x) {
 function _show() {
   _show = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(id) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(serverId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
@@ -79361,7 +79348,7 @@ function _show() {
             _context2.prev = 0;
             _context2.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.show', {
-              server: id
+              server: serverId
             }).request();
 
           case 3:
@@ -79425,13 +79412,13 @@ function _store() {
   return _store.apply(this, arguments);
 }
 
-function ocCreate(callback) {
+function onCreate(callback) {
   vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$on(SERVER_CREATED, callback);
 }
 /**
  * Update server data by ID
  *
- * @param {String} id
+ * @param {String} serverId
  * @param {Object} data
  * @return {Object}
  */
@@ -79447,40 +79434,46 @@ function update(_x3, _x4) {
 function _update() {
   _update = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(id, data) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(serverId, data) {
     var response, server;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            _context4.next = 2;
+            _context4.prev = 0;
+            _context4.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.update', {
-              server: id
+              server: serverId
             }).request(data);
 
-          case 2:
+          case 3:
             response = _context4.sent;
             server = response.data.data;
             vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$emit(SERVER_UPDATED, server);
             return _context4.abrupt("return", server);
 
-          case 6:
+          case 9:
+            _context4.prev = 9;
+            _context4.t0 = _context4["catch"](0);
+            throw new Error('Can not update server information.');
+
+          case 12:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4);
+    }, _callee4, null, [[0, 9]]);
   }));
   return _update.apply(this, arguments);
 }
 
-function ocUpdate(callback) {
+function onUpdate(callback) {
   vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$on(SERVER_UPDATED, callback);
 }
 /**
  * Delete server by ID
  *
- * @param {String} id
+ * @param {String} serverId
  * @return {Object}
  */
 
@@ -79495,7 +79488,7 @@ function remove(_x5) {
 function _remove() {
   _remove = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(id) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(serverId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
       while (1) {
@@ -79504,12 +79497,12 @@ function _remove() {
             _context5.prev = 0;
             _context5.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.delete', {
-              server: id
+              server: serverId
             }).request();
 
           case 3:
             response = _context5.sent;
-            vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$emit(SERVER_DELETED, id);
+            vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$emit(SERVER_DELETED, serverId);
             return _context5.abrupt("return", response.data);
 
           case 8:
@@ -79527,8 +79520,414 @@ function _remove() {
   return _remove.apply(this, arguments);
 }
 
-function ocDelete(callback) {
+function onDelete(callback) {
   vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$on(SERVER_DELETED, callback);
+}
+
+/***/ }),
+
+/***/ "./resources/js/api/methods/server/cron.js":
+/*!*************************************************!*\
+  !*** ./resources/js/api/methods/server/cron.js ***!
+  \*************************************************/
+/*! exports provided: list, store, show, remove */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "list", function() { return list; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "show", function() { return show; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/**
+ * Load servers cron jobs
+ *
+ * @param {String} serverId
+ * @return {Object}
+ */
+
+function list(_x) {
+  return _list.apply(this, arguments);
+}
+/**
+ * Create a new server cron job
+ *
+ * @param {String} serverId
+ * @param {Object} data
+ * @return {Object}
+ */
+
+function _list() {
+  _list = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(serverId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.cron_jobs', {
+              server: serverId
+            }).request();
+
+          case 3:
+            response = _context.sent;
+            return _context.abrupt("return", response.data.data);
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            throw new Error('Can not load server cron jobs.');
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+  return _list.apply(this, arguments);
+}
+
+function store(_x2, _x3) {
+  return _store.apply(this, arguments);
+}
+/**
+ * Load server cron job information by ID
+ *
+ * @param {String} jobId
+ * @return {Object}
+ */
+
+function _store() {
+  _store = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(serverId, data) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.cron_job.store', {
+              server: serverId
+            }).request(data);
+
+          case 3:
+            response = _context2.sent;
+            return _context2.abrupt("return", response.data.data);
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            throw new Error('Can not store server cron job.');
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+  return _store.apply(this, arguments);
+}
+
+function show(_x4) {
+  return _show.apply(this, arguments);
+}
+/**
+ * Delete server cron job by ID
+ *
+ * @param {String} jobId
+ * @return {Object}
+ */
+
+function _show() {
+  _show = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(jobId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.cron_job.show', {
+              job: jobId
+            }).request();
+
+          case 3:
+            response = _context3.sent;
+            return _context3.abrupt("return", response.data.data);
+
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3["catch"](0);
+            throw new Error('Can not load server cron job information.');
+
+          case 10:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 7]]);
+  }));
+  return _show.apply(this, arguments);
+}
+
+function remove(_x5) {
+  return _remove.apply(this, arguments);
+}
+
+function _remove() {
+  _remove = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(jobId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.cron_job.delete', {
+              job: jobId
+            }).request();
+
+          case 3:
+            response = _context4.sent;
+            return _context4.abrupt("return", response.data);
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            throw new Error('Can not delete server cron job.');
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+  return _remove.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "./resources/js/api/methods/server/database.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/api/methods/server/database.js ***!
+  \*****************************************************/
+/*! exports provided: list, store, show, remove */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "list", function() { return list; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "show", function() { return show; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/**
+ * Load servers databases
+ *
+ * @param {String} serverId
+ * @return {Object}
+ */
+
+function list(_x) {
+  return _list.apply(this, arguments);
+}
+/**
+ * Create a new server database
+ *
+ * @param {String} serverId
+ * @param {Object} data
+ * @return {Object}
+ */
+
+function _list() {
+  _list = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(serverId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.databases', {
+              server: serverId
+            }).request();
+
+          case 3:
+            response = _context.sent;
+            return _context.abrupt("return", response.data.data);
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            throw new Error('Can not load server databases.');
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+  return _list.apply(this, arguments);
+}
+
+function store(_x2, _x3) {
+  return _store.apply(this, arguments);
+}
+/**
+ * Load server database information by ID
+ *
+ * @param {String} databaseId
+ * @return {Object}
+ */
+
+function _store() {
+  _store = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(serverId, data) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.database.store', {
+              server: serverId
+            }).request(data);
+
+          case 3:
+            response = _context2.sent;
+            return _context2.abrupt("return", response.data.data);
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            throw new Error('Can not store server database.');
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+  return _store.apply(this, arguments);
+}
+
+function show(_x4) {
+  return _show.apply(this, arguments);
+}
+/**
+ * Delete server database by ID
+ *
+ * @param {String} databaseId
+ * @return {Object}
+ */
+
+function _show() {
+  _show = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(databaseId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.database.show', {
+              database: databaseId
+            }).request();
+
+          case 3:
+            response = _context3.sent;
+            return _context3.abrupt("return", response.data.data);
+
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3["catch"](0);
+            throw new Error('Can not load server database information.');
+
+          case 10:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 7]]);
+  }));
+  return _show.apply(this, arguments);
+}
+
+function remove(_x5) {
+  return _remove.apply(this, arguments);
+}
+
+function _remove() {
+  _remove = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(databaseId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.database.delete', {
+              database: databaseId
+            }).request();
+
+          case 3:
+            response = _context4.sent;
+            return _context4.abrupt("return", response.data);
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            throw new Error('Can not delete server database.');
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+  return _remove.apply(this, arguments);
 }
 
 /***/ }),
@@ -79557,7 +79956,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /**
  * Load server events
  *
- * @param {String} id
+ * @param {String} serverId
  * @param {Number} page
  *
  * @return {Object}
@@ -79569,14 +79968,14 @@ function list(_x, _x2) {
 /**
  * Load last server event
  *
- * @param {String} id
+ * @param {String} serverId
  * @return {Object}
  */
 
 function _list() {
   _list = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(id, page) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(serverId, page) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
@@ -79585,7 +79984,7 @@ function _list() {
             _context.prev = 0;
             _context.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.events', {
-              server: id
+              server: serverId
             }).request({
               page: page
             });
@@ -79616,7 +80015,7 @@ function lastOne(_x3) {
 function _lastOne() {
   _lastOne = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(id) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(serverId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
@@ -79625,7 +80024,7 @@ function _lastOne() {
             _context2.prev = 0;
             _context2.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.event.last', {
-              server: id
+              server: serverId
             }).request();
 
           case 3:
@@ -79676,11 +80075,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  * Load servers firewall rules
  *
  * @param {String} serverId
- * @param {Number} page
  * @return {Object}
  */
 
-function list(_x, _x2) {
+function list(_x) {
   return _list.apply(this, arguments);
 }
 /**
@@ -79694,7 +80092,7 @@ function list(_x, _x2) {
 function _list() {
   _list = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(serverId, page) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(serverId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
@@ -79704,13 +80102,11 @@ function _list() {
             _context.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.firewall.rules', {
               server: serverId
-            }).request({
-              page: page
-            });
+            }).request();
 
           case 3:
             response = _context.sent;
-            return _context.abrupt("return", response.data);
+            return _context.abrupt("return", response.data.data);
 
           case 7:
             _context.prev = 7;
@@ -79727,13 +80123,13 @@ function _list() {
   return _list.apply(this, arguments);
 }
 
-function store(_x3, _x4) {
+function store(_x2, _x3) {
   return _store.apply(this, arguments);
 }
 /**
  * Load server firewall rule information by ID
  *
- * @param {String} id
+ * @param {String} ruleId
  * @return {Object}
  */
 
@@ -79771,20 +80167,20 @@ function _store() {
   return _store.apply(this, arguments);
 }
 
-function show(_x5) {
+function show(_x4) {
   return _show.apply(this, arguments);
 }
 /**
  * Delete server firewall rule by ID
  *
- * @param {String} id
+ * @param {String} ruleId
  * @return {Object}
  */
 
 function _show() {
   _show = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(ruleId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
       while (1) {
@@ -79793,7 +80189,7 @@ function _show() {
             _context3.prev = 0;
             _context3.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.firewall.show', {
-              rule: id
+              rule: ruleId
             }).request();
 
           case 3:
@@ -79815,14 +80211,14 @@ function _show() {
   return _show.apply(this, arguments);
 }
 
-function remove(_x6) {
+function remove(_x5) {
   return _remove.apply(this, arguments);
 }
 
 function _remove() {
   _remove = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(id) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(ruleId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
       while (1) {
@@ -79831,7 +80227,7 @@ function _remove() {
             _context4.prev = 0;
             _context4.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.firewall.delete', {
-              rule: id
+              rule: ruleId
             }).request();
 
           case 3:
@@ -79855,16 +80251,639 @@ function _remove() {
 
 /***/ }),
 
-/***/ "./resources/js/api/methods/server/tasks.js":
+/***/ "./resources/js/api/methods/server/site/deployment.js":
+/*!************************************************************!*\
+  !*** ./resources/js/api/methods/server/site/deployment.js ***!
+  \************************************************************/
+/*! exports provided: script, deploy */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "script", function() { return script; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deploy", function() { return deploy; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Router */ "./resources/js/api/Router.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/**
+ * Get deployment script
+ *
+ * @param {String} siteId
+ * @return {Object}
+ */
+
+function script(_x) {
+  return _script.apply(this, arguments);
+}
+/**
+ * Run site deployment
+ *
+ * @param {String} siteId
+ * @return {Object}
+ */
+
+function _script() {
+  _script = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(siteId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.deploy.config', {
+              site: siteId
+            }).request();
+
+          case 3:
+            response = _context.sent;
+            return _context.abrupt("return", response.data);
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            throw new Error('Can not load deployment script.');
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+  return _script.apply(this, arguments);
+}
+
+function deploy(_x2) {
+  return _deploy.apply(this, arguments);
+}
+
+function _deploy() {
+  _deploy = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(siteId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.deploy', {
+              site: siteId
+            }).request();
+
+          case 3:
+            response = _context2.sent;
+            return _context2.abrupt("return", response.data.data);
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            throw new Error('Can not deploy site.');
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+  return _deploy.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "./resources/js/api/methods/server/site/environment.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/api/methods/server/site/environment.js ***!
+  \*************************************************************/
+/*! exports provided: upload, update, remove */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "upload", function() { return upload; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Router */ "./resources/js/api/Router.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/**
+ * Upload env file
+ *
+ * @param {String} siteId
+ * @param {Object} data
+ *
+ * @return {Object}
+ */
+
+function upload(_x, _x2) {
+  return _upload.apply(this, arguments);
+}
+/**
+ * Create/Update env variable
+ *
+ * @param {String} siteId
+ * @param {Object} data
+ * @param {String} data.key
+ * @param {String} data.value
+ *
+ * @return {Object}
+ */
+
+function _upload() {
+  _upload = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(siteId, data) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.environment.upload', {
+              site: siteId
+            }).request(data);
+
+          case 3:
+            _context.next = 8;
+            break;
+
+          case 5:
+            _context.prev = 5;
+            _context.t0 = _context["catch"](0);
+            throw new Error('Can not upload env file.');
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 5]]);
+  }));
+  return _upload.apply(this, arguments);
+}
+
+function update(_x3, _x4) {
+  return _update.apply(this, arguments);
+}
+/**
+ * Remove env variable
+ *
+ * @param {String} siteId
+ * @param {Object} key
+ *
+ * @return {Object}
+ */
+
+function _update() {
+  _update = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(siteId, data) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.environment.update', {
+              site: siteId
+            }).request(data);
+
+          case 3:
+            _context2.next = 8;
+            break;
+
+          case 5:
+            _context2.prev = 5;
+            _context2.t0 = _context2["catch"](0);
+            throw new Error('Can not update environment variables.');
+
+          case 8:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 5]]);
+  }));
+  return _update.apply(this, arguments);
+}
+
+function remove(_x5, _x6) {
+  return _remove.apply(this, arguments);
+}
+
+function _remove() {
+  _remove = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(siteId, key) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.environment.delete', {
+              site: siteId
+            }).request({
+              key: key
+            });
+
+          case 3:
+            _context3.next = 8;
+            break;
+
+          case 5:
+            _context3.prev = 5;
+            _context3.t0 = _context3["catch"](0);
+            throw new Error('Can not delete environment variable.');
+
+          case 8:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 5]]);
+  }));
+  return _remove.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "./resources/js/api/methods/server/site/repository.js":
+/*!************************************************************!*\
+  !*** ./resources/js/api/methods/server/site/repository.js ***!
+  \************************************************************/
+/*! exports provided: sync, update */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sync", function() { return sync; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Router */ "./resources/js/api/Router.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/**
+ * Sync public key and web hooks
+ *
+ * @param {String} siteId
+ * @return {Object}
+ */
+
+function sync(_x) {
+  return _sync.apply(this, arguments);
+}
+/**
+ * Update repository data
+ *
+ *
+ * @param {String} siteId
+ *
+ * @param {Object} data
+ * @param {String} data.repository_provider
+ * @param {String} data.repository_branch
+ *
+ * @return {Object}
+ */
+
+function _sync() {
+  _sync = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(siteId) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.repository.sync', {
+              site: siteId
+            }).request();
+
+          case 3:
+            _context.next = 8;
+            break;
+
+          case 5:
+            _context.prev = 5;
+            _context.t0 = _context["catch"](0);
+            throw new Error('Can not sync public key and web hooks.');
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 5]]);
+  }));
+  return _sync.apply(this, arguments);
+}
+
+function update(_x2, _x3) {
+  return _update.apply(this, arguments);
+}
+
+function _update() {
+  _update = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(siteId, data) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.repository.update', {
+              site: siteId
+            }).request(data);
+
+          case 3:
+            _context2.next = 8;
+            break;
+
+          case 5:
+            _context2.prev = 5;
+            _context2.t0 = _context2["catch"](0);
+            throw new Error('Can not sync public key and web hooks.');
+
+          case 8:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 5]]);
+  }));
+  return _update.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "./resources/js/api/methods/server/sites.js":
 /*!**************************************************!*\
-  !*** ./resources/js/api/methods/server/tasks.js ***!
+  !*** ./resources/js/api/methods/server/sites.js ***!
   \**************************************************/
-/*! exports provided: list, show, remove */
+/*! exports provided: list, show, store, onCreate, remove, onDelete */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "list", function() { return list; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "show", function() { return show; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onCreate", function() { return onCreate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onDelete", function() { return onDelete; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+var SITE_CREATED = 'server.site.created';
+var SITE_DELETED = 'server.site.deleted';
+/**
+ * Load server sites
+ *
+ * @param {String} serverId
+ *
+ * @return {Object}
+ */
+
+function list(_x) {
+  return _list.apply(this, arguments);
+}
+/**
+ * Load server task information by ID
+ *
+ * @param {String} siteId
+ * @return {Promise<any>}
+ */
+
+function _list() {
+  _list = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(serverId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.sites', {
+              server: serverId
+            }).request();
+
+          case 3:
+            response = _context.sent;
+            return _context.abrupt("return", response.data);
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            throw new Error('Can not load server sites.');
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+  return _list.apply(this, arguments);
+}
+
+function show(_x2) {
+  return _show.apply(this, arguments);
+}
+/**
+ * Create a new server site
+ *
+ * @param {String} serverId
+ * @param {Object} data
+ * @return {Object}
+ */
+
+function _show() {
+  _show = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(siteId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.show', {
+              site: siteId
+            }).request();
+
+          case 3:
+            response = _context2.sent;
+            return _context2.abrupt("return", response.data.data);
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            throw new Error('Can not load server site information.');
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+  return _show.apply(this, arguments);
+}
+
+function store(_x3, _x4) {
+  return _store.apply(this, arguments);
+}
+/**
+ *
+ * @param {Function} callback
+ */
+
+function _store() {
+  _store = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(serverId, data) {
+    var response, site;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.store', {
+              server: serverId
+            }).request(data);
+
+          case 3:
+            response = _context3.sent;
+            site = response.data.data;
+            vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$emit(SITE_CREATED, site);
+            return _context3.abrupt("return", site);
+
+          case 9:
+            _context3.prev = 9;
+            _context3.t0 = _context3["catch"](0);
+            throw new Error('Can not store server site data.');
+
+          case 12:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 9]]);
+  }));
+  return _store.apply(this, arguments);
+}
+
+function onCreate(callback) {
+  vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$on(SITE_CREATED, callback);
+}
+/**
+ * Delete server site by ID
+ *
+ * @param {String} siteId
+ * @return {Promise<void>}
+ */
+
+function remove(_x5) {
+  return _remove.apply(this, arguments);
+}
+/**
+ *
+ * @param {Function} callback
+ */
+
+function _remove() {
+  _remove = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(siteId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.delete', {
+              site: siteId
+            }).request();
+
+          case 3:
+            response = _context4.sent;
+            vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$emit(SITE_DELETED, siteId);
+            return _context4.abrupt("return", response.data);
+
+          case 8:
+            _context4.prev = 8;
+            _context4.t0 = _context4["catch"](0);
+            throw new Error('Can not delete server task.');
+
+          case 11:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 8]]);
+  }));
+  return _remove.apply(this, arguments);
+}
+
+function onDelete(callback) {
+  vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$on(SITE_DELETED, callback);
+}
+
+/***/ }),
+
+/***/ "./resources/js/api/methods/server/supervisor.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/api/methods/server/supervisor.js ***!
+  \*******************************************************/
+/*! exports provided: list, store, show, remove */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "list", function() { return list; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "show", function() { return show; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -79878,9 +80897,210 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /**
+ * Load servers supervisors
+ *
+ * @param {String} serverId
+ * @return {Object}
+ */
+
+function list(_x) {
+  return _list.apply(this, arguments);
+}
+/**
+ * Create a new server supervisor
+ *
+ * @param {String} serverId
+ * @param {Object} data
+ * @return {Object}
+ */
+
+function _list() {
+  _list = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(serverId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.supervisors', {
+              server: serverId
+            }).request();
+
+          case 3:
+            response = _context.sent;
+            return _context.abrupt("return", response.data.data);
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            throw new Error('Can not load server supervisors.');
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+  return _list.apply(this, arguments);
+}
+
+function store(_x2, _x3) {
+  return _store.apply(this, arguments);
+}
+/**
+ * Load server supervisor information by ID
+ *
+ * @param {String} supervisorId
+ * @return {Object}
+ */
+
+function _store() {
+  _store = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(serverId, data) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.supervisor.store', {
+              server: serverId
+            }).request(data);
+
+          case 3:
+            response = _context2.sent;
+            return _context2.abrupt("return", response.data.data);
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            throw new Error('Can not store server supervisor.');
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+  return _store.apply(this, arguments);
+}
+
+function show(_x4) {
+  return _show.apply(this, arguments);
+}
+/**
+ * Delete server supervisor by ID
+ *
+ * @param {String} supervisorId
+ * @return {Object}
+ */
+
+function _show() {
+  _show = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(supervisorId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.supervisor.show', {
+              supervisor: supervisorId
+            }).request();
+
+          case 3:
+            response = _context3.sent;
+            return _context3.abrupt("return", response.data.data);
+
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3["catch"](0);
+            throw new Error('Can not load server supervisor information.');
+
+          case 10:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 7]]);
+  }));
+  return _show.apply(this, arguments);
+}
+
+function remove(_x5) {
+  return _remove.apply(this, arguments);
+}
+
+function _remove() {
+  _remove = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(supervisorId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.database.delete', {
+              supervisor: supervisorId
+            }).request();
+
+          case 3:
+            response = _context4.sent;
+            return _context4.abrupt("return", response.data);
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            throw new Error('Can not delete server supervisor.');
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+  return _remove.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "./resources/js/api/methods/server/tasks.js":
+/*!**************************************************!*\
+  !*** ./resources/js/api/methods/server/tasks.js ***!
+  \**************************************************/
+/*! exports provided: list, show */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "list", function() { return list; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "show", function() { return show; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/**
  * Load server tasks
  *
- * @param {String} id
+ * @param {String} serverId
  * @param {Number} page
  *
  * @return {Promise<any>}
@@ -79892,14 +81112,14 @@ function list(_x, _x2) {
 /**
  * Load server task information by ID
  *
- * @param {String} id
+ * @param {String} taskId
  * @return {Promise<any>}
  */
 
 function _list() {
   _list = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(id, page) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(serverId, page) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
@@ -79908,7 +81128,7 @@ function _list() {
             _context.prev = 0;
             _context.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.tasks', {
-              server: id
+              server: serverId
             }).request({
               page: page
             });
@@ -79935,17 +81155,11 @@ function _list() {
 function show(_x3) {
   return _show.apply(this, arguments);
 }
-/**
- * Delete server task by ID
- *
- * @param {String} id
- * @return {Promise<void>}
- */
 
 function _show() {
   _show = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(id) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(taskId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
@@ -79954,7 +81168,7 @@ function _show() {
             _context2.prev = 0;
             _context2.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.task.show', {
-              task: id
+              task: taskId
             }).request();
 
           case 3:
@@ -79974,44 +81188,6 @@ function _show() {
     }, _callee2, null, [[0, 7]]);
   }));
   return _show.apply(this, arguments);
-}
-
-function remove(_x4) {
-  return _remove.apply(this, arguments);
-}
-
-function _remove() {
-  _remove = _asyncToGenerator(
-  /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id) {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            _context3.prev = 0;
-            _context3.next = 3;
-            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.task.delete', {
-              task: id
-            }).request();
-
-          case 3:
-            response = _context3.sent;
-            return _context3.abrupt("return", response.data);
-
-          case 7:
-            _context3.prev = 7;
-            _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not delete server task.');
-
-          case 10:
-          case "end":
-            return _context3.stop();
-        }
-      }
-    }, _callee3, null, [[0, 7]]);
-  }));
-  return _remove.apply(this, arguments);
 }
 
 /***/ }),
@@ -80100,7 +81276,7 @@ function store(_x3, _x4) {
 /**
  * Load server user information by ID
  *
- * @param {String} id
+ * @param {String} userId
  * @return {Object}
  */
 
@@ -80144,14 +81320,14 @@ function show(_x5) {
 /**
  * Delete server user by ID
  *
- * @param {String} id
+ * @param {String} userId
  * @return {Object}
  */
 
 function _show() {
   _show = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(userId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
       while (1) {
@@ -80160,7 +81336,7 @@ function _show() {
             _context3.prev = 0;
             _context3.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.user.show', {
-              user: id
+              user: userId
             }).request();
 
           case 3:
@@ -80189,7 +81365,7 @@ function remove(_x6) {
 function _remove() {
   _remove = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(id) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(userId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
       while (1) {
@@ -80198,7 +81374,7 @@ function _remove() {
             _context4.prev = 0;
             _context4.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.user.delete', {
-              user: id
+              user: userId
             }).request();
 
           case 3:
@@ -80286,17 +81462,22 @@ function _list() {
 
 /***/ }),
 
-/***/ "./resources/js/api/methods/team.js":
-/*!******************************************!*\
-  !*** ./resources/js/api/methods/team.js ***!
-  \******************************************/
-/*! exports provided: show, members */
+/***/ "./resources/js/api/methods/subscription.js":
+/*!**************************************************!*\
+  !*** ./resources/js/api/methods/subscription.js ***!
+  \**************************************************/
+/*! exports provided: plans, subscribe, onSubscribe, cancel, onCancel, resume, onResume */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "show", function() { return show; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "members", function() { return members; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "plans", function() { return plans; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "subscribe", function() { return subscribe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onSubscribe", function() { return onSubscribe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancel", function() { return cancel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onCancel", function() { return onCancel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resume", function() { return resume; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onResume", function() { return onResume; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Router */ "./resources/js/api/Router.js");
@@ -80310,10 +81491,240 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+var TEAM_SUBSCRIBED_TO_PLAN = 'team.subscribed';
+var TEAM_SUBSCRIPTION_CANCELED = 'team.subscribtion.canceled';
+var TEAM_SUBSCRIPTION_RESUMED = 'team.subscribtion.resumed';
+/**
+ * Load subscription plans
+ *
+ * @return {Array}
+ */
+
+function plans() {
+  return _plans.apply(this, arguments);
+}
+/**
+ * Subscribe team to plan
+ *
+ * @param {String} teamId
+ * @param {String} PlanId
+ * @return {Promise<*>}
+ */
+
+function _plans() {
+  _plans = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.subscription.plans').request();
+
+          case 3:
+            response = _context.sent;
+            return _context.abrupt("return", response.data.data);
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            throw new Error('Can not load subscription plans list.');
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+  return _plans.apply(this, arguments);
+}
+
+function subscribe(_x, _x2) {
+  return _subscribe.apply(this, arguments);
+}
+/**
+ *  Subscribe to subscribe event
+ *
+ * @param {Function} callback
+ */
+
+function _subscribe() {
+  _subscribe = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(teamId, PlanId) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.team.subscribe', {
+              team: teamId,
+              plan: PlanId
+            }).request();
+
+          case 3:
+            vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$emit(TEAM_SUBSCRIBED_TO_PLAN);
+            _context2.next = 9;
+            break;
+
+          case 6:
+            _context2.prev = 6;
+            _context2.t0 = _context2["catch"](0);
+            throw new Error('Can not subscribe team to plan.');
+
+          case 9:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 6]]);
+  }));
+  return _subscribe.apply(this, arguments);
+}
+
+function onSubscribe(callback) {
+  vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$on(TEAM_SUBSCRIBED_TO_PLAN, callback);
+}
+/**
+ * Subscribe team to plan
+ *
+ * @param {String} teamId
+ * @return {Promise<*>}
+ */
+
+function cancel(_x3) {
+  return _cancel.apply(this, arguments);
+}
+/**
+ *  Subscribe to cancel event
+ *
+ * @param {Function} callback
+ */
+
+function _cancel() {
+  _cancel = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(teamId) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.team.subscription.cancel', {
+              team: teamId
+            }).request();
+
+          case 3:
+            vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$emit(TEAM_SUBSCRIPTION_CANCELED);
+            _context3.next = 9;
+            break;
+
+          case 6:
+            _context3.prev = 6;
+            _context3.t0 = _context3["catch"](0);
+            throw new Error('Can not cancel team subscription.');
+
+          case 9:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 6]]);
+  }));
+  return _cancel.apply(this, arguments);
+}
+
+function onCancel(callback) {
+  vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$on(TEAM_SUBSCRIPTION_CANCELED, callback);
+}
+/**
+ * Subscribe team to plan
+ *
+ * @param {String} teamId
+ * @return {Promise<*>}
+ */
+
+function resume(_x4) {
+  return _resume.apply(this, arguments);
+}
+/**
+ *  Subscribe to resume event
+ *
+ * @param {Function} callback
+ */
+
+function _resume() {
+  _resume = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(teamId) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.team.subscription.resume', {
+              team: teamId
+            }).request();
+
+          case 3:
+            vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$emit(TEAM_SUBSCRIPTION_RESUMED);
+            _context4.next = 9;
+            break;
+
+          case 6:
+            _context4.prev = 6;
+            _context4.t0 = _context4["catch"](0);
+            throw new Error('Can not resume team subscription.');
+
+          case 9:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 6]]);
+  }));
+  return _resume.apply(this, arguments);
+}
+
+function onResume(callback) {
+  vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$on(TEAM_SUBSCRIPTION_RESUMED, callback);
+}
+
+/***/ }),
+
+/***/ "./resources/js/api/methods/team.js":
+/*!******************************************!*\
+  !*** ./resources/js/api/methods/team.js ***!
+  \******************************************/
+/*! exports provided: show, update, members */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "show", function() { return show; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "members", function() { return members; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Router */ "./resources/js/api/Router.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 /**
  * Load user team information by ID
  *
- * @param {String} id
+ * @param {String} teamId
  * @return {Object}
  */
 
@@ -80321,17 +81732,17 @@ function show(_x) {
   return _show.apply(this, arguments);
 }
 /**
- * Load user team members
+ * Update user team information
  *
- * @param {String} id
- *
+ * @param {String} teamId
+ * @param {Object} data
  * @return {Object}
  */
 
 function _show() {
   _show = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(id) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(teamId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
@@ -80340,7 +81751,7 @@ function _show() {
             _context.prev = 0;
             _context.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.team.show', {
-              team: id
+              team: teamId
             }).request();
 
           case 3:
@@ -80362,14 +81773,21 @@ function _show() {
   return _show.apply(this, arguments);
 }
 
-function members(_x2) {
-  return _members.apply(this, arguments);
+function update(_x2, _x3) {
+  return _update.apply(this, arguments);
 }
+/**
+ * Load user team members
+ *
+ * @param {String} teamId
+ *
+ * @return {Object}
+ */
 
-function _members() {
-  _members = _asyncToGenerator(
+function _update() {
+  _update = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(id) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(teamId, data) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
@@ -80377,9 +81795,9 @@ function _members() {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.team.members', {
-              team: id
-            }).request();
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.team.update', {
+              team: teamId
+            }).request(data);
 
           case 3:
             response = _context2.sent;
@@ -80388,7 +81806,7 @@ function _members() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not load user team members.');
+            throw new Error('Can not update team information.');
 
           case 10:
           case "end":
@@ -80396,6 +81814,44 @@ function _members() {
         }
       }
     }, _callee2, null, [[0, 7]]);
+  }));
+  return _update.apply(this, arguments);
+}
+
+function members(_x4) {
+  return _members.apply(this, arguments);
+}
+
+function _members() {
+  _members = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(teamId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.team.members', {
+              team: teamId
+            }).request();
+
+          case 3:
+            response = _context3.sent;
+            return _context3.abrupt("return", response.data.data);
+
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3["catch"](0);
+            throw new Error('Can not load user team members.');
+
+          case 10:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 7]]);
   }));
   return _members.apply(this, arguments);
 }
@@ -80406,7 +81862,7 @@ function _members() {
 /*!**************************************************!*\
   !*** ./resources/js/api/methods/team/billing.js ***!
   \**************************************************/
-/*! exports provided: paymentMethods, createIntentionSecret, storePaymentMethod, ocPaymentMethodStore, deletePaymentMethod, ocPaymentMethodDelete */
+/*! exports provided: paymentMethods, createIntentionSecret, storePaymentMethod, onPaymentMethodStore, deletePaymentMethod, onPaymentMethodDelete */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -80414,9 +81870,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentMethods", function() { return paymentMethods; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createIntentionSecret", function() { return createIntentionSecret; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storePaymentMethod", function() { return storePaymentMethod; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ocPaymentMethodStore", function() { return ocPaymentMethodStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onPaymentMethodStore", function() { return onPaymentMethodStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePaymentMethod", function() { return deletePaymentMethod; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ocPaymentMethodDelete", function() { return ocPaymentMethodDelete; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onPaymentMethodDelete", function() { return onPaymentMethodDelete; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
@@ -80435,7 +81891,7 @@ var PAYMENT_METHOD_DELETED = 'team.payment_method.deleted';
 /**
  * Load payment methods
  *
- * @param {String} id
+ * @param {String} teamId
  * @return {Object}
  */
 
@@ -80445,14 +81901,14 @@ function paymentMethods(_x) {
 /**
  * Store payment method
  *
- * @param {String} id
+ * @param {String} teamId
  * @return String
  */
 
 function _paymentMethods() {
   _paymentMethods = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(id) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(teamId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
@@ -80461,7 +81917,7 @@ function _paymentMethods() {
             _context.prev = 0;
             _context.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.team.payment.methods', {
-              team: id
+              team: teamId
             }).request();
 
           case 3:
@@ -80489,7 +81945,7 @@ function createIntentionSecret(_x2) {
 /**
  * Store payment method
  *
- * @param {String} id
+ * @param {String} teamId
  * @param {Object} intention
  * @return {Object}
  */
@@ -80497,7 +81953,7 @@ function createIntentionSecret(_x2) {
 function _createIntentionSecret() {
   _createIntentionSecret = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(id) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(teamId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
@@ -80506,7 +81962,7 @@ function _createIntentionSecret() {
             _context2.prev = 0;
             _context2.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.team.payment.method.intent', {
-              team: id
+              team: teamId
             }).request();
 
           case 3:
@@ -80539,7 +81995,7 @@ function storePaymentMethod(_x3, _x4) {
 function _storePaymentMethod() {
   _storePaymentMethod = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id, intention) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(teamId, intention) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
       while (1) {
@@ -80548,7 +82004,7 @@ function _storePaymentMethod() {
             _context3.prev = 0;
             _context3.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.team.payment.method.store', {
-              team: id
+              team: teamId
             }).request(intention);
 
           case 3:
@@ -80571,13 +82027,13 @@ function _storePaymentMethod() {
   return _storePaymentMethod.apply(this, arguments);
 }
 
-function ocPaymentMethodStore(callback) {
+function onPaymentMethodStore(callback) {
   vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$on(PAYMENT_METHOD_STORED, callback);
 }
 /**
  * Delete payment method
  *
- * @param {String} id Team ID
+ * @param {String} teamId Team ID
  * @param {String} methodId Payment method ID
  * @return {Object}
  */
@@ -80593,7 +82049,7 @@ function deletePaymentMethod(_x5, _x6) {
 function _deletePaymentMethod() {
   _deletePaymentMethod = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(id, methodId) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(teamId, methodId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
       while (1) {
@@ -80602,7 +82058,7 @@ function _deletePaymentMethod() {
             _context4.prev = 0;
             _context4.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.team.payment.method.delete', {
-              team: id,
+              team: teamId,
               id: methodId
             }).request();
 
@@ -80629,7 +82085,7 @@ function _deletePaymentMethod() {
   return _deletePaymentMethod.apply(this, arguments);
 }
 
-function ocPaymentMethodDelete(callback) {
+function onPaymentMethodDelete(callback) {
   vue__WEBPACK_IMPORTED_MODULE_2___default.a.$bus.$on(PAYMENT_METHOD_DELETED, callback);
 }
 
@@ -80762,7 +82218,7 @@ var Ziggy = {
       "methods": ["GET", "HEAD"],
       "domain": null
     },
-    "api.v1.server.cron_job.index": {
+    "api.v1.server.cron_jobs": {
       "uri": "api\/v1\/server\/{server}\/cron",
       "methods": ["GET", "HEAD"],
       "domain": null
@@ -80782,7 +82238,7 @@ var Ziggy = {
       "methods": ["DELETE"],
       "domain": null
     },
-    "api.v1.server.database.index": {
+    "api.v1.server.databases": {
       "uri": "api\/v1\/server\/{server}\/databases",
       "methods": ["GET", "HEAD"],
       "domain": null
@@ -80852,12 +82308,7 @@ var Ziggy = {
       "methods": ["GET", "HEAD"],
       "domain": null
     },
-    "api.v1.server.task.delete": {
-      "uri": "api\/v1\/server\/task\/{task}",
-      "methods": ["DELETE"],
-      "domain": null
-    },
-    "api.v1.server.supervisor.index": {
+    "api.v1.server.supervisors": {
       "uri": "api\/v1\/server\/{server}\/supervisor\/list",
       "methods": ["GET", "HEAD"],
       "domain": null

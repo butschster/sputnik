@@ -8,8 +8,8 @@ import {api_route} from "../Router"
 export async function list() {
     try {
         const response = await api_route('v1.source_providers').request()
-        return response.data;
+        return response.data
     } catch (e) {
-        throw new Error('Can not list of available source providers.');
+        throw new Error('Can not list of available source providers.')
     }
 }

@@ -19,7 +19,7 @@ class SupervisorController extends Controller
     {
         $this->authorize('show', $server);
 
-        $daemons = $server->daemons()->paginate();
+        $daemons = $server->daemons()->get();
 
         return DaemonsCollection::make($daemons);
     }

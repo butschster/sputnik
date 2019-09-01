@@ -1,4 +1,4 @@
-import {api_route} from "../../Router";
+import {api_route} from "../../Router"
 
 /**
  * Load servers list
@@ -10,9 +10,9 @@ import {api_route} from "../../Router";
 export async function list(serverId, page) {
     try {
         const response = await api_route('v1.server.users', {server: serverId}).request({page})
-        return response.data;
+        return response.data
     } catch (e) {
-        throw new Error('Can not load server users list.');
+        throw new Error('Can not load server users list.')
     }
 }
 
@@ -26,38 +26,38 @@ export async function list(serverId, page) {
 export async function store(serverId, data) {
     try {
         const response = await api_route('v1.server.user.store', {server: serverId}).request(data)
-        return response.data.data;
+        return response.data.data
     } catch (e) {
-        throw new Error('Can not store server data.');
+        throw new Error('Can not store server data.')
     }
 }
 
 /**
  * Load server user information by ID
  *
- * @param {String} id
+ * @param {String} userId
  * @return {Object}
  */
-export async function show(id) {
+export async function show(userId) {
     try {
-        const response = await api_route('v1.server.user.show', {user: id}).request()
-        return response.data.data;
+        const response = await api_route('v1.server.user.show', {user: userId}).request()
+        return response.data.data
     } catch (e) {
-        throw new Error('Can not load server user information.');
+        throw new Error('Can not load server user information.')
     }
 }
 
 /**
  * Delete server user by ID
  *
- * @param {String} id
+ * @param {String} userId
  * @return {Object}
  */
-export async function remove(id) {
+export async function remove(userId) {
     try {
-        const response = await api_route('v1.server.user.delete', {user: id}).request()
-        return response.data;
+        const response = await api_route('v1.server.user.delete', {user: userId}).request()
+        return response.data
     } catch (e) {
-        throw new Error('Can not delete server user.');
+        throw new Error('Can not delete server user.')
     }
 }

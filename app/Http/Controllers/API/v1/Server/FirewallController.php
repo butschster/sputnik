@@ -19,7 +19,7 @@ class FirewallController extends Controller
     {
         $this->authorize('show', $server);
 
-        $rules = $server->firewallRules()->paginate();
+        $rules = $server->firewallRules()->get();
 
         return RulesCollection::make($rules);
     }

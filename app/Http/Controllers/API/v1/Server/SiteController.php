@@ -20,7 +20,7 @@ class SiteController extends Controller
         $this->authorize('show', $server);
 
         return SiteCollection::make(
-            $server->sites()->paginate()
+            $server->sites()->get()
         );
     }
 

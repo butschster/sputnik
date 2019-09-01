@@ -1,8 +1,8 @@
 <template>
     <div>
-        <CreateFormFirewall :server="$parent.server" class="mb-12" @created="load(0)"/>
+        <CreateFormFirewall :server="$parent.server" class="mb-12" @created="load"/>
 
-        <h4>Active users ({{ rules.data.length }})</h4>
+        <h4>Active users ({{ rules.length }})</h4>
         <div v-if="hasUsers">
             <Loader :loading="loading"/>
             <table class="table mb-10">
@@ -70,25 +70,18 @@
         data() {
             return {
                 loading: false,
-                page: 1,
-                rules: {
-                    data: []
-                }
+                rules: []
             }
         },
         mounted() {
             this.load()
         },
         methods: {
-            async load(page = 1) {
+            async load() {
                 this.loading = true
 
-                if (page > 0) {
-                    this.page = page
-                }
-
                 try {
-                    this.rules = await this.$api.serverFirewall.list(this.$parent.server.id, this.page)
+                    this.rules = await this.$api.serverFirewall.list(this.$parent.server.id)
                 } catch (e) {
                     console.error(e)
                 }
@@ -96,7 +89,7 @@
                 this.loading = false
             },
             removedRule(rule) {
-                this.load(0)
+                this.load()
                 this.$notify({
                     text: 'Rule successfully deleted',
                     type: 'success'
@@ -124,7 +117,7 @@
         },
         computed: {
             hasUsers() {
-                return this.rules.data.length > 0
+                return this.rules.length > 0
             }
         }
     }

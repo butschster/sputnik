@@ -46,9 +46,8 @@
                 this.loading = true
 
                 try {
-                    const response = await this.$apiRoute('v1.server.site.store', {server: this.$route.params.id})
-                        .request(this.form)
-                    this.created(response.data.data)
+                    const site = await this.$api.serverSites.store(this.$route.params.id, this.form)
+                    this.created(site)
                 } catch (e) {
                     console.error(e)
                 }

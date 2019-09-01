@@ -62,7 +62,7 @@
                 this.loading = true
 
                 try {
-                    const response = await this.$apiRoute('v1.team.subscribe', {team: this.team.id, plan: plan.id}).request()
+                    await this.$api.subscription.subscribe(this.team.id, plan.id)
                     this.$bus.$emit('subscribed')
                 } catch (e) {
                     console.error(e)
@@ -74,8 +74,7 @@
                 this.loading = true
 
                 try {
-                    const response = await this.$apiRoute('v1.subscription.plans').request()
-                    this.plans = response.data.data
+                    this.plans = await this.$api.subscription.plans()
                 } catch (e) {
                     console.error(e)
                 }

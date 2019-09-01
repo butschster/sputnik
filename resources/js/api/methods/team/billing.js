@@ -7,48 +7,48 @@ const PAYMENT_METHOD_DELETED = 'team.payment_method.deleted'
 /**
  * Load payment methods
  *
- * @param {String} id
+ * @param {String} teamId
  * @return {Object}
  */
-export async function paymentMethods(id) {
+export async function paymentMethods(teamId) {
     try {
-        const response = await api_route('v1.team.payment.methods', {team: id}).request()
-        return response.data;
+        const response = await api_route('v1.team.payment.methods', {team: teamId}).request()
+        return response.data
     } catch (e) {
-        throw new Error('Can not load payment methods.');
+        throw new Error('Can not load payment methods.')
     }
 }
 
 /**
  * Store payment method
  *
- * @param {String} id
+ * @param {String} teamId
  * @return String
  */
-export async function createIntentionSecret(id) {
+export async function createIntentionSecret(teamId) {
     try {
-        const response = await api_route('v1.team.payment.method.intent', {team: id}).request()
-        return response.data;
+        const response = await api_route('v1.team.payment.method.intent', {team: teamId}).request()
+        return response.data
     } catch (e) {
-        throw new Error('Can not load payment methods.');
+        throw new Error('Can not load payment methods.')
     }
 }
 
 /**
  * Store payment method
  *
- * @param {String} id
+ * @param {String} teamId
  * @param {Object} intention
  * @return {Object}
  */
-export async function storePaymentMethod(id, intention) {
+export async function storePaymentMethod(teamId, intention) {
     try {
-        const response = await api_route('v1.team.payment.method.store', {team: id}).request(intention)
+        const response = await api_route('v1.team.payment.method.store', {team: teamId}).request(intention)
         Vue.$bus.$emit(PAYMENT_METHOD_STORED, response.data)
 
-        return response.data;
+        return response.data
     } catch (e) {
-        throw new Error('Can not load payment methods.');
+        throw new Error('Can not load payment methods.')
     }
 }
 
@@ -56,26 +56,26 @@ export async function storePaymentMethod(id, intention) {
  *
  * @param {Function} callback
  */
-export function ocPaymentMethodStore(callback) {
+export function onPaymentMethodStore(callback) {
     Vue.$bus.$on(PAYMENT_METHOD_STORED, callback)
 }
 
 /**
  * Delete payment method
  *
- * @param {String} id Team ID
+ * @param {String} teamId Team ID
  * @param {String} methodId Payment method ID
  * @return {Object}
  */
-export async function deletePaymentMethod(id, methodId) {
+export async function deletePaymentMethod(teamId, methodId) {
     try {
-        const response = await api_route('v1.team.payment.method.delete', {team: id, id: methodId}).request()
+        const response = await api_route('v1.team.payment.method.delete', {team: teamId, id: methodId}).request()
 
         Vue.$bus.$emit(PAYMENT_METHOD_DELETED, {id, methodId})
 
-        return response.data;
+        return response.data
     } catch (e) {
-        throw new Error('Can not delete payment method.');
+        throw new Error('Can not delete payment method.')
     }
 }
 
@@ -83,6 +83,6 @@ export async function deletePaymentMethod(id, methodId) {
  *
  * @param {Function} callback
  */
-export function ocPaymentMethodDelete(callback) {
+export function onPaymentMethodDelete(callback) {
     Vue.$bus.$on(PAYMENT_METHOD_DELETED, callback)
 }

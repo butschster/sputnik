@@ -38,7 +38,7 @@ export async function update(data) {
  *
  * @param {Function} callback
  */
-export function ocUpdate(callback) {
+export function onUpdate(callback) {
     Vue.$bus.$on(PROFILE_UPDATED, callback)
 }
 
@@ -76,6 +76,6 @@ export async function remove(data) {
  *
  * @param {Function} callback
  */
-export function ocDelete(callback) {
+export function onDelete(callback) {
     Vue.$bus.$on(PROFILE_DELETED, callback)
 }

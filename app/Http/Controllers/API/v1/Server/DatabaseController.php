@@ -19,7 +19,7 @@ class DatabaseController extends Controller
     {
         $this->authorize('show', $server);
 
-        $databases = $server->databases()->paginate();
+        $databases = $server->databases()->get();
 
         return DatabaseCollection::make($databases);
     }

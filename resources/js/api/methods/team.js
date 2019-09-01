@@ -1,33 +1,48 @@
 import {api_route} from "../Router"
-import Vue from "vue"
 
 /**
  * Load user team information by ID
  *
- * @param {String} id
+ * @param {String} teamId
  * @return {Object}
  */
-export async function show(id) {
+export async function show(teamId) {
     try {
-        const response = await api_route('v1.team.show', {team: id}).request()
-        return response.data.data;
+        const response = await api_route('v1.team.show', {team: teamId}).request()
+        return response.data.data
     } catch (e) {
-        throw new Error('Can not load team information.');
+        throw new Error('Can not load team information.')
+    }
+}
+
+/**
+ * Update user team information
+ *
+ * @param {String} teamId
+ * @param {Object} data
+ * @return {Object}
+ */
+export async function update(teamId, data) {
+    try {
+        const response = await api_route('v1.team.update', {team: teamId}).request(data)
+        return response.data.data
+    } catch (e) {
+        throw new Error('Can not update team information.')
     }
 }
 
 /**
  * Load user team members
  *
- * @param {String} id
+ * @param {String} teamId
  *
  * @return {Object}
  */
-export async function members(id) {
+export async function members(teamId) {
     try {
-        const response = await api_route('v1.team.members', {team: id}).request()
-        return response.data.data;
+        const response = await api_route('v1.team.members', {team: teamId}).request()
+        return response.data.data
     } catch (e) {
-        throw new Error('Can not load user team members.');
+        throw new Error('Can not load user team members.')
     }
 }

@@ -37,8 +37,7 @@
                 this.loading = true
 
                 try {
-                    const response = await this.$apiRoute('v1.server.sites', {server: this.$route.params.id}).request()
-                    this.sites = response.data.data
+                    this.sites = await this.$api.serverSites.list(this.$route.params.id)
                 } catch (e) {
                     console.error(e)
                 }

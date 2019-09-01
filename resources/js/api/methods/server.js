@@ -1,5 +1,5 @@
-import {api_route} from "../Router";
-import Vue from "vue";
+import {api_route} from "../Router"
+import Vue from "vue"
 
 const SERVER_CREATED = 'server.created'
 const SERVER_UPDATED = 'server.updated'
@@ -13,24 +13,24 @@ const SERVER_DELETED = 'server.deleted'
 export async function list() {
     try {
         const response = await api_route('v1.servers').request()
-        return response.data.data;
+        return response.data.data
     } catch (e) {
-        throw new Error('Can not load servers list.');
+        throw new Error('Can not load servers list.')
     }
 }
 
 /**
  * Load server information by ID
  *
- * @param {String} id
+ * @param {String} serverId
  * @return {Object}
  */
-export async function show(id) {
+export async function show(serverId) {
     try {
-        const response = await api_route('v1.server.show', {server: id}).request()
-        return response.data.data;
+        const response = await api_route('v1.server.show', {server: serverId}).request()
+        return response.data.data
     } catch (e) {
-        throw new Error('Can not load server information.');
+        throw new Error('Can not load server information.')
     }
 }
 
@@ -49,7 +49,7 @@ export async function store(data) {
 
         return server
     } catch (e) {
-        throw new Error('Can not store server data.');
+        throw new Error('Can not store server data.')
     }
 }
 
@@ -57,51 +57,51 @@ export async function store(data) {
  *
  * @param {Function} callback
  */
-export function ocCreate(callback) {
+export function onCreate(callback) {
     Vue.$bus.$on(SERVER_CREATED, callback)
 }
 
 /**
  * Update server data by ID
  *
- * @param {String} id
+ * @param {String} serverId
  * @param {Object} data
  * @return {Object}
  */
-export async function update(id, data) {
-   // try {
-        const response = await api_route('v1.server.update', {server: id}).request(data)
+export async function update(serverId, data) {
+   try {
+        const response = await api_route('v1.server.update', {server: serverId}).request(data)
 
         const server = response.data.data
         Vue.$bus.$emit(SERVER_UPDATED, server)
 
-        return server;
-   // } catch (e) {
-   //     throw new Error('Can not update server information.');
-   // }
+        return server
+   } catch (e) {
+       throw new Error('Can not update server information.')
+   }
 }
 
 /**
  *
  * @param {Function} callback
  */
-export function ocUpdate(callback) {
+export function onUpdate(callback) {
     Vue.$bus.$on(SERVER_UPDATED, callback)
 }
 
 /**
  * Delete server by ID
  *
- * @param {String} id
+ * @param {String} serverId
  * @return {Object}
  */
-export async function remove(id) {
+export async function remove(serverId) {
     try {
-        const response = await api_route('v1.server.delete', {server: id}).request()
-        Vue.$bus.$emit(SERVER_DELETED, id)
-        return response.data;
+        const response = await api_route('v1.server.delete', {server: serverId}).request()
+        Vue.$bus.$emit(SERVER_DELETED, serverId)
+        return response.data
     } catch (e) {
-        throw new Error('Can not delete server.');
+        throw new Error('Can not delete server.')
     }
 }
 
@@ -109,6 +109,6 @@ export async function remove(id) {
  *
  * @param {Function} callback
  */
-export function ocDelete(callback) {
+export function onDelete(callback) {
     Vue.$bus.$on(SERVER_DELETED, callback)
 }

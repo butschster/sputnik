@@ -55,7 +55,7 @@
                 this.loading = true
 
                 try {
-                    await this.$apiRoute('v1.team.subscription.cancel', {team: this.team.id}).request()
+                    await this.$api.subscription.cancel(this.team.id)
                     this.$modal.close('cancel')
                 } catch (e) {
                     console.error(e)

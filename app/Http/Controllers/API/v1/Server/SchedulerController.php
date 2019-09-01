@@ -19,7 +19,7 @@ class SchedulerController extends Controller
     {
         $this->authorize('show', $server);
 
-        $jobs = $server->cronJobs()->paginate();
+        $jobs = $server->cronJobs()->get();
 
         return CronJobCollection::make($jobs);
     }
