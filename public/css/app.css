@@ -63270,6 +63270,7 @@ readers do not read off random characters that represent icons */
   background-color: #fff;
   border-width: 2px;
   border-radius: 9999px;
+  padding: 0.25rem;
 }
 
 .vue-simple-progress-bar {

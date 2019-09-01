@@ -15,7 +15,7 @@ const SITE_DELETED = 'server.site.deleted'
 export async function list(serverId) {
     try {
         const response = await api_route('v1.server.sites', {server: serverId}).request()
-        return response.data
+        return response.data.data
     } catch (e) {
         throw new ApiRequestError('Can not load server sites.')
     }

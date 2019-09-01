@@ -5,13 +5,12 @@ import {ApiRequestError} from "@js/errors";
  * Load servers list
  *
  * @param {String} serverId
- * @param {Number} page
  * @return {Object}
  */
-export async function list(serverId, page) {
+export async function list(serverId) {
     try {
-        const response = await api_route('v1.server.users', {server: serverId}).request({page})
-        return response.data
+        const response = await api_route('v1.server.users', {server: serverId}).request()
+        return response.data.data
     } catch (e) {
         throw new ApiRequestError('Can not load server users list.')
     }

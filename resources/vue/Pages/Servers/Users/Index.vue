@@ -4,9 +4,9 @@
             Users
         </h1>
 
-        <CreateForm :server="$parent.server" class="mb-12" @created="load(0)"/>
+        <CreateForm :server="$parent.server" class="mb-12" @created="load()"/>
 
-        <h4>Active users ({{ users.data.length }})</h4>
+        <h4>Active users ({{ users.length }})</h4>
         <div v-if="hasUsers">
             <Loader :loading="loading"/>
             <table class="table mb-10">
@@ -25,7 +25,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="user in users.data">
+                <tr v-for="user in users">
                     <th>{{ user.name }}</th>
                     <td>
                         <Copy :text="user.sudo_password" :label="user.sudo_password"/>
@@ -67,24 +67,18 @@
             return {
                 loading: false,
                 page: 1,
-                users: {
-                    data: []
-                }
+                users: []
             }
         },
         mounted() {
             this.load()
         },
         methods: {
-            async load(page = 1) {
+            async load() {
                 this.loading = true
 
-                if (page > 0) {
-                    this.page = page
-                }
-
                 try {
-                    this.users = await this.$api.serverUsers.list(this.$parent.server.id, this.page)
+                    this.users = await this.$api.serverUsers.list(this.$parent.server.id)
                 } catch (e) {
                     this.$handleError(e)
                 }
@@ -92,7 +86,7 @@
                 this.loading = false
             },
             removedUser(user) {
-                this.load(0)
+                this.load()
                 this.$notify({
                     text: 'User successfully deleted',
                     type: 'success'
@@ -113,7 +107,7 @@
         },
         computed: {
             hasUsers() {
-                return this.users.data.length > 0
+                return this.users.length > 0
             }
         }
     }

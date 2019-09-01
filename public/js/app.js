@@ -3129,9 +3129,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       loading: false,
       page: 1,
-      users: {
-        data: []
-      }
+      users: []
     };
   },
   mounted: function mounted() {
@@ -3142,42 +3140,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _load = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var page,
-            _args = arguments;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                page = _args.length > 0 && _args[0] !== undefined ? _args[0] : 1;
                 this.loading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return this.$api.serverUsers.list(this.$parent.server.id);
 
-                if (page > 0) {
-                  this.page = page;
-                }
-
-                _context.prev = 3;
-                _context.next = 6;
-                return this.$api.serverUsers.list(this.$parent.server.id, this.page);
-
-              case 6:
+              case 4:
                 this.users = _context.sent;
-                _context.next = 12;
+                _context.next = 10;
                 break;
 
-              case 9:
-                _context.prev = 9;
-                _context.t0 = _context["catch"](3);
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](1);
                 this.$handleError(_context.t0);
 
-              case 12:
+              case 10:
                 this.loading = false;
 
-              case 13:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[3, 9]]);
+        }, _callee, this, [[1, 7]]);
       }));
 
       function load() {
@@ -3187,7 +3177,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return load;
     }(),
     removedUser: function removedUser(user) {
-      this.load(0);
+      this.load();
       this.$notify({
         text: 'User successfully deleted',
         type: 'success'
@@ -3236,7 +3226,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     hasUsers: function hasUsers() {
-      return this.users.data.length > 0;
+      return this.users.length > 0;
     }
   }
 });
@@ -51842,11 +51832,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v("Sites")]),
-    _vm._v(" "),
-    _vm.isConfigured
-      ? _c(
+  return _vm.isConfigured
+    ? _c("div", [
+        _c("h1", [_vm._v("Sites")]),
+        _vm._v(" "),
+        _c(
           "div",
           [
             _c("SitesList", { attrs: { server: _vm.$parent.server } }),
@@ -51859,8 +51849,8 @@ var render = function() {
           ],
           1
         )
-      : _vm._e()
-  ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -51929,14 +51919,12 @@ var render = function() {
         attrs: { server: _vm.$parent.server },
         on: {
           created: function($event) {
-            return _vm.load(0)
+            return _vm.load()
           }
         }
       }),
       _vm._v(" "),
-      _c("h4", [
-        _vm._v("Active users (" + _vm._s(_vm.users.data.length) + ")")
-      ]),
+      _c("h4", [_vm._v("Active users (" + _vm._s(_vm.users.length) + ")")]),
       _vm._v(" "),
       _vm.hasUsers
         ? _c(
@@ -51959,7 +51947,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.users.data, function(user) {
+                  _vm._l(_vm.users, function(user) {
                     return _c("tr", [
                       _c("th", [_vm._v(_vm._s(user.name))]),
                       _vm._v(" "),
@@ -81733,7 +81721,7 @@ function _list() {
 
           case 3:
             response = _context.sent;
-            return _context.abrupt("return", response.data);
+            return _context.abrupt("return", response.data.data);
 
           case 7:
             _context.prev = 7;
@@ -82250,11 +82238,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  * Load servers list
  *
  * @param {String} serverId
- * @param {Number} page
  * @return {Object}
  */
 
-function list(_x, _x2) {
+function list(_x) {
   return _list.apply(this, arguments);
 }
 /**
@@ -82268,7 +82255,7 @@ function list(_x, _x2) {
 function _list() {
   _list = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(serverId, page) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(serverId) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
@@ -82278,13 +82265,11 @@ function _list() {
             _context.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.users', {
               server: serverId
-            }).request({
-              page: page
-            });
+            }).request();
 
           case 3:
             response = _context.sent;
-            return _context.abrupt("return", response.data);
+            return _context.abrupt("return", response.data.data);
 
           case 7:
             _context.prev = 7;
@@ -82301,7 +82286,7 @@ function _list() {
   return _list.apply(this, arguments);
 }
 
-function store(_x3, _x4) {
+function store(_x2, _x3) {
   return _store.apply(this, arguments);
 }
 /**
@@ -82345,7 +82330,7 @@ function _store() {
   return _store.apply(this, arguments);
 }
 
-function show(_x5) {
+function show(_x4) {
   return _show.apply(this, arguments);
 }
 /**
@@ -82389,7 +82374,7 @@ function _show() {
   return _show.apply(this, arguments);
 }
 
-function remove(_x6) {
+function remove(_x5) {
   return _remove.apply(this, arguments);
 }
 
