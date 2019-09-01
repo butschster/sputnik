@@ -39,7 +39,7 @@
         },
         methods: {
             loaded() {
-                this.$echo.channel('server.' + this.server.id)
+                this.$echo.serverChannel(this.server.id)
                     .listen('.App\\Events\\Server\\StatusChanged', (e) => {
                         this.server.status = e.status
                         console.log(e)

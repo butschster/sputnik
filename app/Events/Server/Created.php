@@ -4,6 +4,7 @@ namespace App\Events\Server;
 
 use App\Models\Server;
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -33,6 +34,6 @@ class Created implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('server.' . $this->server->id);
+        return new PrivateChannel('server.' . $this->server->id);
     }
 }

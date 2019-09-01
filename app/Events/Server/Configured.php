@@ -37,6 +37,6 @@ class Configured implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('server.' . $this->server->id);
+        return new PrivateChannel('server.' . $this->server->id);
     }
 }

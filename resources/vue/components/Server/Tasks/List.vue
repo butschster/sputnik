@@ -57,7 +57,7 @@
         mounted() {
             this.load()
 
-            this.$echo.channel('server.' + this.server.id)
+            this.$echo.serverChannel(this.server.id)
                 .listen('.App\\Events\\Server\\Task\\Created', (e) => {
                     this.tasks.data.unshift(e.task)
                 })

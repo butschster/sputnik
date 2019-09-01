@@ -4,6 +4,7 @@ namespace App\Events\Server\Event;
 
 use App\Models\Server\Event;
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class Created implements ShouldBroadcast
@@ -28,6 +29,6 @@ class Created implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('server.' . $this->event->server_id);
+        return new PrivateChannel('server.' . $this->event->server_id);
     }
 }

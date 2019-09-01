@@ -3,7 +3,6 @@
         <template v-if="isPending">
             <div class="alert alert-primary mb-8 rounded">
                 <p>Run this code in your server and wait until server configuring</p>
-                <code>{{ installScript }}</code>
                 <Copy :text="installScript"/>
             </div>
 
@@ -46,7 +45,7 @@
             }
         },
         mounted() {
-            this.$echo.channel('server.' + this.server.id)
+            this.$echo.serverChannel(this.server.id)
                 .listen('.App\\Events\\Server\\Event\\Created', (e) => {
                     this.message = e.event.message
                     if (typeof e.event.meta.progress != "undefined") {

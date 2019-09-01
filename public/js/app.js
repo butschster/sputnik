@@ -2560,7 +2560,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     loaded: function loaded() {
       var _this = this;
 
-      this.$echo.channel('server.' + this.server.id).listen('.App\\Events\\Server\\StatusChanged', function (e) {
+      this.$echo.serverChannel(this.server.id).listen('.App\\Events\\Server\\StatusChanged', function (e) {
         _this.server.status = e.status;
         console.log(e);
       });
@@ -3275,7 +3275,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     this.load();
-    this.$echo.channel('server.' + this.server.id).listen('.App\\Events\\Server\\Event\\Created', function (e) {
+    this.$echo.serverChannel(this.server.id).listen('.App\\Events\\Server\\Event\\Created', function (e) {
       _this.events.data.unshift(e.event);
     });
   },
@@ -3964,7 +3964,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     this.load();
-    this.$echo.channel('server.' + this.server.id).listen('.App\\Events\\Server\\Task\\Created', function (e) {
+    this.$echo.serverChannel(this.server.id).listen('.App\\Events\\Server\\Task\\Created', function (e) {
       _this.tasks.data.unshift(e.task);
     });
   },
@@ -4183,7 +4183,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4203,7 +4202,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     var _this = this;
 
-    this.$echo.channel('server.' + this.server.id).listen('.App\\Events\\Server\\Event\\Created', function (e) {
+    this.$echo.serverChannel(this.server.id).listen('.App\\Events\\Server\\Event\\Created', function (e) {
       _this.message = e.event.message;
 
       if (typeof e.event.meta.progress != "undefined") {
@@ -52523,8 +52522,6 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("code", [_vm._v(_vm._s(_vm.installScript))]),
-                _vm._v(" "),
                 _c("Copy", { attrs: { text: _vm.installScript } })
               ],
               1
@@ -82995,6 +82992,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_2__);
 
 
+
+
+laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.serverChannel = function (serverId) {
+  return this["private"]('server.' + serverId);
+};
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
   broadcaster: 'pusher',
