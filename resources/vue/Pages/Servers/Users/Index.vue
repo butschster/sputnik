@@ -82,7 +82,7 @@
                 try {
                     this.users = await this.$api.serverUsers.list(this.$parent.server.id, this.page)
                 } catch (e) {
-                    console.error(e)
+                    this.$handleError(e)
                 }
 
                 this.loading = false
@@ -101,7 +101,7 @@
                     await this.$api.serverUsers.remove(user.id)
                     this.removedUser(user)
                 } catch (e) {
-                    console.error(e)
+                    this.$handleError(e)
                 }
 
                 this.loading = false

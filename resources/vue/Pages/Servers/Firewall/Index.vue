@@ -1,5 +1,9 @@
 <template>
     <div>
+        <h1>
+            Firewall
+        </h1>
+
         <CreateFormFirewall :server="$parent.server" class="mb-12" @created="load"/>
 
         <h4>Active users ({{ rules.length }})</h4>
@@ -23,7 +27,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="rule in rules.data">
+                <tr v-for="rule in rules">
                     <th>
                         {{ rule.name }}
                     </th>
@@ -83,7 +87,7 @@
                 try {
                     this.rules = await this.$api.serverFirewall.list(this.$parent.server.id)
                 } catch (e) {
-                    console.error(e)
+                    this.$handleError(e)
                 }
 
                 this.loading = false
@@ -102,7 +106,7 @@
                     await this.$api.serverFirewall.remove(rule.id)
                     this.removedRule(rule)
                 } catch (e) {
-                    console.error(e)
+                    this.$handleError(e)
                 }
 
                 this.loading = false

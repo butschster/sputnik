@@ -10,7 +10,7 @@ export async function sync(siteId) {
     try {
         await api_route('v1.server.site.repository.sync', {site: siteId}).request()
     } catch (e) {
-        throw new Error('Can not sync public key and web hooks.')
+        throw new ApiRequestError('Can not sync public key and web hooks.')
     }
 }
 
@@ -30,6 +30,6 @@ export async function update(siteId, data) {
     try {
         await api_route('v1.server.site.repository.update', {site: siteId}).request(data)
     } catch (e) {
-        throw new Error('Can not sync public key and web hooks.')
+        throw new ApiRequestError('Can not sync public key and web hooks.')
     }
 }

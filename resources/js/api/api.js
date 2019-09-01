@@ -1,4 +1,6 @@
 import methods from './methods'
+import {ApiError, ApiRequestError} from "@js/errors"
+import Vue from 'vue'
 
 class ApiMethods {
     constructor(methods) {
@@ -28,18 +30,14 @@ class Api {
 export default new Proxy(new Api(methods), {
     get(target, property) {
         if (typeof target[property] === 'undefined') {
-            throw new Error(`Api method [${property}] not found`);
+            throw new ApiError(`Api method [${property}] not found`);
         }
 
         if (property == 'register') {
             return target[property];
         }
 
-        try {
-            return target[property]();
-        } catch (e) {
-            console.error(e.message);
-        }
+        return target[property]();
     },
 
     set(target, property, value, receiver) {
@@ -50,7 +48,7 @@ export default new Proxy(new Api(methods), {
         }
 
         if (typeof target[property]() === 'object') {
-            throw new Error('You can\'t override api methods');
+            throw new ApiError('You can\'t override api methods');
         }
 
         return false;

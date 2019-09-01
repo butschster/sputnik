@@ -65,7 +65,7 @@
                     await this.$api.subscription.subscribe(this.team.id, plan.id)
                     this.$bus.$emit('subscribed')
                 } catch (e) {
-                    console.error(e)
+                    this.$handleError(e)
                 }
 
                 this.loading = false
@@ -76,7 +76,7 @@
                 try {
                     this.plans = await this.$api.subscription.plans()
                 } catch (e) {
-                    console.error(e)
+                    this.$handleError(e)
                 }
 
                 this.loading = false

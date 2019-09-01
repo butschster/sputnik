@@ -48,7 +48,12 @@ class ServerResource extends JsonResource
                 'install_script' => route('server.install_script', $this),
             ],
             'can' => [
-                'create_site' => Gate::allows('store', [\App\Models\Server\Site::class, $this->resource])
+                'create_site' => Gate::allows('store', [\App\Models\Server\Site::class, $this->resource]),
+                'create_cron_job' => Gate::allows('store', [\App\Models\Server\CronJob::class, $this->resource]),
+                'create_database' => Gate::allows('store', [\App\Models\Server\Database::class, $this->resource]),
+                'create_firewall' => Gate::allows('store', [\App\Models\Server\Firewall\Rule::class, $this->resource]),
+                'create_daemon' => Gate::allows('store', [\App\Models\Server\Daemon::class, $this->resource]),
+                'create_user' => Gate::allows('store', [\App\Models\Server\User::class, $this->resource]),
             ]
         ];
     }

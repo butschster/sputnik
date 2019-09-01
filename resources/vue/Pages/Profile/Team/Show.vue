@@ -54,8 +54,8 @@
                 try {
                     this.team = await this.$api.team.show(this.$route.params.id)
                 } catch (e) {
-                    console.error(e)
                     this.$router.replace({name: "404"})
+                    throw e
                 }
 
                 this.loading = false

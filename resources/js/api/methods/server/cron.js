@@ -1,4 +1,5 @@
 import {api_route} from "../../Router"
+import {ApiRequestError} from "@js/errors";
 
 /**
  * Load servers cron jobs
@@ -11,7 +12,7 @@ export async function list(serverId) {
         const response = await api_route('v1.server.cron_jobs', {server: serverId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load server cron jobs.')
+        throw new ApiRequestError('Can not load server cron jobs.')
     }
 }
 
@@ -27,7 +28,7 @@ export async function store(serverId, data) {
         const response = await api_route('v1.server.cron_job.store', {server: serverId}).request(data)
         return response.data.data
     } catch (e) {
-        throw new Error('Can not store server cron job.')
+        throw new ApiRequestError('Can not store server cron job.')
     }
 }
 
@@ -42,7 +43,7 @@ export async function show(jobId) {
         const response = await api_route('v1.server.cron_job.show', {job: jobId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load server cron job information.')
+        throw new ApiRequestError('Can not load server cron job information.')
     }
 }
 

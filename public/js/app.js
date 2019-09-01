@@ -2018,10 +2018,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
                 this.$router.replace({
                   name: "404"
                 });
+                throw _context.t0;
 
               case 11:
                 this.loading = false;
@@ -2207,6 +2207,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2249,7 +2253,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 10:
                 this.loading = false;
@@ -2296,7 +2300,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context2.prev = 7;
                 _context2.t0 = _context2["catch"](1);
-                console.error(_context2.t0);
+                this.$handleError(_context2.t0);
 
               case 10:
                 this.loading = false;
@@ -2379,6 +2383,140 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     SystemInformation: _vue_components_Server_partials_SystemInformation__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Servers/Scheduler/Index.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Servers/Scheduler/Index.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      loading: false,
+      jobs: []
+    };
+  },
+  mounted: function mounted() {
+    this.load();
+  },
+  methods: {
+    load: function () {
+      var _load = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.loading = true;
+
+                try {} catch (e) {}
+
+                this.loading = false;
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function load() {
+        return _load.apply(this, arguments);
+      }
+
+      return load;
+    }()
   }
 });
 
@@ -2469,7 +2607,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 10:
                 this.loading = false;
@@ -2588,10 +2726,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
                 this.$router.replace({
                   name: "404"
                 });
+                throw _context.t0;
 
               case 12:
                 this.loading = false;
@@ -2817,7 +2955,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 9:
                 _context.prev = 9;
                 _context.t0 = _context["catch"](3);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 12:
                 this.loading = false;
@@ -2864,7 +3002,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context2.prev = 7;
                 _context2.t0 = _context2["catch"](1);
-                console.error(_context2.t0);
+                this.$handleError(_context2.t0);
 
               case 10:
                 this.loading = false;
@@ -3309,7 +3447,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context["catch"](2);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 11:
                 this.loading = false;
@@ -3435,7 +3573,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 10:
                 _context.prev = 10;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 13:
                 this.loading = false;
@@ -3758,7 +3896,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 11:
                 this.loading = false;
@@ -3854,7 +3992,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 10:
                 this.loading = false;
@@ -3993,7 +4131,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context["catch"](2);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 11:
                 this.loading = false;
@@ -4102,7 +4240,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 10:
                 _context.prev = 10;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 13:
                 this.loading = false;
@@ -4559,7 +4697,7 @@ __webpack_require__.r(__webpack_exports__);
       }, 1000);
     },
     onError: function onError(e) {
-      console.error(e);
+      this.$handleError(e);
     }
   },
   computed: {
@@ -5986,7 +6124,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 6:
                 _context.prev = 6;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 9:
                 this.loading = false;
@@ -6083,7 +6221,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 10:
                 this.loading = false;
@@ -6222,7 +6360,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 10:
                 this.loading = false;
@@ -6417,7 +6555,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 8:
                 _context2.prev = 8;
                 _context2.t0 = _context2["catch"](1);
-                console.error(_context2.t0);
+                this.$handleError(_context2.t0);
 
               case 11:
                 this.loading = false;
@@ -6549,7 +6687,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 10:
                 this.loading = false;
@@ -6644,7 +6782,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 10:
                 this.loading = false;
@@ -6760,7 +6898,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 10:
                 this.loading = false;
@@ -6886,7 +7024,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 10:
                 this.loading = false;
@@ -6926,7 +7064,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context2.prev = 7;
                 _context2.t0 = _context2["catch"](1);
-                console.error(_context2.t0);
+                this.$handleError(_context2.t0);
 
               case 10:
                 this.loading = false;
@@ -7040,7 +7178,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 6:
                 _context.prev = 6;
                 _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
+                this.$handleError(_context.t0);
 
               case 9:
                 this.loading = false;
@@ -50665,6 +50803,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("h1", [_vm._v("\n        Firewall\n    ")]),
+      _vm._v(" "),
       _c("CreateFormFirewall", {
         staticClass: "mb-12",
         attrs: { server: _vm.$parent.server },
@@ -50696,7 +50836,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.rules.data, function(rule) {
+                  _vm._l(_vm.rules, function(rule) {
                     return _c("tr", [
                       _c("th", [
                         _vm._v(
@@ -50859,6 +50999,173 @@ var render = function() {
   return _c("SystemInformation", { attrs: { server: _vm.$parent.server } })
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Servers/Scheduler/Index.vue?vue&type=template&id=61a18d3a&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/Pages/Servers/Scheduler/Index.vue?vue&type=template&id=61a18d3a& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h1", [_vm._v("\n        Scheduler\n    ")]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "mt-10" }, [
+      _c("h4", [_vm._v("Scheduled jobs")]),
+      _vm._v(" "),
+      _c("table", { staticClass: "table mb-0" }, [
+        _c("col"),
+        _vm._v(" "),
+        _c("col", { attrs: { width: "100px" } }),
+        _vm._v(" "),
+        _c("col", { attrs: { width: "100px" } }),
+        _vm._v(" "),
+        _c("col"),
+        _vm._v(" "),
+        _c("col", { attrs: { width: "200px" } }),
+        _vm._v(" "),
+        _c("col", { attrs: { width: "100px" } }),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.jobs, function(job) {
+            return _c("tr", { key: job.id }, [
+              _c("th", [
+                _vm._v(_vm._s(job.name) + " "),
+                _c("br"),
+                _c("small", { staticClass: "text-muted" }, [
+                  _vm._v(_vm._s(job.id))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(job.cron))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(job.user))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(job.command))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(job.nextRunDate()))]),
+              _vm._v(" "),
+              _c("td", [
+                _c("span", { staticClass: "badge badge-dark" }, [
+                  _vm._v(_vm._s(job.taskStatus()))
+                ])
+              ])
+            ])
+          }),
+          0
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "section pb-8 my-10" }, [
+      _c("div", { staticClass: "section-header" }, [
+        _vm._v("\n            New scheduled task\n            "),
+        _c("p", [_vm._v("You can easily schedule cron jobs on your server")])
+      ]),
+      _vm._v(" "),
+      _c("input", { attrs: { type: "hidden", name: "user", value: "root" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group form-group-labeled is-required " }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", name: "name", id: "name", placeholder: "Name" }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "name" } }, [_vm._v("Name")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group form-group-labeled " }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            name: "command",
+            id: "command",
+            placeholder: "Command"
+          }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "command" } }, [_vm._v("Command")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group form-group-labeled is-required" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            name: "cron",
+            id: "cron",
+            value: "",
+            placeholder: "Cron expression"
+          }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "cron" } }, [_vm._v("Cron expression")]),
+        _vm._v(" "),
+        _c(
+          "small",
+          {
+            staticClass: "form-text text-muted",
+            attrs: { id: "passwordHelpBlock" }
+          },
+          [
+            _vm._v(
+              "\n                You can use named expressions like [@hourly, @daily, @monthly]\n            "
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group mb-0" }, [
+        _c("button", { staticClass: "btn btn-primary" }, [_vm._v("Schedule")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Cron")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("User")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Command")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Next run")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -78461,6 +78768,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ziggy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ziggy */ "./resources/js/api/ziggy.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -78486,6 +78794,7 @@ function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[nat
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -78782,6 +79091,9 @@ function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _methods__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./methods */ "./resources/js/api/methods/index.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -78789,6 +79101,8 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
 
 
 
@@ -78838,18 +79152,14 @@ function () {
 /* harmony default export */ __webpack_exports__["default"] = (new Proxy(new Api(_methods__WEBPACK_IMPORTED_MODULE_0__["default"]), {
   get: function get(target, property) {
     if (typeof target[property] === 'undefined') {
-      throw new Error("Api method [".concat(property, "] not found"));
+      throw new _js_errors__WEBPACK_IMPORTED_MODULE_1__["ApiError"]("Api method [".concat(property, "] not found"));
     }
 
     if (property == 'register') {
       return target[property];
     }
 
-    try {
-      return target[property]();
-    } catch (e) {
-      console.error(e.message);
-    }
+    return target[property]();
   },
   set: function set(target, property, value, receiver) {
     if (typeof target[property] === 'undefined') {
@@ -78858,7 +79168,7 @@ function () {
     }
 
     if (_typeof(target[property]()) === 'object') {
-      throw new Error('You can\'t override api methods');
+      throw new _js_errors__WEBPACK_IMPORTED_MODULE_1__["ApiError"]('You can\'t override api methods');
     }
 
     return false;
@@ -78981,11 +79291,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Router */ "./resources/js/api/Router.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -79026,7 +79338,7 @@ function _profile() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load user profile.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not load user profile.');
 
           case 10:
           case "end":
@@ -79068,7 +79380,7 @@ function _update() {
           case 9:
             _context2.prev = 9;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not update user profile.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not update user profile.');
 
           case 12:
           case "end":
@@ -79119,7 +79431,7 @@ function _sourceProviders() {
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not load profile source providers.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not load profile source providers.');
 
           case 10:
           case "end":
@@ -79160,7 +79472,7 @@ function _remove() {
           case 8:
             _context4.prev = 8;
             _context4.t0 = _context4["catch"](0);
-            throw new Error('Can not delete profile.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not delete profile.');
 
           case 11:
           case "end":
@@ -79191,11 +79503,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /**
@@ -79228,7 +79542,7 @@ function _list() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load user teams.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load user teams.');
 
           case 10:
           case "end":
@@ -79264,11 +79578,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Router */ "./resources/js/api/Router.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -79311,7 +79627,7 @@ function _list() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load servers list.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not load servers list.');
 
           case 10:
           case "end":
@@ -79355,7 +79671,7 @@ function _show() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not load server information.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not load server information.');
 
           case 10:
           case "end":
@@ -79397,7 +79713,7 @@ function _store() {
           case 9:
             _context3.prev = 9;
             _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not store server data.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not store server data.');
 
           case 12:
           case "end":
@@ -79452,7 +79768,7 @@ function _update() {
           case 9:
             _context4.prev = 9;
             _context4.t0 = _context4["catch"](0);
-            throw new Error('Can not update server information.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not update server information.');
 
           case 12:
           case "end":
@@ -79505,7 +79821,7 @@ function _remove() {
           case 8:
             _context5.prev = 8;
             _context5.t0 = _context5["catch"](0);
-            throw new Error('Can not delete server.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not delete server.');
 
           case 11:
           case "end":
@@ -79539,11 +79855,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /**
@@ -79586,7 +79904,7 @@ function _list() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load server cron jobs.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server cron jobs.');
 
           case 10:
           case "end":
@@ -79630,7 +79948,7 @@ function _store() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not store server cron job.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not store server cron job.');
 
           case 10:
           case "end":
@@ -79674,7 +79992,7 @@ function _show() {
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not load server cron job information.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server cron job information.');
 
           case 10:
           case "end":
@@ -79742,11 +80060,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /**
@@ -79789,7 +80109,7 @@ function _list() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load server databases.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server databases.');
 
           case 10:
           case "end":
@@ -79833,7 +80153,7 @@ function _store() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not store server database.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not store server database.');
 
           case 10:
           case "end":
@@ -79877,7 +80197,7 @@ function _show() {
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not load server database information.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server database information.');
 
           case 10:
           case "end":
@@ -79943,11 +80263,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /**
@@ -79993,7 +80315,7 @@ function _list() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load server events.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server events.');
 
           case 10:
           case "end":
@@ -80031,7 +80353,7 @@ function _lastOne() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not load last server event.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load last server event.');
 
           case 10:
           case "end":
@@ -80061,11 +80383,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /**
@@ -80108,7 +80432,7 @@ function _list() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load server firewall rules list.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server firewall rules list.');
 
           case 10:
           case "end":
@@ -80152,7 +80476,7 @@ function _store() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not store server firewall rule data.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not store server firewall rule data.');
 
           case 10:
           case "end":
@@ -80196,7 +80520,7 @@ function _show() {
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not load server firewall rule information.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server firewall rule information.');
 
           case 10:
           case "end":
@@ -80234,7 +80558,7 @@ function _remove() {
           case 7:
             _context4.prev = 7;
             _context4.t0 = _context4["catch"](0);
-            throw new Error('Can not delete server firewall rule.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not delete server firewall rule.');
 
           case 10:
           case "end":
@@ -80262,11 +80586,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /**
@@ -80308,7 +80634,7 @@ function _script() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load deployment script.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load deployment script.');
 
           case 10:
           case "end":
@@ -80346,7 +80672,7 @@ function _deploy() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not deploy site.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not deploy site.');
 
           case 10:
           case "end":
@@ -80375,11 +80701,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /**
@@ -80426,7 +80754,7 @@ function _upload() {
           case 5:
             _context.prev = 5;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not upload env file.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not upload env file.');
 
           case 8:
           case "end":
@@ -80471,7 +80799,7 @@ function _update() {
           case 5:
             _context2.prev = 5;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not update environment variables.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not update environment variables.');
 
           case 8:
           case "end":
@@ -80510,7 +80838,7 @@ function _remove() {
           case 5:
             _context3.prev = 5;
             _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not delete environment variable.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not delete environment variable.');
 
           case 8:
           case "end":
@@ -80589,7 +80917,7 @@ function _sync() {
           case 5:
             _context.prev = 5;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not sync public key and web hooks.');
+            throw new ApiRequestError('Can not sync public key and web hooks.');
 
           case 8:
           case "end":
@@ -80626,7 +80954,7 @@ function _update() {
           case 5:
             _context2.prev = 5;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not sync public key and web hooks.');
+            throw new ApiRequestError('Can not sync public key and web hooks.');
 
           case 8:
           case "end":
@@ -80660,11 +80988,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -80710,7 +81040,7 @@ function _list() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load server sites.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not load server sites.');
 
           case 10:
           case "end":
@@ -80755,7 +81085,7 @@ function _show() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not load server site information.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not load server site information.');
 
           case 10:
           case "end":
@@ -80799,7 +81129,7 @@ function _store() {
           case 9:
             _context3.prev = 9;
             _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not store server site data.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not store server site data.');
 
           case 12:
           case "end":
@@ -80852,7 +81182,7 @@ function _remove() {
           case 8:
             _context4.prev = 8;
             _context4.t0 = _context4["catch"](0);
-            throw new Error('Can not delete server task.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not delete server task.');
 
           case 11:
           case "end":
@@ -80886,11 +81216,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /**
@@ -80933,7 +81265,7 @@ function _list() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load server supervisors.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server supervisors.');
 
           case 10:
           case "end":
@@ -80977,7 +81309,7 @@ function _store() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not store server supervisor.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not store server supervisor.');
 
           case 10:
           case "end":
@@ -81021,7 +81353,7 @@ function _show() {
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not load server supervisor information.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server supervisor information.');
 
           case 10:
           case "end":
@@ -81059,7 +81391,7 @@ function _remove() {
           case 7:
             _context4.prev = 7;
             _context4.t0 = _context4["catch"](0);
-            throw new Error('Can not delete server supervisor.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not delete server supervisor.');
 
           case 10:
           case "end":
@@ -81087,11 +81419,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /**
@@ -81137,7 +81471,7 @@ function _list() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load server tasks.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server tasks.');
 
           case 10:
           case "end":
@@ -81175,7 +81509,7 @@ function _show() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not load server task information.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server task information.');
 
           case 10:
           case "end":
@@ -81205,11 +81539,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /**
@@ -81255,7 +81591,7 @@ function _list() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load server users list.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server users list.');
 
           case 10:
           case "end":
@@ -81299,7 +81635,7 @@ function _store() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not store server data.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not store server data.');
 
           case 10:
           case "end":
@@ -81343,7 +81679,7 @@ function _show() {
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not load server user information.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load server user information.');
 
           case 10:
           case "end":
@@ -81381,7 +81717,7 @@ function _remove() {
           case 7:
             _context4.prev = 7;
             _context4.t0 = _context4["catch"](0);
-            throw new Error('Can not delete server user.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not delete server user.');
 
           case 10:
           case "end":
@@ -81408,11 +81744,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /**
@@ -81445,7 +81783,7 @@ function _list() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not list of available source providers.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not list of available source providers.');
 
           case 10:
           case "end":
@@ -81480,11 +81818,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Router */ "./resources/js/api/Router.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -81528,7 +81868,7 @@ function _plans() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load subscription plans list.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not load subscription plans list.');
 
           case 10:
           case "end":
@@ -81572,7 +81912,7 @@ function _subscribe() {
           case 6:
             _context2.prev = 6;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not subscribe team to plan.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not subscribe team to plan.');
 
           case 9:
           case "end":
@@ -81625,7 +81965,7 @@ function _cancel() {
           case 6:
             _context3.prev = 6;
             _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not cancel team subscription.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not cancel team subscription.');
 
           case 9:
           case "end":
@@ -81678,7 +82018,7 @@ function _resume() {
           case 6:
             _context4.prev = 6;
             _context4.t0 = _context4["catch"](0);
-            throw new Error('Can not resume team subscription.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not resume team subscription.');
 
           case 9:
           case "end":
@@ -81711,11 +82051,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Router */ "./resources/js/api/Router.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /**
@@ -81758,7 +82100,7 @@ function _show() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load team information.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load team information.');
 
           case 10:
           case "end":
@@ -81803,7 +82145,7 @@ function _update() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not update team information.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not update team information.');
 
           case 10:
           case "end":
@@ -81841,7 +82183,7 @@ function _members() {
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not load user team members.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load user team members.');
 
           case 10:
           case "end":
@@ -81875,11 +82217,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Router */ "./resources/js/api/Router.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -81924,7 +82268,7 @@ function _paymentMethods() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            throw new Error('Can not load payment methods.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not load payment methods.');
 
           case 10:
           case "end":
@@ -81969,7 +82313,7 @@ function _createIntentionSecret() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            throw new Error('Can not load payment methods.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not load payment methods.');
 
           case 10:
           case "end":
@@ -82012,7 +82356,7 @@ function _storePaymentMethod() {
           case 8:
             _context3.prev = 8;
             _context3.t0 = _context3["catch"](0);
-            throw new Error('Can not load payment methods.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not load payment methods.');
 
           case 11:
           case "end":
@@ -82070,7 +82414,7 @@ function _deletePaymentMethod() {
           case 8:
             _context4.prev = 8;
             _context4.t0 = _context4["catch"](0);
-            throw new Error('Can not delete payment method.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_3__["ApiRequestError"]('Can not delete payment method.');
 
           case 11:
           case "end":
@@ -82437,6 +82781,9 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   created: function created() {
     this.$store.dispatch('auth/loadUser');
     this.$store.dispatch('servers/loadServers');
+  },
+  errorHandler: function errorHandler(err, vm, info) {
+    console.error('Exception: ', err);
   }
 });
 
@@ -82485,6 +82832,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(portal_vue__WEBPACK_IMPORTED_MODU
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_notification__WEBPACK_IMPORTED_MODULE_5___default.a);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_moment__WEBPACK_IMPORTED_MODULE_6___default.a);
 
+__webpack_require__(/*! ./vue/plugins/errorHandler */ "./resources/js/vue/plugins/errorHandler.js");
+
 __webpack_require__(/*! ./vue/plugins/eventBus */ "./resources/js/vue/plugins/eventBus.js");
 
 __webpack_require__(/*! ./vue/plugins/echo */ "./resources/js/vue/plugins/echo.js");
@@ -82503,6 +82852,82 @@ __webpack_require__(/*! ./api */ "./resources/js/api/index.js"); //import i18n f
 __webpack_require__(/*! ./vue/plugins/clipboard */ "./resources/js/vue/plugins/clipboard.js");
 
 __webpack_require__(/*! ./vue/directives/click-ouside */ "./resources/js/vue/directives/click-ouside.js");
+
+/***/ }),
+
+/***/ "./resources/js/errors/index.js":
+/*!**************************************!*\
+  !*** ./resources/js/errors/index.js ***!
+  \**************************************/
+/*! exports provided: ApiError, ApiRequestError, ApiResponseError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiError", function() { return ApiError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiRequestError", function() { return ApiRequestError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiResponseError", function() { return ApiResponseError; });
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
+
+function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var ApiError =
+/*#__PURE__*/
+function (_Error) {
+  _inherits(ApiError, _Error);
+
+  function ApiError() {
+    _classCallCheck(this, ApiError);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ApiError).apply(this, arguments));
+  }
+
+  return ApiError;
+}(_wrapNativeSuper(Error));
+var ApiRequestError =
+/*#__PURE__*/
+function (_Error2) {
+  _inherits(ApiRequestError, _Error2);
+
+  function ApiRequestError() {
+    _classCallCheck(this, ApiRequestError);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ApiRequestError).apply(this, arguments));
+  }
+
+  return ApiRequestError;
+}(_wrapNativeSuper(Error));
+var ApiResponseError =
+/*#__PURE__*/
+function (_Error3) {
+  _inherits(ApiResponseError, _Error3);
+
+  function ApiResponseError() {
+    _classCallCheck(this, ApiResponseError);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ApiResponseError).apply(this, arguments));
+  }
+
+  return ApiResponseError;
+}(_wrapNativeSuper(Error));
 
 /***/ }),
 
@@ -82578,7 +83003,6 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.response.use(function 
 }, function (error) {
   switch (error.response.status) {
     case 403:
-      console.log(error.response);
       vue__WEBPACK_IMPORTED_MODULE_1___default.a.notify({
         type: 'warn',
         title: 'Access denied',
@@ -83007,6 +83431,36 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$echo = new laravel_echo__W
 
 /***/ }),
 
+/***/ "./resources/js/vue/plugins/errorHandler.js":
+/*!**************************************************!*\
+  !*** ./resources/js/vue/plugins/errorHandler.js ***!
+  \**************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
+
+
+
+var handleApiRequestErrors = function handleApiRequestErrors(err) {
+  vue__WEBPACK_IMPORTED_MODULE_0___default.a.notify({
+    type: 'error',
+    text: err.message
+  });
+};
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.$handleError = vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$handleError = function (err) {
+  if (err instanceof _js_errors__WEBPACK_IMPORTED_MODULE_1__["ApiRequestError"]) {
+    handleApiRequestErrors(err);
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/js/vue/plugins/eventBus.js":
 /*!**********************************************!*\
   !*** ./resources/js/vue/plugins/eventBus.js ***!
@@ -83279,11 +83733,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _js_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @js/api */ "./resources/js/api/index.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 var state = {
@@ -83331,7 +83788,7 @@ var actions = {
             case 10:
               _context.prev = 10;
               _context.t0 = _context["catch"](3);
-              console.error(_context.t0);
+              vue__WEBPACK_IMPORTED_MODULE_2___default.a.$handleError(_context.t0);
 
             case 13:
               commit('setLoading', false);
@@ -83382,7 +83839,7 @@ var actions = {
               case 9:
                 _context2.prev = 9;
                 _context2.t0 = _context2["catch"](1);
-                console.error(_context2.t0);
+                vue__WEBPACK_IMPORTED_MODULE_2___default.a.$handleError(_context2.t0);
                 reject(_context2.t0);
 
               case 13:
@@ -84313,6 +84770,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Information_vue_vue_type_template_id_e269609e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Information_vue_vue_type_template_id_e269609e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/Pages/Servers/Scheduler/Index.vue":
+/*!*********************************************************!*\
+  !*** ./resources/vue/Pages/Servers/Scheduler/Index.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Index_vue_vue_type_template_id_61a18d3a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=61a18d3a& */ "./resources/vue/Pages/Servers/Scheduler/Index.vue?vue&type=template&id=61a18d3a&");
+/* harmony import */ var _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Index.vue?vue&type=script&lang=js& */ "./resources/vue/Pages/Servers/Scheduler/Index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Index_vue_vue_type_template_id_61a18d3a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Index_vue_vue_type_template_id_61a18d3a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/Pages/Servers/Scheduler/Index.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/Pages/Servers/Scheduler/Index.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/vue/Pages/Servers/Scheduler/Index.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Servers/Scheduler/Index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/Pages/Servers/Scheduler/Index.vue?vue&type=template&id=61a18d3a&":
+/*!****************************************************************************************!*\
+  !*** ./resources/vue/Pages/Servers/Scheduler/Index.vue?vue&type=template&id=61a18d3a& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_61a18d3a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=template&id=61a18d3a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/Pages/Servers/Scheduler/Index.vue?vue&type=template&id=61a18d3a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_61a18d3a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_61a18d3a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -87166,13 +87692,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_Pages_Servers_Events_Index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @vue/Pages/Servers/Events/Index */ "./resources/vue/Pages/Servers/Events/Index.vue");
 /* harmony import */ var _vue_Pages_Servers_Tasks_Index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @vue/Pages/Servers/Tasks/Index */ "./resources/vue/Pages/Servers/Tasks/Index.vue");
 /* harmony import */ var _vue_Pages_Servers_Sites_Index__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @vue/Pages/Servers/Sites/Index */ "./resources/vue/Pages/Servers/Sites/Index.vue");
-/* harmony import */ var _vue_Pages_Profile_Show__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @vue/Pages/Profile/Show */ "./resources/vue/Pages/Profile/Show.vue");
-/* harmony import */ var _vue_Pages_Profile_Team_Index__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Index */ "./resources/vue/Pages/Profile/Team/Index.vue");
-/* harmony import */ var _vue_Pages_Profile_Team_Show__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Show */ "./resources/vue/Pages/Profile/Team/Show.vue");
-/* harmony import */ var _vue_Pages_Profile_Team_Members__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Members */ "./resources/vue/Pages/Profile/Team/Members.vue");
-/* harmony import */ var _vue_Pages_Profile_Team_Billing__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Billing */ "./resources/vue/Pages/Profile/Team/Billing.vue");
-/* harmony import */ var _vue_Pages_Profile_Team_Subscription_Index__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Subscription/Index */ "./resources/vue/Pages/Profile/Team/Subscription/Index.vue");
-/* harmony import */ var _vue_Pages_NotFound__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @vue/Pages/NotFound */ "./resources/vue/Pages/NotFound.vue");
+/* harmony import */ var _vue_Pages_Servers_Scheduler_Index__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @vue/Pages/Servers/Scheduler/Index */ "./resources/vue/Pages/Servers/Scheduler/Index.vue");
+/* harmony import */ var _vue_Pages_Profile_Show__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @vue/Pages/Profile/Show */ "./resources/vue/Pages/Profile/Show.vue");
+/* harmony import */ var _vue_Pages_Profile_Team_Index__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Index */ "./resources/vue/Pages/Profile/Team/Index.vue");
+/* harmony import */ var _vue_Pages_Profile_Team_Show__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Show */ "./resources/vue/Pages/Profile/Team/Show.vue");
+/* harmony import */ var _vue_Pages_Profile_Team_Members__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Members */ "./resources/vue/Pages/Profile/Team/Members.vue");
+/* harmony import */ var _vue_Pages_Profile_Team_Billing__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Billing */ "./resources/vue/Pages/Profile/Team/Billing.vue");
+/* harmony import */ var _vue_Pages_Profile_Team_Subscription_Index__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @vue/Pages/Profile/Team/Subscription/Index */ "./resources/vue/Pages/Profile/Team/Subscription/Index.vue");
+/* harmony import */ var _vue_Pages_NotFound__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @vue/Pages/NotFound */ "./resources/vue/Pages/NotFound.vue");
 // Layouts
  // Servers
 
@@ -87182,13 +87709,14 @@ __webpack_require__.r(__webpack_exports__);
  // Server Users
 
  //Server Firewall
-// Server Users
 
  // Server Events
 
  // Server Tasks
 
  // Sites
+
+ // Server Scheduler
 
  // Profile
 
@@ -87261,36 +87789,43 @@ __webpack_require__.r(__webpack_exports__);
       meta: {
         server: true
       }
+    }, {
+      path: '/server/:id/scheduler',
+      name: 'server.scheduler',
+      component: _vue_Pages_Servers_Scheduler_Index__WEBPACK_IMPORTED_MODULE_10__["default"],
+      meta: {
+        server: true
+      }
     }]
   }, {
     path: '/account',
     name: 'profile',
-    component: _vue_Pages_Profile_Show__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _vue_Pages_Profile_Show__WEBPACK_IMPORTED_MODULE_11__["default"]
   }, {
     path: '/account/teams',
     name: 'profile.teams',
-    component: _vue_Pages_Profile_Team_Index__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _vue_Pages_Profile_Team_Index__WEBPACK_IMPORTED_MODULE_12__["default"]
   }, {
     path: '/account/team/:id',
-    component: _vue_Pages_Profile_Team_Show__WEBPACK_IMPORTED_MODULE_12__["default"],
+    component: _vue_Pages_Profile_Team_Show__WEBPACK_IMPORTED_MODULE_13__["default"],
     children: [{
       path: '/account/team/:id/members',
       name: 'profile.team.show',
-      component: _vue_Pages_Profile_Team_Members__WEBPACK_IMPORTED_MODULE_13__["default"]
+      component: _vue_Pages_Profile_Team_Members__WEBPACK_IMPORTED_MODULE_14__["default"]
     }, {
       path: '/account/team/:id/subscription',
       name: 'profile.team.subscription',
-      component: _vue_Pages_Profile_Team_Subscription_Index__WEBPACK_IMPORTED_MODULE_15__["default"]
+      component: _vue_Pages_Profile_Team_Subscription_Index__WEBPACK_IMPORTED_MODULE_16__["default"]
     }, {
       path: '/account/team/:id/billing',
       name: 'profile.team.billing',
-      component: _vue_Pages_Profile_Team_Billing__WEBPACK_IMPORTED_MODULE_14__["default"]
+      component: _vue_Pages_Profile_Team_Billing__WEBPACK_IMPORTED_MODULE_15__["default"]
     }]
   }]
 }, {
   path: '/404',
   name: '404',
-  component: _vue_Pages_NotFound__WEBPACK_IMPORTED_MODULE_16__["default"]
+  component: _vue_Pages_NotFound__WEBPACK_IMPORTED_MODULE_17__["default"]
 }, {
   path: '*',
   redirect: '/404'

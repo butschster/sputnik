@@ -1,5 +1,6 @@
 import {api_route} from "../../Router"
 import Vue from "vue"
+import {ApiRequestError} from "@js/errors";
 
 const SITE_CREATED = 'server.site.created'
 const SITE_DELETED = 'server.site.deleted'
@@ -16,7 +17,7 @@ export async function list(serverId) {
         const response = await api_route('v1.server.sites', {server: serverId}).request()
         return response.data
     } catch (e) {
-        throw new Error('Can not load server sites.')
+        throw new ApiRequestError('Can not load server sites.')
     }
 }
 
@@ -31,7 +32,7 @@ export async function show(siteId) {
         const response = await api_route('v1.server.site.show', {site: siteId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load server site information.')
+        throw new ApiRequestError('Can not load server site information.')
     }
 }
 
@@ -51,7 +52,7 @@ export async function store(serverId, data) {
 
         return site
     } catch (e) {
-        throw new Error('Can not store server site data.')
+        throw new ApiRequestError('Can not store server site data.')
     }
 }
 
@@ -75,7 +76,7 @@ export async function remove(siteId) {
         Vue.$bus.$emit(SITE_DELETED, siteId)
         return response.data
     } catch (e) {
-        throw new Error('Can not delete server task.')
+        throw new ApiRequestError('Can not delete server task.')
     }
 }
 

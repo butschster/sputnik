@@ -54,8 +54,8 @@
                     this.server = await this.$api.server.show(this.$route.params.id)
                     this.loaded()
                 } catch (e) {
-                    console.error(e)
                     this.$router.replace({name: "404"})
+                    throw e
                 }
 
                 this.loading = false

@@ -23,5 +23,8 @@ new Vue({
     created: function () {
         this.$store.dispatch('auth/loadUser')
         this.$store.dispatch('servers/loadServers')
+    },
+    errorHandler(err, vm, info)  {
+        console.error('Exception: ', err)
     }
 });

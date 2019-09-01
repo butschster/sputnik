@@ -1,4 +1,5 @@
 import {api_route} from "../../Router"
+import {ApiRequestError} from "@js/errors";
 
 /**
  * Load server tasks
@@ -13,7 +14,7 @@ export async function list(serverId, page) {
         const response = await api_route('v1.server.tasks', {server: serverId}).request({page})
         return response.data
     } catch (e) {
-        throw new Error('Can not load server tasks.')
+        throw new ApiRequestError('Can not load server tasks.')
     }
 }
 
@@ -28,6 +29,6 @@ export async function show(taskId) {
         const response = await api_route('v1.server.task.show', {task: taskId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load server task information.')
+        throw new ApiRequestError('Can not load server task information.')
     }
 }

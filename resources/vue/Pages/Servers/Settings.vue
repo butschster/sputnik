@@ -51,7 +51,7 @@
                     });
 
                 } catch (e) {
-                    console.error(e)
+                    this.$handleError(e)
                 }
 
                 this.loading = false

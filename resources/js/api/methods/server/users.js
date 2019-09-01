@@ -1,4 +1,5 @@
 import {api_route} from "../../Router"
+import {ApiRequestError} from "@js/errors";
 
 /**
  * Load servers list
@@ -12,7 +13,7 @@ export async function list(serverId, page) {
         const response = await api_route('v1.server.users', {server: serverId}).request({page})
         return response.data
     } catch (e) {
-        throw new Error('Can not load server users list.')
+        throw new ApiRequestError('Can not load server users list.')
     }
 }
 
@@ -28,7 +29,7 @@ export async function store(serverId, data) {
         const response = await api_route('v1.server.user.store', {server: serverId}).request(data)
         return response.data.data
     } catch (e) {
-        throw new Error('Can not store server data.')
+        throw new ApiRequestError('Can not store server data.')
     }
 }
 
@@ -43,7 +44,7 @@ export async function show(userId) {
         const response = await api_route('v1.server.user.show', {user: userId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load server user information.')
+        throw new ApiRequestError('Can not load server user information.')
     }
 }
 
@@ -58,6 +59,6 @@ export async function remove(userId) {
         const response = await api_route('v1.server.user.delete', {user: userId}).request()
         return response.data
     } catch (e) {
-        throw new Error('Can not delete server user.')
+        throw new ApiRequestError('Can not delete server user.')
     }
 }

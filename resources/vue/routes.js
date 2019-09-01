@@ -11,8 +11,6 @@ import ServerSettings from '@vue/Pages/Servers/Settings'
 import ServerUsers from '@vue/Pages/Servers/Users/Index'
 
 //Server Firewall
-
-// Server Users
 import ServerFirewall from '@vue/Pages/Servers/Firewall/Index'
 
 // Server Events
@@ -23,6 +21,9 @@ import ServerTasks from '@vue/Pages/Servers/Tasks/Index'
 
 // Sites
 import ServerSites from '@vue/Pages/Servers/Sites/Index'
+
+// Server Scheduler
+import ServerScheduler from '@vue/Pages/Servers/Scheduler/Index'
 
 // Profile
 import ProfileShow from "@vue/Pages/Profile/Show";
@@ -100,11 +101,18 @@ export default [
                             server: true
                         }
                     },
-
                     {
                         path: '/server/:id/firewall',
                         name: 'server.firewall',
                         component: ServerFirewall,
+                        meta: {
+                            server: true
+                        }
+                    },
+                    {
+                        path: '/server/:id/scheduler',
+                        name: 'server.scheduler',
+                        component: ServerScheduler,
                         meta: {
                             server: true
                         }

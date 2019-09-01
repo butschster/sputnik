@@ -1,5 +1,6 @@
 import {api_route} from "../Router"
 import Vue from "vue"
+import {ApiRequestError} from "@js/errors";
 
 const PROFILE_DELETED = 'user.profile.deleted'
 const PROFILE_UPDATED = 'user.profile.updated'
@@ -14,7 +15,7 @@ export async function profile() {
         const response = await api_route('v1.user.profile').request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load user profile.')
+        throw new ApiRequestError('Can not load user profile.')
     }
 }
 
@@ -30,7 +31,7 @@ export async function update(data) {
         Vue.$bus.$emit(PROFILE_UPDATED, user)
         return user
     } catch (e) {
-        throw new Error('Can not update user profile.')
+        throw new ApiRequestError('Can not update user profile.')
     }
 }
 
@@ -52,7 +53,7 @@ export async function sourceProviders() {
         const response = await api_route('v1.profile.source_providers').request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load profile source providers.')
+        throw new ApiRequestError('Can not load profile source providers.')
     }
 }
 
@@ -68,7 +69,7 @@ export async function remove(data) {
         Vue.$bus.$emit(PROFILE_DELETED)
         return response.data
     } catch (e) {
-        throw new Error('Can not delete profile.')
+        throw new ApiRequestError('Can not delete profile.')
     }
 }
 

@@ -6,15 +6,14 @@ import PortalVue from 'portal-vue'
 import Notifications from 'vue-notification'
 import Moment from 'vue-moment'
 
-
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
 let token = document.head.querySelector('meta[name="csrf-token"]')
 
 if (token) {
-    axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token')
 }
 
 Vue.use(VeeValidate)
@@ -23,6 +22,7 @@ Vue.use(PortalVue)
 Vue.use(Notifications)
 Vue.use(Moment)
 
+require('./vue/plugins/errorHandler')
 require('./vue/plugins/eventBus')
 require('./vue/plugins/echo')
 require('./vue/plugins/modal')

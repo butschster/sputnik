@@ -1,4 +1,5 @@
 import {api_route} from "../../../Router"
+import {ApiRequestError} from "@js/errors";
 
 /**
  * Get deployment script
@@ -11,7 +12,7 @@ export async function script(siteId) {
         const response = await api_route('v1.server.site.deploy.config', {site: siteId}).request()
         return response.data
     } catch (e) {
-        throw new Error('Can not load deployment script.')
+        throw new ApiRequestError('Can not load deployment script.')
     }
 }
 
@@ -26,6 +27,6 @@ export async function deploy(siteId) {
         const response = await api_route('v1.server.site.deploy', {site: siteId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not deploy site.')
+        throw new ApiRequestError('Can not deploy site.')
     }
 }

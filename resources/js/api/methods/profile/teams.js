@@ -1,4 +1,5 @@
 import {api_route} from "../../Router"
+import {ApiRequestError} from "@js/errors";
 
 /**
  * Load user teams
@@ -10,6 +11,6 @@ export async function list() {
         const response = await api_route('v1.profile.teams').request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load user teams.')
+        throw new ApiRequestError('Can not load user teams.')
     }
 }

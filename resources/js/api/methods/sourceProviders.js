@@ -1,4 +1,5 @@
 import {api_route} from "../Router"
+import {ApiRequestError} from "@js/errors";
 
 /**
  * Load available source providers
@@ -10,6 +11,6 @@ export async function list() {
         const response = await api_route('v1.source_providers').request()
         return response.data
     } catch (e) {
-        throw new Error('Can not list of available source providers.')
+        throw new ApiRequestError('Can not list of available source providers.')
     }
 }

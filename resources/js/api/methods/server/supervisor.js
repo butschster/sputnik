@@ -1,4 +1,5 @@
 import {api_route} from "../../Router"
+import {ApiRequestError} from "@js/errors";
 
 /**
  * Load servers supervisors
@@ -11,7 +12,7 @@ export async function list(serverId) {
         const response = await api_route('v1.server.supervisors', {server: serverId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load server supervisors.')
+        throw new ApiRequestError('Can not load server supervisors.')
     }
 }
 
@@ -27,7 +28,7 @@ export async function store(serverId, data) {
         const response = await api_route('v1.server.supervisor.store', {server: serverId}).request(data)
         return response.data.data
     } catch (e) {
-        throw new Error('Can not store server supervisor.')
+        throw new ApiRequestError('Can not store server supervisor.')
     }
 }
 
@@ -42,7 +43,7 @@ export async function show(supervisorId) {
         const response = await api_route('v1.server.supervisor.show', {supervisor: supervisorId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load server supervisor information.')
+        throw new ApiRequestError('Can not load server supervisor information.')
     }
 }
 
@@ -57,6 +58,6 @@ export async function remove(supervisorId) {
         const response = await api_route('v1.server.database.delete', {supervisor: supervisorId}).request()
         return response.data
     } catch (e) {
-        throw new Error('Can not delete server supervisor.')
+        throw new ApiRequestError('Can not delete server supervisor.')
     }
 }

@@ -29,7 +29,7 @@
                 }, 1000);
             },
             onError: function (e) {
-                console.error(e)
+                this.$handleError(e)
             }
         },
         computed: {

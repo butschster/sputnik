@@ -1,5 +1,6 @@
 import {api_route} from "../Router"
 import Vue from "vue"
+import {ApiRequestError, ApiResponseError} from "@js/errors";
 
 const SERVER_CREATED = 'server.created'
 const SERVER_UPDATED = 'server.updated'
@@ -15,7 +16,7 @@ export async function list() {
         const response = await api_route('v1.servers').request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load servers list.')
+        throw new ApiRequestError('Can not load servers list.')
     }
 }
 
@@ -30,7 +31,7 @@ export async function show(serverId) {
         const response = await api_route('v1.server.show', {server: serverId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load server information.')
+        throw new ApiRequestError('Can not load server information.')
     }
 }
 
@@ -49,7 +50,7 @@ export async function store(data) {
 
         return server
     } catch (e) {
-        throw new Error('Can not store server data.')
+        throw new ApiRequestError('Can not store server data.')
     }
 }
 
@@ -77,7 +78,7 @@ export async function update(serverId, data) {
 
         return server
    } catch (e) {
-       throw new Error('Can not update server information.')
+       throw new ApiRequestError('Can not update server information.')
    }
 }
 
@@ -101,7 +102,7 @@ export async function remove(serverId) {
         Vue.$bus.$emit(SERVER_DELETED, serverId)
         return response.data
     } catch (e) {
-        throw new Error('Can not delete server.')
+        throw new ApiRequestError('Can not delete server.')
     }
 }
 

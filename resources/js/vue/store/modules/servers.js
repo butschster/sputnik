@@ -1,4 +1,5 @@
-import {api} from "@js/api";
+import {api} from "@js/api"
+import Vue from 'vue'
 
 const state = {
     servers: null,
@@ -19,7 +20,7 @@ const actions = {
             const servers = await api.server.list()
             commit('setServers', servers)
         } catch (e) {
-            console.error(e)
+            Vue.$handleError(e)
         }
 
         commit('setLoading', false)
@@ -32,7 +33,7 @@ const actions = {
                 this.dispatch('servers/loadServers')
                 resolve(server)
             } catch (e) {
-                console.error(e)
+                Vue.$handleError(e)
                 reject(e)
             }
 

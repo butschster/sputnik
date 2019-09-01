@@ -58,7 +58,7 @@
                     await this.$api.subscription.cancel(this.team.id)
                     this.$modal.close('cancel')
                 } catch (e) {
-                    console.error(e)
+                    this.$handleError(e)
                 }
 
                 this.loading = false

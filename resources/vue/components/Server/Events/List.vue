@@ -67,7 +67,7 @@
                 try {
                     this.events = await this.$api.serverEvents.list(this.server.id, page)
                 } catch (e) {
-                    console.error(e)
+                    this.$handleError(e)
                 }
                 this.loading = false
             }

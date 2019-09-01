@@ -1,5 +1,6 @@
 import {api_route} from "../Router"
 import Vue from "vue"
+import {ApiRequestError} from "@js/errors";
 
 const TEAM_SUBSCRIBED_TO_PLAN = 'team.subscribed'
 const TEAM_SUBSCRIPTION_CANCELED = 'team.subscribtion.canceled'
@@ -15,7 +16,7 @@ export async function plans() {
         const response = await api_route('v1.subscription.plans').request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load subscription plans list.')
+        throw new ApiRequestError('Can not load subscription plans list.')
     }
 }
 
@@ -32,7 +33,7 @@ export async function subscribe(teamId, PlanId) {
 
         Vue.$bus.$emit(TEAM_SUBSCRIBED_TO_PLAN)
     } catch (e) {
-        throw new Error('Can not subscribe team to plan.')
+        throw new ApiRequestError('Can not subscribe team to plan.')
     }
 }
 
@@ -58,7 +59,7 @@ export async function cancel(teamId) {
 
         Vue.$bus.$emit(TEAM_SUBSCRIPTION_CANCELED)
     } catch (e) {
-        throw new Error('Can not cancel team subscription.')
+        throw new ApiRequestError('Can not cancel team subscription.')
     }
 }
 
@@ -84,7 +85,7 @@ export async function resume(teamId) {
 
         Vue.$bus.$emit(TEAM_SUBSCRIPTION_RESUMED)
     } catch (e) {
-        throw new Error('Can not resume team subscription.')
+        throw new ApiRequestError('Can not resume team subscription.')
     }
 }
 

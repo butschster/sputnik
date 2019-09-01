@@ -8,7 +8,6 @@ axios.interceptors.response.use(response => response, error => {
 
     switch (error.response.status) {
         case 403:
-            console.log(error.response)
             Vue.notify({
                 type: 'warn',
                 title: 'Access denied',

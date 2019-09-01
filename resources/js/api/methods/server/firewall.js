@@ -1,4 +1,5 @@
 import {api_route} from "../../Router"
+import {ApiRequestError} from "@js/errors";
 
 /**
  * Load servers firewall rules
@@ -11,7 +12,7 @@ export async function list(serverId) {
         const response = await api_route('v1.server.firewall.rules', {server: serverId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load server firewall rules list.')
+        throw new ApiRequestError('Can not load server firewall rules list.')
     }
 }
 
@@ -27,7 +28,7 @@ export async function store(serverId, data) {
         const response = await api_route('v1.server.firewall.store', {server: serverId}).request(data)
         return response.data.data
     } catch (e) {
-        throw new Error('Can not store server firewall rule data.')
+        throw new ApiRequestError('Can not store server firewall rule data.')
     }
 }
 
@@ -42,7 +43,7 @@ export async function show(ruleId) {
         const response = await api_route('v1.server.firewall.show', {rule: ruleId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load server firewall rule information.')
+        throw new ApiRequestError('Can not load server firewall rule information.')
     }
 }
 
@@ -57,6 +58,6 @@ export async function remove(ruleId) {
         const response = await api_route('v1.server.firewall.delete', {rule: ruleId}).request()
         return response.data
     } catch (e) {
-        throw new Error('Can not delete server firewall rule.')
+        throw new ApiRequestError('Can not delete server firewall rule.')
     }
 }

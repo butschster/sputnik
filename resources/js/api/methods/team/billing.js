@@ -1,5 +1,6 @@
 import {api_route} from "../../Router"
 import Vue from "vue"
+import {ApiRequestError} from "@js/errors";
 
 const PAYMENT_METHOD_STORED = 'team.payment_method.stored'
 const PAYMENT_METHOD_DELETED = 'team.payment_method.deleted'
@@ -15,7 +16,7 @@ export async function paymentMethods(teamId) {
         const response = await api_route('v1.team.payment.methods', {team: teamId}).request()
         return response.data
     } catch (e) {
-        throw new Error('Can not load payment methods.')
+        throw new ApiRequestError('Can not load payment methods.')
     }
 }
 
@@ -30,7 +31,7 @@ export async function createIntentionSecret(teamId) {
         const response = await api_route('v1.team.payment.method.intent', {team: teamId}).request()
         return response.data
     } catch (e) {
-        throw new Error('Can not load payment methods.')
+        throw new ApiRequestError('Can not load payment methods.')
     }
 }
 
@@ -48,7 +49,7 @@ export async function storePaymentMethod(teamId, intention) {
 
         return response.data
     } catch (e) {
-        throw new Error('Can not load payment methods.')
+        throw new ApiRequestError('Can not load payment methods.')
     }
 }
 
@@ -75,7 +76,7 @@ export async function deletePaymentMethod(teamId, methodId) {
 
         return response.data
     } catch (e) {
-        throw new Error('Can not delete payment method.')
+        throw new ApiRequestError('Can not delete payment method.')
     }
 }
 

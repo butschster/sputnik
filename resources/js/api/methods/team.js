@@ -1,4 +1,5 @@
 import {api_route} from "../Router"
+import {ApiRequestError} from "@js/errors";
 
 /**
  * Load user team information by ID
@@ -11,7 +12,7 @@ export async function show(teamId) {
         const response = await api_route('v1.team.show', {team: teamId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load team information.')
+        throw new ApiRequestError('Can not load team information.')
     }
 }
 
@@ -27,7 +28,7 @@ export async function update(teamId, data) {
         const response = await api_route('v1.team.update', {team: teamId}).request(data)
         return response.data.data
     } catch (e) {
-        throw new Error('Can not update team information.')
+        throw new ApiRequestError('Can not update team information.')
     }
 }
 
@@ -43,6 +44,6 @@ export async function members(teamId) {
         const response = await api_route('v1.team.members', {team: teamId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load user team members.')
+        throw new ApiRequestError('Can not load user team members.')
     }
 }

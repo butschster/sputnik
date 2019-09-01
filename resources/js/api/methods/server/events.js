@@ -1,4 +1,5 @@
 import {api_route} from "../../Router"
+import {ApiRequestError} from "@js/errors";
 
 /**
  * Load server events
@@ -13,7 +14,7 @@ export async function list(serverId, page) {
         const response = await api_route('v1.server.events', {server: serverId}).request({page})
         return response.data
     } catch (e) {
-        throw new Error('Can not load server events.')
+        throw new ApiRequestError('Can not load server events.')
     }
 }
 
@@ -28,6 +29,6 @@ export async function lastOne(serverId) {
         const response = await api_route('v1.server.event.last', {server: serverId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load last server event.')
+        throw new ApiRequestError('Can not load last server event.')
     }
 }

@@ -1,4 +1,5 @@
 import {api_route} from "../../Router"
+import {ApiRequestError} from "@js/errors";
 
 /**
  * Load servers databases
@@ -11,7 +12,7 @@ export async function list(serverId) {
         const response = await api_route('v1.server.databases', {server: serverId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load server databases.')
+        throw new ApiRequestError('Can not load server databases.')
     }
 }
 
@@ -27,7 +28,7 @@ export async function store(serverId, data) {
         const response = await api_route('v1.server.database.store', {server: serverId}).request(data)
         return response.data.data
     } catch (e) {
-        throw new Error('Can not store server database.')
+        throw new ApiRequestError('Can not store server database.')
     }
 }
 
@@ -42,7 +43,7 @@ export async function show(databaseId) {
         const response = await api_route('v1.server.database.show', {database: databaseId}).request()
         return response.data.data
     } catch (e) {
-        throw new Error('Can not load server database information.')
+        throw new ApiRequestError('Can not load server database information.')
     }
 }
 

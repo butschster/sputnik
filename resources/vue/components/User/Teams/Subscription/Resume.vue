@@ -32,7 +32,7 @@
                 try {
                     await this.$api.subscription.resume(this.team.id)
                 } catch (e) {
-                    console.error(e)
+                    this.$handleError(e)
                 }
 
                 this.loading = false
