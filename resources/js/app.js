@@ -2,6 +2,7 @@ import Vue from 'vue'
 import router from './router'
 import Gate from './policies/Gate'
 import Loader from '@vue/components/UI/Loader'
+import {mapGetters} from 'vuex'
 
 require('./bootstrap')
 
@@ -20,11 +21,21 @@ new Vue({
         title: '',
         titleTemplate: '%s | SputnikCloud'
     },
-    created: function () {
-        this.$store.dispatch('auth/loadUser')
+    created() {
+
+        this.$store.dispatch('auth/loadUser').then((e) => {
+            this.$echo.onUserNotificationCreated(this.user.id, (e) => {
+                this.$store.dispatch('notifications/getNotifications')
+            })
+        })
+
         this.$store.dispatch('servers/loadServers')
+
+        this.$store.dispatch('notifications/getNotifications')
     },
-    errorHandler(err, vm, info)  {
-        console.error('Exception: ', err)
+    computed: {
+        ...mapGetters('auth', {
+            user: 'getUser',
+        }),
     }
 });

@@ -1,13 +1,15 @@
 <template>
     <section class="servers-list">
         <loader :loading="loading"/>
-        <h4>Active domains ({{ sites.length }})</h4>
-        <div class="servers-list-items" v-if="hasSites">
-            <router-link :to="{name: 'site.show', params: {id: site.id }}" class="servers-list-item-wrapper" v-for="site in sites" :key="site.id">
-                <div class="servers-list-item__name ml-5 font-medium">
-                    {{ site.domain }}
-                </div>
-            </router-link>
+        <div v-if="hasSites">
+            <h4>Active domains ({{ sites.length }})</h4>
+            <div class="servers-list-items">
+                <router-link :to="{name: 'site.show', params: {id: site.id }}" class="servers-list-item-wrapper" v-for="site in sites" :key="site.id">
+                    <div class="servers-list-item__name ml-5 font-medium">
+                        {{ site.domain }}
+                    </div>
+                </router-link>
+            </div>
         </div>
         <div v-else class="well well-lg text-center">
             <img class="mx-auto mb-10"

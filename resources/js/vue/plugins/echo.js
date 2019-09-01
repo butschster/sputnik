@@ -1,10 +1,16 @@
 import Vue from "vue";
 import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
+import listeners from '../../broadcast'
 
-Echo.prototype.serverChannel = function(serverId) {
-    return this.private('server.' + serverId)
-}
+Object.keys(listeners).forEach((module) => {
+    const functions = listeners[module]
+
+    Object.keys(functions).forEach(listener => {
+        Echo.prototype[listener] = functions[listener]
+    })
+
+})
 
 Vue.prototype.$echo = new Echo({
     broadcaster: 'pusher',

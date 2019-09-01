@@ -1,6 +1,6 @@
 import {api_route} from "../Router"
 import Vue from "vue"
-import {ApiRequestError} from "@js/errors";
+import {ApiRequestError} from "@js/errors"
 
 const PROFILE_DELETED = 'user.profile.deleted'
 const PROFILE_UPDATED = 'user.profile.updated'

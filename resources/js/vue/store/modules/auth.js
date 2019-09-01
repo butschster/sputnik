@@ -18,6 +18,8 @@ const getters = {
 const actions = {
     async loadUser({commit}) {
         commit('setUser', window.user)
+
+        return window.user
     },
     async updateUser({commit}) {
         const response = await api_route('v1.user.profile').request()

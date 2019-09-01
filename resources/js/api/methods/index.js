@@ -1,4 +1,5 @@
 import * as userProfile from "./profile"
+import * as notifications from "./notifications"
 import * as team from "./team"
 import * as subscription from './subscription'
 import * as teamBilling from "./team/billing"
@@ -18,6 +19,7 @@ import * as serverSiteEnvironment from "./server/site/environment"
 import * as serverSiteRepository from "./server/site/repository"
 
 export default {
+    notifications,
     subscription,
     sourceProviders,
     team,

@@ -4,6 +4,7 @@ import validation from './modules/validation'
 import auth from './modules/auth'
 import servers from './modules/servers'
 import server from './modules/server'
+import notifications from './modules/notifications'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
         validation,
         auth,
         servers,
-        server
+        server,
+        notifications
     },
 })

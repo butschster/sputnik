@@ -57,10 +57,9 @@
         mounted() {
             this.load()
 
-            this.$echo.serverChannel(this.server.id)
-                .listen('.App\\Events\\Server\\Task\\Created', (e) => {
-                    this.tasks.data.unshift(e.task)
-                })
+            this.$echo.onServerTaskCreated(this.server.id, (e) => {
+                this.tasks.data.unshift(e.task)
+            })
         },
         methods: {
             async load(page = 1) {

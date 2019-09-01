@@ -1,0 +1,23 @@
+.pagination {
+    @apply flex items-center justify-center mt-8;
+
+    &-page-nav {
+        .page-link {
+            @apply block border-2 text-lg font-medium py-2 px-4 mr-2 text-gray-700 rounded;
+
+            &:hover {
+                @apply bg-gray-300;
+            }
+        }
+
+        &.active {
+            .page-link {
+                @apply text-white bg-blue-600 border-blue-600;
+            }
+        }
+    }
+
+    &-prev-nav, &-next-nav {
+        @apply mx-4 text-2xl font-medium;
+    }
+}

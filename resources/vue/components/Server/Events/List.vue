@@ -51,10 +51,9 @@
         mounted() {
             this.load()
 
-            this.$echo.serverChannel(this.server.id)
-                .listen('.App\\Events\\Server\\Event\\Created', (e) => {
-                    this.events.data.unshift(e.event)
-                })
+            this.$echo.onServerEventCreated(this.server.id, (e) => {
+                this.events.data.unshift(e.event)
+            })
         },
         computed: {
             hasEvents() {

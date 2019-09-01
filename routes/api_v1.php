@@ -13,6 +13,10 @@ Route::middleware('auth')->group(function () {
     Route::get('profile/source-providers', 'User\SourceProvidersController@connected')->name('profile.source_providers');
     Route::delete('profile', 'UserController@delete')->name('profile.delete');
 
+    // User notifications
+    Route::get('profile/notifications', 'User\NotificationController@recent')->name('profile.notifications');
+    Route::delete('profile/notification', 'User\NotificationController@markAsRead')->name('profile.notifications.read');
+
     // Team
     Route::get('profile/teams', 'User\TeamController@show')->name('profile.teams');
     Route::get('team/{team}', 'User\TeamController@show')->name('team.show');

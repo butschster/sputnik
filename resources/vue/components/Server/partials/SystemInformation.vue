@@ -1,7 +1,5 @@
 <template>
     <div>
-        <h4>System information</h4>
-
         <table class="table">
             <col width="200px">
             <col>

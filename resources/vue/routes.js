@@ -27,6 +27,7 @@ import ServerScheduler from '@vue/Pages/Servers/Scheduler/Index'
 
 // Profile
 import ProfileShow from "@vue/Pages/Profile/Show";
+import NotificationsIndex from "@vue/Pages/Profile/Notifications";
 import TeamsIndex from "@vue/Pages/Profile/Team/Index";
 import TeamShow from "@vue/Pages/Profile/Team/Show";
 import TeamMembers from "@vue/Pages/Profile/Team/Members";
@@ -149,7 +150,12 @@ export default [
                         component: TeamBilling
                     }
                 ]
-            }
+            },
+            {
+                path: '/notifications',
+                name: 'notifications',
+                component: NotificationsIndex
+            },
         ]
     },
     {

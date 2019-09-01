@@ -64261,6 +64261,44 @@ readers do not read off random characters that represent icons */
   color: #4299e1;
 }
 
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.pagination-page-nav .page-link {
+  display: block;
+  border-width: 2px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-right: 0.5rem;
+  color: #4a5568;
+  border-radius: 0.25rem;
+}
+
+.pagination-page-nav .page-link:hover {
+  background-color: #e2e8f0;
+}
+
+.pagination-page-nav.active .page-link {
+  color: #fff;
+  background-color: #3182ce;
+  border-color: #3182ce;
+}
+
+.pagination-prev-nav, .pagination-next-nav {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
 .badge {
   background-color: #edf2f7;
   padding-top: 0.25rem;

@@ -1,5 +1,9 @@
 <template>
-    <SystemInformation :server="$parent.server"/>
+    <div>
+        <h1>System information</h1>
+
+        <SystemInformation :server="$parent.server"/>
+    </div>
 </template>
 
 <script>

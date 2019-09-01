@@ -1,5 +1,8 @@
 <template>
-    <EventsList :server="$parent.server" class="mt-10" />
+    <div>
+        <h1>Events</h1>
+        <EventsList :server="$parent.server" class="mt-10" />
+    </div>
 </template>
 
 <script>

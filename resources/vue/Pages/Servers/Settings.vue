@@ -25,6 +25,20 @@
                 </button>
             </div>
         </section>
+
+        <section class="section flex items-center mt-12 pt-12">
+            <div class="flex-1">
+                <div class="section-header">
+                    Destroy Server
+                    <p class="text-gray-600">This is irreversible. We will remove your Server record from your account, but all your setting will keep on your physical server.</p>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-danger" @click="onDestroy">
+                    Destroy
+                </button>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -47,6 +61,23 @@
 
                     this.$notify({
                         text: 'Server settings saved',
+                        type: 'success'
+                    });
+
+                } catch (e) {
+                    this.$handleError(e)
+                }
+
+                this.loading = false
+            },
+            async onDestroy() {
+                this.loading = true
+
+                try {
+                    await this.$api.server.remove(this.server.id)
+
+                    this.$notify({
+                        text: 'Server successfully destroyed',
                         type: 'success'
                     });
 

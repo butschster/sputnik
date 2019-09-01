@@ -45,13 +45,12 @@
             }
         },
         mounted() {
-            this.$echo.serverChannel(this.server.id)
-                .listen('.App\\Events\\Server\\Event\\Created', (e) => {
-                    this.message = e.event.message
-                    if (typeof e.event.meta.progress != "undefined") {
-                        this.progress = e.event.meta.progress
-                    }
-                })
+            this.$echo.onServerEventCreated(this.server.id, (e) => {
+                this.message = e.event.message
+                if (typeof e.event.meta.progress != "undefined") {
+                    this.progress = e.event.meta.progress
+                }
+            })
 
             this.isConfiguring && this.loadLastEvent()
         },

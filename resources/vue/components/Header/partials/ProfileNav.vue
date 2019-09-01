@@ -7,7 +7,7 @@
         <div class="user-info px-6 py-2">
             <img :src="user.avatar" alt="" class="user-info--avatar">
             <div class="user-info--name">
-                <router-link :to="{name: 'user.profile'}">{{ user.name }}</router-link>
+                <router-link :to="{name: 'profile'}">{{ user.name }}</router-link>
                 <div class="user-info--email">
                     {{ user.email }}
                 </div>

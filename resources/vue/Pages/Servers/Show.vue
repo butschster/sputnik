@@ -39,11 +39,10 @@
         },
         methods: {
             loaded() {
-                this.$echo.serverChannel(this.server.id)
-                    .listen('.App\\Events\\Server\\StatusChanged', (e) => {
-                        this.server.status = e.status
-                        console.log(e)
-                    })
+                this.$echo.onServerStatusChanged(this.server.id, (e) => {
+                    this.server.status = e.status
+                    console.log(e)
+                })
 
                 this.$store.dispatch('server/setServer', this.server)
             },

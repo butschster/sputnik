@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Server;
 
+use App\Events\Server\Ping\Checked;
 use App\Events\Server\Ping\Failed;
 use App\Events\Server\Ping\Succeeded;
 use App\Models\Server;
@@ -55,10 +56,6 @@ class Ping implements ShouldQueue
             'success' => $status,
         ]);
 
-        if ($status) {
-            event(new Succeeded($this->server));
-        } else {
-            event(new Failed($this->server));
-        }
+        event(new Checked($this->server, $status));
     }
 }

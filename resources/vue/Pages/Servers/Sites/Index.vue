@@ -1,7 +1,10 @@
 <template>
-    <div v-if="isConfigured">
-        <SitesList :server="$parent.server" />
-        <CreateForm :server="$parent.server" @created="onCreate" class="mt-12"/>
+    <div>
+        <h1>Sites</h1>
+        <div v-if="isConfigured">
+            <SitesList :server="$parent.server" />
+            <CreateForm :server="$parent.server" @created="onCreate" class="mt-12"/>
+        </div>
     </div>
 </template>
 

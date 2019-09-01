@@ -2,9 +2,11 @@
 
 namespace App\Jobs\Server;
 
+use App\Events\Server\Ping\Checked;
 use App\Events\Server\Ping\Failed;
 use App\Events\Server\Ping\Succeeded;
 use App\Models\Server;
+use Bestnetwork\Telnet\TelnetClient;
 use Bestnetwork\Telnet\TelnetException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -48,7 +50,7 @@ class Telnet implements ShouldQueue
      */
     public function handle()
     {
-        $client = new \Bestnetwork\Telnet\TelnetClient($this->server->ip, $this->server->ssh_port);
+        $client = new TelnetClient($this->server->ip, $this->server->ssh_port);
 
         try {
             $client->connect();
@@ -61,10 +63,6 @@ class Telnet implements ShouldQueue
             'success' => $status,
         ]);
 
-        if ($status) {
-            event(new Succeeded($this->server));
-        } else {
-            event(new Failed($this->server));
-        }
+        event(new Checked($this->server, $status));
     }
 }
