@@ -33,7 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::post('team/{team}/subscribe/{plan}', 'SubscriptionController@subscribe')->name('team.subscribe');
 
     Route::middleware('has-subscription')->group(function () {
+
         // Servers
+        Route::get('servers/search', 'ServerController@search')->name('servers.search');
         Route::get('servers', 'ServerController@index')->name('servers');
         Route::get('server/{server}', 'ServerController@show')->name('server.show');
         Route::put('server/{server}', 'ServerController@update')->name('server.update');

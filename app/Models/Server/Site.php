@@ -13,10 +13,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Site extends Model
 {
-    use UsesUuid, HasTask, HasServer;
+    use UsesUuid, HasTask, HasServer, Searchable;
 
     /**
      * {@inheritdoc}
@@ -56,8 +57,8 @@ class Site extends Model
      */
     public function scopeWithMonitoring(Builder $builder)
     {
-        return $builder->whereHas('server', function($q) {
-           return $q->withMonitoring()->configured();
+        return $builder->whereHas('server', function ($q) {
+            return $q->withMonitoring()->configured();
         });
     }
 
@@ -228,5 +229,23 @@ class Site extends Model
     public function sslKeyPath(): string
     {
         return '/etc/letsencrypt/live/' . $this->domain . '/server.key';
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'server_uuid' => $this->server_id,
+            'user_uuid' => $this->user_id,
+            'domain' => $this->domain,
+            'aliases' => $this->aliases,
+            'repository' => $this->repository,
+            'token' => $this->token,
+        ];
     }
 }
