@@ -1,5 +1,5 @@
 import {api_route} from "../../Router"
-import {ApiRequestError} from "@js/errors";
+import {ApiRequestError} from "@js/errors"
 
 /**
  * Load servers cron jobs

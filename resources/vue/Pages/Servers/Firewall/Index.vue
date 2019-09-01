@@ -6,8 +6,8 @@
 
         <CreateFormFirewall :server="$parent.server" class="mb-12" @created="load"/>
 
-        <h4>Active users ({{ rules.length }})</h4>
-        <div v-if="hasUsers">
+        <div v-if="hasRules">
+            <h4>Active users ({{ rules.length }})</h4>
             <Loader :loading="loading"/>
             <table class="table mb-10">
                 <col>
@@ -52,13 +52,11 @@
                 </tr>
                 </tbody>
             </table>
-
-            <Pagination :data="rules" @pagination-change-page="load"/>
         </div>
 
         <div v-else class="well well-lg text-center">
-            <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1871/1871131.svg" alt="" width="100px">
-            <h3 class="mb-0">Looks like you don't have any users yet</h3>
+            <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1272/1272856.svg" alt="" width="100px">
+            <h3 class="mb-0">Looks like you don't have any firewall rules yet</h3>
         </div>
     </div>
 </template>
@@ -66,11 +64,10 @@
 <script>
     import BadgeStatus from "@vue/components/UI/Badge/Status"
     import Copy from "@vue/components/UI/Copy"
-    import Pagination from 'laravel-vue-pagination'
     import CreateFormFirewall from "@vue/components/Server/Firewall/CreateForm"
 
     export default {
-        components: {CreateFormFirewall, Pagination, Copy, BadgeStatus},
+        components: {CreateFormFirewall, Copy, BadgeStatus},
         data() {
             return {
                 loading: false,
@@ -92,7 +89,7 @@
 
                 this.loading = false
             },
-            removedRule(rule) {
+            onRemoved(rule) {
                 this.load()
                 this.$notify({
                     text: 'Rule successfully deleted',
@@ -104,7 +101,7 @@
 
                 try {
                     await this.$api.serverFirewall.remove(rule.id)
-                    this.removedRule(rule)
+                    this.onRemoved(rule)
                 } catch (e) {
                     this.$handleError(e)
                 }
@@ -120,7 +117,7 @@
             }
         },
         computed: {
-            hasUsers() {
+            hasRules() {
                 return this.rules.length > 0
             }
         }

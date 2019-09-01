@@ -1,5 +1,9 @@
 <template>
     <div>
+        <h1>
+            Users
+        </h1>
+
         <CreateForm :server="$parent.server" class="mb-12" @created="load(0)"/>
 
         <h4>Active users ({{ users.data.length }})</h4>

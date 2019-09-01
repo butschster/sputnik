@@ -2137,9 +2137,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _vue_components_UI_Badge_Status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/UI/Badge/Status */ "./resources/vue/components/UI/Badge/Status.vue");
 /* harmony import */ var _vue_components_UI_Copy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/UI/Copy */ "./resources/vue/components/UI/Copy.vue");
-/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js");
-/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _vue_components_Server_Firewall_CreateForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vue/components/Server/Firewall/CreateForm */ "./resources/vue/components/Server/Firewall/CreateForm.vue");
+/* harmony import */ var _vue_components_Server_Firewall_CreateForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vue/components/Server/Firewall/CreateForm */ "./resources/vue/components/Server/Firewall/CreateForm.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2209,16 +2207,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    CreateFormFirewall: _vue_components_Server_Firewall_CreateForm__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Pagination: laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_3___default.a,
+    CreateFormFirewall: _vue_components_Server_Firewall_CreateForm__WEBPACK_IMPORTED_MODULE_3__["default"],
     Copy: _vue_components_UI_Copy__WEBPACK_IMPORTED_MODULE_2__["default"],
     BadgeStatus: _vue_components_UI_Badge_Status__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
@@ -2272,7 +2266,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return load;
     }(),
-    removedRule: function removedRule(rule) {
+    onRemoved: function onRemoved(rule) {
       this.load();
       this.$notify({
         text: 'Rule successfully deleted',
@@ -2293,7 +2287,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return this.$api.serverFirewall.remove(rule.id);
 
               case 4:
-                this.removedRule(rule);
+                this.onRemoved(rule);
                 _context2.next = 10;
                 break;
 
@@ -2328,7 +2322,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: {
-    hasUsers: function hasUsers() {
+    hasRules: function hasRules() {
       return this.rules.length > 0;
     }
   }
@@ -2399,6 +2393,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vue_components_Server_Scheduler_CreateForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/Server/Scheduler/CreateForm */ "./resources/vue/components/Server/Scheduler/CreateForm.vue");
+/* harmony import */ var _vue_components_UI_Badge_Status__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/UI/Badge/Status */ "./resources/vue/components/UI/Badge/Status.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2465,20 +2461,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    BadgeStatus: _vue_components_UI_Badge_Status__WEBPACK_IMPORTED_MODULE_2__["default"],
+    CreateForm: _vue_components_Server_Scheduler_CreateForm__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   data: function data() {
     return {
       loading: false,
@@ -2498,17 +2487,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 this.loading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return this.$api.serverCron.list(this.$parent.server.id);
 
-                try {} catch (e) {}
+              case 4:
+                this.jobs = _context.sent;
+                _context.next = 10;
+                break;
 
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](1);
+                this.$handleError(_context.t0);
+
+              case 10:
                 this.loading = false;
 
-              case 3:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[1, 7]]);
       }));
 
       function load() {
@@ -2516,7 +2517,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return load;
-    }()
+    }(),
+    remove: function () {
+      var _remove = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(job) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                this.loading = true;
+                _context2.prev = 1;
+                _context2.next = 4;
+                return this.$api.serverCron.remove(job.id);
+
+              case 4:
+                this.onRemoved(job);
+                _context2.next = 10;
+                break;
+
+              case 7:
+                _context2.prev = 7;
+                _context2.t0 = _context2["catch"](1);
+                this.$handleError(_context2.t0);
+
+              case 10:
+                this.loading = false;
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[1, 7]]);
+      }));
+
+      function remove(_x) {
+        return _remove.apply(this, arguments);
+      }
+
+      return remove;
+    }(),
+    onRemoved: function onRemoved(job) {
+      this.load();
+      this.$notify({
+        text: 'Cron job successfully deleted',
+        type: 'success'
+      });
+    }
+  },
+  computed: {
+    hasJobs: function hasJobs() {
+      return this.jobs.length > 0;
+    }
   }
 });
 
@@ -2902,6 +2955,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3040,6 +3097,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -3807,6 +3866,152 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     hasServers: 'hasServers',
     loading: 'isLoading'
   }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Server/Scheduler/CreateForm.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/Server/Scheduler/CreateForm.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vue_components_Form_Input_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/Form/Input.vue */ "./resources/vue/components/Form/Input.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    FormInput: _vue_components_Form_Input_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: {
+    server: Object
+  },
+  data: function data() {
+    return {
+      loading: false,
+      form: {
+        name: null,
+        command: null,
+        cron: '* * * * *',
+        user: 'root'
+      },
+      expressions: [{
+        name: 'yearly',
+        expression: '0 0 1 1 *'
+      }, {
+        name: 'monthly',
+        expression: '0 0 1 * *'
+      }, {
+        name: 'weekly',
+        expression: '0 0 * * 0'
+      }, {
+        name: 'daily',
+        expression: '0 0 * * *'
+      }, {
+        name: 'hourly',
+        expression: '0 * * * *'
+      }, {
+        name: 'every minute',
+        expression: '* * * * *'
+      }]
+    };
+  },
+  methods: {
+    onSubmit: function () {
+      var _onSubmit = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var job;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.loading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return this.$api.serverCron.store(this.server.id, this.form);
+
+              case 4:
+                job = _context.sent;
+                this.$emit('created', job);
+                this.$notify({
+                  text: 'Cron job successfully created',
+                  type: 'success'
+                });
+                this.clear();
+                _context.next = 13;
+                break;
+
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context["catch"](1);
+                this.$handleError(_context.t0);
+
+              case 13:
+                this.loading = false;
+
+              case 14:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 10]]);
+      }));
+
+      function onSubmit() {
+        return _onSubmit.apply(this, arguments);
+      }
+
+      return onSubmit;
+    }(),
+    clear: function clear() {
+      this.form = {
+        name: null,
+        command: null,
+        cron: '* * * * *',
+        user: 'root'
+      };
+    }
+  }
 });
 
 /***/ }),
@@ -50811,12 +51016,14 @@ var render = function() {
         on: { created: _vm.load }
       }),
       _vm._v(" "),
-      _c("h4", [_vm._v("Active users (" + _vm._s(_vm.rules.length) + ")")]),
-      _vm._v(" "),
-      _vm.hasUsers
+      _vm.hasRules
         ? _c(
             "div",
             [
+              _c("h4", [
+                _vm._v("Active users (" + _vm._s(_vm.rules.length) + ")")
+              ]),
+              _vm._v(" "),
               _c("Loader", { attrs: { loading: _vm.loading } }),
               _vm._v(" "),
               _c("table", { staticClass: "table mb-10" }, [
@@ -50898,12 +51105,7 @@ var render = function() {
                   }),
                   0
                 )
-              ]),
-              _vm._v(" "),
-              _c("Pagination", {
-                attrs: { data: _vm.rules },
-                on: { "pagination-change-page": _vm.load }
-              })
+              ])
             ],
             1
           )
@@ -50911,14 +51113,14 @@ var render = function() {
             _c("img", {
               staticClass: "mx-auto mb-10",
               attrs: {
-                src: "https://image.flaticon.com/icons/svg/1871/1871131.svg",
+                src: "https://image.flaticon.com/icons/svg/1272/1272856.svg",
                 alt: "",
                 width: "100px"
               }
             }),
             _vm._v(" "),
             _c("h3", { staticClass: "mb-0" }, [
-              _vm._v("Looks like you don't have any users yet")
+              _vm._v("Looks like you don't have any firewall rules yet")
             ])
           ])
     ],
@@ -51020,148 +51222,133 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v("\n        Scheduler\n    ")]),
-    _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "mt-10" }, [
-      _c("h4", [_vm._v("Scheduled jobs")]),
+  return _c(
+    "div",
+    [
+      _c("h1", [_vm._v("\n        Scheduler\n    ")]),
       _vm._v(" "),
-      _c("table", { staticClass: "table mb-0" }, [
-        _c("col"),
-        _vm._v(" "),
-        _c("col", { attrs: { width: "100px" } }),
-        _vm._v(" "),
-        _c("col", { attrs: { width: "100px" } }),
-        _vm._v(" "),
-        _c("col"),
-        _vm._v(" "),
-        _c("col", { attrs: { width: "200px" } }),
-        _vm._v(" "),
-        _c("col", { attrs: { width: "100px" } }),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.jobs, function(job) {
-            return _c("tr", { key: job.id }, [
-              _c("th", [
-                _vm._v(_vm._s(job.name) + " "),
-                _c("br"),
-                _c("small", { staticClass: "text-muted" }, [
-                  _vm._v(_vm._s(job.id))
-                ])
+      _c("CreateForm", {
+        attrs: { server: _vm.$parent.server },
+        on: { created: _vm.load }
+      }),
+      _vm._v(" "),
+      _vm.hasJobs
+        ? _c(
+            "div",
+            { staticClass: "mt-10" },
+            [
+              _c("Loader", { attrs: { loading: _vm.loading } }),
+              _vm._v(" "),
+              _c("h4", [
+                _vm._v("Scheduled jobs (" + _vm._s(_vm.jobs.length) + ")")
               ]),
               _vm._v(" "),
-              _c("th", [_vm._v(_vm._s(job.cron))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(job.user))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(job.command))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(job.nextRunDate()))]),
-              _vm._v(" "),
-              _c("td", [
-                _c("span", { staticClass: "badge badge-dark" }, [
-                  _vm._v(_vm._s(job.taskStatus()))
-                ])
+              _c("table", { staticClass: "table mb-0" }, [
+                _c("col"),
+                _vm._v(" "),
+                _c("col", { attrs: { width: "100px" } }),
+                _vm._v(" "),
+                _c("col"),
+                _vm._v(" "),
+                _c("col", { attrs: { width: "80px" } }),
+                _vm._v(" "),
+                _c("col", { attrs: { width: "150px" } }),
+                _vm._v(" "),
+                _c("col", { attrs: { width: "100px" } }),
+                _vm._v(" "),
+                _c("col", { attrs: { width: "80px" } }),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.jobs, function(job) {
+                    return _c("tr", { key: job.id }, [
+                      _c("th", [_vm._v(_vm._s(job.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(job.cron))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(job.command))]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-right" }, [
+                        _vm._v(_vm._s(job.user))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-right" }, [
+                        _c("span", { staticClass: "badge" }, [
+                          _vm._v(
+                            _vm._s(_vm._f("moment")(job.next_run_at, "from"))
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticClass: "text-right" },
+                        [_c("BadgeStatus", { attrs: { status: job.status } })],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-right" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger btn-sm",
+                            on: {
+                              click: function($event) {
+                                return _vm.remove(job)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-trash" })]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
               ])
+            ],
+            1
+          )
+        : _c("div", { staticClass: "well well-lg text-center" }, [
+            _c("img", {
+              staticClass: "mx-auto mb-10",
+              attrs: {
+                src: "https://image.flaticon.com/icons/svg/1418/1418561.svg",
+                alt: "",
+                width: "100px"
+              }
+            }),
+            _vm._v(" "),
+            _c("h3", { staticClass: "mb-0" }, [
+              _vm._v("Looks like you don't have any scheduled jobs yet")
             ])
-          }),
-          0
-        )
-      ])
-    ])
-  ])
+          ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "section pb-8 my-10" }, [
-      _c("div", { staticClass: "section-header" }, [
-        _vm._v("\n            New scheduled task\n            "),
-        _c("p", [_vm._v("You can easily schedule cron jobs on your server")])
-      ]),
-      _vm._v(" "),
-      _c("input", { attrs: { type: "hidden", name: "user", value: "root" } }),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group form-group-labeled is-required " }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", name: "name", id: "name", placeholder: "Name" }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "name" } }, [_vm._v("Name")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group form-group-labeled " }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "command",
-            id: "command",
-            placeholder: "Command"
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "command" } }, [_vm._v("Command")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group form-group-labeled is-required" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "cron",
-            id: "cron",
-            value: "",
-            placeholder: "Cron expression"
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "cron" } }, [_vm._v("Cron expression")]),
-        _vm._v(" "),
-        _c(
-          "small",
-          {
-            staticClass: "form-text text-muted",
-            attrs: { id: "passwordHelpBlock" }
-          },
-          [
-            _vm._v(
-              "\n                You can use named expressions like [@hourly, @daily, @monthly]\n            "
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group mb-0" }, [
-        _c("button", { staticClass: "btn btn-primary" }, [_vm._v("Schedule")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-dark" }, [
+    return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Cron")]),
         _vm._v(" "),
-        _c("th", [_vm._v("User")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Command")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Next run")]),
+        _c("th", { staticClass: "text-right" }, [_vm._v("User")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Status")])
+        _c("th", { staticClass: "text-right" }, [_vm._v("Next run")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-right" }, [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th")
       ])
     ])
   }
@@ -51477,6 +51664,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("h1", [_vm._v("\n        Users\n    ")]),
+      _vm._v(" "),
       _c("CreateForm", {
         staticClass: "mb-12",
         attrs: { server: _vm.$parent.server },
@@ -51659,6 +51848,8 @@ var render = function() {
       _vm._v(" "),
       _c("label", { attrs: { for: _vm.name } }, [_vm._v(_vm._s(_vm.label))]),
       _vm._v(" "),
+      _vm._t("default"),
+      _vm._v(" "),
       _vm.httpErrors.has(_vm.name)
         ? _c(
             "span",
@@ -51666,7 +51857,8 @@ var render = function() {
             [_c("strong", [_vm._v(_vm._s(_vm.httpErrors.first(_vm.name)))])]
           )
         : _vm._e()
-    ]
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -52431,6 +52623,130 @@ var render = function() {
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Server/Scheduler/CreateForm.vue?vue&type=template&id=14f8f008&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/Server/Scheduler/CreateForm.vue?vue&type=template&id=14f8f008& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    { staticClass: "section" },
+    [
+      _c("Loader", { attrs: { loading: _vm.loading } }),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "flex" },
+        [
+          _c("FormInput", {
+            staticClass: "mr-8",
+            attrs: { label: "Name", name: "name", required: "", autofocus: "" },
+            model: {
+              value: _vm.form.name,
+              callback: function($$v) {
+                _vm.$set(_vm.form, "name", $$v)
+              },
+              expression: "form.name"
+            }
+          }),
+          _vm._v(" "),
+          _c("FormInput", {
+            staticClass: "flex-1 mr-8",
+            attrs: { label: "Command", name: "command", required: "" },
+            model: {
+              value: _vm.form.command,
+              callback: function($$v) {
+                _vm.$set(_vm.form, "command", $$v)
+              },
+              expression: "form.command"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "FormInput",
+            {
+              staticClass: "mr-8",
+              attrs: { label: "Cron expression", name: "cron", required: "" },
+              model: {
+                value: _vm.form.cron,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "cron", $$v)
+                },
+                expression: "form.cron"
+              }
+            },
+            [
+              _c("small", { staticClass: "form-text text-muted" }, [
+                _vm._v(
+                  "\n                You can use named expressions like [@hourly, @daily, @monthly]\n            "
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group mb-0" }, [
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", on: { click: _vm.onSubmit } },
+              [_vm._v("Schedule")]
+            )
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        _vm._l(_vm.expressions, function(expr) {
+          return _c(
+            "span",
+            {
+              staticClass: "badge cursor-pointer mr-2",
+              class: { "badge-primary": _vm.form.cron == expr.expression },
+              on: {
+                click: function($event) {
+                  _vm.form.cron = expr.expression
+                }
+              }
+            },
+            [_vm._v("\n            " + _vm._s(expr.name) + "\n        ")]
+          )
+        }),
+        0
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section-header" }, [
+      _vm._v("\n        New scheduled task\n        "),
+      _c("p", [_vm._v("ou can easily schedule cron jobs on your server.")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -85874,6 +86190,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_18dae5d2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_18dae5d2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/components/Server/Scheduler/CreateForm.vue":
+/*!******************************************************************!*\
+  !*** ./resources/vue/components/Server/Scheduler/CreateForm.vue ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreateForm_vue_vue_type_template_id_14f8f008___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateForm.vue?vue&type=template&id=14f8f008& */ "./resources/vue/components/Server/Scheduler/CreateForm.vue?vue&type=template&id=14f8f008&");
+/* harmony import */ var _CreateForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateForm.vue?vue&type=script&lang=js& */ "./resources/vue/components/Server/Scheduler/CreateForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateForm_vue_vue_type_template_id_14f8f008___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateForm_vue_vue_type_template_id_14f8f008___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/vue/components/Server/Scheduler/CreateForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/vue/components/Server/Scheduler/CreateForm.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/vue/components/Server/Scheduler/CreateForm.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Server/Scheduler/CreateForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/vue/components/Server/Scheduler/CreateForm.vue?vue&type=template&id=14f8f008&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/vue/components/Server/Scheduler/CreateForm.vue?vue&type=template&id=14f8f008& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateForm_vue_vue_type_template_id_14f8f008___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateForm.vue?vue&type=template&id=14f8f008& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Server/Scheduler/CreateForm.vue?vue&type=template&id=14f8f008&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateForm_vue_vue_type_template_id_14f8f008___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateForm_vue_vue_type_template_id_14f8f008___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

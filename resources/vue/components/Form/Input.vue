@@ -7,6 +7,8 @@
                @input="$emit('input', $event.target.value)">
         <label :for="name">{{ label }}</label>
 
+        <slot></slot>
+
         <span class="invalid-feedback" role="alert" v-if="httpErrors.has(name)">
             <strong>{{ httpErrors.first(name) }}</strong>
         </span>
