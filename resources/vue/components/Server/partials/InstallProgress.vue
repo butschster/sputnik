@@ -12,9 +12,8 @@
             </div>
         </template>
 
-
         <template v-if="isConfiguring">
-            <section class="section well mb-10">
+            <section class="section mb-10">
                 <div class="section-header">
                     Installation is in progress
                     <p>Please wait for a while</p>

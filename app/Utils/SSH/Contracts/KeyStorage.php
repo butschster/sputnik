@@ -2,22 +2,20 @@
 
 namespace App\Utils\SSH\Contracts;
 
-use App\Utils\SSH\ValueObjects\PrivateKey;
-
 interface KeyStorage
 {
     /**
      * Store private key in the key storage
      *
-     * @param PrivateKey $key
+     * @param Key $key
      * @return string Path to the file
      */
-    public function store(PrivateKey $key): string;
+    public function store(Key $key): string;
 
     /**
      * Remove private key from the key storage
      *
-     * @param PrivateKey $key
+     * @param Key $key
      */
-    public function remove(PrivateKey $key): void;
+    public function remove(Key $key): void;
 }

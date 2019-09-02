@@ -47,5 +47,9 @@ class GenerateSshKeyPairsObserver
         $this->keyStorage->store(
             $server->privateKey()
         );
+
+        $this->keyStorage->store(
+            $server->publicKey()
+        );
     }
 }

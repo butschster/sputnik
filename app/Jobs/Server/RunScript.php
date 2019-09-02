@@ -41,9 +41,9 @@ class RunScript
     public function handle(Factory $taskFactory): void
     {
         // TODO Add checking for server status
-        if (!$this->server->isConfigured()) {
-            return;
-        }
+//        if ($this->server->isConfigured()) {
+//            return;
+//        }
 
         $task = $taskFactory->createFromScript(
             $this->server, $this->script
