@@ -9,6 +9,7 @@
 
             <div class="tabs" role="tabs" v-if="!isPending">
                 <router-link :to="{name: 'server.show', params: {id: server.id }}" class="tab">Sites</router-link>
+                <router-link :to="{name: 'server.terminal', params: {id: server.id }}" class="tab">Terminal</router-link>
                 <router-link :to="{name: 'server.information', params: {id: server.id }}" class="tab">Information</router-link>
                 <router-link :to="{name: 'server.events', params: {id: server.id }}" class="tab">Events</router-link>
                 <router-link :to="{name: 'server.tasks', params: {id: server.id }}" class="tab">Tasks</router-link>
@@ -18,18 +19,15 @@
             <InstallProgress :server="server" />
 
             <router-view />
-
-            <Terminal :server="server" />
         </div>
     </div>
 </template>
 <script>
-    import Terminal from "@vue/components/Server/Terminal/Terminal"
     import ServerStatus from "@vue/components/Server/partials/ServerStatus"
     import InstallProgress from "@vue/components/Server/partials/InstallProgress"
 
     export default {
-        components: {InstallProgress, ServerStatus, Terminal},
+        components: {InstallProgress, ServerStatus},
         data() {
             return {
                 server: null,

@@ -1,7 +1,5 @@
 <template>
-    <div ref="terminal">
-        hello
-    </div>
+    <div ref="terminal"></div>
 </template>
 
 <script>
@@ -19,7 +17,7 @@
 
             this.terminal = new Terminal({
                 cols: 80,
-                rows: 24
+                rows: 40
             })
 
             this.terminal.open(this.$refs.terminal)
@@ -28,34 +26,28 @@
 
             this.ws.onopen = (event) => {
                 this.terminal.attach(this.ws, false, false)
+
+                window.setInterval(() => {
+                    this.ws.send(JSON.stringify({command: "refresh"}));
+                }, 500);
             }
 
             this.ws.onerror = (event) => {
                 this.terminal.detach(this.ws);
-                console.log("Connection Closed")
             }
 
             this.terminal.on('data', (data) => {
-                console.log(data)
                 this.ws.send(JSON.stringify(
                     {command: 'message', message: data}
                 ))
-
-
-                if (data == "0") {
-                    this.terminal.write(data);
-                }
             })
 
             setTimeout(() => this.connectServer(), 1000)
         },
         methods: {
-            resizeScreen() {
-                this.terminal.fit()
-            },
             connectServer() {
                 this.ws.send(JSON.stringify(
-                    {command: 'auth', public_key: this.server.public_key}
+                    {command: 'auth', id: this.server.id}
                 ));
                 this.terminal.fit();
                 this.terminal.focus();

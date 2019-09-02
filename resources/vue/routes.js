@@ -6,6 +6,7 @@ import ServersList from '@vue/Pages/Servers/Index'
 import ServerShow from '@vue/Pages/Servers/Show'
 import ServerInformation from '@vue/Pages/Servers/Information'
 import ServerSettings from '@vue/Pages/Servers/Settings'
+import ServerTerminal from '@vue/Pages/Servers/Terminal'
 
 // Server Users
 import ServerUsers from '@vue/Pages/Servers/Users/Index'
@@ -60,6 +61,14 @@ export default [
                         path: '/server/:id',
                         name: 'server.show',
                         component: ServerSites,
+                        meta: {
+                            server: true
+                        }
+                    },
+                    {
+                        path: '/server/:id/terminal',
+                        name: 'server.terminal',
+                        component: ServerTerminal,
                         meta: {
                             server: true
                         }

@@ -2,6 +2,7 @@
 
 namespace App\Utils\SSH\Terminal;
 
+use Illuminate\Support\Facades\DB;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 use SplObjectStorage;
@@ -47,10 +48,10 @@ class Server implements MessageComponentInterface
     {
         $this->clients->attach($conn);
 
-        $this->connections[$conn->resourceId] = $connection = new Connection();
-        $connection->open();
+        $this->connections[$conn->resourceId] = new Connection();
+        $this->connections[$conn->resourceId]->open();
 
-        $this->output->writeln('Connection opened');
+        $this->sendMessage($conn, 'Connection opened');
     }
 
     /**
@@ -64,6 +65,7 @@ class Server implements MessageComponentInterface
     function onClose(ConnectionInterface $conn)
     {
         $this->getConnectionInstanceFor($conn)->close();
+        unset($this->connections[$conn->resourceId]);
 
         $this->clients->detach($conn);
 
@@ -82,7 +84,9 @@ class Server implements MessageComponentInterface
      */
     function onError(ConnectionInterface $conn, \Exception $e)
     {
-        $conn->close();
+        $this->output->writeln($e->getMessage());
+
+        $this->onClose($conn);
     }
 
     /**
@@ -97,17 +101,9 @@ class Server implements MessageComponentInterface
     {
         $this->output->writeln(sprintf('Message sent [%s]', $msg));
 
-        try {
-            $data = $this->parseMessage($msg);
-        } catch (\Exception $e) {
-            $this->sendMessage($e->getMessage());
-            $from->close();
-
-            return;
-        }
+        $data = $this->parseMessage($msg);
 
         $command = $data['command'];
-
         $connection = $this->getConnectionInstanceFor($from);
 
         switch ($command) {
@@ -116,21 +112,13 @@ class Server implements MessageComponentInterface
                 break;
 
             case 'auth':
-                if ($this->connectToSsh($from, $data['public_key'])) {
-                    $this->sendMessage($from, 'Connected....');
-                    $connection->listenSSH($from);
-                } else {
-                    $this->sendMessage($from, "Error, can not connect to the server. Check the credentials");
-                    $from->close();
-                }
-
-                break;
-
-            default:
+                $this->connectToSsh($from, $data['id']);
                 $connection->listenSSH($from);
 
                 break;
         }
+
+        $connection->listenSSH($from);
     }
 
     /**
@@ -140,11 +128,7 @@ class Server implements MessageComponentInterface
      */
     protected function getConnectionInstanceFor(ConnectionInterface $conn): Connection
     {
-        if (isset($this->connections[$conn->resourceId])) {
-            return $this->connections[$conn->resourceId];
-        }
-
-        return new Connection();
+        return $this->connections[$conn->resourceId] ?? new Connection();
     }
 
     /**
@@ -166,15 +150,18 @@ class Server implements MessageComponentInterface
     }
 
     /**
-     * Load server by public key
+     * Load server by ID
      *
-     * @param string $key
+     * @param string $id
      *
      * @return \App\Models\Server
      */
-    protected function loadServer(string $key): \App\Models\Server
+    protected function loadServer(string $id)
     {
-        return \App\Models\Server::where('public_key', $key)->firstOrFail();
+        DB::reconnect();
+
+        return DB::table('servers')->select('ip', 'ssh_port', 'name')->where('id', $id)->first();
+        // \App\Models\Server::findOrFail($id);
     }
 
     /**
@@ -185,33 +172,47 @@ class Server implements MessageComponentInterface
      */
     protected function sendMessage(ConnectionInterface $from, string $message): void
     {
-        $from->send(mb_convert_encoding($message, "UTF-8"));
+        //$from->send(mb_convert_encoding($message, "UTF-8"));
+        $this->output->writeln($message);
     }
 
     /**
-     * Connect to SSH by public key
+     * Connect to SSH by ID
      *
      * @param ConnectionInterface $from
-     * @param string $key
-     *
-     * @return bool
+     * @param string $id
      */
-    private function connectToSsh(ConnectionInterface $from, string $key): bool
+    private function connectToSsh(ConnectionInterface $from, string $id): void
     {
-        $server = $this->loadServer($key);
+        $server = $this->loadServer($id);
+
+        $this->sendMessage($from, sprintf('Connecting to the server [%s]...', $server->name));
 
         $session = ssh2_connect($server->ip, $server->ssh_port);
 
-        if (!ssh2_auth_hostbased_file($session, 'root', $server->ip, $server->publicKey()->getPath(), $server->privateKey()->getPath())) {
-            $shell = ssh2_shell($session, 'xterm', null, 1000, 40, SSH2_TERM_UNIT_CHARS);
+//        $publicKey = '~/.ssh/id_rsa.pub'; //$server->publicKey()->getPath();
+//        $privateKey = '~/.ssh/id_rsa'; //$server->privateKey()->getPath();
+//
+//        $this->sendMessage($from, sprintf('Using public key [%s]...', $publicKey));
 
-            sleep(1);
+        ssh2_auth_pubkey_file($session, 'root', $this->getKeyPath('id_rsa.pub'), $this->getKeyPath('id_rsa'));
+        $shell = ssh2_shell($session, 'xterm', null, 80, 40, SSH2_TERM_UNIT_CHARS);
 
-            $this->getConnectionInstanceFor($from)->setSshShell($shell);
+        $this->sendMessage($from, 'Connected...');
 
-            return true;
-        }
+        sleep(1);
 
-        return false;
+        $this->getConnectionInstanceFor($from)
+            ->setSshConnection($session)
+            ->setSshShell($shell);
+    }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    protected function getKeyPath(string $key)
+    {
+        return '~/.ssh/' . $key;
     }
 }

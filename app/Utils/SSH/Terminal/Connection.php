@@ -17,12 +17,17 @@ class Connection
     protected $shell;
 
     /**
+     * @var resource
+     */
+    protected $sshConnection;
+
+    /**
      * Check if connection is open
      * @return bool
      */
     public function isOpen(): bool
     {
-        return $this->isOpen();
+        return $this->isOpen;
     }
 
     /**
@@ -39,6 +44,7 @@ class Connection
     public function close(): void
     {
         $this->isOpen = false;
+        $this->closeSshConnection();
     }
 
     /**
@@ -48,34 +54,45 @@ class Connection
      */
     public function isConnectedToSsh(): bool
     {
-        return (bool) $this->shell;
+        return $this->sshConnection !== null;
+    }
+
+    /**
+     * @param $connection
+     * @return Connection
+     */
+    public function setSshConnection($connection)
+    {
+        $this->sshConnection = $connection;
+
+        return $this;
     }
 
     /**
      * Set ssh connection
      *
      * @param resource $shell
+     * @return Connection
      */
-    public function setSshShell($shell): void
+    public function setSshShell($shell)
     {
         $this->shell = $shell;
+
+        return $this;
     }
 
     /**
      * @param ConnectionInterface $from
      * @param string $command
+     * @return $this|void
      */
     public function runScript(ConnectionInterface $from, string $command)
     {
-        if (!$this->isConnectedToSsh()) {
-            return;
-        }
-
         fwrite($this->shell, $command);
-
         usleep(800);
-
         $this->listenSSH($from);
+
+        return $this;
     }
 
     /**
@@ -83,12 +100,18 @@ class Connection
      */
     public function listenSSH(ConnectionInterface $from): void
     {
-        if (!$this->isConnectedToSsh()) {
-            return;
-        }
-
-        while ($line = fgets($this->shell)) {
+        while ($this->isConnectedToSsh() && $line = fgets($this->shell) ) {
             $from->send(mb_convert_encoding($line, "UTF-8"));
+        }
+    }
+
+    public function closeSshConnection()
+    {
+        if ($this->sshConnection) {
+            ssh2_disconnect($this->sshConnection);
+
+            unset($this->sshConnection);
+            unset($this->shell);
         }
     }
 }
