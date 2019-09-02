@@ -31,7 +31,9 @@
                         <Copy :text="user.sudo_password" :label="user.sudo_password"/>
                     </td>
                     <td>{{ user.home_dir }}</td>
-                    <td class="text-right"><BadgeStatus :status="user.status" /></td>
+                    <td class="text-right">
+                        <BadgeTaskStatus :task="user.task" />
+                    </td>
                     <td class="text-right">
                         <a :href="user.links.download_key" class="btn btn-sm">
                             <i class="fas fa-download"></i>
@@ -44,8 +46,6 @@
                 </tr>
                 </tbody>
             </table>
-
-            <Pagination :data="users" @pagination-change-page="load"/>
         </div>
 
         <div v-else class="well well-lg text-center">
@@ -56,13 +56,12 @@
 </template>
 
 <script>
-    import BadgeStatus from "@vue/components/UI/Badge/Status"
+    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
     import Copy from "@vue/components/UI/Copy"
-    import Pagination from 'laravel-vue-pagination'
     import CreateForm from "@vue/components/Server/Users/Create"
 
     export default {
-        components: {CreateForm, Pagination, Copy, BadgeStatus},
+        components: {CreateForm, Copy, BadgeTaskStatus},
         data() {
             return {
                 loading: false,

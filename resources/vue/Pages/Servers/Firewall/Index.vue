@@ -41,7 +41,7 @@
                         <span class="badge" :class="policyBadgeClass(rule)">{{ rule.policy }}</span>
                     </td>
                     <td class="text-right">
-                        <BadgeStatus :status="rule.status"/>
+                        <BadgeTaskStatus :task="rule.task"/>
                     </td>
 
                     <td class="text-right">
@@ -62,12 +62,12 @@
 </template>
 
 <script>
-    import BadgeStatus from "@vue/components/UI/Badge/Status"
+    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
     import Copy from "@vue/components/UI/Copy"
     import CreateFormFirewall from "@vue/components/Server/Firewall/CreateForm"
 
     export default {
-        components: {CreateFormFirewall, Copy, BadgeStatus},
+        components: {CreateFormFirewall, Copy, BadgeTaskStatus},
         data() {
             return {
                 loading: false,

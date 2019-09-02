@@ -2,20 +2,19 @@
 
 namespace App\Models\Server;
 
+use App\Events\Task\ChangedStatus;
 use App\Events\Task\Finished;
 use App\Events\Task\Running;
 use App\Events\Task\Timeout;
 use App\Models\Concerns\HasServer;
 use App\Models\Concerns\Prunable;
 use App\Models\Concerns\UsesUuid;
-use App\Models\Server;
 use App\Services\Task\Contracts\Task as TaskContract;
 use App\Utils\SSH\Script;
 use App\Utils\SSH\Shell\Response;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Collection;
 
@@ -120,6 +119,7 @@ class Task extends Model implements TaskContract
         ]);
 
         event(new Running($this));
+        event(new ChangedStatus($this));
     }
 
     /**
@@ -155,9 +155,8 @@ class Task extends Model implements TaskContract
             'output' => $output,
         ]);
 
-        event(
-            new Timeout($this)
-        );
+        event(new Timeout($this));
+        event(new ChangedStatus($this));
     }
 
     /**
@@ -184,9 +183,8 @@ class Task extends Model implements TaskContract
             'output' => $output,
         ]);
 
-        event(
-            new Finished($this)
-        );
+        event(new Finished($this));
+        event(new ChangedStatus($this));
     }
 
     /**

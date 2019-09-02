@@ -20,13 +20,13 @@ class DaemonResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'server_id' => $this->server_id,
             'directory' => $this->directory,
             'command' => $this->command,
             'user' => $this->user,
             'processes' => $this->processes,
-            'status' => $this->taskStatus(),
+            'task' => TaskResource::make($this->task),
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
     }
 }

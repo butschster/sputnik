@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $this->authorize('show', $server);
 
-        $users = $server->users()->paginate();
+        $users = $server->users()->get();
 
         return UserCollection::make($users);
     }

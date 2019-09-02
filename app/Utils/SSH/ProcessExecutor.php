@@ -22,6 +22,8 @@ class ProcessExecutor implements ProcessExecutorContract
     {
         set_time_limit(0);
 
+        $timedOut = false;
+
         try {
             $exitCode = $process->run($output = new Output);
         } catch (ProcessTimedOutException $e) {

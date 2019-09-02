@@ -23,7 +23,7 @@
                         </router-link>
                     </th>
                     <td class="text-right">
-                        <StatusBadge :status="task.status"/>
+                        <BadgeTaskStatus :task="task"/>
                     </td>
                     <td class="text-right">
                         <small class="badge">{{ task.created_at | moment("from") }}</small>
@@ -39,10 +39,10 @@
 
 <script>
     import Pagination from 'laravel-vue-pagination'
-    import StatusBadge from "@vue/components/UI/Badge/Status";
+    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus";
 
     export default {
-        components: {StatusBadge, Pagination},
+        components: {BadgeTaskStatus, Pagination},
         props: {
             server: Object
         },

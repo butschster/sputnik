@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources\v1\Server\Firewall;
 
+use App\Http\Resources\v1\Server\TaskResource;
 use App\Models\Server\Firewall\Rule;
 use Illuminate\Http\Resources\Json\JsonResource;
-use phpDocumentor\Reflection\Types\Parent_;
 
 /**
  * @mixin Rule
@@ -27,7 +27,7 @@ class RuleResource extends JsonResource
             'created_at' => $this->created_at,
             'from' => $this->hasFrom() ? $this->from() : 'any',
             'port' => $this->port(),
-            'status' => $this->taskStatus(),
+            'task' => TaskResource::make($this->task),
             'is_editable' => $this->editable,
 
         ];

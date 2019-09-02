@@ -8,6 +8,9 @@
                     <div class="servers-list-item__name ml-5 font-medium">
                         {{ site.domain }}
                     </div>
+                    <div class="servers-list-item__status ml-5">
+                        <BadgeTaskStatus :task="site.task" />
+                    </div>
                 </router-link>
             </div>
         </div>
@@ -21,7 +24,10 @@
 </template>
 
 <script>
+    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
+
     export default {
+        components: {BadgeTaskStatus},
         props: {
             server: Object
         },

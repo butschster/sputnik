@@ -33,7 +33,7 @@
                     <td class="text-center">{{ daemon.processes }}</td>
                     <td class="text-right">{{ daemon.user }}</td>
                     <td class="text-right">
-                        <BadgeStatus :status="daemon.status"/>
+                        <BadgeTaskStatus :task="daemon.task"/>
                     </td>
 
                     <td class="text-right">
@@ -56,10 +56,10 @@
 
 <script>
     import CreateForm from "@vue/components/Server/Supervisor/CreateForm"
-    import BadgeStatus from "@vue/components/UI/Badge/Status"
+    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
 
     export default {
-        components: {CreateForm, BadgeStatus},
+        components: {CreateForm, BadgeTaskStatus},
         data() {
             return {
                 loading: false,

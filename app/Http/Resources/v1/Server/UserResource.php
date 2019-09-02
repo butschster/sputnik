@@ -28,7 +28,7 @@ class UserResource extends JsonResource
             'is_sudo' => $this->sudo,
             'is_root' => $this->isRoot(),
             'is_system' => $this->isSystem(),
-            'status' => $this->taskStatus(),
+            'task' => TaskResource::make($this->task),
             'links' => [
                 'download_key' => route('server.user.delete', [$this->server_id, $this->id])
             ]

@@ -29,6 +29,7 @@ class SiteResource extends JsonResource
             'domain_expires_at' => $this->domain_expires_at,
             'use_ssl' => $this->use_ssl,
             'ssl_certificate_expires_at' => $this->ssl_certificate_expires_at,
+            'task' => TaskResource::make($this->task),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'links' => [

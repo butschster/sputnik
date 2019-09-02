@@ -20,14 +20,14 @@ class CronJobResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'server_id' => $this->server_id,
             'name' => $this->name,
             'cron' => $this->cron,
             'user' => $this->user,
             'command' => $this->command,
             'next_run_at' => $this->nextRunDate(),
-            'status' => $this->taskStatus(),
+            'task' => TaskResource::make($this->task),
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
     }
 }

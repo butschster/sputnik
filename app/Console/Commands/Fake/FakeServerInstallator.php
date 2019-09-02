@@ -14,7 +14,7 @@ class FakeServerInstallator extends Command
      *
      * @var string
      */
-    protected $signature = 'fake:server-install {server}';
+    protected $signature = 'fake:server-install';
 
     /**
      * The console command description.
@@ -46,8 +46,18 @@ class FakeServerInstallator extends Command
      */
     public function handle(Client $client)
     {
-        $server = Server::findOrFail($this->argument('server'));
+        Server::where('status', '!=', Server::STATUS_CONFIGURED)
+            ->get()
+            ->each(function ($server) {
+               $this->configureServer($server);
+            });
+    }
 
+    /**
+     * @param Server $server
+     */
+    public function configureServer(Server $server)
+    {
         if ($server->isPending()) {
             $this->sentRequest('server.keys_installed', ['server_id' => $server->id]);
             sleep(10);
@@ -76,8 +86,6 @@ class FakeServerInstallator extends Command
                 sleep(2);
             }
         }
-
-        $server->refresh();
 
         $server->markAsConfigured();
     }
