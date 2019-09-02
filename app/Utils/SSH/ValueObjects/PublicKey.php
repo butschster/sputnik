@@ -64,4 +64,14 @@ class PublicKey
     {
         return $this->getFingerprint() === $publicKey->getFingerprint();
     }
+
+    /**
+     * Get path of private key file
+     *
+     * @return string
+     */
+    public function getPath(): string
+    {
+        return storage_path('app/keys/' . $this->getName());
+    }
 }

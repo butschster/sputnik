@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.1.3",
         "bestnetwork/telnet": "^1.0",
+        "cboden/ratchet": "^0.4.1",
         "deployer/deployer": "^6.4",
         "fideloper/proxy": "^4.0",
         "geerlingguy/ping": "^1.2",

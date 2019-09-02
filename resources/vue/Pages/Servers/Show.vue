@@ -18,16 +18,18 @@
             <InstallProgress :server="server" />
 
             <router-view />
+
+            <Terminal :server="server" />
         </div>
     </div>
 </template>
 <script>
-
+    import Terminal from "@vue/components/Server/Terminal/Terminal"
     import ServerStatus from "@vue/components/Server/partials/ServerStatus"
     import InstallProgress from "@vue/components/Server/partials/InstallProgress"
 
     export default {
-        components: {InstallProgress, ServerStatus},
+        components: {InstallProgress, ServerStatus, Terminal},
         data() {
             return {
                 server: null,

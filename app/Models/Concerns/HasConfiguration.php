@@ -68,16 +68,6 @@ trait HasConfiguration
     }
 
     /**
-     * Get public key
-     *
-     * @return PublicKey
-     */
-    public function publicKey(): PublicKey
-    {
-        return new PublicKey($this->name, $this->public_key);
-    }
-
-    /**
      * Get available system users with root access
      *
      * @return array
