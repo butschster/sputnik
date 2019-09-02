@@ -54494,7 +54494,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "div",
-                      { staticClass: "servers-list-item__status ml-5" },
+                      { staticClass: "mr-5" },
                       [_c("BadgeTaskStatus", { attrs: { task: site.task } })],
                       1
                     )
