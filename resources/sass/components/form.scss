@@ -42,10 +42,10 @@
 
     &.is-required {
         &::before {
-            @apply absolute text-2xl text-blue-500 transition;
+            @apply absolute text-blue-300 transition;
             content: "*";
             right: 13px;
-            top: 12px;
+            top: 17px;
             z-index: 1;
         }
     }

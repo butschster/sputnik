@@ -5324,9 +5324,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('server', {
@@ -55241,90 +55238,77 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.server
-    ? _c("div", [
-        _vm.isConfigured
-          ? _c("div", { staticClass: "sidebar-section" }, [
-              _c("h5", [_vm._v("Server")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "nav" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: {
-                        to: {
-                          name: "server.users",
-                          params: { id: _vm.server.id }
-                        }
-                      }
-                    },
-                    [_vm._v("Users")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: {
-                        to: {
-                          name: "server.firewall",
-                          params: { id: _vm.server.id }
-                        }
-                      }
-                    },
-                    [_vm._v("Firewall")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: {
-                        to: {
-                          name: "server.scheduler",
-                          params: { id: _vm.server.id }
-                        }
-                      }
-                    },
-                    [_vm._v("Scheduler")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: {
-                        to: {
-                          name: "server.supervisor",
-                          params: { id: _vm.server.id }
-                        }
-                      }
-                    },
-                    [_vm._v("Supervisor")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: {
-                        to: {
-                          name: "server.database",
-                          params: { id: _vm.server.id }
-                        }
-                      }
-                    },
-                    [_vm._v("Database")]
-                  )
-                ],
-                1
-              )
-            ])
-          : _vm._e()
+  return _vm.server && _vm.isConfigured
+    ? _c("div", { staticClass: "sidebar-section" }, [
+        _c("h5", [_vm._v("Server")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "nav" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "nav-link",
+                attrs: {
+                  to: { name: "server.users", params: { id: _vm.server.id } }
+                }
+              },
+              [_vm._v("Users")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "nav-link",
+                attrs: {
+                  to: { name: "server.firewall", params: { id: _vm.server.id } }
+                }
+              },
+              [_vm._v("Firewall")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "nav-link",
+                attrs: {
+                  to: {
+                    name: "server.scheduler",
+                    params: { id: _vm.server.id }
+                  }
+                }
+              },
+              [_vm._v("Scheduler")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "nav-link",
+                attrs: {
+                  to: {
+                    name: "server.supervisor",
+                    params: { id: _vm.server.id }
+                  }
+                }
+              },
+              [_vm._v("Supervisor")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "nav-link",
+                attrs: {
+                  to: { name: "server.database", params: { id: _vm.server.id } }
+                }
+              },
+              [_vm._v("Database")]
+            )
+          ],
+          1
+        )
       ])
     : _vm._e()
 }
