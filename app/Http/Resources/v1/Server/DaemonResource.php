@@ -4,6 +4,7 @@ namespace App\Http\Resources\v1\Server;
 
 use App\Models\Server\Daemon;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Gate;
 
 /**
  * @mixin Daemon
@@ -27,6 +28,10 @@ class DaemonResource extends JsonResource
             'processes' => $this->processes,
             'task' => TaskResource::make($this->task),
             'created_at' => $this->created_at,
+            'can' => [
+                'show' => Gate::allows('show', $this->resource),
+                'delete' => Gate::allows('delete', $this->resource),
+            ]
         ];
     }
 }

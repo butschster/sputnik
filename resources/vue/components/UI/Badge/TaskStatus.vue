@@ -6,7 +6,6 @@
     export default {
         props: {
             task: Object,
-            default: null,
         },
         data() {
             return {
@@ -63,6 +62,8 @@
                         return 'badge-primary animated-progress'
                     case 'finished':
                         return 'badge-success'
+                    case 'pending':
+                        return 'animated-progress'
                 }
             }
         }

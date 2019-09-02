@@ -25,7 +25,11 @@ h4 {
 }
 
 a {
-    @apply text-blue-500;
+    @apply text-blue-500 transition;
+
+    &:hover {
+        @apply text-blue-700;
+    }
 }
 
 button, input, optgroup, select, textarea {

@@ -1,0 +1,75 @@
+<template>
+    <div v-if="site">
+       <div class="flex justify-between items-center">
+           <h2 class="flex items-center">
+               <img src="https://image.flaticon.com/icons/svg/1055/1055685.svg" width="40px" class="mr-4">
+               <a :href="site.links.url" target="_blank">{{ site.domain }}</a>
+           </h2>
+           <BadgeTaskStatus :task="site.task" />
+       </div>
+
+        <div class="mb-10">
+            <span class="badge badge-warning" v-if="site.domain_expires_at">
+                Expires at {{ site.domain_expires_at | moment('DD/MM/YYYY') }}
+            </span>
+        </div>
+
+        <table class="table">
+            <col width="200px">
+            <col>
+            <tbody>
+            <tr>
+                <th>Expires At</th>
+                <td>
+                    <span class="badge">{{ site.domain_expires_at || 'Unknown' }}</span>
+                </td>
+            </tr>
+            <tr>
+                <th>Path</th>
+                <td>{{site.path }}</td>
+            </tr>
+            <tr>
+                <th>Public path</th>
+                <td>{{ site.public_path }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <router-view />
+    </div>
+</template>
+
+<script>
+    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
+    export default {
+        components: {BadgeTaskStatus},
+        data() {
+            return {
+                site: null,
+                loading: false,
+            }
+        },
+        mounted() {
+            this.load()
+        },
+        methods: {
+            async load() {
+                this.loading = true
+
+                try {
+                    this.site = await this.$api.serverSites.show(this.$route.params.site_id)
+                } catch (e) {
+                    this.$handleError(e)
+                    this.$router.replace({name: "404"})
+                }
+
+                this.loading = false
+            }
+        },
+        computed: {
+            server() {
+                return this.$parent.server
+            }
+        }
+    }
+</script>

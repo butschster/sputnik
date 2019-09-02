@@ -4,6 +4,7 @@ namespace App\Http\Resources\v1\Server;
 
 use App\Models\Server\User;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Gate;
 
 /**
  * @mixin User
@@ -31,6 +32,10 @@ class UserResource extends JsonResource
             'task' => TaskResource::make($this->task),
             'links' => [
                 'download_key' => route('server.user.delete', [$this->server_id, $this->id])
+            ],
+            'can' => [
+                'show' => Gate::allows('show', $this->resource),
+                'delete' => Gate::allows('delete', $this->resource),
             ]
         ];
     }

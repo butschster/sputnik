@@ -4,6 +4,7 @@ namespace App\Http\Resources\v1\Server;
 
 use App\Models\Server\Site;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Gate;
 
 /**
  * @mixin Site
@@ -36,6 +37,13 @@ class SiteResource extends JsonResource
                 'url' => $this->url(),
                 'secure_url' => $this->secureUrl(),
                 'hooks_url' => $this->hooksHandlerUrl(),
+            ],
+            'can' => [
+                'deploy' => Gate::allows('deploy', $this->resource),
+                'push-deploy' => Gate::allows('push-deploy', $this->resource),
+                'update' => Gate::allows('update', $this->resource),
+                'show' => Gate::allows('show', $this->resource),
+                'delete' => Gate::allows('delete', $this->resource),
             ]
         ];
     }

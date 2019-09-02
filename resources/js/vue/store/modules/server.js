@@ -5,7 +5,11 @@ const state = {
 // getters
 const getters = {
     hasServer: (state) => typeof state.server === 'object',
-    getServer: (state) => state.server
+    getServer: (state) => state.server,
+    isConfigured: (state, getters) => getters.hasServer && state.server.status == 'configured',
+    isPending: (state, getters) => getters.hasServer && state.server.status == 'pending',
+    isConfiguring: (state, getters) => getters.hasServer && state.server.status == 'configuring',
+    isFailed: (state, getters) => getters.hasServer && state.server.status == 'failed'
 }
 
 const actions = {

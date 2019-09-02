@@ -11,12 +11,12 @@
             @apply block text-white text-lg py-2 px-8;
 
             &:hover {
-                @apply bg-blue-700;
+                @apply bg-blue-800;
             }
 
             &.active,
             &.router-link-exact-active {
-                @apply bg-blue-600 font-bold;
+                @apply bg-blue-700 font-bold;
             }
         }
     }

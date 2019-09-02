@@ -29,6 +29,7 @@ class ServerResource extends JsonResource
             'ssh_port' => $this->ssh_port,
             'sys_info' => $this->when(!empty($sysInfo), function () use ($sysInfo) {
                 return [
+                    'name' => $sysInfo->getFullName(),
                     'os' => $sysInfo->getOs(),
                     'version' => $sysInfo->getVersion(),
                     'architecture' => $sysInfo->getArchitecture(),
@@ -48,6 +49,10 @@ class ServerResource extends JsonResource
                 'install_script' => route('server.install_script', $this),
             ],
             'can' => [
+                'show' => Gate::allows('show', $this->resource),
+                'update' => Gate::allows('update', $this->resource),
+                'delete' => Gate::allows('delete', $this->resource),
+
                 'create_site' => Gate::allows('store', [\App\Models\Server\Site::class, $this->resource]),
                 'create_cron_job' => Gate::allows('store', [\App\Models\Server\CronJob::class, $this->resource]),
                 'create_database' => Gate::allows('store', [\App\Models\Server\Database::class, $this->resource]),

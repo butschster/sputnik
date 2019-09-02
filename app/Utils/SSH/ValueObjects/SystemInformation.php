@@ -61,7 +61,7 @@ class SystemInformation
     public function getFullName(): string
     {
         return sprintf(
-            '%s %s [%s bits]',
+            '%s %s [x%s]',
             $this->getOs(), $this->getVersion(), $this->getArchitecture()
         );
     }

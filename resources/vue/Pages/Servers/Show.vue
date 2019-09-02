@@ -2,10 +2,18 @@
     <div>
         <Loader :loading="loading"/>
         <div v-if="server">
-            <h1 class="mb-8 flex items-center">
-                <ServerStatus :server="server" class="mr-3" />
-                {{ server.name }}
-            </h1>
+            <div class="mb-8 flex items-center">
+                <ServerStatus :server="server" class="mr-5" />
+                <div>
+                    <h2 class="mb-0">{{ server.name }}</h2>
+                    <div class="text-gray-600">
+                        in <router-link :to="{name: 'profile.team.show', params: {id: server.team.id }}">{{ server.team.name }}</router-link>
+
+                        - <span class="text-gray-500">{{ server.sys_info.name }}</span>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="tabs" role="tabs" v-if="!isPending">
                 <router-link :to="{name: 'server.show', params: {id: server.id }}" class="tab">Sites</router-link>
@@ -74,7 +82,6 @@
                 return this.server.status == 'configured'
             }
         },
-
         watch: {
             '$route': 'load'
         }

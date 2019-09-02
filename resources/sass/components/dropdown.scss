@@ -64,4 +64,16 @@
             @apply bg-blue-100;
         }
     }
+
+    &-button {
+        @apply block px-3 py-3 mx-2 rounded bg-blue-500 text-white text-center transition;
+
+        .fas {
+            @apply text-xl;
+        }
+
+        &:hover {
+            @apply text-white bg-blue-700;
+        }
+    }
 }

@@ -17,11 +17,9 @@
     export default {
         computed: {
             ...mapGetters('server', {
-                server: 'getServer'
-            }),
-            isConfigured() {
-                return this.server.status == 'configured'
-            }
+                server: 'getServer',
+                isConfigured: 'getServer'
+            })
         }
     }
 </script>

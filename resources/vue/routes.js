@@ -1,6 +1,5 @@
 // Layouts
 import LayoutBasic from '@vue/Layouts/Basic'
-
 // Servers
 import ServersList from '@vue/Pages/Servers/Index'
 import ServerShow from '@vue/Pages/Servers/Show'
@@ -24,6 +23,7 @@ import ServerSupervisor from '@vue/Pages/Servers/Supervisor/Index'
 
 // Sites
 import ServerSites from '@vue/Pages/Servers/Sites/Index'
+import ServerSiteShow from '@vue/Pages/Servers/Sites/Show'
 
 // Server Scheduler
 import ServerScheduler from '@vue/Pages/Servers/Scheduler/Index'
@@ -60,6 +60,14 @@ export default [
                         path: '/server/:id',
                         name: 'server.show',
                         component: ServerSites,
+                        meta: {
+                            server: true
+                        }
+                    },
+                    {
+                        path: '/server/:id/site/:site_id',
+                        name: 'server.site.show',
+                        component: ServerSiteShow,
                         meta: {
                             server: true
                         }

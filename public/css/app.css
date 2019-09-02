@@ -638,6 +638,11 @@ h4 {
 
 a {
   color: #5252FF;
+  transition: all 0.2s linear;
+}
+
+a:hover {
+  color: #0000FF;
 }
 
 button, input, optgroup, select, textarea {
@@ -62813,8 +62818,8 @@ readers do not read off random characters that represent icons */
 .animated-progress {
   background-size: 30px 30px;
   background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 75%, transparent 75%, transparent);
-  -webkit-animation: barberpole 0.5s linear infinite;
-          animation: barberpole 0.5s linear infinite;
+  -webkit-animation: barberpole 1s linear infinite;
+          animation: barberpole 1s linear infinite;
 }
 
 #nprogress {
@@ -63278,8 +63283,8 @@ readers do not read off random characters that represent icons */
   background-color: #ed64a6;
   background-size: 30px 30px;
   background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 75%, transparent 75%, transparent);
-  -webkit-animation: barberpole 0.5s linear infinite;
-          animation: barberpole 0.5s linear infinite;
+  -webkit-animation: barberpole 1s linear infinite;
+          animation: barberpole 1s linear infinite;
 }
 
 .form-group {
@@ -63427,7 +63432,7 @@ readers do not read off random characters that represent icons */
 
 .form-group-labeled .form-control:focus + label, .form-group-labeled .form-control:not(:placeholder-shown) + label {
   color: #718096;
-  font-weight: 700;
+  font-weight: 500;
   padding-top: 0.65rem;
   font-size: 0.8rem;
   line-height: 1rem !important;
@@ -63762,11 +63767,11 @@ readers do not read off random characters that represent icons */
 }
 
 .sidebar .nav a:hover {
-  background-color: #0000FF;
+  background-color: #0000D6;
 }
 
 .sidebar .nav a.active, .sidebar .nav a.router-link-exact-active {
-  background-color: #2929FF;
+  background-color: #0000FF;
   font-weight: 700;
 }
 
@@ -63878,6 +63883,30 @@ readers do not read off random characters that represent icons */
 
 .dropdown-link:hover {
   background-color: #F5F5FF;
+}
+
+.dropdown-button {
+  display: block;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: #5252FF;
+  color: #fff;
+  text-align: center;
+  transition: all 0.2s linear;
+}
+
+.dropdown-button .fas {
+  font-size: 1.25rem;
+}
+
+.dropdown-button:hover {
+  color: #fff;
+  background-color: #0000FF;
 }
 
 .user-info {
