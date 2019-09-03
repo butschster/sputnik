@@ -9,7 +9,7 @@ import ServerSettings from '@vue/Pages/Servers/Settings'
 
 // Server Users
 import ServerUsers from '@vue/Pages/Servers/Users/Index'
-
+import ServerDatabase from '@vue/Pages/Servers/Database/Index'
 //Server Firewall
 
 // Server Users
@@ -105,6 +105,15 @@ export default [
                         path: '/server/:id/firewall',
                         name: 'server.firewall',
                         component: ServerFirewall,
+                        meta: {
+                            server: true
+                        }
+                    },
+
+                    {
+                        path: '/server/:id/database',
+                        name: 'server.databases',
+                        component: ServerDatabase,
                         meta: {
                             server: true
                         }
