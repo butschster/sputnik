@@ -23,6 +23,7 @@ class DatabaseResource extends JsonResource
             'id' => $this->id,
             'server_id' => $this->server_id,
             'name' => $this->name,
+            'user' => $this->name,
             'password' => $this->password,
             'character_set' => $this->character_set,
             'collation' => $this->collation,

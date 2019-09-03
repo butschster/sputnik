@@ -6,7 +6,7 @@
             <router-link class="nav-link" :to="{name: 'server.firewall', params: { id: server.id }}">Firewall</router-link>
             <router-link class="nav-link" :to="{name: 'server.scheduler', params: { id: server.id }}">Scheduler</router-link>
             <router-link class="nav-link" :to="{name: 'server.supervisor', params: { id: server.id }}">Supervisor</router-link>
-            <router-link class="nav-link" :to="{name: 'server.database', params: { id: server.id }}">Database</router-link>
+            <router-link class="nav-link" :to="{name: 'server.databases', params: { id: server.id }}">Database</router-link>
         </div>
     </div>
 </template>

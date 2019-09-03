@@ -8,17 +8,16 @@
                     <h2 class="mb-0">{{ server.name }}</h2>
                     <div class="text-gray-600">
                         Team
-                        <router-link :to="{name: 'profile.team.show', params: {id: server.team.id }}">{{
-                            server.team.name }}
+                        <router-link :to="{name: 'profile.team.show', params: {id: server.team.id }}">
+                            {{ server.team.name }}
                         </router-link>
 
-                        - <span class="text-gray-500">{{ server.sys_info.name }}</span>
+                        <span class="text-gray-500" v-if="hasSysInfo"> - {{ server.sys_info.name }}</span>
                     </div>
                 </div>
             </div>
 
             <NotSupported v-if="!isSupported" :server="server" />
-
 
             <div class="tabs" role="tabs" v-if="canBeManaged">
                 <router-link :to="{name: 'server.show', params: {id: server.id }}" class="tab">Sites</router-link>
@@ -92,9 +91,12 @@
             isConfigured() {
                 return this.server.status == 'configured'
             },
+            hasSysInfo() {
+                return this.server.hasOwnProperty('sys_info')
+            },
             isSupported() {
 
-                if (this.server.hasOwnProperty('sys_info')) {
+                if (this.hasSysInfo) {
                     return this.server.sys_info.is_supported
                 }
 

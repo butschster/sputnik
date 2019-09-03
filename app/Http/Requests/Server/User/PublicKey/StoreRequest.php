@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Server\User\PublicKey;
 
-use App\Http\Requests\SanitizesInput;
+use App\Http\Requests\Sanitizer\SanitizesInput;
 use App\Models\Server\User;
 use App\Validation\Rules\Server\PublicKey as PublicKeyRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -13,8 +13,8 @@ class StoreRequest extends FormRequest
     use SanitizesInput;
 
     /**
-     *  Filters to be applied to the input.
-     * @return void
+     * Filters to be applied to the input.
+     * @return array
      */
     public function filters()
     {

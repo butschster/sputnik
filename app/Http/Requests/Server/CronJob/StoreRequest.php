@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Server\CronJob;
 
-use App\Http\Requests\SanitizesInput;
+use App\Http\Requests\Sanitizer\SanitizesInput;
 use App\Models\Server;
 use App\Models\Server\CronJob;
 use App\Validation\Rules\Server\CronExpression;
@@ -19,8 +19,8 @@ class StoreRequest extends FormRequest
     }
 
     /**
-     *  Filters to be applied to the input.
-     * @return void
+     * Filters to be applied to the input.
+     * @return array
      */
     public function filters()
     {

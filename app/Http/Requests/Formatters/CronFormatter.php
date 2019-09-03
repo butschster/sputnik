@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Formatters;
 
+use App\Contracts\Http\Request\Formatter;
 use App\Services\Server\CronService;
-use Waavi\Sanitizer\Contracts\Filter;
 
-class CronFormatter implements Filter
+class CronFormatter implements Formatter
 {
     /**
      *  Return the result of applying this filter to the given input.
@@ -15,7 +15,7 @@ class CronFormatter implements Filter
      *
      * @return mixed
      */
-    public function apply($value, $options = [])
+    public function apply($value, array $options = [])
     {
         $service = app(CronService::class);
 

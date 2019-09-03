@@ -2259,10 +2259,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -3090,7 +3086,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -3179,8 +3174,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     isConfigured: function isConfigured() {
       return this.server.status == 'configured';
     },
+    hasSysInfo: function hasSysInfo() {
+      return this.server.hasOwnProperty('sys_info');
+    },
     isSupported: function isSupported() {
-      if (this.server.hasOwnProperty('sys_info')) {
+      if (this.hasSysInfo) {
         return this.server.sys_info.is_supported;
       }
 
@@ -52211,21 +52209,17 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h1", [_vm._v("\n        Database\n    ")]),
+      _c("h1", [_vm._v("\n        Databases\n    ")]),
       _vm._v(" "),
       _c("CreateForm", {
         staticClass: "well well-lg mb-12",
         attrs: { server: _vm.$parent.server },
-        on: {
-          created: function($event) {
-            return _vm.load()
-          }
-        }
+        on: { created: _vm.load }
       }),
       _vm._v(" "),
-      _c("h4", [_vm._v("Databases (" + _vm._s(_vm.database.length) + ")")]),
+      _c("h4", [_vm._v("Databases (" + _vm._s(_vm.databases.length) + ")")]),
       _vm._v(" "),
-      _vm.hasUsers
+      _vm.hasDatabase
         ? _c(
             "div",
             [
@@ -52278,21 +52272,12 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", { staticClass: "text-right" }, [
                         _c(
-                          "a",
-                          {
-                            staticClass: "btn btn-sm",
-                            attrs: { href: database.links.download_key }
-                          },
-                          [_c("i", { staticClass: "fas fa-download" })]
-                        ),
-                        _vm._v(" "),
-                        _c(
                           "button",
                           {
                             staticClass: "btn btn-danger btn-sm",
                             on: {
                               click: function($event) {
-                                return _vm.remove(_vm.user)
+                                return _vm.remove(database)
                               }
                             }
                           },
@@ -52311,14 +52296,14 @@ var render = function() {
             _c("img", {
               staticClass: "mx-auto mb-10",
               attrs: {
-                src: "https://image.flaticon.com/icons/svg/1871/1871131.svg",
+                src: "https://image.flaticon.com/icons/svg/1265/1265529.svg",
                 alt: "",
                 width: "100px"
               }
             }),
             _vm._v(" "),
             _c("h3", { staticClass: "mb-0" }, [
-              _vm._v("Looks like you don't have any users yet")
+              _vm._v("Looks like you don't have any databases yet")
             ])
           ])
     ],
@@ -52936,15 +52921,18 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              _vm._s(_vm.server.team.name) +
+                              "\n                        " +
+                                _vm._s(_vm.server.team.name) +
                                 "\n                    "
                             )
                           ]
                         ),
-                        _vm._v("\n\n                    - "),
-                        _c("span", { staticClass: "text-gray-500" }, [
-                          _vm._v(_vm._s(_vm.server.sys_info.name))
-                        ])
+                        _vm._v(" "),
+                        _vm.hasSysInfo
+                          ? _c("span", { staticClass: "text-gray-500" }, [
+                              _vm._v(" - " + _vm._s(_vm.server.sys_info.name))
+                            ])
+                          : _vm._e()
                       ],
                       1
                     )
@@ -55653,7 +55641,10 @@ var render = function() {
               {
                 staticClass: "nav-link",
                 attrs: {
-                  to: { name: "server.database", params: { id: _vm.server.id } }
+                  to: {
+                    name: "server.databases",
+                    params: { id: _vm.server.id }
+                  }
                 }
               },
               [_vm._v("Database")]
