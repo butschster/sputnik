@@ -78,4 +78,17 @@ class Custom implements SourceProvider
     {
         // TODO: Implement validRepository() method.
     }
+
+    /**
+     * Make an HTTP request.
+     *
+     * @param string $method
+     * @param string $path
+     * @param array $parameters
+     * @return array
+     */
+    public function request(string $method, string $path, array $parameters = []): array
+    {
+        // TODO: Implement request() method.
+    }
 }

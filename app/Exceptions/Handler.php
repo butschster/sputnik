@@ -65,4 +65,5 @@ class Handler extends ExceptionHandler
             'bag' => $exception->errorBag == 'default' ? null : $exception->errorBag,
         ], $exception->status);
     }
+
 }
