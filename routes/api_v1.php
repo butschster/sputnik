@@ -82,6 +82,7 @@ Route::middleware('auth')->group(function () {
 
         // Site
         Route::get('server/{server}/sites', 'Server\SiteController@index')->name('server.sites');
+        Route::get('sites/search', 'Server\SiteController@search')->name('sites.search');
         Route::get('server/site/{site}', 'Server\SiteController@show')->name('server.site.show');
         Route::post('server/{server}/site', 'Server\SiteController@store')->name('server.site.store');
         Route::delete('server/site/{site}', 'Server\SiteController@delete')->name('server.site.delete');

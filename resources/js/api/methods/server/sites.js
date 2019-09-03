@@ -22,6 +22,20 @@ export async function list(serverId) {
 }
 
 /**
+ * Search by sites
+ *
+ * @return {Array}
+ */
+export async function search(query) {
+    try {
+        const response = await api_route('v1.sites.search').request({query})
+        return response.data.data
+    } catch (e) {
+        throw new ApiRequestError('Can not search sites.')
+    }
+}
+
+/**
  * Load server task information by ID
  *
  * @param {String} siteId

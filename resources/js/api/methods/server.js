@@ -21,6 +21,20 @@ export async function list() {
 }
 
 /**
+ * Search by servers
+ *
+ * @return {Array}
+ */
+export async function search(query) {
+    try {
+        const response = await api_route('v1.servers.search').request({query})
+        return response.data.data
+    } catch (e) {
+        throw new ApiRequestError('Can not search servers.')
+    }
+}
+
+/**
  * Load server information by ID
  *
  * @param {String} serverId
