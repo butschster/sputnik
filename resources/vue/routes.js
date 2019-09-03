@@ -5,30 +5,15 @@ import ServersList from '@vue/Pages/Servers/Index'
 import ServerShow from '@vue/Pages/Servers/Show'
 import ServerInformation from '@vue/Pages/Servers/Information'
 import ServerSettings from '@vue/Pages/Servers/Settings'
-
-// Server Users
 import ServerUsers from '@vue/Pages/Servers/Users/Index'
-
-//Server Firewall
+import ServerDatabase from '@vue/Pages/Servers/Database/Index'
 import ServerFirewall from '@vue/Pages/Servers/Firewall/Index'
-
-// Server Events
 import ServerEvents from '@vue/Pages/Servers/Events/Index'
-
-// Server Tasks
 import ServerTasks from '@vue/Pages/Servers/Tasks/Index'
-
-// Server Supervisor
 import ServerSupervisor from '@vue/Pages/Servers/Supervisor/Index'
-
-// Sites
 import ServerSites from '@vue/Pages/Servers/Sites/Index'
 import ServerSiteShow from '@vue/Pages/Servers/Sites/Show'
-
-// Server Scheduler
 import ServerScheduler from '@vue/Pages/Servers/Scheduler/Index'
-
-// Profile
 import ProfileShow from "@vue/Pages/Profile/Show";
 import NotificationsIndex from "@vue/Pages/Profile/Notifications";
 import TeamsIndex from "@vue/Pages/Profile/Team/Index";
@@ -36,7 +21,6 @@ import TeamShow from "@vue/Pages/Profile/Team/Show";
 import TeamMembers from "@vue/Pages/Profile/Team/Members";
 import TeamBilling from "@vue/Pages/Profile/Team/Billing";
 import TeamSubscription from "@vue/Pages/Profile/Team/Subscription/Index";
-
 import NotFoundPage from '@vue/Pages/NotFound'
 
 export default [
@@ -133,6 +117,14 @@ export default [
                         path: '/server/:id/supervisor',
                         name: 'server.supervisor',
                         component: ServerSupervisor,
+                        meta: {
+                            server: true
+                        }
+                    },
+                    {
+                        path: '/server/:id/database',
+                        name: 'server.databases',
+                        component: ServerDatabase,
                         meta: {
                             server: true
                         }

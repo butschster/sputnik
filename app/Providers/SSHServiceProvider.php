@@ -26,7 +26,6 @@ class SSHServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
         if ($this->app->runningUnitTests()) {
             $this->registerForTesting();
 

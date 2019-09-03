@@ -2,7 +2,9 @@
 
 namespace App\Utils\SSH\ValueObjects;
 
-class PrivateKey
+use App\Utils\SSH\Contracts\Key;
+
+class PrivateKey implements Key
 {
     /**
      * The name of the key
@@ -49,6 +51,10 @@ class PrivateKey
      */
     public function getPath(): string
     {
-        return storage_path('app/keys/' . $this->getName());
+        $path = storage_path('app/keys/' . $this->getName());
+        file_put_contents($path, $this->getContents());
+        chmod($path, 0600);
+
+        return $path;
     }
 }

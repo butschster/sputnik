@@ -2,7 +2,9 @@
 
 namespace App\Utils\SSH\ValueObjects;
 
-class PublicKey
+use App\Utils\SSH\Contracts\Key;
+
+class PublicKey implements Key
 {
     /**
      * @var string
@@ -63,5 +65,19 @@ class PublicKey
     public function is(PublicKey $publicKey): bool
     {
         return $this->getFingerprint() === $publicKey->getFingerprint();
+    }
+
+    /**
+     * Get path of public key file
+     *
+     * @return string
+     */
+    public function getPath(): string
+    {
+        $path = storage_path('app/keys/' . $this->getName());
+        file_put_contents($path, $this->getContents());
+        chmod($path, 0600);
+
+        return $path;
     }
 }
