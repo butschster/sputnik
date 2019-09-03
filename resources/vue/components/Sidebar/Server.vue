@@ -18,7 +18,7 @@
         computed: {
             ...mapGetters('server', {
                 server: 'getServer',
-                isConfigured: 'getServer'
+                isConfigured: 'isConfigured'
             })
         }
     }

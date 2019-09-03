@@ -19,14 +19,12 @@
 
             <NotSupported v-if="!isSupported" :server="server" />
 
-            <div class="tabs" role="tabs" v-if="canBeManaged">
+            <div class="tabs" role="tabs">
                 <router-link :to="{name: 'server.show', params: {id: server.id }}" class="tab">Sites</router-link>
-                <router-link :to="{name: 'server.information', params: {id: server.id }}" class="tab">Information
-                </router-link>
+                <router-link :to="{name: 'server.information', params: {id: server.id }}" class="tab">Information</router-link>
                 <router-link :to="{name: 'server.events', params: {id: server.id }}" class="tab">Events</router-link>
                 <router-link :to="{name: 'server.tasks', params: {id: server.id }}" class="tab">Tasks</router-link>
-                <router-link :to="{name: 'server.settings', params: {id: server.id }}" class="tab">Settings
-                </router-link>
+                <router-link :to="{name: 'server.settings', params: {id: server.id }}" class="tab">Settings</router-link>
             </div>
 
             <InstallProgress :server="server"/>

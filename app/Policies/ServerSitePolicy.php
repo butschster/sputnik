@@ -22,7 +22,6 @@ class ServerSitePolicy
             return false;
         }
 
-
         return $user->canManageServer($server) &&
             $user->canUseFeature('server.site.create');
     }

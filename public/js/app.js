@@ -3084,8 +3084,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -5357,6 +5355,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5427,6 +5429,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return load;
     }()
+  },
+  computed: {
+    hasTasks: function hasTasks() {
+      return this.tasks.data.length > 0;
+    }
   }
 });
 
@@ -5914,7 +5921,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('server', {
     server: 'getServer',
-    isConfigured: 'getServer'
+    isConfigured: 'isConfigured'
   }))
 });
 
@@ -52945,84 +52952,82 @@ var render = function() {
                 ? _c("NotSupported", { attrs: { server: _vm.server } })
                 : _vm._e(),
               _vm._v(" "),
-              _vm.canBeManaged
-                ? _c(
-                    "div",
-                    { staticClass: "tabs", attrs: { role: "tabs" } },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "tab",
-                          attrs: {
-                            to: {
-                              name: "server.show",
-                              params: { id: _vm.server.id }
-                            }
-                          }
-                        },
-                        [_vm._v("Sites")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "tab",
-                          attrs: {
-                            to: {
-                              name: "server.information",
-                              params: { id: _vm.server.id }
-                            }
-                          }
-                        },
-                        [_vm._v("Information\n            ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "tab",
-                          attrs: {
-                            to: {
-                              name: "server.events",
-                              params: { id: _vm.server.id }
-                            }
-                          }
-                        },
-                        [_vm._v("Events")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "tab",
-                          attrs: {
-                            to: {
-                              name: "server.tasks",
-                              params: { id: _vm.server.id }
-                            }
-                          }
-                        },
-                        [_vm._v("Tasks")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "tab",
-                          attrs: {
-                            to: {
-                              name: "server.settings",
-                              params: { id: _vm.server.id }
-                            }
-                          }
-                        },
-                        [_vm._v("Settings\n            ")]
-                      )
-                    ],
-                    1
+              _c(
+                "div",
+                { staticClass: "tabs", attrs: { role: "tabs" } },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "tab",
+                      attrs: {
+                        to: {
+                          name: "server.show",
+                          params: { id: _vm.server.id }
+                        }
+                      }
+                    },
+                    [_vm._v("Sites")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "tab",
+                      attrs: {
+                        to: {
+                          name: "server.information",
+                          params: { id: _vm.server.id }
+                        }
+                      }
+                    },
+                    [_vm._v("Information")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "tab",
+                      attrs: {
+                        to: {
+                          name: "server.events",
+                          params: { id: _vm.server.id }
+                        }
+                      }
+                    },
+                    [_vm._v("Events")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "tab",
+                      attrs: {
+                        to: {
+                          name: "server.tasks",
+                          params: { id: _vm.server.id }
+                        }
+                      }
+                    },
+                    [_vm._v("Tasks")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "tab",
+                      attrs: {
+                        to: {
+                          name: "server.settings",
+                          params: { id: _vm.server.id }
+                        }
+                      }
+                    },
+                    [_vm._v("Settings")]
                   )
-                : _vm._e(),
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("InstallProgress", { attrs: { server: _vm.server } }),
               _vm._v(" "),
@@ -54028,9 +54033,9 @@ var render = function() {
               _c("img", {
                 staticClass: "mx-auto mb-10",
                 attrs: {
-                  src: "https://image.flaticon.com/icons/svg/1871/1871141.svg",
+                  src: "https://image.flaticon.com/icons/svg/1421/1421313.svg",
                   alt: "",
-                  width: "100px"
+                  width: "150px"
                 }
               }),
               _vm._v(" "),
@@ -54939,52 +54944,69 @@ var render = function() {
       [
         _c("Loader", { attrs: { loading: _vm.loading } }),
         _vm._v(" "),
-        _c("table", { staticClass: "table" }, [
-          _c("col"),
-          _vm._v(" "),
-          _c("col", { attrs: { width: "100px" } }),
-          _vm._v(" "),
-          _c("col", { attrs: { width: "150px" } }),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.tasks.data, function(task) {
-              return _c("tr", [
-                _c(
-                  "th",
-                  [
+        _vm.hasTasks
+          ? _c("table", { staticClass: "table" }, [
+              _c("col"),
+              _vm._v(" "),
+              _c("col", { attrs: { width: "100px" } }),
+              _vm._v(" "),
+              _c("col", { attrs: { width: "150px" } }),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.tasks.data, function(task) {
+                  return _c("tr", [
                     _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: { name: "task.show", params: { id: task.id } }
-                        }
-                      },
-                      [_c("strong", [_vm._v(_vm._s(task.name))])]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  { staticClass: "text-right" },
-                  [_c("BadgeTaskStatus", { attrs: { task: task } })],
-                  1
-                ),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-right" }, [
-                  _c("small", { staticClass: "badge" }, [
-                    _vm._v(_vm._s(_vm._f("moment")(task.created_at, "from")))
+                      "th",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: { name: "task.show", params: { id: task.id } }
+                            }
+                          },
+                          [_c("strong", [_vm._v(_vm._s(task.name))])]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { staticClass: "text-right" },
+                      [_c("BadgeTaskStatus", { attrs: { task: task } })],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-right" }, [
+                      _c("small", { staticClass: "badge" }, [
+                        _vm._v(
+                          _vm._s(_vm._f("moment")(task.created_at, "from"))
+                        )
+                      ])
+                    ])
                   ])
-                ])
+                }),
+                0
+              )
+            ])
+          : _c("div", { staticClass: "well well-lg text-center" }, [
+              _c("img", {
+                staticClass: "mx-auto mb-10",
+                attrs: {
+                  src: "https://image.flaticon.com/icons/svg/1681/1681318.svg",
+                  alt: "",
+                  width: "150px"
+                }
+              }),
+              _vm._v(" "),
+              _c("h3", { staticClass: "mb-0" }, [
+                _vm._v("Looks like you don't have any executed tasks yet")
               ])
-            }),
-            0
-          )
-        ]),
+            ]),
         _vm._v(" "),
         _c("Pagination", {
           attrs: { data: _vm.tasks },

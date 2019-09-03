@@ -4,7 +4,7 @@
 
         <div class="section-body">
             <Loader :loading="loading"/>
-            <table class="table">
+            <table class="table" v-if="hasTasks">
                 <col>
                 <col width="100px">
                 <col width="150px">
@@ -31,6 +31,10 @@
                 </tr>
                 </tbody>
             </table>
+            <div v-else class="well well-lg text-center">
+                <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1681/1681318.svg" alt="" width="150px">
+                <h3 class="mb-0">Looks like you don't have any executed tasks yet</h3>
+            </div>
 
             <Pagination :data="tasks" @pagination-change-page="load"/>
         </div>
@@ -71,6 +75,11 @@
                 }
                 this.loading = false
             }
-        }
+        },
+        computed: {
+            hasTasks() {
+                return this.tasks.data.length > 0
+            }
+        },
     }
 </script>
