@@ -9,7 +9,7 @@ import ServerSettings from '@vue/Pages/Servers/Settings'
 
 // Server Users
 import ServerUsers from '@vue/Pages/Servers/Users/Index'
-
+import ServerDatabase from '@vue/Pages/Servers/Database/Index'
 //Server Firewall
 import ServerFirewall from '@vue/Pages/Servers/Firewall/Index'
 
@@ -113,6 +113,7 @@ export default [
                             server: true
                         }
                     },
+<<<<<<< HEAD
                     {
                         path: '/server/:id/scheduler',
                         name: 'server.scheduler',
@@ -125,6 +126,13 @@ export default [
                         path: '/server/:id/supervisor',
                         name: 'server.supervisor',
                         component: ServerSupervisor,
+=======
+
+                    {
+                        path: '/server/:id/database',
+                        name: 'server.databases',
+                        component: ServerDatabase,
+>>>>>>> origin/feature/database
                         meta: {
                             server: true
                         }
