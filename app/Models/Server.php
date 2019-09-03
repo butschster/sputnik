@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\Server\ServerConfiguration;
 use App\Events\Server\Configured;
 use App\Events\Server\Configuring;
 use App\Events\Server\Created;
@@ -20,11 +21,9 @@ use App\Models\Server\Event;
 use App\Models\Server\Firewall\Rule as FirewallRule;
 use App\Models\Server\Site;
 use App\Models\Server\Task;
-use App\Contracts\Server\ServerConfiguration;
 use App\Models\Subscription\Plan;
 use App\Models\User\Team;
 use App\Utils\SSH\ValueObjects\SystemInformation;
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -290,6 +289,18 @@ class Server extends Model implements ServerConfiguration
             $this->os_information['version'],
             $this->os_information['architecture']
         );
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSupported(): bool
+    {
+        if ($os = $this->systemInformation()) {
+            return $os->isSupported();
+        }
+
+        return true;
     }
 
     /**

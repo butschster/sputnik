@@ -5,10 +5,6 @@
         @apply block w-full text-gray-700;
     }
 
-    &:last-child {
-        @apply mb-0;
-    }
-
     .form-control {
         @apply appearance-none border w-full py-3 px-5 h-16 text-gray-700 rounded block border-gray-300 bg-white transition;
         height: 3.5rem;

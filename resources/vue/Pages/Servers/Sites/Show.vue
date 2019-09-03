@@ -19,12 +19,6 @@
             <col>
             <tbody>
             <tr>
-                <th>Expires At</th>
-                <td>
-                    <span class="badge">{{ site.domain_expires_at || 'Unknown' }}</span>
-                </td>
-            </tr>
-            <tr>
                 <th>Path</th>
                 <td>{{site.path }}</td>
             </tr>

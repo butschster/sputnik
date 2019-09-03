@@ -57,7 +57,7 @@ export default [
                 },
                 children: [
                     {
-                        path: '/server/:id',
+                        path: '/server/:id/sites',
                         name: 'server.show',
                         component: ServerSites,
                         meta: {
@@ -65,7 +65,7 @@ export default [
                         }
                     },
                     {
-                        path: '/server/:id/site/:site_id',
+                        path: '/server/:id/sites/:site_id',
                         name: 'server.site.show',
                         component: ServerSiteShow,
                         meta: {

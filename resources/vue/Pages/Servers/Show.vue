@@ -3,29 +3,36 @@
         <Loader :loading="loading"/>
         <div v-if="server">
             <div class="mb-8 flex items-center">
-                <ServerStatus :server="server" class="mr-5" />
+                <ServerStatus :server="server" class="mr-5"/>
                 <div>
                     <h2 class="mb-0">{{ server.name }}</h2>
                     <div class="text-gray-600">
-                        in <router-link :to="{name: 'profile.team.show', params: {id: server.team.id }}">{{ server.team.name }}</router-link>
+                        Team
+                        <router-link :to="{name: 'profile.team.show', params: {id: server.team.id }}">{{
+                            server.team.name }}
+                        </router-link>
 
                         - <span class="text-gray-500">{{ server.sys_info.name }}</span>
                     </div>
                 </div>
             </div>
 
+            <NotSupported v-if="!isSupported" :server="server" />
 
-            <div class="tabs" role="tabs" v-if="!isPending">
+
+            <div class="tabs" role="tabs" v-if="canBeManaged">
                 <router-link :to="{name: 'server.show', params: {id: server.id }}" class="tab">Sites</router-link>
-                <router-link :to="{name: 'server.information', params: {id: server.id }}" class="tab">Information</router-link>
+                <router-link :to="{name: 'server.information', params: {id: server.id }}" class="tab">Information
+                </router-link>
                 <router-link :to="{name: 'server.events', params: {id: server.id }}" class="tab">Events</router-link>
                 <router-link :to="{name: 'server.tasks', params: {id: server.id }}" class="tab">Tasks</router-link>
-                <router-link :to="{name: 'server.settings', params: {id: server.id }}" class="tab">Settings</router-link>
+                <router-link :to="{name: 'server.settings', params: {id: server.id }}" class="tab">Settings
+                </router-link>
             </div>
 
-            <InstallProgress :server="server" />
+            <InstallProgress :server="server"/>
 
-            <router-view />
+            <router-view/>
         </div>
     </div>
 </template>
@@ -33,9 +40,10 @@
 
     import ServerStatus from "@vue/components/Server/partials/ServerStatus"
     import InstallProgress from "@vue/components/Server/partials/InstallProgress"
+    import NotSupported from "@vue/components/Server/partials/NotSupported"
 
     export default {
-        components: {InstallProgress, ServerStatus},
+        components: {InstallProgress, ServerStatus, NotSupported},
         data() {
             return {
                 server: null,
@@ -72,6 +80,9 @@
             }
         },
         computed: {
+            canBeManaged() {
+                return this.isSupported && this.isSupported
+            },
             isPending() {
                 return this.server.status == 'pending'
             },
@@ -80,6 +91,14 @@
             },
             isConfigured() {
                 return this.server.status == 'configured'
+            },
+            isSupported() {
+
+                if (this.server.hasOwnProperty('sys_info')) {
+                    return this.server.sys_info.is_supported
+                }
+
+                return true
             }
         },
         watch: {

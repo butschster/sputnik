@@ -63298,10 +63298,6 @@ readers do not read off random characters that represent icons */
   color: #4a5568;
 }
 
-.form-group:last-child {
-  margin-bottom: 0;
-}
-
 .form-group .form-control {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -64210,7 +64206,7 @@ readers do not read off random characters that represent icons */
   border-bottom: 3px solid #edf2f7;
 }
 
-.tabs .tab {
+.tabs > .tab {
   padding-top: 1rem;
   padding-bottom: 1rem;
   font-size: 1.125rem;
@@ -64221,16 +64217,16 @@ readers do not read off random characters that represent icons */
   border-bottom: 3px solid #edf2f7;
 }
 
-.tabs .tab:first-child {
+.tabs > .tab:first-child {
   margin-left: 0;
 }
 
-.tabs .tab:hover {
+.tabs > .tab:hover {
   border-color: #a0aec0;
   color: #2d3748;
 }
 
-.tabs .tab.router-link-exact-active {
+.tabs > .tab.router-link-active, .tabs > .tab.router-link-exact-active {
   border-color: #5252FF;
   color: #5252FF;
   font-weight: 500;

@@ -1,7 +1,7 @@
 <template>
     <Dropdown class="navbar__profile" :arrow="false">
         <template v-slot:title>
-            <img :src="user.avatar" class="user-info--avatar">
+            <img :src="user.avatar" class="user-info--avatar"> <span class="text-sm ml-3 text-gray-600">Hello, <strong>{{ user.name }}</strong></span>
         </template>
 
         <div class="user-info px-6 py-2">
