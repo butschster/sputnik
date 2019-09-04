@@ -63362,6 +63362,10 @@ readers do not read off random characters that represent icons */
   background-size: 1.5rem 1.5rem;
 }
 
+.form-group textarea.form-control {
+  padding-top: 2rem !important;
+}
+
 .form-group.is-invalid.is-required::before {
   color: #c53030;
 }

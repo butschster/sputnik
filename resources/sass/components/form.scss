@@ -55,6 +55,12 @@
         }
     }
 
+    textarea {
+        &.form-control {
+            padding-top: 2rem !important;
+        }
+    }
+
 
     &.is-invalid {
         &.is-required {

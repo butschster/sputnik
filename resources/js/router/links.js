@@ -41,7 +41,7 @@ export function serverFirewall(server) {
 }
 
 export function serverDatabases(server) {
-    return makeRoute('server.database', {id: server})
+    return makeRoute('server.databases', {id: server})
 }
 
 export function serverScheduler(server) {

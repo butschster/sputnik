@@ -14,6 +14,24 @@
             </span>
         </div>
 
+
+        <div class="section">
+            <div class="section-header" >
+                Git repository details
+
+                <div v-if="$gate.allow('deploy', 'server', site)">
+                    <button class="btn btn-warning btn-sm"><i class="fas fa-play-circle mr-2"></i> Deploy!</button>
+                </div>
+            </div>
+            <div class="progress rounded-0" v-if="site.is_deploying">
+                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                     role="progressbar" aria-valuenow="75"
+                     aria-valuemin="0" aria-valuemax="100"
+                     style="width: 45%">Deployment</div>
+            </div>
+        </div>
+
+
         <div class="flex items-start">
             <div class="w-64">
                 <router-link :to="$link.serverSiteDeployment(site)" class="block p-4 text-grey-darker font-bold border-purple hover:bg-grey-200 border-r-4">
