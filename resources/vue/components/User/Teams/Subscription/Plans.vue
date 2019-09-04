@@ -5,7 +5,7 @@
             <h2>Available plans</h2>
 
             <div class="well border-red-300 border-2 rounded-lg mb-8 text-lg" v-if="!hasPaymentMethod">
-                You need to add payment method on <router-link :to="{name: 'profile.team.billing', params: {id: team.id }}">billing page</router-link>
+                You need to add payment method on <router-link :to="$link.profileTeamBilling(team)">billing page</router-link>
             </div>
 
             <div class="price-table__items">

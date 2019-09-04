@@ -54,6 +54,8 @@ class SiteController extends Controller
     {
         $this->authorize('show', $site);
 
+        $site->load('server');
+
         return SiteResource::make($site);
     }
 

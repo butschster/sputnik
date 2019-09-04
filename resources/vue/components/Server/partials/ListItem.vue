@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="{name: 'server.show', params: {id: server.id }}" class="servers-list-item-wrapper">
+    <router-link :to="$link.server(server)" class="servers-list-item-wrapper">
         <ServerStatus class="mx-3" :server="server"/>
 
         <div class="servers-list-item__name">
@@ -17,15 +17,17 @@
                 </div>
             </template>
 
-            <router-link :to="{name: 'server.show', params: {id: server.id }}" class="dropdown-link">Sites</router-link>
+            <router-link :to="$link.server(server)" class="dropdown-link">Sites</router-link>
             <div class="dropdown-divider"></div>
-            <router-link :to="{name: 'server.users', params: {id: server.id }}" class="dropdown-link">Users</router-link>
-            <router-link :to="{name: 'server.firewall', params: {id: server.id }}" class="dropdown-link">Firewall</router-link>
-            <router-link :to="{name: 'profile'}" class="dropdown-link">Database</router-link>
-            <router-link :to="{name: 'server.scheduler', params: {id: server.id }}" class="dropdown-link">Scheduler</router-link>
-            <router-link :to="{name: 'server.supervisor', params: {id: server.id }}" class="dropdown-link">Supervisor</router-link>
+            <router-link :to="$link.serverUsers(server)" class="dropdown-link">Users</router-link>
+            <router-link :to="$link.serverFirewall(server)" class="dropdown-link">Firewall</router-link>
+            <router-link :to="$link.serverDatabases(server)" class="dropdown-link">Database</router-link>
+            <router-link :to="$link.serverScheduler(server)" class="dropdown-link">Scheduler</router-link>
+            <router-link :to="$link.serverSupervisor(server)" class="dropdown-link">Supervisor</router-link>
             <div class="dropdown-divider"></div>
-            <router-link :to="{name: 'server.settings', params: {id: server.id }}" class="dropdown-link text-red-500">Destroy</router-link>
+            <router-link :to="$link.serverSettings(server)" class="dropdown-link text-red-500">
+                Destroy
+            </router-link>
         </Dropdown>
     </router-link>
 </template>

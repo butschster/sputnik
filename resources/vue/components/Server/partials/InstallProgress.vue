@@ -31,9 +31,11 @@
 <script>
     import Copy from "@vue/components/UI/Copy"
     import ProgressBar from 'vue-simple-progress'
+    import serverMixin from "@js/vue/mixins/server"
 
     export default {
         components: {ProgressBar, Copy},
+        mixins: [serverMixin],
         props: {
             server: Object
         },
@@ -66,15 +68,6 @@
         computed: {
             installScript() {
                 return `wget -O sputnik.sh "${this.server.links.install_script}"; bash sputnik.sh`
-            },
-            isPending() {
-                return this.server.status == 'pending'
-            },
-            isConfiguring() {
-                return this.server.status == 'configuring'
-            },
-            isConfigured() {
-                return this.server.status == 'configured'
             }
         },
     }

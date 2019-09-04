@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="{name: 'server.site.show', params: {id: site.server_id, site_id: site.id }}" class="servers-list-item-wrapper">
+    <router-link :to="$link.serverSite(site)" class="servers-list-item-wrapper">
         <div class="servers-list-item__name ml-5 font-medium">
             {{ site.domain }}
         </div>
@@ -20,9 +20,7 @@
             </button>
 
             <div class="dropdown-divider"></div>
-            <router-link :to="{name: 'server.site.settings', params: {id: site.server_id, site_id: site.id }}" class="dropdown-link">Settings</router-link>
-            <div class="dropdown-divider"></div>
-            <router-link :to="{name: 'server.site.settings', params: {id: site.server_id, site_id: site.id }}" class="dropdown-link text-red-500">Destroy</router-link>
+            <router-link :to="$link.serverSiteSettings(site)" class="dropdown-link text-red-500">Destroy</router-link>
         </Dropdown>
     </router-link>
 </template>

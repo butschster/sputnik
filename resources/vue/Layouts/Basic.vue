@@ -5,7 +5,7 @@
                 <div class="sidebar-section">
                     <h5>Manage</h5>
                     <div class="nav">
-                        <router-link class="nav-link"  :to="{name: 'servers'}">
+                        <router-link class="nav-link"  :to="$link.servers()">
                             Servers
                         </router-link>
                     </div>

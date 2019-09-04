@@ -14,22 +14,20 @@
             </span>
         </div>
 
-        <table class="table">
-            <col width="200px">
-            <col>
-            <tbody>
-            <tr>
-                <th>Path</th>
-                <td>{{site.path }}</td>
-            </tr>
-            <tr>
-                <th>Public path</th>
-                <td>{{ site.public_path }}</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <router-view />
+        <div class="flex items-start">
+            <div class="w-64">
+                <router-link :to="$link.serverSiteDeployment(site)" class="block p-4 text-grey-darker font-bold border-purple hover:bg-grey-200 border-r-4">
+                    Deployment
+                </router-link>
+                <router-link :to="$link.serverSiteEnvironment(site)" class="block p-4 text-grey-darker font-bold border-purple hover:bg-grey-200 border-r-4">
+                    Environment
+                </router-link>
+                <router-link :to="$link.serverSite(site)" class="block p-4 text-grey-darker font-bold border-purple hover:bg-grey-200 border-r-4">
+                    Settings
+                </router-link>
+            </div>
+            <router-view class="flex-1 ml-10" />
+        </div>
     </div>
 </template>
 

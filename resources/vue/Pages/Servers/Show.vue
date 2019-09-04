@@ -8,7 +8,7 @@
                     <h2 class="mb-0">{{ server.name }}</h2>
                     <div class="text-gray-600">
                         Team
-                        <router-link :to="{name: 'profile.team.show', params: {id: server.team.id }}">
+                        <router-link :to="$link.profileTeam(server.team)">
                             {{ server.team.name }}
                         </router-link>
 
@@ -20,11 +20,10 @@
             <NotSupported v-if="!isSupported" :server="server" />
 
             <div class="tabs" role="tabs">
-                <router-link :to="{name: 'server.show', params: {id: server.id }}" class="tab">Sites</router-link>
-                <router-link :to="{name: 'server.information', params: {id: server.id }}" class="tab">Information</router-link>
-                <router-link :to="{name: 'server.events', params: {id: server.id }}" class="tab">Events</router-link>
-                <router-link :to="{name: 'server.tasks', params: {id: server.id }}" class="tab">Tasks</router-link>
-                <router-link :to="{name: 'server.settings', params: {id: server.id }}" class="tab">Settings</router-link>
+                <router-link :to="$link.serverSites(server)" class="tab">Sites</router-link>
+                <router-link :to="$link.serverEvents(server)" class="tab">Events</router-link>
+                <router-link :to="$link.serverTasks(server)" class="tab">Tasks</router-link>
+                <router-link :to="$link.serverSettings(server)" class="tab">Settings</router-link>
             </div>
 
             <InstallProgress :server="server"/>
@@ -34,13 +33,14 @@
     </div>
 </template>
 <script>
-
     import ServerStatus from "@vue/components/Server/partials/ServerStatus"
     import InstallProgress from "@vue/components/Server/partials/InstallProgress"
     import NotSupported from "@vue/components/Server/partials/NotSupported"
+    import serverMixin from "@js/vue/mixins/server"
 
     export default {
         components: {InstallProgress, ServerStatus, NotSupported},
+        mixins: [serverMixin],
         data() {
             return {
                 server: null,
@@ -74,31 +74,6 @@
                 }
 
                 this.loading = false
-            }
-        },
-        computed: {
-            canBeManaged() {
-                return this.isSupported && this.isSupported
-            },
-            isPending() {
-                return this.server.status == 'pending'
-            },
-            isConfiguring() {
-                return this.server.status == 'configuring'
-            },
-            isConfigured() {
-                return this.server.status == 'configured'
-            },
-            hasSysInfo() {
-                return this.server.hasOwnProperty('sys_info')
-            },
-            isSupported() {
-
-                if (this.hasSysInfo) {
-                    return this.server.sys_info.is_supported
-                }
-
-                return true
             }
         },
         watch: {

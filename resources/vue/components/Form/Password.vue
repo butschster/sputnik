@@ -7,6 +7,8 @@
                @input="$emit('input', $event.target.value)">
         <label :for="name">{{ label }}</label>
 
+        <slot></slot>
+
         <span class="invalid-feedback" role="alert" v-if="httpErrors.has(name)">
             <strong>{{ httpErrors.first(name) }}</strong>
         </span>
@@ -14,24 +16,8 @@
 </template>
 
 <script>
+    import input from "@js/vue/mixins/input"
     export default {
-        props: {
-            value: [String, Number],
-            name: String,
-            label: String,
-            required: {
-                type: Boolean,
-                default: false
-            },
-            autofocus: {
-                type: Boolean,
-                default: false
-            }
-        },
-        mounted() {
-            if (this.autofocus) {
-                this.$nextTick(() => this.$refs.input.focus())
-            }
-        }
+        mixins: [input]
     }
 </script>

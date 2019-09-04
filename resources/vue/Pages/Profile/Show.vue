@@ -17,8 +17,8 @@
             </div>
         </div>
 
-        <SourceControls class="mt-12"/>
-        <Deactivate class="mt-16 pt-12" />
+        <SourceControls class="mt-12 section--border-b"/>
+        <Deactivate />
     </div>
 </template>
 

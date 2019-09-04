@@ -18,7 +18,7 @@
                 <tbody>
                 <tr v-for="task in tasks.data">
                     <th>
-                        <router-link :to="{name: 'task.show', params: {id: task.id}}">
+                        <router-link :to="$link.serverTaskShow(task)">
                             <strong>{{ task.name }}</strong>
                         </router-link>
                     </th>

@@ -3,7 +3,7 @@
         <div class="flex-1">
 
         </div>
-        <router-link :to="{name: 'notifications'}" class="notifications-link">
+        <router-link :to="$link.notifications()" class="notifications-link">
             <i class="far fa-bell fa-lg"></i>
         </router-link>
 

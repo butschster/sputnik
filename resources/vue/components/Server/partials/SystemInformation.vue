@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <section class="section">
+        <div class="section-header">
+            System information
+        </div>
         <table class="table">
             <col width="200px">
             <col>
@@ -7,11 +10,9 @@
             <tr v-if="hasSysInfo">
                 <th>OS</th>
                 <td>
-                    {{ server.sys_info.os }}
-                    {{ server.sys_info.version }}
-                    [{{ server.sys_info.architecture }} bits]
+                    {{ server.sys_info.name }}
 
-                    <span class="badge badge-success" v-if="server.sys_info.is_supported">Supported</span>
+                    <span class="badge badge-success" v-if="isSupported">Supported</span>
                     <span class="badge badge-danger" v-else>Not supported</span>
                 </td>
             </tr>
@@ -37,21 +38,15 @@
             </tr>
             </tbody>
         </table>
-    </div>
+    </section>
 </template>
 
 <script>
+    import serverMixin from "@js/vue/mixins/server"
     export default {
+        mixins: [serverMixin],
         props: {
             server: Object
-        },
-        mounted() {
-
-        },
-        computed: {
-            hasSysInfo() {
-                return typeof this.server.sys_info != 'undefined'
-            }
         }
     }
 </script>

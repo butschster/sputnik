@@ -1,9 +1,9 @@
 // Layouts
 import LayoutBasic from '@vue/Layouts/Basic'
+
 // Servers
 import ServersList from '@vue/Pages/Servers/Index'
 import ServerShow from '@vue/Pages/Servers/Show'
-import ServerInformation from '@vue/Pages/Servers/Information'
 import ServerSettings from '@vue/Pages/Servers/Settings'
 import ServerUsers from '@vue/Pages/Servers/Users/Index'
 import ServerDatabase from '@vue/Pages/Servers/Database/Index'
@@ -11,9 +11,16 @@ import ServerFirewall from '@vue/Pages/Servers/Firewall/Index'
 import ServerEvents from '@vue/Pages/Servers/Events/Index'
 import ServerTasks from '@vue/Pages/Servers/Tasks/Index'
 import ServerSupervisor from '@vue/Pages/Servers/Supervisor/Index'
+import ServerScheduler from '@vue/Pages/Servers/Scheduler/Index'
+
+// Server Site
 import ServerSites from '@vue/Pages/Servers/Sites/Index'
 import ServerSiteShow from '@vue/Pages/Servers/Sites/Show'
-import ServerScheduler from '@vue/Pages/Servers/Scheduler/Index'
+import ServerSiteSettings from '@vue/Pages/Servers/Sites/Settings'
+import ServerSiteDeployment from '@vue/Pages/Servers/Sites/Deployment'
+import ServerSiteEnvironment from '@vue/Pages/Servers/Sites/Environment'
+
+// Account
 import ProfileShow from "@vue/Pages/Profile/Show";
 import NotificationsIndex from "@vue/Pages/Profile/Notifications";
 import TeamsIndex from "@vue/Pages/Profile/Team/Index";
@@ -21,6 +28,7 @@ import TeamShow from "@vue/Pages/Profile/Team/Show";
 import TeamMembers from "@vue/Pages/Profile/Team/Members";
 import TeamBilling from "@vue/Pages/Profile/Team/Billing";
 import TeamSubscription from "@vue/Pages/Profile/Team/Subscription/Index";
+
 import NotFoundPage from '@vue/Pages/NotFound'
 
 export default [
@@ -43,91 +51,69 @@ export default [
                     {
                         path: '/server/:id/sites',
                         name: 'server.show',
-                        component: ServerSites,
-                        meta: {
-                            server: true
-                        }
+                        component: ServerSites
                     },
                     {
                         path: '/server/:id/sites/:site_id',
-                        name: 'server.site.show',
                         component: ServerSiteShow,
-                        meta: {
-                            server: true
-                        }
+                        children: [
+                            {
+                                path: '/server/:id/sites/:site_id/settings',
+                                name: 'server.site.show',
+                                component: ServerSiteSettings
+                            },
+                            {
+                                path: '/server/:id/sites/:site_id/deployment',
+                                name: 'server.site.deployment',
+                                component: ServerSiteDeployment
+                            },
+                            {
+                                path: '/server/:id/sites/:site_id/env',
+                                name: 'server.site.environment',
+                                component: ServerSiteEnvironment
+                            },
+                        ]
                     },
                     {
                         path: '/server/:id/events',
                         name: 'server.events',
                         component: ServerEvents,
-                        meta: {
-                            server: true
-                        }
                     },
                     {
                         path: '/server/:id/tasks',
                         name: 'server.tasks',
                         component: ServerTasks,
-                        meta: {
-                            server: true
-                        }
-                    },
-                    {
-                        path: '/server/:id/information',
-                        name: 'server.information',
-                        component: ServerInformation,
-                        meta: {
-                            server: true
-                        }
                     },
                     {
                         path: '/server/:id/settings',
                         name: 'server.settings',
                         component: ServerSettings,
-                        meta: {
-                            server: true
-                        }
                     },
 
                     {
                         path: '/server/:id/users',
                         name: 'server.users',
                         component: ServerUsers,
-                        meta: {
-                            server: true
-                        }
                     },
                     {
                         path: '/server/:id/firewall',
                         name: 'server.firewall',
                         component: ServerFirewall,
-                        meta: {
-                            server: true
-                        }
                     },
                     {
                         path: '/server/:id/scheduler',
                         name: 'server.scheduler',
                         component: ServerScheduler,
-                        meta: {
-                            server: true
-                        }
                     },
                     {
                         path: '/server/:id/supervisor',
                         name: 'server.supervisor',
                         component: ServerSupervisor,
-                        meta: {
-                            server: true
-                        }
                     },
                     {
                         path: '/server/:id/database',
                         name: 'server.databases',
                         component: ServerDatabase,
-                        meta: {
-                            server: true
-                        }
                     }
                 ]
             },
