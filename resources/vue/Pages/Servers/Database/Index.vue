@@ -6,8 +6,8 @@
 
         <CreateForm :server="$parent.server" class="well well-lg mb-12" @created="load()"/>
 
-        <h4>Databases ({{ database.length }})</h4>
-        <div v-if="hasUsers">
+        <h4>Databases ({{ databases.length }})</h4>
+        <div v-if="hasDatabase">
             <Loader :loading="loading"/>
             <table class="table mb-10">
                 <col>
@@ -76,6 +76,7 @@
                 this.loading = true
                 try {
                     this.databases = await this.$api.serverDatabases.list(this.$parent.server.id)
+                    console.log(this.databases)
                 } catch (e) {
                     this.$handleError(e)
                 }

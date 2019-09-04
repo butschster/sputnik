@@ -2298,23 +2298,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 this.databases = _context.sent;
-                _context.next = 10;
+                console.log(this.databases);
+                _context.next = 11;
                 break;
 
-              case 7:
-                _context.prev = 7;
+              case 8:
+                _context.prev = 8;
                 _context.t0 = _context["catch"](1);
                 this.$handleError(_context.t0);
 
-              case 10:
+              case 11:
                 this.loading = false;
 
-              case 11:
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 7]]);
+        }, _callee, this, [[1, 8]]);
       }));
 
       function load() {
@@ -2523,23 +2524,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 this.rules = _context.sent;
-                _context.next = 10;
+                console.log(this.rules);
+                _context.next = 11;
                 break;
 
-              case 7:
-                _context.prev = 7;
+              case 8:
+                _context.prev = 8;
                 _context.t0 = _context["catch"](1);
                 this.$handleError(_context.t0);
 
-              case 10:
+              case 11:
                 this.loading = false;
 
-              case 11:
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 7]]);
+        }, _callee, this, [[1, 8]]);
       }));
 
       function load() {
@@ -51944,9 +51946,9 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("h4", [_vm._v("Databases (" + _vm._s(_vm.database.length) + ")")]),
+      _c("h4", [_vm._v("Databases (" + _vm._s(_vm.databases.length) + ")")]),
       _vm._v(" "),
-      _vm.hasUsers
+      _vm.hasDatabase
         ? _c(
             "div",
             [
@@ -90538,7 +90540,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }, {
       path: '/server/:id/database',
-      name: 'server.databases',
+      name: 'server.database',
       component: _vue_Pages_Servers_Database_Index__WEBPACK_IMPORTED_MODULE_6__["default"],
       meta: {
         server: true
@@ -90591,8 +90593,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! c:\Users\hp\Downloads\OSPanel\domains\sputnik\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! c:\Users\hp\Downloads\OSPanel\domains\sputnik\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -115,7 +115,7 @@ export default [
                     },
                     {
                         path: '/server/:id/database',
-                        name: 'server.databases',
+                        name: 'server.database',
                         component: ServerDatabase,
                         meta: {
                             server: true

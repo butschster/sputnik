@@ -83,6 +83,7 @@
 
                 try {
                     this.rules = await this.$api.serverFirewall.list(this.$parent.server.id)
+                    console.log(this.rules)
                 } catch (e) {
                     this.$handleError(e)
                 }

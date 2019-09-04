@@ -17,6 +17,7 @@
         "io-developer/php-whois": "^3.4",
         "laravel/cashier": "^10.0",
         "laravel/framework": "5.8.*",
+        "laravel/scout": "^7.1",
         "laravel/passport": "^7.3",
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
