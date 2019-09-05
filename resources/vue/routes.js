@@ -22,6 +22,7 @@ import TeamMembers from "@vue/Pages/Profile/Team/Members";
 import TeamBilling from "@vue/Pages/Profile/Team/Billing";
 import TeamSubscription from "@vue/Pages/Profile/Team/Subscription/Index";
 import NotFoundPage from '@vue/Pages/NotFound'
+import SearchIndex from '@vue/Pages/Search/Index'
 
 export default [
     {
@@ -159,6 +160,12 @@ export default [
                 name: 'notifications',
                 component: NotificationsIndex
             },
+            {
+                path: '/search',
+                name: 'search',
+                component: SearchIndex
+            },
+
         ]
     },
     {

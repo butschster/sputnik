@@ -4,6 +4,11 @@ import Gate from './policies/Gate'
 import Loader from '@vue/components/UI/Loader'
 import {mapGetters} from 'vuex'
 
+import algoliasearch from 'algoliasearch/lite';
+window.algoliasearch = algoliasearch;
+
+import InstantSearch from 'vue-instantsearch';
+
 require('./bootstrap')
 
 import store from './vue/store'
@@ -11,6 +16,8 @@ import store from './vue/store'
 Vue.use(Gate, {store})
 
 Vue.component('Loader', Loader)
+
+Vue.use(InstantSearch);
 
 new Vue({
     el: '#app',
