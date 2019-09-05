@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\Server\ServerConfiguration;
 use App\Events\Server\Configured;
 use App\Events\Server\Configuring;
 use App\Events\Server\Created;
@@ -20,15 +21,14 @@ use App\Models\Server\Event;
 use App\Models\Server\Firewall\Rule as FirewallRule;
 use App\Models\Server\Site;
 use App\Models\Server\Task;
-use App\Contracts\Server\ServerConfiguration;
 use App\Models\Subscription\Plan;
 use App\Models\User\Team;
 use App\Utils\SSH\ValueObjects\SystemInformation;
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Server extends Model implements ServerConfiguration
 {
@@ -36,7 +36,8 @@ class Server extends Model implements ServerConfiguration
         DeterminesAge,
         HasTask,
         HasConfiguration,
-        HasKeyPair;
+        HasKeyPair,
+        Searchable;
 
     const STATUS_PENDING = 'pending';
     const STATUS_CONFIGUTING = 'configuring';
@@ -293,6 +294,18 @@ class Server extends Model implements ServerConfiguration
     }
 
     /**
+     * @return bool
+     */
+    public function isSupported(): bool
+    {
+        if ($os = $this->systemInformation()) {
+            return $os->isSupported();
+        }
+
+        return true;
+    }
+
+    /**
      * @param Builder $builder
      * @return Builder
      */
@@ -314,5 +327,23 @@ class Server extends Model implements ServerConfiguration
                 );
             });
         });
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'ip' => $this->ip,
+            'user_id' => $this->user_id,
+            'team_id' => $this->team_id,
+            'database_type' => $this->database_type,
+            'webserver_type' => $this->webserver_type,
+        ];
     }
 }

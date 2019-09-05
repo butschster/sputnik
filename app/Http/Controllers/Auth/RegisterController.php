@@ -52,7 +52,7 @@ class RegisterController extends Controller
      */
     public function redirectTo(): string
     {
-        return route('home');
+        return route('app');
     }
 
     /**

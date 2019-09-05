@@ -2,7 +2,7 @@
     <section class="servers-list">
         <h4>Active teams ({{ teams.length }})</h4>
         <div class="servers-list-items">
-            <router-link :to="{name: 'profile.team.show', params: {id: team.id }}" v-for="team in teams" :key="team.id" class="servers-list-item-wrapper" >
+            <router-link :to="$link.profileTeam(team)" v-for="team in teams" :key="team.id" class="servers-list-item-wrapper" >
                 <div class="servers-list-item__name ml-5 font-medium">
                     {{ team.name }}
                 </div>

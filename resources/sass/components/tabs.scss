@@ -5,7 +5,7 @@ $tabs-line-color: theme('colors.gray.200');
     @apply w-full flex border-b-2 border-gray-200 mb-8;
     border-bottom: $tabs-line-height solid $tabs-line-color;
 
-    .tab {
+    > .tab {
         @apply py-4 text-lg mx-3 text-gray-600;
         margin-bottom: -$tabs-line-height;
         border-bottom: $tabs-line-height solid $tabs-line-color;
@@ -18,6 +18,7 @@ $tabs-line-color: theme('colors.gray.200');
             @apply border-gray-500 text-gray-800;
         }
 
+        &.router-link-active,
         &.router-link-exact-active {
             @apply border-blue-500 text-blue-500 font-medium;
         }

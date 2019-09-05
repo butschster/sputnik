@@ -15,6 +15,8 @@ class ActiveSubscriptionNotFound extends HttpException implements Responsable
      */
     public function toResponse($request)
     {
-        return redirect()->route('user.profile');
+        return response()->json([
+            'message' => $this->getMessage(),
+        ], $this->getStatusCode());
     }
 }

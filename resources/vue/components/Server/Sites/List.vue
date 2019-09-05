@@ -4,14 +4,7 @@
         <div v-if="hasSites">
             <h4>Active domains ({{ sites.length }})</h4>
             <div class="servers-list-items">
-                <router-link :to="{name: 'site.show', params: {id: site.id }}" class="servers-list-item-wrapper" v-for="site in sites" :key="site.id">
-                    <div class="servers-list-item__name ml-5 font-medium">
-                        {{ site.domain }}
-                    </div>
-                    <div class="mr-5">
-                        <BadgeTaskStatus :task="site.task" />
-                    </div>
-                </router-link>
+                <ListItem v-for="site in sites" :key="site.id" :site="site" />
             </div>
         </div>
         <div v-else class="well well-lg text-center">
@@ -24,10 +17,10 @@
 </template>
 
 <script>
-    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
+    import ListItem from "@vue/components/Server/Sites/parials/ListItem"
 
     export default {
-        components: {BadgeTaskStatus},
+        components: {ListItem},
         props: {
             server: Object
         },

@@ -26,6 +26,7 @@ class UserProfileResource extends UserResource
             'email' => $this->email,
             'teams' => TeamsCollection::make($this->rolesTeams),
             'team' => TeamResource::make($this->team),
+            'has_active_subscription' => $this->hasActiveSubscription(),
             'source_providers' => SourceProvidersCollection::make($this->sourceProviders),
             'can' => [
                 'server_create' => Gate::allows('create', \App\Models\Server::class),

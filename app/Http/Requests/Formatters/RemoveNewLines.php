@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Formatters;
 
-use Waavi\Sanitizer\Contracts\Filter;
+use App\Contracts\Http\Request\Formatter;
 
-class RemoveNewLines implements Filter
+class RemoveNewLines implements Formatter
 {
     /**
      *  Return the result of applying this filter to the given input.
@@ -14,7 +14,7 @@ class RemoveNewLines implements Filter
      *
      * @return mixed
      */
-    public function apply($value, $options = [])
+    public function apply($value, array $options = [])
     {
         return str_replace([PHP_EOL, "\r"], '', $value);
     }

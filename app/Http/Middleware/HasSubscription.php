@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Exceptions\Subscription\ActiveSubscriptionNotFound;
+use App\Models\User;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,9 @@ class HasSubscription
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure $next
+     *
      * @return mixed
+     * @throws AuthenticationException
      */
     public function handle($request, Closure $next)
     {
@@ -22,8 +25,11 @@ class HasSubscription
             throw new AuthenticationException();
         }
 
-        if (!$request->user()->hasActiveSubscription()) {
-            throw new ActiveSubscriptionNotFound(302);
+        /** @var User $user */
+        $user = $request->user();
+
+        if (!$user->hasActiveSubscription()) {
+            throw new ActiveSubscriptionNotFound(402, 'You don\'t have active subscription');
         }
 
         return $next($request);

@@ -5,10 +5,6 @@
         @apply block w-full text-gray-700;
     }
 
-    &:last-child {
-        @apply mb-0;
-    }
-
     .form-control {
         @apply appearance-none border w-full py-3 px-5 h-16 text-gray-700 rounded block border-gray-300 bg-white transition;
         height: 3.5rem;
@@ -56,6 +52,12 @@
             background-repeat: no-repeat;
             background-position: right 0.5rem center;
             background-size: 1.5rem 1.5rem;
+        }
+    }
+
+    textarea {
+        &.form-control {
+            padding-top: 2rem !important;
         }
     }
 
@@ -107,7 +109,7 @@
                 @apply pb-1 pt-6;
 
                 + label {
-                    @apply text-gray-600 font-bold;
+                    @apply text-gray-600 font-medium;
                     padding-top: .65rem;
                     font-size: .8rem;
                     line-height: 1rem !important;

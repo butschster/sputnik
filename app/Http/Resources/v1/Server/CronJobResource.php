@@ -4,6 +4,7 @@ namespace App\Http\Resources\v1\Server;
 
 use App\Models\Server\CronJob;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Gate;
 
 /**
  * @mixin CronJob
@@ -28,6 +29,10 @@ class CronJobResource extends JsonResource
             'next_run_at' => $this->nextRunDate(),
             'task' => TaskResource::make($this->task),
             'created_at' => $this->created_at,
+            'can' => [
+                'show' => Gate::allows('show', $this->resource),
+                'delete' => Gate::allows('delete', $this->resource),
+            ]
         ];
     }
 }

@@ -1,5 +1,10 @@
-import ServerPolicy from './ServerPolicy';
-import SitePolicy from "./SitePolicy";
+import ServerPolicy from './ServerPolicy'
+import SitePolicy from "./SitePolicy"
+import ServerDatabasePolicy from "./ServerDatabase"
+import ServerSchedulerPolicy from "./ServerScheduler"
+import ServerFirewallPolicy from "./ServerFirewall"
+import ServerDaemonPolicy from "./ServerDaemon"
+import ServerUserPolicy from "./ServerUser"
 
 class Gate {
     constructor(store) {
@@ -7,6 +12,11 @@ class Gate {
 
         this.policies = {
             server: ServerPolicy,
+            server_database: ServerDatabasePolicy,
+            server_scheduler: ServerSchedulerPolicy,
+            server_firewall: ServerFirewallPolicy,
+            server_daemon: ServerDaemonPolicy,
+            server_user: ServerUserPolicy,
             site: SitePolicy
         };
     }
@@ -22,7 +32,15 @@ class Gate {
 
     allow(action, type, model = null) {
         if (this.before()) {
-            return true;
+            return true
+        }
+
+        if (!this.policies.hasOwnProperty(type)) {
+            return false
+        }
+
+        if (!this.policies[type].hasOwnProperty(action)) {
+            return false
         }
 
         return this.policies[type][action](this.user, model);

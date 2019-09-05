@@ -24,8 +24,33 @@ class UploadRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|file',
+            'variables' => 'required|string',
         ];
+    }
+
+    /**
+     * @param \Illuminate\Validation\Validator $validator
+     * @return mixed
+     */
+    public function withValidator(\Illuminate\Validation\Validator $validator): void
+    {
+        $validator->after(function ($validator) {
+            try {
+                $this->parseVariablesString();
+            } catch (InvalidFileException $e) {
+                $validator->errors()->add('variables', 'File must contain env variables.');
+            }
+        });
+    }
+
+    /**
+     * @throws InvalidFileException
+     * @return array
+     */
+    protected function parseVariablesString(): array
+    {
+        $loader = new Loader([],  new DotenvFactory());
+        return $loader->loadDirect($this->variables);
     }
 
     /**
@@ -34,15 +59,8 @@ class UploadRequest extends FormRequest
     public function persist(): Site
     {
         $site = $this->getSite();
-        $loader = new Loader([],  new DotenvFactory());
 
-        try {
-            $data = $loader->loadDirect(
-                file_get_contents($this->file('file')->openFile()->getRealPath())
-            );
-        } catch (InvalidFileException $e) {
-            return $site;
-        }
+        $data = $this->parseVariablesString();
 
         $site->update([
             'environment' => $data

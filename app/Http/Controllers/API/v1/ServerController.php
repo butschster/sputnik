@@ -25,6 +25,25 @@ class ServerController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return ServerCollection
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function search(Request $request): ServerCollection
+    {
+        $this->validate($request, [
+            'query' => 'required|string'
+        ]);
+
+        $servers = Server::search($request->input('query'))
+                ->with([
+                    'filters' => 'user_id:'.$request->user()->id,
+                ])->get();
+
+        return ServerCollection::make($servers);
+    }
+
+    /**
      * @param Server $server
      *
      * @return ServerResource

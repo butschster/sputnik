@@ -3,6 +3,7 @@
         <vSelect class="form-control" :options="options" :value="value" @input="setSelected" :reduce="option => option.value"  />
         <label :for="name">{{ label }}</label>
 
+        <slot></slot>
         <span class="invalid-feedback" role="alert" v-if="httpErrors.has(name)">
             <strong>{{ httpErrors.first(name) }}</strong>
         </span>

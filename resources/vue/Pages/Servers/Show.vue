@@ -2,32 +2,45 @@
     <div>
         <Loader :loading="loading"/>
         <div v-if="server">
-            <h1 class="mb-8 flex items-center">
-                <ServerStatus :server="server" class="mr-3" />
-                {{ server.name }}
-            </h1>
+            <div class="mb-8 flex items-center">
+                <ServerStatus :server="server" class="mr-5"/>
+                <div>
+                    <h2 class="mb-0">{{ server.name }}</h2>
+                    <div class="text-gray-600">
+                        Team
+                        <router-link :to="$link.profileTeam(server.team)">
+                            {{ server.team.name }}
+                        </router-link>
 
-            <div class="tabs" role="tabs" v-if="!isPending">
-                <router-link :to="{name: 'server.show', params: {id: server.id }}" class="tab">Sites</router-link>
-                <router-link :to="{name: 'server.information', params: {id: server.id }}" class="tab">Information</router-link>
-                <router-link :to="{name: 'server.events', params: {id: server.id }}" class="tab">Events</router-link>
-                <router-link :to="{name: 'server.tasks', params: {id: server.id }}" class="tab">Tasks</router-link>
-                <router-link :to="{name: 'server.settings', params: {id: server.id }}" class="tab">Settings</router-link>
+                        <span class="text-gray-500" v-if="hasSysInfo"> - {{ server.sys_info.name }}</span>
+                    </div>
+                </div>
             </div>
 
-            <InstallProgress :server="server" />
+            <NotSupported v-if="!isSupported" :server="server" />
 
-            <router-view />
+            <div class="tabs" role="tabs">
+                <router-link :to="$link.serverSites(server)" class="tab">Sites</router-link>
+                <router-link :to="$link.serverEvents(server)" class="tab">Events</router-link>
+                <router-link :to="$link.serverTasks(server)" class="tab">Tasks</router-link>
+                <router-link :to="$link.serverSettings(server)" class="tab">Settings</router-link>
+            </div>
+
+            <InstallProgress :server="server"/>
+
+            <router-view/>
         </div>
     </div>
 </template>
 <script>
-
     import ServerStatus from "@vue/components/Server/partials/ServerStatus"
     import InstallProgress from "@vue/components/Server/partials/InstallProgress"
+    import NotSupported from "@vue/components/Server/partials/NotSupported"
+    import serverMixin from "@js/vue/mixins/server"
 
     export default {
-        components: {InstallProgress, ServerStatus},
+        components: {InstallProgress, ServerStatus, NotSupported},
+        mixins: [serverMixin],
         data() {
             return {
                 server: null,
@@ -63,18 +76,6 @@
                 this.loading = false
             }
         },
-        computed: {
-            isPending() {
-                return this.server.status == 'pending'
-            },
-            isConfiguring() {
-                return this.server.status == 'configuring'
-            },
-            isConfigured() {
-                return this.server.status == 'configured'
-            }
-        },
-
         watch: {
             '$route': 'load'
         }

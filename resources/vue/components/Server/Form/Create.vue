@@ -9,8 +9,8 @@
         <div class="card-body" v-if="$gate.allow('create', 'server')">
             <Loader :loading="loading" />
             <div class="flex">
-                <FormInput v-model="form.name" :label="label.name" name="name" class="w-full mr-8" required autofocus/>
-                <FormSelect v-model="form.team_id" :label="label.team" name="team_id" class="w-full" :options="teams" required/>
+                <FormInput v-model="form.name" :label="label.name" name="name" class="w-full" required autofocus/>
+                <FormSelect v-if="teams.length > 1" v-model="form.team_id" :label="label.team" name="team_id" class="ml-8 w-full" :options="teams" required/>
             </div>
 
             <div class="flex">
@@ -83,7 +83,6 @@
                 this.loading = true
 
                 try {
-
                     const teams = await this.$api.userProfileTeam.list()
                     this.teams = teams.map(team => {
                         return {

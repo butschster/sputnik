@@ -1,7 +1,10 @@
 <template>
     <div>
         <h1>Settings</h1>
-        <section class="section">
+
+        <SystemInformation :server="$parent.server" class="section--border-b"/>
+
+        <section class="section section--border-b">
             <div class="section-header">
                 Server's Public Key
                 <p>Typically, this key will automatically be added to GitHub or Bitbucket. However, if you need to add
@@ -14,7 +17,7 @@
             </div>
         </section>
 
-        <section class="section mt-10 pt-10">
+        <section class="section section--border-b">
             <div class="section-header">
                 Server Metadata
             </div>
@@ -27,11 +30,12 @@
             </div>
         </section>
 
-        <section class="section flex items-center mt-12 pt-12">
+        <section class="section flex items-center">
             <div class="flex-1">
                 <div class="section-header">
                     Destroy Server
-                    <p class="text-gray-600">This is irreversible. We will remove your Server record from your account, but all your setting will keep on your physical server.</p>
+                    <p class="text-gray-600">This is irreversible. We will remove your Server record from your account,
+                        but all your setting will keep on your physical server.</p>
                 </div>
             </div>
             <div>
@@ -44,10 +48,11 @@
 </template>
 
 <script>
+    import SystemInformation from "@vue/components/Server/partials/SystemInformation"
     import FormInput from '@vue/components/Form/Input'
 
     export default {
-        components: {FormInput},
+        components: {SystemInformation, FormInput},
         data() {
             return {
                 loading: false

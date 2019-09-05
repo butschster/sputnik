@@ -18,9 +18,9 @@
             </div>
 
             <div class="tabs" role="tabs">
-                <router-link :to="{name: 'profile.team.show', params: {id: team.id }}" class="tab">Members</router-link>
-                <router-link :to="{name: 'profile.team.subscription', params: {id: team.id }}" class="tab">Subscription</router-link>
-                <router-link :to="{name: 'profile.team.billing', params: {id: team.id }}" class="tab">Billing</router-link>
+                <router-link :to="$link.profileTeam(team)" class="tab">Members</router-link>
+                <router-link :to="$link.profileTeamSubscription(team)" class="tab">Subscription</router-link>
+                <router-link :to="$link.profileTeamBilling(team)" class="tab">Billing</router-link>
             </div>
 
             <router-view />

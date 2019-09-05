@@ -11,17 +11,19 @@
 <script>
     import SitesList from "@vue/components/Server/Sites/List"
     import CreateForm from "@vue/components/Server/Sites/Form/Create"
+    import serverMixin from "@js/vue/mixins/server"
 
     export default {
         components: {CreateForm, SitesList},
+        mixins: [serverMixin],
         methods: {
             onCreate(site) {
 
             }
         },
         computed: {
-            isConfigured() {
-                return this.$parent.server.status == 'configured'
+            server() {
+                return this.$parent.server
             }
         },
     }

@@ -23,7 +23,7 @@
                 </tbody>
             </table>
             <div v-else class="well well-lg text-center">
-                <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1871/1871141.svg" alt="" width="100px">
+                <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1421/1421313.svg" alt="" width="150px">
                 <h3 class="mb-0">Looks like you don't have any events yet</h3>
             </div>
 
