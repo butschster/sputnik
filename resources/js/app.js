@@ -29,8 +29,6 @@ new Vue({
             })
         })
 
-        this.$store.dispatch('servers/loadServers')
-
         this.$store.dispatch('notifications/getNotifications')
     },
     computed: {

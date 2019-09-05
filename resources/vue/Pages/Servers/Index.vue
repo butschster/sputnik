@@ -1,6 +1,6 @@
 <template>
     <div>
-        <List />
+        <List/>
         <CreateForm class="mt-10"/>
     </div>
 </template>
@@ -10,6 +10,8 @@
 
     export default {
         components: {List, CreateForm},
-        methods: {},
+        mounted() {
+            this.$store.dispatch('servers/loadServers')
+        }
     }
 </script>

@@ -31,11 +31,13 @@ class VerificationController extends Controller
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
+
     /**
-     * Where to redirect users after resetting their password.
-     *
-     * @var string
+     * @return string
      */
-    protected $redirectTo = '/home';
+    public function redirectTo(): string
+    {
+        return route('app');
+    }
 
 }

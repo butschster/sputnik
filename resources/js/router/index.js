@@ -19,12 +19,12 @@ VueRouter.prototype.processError = function (error) {
 
 Vue.prototype.$link = links
 
-const index = new VueRouter({
+const router = new VueRouter({
     routes,
     mode: 'history',
 })
 
-index.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     NProgress.start()
 
     if (!to.matched.length) {
@@ -43,7 +43,7 @@ const hasMetaProperty = (route, prop) => {
     return has
 }
 
-index.afterEach((to, from) => {
+router.afterEach((to, from) => {
     NProgress.done()
 
     if (!hasMetaProperty(to, 'server')) {
@@ -51,5 +51,8 @@ index.afterEach((to, from) => {
     }
 })
 
+export {
+    links, router
+}
 
-export default index
+export default router
