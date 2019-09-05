@@ -82,8 +82,7 @@
                 this.loading = true
 
                 try {
-                    this.rules = await this.$api.serverFirewall.list(this.$parent.server.id)
-                    console.log(this.rules)
+                    this.rules = await this.$api.serverSearch.list(this.$parent.server.id)
                 } catch (e) {
                     this.$handleError(e)
                 }

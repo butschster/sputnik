@@ -30,7 +30,6 @@ import TeamBilling from "@vue/Pages/Profile/Team/Billing";
 import TeamSubscription from "@vue/Pages/Profile/Team/Subscription/Index";
 
 import NotFoundPage from '@vue/Pages/NotFound'
-import SearchIndex from '@vue/Pages/Search/Index'
 
 export default [
     {
@@ -113,7 +112,7 @@ export default [
                     },
                     {
                         path: '/server/:id/database',
-                        name: 'server.database',
+                        name: 'server.databases',
                         component: ServerDatabase,
                     }
                 ]
@@ -153,13 +152,7 @@ export default [
                 path: '/notifications',
                 name: 'notifications',
                 component: NotificationsIndex
-            },
-            {
-                path: '/search',
-                name: 'search',
-                component: SearchIndex
-            },
-
+            }
         ]
     },
     {

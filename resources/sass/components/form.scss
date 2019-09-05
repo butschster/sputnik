@@ -6,7 +6,7 @@
     }
 
     .form-control {
-        @apply appearance-none border w-full py-3 px-5 h-16 text-gray-700 rounded block border-gray-300 bg-white transition;
+        @apply appearance-none border w-full py-3 pl-5 pr-6 h-16 text-gray-700 rounded block border-gray-300 bg-white transition;
         height: 3.5rem;
 
         &:focus,
@@ -33,6 +33,13 @@
                 background: none;
                 width: 30px;
             }
+        }
+
+        &-icon {
+            @apply absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
         }
     }
 
