@@ -56,7 +56,7 @@ $server-icon-color: theme('colors.blue.400');
         }
 
         &__actions {
-            @apply px-6 py-3 text-gray-700 cursor-pointer;
+            @apply mx-6 py-3 text-gray-700 cursor-pointer;
 
             &:hover {
                 @apply text-blue-500;

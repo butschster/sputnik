@@ -19,26 +19,30 @@ class SourceProvidersController extends Controller
         );
     }
 
+    public function unlink(Request $request)
+    {
+        $this->validate($request, [
+            'type' => 'required|string'
+        ]);
+
+        $request->user()->sourceProvider()->where('type', $request->type)->firstOrFail();
+
+
+    }
+
     /**
+     * Get list of available source providers
+     *
      * @return array
      */
     public function available(): array
     {
-        return [
-            [
-                'name' => 'Github',
-                'icon' => 'fa-github',
-                'links' => [
-                    'connect' => route('login.github'),
-                ],
-            ],
-            [
-                'name' => 'Bitbucket',
-                'icon' => 'fa-bitbucket',
-                'links' => [
-                    'connect' => route('login.bitbucket'),
-                ],
-            ],
-        ];
+        return collect(config('source_providers'))->map(function ($provider) {
+            $provider['links'] = [
+                'connect' => route('login.'.$provider['type']),
+            ];
+
+            return $provider;
+        })->all();
     }
 }

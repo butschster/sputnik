@@ -16,19 +16,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="task in tasks.data">
-                    <th>
-                        <router-link :to="$link.serverTaskShow(task)">
-                            <strong>{{ task.name }}</strong>
-                        </router-link>
-                    </th>
-                    <td class="text-right">
-                        <BadgeTaskStatus :task="task"/>
-                    </td>
-                    <td class="text-right">
-                        <small class="badge">{{ task.created_at | moment("from") }}</small>
-                    </td>
-                </tr>
+                <ListItem v-for="task in tasks.data" :key="task.id" :task="task" />
                 </tbody>
             </table>
             <div v-else class="well well-lg text-center">
@@ -43,10 +31,10 @@
 
 <script>
     import Pagination from 'laravel-vue-pagination'
-    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus";
+    import ListItem from "@vue/components/Server/Tasks/ListItem"
 
     export default {
-        components: {BadgeTaskStatus, Pagination},
+        components: {ListItem, Pagination},
         props: {
             server: Object
         },

@@ -2,7 +2,11 @@
     @apply relative;
 
     &-title {
-        @apply cursor-pointer flex items-center;
+        @apply cursor-pointer flex items-center transition;
+
+        &__active {
+
+        }
 
         .icon {
             @apply ml-3 text-gray-400;

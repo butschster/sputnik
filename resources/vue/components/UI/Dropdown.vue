@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown" ref="dropdown" :class="{'open': visible}" :id="`dropdown-${name}`">
-        <div class="dropdown-title" @click="toggle">
+        <div class="dropdown-title" :class="{'dropdown-title__active': visible}" @click="toggle">
             <slot name="title"></slot>
             <i v-if="icon" class="icon fas" :class="{'fa-chevron-down': !visible, 'fa-chevron-up': visible}"></i>
         </div>

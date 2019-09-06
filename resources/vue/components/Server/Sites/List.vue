@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import ListItem from "@vue/components/Server/Sites/parials/ListItem"
+    import ListItem from "@vue/components/Server/Sites/partials/ListItem"
 
     export default {
         components: {ListItem},

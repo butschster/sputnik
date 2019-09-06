@@ -47,6 +47,6 @@ class GithubLoginController extends Controller
             'name' => 'Github',
         ]);
 
-        return redirect()->route('user.profile');
+        return redirect()->to('/account');
     }
 }

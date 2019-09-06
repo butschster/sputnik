@@ -63671,8 +63671,8 @@ readers do not read off random characters that represent icons */
 }
 
 .servers-list-item__actions {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   color: #4a5568;
@@ -63793,6 +63793,7 @@ readers do not read off random characters that represent icons */
   cursor: pointer;
   display: flex;
   align-items: center;
+  transition: all 0.2s linear;
 }
 
 .dropdown-title .icon {

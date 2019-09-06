@@ -45,6 +45,6 @@ class BitbucketLoginController extends Controller
             'name' => 'Bitbucket',
         ]);
 
-        return redirect()->route('user.profile');
+        return redirect()->to('/account');
     }
 }

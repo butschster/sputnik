@@ -42,8 +42,7 @@
             return {
                 form: {
                     email: ''
-                },
-                showDeactivatePopup: false
+                }
             }
         },
         methods: {

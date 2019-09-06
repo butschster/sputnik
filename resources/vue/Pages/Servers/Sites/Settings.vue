@@ -42,7 +42,8 @@
                 <Copy :text="site.server.public_key"/>
             </pre>
         </div>
-        <div class="section">
+
+        <div class="section section--border-b">
             <div class="section-header">
                 Deployment Trigger URL
 
@@ -62,14 +63,17 @@
                 <Copy :text="site.links.hooks_url"/>
             </pre>
         </div>
+
+        <Destroy :site="site" />
     </div>
 </template>
 
 <script>
     import Copy from "@vue/components/UI/Copy"
+    import Destroy from "@vue/components/Server/Sites/partials/Destroy"
 
     export default {
-        components: {Copy},
+        components: {Copy, Destroy},
         computed: {
             site() {
                 return this.$parent.site

@@ -11,6 +11,7 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', 'UserController@profile')->name('user.profile');
     Route::put('profile', 'UserController@update')->name('user.profile.update');
     Route::get('profile/source-providers', 'User\SourceProvidersController@connected')->name('profile.source_providers');
+    Route::post('profile/source-provider/refresh', 'User\SourceProvidersController@refreshToken')->name('profile.source_providers.refresh');
     Route::delete('profile', 'UserController@delete')->name('profile.delete');
 
     // User notifications

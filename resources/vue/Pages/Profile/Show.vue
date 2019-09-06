@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <SourceControls class="mt-12 section--border-b"/>
+        <SourceControls :user="user" class="mt-12 section--border-b"/>
         <Deactivate />
     </div>
 </template>
