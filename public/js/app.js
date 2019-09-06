@@ -4277,9 +4277,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -4297,6 +4294,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       resultsSites: null,
       error: ''
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    document.addEventListener('click', function () {
+      _this.show = false;
+    });
   },
   methods: {
     fetch: function () {
@@ -54465,27 +54469,18 @@ var render = function() {
         "div",
         { staticClass: "flex-1 pl-6 relative" },
         [
-          _c(
-            "form-input",
-            {
-              staticClass: "relative",
-              staticStyle: { "margin-bottom": "0" },
-              attrs: { label: "Search...", name: "name" },
-              on: { input: _vm.fetch },
-              model: {
-                value: _vm.keywords,
-                callback: function($$v) {
-                  _vm.keywords = $$v
-                },
-                expression: "keywords"
-              }
-            },
-            [
-              _c("span", { staticClass: "form-control-icon" }, [
-                _c("i", { staticClass: "fa fa-search " })
-              ])
-            ]
-          ),
+          _c("FormInput", {
+            staticClass: "form-group-search",
+            attrs: { label: "Search...", name: "name" },
+            on: { input: _vm.fetch },
+            model: {
+              value: _vm.keywords,
+              callback: function($$v) {
+                _vm.keywords = $$v
+              },
+              expression: "keywords"
+            }
+          }),
           _vm._v(" "),
           _vm.show
             ? _c(
@@ -54684,7 +54679,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "results-list__link",
-                attrs: { to: _vm.$link.servers() }
+                attrs: { to: _vm.$link.server(result) }
               },
               [_vm._v(_vm._s(result.name))]
             )

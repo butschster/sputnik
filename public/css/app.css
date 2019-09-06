@@ -63454,6 +63454,19 @@ readers do not read off random characters that represent icons */
   color: #4a5568;
 }
 
+.form-group-search {
+  margin-bottom: 0;
+}
+
+.form-group-search .form-control {
+  border-width: 0;
+  color: #718096;
+}
+
+.form-group-search label {
+  color: #718096;
+}
+
 .btn {
   display: inline-block;
   text-align: center;

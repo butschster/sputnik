@@ -1,10 +1,7 @@
 <template>
     <nav class="navbar">
         <div class="flex-1 pl-6 relative">
-            <form-input v-model="keywords" label="Search..." @input="fetch" name="name" class="relative"
-                        style="margin-bottom: 0;">
-                <span class="form-control-icon"><i class="fa fa-search "></i></span>
-            </form-input>
+            <FormInput v-model="keywords" label="Search..." @input="fetch" name="name" class="form-group-search"/>
             <div v-if="show" class="absolute inset-x-0 results-list ml-6">
                 <ResultsList :results="resultsServer" title-list-results="Servers" v-if="resultsServer"/>
                 <ResultsList :results="resultsSites" title-list-results="Sites" v-if="resultsSites"/>
@@ -35,6 +32,10 @@
                 resultsSites: null,
                 error: ''
             }
+        },
+
+        created() {
+            document.addEventListener('click', () => { this.show = false });
         },
         methods: {
             async fetch() {
