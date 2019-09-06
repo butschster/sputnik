@@ -1,25 +1,18 @@
-import axios from "axios";
-import Vue from 'vue'
-import {ErrorBag} from "vee-validate";
+import axios from "axios"
+import {ErrorBag} from "vee-validate"
 import {forEach} from "lodash";
 import {links, router} from '../router'
-import store from "@js/vue/store";
+import store from "@js/vue/store"
+import notify from "@js/vue/plugins/notify"
 
 axios.interceptors.response.use(response => response, error => {
 
     switch (error.response.status) {
         case 403:
-            Vue.notify({
-                type: 'warn',
-                title: 'Access denied',
-                text: error.response.data.message
-            })
+            notify.warning(error.response.data.message)
             break
         case 402:
-            Vue.notify({
-                type: 'warn',
-                text: error.response.data.message
-            })
+            notify.warning(error.response.data.message)
 
             const user = store.getters['auth/getUser']
             router.replace(links.profileTeamSubscription(user.team))

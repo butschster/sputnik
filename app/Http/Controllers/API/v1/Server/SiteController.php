@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\v1\Server;
 
 use App\Http\Controllers\API\Controller;
+use App\Http\Requests\Server\Site\SearchRequest;
 use App\Http\Requests\Server\Site\StoreRequest;
 use App\Http\Resources\v1\Server\SiteCollection;
 use App\Http\Resources\v1\Server\SiteResource;
@@ -27,22 +28,14 @@ class SiteController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return ServerCollection
-     * @throws \Illuminate\Validation\ValidationException
+     * @param SearchRequest $request
+     * @return SiteCollection
      */
-    public function search(Request $request): ServerCollection
+    public function search(SearchRequest $request): SiteCollection
     {
-        $this->validate($request, [
-            'query' => 'required|string'
-        ]);
-
-        $servers = Server\Site::search($request->input('query'))
-            ->with([
-                'filters' => 'user_id:'.$request->user()->id,
-            ])->get();
-
-        return ServerCollection::make($servers);
+        return SiteCollection::make(
+            $request->search()
+        );
     }
 
     /**

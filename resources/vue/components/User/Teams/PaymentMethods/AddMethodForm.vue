@@ -81,10 +81,7 @@
                     this.$emit('added', response)
                     this.$modal.close('add_payment_method')
 
-                    this.$notify({
-                        type: 'success',
-                        text: 'Payment method successfully added'
-                    })
+                    this.$notify.success('Payment method successfully added')
                 }
 
                 this.loading = false

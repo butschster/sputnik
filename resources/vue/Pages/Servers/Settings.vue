@@ -53,10 +53,7 @@
                 try {
                     await this.$api.server.update(this.server.id, {name: this.server.name})
 
-                    this.$notify({
-                        text: 'Server settings saved',
-                        type: 'success'
-                    });
+                    this.$notify.success('Server settings saved')
 
                 } catch (e) {
                     this.$handleError(e)

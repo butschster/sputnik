@@ -80,10 +80,7 @@
                     const job = await this.$api.serverCron.store(this.server.id, this.form)
                     this.$emit('created', job)
 
-                    this.$notify({
-                        text: 'Cron job successfully created',
-                        type: 'success'
-                    });
+                    this.$notify.success('Cron job successfully created')
 
                     this.clear()
                 } catch (e) {

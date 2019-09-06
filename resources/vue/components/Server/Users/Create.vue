@@ -42,10 +42,7 @@
                     const user = await this.$api.serverUsers.store(this.server.id, this.form)
                     this.$emit('created', user)
 
-                    this.$notify({
-                        text: 'User successfully create',
-                        type: 'success'
-                    });
+                    this.$notify.success('User successfully create')
 
                     this.clear()
                 } catch (e) {

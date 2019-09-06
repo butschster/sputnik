@@ -86,10 +86,7 @@
             },
             removedUser(user) {
                 this.load()
-                this.$notify({
-                    text: 'User successfully deleted',
-                    type: 'success'
-                });
+                this.$notify.success('User successfully deleted')
             },
             async remove(user) {
                 this.loading = true

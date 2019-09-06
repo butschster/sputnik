@@ -54,14 +54,12 @@
                 try {
                     await this.$api.server.remove(this.server.id)
 
-                    this.$notify({
-                        text: 'Server successfully destroyed',
-                        type: 'success'
-                    });
+                    this.$notify.success('Server successfully destroyed')
 
                     this.$router.replace(
                         this.$link.servers()
                     )
+
                     this.$modal.hide('destroyServer')
                 } catch (e) {
                     this.$handleError(e)

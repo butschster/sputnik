@@ -82,10 +82,8 @@
             },
             removedDatabase(database) {
                 this.load()
-                this.$notify({
-                    text: 'Database successfully deleted',
-                    type: 'success'
-                });
+
+                this.$notify.success('Database successfully deleted')
             },
             async remove(database) {
                 this.loading = true

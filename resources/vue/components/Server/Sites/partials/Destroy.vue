@@ -52,10 +52,7 @@
                 try {
                     await this.$api.serverSites.remove(this.site.id)
 
-                    this.$notify({
-                        text: 'Site successfully destroyed',
-                        type: 'success'
-                    });
+                    this.$notify.success('Site successfully destroyed')
 
                     this.$router.replace(
                         this.$link.server(this.site.server_id)

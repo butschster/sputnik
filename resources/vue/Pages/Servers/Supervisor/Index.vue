@@ -95,10 +95,7 @@
             },
             onRemoved(daemon) {
                 this.load()
-                this.$notify({
-                    text: 'Daemon successfully deleted',
-                    type: 'success'
-                });
+                this.$notify.success('Daemon successfully deleted')
             }
         },
         computed: {

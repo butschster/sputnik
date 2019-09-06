@@ -99,10 +99,7 @@
             },
             onRemoved(job) {
                 this.load()
-                this.$notify({
-                    text: 'Cron job successfully deleted',
-                    type: 'success'
-                });
+                this.$notify.success('Cron job successfully deleted')
             }
         },
         computed: {

@@ -128,12 +128,6 @@ return [
     |
     */
 
-    'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
@@ -145,6 +139,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'team_id' => 'Team',
+        'ip' => 'IP Address',
+        'ssh_port' => 'SSH Port',
+        'sudo_password' => 'Password',
+        'php_version' => 'PHP version',
+        'database_type' => 'Database type',
+        ''
+    ],
 
 ];

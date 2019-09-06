@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\API\Controller;
+use App\Http\Requests\Server\SearchRequest;
 use App\Http\Requests\Server\StoreRequest;
 use App\Http\Requests\Server\UpdateRequest;
 use App\Http\Resources\v1\ServerCollection;
@@ -25,22 +26,14 @@ class ServerController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param SearchRequest $request
      * @return ServerCollection
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function search(Request $request): ServerCollection
+    public function search(SearchRequest $request): ServerCollection
     {
-        $this->validate($request, [
-            'query' => 'required|string'
-        ]);
-
-        $servers = Server::search($request->input('query'))
-                ->with([
-                    'filters' => 'user_id:'.$request->user()->id,
-                ])->get();
-
-        return ServerCollection::make($servers);
+        return ServerCollection::make(
+            $request->search()
+        );
     }
 
     /**
@@ -89,7 +82,7 @@ class ServerController extends Controller
      */
     public function delete(Server $server)
     {
-        $this->authorize('delete');
+        $this->authorize('delete', $server);
 
         return $this->responseDeleted();
     }

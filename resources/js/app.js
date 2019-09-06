@@ -16,7 +16,6 @@ new Vue({
     el: '#app',
     router,
     store,
-    //i18n,
     metaInfo: {
         title: '',
         titleTemplate: '%s | SputnikCloud'

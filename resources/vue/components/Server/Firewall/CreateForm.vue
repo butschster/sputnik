@@ -55,10 +55,7 @@
                     const rule = await this.$api.serverFirewall.store(this.server.id, this.form)
                     this.$emit('created', rule)
 
-                    this.$notify({
-                        text: 'Rule successfully create',
-                        type: 'success'
-                    });
+                    this.$notify.success('Rule successfully create')
 
                     this.clear()
                 } catch (e) {

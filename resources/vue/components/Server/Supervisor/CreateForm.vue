@@ -42,10 +42,7 @@
                     const daemon = await this.$api.serverSupervisor.store(this.server.id, this.form)
                     this.$emit('created', daemon)
 
-                    this.$notify({
-                        text: 'Daemon successfully created',
-                        type: 'success'
-                    });
+                    this.$notify.success('Daemon successfully created')
 
                     this.clear()
                 } catch (e) {

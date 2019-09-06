@@ -39,10 +39,8 @@
                 try {
                     const database = await this.$api.serverDatabases.store(this.server.id, this.form)
                     this.$emit('created', database)
-                    this.$notify({
-                        text: 'Database successfully create',
-                        type: 'success'
-                    });
+
+                    this.$notify.success('Database successfully create')
                     this.clear()
                 } catch (e) {
                     this.$handleError(e)

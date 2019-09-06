@@ -91,10 +91,8 @@
             },
             onRemoved(rule) {
                 this.load()
-                this.$notify({
-                    text: 'Rule successfully deleted',
-                    type: 'success'
-                });
+
+                this.$notify.success('Rule successfully deleted')
             },
             async remove(rule) {
                 this.loading = true
