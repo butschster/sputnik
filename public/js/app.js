@@ -4438,6 +4438,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     results: Array,
@@ -54675,14 +54676,27 @@ var render = function() {
           "li",
           { staticClass: "results-list__item" },
           [
-            _c(
-              "router-link",
-              {
-                staticClass: "results-list__link",
-                attrs: { to: _vm.$link.server(result) }
-              },
-              [_vm._v(_vm._s(result.name))]
-            )
+            _vm.titleListResults === "Servers"
+              ? _c(
+                  "router-link",
+                  {
+                    staticClass: "results-list__link",
+                    attrs: { to: _vm.$link.server(result) }
+                  },
+                  [_vm._v(_vm._s(result.name))]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.titleListResults === "Sites"
+              ? _c(
+                  "router-link",
+                  {
+                    staticClass: "results-list__link",
+                    attrs: { to: _vm.$link.serverSite(result) }
+                  },
+                  [_vm._v(_vm._s(result.name))]
+                )
+              : _vm._e()
           ],
           1
         )
