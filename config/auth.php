@@ -99,4 +99,9 @@ return [
         ],
     ],
 
+
+    'subscription' => [
+        'trial_period' => env('SUBSCRIPTION_TRIAL_PERIOD', 7),
+        'default_plan' => env('SUBSCRIPTION_PLAN', 'free')
+    ]
 ];

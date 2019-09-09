@@ -74,7 +74,7 @@ class Plan extends Model
      */
     public function scopeWithMonitoring(Builder $builder)
     {
-        return $builder->whereHas('features', function($q) {
+        return $builder->whereHas('features', function ($q) {
             return $q->where('code', 'server.site.monitoring');
         });
     }
@@ -90,13 +90,27 @@ class Plan extends Model
     }
 
     /**
+     * Get number of days of trial period
+     *
+     * @return int
+     */
+    public function trialPeriod(): int
+    {
+        if ($this->isFree()) {
+            return 0;
+        }
+
+        return config('auth.subscription.trial_period') ?? 7;
+    }
+
+    /**
      * Check if plan has trial.
      *
      * @return bool
      */
     public function hasTrial(): bool
     {
-        return $this->trial_period > 0;
+        return $this->trialPeriod() > 0;
     }
 
     /**

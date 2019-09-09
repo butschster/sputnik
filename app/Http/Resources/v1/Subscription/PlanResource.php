@@ -26,7 +26,7 @@ class PlanResource extends JsonResource
             'is_active' => $this->is_active,
             'price' => $this->price,
             'is_free' => $this->isFree(),
-            'trial_period' => $this->trial_period,
+            'trial_period' => $this->trialPeriod(),
             'features' => FeaturesCollection::make($this->features),
         ];
     }

@@ -43,7 +43,6 @@ class UserTeamController extends Controller
         ]);
 
         $plan = Plan::findOrFail($request->plan);
-        $plan->trial_period = 0;
         $team->subscribeTo(
             $plan
         );

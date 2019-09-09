@@ -20,7 +20,6 @@ class CreatePlansTable extends Migration
             $table->boolean('is_active')->default(true);
             $table->decimal('price')->default('0.00');
             $table->string('currency', 3);
-            $table->smallInteger('trial_period')->unsigned()->default(0);
             $table->mediumInteger('sort_order')->unsigned()->default(0);
             $table->timestamps();
         });

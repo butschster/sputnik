@@ -26,7 +26,7 @@ trait HasSubscriptions
         $builder = $this->newSubscription($name, $plan->name);
 
         if ($plan->hasTrial()) {
-            $builder->trialDays($plan->trial_period);
+            $builder->trialDays($plan->trialPeriod());
         } else {
             $builder->skipTrial();
         }

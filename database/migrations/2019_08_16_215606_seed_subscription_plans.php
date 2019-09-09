@@ -32,7 +32,6 @@ class SeedSubscriptionPlans extends Migration
         $plan = Plan::create([
             'name' => 'unlimited',
             'price' => 30,
-            'trial_period' => 5,
             'sort_order' => 3,
             'currency' => 'USD',
         ]);
@@ -82,7 +81,6 @@ class SeedSubscriptionPlans extends Migration
         $plan = Plan::create([
             'name' => 'artisan',
             'price' => 10,
-            'trial_period' => 5,
             'sort_order' => 2,
             'currency' => 'USD',
         ]);
@@ -124,7 +122,6 @@ class SeedSubscriptionPlans extends Migration
         $plan = Plan::create([
             'name' => 'free',
             'price' => 0,
-            'trial_period' => 0,
             'sort_order' => 1,
             'currency' => 'USD',
         ]);
