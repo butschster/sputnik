@@ -4,6 +4,7 @@ import Gate from './policies/Gate'
 import Loader from '@vue/components/UI/Loader'
 import {mapGetters} from 'vuex'
 
+
 require('./bootstrap')
 
 import store from './vue/store'

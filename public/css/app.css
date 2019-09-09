@@ -63554,7 +63554,7 @@ readers do not read off random characters that represent icons */
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-right: 1.5rem;
   height: 4rem;
   color: #4a5568;
   border-radius: 0.25rem;
@@ -63590,6 +63590,13 @@ readers do not read off random characters that represent icons */
 .form-group .form-control-ip input {
   background: none;
   width: 30px;
+}
+
+.form-group .form-control-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .form-group.is-required::before {
@@ -63692,6 +63699,19 @@ readers do not read off random characters that represent icons */
 
 .form-group-checkbox label {
   color: #4a5568;
+}
+
+.form-group-search {
+  margin-bottom: 0;
+}
+
+.form-group-search .form-control {
+  border-width: 0;
+  color: #718096;
+}
+
+.form-group-search label {
+  color: #718096;
 }
 
 .btn {
@@ -64613,6 +64633,43 @@ readers do not read off random characters that represent icons */
 .badge-warning {
   background-color: #faf089;
   font-weight: 500;
+}
+
+.results-list {
+  background-color: #fff;
+  border-radius: 0.25rem;
+  width: 100%;
+  max-width: 32rem;
+  padding: 1.25rem;
+  border-width: 1px;
+  z-index: 50;
+  top: 95%;
+}
+
+.results-list__item {
+  margin-bottom: 0.75rem;
+}
+
+.results-list__link {
+  background-color: #f7fafc;
+  border-radius: 0.25rem;
+  color: #1a202c;
+  padding: 0.75rem;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+
+.results-list__link:hover {
+  color: #1a202c;
+  background-color: #e2e8f0;
+}
+
+.results-list__title {
+  text-transform: uppercase;
+  color: #718096;
+  font-size: 0.875rem;
+  display: inline-block;
 }
 
 .page-login-container {

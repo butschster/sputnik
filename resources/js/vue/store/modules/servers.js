@@ -10,7 +10,7 @@ const state = {
 const getters = {
     hasServers: (state) => state.servers && state.servers.length > 0,
     getServers: (state) => state.servers,
-    isLoading: (state) => state.loading
+    isLoading: (state) => state.loading,
 }
 
 const actions = {

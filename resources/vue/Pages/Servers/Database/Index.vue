@@ -74,6 +74,7 @@
 
                 try {
                     this.databases = await this.$api.serverDatabases.list(this.$parent.server.id)
+                    console.log(this.databases)
                 } catch (e) {
                     this.$handleError(e)
                 }

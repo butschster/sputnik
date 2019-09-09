@@ -15,11 +15,11 @@
         </div>
 
 
-        <div class="section">
+        <div class="section" v-if="$gate.allow('deploy', 'server', site)">
             <div class="section-header" >
                 Git repository details
 
-                <div v-if="$gate.allow('deploy', 'server', site)">
+                <div>
                     <button class="btn btn-warning btn-sm"><i class="fas fa-play-circle mr-2"></i> Deploy!</button>
                 </div>
             </div>
