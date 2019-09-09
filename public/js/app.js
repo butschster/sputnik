@@ -87320,6 +87320,11 @@ var Ziggy = {
       "methods": ["GET", "HEAD"],
       "domain": null
     },
+    "api.v1.profile.source_providers.refresh": {
+      "uri": "api\/v1\/profile\/source-provider\/refresh",
+      "methods": ["POST"],
+      "domain": null
+    },
     "api.v1.profile.delete": {
       "uri": "api\/v1\/profile",
       "methods": ["DELETE"],

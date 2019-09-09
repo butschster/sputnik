@@ -31,7 +31,7 @@ class UserResource extends JsonResource
             'is_system' => $this->isSystem(),
             'task' => TaskResource::make($this->task),
             'links' => [
-                'download_key' => route('server.user.delete', [$this->server_id, $this->id])
+                'download_key' => api_route('server.user.delete', [$this->server_id, $this->id])
             ],
             'can' => [
                 'show' => Gate::allows('show', $this->resource),
