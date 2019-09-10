@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Contracts\Request\RequestSignatureHandler;
 use App\Http\Actions\Contracts\Manager;
 use App\Models\CallbackLog;

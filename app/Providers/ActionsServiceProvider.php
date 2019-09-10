@@ -7,7 +7,8 @@ use App\Http\Actions\Manager;
 use App\Http\Actions\Server\ProcessServerEvents;
 use App\Http\Actions\Server\RegisterNewKey;
 use App\Http\Actions\Server\RunServerConfiguration;
-use App\Http\Actions\Server\Site\HandleHooks;
+use App\Http\Actions\Server\Site;
+use App\Http\Actions\Stripe;
 use App\Http\Actions\Server\StoreServerInformation;
 use App\Http\Actions\Task\FinishTask;
 use Illuminate\Support\ServiceProvider;
@@ -21,7 +22,8 @@ class ActionsServiceProvider extends ServiceProvider
      * @var array
      */
     protected $actions = [
-        'hook' => HandleHooks::class,
+        'hook' => Site\HandleHooks::class,
+        'stripe.webhook' => Stripe\HandleHooks::class,
         'server.information' => StoreServerInformation::class,
         'server.event' => ProcessServerEvents::class,
         'server.key' => RegisterNewKey::class,
