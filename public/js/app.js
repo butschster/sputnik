@@ -54881,8 +54881,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass:
-                "bg-transparent text-grey-darkest font-bold uppercase tracking-wide py-3 px-6 border-2 border-grey-light hover:border-grey rounded-lg",
+              staticClass: "btn btn-default btn-light btn-rounded",
               on: { click: _vm.back }
             },
             [_vm._v("\n                Go back\n            ")]
@@ -55009,7 +55008,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("button", { staticClass: "btn btn-default" }, [
+          _c("button", { staticClass: "btn btn-default btn-light" }, [
             _vm._v("Edit profile")
           ])
         ])
@@ -55277,7 +55276,9 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Renew")])
+              _c("button", { staticClass: "btn btn-danger-outline" }, [
+                _vm._v("Renew")
+              ])
             ]
           )
         : _vm._e(),
@@ -55385,7 +55386,7 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-danger btn-sm",
+                            staticClass: "btn btn-danger-outline btn-sm",
                             on: {
                               click: function($event) {
                                 return _vm.remove(database)
@@ -55582,7 +55583,7 @@ var render = function() {
                           ? _c(
                               "button",
                               {
-                                staticClass: "btn btn-danger btn-sm",
+                                staticClass: "btn btn-danger-outline btn-sm",
                                 on: {
                                   click: function($event) {
                                     return _vm.remove(rule)
@@ -55762,7 +55763,7 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-danger btn-sm",
+                            staticClass: "btn btn-danger-outline btn-sm",
                             on: {
                               click: function($event) {
                                 return _vm.remove(job)
@@ -55894,7 +55895,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-blue shadow-lg",
+                staticClass: "btn btn-primary shadow-lg",
                 on: { click: _vm.onSubmit }
               },
               [_vm._v("\n                Save\n            ")]
@@ -56140,7 +56141,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger btn-sm",
+                      staticClass: "btn btn-danger-outline btn-sm",
                       on: {
                         click: function($event) {
                           return _vm.onRemove(key)
@@ -56638,7 +56639,7 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-danger btn-sm",
+                            staticClass: "btn btn-danger-outline btn-sm",
                             on: {
                               click: function($event) {
                                 return _vm.remove(daemon)
@@ -56830,7 +56831,7 @@ var render = function() {
                           ? _c(
                               "button",
                               {
-                                staticClass: "btn btn-danger btn-sm",
+                                staticClass: "btn btn-danger-outline btn-sm",
                                 on: {
                                   click: function($event) {
                                     return _vm.remove(user)
@@ -57955,7 +57956,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-blue shadow-lg",
+                staticClass: "btn btn-primary shadow-lg",
                 on: { click: _vm.onSubmit }
               },
               [
@@ -58229,7 +58230,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-blue shadow-lg",
+                staticClass: "btn btn-primary shadow-lg",
                 on: { click: _vm.onSubmit }
               },
               [_vm._v("\n            Add site\n        ")]
@@ -58354,7 +58355,10 @@ var render = function() {
           [
             _c(
               "button",
-              { staticClass: "btn btn-danger", on: { click: _vm.onDestroy } },
+              {
+                staticClass: "btn btn-danger-outline",
+                on: { click: _vm.onDestroy }
+              },
               [_vm._v("\n                Destroy\n            ")]
             ),
             _vm._v(" "),
@@ -58375,7 +58379,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-danger btn-block",
+                    staticClass: "btn btn-danger-outline btn-block",
                     on: { click: _vm.destroy }
                   },
                   [
@@ -58840,7 +58844,10 @@ var render = function() {
           [
             _c(
               "button",
-              { staticClass: "btn btn-danger", on: { click: _vm.onDestroy } },
+              {
+                staticClass: "btn btn-danger-outline",
+                on: { click: _vm.onDestroy }
+              },
               [_vm._v("\n                Destroy\n            ")]
             ),
             _vm._v(" "),
@@ -58861,7 +58868,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-danger btn-block",
+                    staticClass: "btn btn-danger-outline btn-block",
                     on: { click: _vm.destroy }
                   },
                   [
@@ -59179,7 +59186,10 @@ var render = function() {
         ),
         _c(
           "button",
-          { staticClass: "btn btn-danger btn-sm", on: { click: _vm.destroy } },
+          {
+            staticClass: "btn btn-danger-outline btn-sm",
+            on: { click: _vm.destroy }
+          },
           [_vm._v("Delete")]
         )
       ]
@@ -59985,7 +59995,10 @@ var render = function() {
       [
         _c(
           "button",
-          { staticClass: "btn btn-danger", on: { click: _vm.onDeactivate } },
+          {
+            staticClass: "btn btn-danger-outline",
+            on: { click: _vm.onDeactivate }
+          },
           [_vm._v("\n            Deactivate account\n        ")]
         ),
         _vm._v(" "),
@@ -60030,7 +60043,7 @@ var render = function() {
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-danger btn-block",
+                  staticClass: "btn btn-danger-outline btn-block",
                   attrs: { disabled: _vm.isDisabledButton },
                   on: { click: _vm.deactivate }
                 },
@@ -60132,7 +60145,7 @@ var render = function() {
                     _c(
                       "buttons",
                       {
-                        staticClass: "btn btn-danger btn-sm mr-5",
+                        staticClass: "btn btn-danger-outline btn-sm mr-5",
                         on: {
                           click: function($event) {
                             return _vm.unlink(provider)
@@ -60590,7 +60603,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-danger btn-sm",
+              staticClass: "btn btn-danger-outline btn-sm",
               on: {
                 click: function($event) {
                   return _vm.deletePaymentMethod()
@@ -60646,7 +60659,10 @@ var render = function() {
             [
               _c(
                 "button",
-                { staticClass: "btn btn-danger", on: { click: _vm.onCancel } },
+                {
+                  staticClass: "btn btn-danger-outline",
+                  on: { click: _vm.onCancel }
+                },
                 [_vm._v("\n                Cancel :(\n            ")]
               ),
               _vm._v(" "),
@@ -60668,7 +60684,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-danger mr-5",
+                        staticClass: "btn btn-danger-outline mr-5",
                         on: { click: _vm.cancel }
                       },
                       [
@@ -60681,7 +60697,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-default",
+                        staticClass: "btn btn-default btn-light",
                         on: { click: _vm.close }
                       },
                       [
@@ -95270,8 +95286,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! c:\Users\hp\Downloads\OSPanel\domains\sputnik\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! c:\Users\hp\Downloads\OSPanel\domains\sputnik\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

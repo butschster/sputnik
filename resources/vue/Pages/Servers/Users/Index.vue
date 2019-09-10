@@ -39,7 +39,7 @@
                             <i class="fas fa-download"></i>
                         </a>
 
-                        <button class="btn btn-danger btn-sm" v-if="!user.is_system" @click="remove(user)">
+                        <button class="btn btn-danger-outline btn-sm" v-if="!user.is_system" @click="remove(user)">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>

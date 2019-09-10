@@ -1,5 +1,5 @@
 .btn {
-    @apply inline-block text-center rounded py-4 px-12 tracking-wider transition text-gray-600 font-medium;
+    @apply inline-block text-center rounded py-4 px-12 tracking-wider transition text-white font-medium;
 
     &:focus {
         @apply outline-none shadow-outline;
@@ -17,31 +17,31 @@
         @apply py-6 px-16;
     }
 
-    &-default {
-        @apply bg-gray-100;
+    @each $theme, $color in $colors {
 
-        &:hover {
-            @apply bg-gray-400;
+        &-#{$theme} {
+            background-color: $color;
+
+            &-outline {
+                border: 1px solid $color;
+                color: $color;
+                @apply bg-white;
+
+                &:not(:disabled):hover,
+                &:not(:disabled):focus {
+
+                    background-color: $color;
+                    color: $white;
+                }
+            }
         }
     }
 
-    &-danger {
-        @apply bg-white text-red-600 border border-red-600;
+    @each $theme, $color in $colors-hover {
 
-        &:not(:disabled):hover {
-            @apply bg-red-600 text-white;
-        }
-
-        &:disabled {
-            @apply bg-red-100 text-red-300 border-red-300;
-        }
-    }
-
-    &-blue, &-primary {
-        @apply bg-blue-500 text-white;
-
-        &:hover {
-            @apply bg-blue-600;
+        &-#{$theme}:not(:disabled):hover,
+        &-#{$theme}:not(:disabled):focus {
+            background-color: $color;
         }
     }
 
@@ -53,20 +53,20 @@
         }
     }
 
-    &-outline {
-        @apply border border-gray-400;
-
-        &:hover {
-            @apply bg-gray-700 border-gray-700 text-white;
-        }
-    }
-
     &-shadow {
         box-shadow: 0 10px 20px 0 rgba(163, 191, 250, 0.14), 0 40px 40px -5px rgba(127, 156, 245, 0.4);
     }
 
     &-rounded {
         @apply rounded-full;
+    }
+
+    &-dark {
+        @apply text-white;
+    }
+
+    &-light {
+        @apply text-gray-600;
     }
 
     &-copy {

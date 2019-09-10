@@ -26,7 +26,7 @@
                             class="w-full" :options="database_types" required/>
             </div>
 
-            <button class="btn btn-blue shadow-lg" @click="onSubmit">
+            <button class="btn btn-primary shadow-lg" @click="onSubmit">
                 <i class="fas fa-plus"></i>
                 Create
             </button>

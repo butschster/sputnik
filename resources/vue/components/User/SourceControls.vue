@@ -15,7 +15,7 @@
                 <a class="btn btn-outline btn-sm mr-5" :href="provider.links.refresh" >
                     <i class="fas fa-sync-alt"></i> Refresh token
                 </a>
-                <buttons class="btn btn-danger btn-sm mr-5" @click="unlink(provider)">
+                <buttons class="btn btn-danger-outline btn-sm mr-5" @click="unlink(provider)">
                     <i class="fas fa-unlink"></i> Unlink
                 </buttons>
             </div>

@@ -7,7 +7,7 @@
                 <p>Pavel, just before you go, here are some courses we've got coming up that you might be interested in.</p>
             </div>
             <div>
-                <button class="btn btn-danger" @click="onCancel">
+                <button class="btn btn-danger-outline" @click="onCancel">
                     Cancel :(
                 </button>
 
@@ -20,10 +20,10 @@
                             all collaborator associations.</p>
 
                         <div class="flex">
-                            <button class="btn btn-danger mr-5" @click="cancel">
+                            <button class="btn btn-danger-outline mr-5" @click="cancel">
                                 Yes
                             </button>
-                            <button class="btn btn-default" @click="close">
+                            <button class="btn btn-default btn-light" @click="close">
                                 Close
                             </button>
                         </div>

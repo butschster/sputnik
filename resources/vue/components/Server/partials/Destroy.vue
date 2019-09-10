@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div>
-                <button class="btn btn-danger" @click="onDestroy">
+                <button class="btn btn-danger-outline" @click="onDestroy">
                     Destroy
                 </button>
 
@@ -21,7 +21,7 @@
                     <div class="modal__content">
                         <p class="mb-3">This action cannot be undone. This will permanently delete your server.</p>
 
-                        <button class="btn btn-danger btn-block" @click="destroy">
+                        <button class="btn btn-danger-outline btn-block" @click="destroy">
                             I understand the consequences, continue
                         </button>
                     </div>

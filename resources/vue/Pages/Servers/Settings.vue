@@ -24,7 +24,7 @@
             <div class="section-body w-1/2">
                 <FormInput v-model="server.name" label="Server name" name="name" class="w-full mr-8" required/>
 
-                <button class="btn btn-blue shadow-lg" @click="onSubmit">
+                <button class="btn btn-primary shadow-lg" @click="onSubmit">
                     Save
                 </button>
             </div>

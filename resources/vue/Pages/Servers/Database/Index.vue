@@ -35,7 +35,7 @@
                         <BadgeTaskStatus :status="database.status"/>
                     </td>
                     <td class="text-right">
-                        <button class="btn btn-danger btn-sm" @click="remove(database)">
+                        <button class="btn btn-danger-outline btn-sm" @click="remove(database)">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
