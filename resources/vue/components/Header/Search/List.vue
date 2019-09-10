@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div v-if="hasResults">
         <strong class="search__results-list__title mb-2">{{ title }}</strong>
         <ul v-if="hasResults">
             <li v-for="result in results" class="search__results-list__item">
-                <router-link :to="this.link(result)" class="search__results-list__link">
+                <router-link :to="link(result)" class="search__results-list__link">
                     {{ result.name }}
                 </router-link>
             </li>

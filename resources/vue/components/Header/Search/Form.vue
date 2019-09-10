@@ -53,9 +53,14 @@
 
                 try {
                     this.resultsServer = await this.$api.server.search(this.query)
+                } catch (e) {
+                    this.resultsServer = []
+                }
+
+                try {
                     this.resultsSites = await this.$api.serverSites.search(this.query)
                 } catch (e) {
-                    //this.$handleError(e)
+                    this.resultsSites = []
                 }
 
                 this.loading = false

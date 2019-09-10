@@ -4296,27 +4296,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
                 this.resultsServer = _context.sent;
-                _context.next = 8;
-                return this.$api.serverSites.search(this.query);
+                _context.next = 11;
+                break;
 
               case 8:
-                this.resultsSites = _context.sent;
-                _context.next = 13;
-                break;
+                _context.prev = 8;
+                _context.t0 = _context["catch"](2);
+                this.resultsServer = [];
 
               case 11:
                 _context.prev = 11;
-                _context.t0 = _context["catch"](2);
-
-              case 13:
-                this.loading = false;
+                _context.next = 14;
+                return this.$api.serverSites.search(this.query);
 
               case 14:
+                this.resultsSites = _context.sent;
+                _context.next = 20;
+                break;
+
+              case 17:
+                _context.prev = 17;
+                _context.t1 = _context["catch"](11);
+                this.resultsSites = [];
+
+              case 20:
+                this.loading = false;
+
+              case 21:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[2, 11]]);
+        }, _callee, this, [[2, 8], [11, 17]]);
       }));
 
       function fetch() {
@@ -57338,41 +57349,43 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("strong", { staticClass: "search__results-list__title mb-2" }, [
-      _vm._v(_vm._s(_vm.title))
-    ]),
-    _vm._v(" "),
-    _vm.hasResults
-      ? _c(
-          "ul",
-          _vm._l(_vm.results, function(result) {
-            return _c(
-              "li",
-              { staticClass: "search__results-list__item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "search__results-list__link",
-                    attrs: { to: this.link(result) }
-                  },
+  return _vm.hasResults
+    ? _c("div", [
+        _c("strong", { staticClass: "search__results-list__title mb-2" }, [
+          _vm._v(_vm._s(_vm.title))
+        ]),
+        _vm._v(" "),
+        _vm.hasResults
+          ? _c(
+              "ul",
+              _vm._l(_vm.results, function(result) {
+                return _c(
+                  "li",
+                  { staticClass: "search__results-list__item" },
                   [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(result.name) +
-                        "\n            "
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "search__results-list__link",
+                        attrs: { to: _vm.link(result) }
+                      },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(result.name) +
+                            "\n            "
+                        )
+                      ]
                     )
-                  ]
+                  ],
+                  1
                 )
-              ],
-              1
+              }),
+              0
             )
-          }),
-          0
-        )
-      : _vm._e()
-  ])
+          : _vm._e()
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -24,7 +24,7 @@ class SearchRequest extends FormRequest
      */
     public function search()
     {
-        return Site::search($this->query)->with([
+        return Site::search($this->input('query'))->with([
             'filters' => 'user_id:'.$this->user()->id,
         ])->get();
     }
