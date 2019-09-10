@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\v1\Server;
 
+use App\Http\Resources\v1\Server\Site\EnvironmentResource;
 use App\Http\Resources\v1\ServerResource;
 use App\Models\Server\Site;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -38,7 +39,7 @@ class SiteResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'has_env' => $this->hasEnvironmentVariables(),
-            'env' => $this->environment,
+            'env' => EnvironmentResource::make($this->environment),
             'is_deploying' => $this->hasRunningDeployment(),
             'repository' => [
                 'is_valid' => $this->isValidRepository(),
