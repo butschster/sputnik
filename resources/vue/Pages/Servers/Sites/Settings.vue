@@ -20,11 +20,15 @@
                 <tbody>
                 <tr>
                     <th>Path</th>
-                    <td>{{site.path }}</td>
+                    <td>
+                        <Copy :text="site.path"/>
+                    </td>
                 </tr>
                 <tr>
                     <th>Public path</th>
-                    <td>{{ site.public_path }}</td>
+                    <td>
+                        <Copy :text="site.public_path"/>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -69,11 +73,10 @@
 </template>
 
 <script>
-    import Copy from "@vue/components/UI/Copy"
     import Destroy from "@vue/components/Server/Sites/partials/Destroy"
 
     export default {
-        components: {Copy, Destroy},
+        components: {Destroy},
         computed: {
             site() {
                 return this.$parent.site

@@ -5,7 +5,6 @@ namespace App\Http\Requests\Server;
 use App\Models\Server;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Gate;
 
 class SearchRequest extends FormRequest
 {

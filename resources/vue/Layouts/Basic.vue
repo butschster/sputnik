@@ -14,7 +14,8 @@
                 <ServerSidebar />
                 <AccountSidebar />
             </aside>
-            <div class="flex-1">
+            <div class="flex-1 relative">
+                <portal-target name="content-overlay"></portal-target>
                 <Navbar />
                 <div class="container py-10 px-12 m-auto">
                     <router-view/>

@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <th>IP Address</th>
-                <td>{{ server.ip }}</td>
+                <td><Copy :text="server.ip" /></td>
             </tr>
             <tr>
                 <th>PHP Version</th>

@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar">
-        <div class="flex-1 pl-6 relative">
-            <CreateForm/>
+        <div class="flex-1">
+            <SearchForm />
         </div>
         <router-link :to="$link.notifications()" class="notifications-link">
             <i class="far fa-bell fa-lg"></i>
@@ -13,12 +13,12 @@
     </nav>
 </template>
 <script>
-    import ProfileNav from "@vue/components/Header/partials/ProfileNav"
-    import CreateForm from '@vue/components/Search/CreateForm'
+    import ProfileNav from "./partials/ProfileNav"
+    import SearchForm from './Search/Form'
 
 
     export default {
-        components: {CreateForm, ProfileNav},
+        components: {SearchForm, ProfileNav},
         data() {
             return {
 

@@ -57,11 +57,10 @@
 
 <script>
     import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
-    import Copy from "@vue/components/UI/Copy"
     import CreateForm from "@vue/components/Server/Users/Create"
 
     export default {
-        components: {CreateForm, Copy, BadgeTaskStatus},
+        components: {CreateForm, BadgeTaskStatus},
         data() {
             return {
                 loading: false,

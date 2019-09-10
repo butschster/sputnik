@@ -4,7 +4,9 @@
                :placeholder="label"
                :value="value"
                ref="input"
-               @input="$emit('input', $event.target.value)">
+               @input="$emit('input', $event.target.value)"
+               @blur="$emit('blur')"
+               @focus="$emit('focus')">
         <label :for="name">{{ label }}</label>
 
         <slot></slot>

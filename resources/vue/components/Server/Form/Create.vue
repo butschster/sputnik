@@ -3,14 +3,15 @@
         <div class="section-header">
             {{ title }}
 
-            <p>You can connect any server with public IP address and opened ssh port. Your server must run a fresh installation of Ubuntu 18.04 x64 and must have a root user.</p>
+            <p>You can connect any server with public IP address and opened ssh port. Your server must run a fresh
+                installation of Ubuntu 18.04 x64 and must have a root user.</p>
         </div>
 
         <div class="card-body" v-if="$gate.allow('create', 'server')">
             <Loader :loading="loading" />
             <div class="flex">
                 <FormInput v-model="form.name" :label="label.name" name="name" class="w-full" required autofocus/>
-                <FormSelect v-if="teams.length > 1" v-model="form.team_id" :label="label.team" name="team_id" class="ml-8 w-full" :options="teams" required/>
+                <FormSelect v-model="form.team_id" :label="label.team" name="team_id" class="ml-8 w-full" :options="teams" required/>
             </div>
 
             <div class="flex">

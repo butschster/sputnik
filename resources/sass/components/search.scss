@@ -1,0 +1,52 @@
+.search {
+    &-container {
+        @apply mx-6 relative;
+
+        .form-group {
+            @apply z-20 mb-0;
+
+            .form-control {
+                @apply border-0 text-gray-600;
+            }
+
+            label {
+                @apply text-gray-600;
+            }
+        }
+    }
+
+    &__results-list {
+        @apply absolute inset-x-0 ml-6 shadow-xl bg-white rounded w-full max-w-lg p-5 border z-50;
+        top: 95%;
+
+        &__link {
+            @apply bg-gray-100 rounded text-gray-900 p-3 w-full h-full inline-block;
+
+            &:hover {
+                @apply text-gray-900 bg-gray-300;
+            }
+        }
+
+        &__title {
+            @apply uppercase text-gray-600 text-sm inline-block;
+        }
+    }
+
+
+    &__empty-results {
+        @apply text-gray-500 text-sm;
+    }
+
+    &-overlay {
+        background: rgba(51, 51, 51, .2);
+        @apply absolute top-0 left-0 w-full h-full hidden opacity-0 z-10 transition;
+
+        &.active {
+            @apply block opacity-100;
+        }
+    }
+
+    &__input {
+        @apply w-full py-3 px-6 bg-white z-20;
+    }
+}

@@ -1,5 +1,5 @@
 <template>
-    <div class="dropdown" ref="dropdown" :class="{'open': visible}" :id="`dropdown-${name}`">
+    <div class="dropdown" ref="dropdown" :class="{'open': visible}" :id="`dropdown-${name}`" v-click-outside="close">
         <div class="dropdown-title" :class="{'dropdown-title__active': visible}" @click="toggle">
             <slot name="title"></slot>
             <i v-if="icon" class="icon fas" :class="{'fa-chevron-down': !visible, 'fa-chevron-up': visible}"></i>
@@ -34,8 +34,6 @@
             }
         },
         mounted() {
-            this.registerOutsideClose()
-
             this.$dropdown.event
                 .$on('show', (dropdown) => {
                     if (this.name == dropdown) {
@@ -64,20 +62,6 @@
                 e.preventDefault()
 
                 this.visible = !this.visible
-            },
-            registerOutsideClose() {
-                const bodyClickHandler = (e) => {
-                    if (!this.$refs.dropdown || e.target === this.$refs.dropdown || this.$refs.dropdown.contains(e.target)) {
-                        return;
-                    }
-
-                    this.close()
-                }
-
-                document.addEventListener('click', bodyClickHandler)
-                this.$once('hook:destroyed', () => {
-                    document.removeEventListener('click', bodyClickHandler)
-                })
             },
             close() {
                 this.$emit('close')

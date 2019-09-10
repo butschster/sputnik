@@ -3,7 +3,7 @@
         <h4>Environment variables</h4>
 
         <table class="table mb-16" v-if="site.has_env">
-            <col width="200px">
+            <col width="250px">
             <col>
             <col width="100px">
             <thead>
@@ -16,7 +16,9 @@
             <tbody>
             <tr v-for="(value, key) in site.env">
                 <th>{{ key }}</th>
-                <td>{{ value }}</td>
+                <td>
+                    <Copy :text="value" />
+                </td>
                 <td class="text-right">
                     <button class="btn btn-danger btn-sm" @click="onRemove(key)">
                         <i class="fas fa-trash"></i>

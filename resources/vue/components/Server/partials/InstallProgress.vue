@@ -29,12 +29,11 @@
 </template>
 
 <script>
-    import Copy from "@vue/components/UI/Copy"
     import ProgressBar from 'vue-simple-progress'
     import serverMixin from "@js/vue/mixins/server"
 
     export default {
-        components: {ProgressBar, Copy},
+        components: {ProgressBar},
         mixins: [serverMixin],
         props: {
             server: Object

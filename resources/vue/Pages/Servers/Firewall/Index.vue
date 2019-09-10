@@ -63,11 +63,10 @@
 
 <script>
     import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
-    import Copy from "@vue/components/UI/Copy"
     import CreateFormFirewall from "@vue/components/Server/Firewall/CreateForm"
 
     export default {
-        components: {CreateFormFirewall, Copy, BadgeTaskStatus},
+        components: {CreateFormFirewall, BadgeTaskStatus},
         data() {
             return {
                 loading: false,

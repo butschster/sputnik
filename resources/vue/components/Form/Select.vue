@@ -41,7 +41,7 @@
         },
         methods: {
             setSelected(value) {
-                this.$emit('input', value)
+                this.$emit('input', value ? value.value : null)
             }
         }
     }

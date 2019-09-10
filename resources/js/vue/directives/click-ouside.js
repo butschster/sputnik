@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 Vue.directive('click-outside', {
-    bind: function (el, binding, vNode) {
+    bind(el, binding, vNode) {
         // Provided expression must evaluate to a function.
         if (typeof binding.value !== 'function') {
             const compName = vNode.context.name
@@ -26,7 +26,7 @@ Vue.directive('click-outside', {
         document.addEventListener('click', handler)
     },
 
-    unbind: function (el, binding) {
+    unbind (el, binding) {
         // Remove Event Listeners
         document.removeEventListener('click', el.__vueClickOutside__)
         el.__vueClickOutside__ = null

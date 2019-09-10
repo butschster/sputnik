@@ -132,16 +132,4 @@
             @apply text-gray-700;
         }
     }
-
-    &-search {
-        @apply mb-0;
-
-        .form-control {
-            @apply border-0 text-gray-600;
-        }
-
-        label {
-            @apply text-gray-600;
-        }
-    }
 }

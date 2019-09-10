@@ -2,6 +2,7 @@ import Vue from 'vue'
 import router from './router'
 import Gate from './policies/Gate'
 import Loader from '@vue/components/UI/Loader'
+import Copy from '@vue/components/UI/Copy'
 import {mapGetters} from 'vuex'
 
 
@@ -12,6 +13,7 @@ import store from './vue/store'
 Vue.use(Gate, {store})
 
 Vue.component('Loader', Loader)
+Vue.component('Copy', Copy)
 
 new Vue({
     el: '#app',

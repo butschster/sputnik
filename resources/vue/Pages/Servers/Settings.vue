@@ -12,7 +12,7 @@
             </div>
             <div class="section-body">
                 <pre class="break-all whitespace-normal">
-                    {{ server.public_key }}
+                    <Copy :text="server.public_key" />
                 </pre>
             </div>
         </section>
