@@ -1,4 +1,4 @@
-<template>
+/<template>
     <div class="section well well-lg">
         <div class="section-header">
             {{ title }}
@@ -11,7 +11,7 @@
             <Loader :loading="loading" />
             <div class="flex">
                 <FormInput v-model="form.name" :label="label.name" name="name" class="w-full" required autofocus/>
-                <FormSelect v-model="form.team_id" :label="label.team" name="team_id" class="ml-8 w-full" :options="teams" required/>
+                <FormSelect v-if="teams.length > 1" v-model="form.team_id" :label="label.team" name="team_id" class="ml-8 w-full" :options="teams" required/>
             </div>
 
             <div class="flex">
@@ -23,7 +23,9 @@
                 <FormSelect v-model="form.php_version" :label="label.php_version" name="php_version" class="w-full mr-8"
                             :options="php_versions" required/>
                 <FormSelect v-model="form.database_type" :label="label.database_type" name="database_type"
-                            class="w-full" :options="database_types" required/>
+                            class="w-full mr-8" :options="database_types" required/>
+                <FormSelect v-model="form.webserver_type" :label="label.webserver_type" name="webserver_type"
+                            class="w-full" :options="webserver_types" required/>
             </div>
 
             <button class="btn btn-blue shadow-lg" @click="onSubmit">
@@ -53,8 +55,9 @@
                     team_id: null,
                     ip: null,
                     ssh_port: 22,
-                    php_version: 73,
-                    database_type: 'mysql'
+                    php_version: null,
+                    database_type: null,
+                    webserver_type: null
                 },
                 label: {
                     name: 'Name',
@@ -62,27 +65,50 @@
                     ip: 'IP Address',
                     ssh_port: 'SSH port',
                     php_version: 'PHP version',
-                    database_type: 'Database'
+                    database_type: 'Database',
+                    webserver_type: 'Webserver'
                 },
-                php_versions: [
-                    {label: 'PHP 7.2', value: 72},
-                    {label: 'PHP 7.3', value: 73}
-                ],
-                database_types: [
-                    {label: 'MySQL 5.7', value: 'mysql'},
-                    {label: 'MySQL 8', value: 'mysql8'},
-                    {label: 'MariaDB', value: 'mariadb'},
-                    {label: 'PostgreSQL', value: 'pgsql'},
-                ],
+                php_versions: [],
+                database_types: [],
+                webserver_types: [],
             }
         },
         mounted() {
-            this.loadTeams()
+            this.load()
         },
         methods: {
-            async loadTeams() {
+            load() {
                 this.loading = true
 
+                this.loadTeams()
+                this.loadPHPVersions()
+                this.loadDatabaseTypes()
+                this.loadWebserverTypes()
+
+                this.loading = false
+            },
+            async loadPHPVersions() {
+                try {
+                    this.php_versions = await this.$api.serverDictionaries.phpVersions()
+                } catch (e) {
+                    this.$handleError(e)
+                }
+            },
+            async loadDatabaseTypes() {
+                try {
+                    this.database_types = await this.$api.serverDictionaries.databaseTypes()
+                } catch (e) {
+                    this.$handleError(e)
+                }
+            },
+            async loadWebserverTypes() {
+                try {
+                    this.webserver_types = await this.$api.serverDictionaries.webserverTypes()
+                } catch (e) {
+                    this.$handleError(e)
+                }
+            },
+            async loadTeams() {
                 try {
                     const teams = await this.$api.userProfileTeam.list()
                     this.teams = teams.map(team => {
@@ -96,8 +122,6 @@
                 } catch (e) {
                     this.$handleError(e)
                 }
-
-                this.loading = false
             },
             async onSubmit() {
                 const server = await this.$store.dispatch('servers/createServer', this.form)

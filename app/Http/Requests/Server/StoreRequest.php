@@ -32,6 +32,7 @@ class StoreRequest extends FormRequest
             'sudo_password' => 'nullable|string',
             'php_version' => ['required', Rule::in(config('configurations.php', []))],
             'database_type' => ['required', Rule::in(config('configurations.database', []))],
+            'webserver_type' => ['required', Rule::in(config('configurations.webserver', []))],
             'meta' => 'nullable|array',
         ];
     }

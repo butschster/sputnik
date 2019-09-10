@@ -4896,6 +4896,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -4913,8 +4915,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         team_id: null,
         ip: null,
         ssh_port: 22,
-        php_version: 73,
-        database_type: 'mysql'
+        php_version: null,
+        database_type: null,
+        webserver_type: null
       },
       label: {
         name: 'Name',
@@ -4922,50 +4925,149 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         ip: 'IP Address',
         ssh_port: 'SSH port',
         php_version: 'PHP version',
-        database_type: 'Database'
+        database_type: 'Database',
+        webserver_type: 'Webserver'
       },
-      php_versions: [{
-        label: 'PHP 7.2',
-        value: 72
-      }, {
-        label: 'PHP 7.3',
-        value: 73
-      }],
-      database_types: [{
-        label: 'MySQL 5.7',
-        value: 'mysql'
-      }, {
-        label: 'MySQL 8',
-        value: 'mysql8'
-      }, {
-        label: 'MariaDB',
-        value: 'mariadb'
-      }, {
-        label: 'PostgreSQL',
-        value: 'pgsql'
-      }]
+      php_versions: [],
+      database_types: [],
+      webserver_types: []
     };
   },
   mounted: function mounted() {
-    this.loadTeams();
+    this.load();
   },
   methods: {
-    loadTeams: function () {
-      var _loadTeams = _asyncToGenerator(
+    load: function load() {
+      this.loading = true;
+      this.loadTeams();
+      this.loadPHPVersions();
+      this.loadDatabaseTypes();
+      this.loadWebserverTypes();
+      this.loading = false;
+    },
+    loadPHPVersions: function () {
+      var _loadPHPVersions = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var teams;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.loading = true;
-                _context.prev = 1;
-                _context.next = 4;
+                _context.prev = 0;
+                _context.next = 3;
+                return this.$api.serverDictionaries.phpVersions();
+
+              case 3:
+                this.php_versions = _context.sent;
+                _context.next = 9;
+                break;
+
+              case 6:
+                _context.prev = 6;
+                _context.t0 = _context["catch"](0);
+                this.$handleError(_context.t0);
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[0, 6]]);
+      }));
+
+      function loadPHPVersions() {
+        return _loadPHPVersions.apply(this, arguments);
+      }
+
+      return loadPHPVersions;
+    }(),
+    loadDatabaseTypes: function () {
+      var _loadDatabaseTypes = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return this.$api.serverDictionaries.databaseTypes();
+
+              case 3:
+                this.database_types = _context2.sent;
+                _context2.next = 9;
+                break;
+
+              case 6:
+                _context2.prev = 6;
+                _context2.t0 = _context2["catch"](0);
+                this.$handleError(_context2.t0);
+
+              case 9:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[0, 6]]);
+      }));
+
+      function loadDatabaseTypes() {
+        return _loadDatabaseTypes.apply(this, arguments);
+      }
+
+      return loadDatabaseTypes;
+    }(),
+    loadWebserverTypes: function () {
+      var _loadWebserverTypes = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _context3.next = 3;
+                return this.$api.serverDictionaries.webserverTypes();
+
+              case 3:
+                this.webserver_types = _context3.sent;
+                _context3.next = 9;
+                break;
+
+              case 6:
+                _context3.prev = 6;
+                _context3.t0 = _context3["catch"](0);
+                this.$handleError(_context3.t0);
+
+              case 9:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[0, 6]]);
+      }));
+
+      function loadWebserverTypes() {
+        return _loadWebserverTypes.apply(this, arguments);
+      }
+
+      return loadWebserverTypes;
+    }(),
+    loadTeams: function () {
+      var _loadTeams = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var teams;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
                 return this.$api.userProfileTeam.list();
 
-              case 4:
-                teams = _context.sent;
+              case 3:
+                teams = _context4.sent;
                 this.teams = teams.map(function (team) {
                   return {
                     label: team.name,
@@ -4973,23 +5075,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   };
                 });
                 this.form.team_id = this.user.team.id;
-                _context.next = 12;
+                _context4.next = 11;
                 break;
 
-              case 9:
-                _context.prev = 9;
-                _context.t0 = _context["catch"](1);
-                this.$handleError(_context.t0);
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4["catch"](0);
+                this.$handleError(_context4.t0);
 
-              case 12:
-                this.loading = false;
-
-              case 13:
+              case 11:
               case "end":
-                return _context.stop();
+                return _context4.stop();
             }
           }
-        }, _callee, this, [[1, 9]]);
+        }, _callee4, this, [[0, 8]]);
       }));
 
       function loadTeams() {
@@ -5001,24 +5100,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     onSubmit: function () {
       var _onSubmit = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
         var server;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
-                _context2.next = 2;
+                _context5.next = 2;
                 return this.$store.dispatch('servers/createServer', this.form);
 
               case 2:
-                server = _context2.sent;
+                server = _context5.sent;
 
               case 3:
               case "end":
-                return _context2.stop();
+                return _context5.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee5, this);
       }));
 
       function onSubmit() {
@@ -57857,22 +57956,24 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c("FormSelect", {
-                  staticClass: "ml-8 w-full",
-                  attrs: {
-                    label: _vm.label.team,
-                    name: "team_id",
-                    options: _vm.teams,
-                    required: ""
-                  },
-                  model: {
-                    value: _vm.form.team_id,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "team_id", $$v)
-                    },
-                    expression: "form.team_id"
-                  }
-                })
+                _vm.teams.length > 1
+                  ? _c("FormSelect", {
+                      staticClass: "ml-8 w-full",
+                      attrs: {
+                        label: _vm.label.team,
+                        name: "team_id",
+                        options: _vm.teams,
+                        required: ""
+                      },
+                      model: {
+                        value: _vm.form.team_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "team_id", $$v)
+                        },
+                        expression: "form.team_id"
+                      }
+                    })
+                  : _vm._e()
               ],
               1
             ),
@@ -57933,7 +58034,7 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("FormSelect", {
-                  staticClass: "w-full",
+                  staticClass: "w-full mr-8",
                   attrs: {
                     label: _vm.label.database_type,
                     name: "database_type",
@@ -57946,6 +58047,23 @@ var render = function() {
                       _vm.$set(_vm.form, "database_type", $$v)
                     },
                     expression: "form.database_type"
+                  }
+                }),
+                _vm._v(" "),
+                _c("FormSelect", {
+                  staticClass: "w-full",
+                  attrs: {
+                    label: _vm.label.webserver_type,
+                    name: "webserver_type",
+                    options: _vm.webserver_types,
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.form.webserver_type,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "webserver_type", $$v)
+                    },
+                    expression: "form.webserver_type"
                   }
                 })
               ],
@@ -84219,17 +84337,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_teams__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile/teams */ "./resources/js/api/methods/profile/teams.js");
 /* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./server */ "./resources/js/api/methods/server.js");
 /* harmony import */ var _server_cron__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./server/cron */ "./resources/js/api/methods/server/cron.js");
-/* harmony import */ var _server_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./server/events */ "./resources/js/api/methods/server/events.js");
-/* harmony import */ var _server_tasks__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./server/tasks */ "./resources/js/api/methods/server/tasks.js");
-/* harmony import */ var _server_users__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./server/users */ "./resources/js/api/methods/server/users.js");
-/* harmony import */ var _server_firewall__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./server/firewall */ "./resources/js/api/methods/server/firewall.js");
-/* harmony import */ var _server_database__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./server/database */ "./resources/js/api/methods/server/database.js");
-/* harmony import */ var _server_supervisor__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./server/supervisor */ "./resources/js/api/methods/server/supervisor.js");
-/* harmony import */ var _sourceProviders__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./sourceProviders */ "./resources/js/api/methods/sourceProviders.js");
-/* harmony import */ var _server_sites__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./server/sites */ "./resources/js/api/methods/server/sites.js");
-/* harmony import */ var _server_site_deployment__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./server/site/deployment */ "./resources/js/api/methods/server/site/deployment.js");
-/* harmony import */ var _server_site_environment__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./server/site/environment */ "./resources/js/api/methods/server/site/environment.js");
-/* harmony import */ var _server_site_repository__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./server/site/repository */ "./resources/js/api/methods/server/site/repository.js");
+/* harmony import */ var _server_dictionaries__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./server/dictionaries */ "./resources/js/api/methods/server/dictionaries.js");
+/* harmony import */ var _server_events__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./server/events */ "./resources/js/api/methods/server/events.js");
+/* harmony import */ var _server_tasks__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./server/tasks */ "./resources/js/api/methods/server/tasks.js");
+/* harmony import */ var _server_users__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./server/users */ "./resources/js/api/methods/server/users.js");
+/* harmony import */ var _server_firewall__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./server/firewall */ "./resources/js/api/methods/server/firewall.js");
+/* harmony import */ var _server_database__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./server/database */ "./resources/js/api/methods/server/database.js");
+/* harmony import */ var _server_supervisor__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./server/supervisor */ "./resources/js/api/methods/server/supervisor.js");
+/* harmony import */ var _sourceProviders__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./sourceProviders */ "./resources/js/api/methods/sourceProviders.js");
+/* harmony import */ var _server_sites__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./server/sites */ "./resources/js/api/methods/server/sites.js");
+/* harmony import */ var _server_site_deployment__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./server/site/deployment */ "./resources/js/api/methods/server/site/deployment.js");
+/* harmony import */ var _server_site_environment__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./server/site/environment */ "./resources/js/api/methods/server/site/environment.js");
+/* harmony import */ var _server_site_repository__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./server/site/repository */ "./resources/js/api/methods/server/site/repository.js");
+
 
 
 
@@ -84252,23 +84372,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   notifications: _notifications__WEBPACK_IMPORTED_MODULE_1__,
   subscription: _subscription__WEBPACK_IMPORTED_MODULE_3__,
-  sourceProviders: _sourceProviders__WEBPACK_IMPORTED_MODULE_14__,
+  sourceProviders: _sourceProviders__WEBPACK_IMPORTED_MODULE_15__,
   team: _team__WEBPACK_IMPORTED_MODULE_2__,
   teamBilling: _team_billing__WEBPACK_IMPORTED_MODULE_4__,
   userProfile: _profile__WEBPACK_IMPORTED_MODULE_0__,
   userProfileTeam: _profile_teams__WEBPACK_IMPORTED_MODULE_5__,
   server: _server__WEBPACK_IMPORTED_MODULE_6__,
-  serverSites: _server_sites__WEBPACK_IMPORTED_MODULE_15__,
-  serverSiteDeployment: _server_site_deployment__WEBPACK_IMPORTED_MODULE_16__,
-  serverSiteEnvironment: _server_site_environment__WEBPACK_IMPORTED_MODULE_17__,
-  serverSiteRepository: _server_site_repository__WEBPACK_IMPORTED_MODULE_18__,
-  serverEvents: _server_events__WEBPACK_IMPORTED_MODULE_8__,
-  serverTasks: _server_tasks__WEBPACK_IMPORTED_MODULE_9__,
-  serverUsers: _server_users__WEBPACK_IMPORTED_MODULE_10__,
-  serverFirewall: _server_firewall__WEBPACK_IMPORTED_MODULE_11__,
+  serverSites: _server_sites__WEBPACK_IMPORTED_MODULE_16__,
+  serverSiteDeployment: _server_site_deployment__WEBPACK_IMPORTED_MODULE_17__,
+  serverSiteEnvironment: _server_site_environment__WEBPACK_IMPORTED_MODULE_18__,
+  serverSiteRepository: _server_site_repository__WEBPACK_IMPORTED_MODULE_19__,
+  serverEvents: _server_events__WEBPACK_IMPORTED_MODULE_9__,
+  serverTasks: _server_tasks__WEBPACK_IMPORTED_MODULE_10__,
+  serverUsers: _server_users__WEBPACK_IMPORTED_MODULE_11__,
+  serverFirewall: _server_firewall__WEBPACK_IMPORTED_MODULE_12__,
   serverCron: _server_cron__WEBPACK_IMPORTED_MODULE_7__,
-  serverDatabases: _server_database__WEBPACK_IMPORTED_MODULE_12__,
-  serverSupervisor: _server_supervisor__WEBPACK_IMPORTED_MODULE_13__
+  serverDatabases: _server_database__WEBPACK_IMPORTED_MODULE_13__,
+  serverSupervisor: _server_supervisor__WEBPACK_IMPORTED_MODULE_14__,
+  serverDictionaries: _server_dictionaries__WEBPACK_IMPORTED_MODULE_8__
 });
 
 /***/ }),
@@ -85403,6 +85524,156 @@ function _remove() {
     }, _callee4, null, [[0, 7]]);
   }));
   return _remove.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "./resources/js/api/methods/server/dictionaries.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/api/methods/server/dictionaries.js ***!
+  \*********************************************************/
+/*! exports provided: phpVersions, databaseTypes, webserverTypes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "phpVersions", function() { return phpVersions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "databaseTypes", function() { return databaseTypes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "webserverTypes", function() { return webserverTypes; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @js/api */ "./resources/js/api/index.js");
+/* harmony import */ var _js_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js/errors */ "./resources/js/errors/index.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+/**
+ * Load php versions list
+ *
+ * @return {Object}
+ */
+
+function phpVersions() {
+  return _phpVersions.apply(this, arguments);
+}
+/**
+ * Load database types list
+ *
+ * @return {Object}
+ */
+
+function _phpVersions() {
+  _phpVersions = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return Object(_js_api__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.servers.dictionaries.php').request();
+
+          case 3:
+            response = _context.sent;
+            return _context.abrupt("return", response.data);
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load php versions list.');
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+  return _phpVersions.apply(this, arguments);
+}
+
+function databaseTypes() {
+  return _databaseTypes.apply(this, arguments);
+}
+/**
+ * Load webserver types list
+ *
+ * @return {Object}
+ */
+
+function _databaseTypes() {
+  _databaseTypes = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return Object(_js_api__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.servers.dictionaries.databases').request();
+
+          case 3:
+            response = _context2.sent;
+            return _context2.abrupt("return", response.data);
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load database types list.');
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+  return _databaseTypes.apply(this, arguments);
+}
+
+function webserverTypes() {
+  return _webserverTypes.apply(this, arguments);
+}
+
+function _webserverTypes() {
+  _webserverTypes = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return Object(_js_api__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.servers.dictionaries.webservers').request();
+
+          case 3:
+            response = _context3.sent;
+            return _context3.abrupt("return", response.data);
+
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3["catch"](0);
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load webserver types list.');
+
+          case 10:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 7]]);
+  }));
+  return _webserverTypes.apply(this, arguments);
 }
 
 /***/ }),
@@ -87771,6 +88042,21 @@ var Ziggy = {
     "api.v1.server.delete": {
       "uri": "api\/v1\/server\/{server}",
       "methods": ["DELETE"],
+      "domain": null
+    },
+    "api.v1.servers.dictionaries.php": {
+      "uri": "api\/v1\/servers\/dictionaries\/php-versions",
+      "methods": ["GET", "HEAD"],
+      "domain": null
+    },
+    "api.v1.servers.dictionaries.databases": {
+      "uri": "api\/v1\/servers\/dictionaries\/database-types",
+      "methods": ["GET", "HEAD"],
+      "domain": null
+    },
+    "api.v1.servers.dictionaries.webservers": {
+      "uri": "api\/v1\/servers\/dictionaries\/webserver-types",
+      "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.events": {
