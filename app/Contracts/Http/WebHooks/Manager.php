@@ -9,7 +9,7 @@ interface Manager
 {
     /**
      * @param Request $request
-     * @param Site $site
+     * @param mixed ...$args
      */
-    public function call(Request $request, Site $site): void;
+    public function call(Request $request, ...$args): void;
 }

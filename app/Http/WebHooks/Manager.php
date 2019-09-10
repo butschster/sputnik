@@ -33,36 +33,37 @@ class Manager implements ManagerContract
 
     /**
      * @param Request $request
-     * @param Site $site
+     * @param mixed ...$args
      */
-    public function call(Request $request, Site $site): void
+    public function call(Request $request, ...$args): void
     {
         collect(array_keys($this->hooks))->map(function ($hook) use ($request) {
             return $this->app->make($hook);
         })->filter(function (WebHook $hook) use ($request) {
             return $hook->isValid($request);
-        })->each(function (WebHook $hook) use ($site) {
-            $this->fireEvents($hook, $site);
+        })->each(function (WebHook $hook) use ($args) {
+            $this->fireEvents($hook, ...$args);
         });
     }
 
     /**
      * @param WebHook $hook
-     * @param Site $site
+     * @param mixed ...$args
      */
-    protected function fireEvents(WebHook $hook, Site $site)
+    protected function fireEvents(WebHook $hook, ...$args)
     {
         foreach ($this->getEvents($hook) as $event) {
-            event(new $event($site));
+            event(new $event(...$args));
         }
     }
 
     /**
-     * @param string $hook
+     * @param WebHook $hook
+     *
      * @return array
      */
     protected function getEvents(WebHook $hook): array
     {
-        return (array)Arr::get($this->hooks, get_class($hook));
+        return (array) Arr::get($this->hooks, get_class($hook));
     }
 }
