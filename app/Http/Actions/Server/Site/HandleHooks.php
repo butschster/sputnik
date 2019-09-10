@@ -5,7 +5,6 @@ namespace App\Http\Actions\Server\Site;
 use App\Contracts\Http\WebHooks\Manager;
 use App\Models\Server;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\Action;
 

@@ -8,6 +8,7 @@ use App\Events\WebHooks\Push;
 use App\Http\WebHooks\Github;
 use App\Http\WebHooks\Bitbucket;
 use App\Http\WebHooks\Manager;
+use App\Http\WebHooks\Stripe;
 use Illuminate\Support\ServiceProvider;
 
 class WebHooksServiceProvider extends ServiceProvider
@@ -24,6 +25,9 @@ class WebHooksServiceProvider extends ServiceProvider
         ],
         Bitbucket\Push::class => [
             Push::class
+        ],
+        Stripe\Event::class => [
+
         ]
     ];
 

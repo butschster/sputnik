@@ -12,6 +12,7 @@ use Laravel\Cashier\Payment;
 use Laravel\Cashier\Subscription;
 use Lorisleiva\Actions\Action;
 use Stripe\PaymentIntent as StripePaymentIntent;
+use App\Contracts\Http\WebHooks\Manager;
 
 class HandleHooks extends Action
 {
@@ -27,11 +28,14 @@ class HandleHooks extends Action
 
     /**
      * @param Request $request
+     * @param Manager $manager
      */
-    public function handle(Request $request): void
+    public function handle(Request $request, Manager $manager): void
     {
         $payload = $this->getPayload($request);
         $method = 'handle'.Str::studly(str_replace('.', '_', $payload['type']));
+
+        $manager->call($request, $payload);
 
         if (method_exists($this, $method)) {
             return $this->{$method}($payload);
