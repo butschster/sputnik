@@ -6,15 +6,9 @@
     }
 
     &-block {
-        @apply w-full;
-    }
-
-    &-sm {
-        @apply text-xs py-1 px-4;
-    }
-
-    &-lg {
-        @apply py-6 px-16;
+        @apply w-full block;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     @each $theme, $color in $colors {
@@ -45,6 +39,19 @@
         }
     }
 
+    @each $element, $size in $sizes {
+        &-#{$element} {
+            font-size: $size;
+            line-height: ($size * 1.2);
+            padding: ($size * 0.8) ($size * 1.15);
+        }
+    }
+
+    &:disabled {
+        @apply text-gray-400 bg-gray-200 border border-gray-400;
+        cursor: not-allowed;
+    }
+
     &-link {
         @apply bg-transparent shadow-none text-blue-800;
 
@@ -61,12 +68,28 @@
         @apply rounded-full;
     }
 
+    &-circle {
+        @apply rounded-full px-2 py-2 flex items-center justify-center leading-none;
+    }
+
     &-dark {
         @apply text-white;
+
+        &:not(:disabled):hover,
+        &:not(:disabled):focus {
+
+            @apply text-white;
+        }
     }
 
     &-light {
         @apply text-gray-600;
+
+        &:not(:disabled):hover,
+        &:not(:disabled):focus {
+
+            @apply text-white;
+        }
     }
 
     &-copy {

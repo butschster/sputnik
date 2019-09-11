@@ -15,7 +15,7 @@
                 </div>
             </template>
 
-            <button class="dropdown-button" @click="deploy">
+            <button class="dropdown-button btn-block " @click="deploy">
                 <i class="fas fa-parachute-box mr-3"></i> Deploy now
             </button>
 

@@ -68,13 +68,13 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-block btn-blue btn-shadow">
+            <button type="submit" class="btn btn-block btn-primary btn-shadow">
                 {{ __('Register') }}
             </button>
         </form>
     </div>
     <p class="my-4 mx-auto text-white">Already have an account?
-        <a class="text-white underline" href="{{ route('login') }}"> Sign In</a>
+        <a class="text-white underline hover:text-white" href="{{ route('login') }}"> Sign In</a>
     </p>
 </main>
 @endsection

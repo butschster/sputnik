@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-blue shadow-xl">
+                    <button type="submit" class="btn btn-primary shadow-xl">
                         {{ __('Send Password Reset Link') }}
                     </button>
                 </div>

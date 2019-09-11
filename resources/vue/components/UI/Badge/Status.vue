@@ -16,7 +16,7 @@
             statusClasses() {
                 switch (this.status.toLowerCase()) {
                     case 'failed':
-                        return 'badge-error'
+                        return 'badge-danger'
                     case 'running':
                         return 'badge-primary animated-progress'
                     case 'finished':

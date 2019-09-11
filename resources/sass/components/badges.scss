@@ -1,23 +1,39 @@
 .badge {
     @apply bg-gray-200 py-1 px-3 text-sm rounded-full text-gray-700 whitespace-no-wrap;
 
-    &-dark {
-        @apply bg-gray-800 text-white;
+    @each $theme, $color in $colors {
+
+        &-#{$theme} {
+            background-color: $color;
+
+            &-outline {
+                border: 1px solid $color;
+                color: $color;
+                @apply bg-white;
+
+                &:not(:disabled):hover,
+                &:not(:disabled):focus {
+
+                    background-color: $color;
+                    color: $white;
+                }
+            }
+        }
     }
 
-    &-primary {
-        @apply bg-blue-500 text-white;
+    @each $theme, $color in $colors-hover {
+
+        &-#{$theme}:not(:disabled):hover,
+        &-#{$theme}:not(:disabled):focus {
+            background-color: $color;
+        }
     }
 
-    &-error {
-        @apply bg-red-600 text-white;
-    }
-
-    &-success {
-        @apply bg-green-500 text-white;
-    }
-
-    &-warning {
-        @apply bg-yellow-300 font-medium;
+    @each $element, $size in $sizes {
+        &-#{$element} {
+            font-size: $size;
+            line-height: $size;
+            padding: ($size * 0.4) ($size * 0.8);
+        }
     }
 }

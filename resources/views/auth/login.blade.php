@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-block btn-blue btn-shadow">
+                    <button type="submit" class="btn btn-block btn-primary btn-shadow">
                         {{ __('Login') }}
                     </button>
                 </div>
@@ -61,11 +61,11 @@
                 </small>
 
                 <div class="flex w-full justify-center">
-                    <a class="btn btn-outline mr-4" href="{{ route('login.github') }}">
+                    <a class="btn btn-default-outline btn-light mr-4" href="{{ route('login.github') }}">
                         <i class="fab fa-github-alt"></i>
                         Github
                     </a>
-                    <a class="btn btn-outline" href="{{ route('login.bitbucket') }}">
+                    <a class="btn btn-default-outline btn-light" href="{{ route('login.bitbucket') }}">
                         <i class="fab fa-bitbucket"></i>
                         Bitbucket
                     </a>
@@ -73,7 +73,7 @@
             </form>
         </div>
         <p class="my-4 mx-auto text-white">Don't have an account?
-            <a class="text-white underline" href="{{ route('register') }}">Create one now</a>
+            <a class="text-white underline hover:text-white" href="{{ route('register') }}">Create one now</a>
         </p>
     </main>
 @endsection
