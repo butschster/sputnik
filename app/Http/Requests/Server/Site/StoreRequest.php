@@ -1,4 +1,4 @@
-<?php
+<?phpsourceProviders
 
 namespace App\Http\Requests\Server\Site;
 

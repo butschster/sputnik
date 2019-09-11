@@ -30,6 +30,8 @@
             </table>
         </div>
 
+        <Repository :site="site" />
+
         <div class="section section--border-b">
             <div class="section-header">
                 Use this public key for access deployment
@@ -69,10 +71,11 @@
 </template>
 
 <script>
+    import Repository from "@vue/components/Server/Sites/Form/Repository"
     import Destroy from "@vue/components/Server/Sites/partials/Destroy"
 
     export default {
-        components: {Destroy},
+        components: {Destroy, Repository},
         computed: {
             site() {
                 return this.$parent.site

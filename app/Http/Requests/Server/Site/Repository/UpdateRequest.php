@@ -39,15 +39,24 @@ class UpdateRequest extends FormRequest
     {
         $validator->sometimes('repository', ['required', 'string', new RepositoryUrl()], function ($input) {
             return empty($input->repository_provider);
-        })->sometimes('repository', ['required', 'string', new RepositoryName()], function ($input) {
+        })->sometimes('repository', ['required', 'string', 'bail', new RepositoryName()], function ($input) {
             if (empty($this->repository_provider)) {
                 return false;
             }
 
             return $this->user()->sourceProviders()->where('type', $this->repository_provider)->exists();
         })->after(function ($validator) {
+            if (empty($this->repository)) {
+                return false;
+            }
+
             if (!empty($this->repository_provider)) {
-                $provider = $this->user()->sourceProviders()->where('type', $this->repository_provider)->firstOrFail();
+                $provider = $this->user()->sourceProviders()->where('type', $this->repository_provider)->first();
+
+                if (!$provider) {
+                    $validator->errors()->add('repository_provider', 'Source provider not found');
+                    return;
+                }
 
                 $isValid = $provider->getClient()->validRepository($this->repository, $this->repository_branch);
 

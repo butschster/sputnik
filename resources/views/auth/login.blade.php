@@ -1,4 +1,4 @@
-@extends('layouts.blank')
+\@extends('layouts.blank')
 
 @section('content')
     <main class="page-login-container">
