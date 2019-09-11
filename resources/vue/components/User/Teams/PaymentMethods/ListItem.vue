@@ -8,7 +8,7 @@
                     on {{ method.created_at | moment('DD MMM YYYY') }}
                 </div>
             </div>
-            <button class="btn btn-danger btn-sm" @click="deletePaymentMethod()">
+            <button class="btn btn-danger-outline btn-sm" @click="deletePaymentMethod()">
                 Delete
             </button>
         </div>

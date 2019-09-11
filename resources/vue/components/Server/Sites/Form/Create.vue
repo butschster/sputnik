@@ -11,7 +11,7 @@
                 <FormInput v-model="form.public_dir" label="Public dir" name="public_dir" class="w-full" required/>
             </div>
 
-            <button class="btn btn-blue shadow-lg" @click="onSubmit">
+            <button class="btn btn-primary shadow-lg" @click="onSubmit">
                 Add site
             </button>
         </div>

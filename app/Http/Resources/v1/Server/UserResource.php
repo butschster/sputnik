@@ -30,6 +30,8 @@ class UserResource extends JsonResource
             'is_root' => $this->isRoot(),
             'is_system' => $this->isSystem(),
             'task' => TaskResource::make($this->task),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
             'links' => [
                 'download_key' => api_route('server.user.delete', [$this->server_id, $this->id])
             ],

@@ -15,12 +15,14 @@
                 <col width="200px">
                 <col width="100px">
                 <col width="100px">
+                <col width="100px">
                 <thead>
                 <tr>
                     <th>Name</th>
                     <th>Sudo password</th>
                     <th>Home</th>
                     <th class="text-right">Status</th>
+                    <th class="text-right">Created At</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -35,11 +37,14 @@
                         <BadgeTaskStatus :task="user.task" />
                     </td>
                     <td class="text-right">
+                        <BadgeTimeFrom :date="user.created_at" />
+                    </td>
+                    <td class="text-right">
                         <a :href="user.links.download_key" class="btn btn-sm">
                             <i class="fas fa-download"></i>
                         </a>
 
-                        <button class="btn btn-danger btn-sm" v-if="!user.is_system" @click="remove(user)">
+                        <button class="btn btn-danger-outline btn-sm" v-if="!user.is_system" @click="remove(user)">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -56,11 +61,10 @@
 </template>
 
 <script>
-    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
     import CreateForm from "@vue/components/Server/Users/Create"
 
     export default {
-        components: {CreateForm, BadgeTaskStatus},
+        components: {CreateForm},
         data() {
             return {
                 loading: false,

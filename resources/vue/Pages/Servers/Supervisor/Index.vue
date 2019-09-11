@@ -37,7 +37,7 @@
                     </td>
 
                     <td class="text-right">
-                        <button class="btn btn-danger btn-sm" @click="remove(daemon)">
+                        <button class="btn btn-danger-outline btn-sm" @click="remove(daemon)">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -56,10 +56,9 @@
 
 <script>
     import CreateForm from "@vue/components/Server/Supervisor/CreateForm"
-    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
 
     export default {
-        components: {CreateForm, BadgeTaskStatus},
+        components: {CreateForm},
         data() {
             return {
                 loading: false,

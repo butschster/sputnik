@@ -27,10 +27,9 @@
 
 <script>
     import Dropdown from "@vue/components/UI/Dropdown"
-    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
 
     export default {
-        components: {BadgeTaskStatus, Dropdown},
+        components: {Dropdown},
         props: {
             site: Object
         },

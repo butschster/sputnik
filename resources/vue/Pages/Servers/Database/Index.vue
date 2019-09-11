@@ -35,7 +35,7 @@
                         <BadgeTaskStatus :status="database.status"/>
                     </td>
                     <td class="text-right">
-                        <button class="btn btn-danger btn-sm" @click="remove(database)">
+                        <button class="btn btn-danger-outline btn-sm" @click="remove(database)">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -52,11 +52,10 @@
 </template>
 
 <script>
-    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
     import CreateForm from "@vue/components/Server/Database/CreateForm"
 
     export default {
-        components: {CreateForm, BadgeTaskStatus},
+        components: {CreateForm},
         data() {
             return {
                 loading: false,

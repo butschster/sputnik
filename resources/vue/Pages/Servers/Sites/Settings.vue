@@ -10,10 +10,6 @@
         </div>
 
         <div class="section section--border-b mt-10">
-            <div class="section-header">
-                Information
-            </div>
-
             <table class="table">
                 <col width="200px">
                 <col>

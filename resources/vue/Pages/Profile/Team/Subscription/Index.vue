@@ -5,7 +5,7 @@
                 Your subscription is expired. Please renew it.
             </div>
 
-            <button class="btn btn-danger">Renew</button>
+            <button class="btn btn-danger-outline">Renew</button>
         </div>
 
         <SubscriptionPlans :team="team" />

@@ -10,6 +10,7 @@ import ServerDatabase from '@vue/Pages/Servers/Database/Index'
 import ServerFirewall from '@vue/Pages/Servers/Firewall/Index'
 import ServerEvents from '@vue/Pages/Servers/Events/Index'
 import ServerTasks from '@vue/Pages/Servers/Tasks/Index'
+import ServerTaskShow from '@vue/Pages/Servers/Tasks/Show'
 import ServerSupervisor from '@vue/Pages/Servers/Supervisor/Index'
 import ServerScheduler from '@vue/Pages/Servers/Scheduler/Index'
 
@@ -85,11 +86,15 @@ export default [
                         component: ServerTasks,
                     },
                     {
+                        path: '/server/:id/tasks/:task_id',
+                        name: 'server.task.show',
+                        component: ServerTaskShow,
+                    },
+                    {
                         path: '/server/:id/settings',
                         name: 'server.settings',
                         component: ServerSettings,
                     },
-
                     {
                         path: '/server/:id/users',
                         name: 'server.users',

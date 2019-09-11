@@ -7,7 +7,7 @@
             </div>
         </div>
         <div>
-            <button class="btn btn-danger" @click="onDeactivate">
+            <button class="btn btn-danger-outline" @click="onDeactivate">
                 Deactivate account
             </button>
 
@@ -22,7 +22,7 @@
                     <p class="mb-3">Please type in your <strong>Email address</strong> to confirm.</p>
 
                     <FormInput v-model="form.email" label="Email address" name="email" class="w-full" required autofocus/>
-                    <button class="btn btn-danger btn-block" :disabled="isDisabledButton" @click="deactivate">
+                    <button class="btn btn-danger-outline btn-block" :disabled="isDisabledButton" @click="deactivate">
                         I understand the consequences, continue
                     </button>
                 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\v1\Server;
 use App\Http\Controllers\API\Controller;
 use App\Http\Resources\v1\Server\TaskResource;
 use App\Http\Resources\v1\Server\TasksCollection;
+use App\Http\Resources\v1\Server\TaskWithContentResource;
 use App\Models\Server;
 
 class TasksController extends Controller
@@ -25,14 +26,14 @@ class TasksController extends Controller
 
     /**
      * @param Server\Task $task
-     * @return TaskResource
+     * @return TaskWithContentResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show(Server\Task $task): TaskResource
+    public function show(Server\Task $task): TaskWithContentResource
     {
         $this->authorize('show', $task);
 
-        return TaskResource::make($task);
+        return TaskWithContentResource::make($task);
     }
 
     /**
