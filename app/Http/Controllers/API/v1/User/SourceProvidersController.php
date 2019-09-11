@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\v1\User;
 
 use App\Http\Controllers\API\Controller;
 use App\Http\Resources\v1\User\SourceProvidersCollection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class SourceProvidersController extends Controller
@@ -19,15 +20,16 @@ class SourceProvidersController extends Controller
         );
     }
 
-    public function unlink(Request $request)
+    /**
+     * @param Request $request
+     * @param string $provider
+     * @return JsonResponse
+     */
+    public function unlink(Request $request, string $provider): JsonResponse
     {
-        $this->validate($request, [
-            'type' => 'required|string'
-        ]);
+        $request->user()->sourceProviders()->where('id', $provider)->delete();
 
-        $request->user()->sourceProvider()->where('type', $request->type)->firstOrFail();
-
-
+        return $this->responseDeleted();
     }
 
     /**

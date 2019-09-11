@@ -29,6 +29,7 @@ class CronJobResource extends JsonResource
             'next_run_at' => $this->nextRunDate(),
             'task' => TaskResource::make($this->task),
             'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
             'can' => [
                 'show' => Gate::allows('show', $this->resource),
                 'delete' => Gate::allows('delete', $this->resource),

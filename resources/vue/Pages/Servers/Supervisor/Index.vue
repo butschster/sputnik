@@ -56,10 +56,9 @@
 
 <script>
     import CreateForm from "@vue/components/Server/Supervisor/CreateForm"
-    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
 
     export default {
-        components: {CreateForm, BadgeTaskStatus},
+        components: {CreateForm},
         data() {
             return {
                 loading: false,

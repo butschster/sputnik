@@ -62,11 +62,10 @@
 </template>
 
 <script>
-    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
     import CreateFormFirewall from "@vue/components/Server/Firewall/CreateForm"
 
     export default {
-        components: {CreateFormFirewall, BadgeTaskStatus},
+        components: {CreateFormFirewall},
         data() {
             return {
                 loading: false,

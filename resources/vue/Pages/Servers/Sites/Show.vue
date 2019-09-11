@@ -50,9 +50,7 @@
 </template>
 
 <script>
-    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
     export default {
-        components: {BadgeTaskStatus},
         data() {
             return {
                 site: null,

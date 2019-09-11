@@ -35,7 +35,7 @@
                     <td>{{ job.command }}</td>
                     <td class="text-right">{{ job.user }}</td>
                     <td class="text-right">
-                        <span class="badge">{{ job.next_run_at | moment('from') }}</span>
+                        <BadgeTimeFrom :date="job.next_run_at" />
                     </td>
                     <td class="text-right">
                         <BadgeTaskStatus :task="job.task" />
@@ -60,10 +60,9 @@
 
 <script>
     import CreateForm from "@vue/components/Server/Scheduler/CreateForm"
-    import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
 
     export default {
-        components: {BadgeTaskStatus, CreateForm},
+        components: {CreateForm},
         data() {
             return {
                 loading: false,

@@ -28,6 +28,7 @@ class DaemonResource extends JsonResource
             'processes' => $this->processes,
             'task' => TaskResource::make($this->task),
             'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
             'can' => [
                 'show' => Gate::allows('show', $this->resource),
                 'delete' => Gate::allows('delete', $this->resource),

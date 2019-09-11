@@ -22,6 +22,7 @@ export async function profile() {
 /**
  * Update current user profile
  *
+ * @param {Object} data
  * @return {Object}
  */
 export async function update(data) {
@@ -54,6 +55,20 @@ export async function sourceProviders() {
         return response.data.data
     } catch (e) {
         throw new ApiRequestError('Can not load profile source providers.')
+    }
+}
+
+/**
+ * Load profile source providers
+ *
+ * @param {String} providerId
+ * @return {Object}
+ */
+export async function unlinkSourceProvider(providerId) {
+    try {
+        await api_route('v1.profile.source_provider.unlink', {provider: providerId}).request()
+    } catch (e) {
+        throw new ApiRequestError('Can not unlink source provider.')
     }
 }
 

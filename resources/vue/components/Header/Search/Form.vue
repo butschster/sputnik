@@ -8,8 +8,8 @@
 
         <div v-if="show" class="search__results-list">
             <div v-if="hasResults">
-                <ResultsList :results="resultsServer" title="Servers" type="server" />
-                <ResultsList :results="resultsSites" title="Sites" type="site" class="mt-3" />
+                <ResultsList :results="resultsServer" title="Servers" type="server"/>
+                <ResultsList :results="resultsSites" title="Sites" type="site" class="mt-3"/>
             </div>
             <div v-else class="search__empty-results">
                 No results found containing '{{ query }}'
@@ -47,23 +47,30 @@
             }
         },
         methods: {
-            async fetch() {
+            fetch() {
                 this.loading = true
                 this.show = true
 
+                if (this.query.length > 0) {
+                    this.findServers()
+                    this.findSites()
+                }
+
+                this.loading = false
+            },
+            async findServers() {
                 try {
                     this.resultsServer = await this.$api.server.search(this.query)
                 } catch (e) {
                     this.resultsServer = []
                 }
-
+            },
+            async findSites() {
                 try {
                     this.resultsSites = await this.$api.serverSites.search(this.query)
                 } catch (e) {
                     this.resultsSites = []
                 }
-
-                this.loading = false
             },
             hide(e) {
                 this.show = false
@@ -71,7 +78,7 @@
         },
         computed: {
             hasResults() {
-                return this.resultsServer.length > 0 ||  this.resultsSites.length > 0
+                return this.resultsServer.length > 0 || this.resultsSites.length > 0
             }
         }
 

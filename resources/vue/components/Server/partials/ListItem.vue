@@ -6,8 +6,13 @@
             <h4 class="mb-0">{{ server.name }}</h4>
             <div class="servers-list-item__address">{{ server.ip }}</div>
         </div>
-        <div class="servers-list-item__project">
-            <span class="badge">{{ server.team.name }}</span>
+
+        <div class="servers-list-item__project mr-5">
+            <span class="badge badge-primary">{{ server.team.name }}</span>
+        </div>
+
+        <div class="servers-list-item__date">
+            <BadgeTimeFrom :date="server.created_at" />
         </div>
 
         <Dropdown :icon="false">
