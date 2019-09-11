@@ -13,9 +13,8 @@
     </nav>
 </template>
 <script>
-    import ProfileNav from "./partials/ProfileNav"
+    import ProfileNav from "./ProfileNav"
     import SearchForm from './Search/Form'
-
 
     export default {
         components: {SearchForm, ProfileNav},

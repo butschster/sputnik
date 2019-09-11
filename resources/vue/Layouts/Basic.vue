@@ -18,6 +18,7 @@
                 <portal-target name="content-overlay"></portal-target>
                 <Navbar />
                 <div class="container py-10 px-12 m-auto">
+                    <Breadcrumbs />
                     <router-view/>
                 </div>
             </div>
@@ -26,11 +27,12 @@
 </template>
 
 <script>
-    import ServerSidebar from "@vue/components/Sidebar/Server";
-    import AccountSidebar from "@vue/components/Sidebar/Account";
-    import Navbar from '@vue/components/Header/Navbar'
+    import ServerSidebar from "./Partials/Sidebar/Server"
+    import AccountSidebar from "./Partials/Sidebar/Account"
+    import Navbar from './Partials/Header/Navbar'
+    import Breadcrumbs from './Partials/Breadcrumbs'
 
     export default {
-        components: {Navbar, AccountSidebar, ServerSidebar}
+        components: {Navbar, AccountSidebar, ServerSidebar, Breadcrumbs}
     }
 </script>
