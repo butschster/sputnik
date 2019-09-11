@@ -30,28 +30,24 @@
             </table>
         </div>
 
-        <Repository :site="site" />
+        <Repository :site="site" class="mb-10" />
 
         <div class="section section--border-b">
             <div class="section-header">
                 Use this public key for access deployment
-
-                <button class="btn btn-sm btn-primary" @click="registerPublicKey" v-if="site.repository.is_source_provider">
-                    Register
-                </button>
             </div>
             <pre class="break-all whitespace-normal">
-                <Copy :text="site.server.public_key"/>
+                <Copy :text="site.server.public_key"/><br />
+
+                <button class="btn btn-sm btn-primary mt-5" @click="registerPublicKey" v-if="site.repository.is_source_provider">
+                    Add deploy key
+                </button>
             </pre>
         </div>
 
         <div class="section section--border-b">
             <div class="section-header">
                 Deployment Trigger URL
-
-                <button class="btn btn-sm btn-primary" @click="registerWebHook" v-if="site.repository.is_source_provider">
-                    Register
-                </button>
 
                 <p>
                     Using a custom Git service, or want a service like Travis CI to run your tests before your
@@ -62,7 +58,11 @@
                 </p>
             </div>
             <pre class="break-all whitespace-normal mt-5">
-                <Copy :text="site.links.hooks_url"/>
+                <Copy :text="site.links.hooks_url"/><br />
+
+                <button class="btn btn-sm btn-primary mt-5" @click="registerWebHook" v-if="site.repository.is_source_provider">
+                    Add web hook
+                </button>
             </pre>
         </div>
 
@@ -79,6 +79,19 @@
         computed: {
             site() {
                 return this.$parent.site
+            }
+        },
+        data() {
+            return {
+
+            }
+        },
+        methods: {
+            async registerPublicKey() {
+
+            },
+            async registerWebHook() {
+
             }
         }
     }

@@ -1,4 +1,4 @@
-\@extends('layouts.blank')
+@extends('layouts.blank')
 
 @section('content')
     <main class="page-login-container">
@@ -14,8 +14,8 @@
 
                     @error('email')
                     <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                 </div>
 
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-block btn-blue btn-shadow">
+                    <button type="submit" class="btn btn-block btn-primary btn-shadow">
                         {{ __('Login') }}
                     </button>
                 </div>

@@ -1,6 +1,8 @@
 export default {
     props: {
-        value: [String, Number],
+        value: {
+            default: null
+        },
         name: String,
         label: String,
         required: {

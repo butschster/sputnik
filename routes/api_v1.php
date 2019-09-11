@@ -94,6 +94,7 @@ Route::middleware('auth')->group(function () {
 
         // Site deployment
         Route::get('/server/site/{site}/deploy/config', 'Server\Site\DeploymentsController@config')->name('server.site.deploy.config');
+        Route::get('/server/site/{site}/deployments', 'Server\Site\DeploymentsController@index')->name('server.site.deployments');
         Route::post('/server/site/{site}/deploy', 'Server\Site\DeploymentsController@deploy')->name('server.site.deploy');
 
         // Site environment

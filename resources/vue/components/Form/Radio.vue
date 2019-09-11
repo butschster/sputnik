@@ -6,7 +6,7 @@
                class="hidden"
                :value="value"
                @change="onChange"
-               :checked="state"
+               :checked="shouldBeChecked"
         />
         <label :for="label">
             <span></span>
@@ -16,40 +16,32 @@
 </template>
 
 <script>
-    import input from "@js/vue/mixins/input"
     export default {
         model: {
             prop: 'modelValue',
-            event: 'input'
+            event: 'change'
         },
-        mixins: [input],
         props: {
-            checked: {
-                type: Boolean,
-                default: false,
+            value: {
+                default: null
             },
+            modelValue: {
+                default: null
+            },
+            name: String,
+            label: String,
         },
         methods: {
             onChange() {
-                this.toggle();
+                this.toggle()
             },
             toggle() {
-                this.$emit('input', this.state ? '' : this.value);
-            }
-        },
-        watch: {
-            checked(newValue) {
-                if (newValue !== this.state) {
-                    this.toggle();
-                }
+                this.$emit('change', this.value)
             }
         },
         computed: {
-            state() {
-                if (this.modelValue === undefined) {
-                    return this.checked;
-                }
-                return this.modelValue === this.value;
+            shouldBeChecked() {
+                return this.modelValue == this.value
             }
         },
     }
