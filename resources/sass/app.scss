@@ -32,6 +32,11 @@ a {
     }
 }
 
+img {
+    height: auto;
+    max-width: 100%;
+}
+
 button, input, optgroup, select, textarea {
     @apply text-base;
 }

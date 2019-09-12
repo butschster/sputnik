@@ -25,7 +25,7 @@
                 &:not(:disabled):focus {
 
                     background-color: $color;
-                    color: $white;
+                    color: $white!important;
                 }
             }
         }
@@ -106,5 +106,12 @@
         &--copied &__label {
             @include fadeOutUp();
         }
+    }
+}
+
+a.btn {
+    &:hover,
+    &:focus  {
+        @apply text-white;
     }
 }

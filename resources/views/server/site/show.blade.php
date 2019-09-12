@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <th>Status</th>
-                            <td><span class="badge badge-dark">{{ $site->taskStatus() }}</span></td>
+                            <td><span class="badge badge-default">{{ $site->taskStatus() }}</span></td>
                         </tr>
                     </table>
                 </div>

@@ -40,7 +40,7 @@
                         <BadgeTimeFrom :date="user.created_at" />
                     </td>
                     <td class="text-right">
-                        <a :href="user.links.download_key" class="btn btn-default btn-circle btn-sm">
+                        <a class="btn btn-default btn-circle btn-sm" :href="user.links.download_key" >
                             <i class="fas fa-download"></i>
                         </a>
 

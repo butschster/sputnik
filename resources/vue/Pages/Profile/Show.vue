@@ -13,7 +13,7 @@
                     <div class="text-gray-700">Member since <strong>{{ user.created_at | moment("DD/MM/YYYY") }}</strong></div>
                 </div>
 
-                <button class="btn btn-default btn-light">Edit profile</button>
+                <button class="btn btn-default btn-dark">Edit profile</button>
             </div>
         </div>
 

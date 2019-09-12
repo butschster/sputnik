@@ -1,19 +1,16 @@
 <template>
-    <div class="md:flex min-h-screen">
-        <div class="w-full md:w-1/2 bg-white flex items-center justify-center ">
-            <div class="max-w-sm m-8">
-                <div class="text-5xl">404</div>
-
-                <div class="w-16 h-1 bg-purple-light my-3 md:my-6"></div>
-
-                <p class="text-grey-darker text-2xl md:text-3xl font-light mb-8 leading-normal">Sorry, the page you are looking for could not be found.</p>
-                <button class="btn btn-default btn-light btn-rounded" @click="back">
-                    Go back
-                </button>
+    <div class="min-h-screen pt-4 md:pr-10 min-w-full max-w-5xl">
+        <a href="#" class="logo block mb-6 mx-auto"><img src="img/core-img/logo.png" alt="Logo"></a>
+        <div class="flex mb-4 align-center">
+            <div class="w-full md:w-1/2">
+                <img src="img/bg-img/404.png" alt="Image">
             </div>
-        </div>
-        <div class="relative pb-full md:flex md:pb-0 md:min-h-screen w-full md:w-1/2">
-            <div class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
+            <div class="w-full md:w-1/2">
+                <h2 class="mb-4">OOPS! <br>Page not found</h2>
+                <p class="mb-5">We couldn't find any results for your search. Try again.</p>
+                <router-link class="btn btn-primary"  :to="$link.servers()">
+                    Check Updates
+                </router-link>
             </div>
         </div>
     </div>

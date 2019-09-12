@@ -109,7 +109,7 @@
                     return 'badge-success'
                 }
 
-                return 'badge-error'
+                return 'badge-danger'
             }
         },
         computed: {

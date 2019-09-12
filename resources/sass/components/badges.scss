@@ -1,12 +1,13 @@
 .badge {
-    @apply bg-gray-600 py-1 px-3 text-sm rounded-full text-white whitespace-no-wrap;
+    @apply bg-gray-300 py-1 px-3 text-sm rounded-full text-gray-600 whitespace-no-wrap;
 
     @each $theme, $color in $colors-badge {
 
         &-#{$theme} {
             background-color: $color;
-            @if #{$theme} == default or (#{$theme} == warning) {
-            @apply text-gray-600;
+
+            @if #{$theme} != default or (#{$theme} != warning) {
+                @apply text-white;
         }
 
             &-outline {
