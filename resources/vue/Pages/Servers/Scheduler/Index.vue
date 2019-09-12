@@ -42,7 +42,7 @@
                     </td>
 
                     <td class="text-right">
-                        <button class="btn btn-danger-outline btn-sm  btn-circle ml-auto" @click="remove(job)">
+                        <button class="btn btn-danger btn-circle btn-sm  btn-circle ml-auto" @click="remove(job)">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
