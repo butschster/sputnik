@@ -45,7 +45,7 @@
                     </td>
 
                     <td class="text-right">
-                        <button class="btn btn-danger-outline btn-sm" @click="remove(rule)" v-if="rule.is_editable">
+                        <button class="btn btn-danger btn-circle btn-sm" @click="remove(rule)" v-if="rule.is_editable">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>

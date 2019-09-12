@@ -56484,7 +56484,7 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-danger-outline btn-sm",
+                            staticClass: "btn btn-danger btn-circle btn-sm",
                             on: {
                               click: function($event) {
                                 return _vm.remove(database)
@@ -56681,7 +56681,7 @@ var render = function() {
                           ? _c(
                               "button",
                               {
-                                staticClass: "btn btn-danger-outline btn-sm",
+                                staticClass: "btn btn-danger btn-circle btn-sm",
                                 on: {
                                   click: function($event) {
                                     return _vm.remove(rule)
@@ -56865,7 +56865,7 @@ var render = function() {
                           "button",
                           {
                             staticClass:
-                              "btn btn-danger-outline btn-sm  btn-circle ml-auto",
+                              "btn btn-danger btn-circle btn-sm  btn-circle ml-auto",
                             on: {
                               click: function($event) {
                                 return _vm.remove(job)
@@ -57243,7 +57243,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger-outline btn-sm",
+                      staticClass: "btn btn-danger btn-circle btn-sm",
                       on: {
                         click: function($event) {
                           return _vm.onRemove(key)
@@ -57739,7 +57739,7 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-danger-outline btn-sm",
+                            staticClass: "btn btn-danger btn-circle btn-sm",
                             on: {
                               click: function($event) {
                                 return _vm.remove(daemon)
@@ -58056,7 +58056,7 @@ var render = function() {
                           ? _c(
                               "button",
                               {
-                                staticClass: "btn btn-danger-outline btn-sm",
+                                staticClass: "btn btn-danger btn-circle btn-sm",
                                 on: {
                                   click: function($event) {
                                     return _vm.remove(user)

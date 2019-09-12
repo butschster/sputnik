@@ -37,7 +37,7 @@
                     </td>
 
                     <td class="text-right">
-                        <button class="btn btn-danger-outline btn-sm" @click="remove(daemon)">
+                        <button class="btn btn-danger btn-circle btn-sm" @click="remove(daemon)">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>

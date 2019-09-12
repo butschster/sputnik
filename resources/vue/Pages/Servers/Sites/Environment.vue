@@ -20,7 +20,7 @@
                     <Copy :text="value" />
                 </td>
                 <td class="text-right">
-                    <button class="btn btn-danger-outline btn-sm" @click="onRemove(key)">
+                    <button class="btn btn-danger btn-circle btn-sm" @click="onRemove(key)">
                         <i class="fas fa-trash"></i>
                     </button>
                 </td>

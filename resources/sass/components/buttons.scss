@@ -69,7 +69,7 @@
     }
 
     &-circle {
-        @apply rounded-full px-2 py-2 flex items-center justify-center leading-none;
+        @apply rounded-full px-2 py-2 inline-flex items-center justify-center leading-none;
     }
 
     &-dark {
