@@ -65129,17 +65129,17 @@ readers do not read off random characters that represent icons */
 }
 
 .badge-primary {
-  background-color: #5252FF;
+  background-color: #4c51bf;
 }
 
 .badge-primary-outline {
-  border: 1px solid #5252FF;
-  color: #5252FF;
+  border: 1px solid #4c51bf;
+  color: #4c51bf;
   background-color: #fff;
 }
 
 .badge-primary-outline:not(:disabled):hover, .badge-primary-outline:not(:disabled):focus {
-  background-color: #5252FF;
+  background-color: #4c51bf;
   color: #ffffff;
 }
 
@@ -65160,17 +65160,17 @@ readers do not read off random characters that represent icons */
 }
 
 .badge-success {
-  background-color: #48bb78;
+  background-color: #a4c639;
 }
 
 .badge-success-outline {
-  border: 1px solid #48bb78;
-  color: #48bb78;
+  border: 1px solid #a4c639;
+  color: #a4c639;
   background-color: #fff;
 }
 
 .badge-success-outline:not(:disabled):hover, .badge-success-outline:not(:disabled):focus {
-  background-color: #48bb78;
+  background-color: #a4c639;
   color: #ffffff;
 }
 
@@ -65190,32 +65190,32 @@ readers do not read off random characters that represent icons */
 }
 
 .badge-warning {
-  background-color: #ecc94b;
+  background-color: #fffc00;
 }
 
 .badge-warning-outline {
-  border: 1px solid #ecc94b;
-  color: #ecc94b;
+  border: 1px solid #fffc00;
+  color: #fffc00;
   background-color: #fff;
 }
 
 .badge-warning-outline:not(:disabled):hover, .badge-warning-outline:not(:disabled):focus {
-  background-color: #ecc94b;
+  background-color: #fffc00;
   color: #ffffff;
 }
 
 .badge-info {
-  background-color: #5a67d8;
+  background-color: #45bbff;
 }
 
 .badge-info-outline {
-  border: 1px solid #5a67d8;
-  color: #5a67d8;
+  border: 1px solid #45bbff;
+  color: #45bbff;
   background-color: #fff;
 }
 
 .badge-info-outline:not(:disabled):hover, .badge-info-outline:not(:disabled):focus {
-  background-color: #5a67d8;
+  background-color: #45bbff;
   color: #ffffff;
 }
 

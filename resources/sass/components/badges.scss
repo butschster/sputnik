@@ -1,7 +1,7 @@
 .badge {
     @apply bg-gray-600 py-1 px-3 text-sm rounded-full text-white whitespace-no-wrap;
 
-    @each $theme, $color in $colors {
+    @each $theme, $color in $colors-badge {
 
         &-#{$theme} {
             background-color: $color;
