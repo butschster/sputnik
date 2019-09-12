@@ -30,7 +30,6 @@ new Vue({
         titleTemplate: '%s | SputnikCloud'
     },
     created() {
-
         this.$store.dispatch('auth/loadUser').then((e) => {
             this.$echo.onUserNotificationCreated(this.user.id, (e) => {
                 this.$store.dispatch('notifications/getNotifications')
@@ -38,6 +37,7 @@ new Vue({
         })
 
         this.$store.dispatch('notifications/getNotifications')
+        this.$store.dispatch('servers/loadServers')
     },
     computed: {
         ...mapGetters('auth', {

@@ -1,33 +1,45 @@
 <template>
     <div v-if="hasResults">
-        <strong class="search__results-list__title mb-2">{{ title }}</strong>
-        <ul v-if="hasResults">
-            <li v-for="result in results" class="search__results-list__item">
-                <router-link :to="link(result)" class="search__results-list__link">
-                    {{ result.name }}
-                </router-link>
-            </li>
-        </ul>
+        <strong class="search__results-list__title mb-2">{{ title }}  ({{ results.length }})</strong>
+        <div v-if="hasResults">
+            <component :is="component"
+                       :data="result"
+                       v-if="component"
+                       v-for="(result, i) in results"
+                       :key="i"
+                       class="search__results-list__item"
+                       @onClick="click"
+            />
+        </div>
     </div>
 </template>
 <script>
+    import SiteItem from "./SiteItem"
+    import ServerItem from "./ServerItem"
+
     export default {
+        components: {SiteItem, ServerItem},
         props: {
             results: Array,
             title: String,
             type: String,
         },
         methods: {
-            link(result) {
-                if (this.type == 'server') {
-                    return this.$link.server(result)
-                }
-                return this.$link.serverSite(result)
+            click(link) {
+                this.$router.push(link)
+                this.$emit('onClick')
             }
         },
         computed: {
             hasResults() {
                 return this.results.length > 0
+            },
+            component() {
+                if (this.type == 'server') {
+                    return 'ServerItem'
+                }
+
+                return 'SiteItem'
             }
         }
     }

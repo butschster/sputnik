@@ -20,10 +20,18 @@
         top: 95%;
 
         &__link {
-            @apply bg-gray-100 rounded text-gray-900 p-3 w-full h-full inline-block;
+            @apply bg-gray-100 rounded font-medium p-3 block;
 
             &:hover {
                 @apply text-gray-900 bg-gray-300;
+            }
+        }
+
+        &__item {
+            @apply mb-3;
+
+            &:last-child {
+                @apply mb-0;
             }
         }
 

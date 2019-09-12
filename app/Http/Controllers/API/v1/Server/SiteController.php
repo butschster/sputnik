@@ -14,6 +14,17 @@ use Illuminate\Http\Request;
 class SiteController extends Controller
 {
     /**
+     * @param Request $request
+     * @return SiteCollection
+     */
+    public function all(Request $request)
+    {
+        return SiteCollection::make(
+            $request->user()->sites()->latest()->get()
+        );
+    }
+
+    /**
      * @param Server $server
      * @return SiteCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException

@@ -6,6 +6,20 @@ const SITE_CREATED = 'server.site.created'
 const SITE_DELETED = 'server.site.deleted'
 
 /**
+ * Load sites list
+ *
+ * @return {Object}
+ */
+export async function all() {
+    try {
+        const response = await api_route('v1.sites').request()
+        return response.data.data
+    } catch (e) {
+        throw new ApiRequestError('Can not load sites.')
+    }
+}
+
+/**
  * Load server sites
  *
  * @param {String} serverId

@@ -65,6 +65,8 @@
             async load() {
                 this.loading = true
 
+                this.server = null
+
                 try {
                     this.server = await this.$api.server.show(this.$route.params.id)
                     this.loaded()
@@ -77,7 +79,9 @@
             }
         },
         watch: {
-            '$route': 'load'
+            '$route'(route) {
+                this.load()
+            }
         }
     }
 </script>

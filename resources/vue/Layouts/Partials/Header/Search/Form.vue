@@ -3,13 +3,13 @@
         <FormInput v-model="query"
                    label="Search by resource name or IP"
                    name="search"
-                   @focus="focused=true"
+                   @focus="onFocus"
                    @blur="focused=false"/>
 
         <div v-if="show" class="search__results-list">
             <div v-if="hasResults">
-                <ResultsList :results="resultsServer" title="Servers" type="server"/>
-                <ResultsList :results="resultsSites" title="Sites" type="site" class="mt-3"/>
+                <Results :results="resultsServers" title="Servers" type="server" @onClick="reset" />
+                <Results :results="resultsSites" title="Sites" type="site" class="mt-3" @onClick="reset"/>
             </div>
             <div v-else class="search__empty-results">
                 No results found containing '{{ query }}'
@@ -22,18 +22,19 @@
     </div>
 </template>
 <script>
+    import {mapGetters} from 'vuex'
     import {debounce} from 'lodash'
     import FormInput from '@vue/components/Form/Input'
-    import ResultsList from './List'
+    import Results from './List'
 
     export default {
-        components: {FormInput, ResultsList},
+        components: {FormInput, Results},
         data() {
             return {
                 focused: false,
                 query: '',
                 show: false,
-                resultsServer: [],
+                resultsServers: [],
                 resultsSites: [],
                 loading: false
             }
@@ -47,20 +48,27 @@
             }
         },
         methods: {
-            fetch() {
+            onFocus() {
+                this.focused = true
+                this.fetch()
+            },
+            async fetch() {
                 this.loading = true
                 this.show = true
 
                 if (this.query.length > 0) {
                     this.findServers()
                     this.findSites()
+                } else {
+                    this.resultsServers = this.servers
+                    this.resultsSites = await this.$api.sites.list()
                 }
 
                 this.loading = false
             },
             async findServers() {
                 try {
-                    this.resultsServer = await this.$api.server.search(this.query)
+                    this.resultsServers = await this.$api.server.search(this.query)
                 } catch (e) {
                     this.resultsServer = []
                 }
@@ -72,13 +80,21 @@
                     this.resultsSites = []
                 }
             },
+            reset() {
+                this.hide()
+                this.query = ''
+                this.focused = false
+            },
             hide(e) {
                 this.show = false
             }
         },
         computed: {
+            ...mapGetters('servers', {
+                servers: 'getServers',
+            }),
             hasResults() {
-                return this.resultsServer.length > 0 || this.resultsSites.length > 0
+                return this.resultsServers.length > 0 || this.resultsSites.length > 0
             }
         }
 
