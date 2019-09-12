@@ -94,6 +94,7 @@ Route::middleware('auth')->group(function () {
 
         // Site deployment
         Route::get('/server/site/{site}/deploy/config', 'Server\Site\DeploymentsController@config')->name('server.site.deploy.config');
+        Route::get('/server/site/{site}/deployments', 'Server\Site\DeploymentsController@index')->name('server.site.deployments');
         Route::post('/server/site/{site}/deploy', 'Server\Site\DeploymentsController@deploy')->name('server.site.deploy');
 
         // Site environment
@@ -102,7 +103,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('/server/site/{site}/environment', 'Server\Site\EnvironmentController@delete')->name('server.site.environment.delete');
 
         // Site repository
-        Route::post('/server/site/{site}/repository/sync-remote', 'Server\Site\RepositoryController@syncRemote')->name('server.site.repository.sync');
+        Route::post('/server/site/{site}/repository/webhook', 'Server\Site\RepositoryController@registerWebhook')->name('server.site.repository.webhook');
+        Route::post('/server/site/{site}/repository/public-key', 'Server\Site\RepositoryController@registerPublicKey')->name('server.site.repository.public_key');
         Route::post('/server/site/{site}/repository', 'Server\Site\RepositoryController@update')->name('server.site.repository.update');
     });
 });

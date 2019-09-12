@@ -4,5 +4,5 @@
  * @return {Channel}
  */
 export function onServerTaskStatusChanged(serverId, callback) {
-    return this.serverChannel(serverId).listen('.App\\Events\\Task\\StatusChanged', callback)
+    return this.serverChannel(serverId).listen('.App\\Events\\Task\\ChangedStatus', callback)
 }

@@ -50,12 +50,12 @@ export async function show(supervisorId) {
 /**
  * Delete server supervisor by ID
  *
- * @param {String} supervisorId
+ * @param {String} daemonId
  * @return {Object}
  */
-export async function remove(supervisorId) {
+export async function remove(daemonId) {
     try {
-        const response = await api_route('v1.server.database.delete', {supervisor: supervisorId}).request()
+        const response = await api_route('v1.server.supervisor.delete', {daemon: daemonId}).request()
         return response.data
     } catch (e) {
         throw new ApiRequestError('Can not delete server supervisor.')

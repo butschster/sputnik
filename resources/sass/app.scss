@@ -37,7 +37,11 @@ button, input, optgroup, select, textarea {
 }
 
 pre {
-    @apply text-sm font-mono text-gray-900 whitespace-pre-wrap rounded p-8 bg-gray-100 overflow-x-auto;
+    @apply text-sm font-mono text-gray-900 whitespace-pre-wrap rounded p-8 bg-gray-200 overflow-x-auto transition;
+
+    &:hover {
+        @apply shadow-lg;
+    }
 }
 
 code {

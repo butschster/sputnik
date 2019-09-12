@@ -7,7 +7,7 @@
         <CreateFormFirewall :server="$parent.server" @created="load" class="well well-lg mb-12"/>
 
         <div v-if="hasRules">
-            <h4>Active users ({{ rules.length }})</h4>
+            <h4>Active firewall rules ({{ rules.length }})</h4>
             <Loader :loading="loading"/>
             <table class="table mb-10">
                 <col>
@@ -80,7 +80,7 @@
                 this.loading = true
 
                 try {
-                    this.rules = await this.$api.serverSearch.list(this.$parent.server.id)
+                    this.rules = await this.$api.serverFirewall.list(this.$parent.server.id)
                 } catch (e) {
                     this.$handleError(e)
                 }

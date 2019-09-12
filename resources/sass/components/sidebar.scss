@@ -29,3 +29,18 @@
         }
     }
 }
+
+.nav {
+    &-vertical {
+        @apply w-64;
+
+        a {
+            @apply block py-4 text-gray-500;
+
+            &.router-link-exact-active,
+            &.router-link-active {
+                @apply text-blue-600 font-bold ;
+            }
+        }
+    }
+}

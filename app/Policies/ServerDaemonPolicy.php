@@ -43,6 +43,6 @@ class ServerDaemonPolicy
      */
     public function delete(?User $user, Server\Daemon $daemon): bool
     {
-        return $user->canManageServer($daemon);
+        return $user->canManageServer($daemon->server);
     }
 }

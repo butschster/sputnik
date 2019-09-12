@@ -13,8 +13,9 @@
                     <FormRadio v-model="form.repository_provider"
                                label="Custom"
                                class="mr-4"
+                               key="custom"
                                name="repository_provider"
-                               value=""
+                               :value="null"
                                required />
 
                     <FormRadio v-model="form.repository_provider"
@@ -65,7 +66,7 @@
                 loading: false,
                 providers: [],
                 form: {
-                    repository_provider: '',
+                    repository_provider: null,
                     repository: null,
                     repository_branch: null
                 }
@@ -89,6 +90,7 @@
 
                 try {
                     await this.$api.serverSiteRepository.update(this.site.id, this.form)
+                    this.$bus.$emit('site.updated')
                 } catch (e) {
                     this.$handleError(e)
                 }

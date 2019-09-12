@@ -14,7 +14,7 @@
                 <col width="200px">
                 <col width="200px">
                 <col width="100px">
-                <col width="100px">
+                <col width="150px">
                 <col width="100px">
                 <thead>
                 <tr>
@@ -40,7 +40,7 @@
                         <BadgeTimeFrom :date="user.created_at" />
                     </td>
                     <td class="text-right">
-                        <a :href="user.links.download_key" class="btn btn-sm">
+                        <a :href="user.links.download_key" class="btn btn-default btn-circle btn-sm">
                             <i class="fas fa-download"></i>
                         </a>
 

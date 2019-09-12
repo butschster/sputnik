@@ -36,6 +36,7 @@
             <Loader :loading="uploadLoading" />
             <div class="section-header">
                 Load from .env string
+                <p>Paste contents from .env file</p>
             </div>
             <Textarea v-model="uploadForm.variables" label="String with variables" name="variables" />
            <button class="btn btn-primary" @click="onUploadFile">Upload</button>
@@ -62,7 +63,7 @@
 
                 try {
                     this.$parent.site = await this.$api.serverSiteEnvironment.remove(this.site.id, key)
-                    this.uploadForm.variables = null
+                    this.resetVariables()
                 } catch (e) {
                     this.$handleError(e)
                 }
@@ -74,17 +75,23 @@
 
                 try {
                     this.$parent.site = await this.$api.serverSiteEnvironment.upload(this.site.id, this.uploadForm.variables)
-                    this.uploadForm.variables = null
+                    this.resetVariables()
                 } catch (e) {
                     this.$handleError(e)
                 }
 
                 this.uploadLoading = false
+            },
+            resetVariables() {
+                this.uploadForm.variables = null
             }
         },
         computed: {
             site() {
                 return this.$parent.site
+            },
+            envString() {
+
             }
         }
     }
