@@ -27,6 +27,8 @@ class DeploymentResource extends JsonResource
             'status' => $this->status,
             'task' => TaskResource::make($this->task),
             'is_ended' => $this->hasEnded(),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }
