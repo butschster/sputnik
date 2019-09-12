@@ -15,7 +15,7 @@ $tabs-line-color: theme('colors.gray.200');
         }
 
         &:hover {
-            @apply border-gray-500 text-gray-800;
+            @apply border-gray-300 text-gray-800;
         }
 
         &.router-link-active,

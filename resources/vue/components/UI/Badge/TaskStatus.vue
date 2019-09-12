@@ -1,5 +1,5 @@
 <template>
-    <span v-if="current_task" class="badge" :class="statusClasses" @dblclick="load">{{ current_task.status }}</span>
+    <span v-if="hasTask" class="badge" :class="statusClasses" @dblclick="load">{{ current_task.status }}</span>
 </template>
 
 <script>
@@ -24,7 +24,7 @@
             }
         },
         mounted() {
-            if (this.task) {
+            if (this.hasTask) {
                 this.current_task = this.task
             }
 
@@ -43,13 +43,16 @@
                 try {
                     this.current_task = await this.$api.serverTasks.show(this.current_task.id)
                 } catch (e) {
-                    this.$handleError(e)
+                   this.$handleError(e)
                 }
 
                 this.loading = false
             }
         },
         computed: {
+            hasTask() {
+                return typeof this.task === 'object' && this.task !== null
+            },
             statusClasses() {
                 if (this.loading) {
                     return 'animated-progress'

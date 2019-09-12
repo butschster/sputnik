@@ -8,7 +8,7 @@
             <button class="btn btn-danger-outline">Renew</button>
         </div>
 
-        <SubscriptionPlans :team="team" />
+        <SubscriptionPlans :team="team" class="section--border-b" />
         <CancelSubscription v-if="canBeCanceled" :team="team"/>
         <ResumeSubscription v-if="canBeResumed" :team="team"/>
     </div>

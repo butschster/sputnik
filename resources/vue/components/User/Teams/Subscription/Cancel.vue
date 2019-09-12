@@ -1,14 +1,14 @@
 <template>
-    <div>
+    <section class="section">
         <Loader :loading="loading" />
-        <div class="border-red-300 border-2 bg-gray-100 py-8 px-8 my-12 flex items-center">
-            <div class="flex-1">
-                <h2>Cancel subscription</h2>
+        <div class="flex items-center">
+            <div class="flex-1 section-header">
+                Cancel subscription
                 <p>Pavel, just before you go, here are some courses we've got coming up that you might be interested in.</p>
             </div>
             <div>
                 <button class="btn btn-danger-outline" @click="onCancel">
-                    Cancel :(
+                    Cancel
                 </button>
 
                 <Modal name="cancel">
@@ -31,7 +31,7 @@
                 </Modal>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>

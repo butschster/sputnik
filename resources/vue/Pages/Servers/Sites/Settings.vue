@@ -30,52 +30,21 @@
             </table>
         </div>
 
-        <Repository :site="site" />
-
-        <div class="section section--border-b">
-            <div class="section-header">
-                Use this public key for access deployment
-
-                <button class="btn btn-sm btn-primary" @click="registerPublicKey" v-if="site.repository.is_source_provider">
-                    Register
-                </button>
-            </div>
-            <pre class="break-all whitespace-normal">
-                <Copy :text="site.server.public_key"/>
-            </pre>
-        </div>
-
-        <div class="section section--border-b">
-            <div class="section-header">
-                Deployment Trigger URL
-
-                <button class="btn btn-sm btn-primary" @click="registerWebHook" v-if="site.repository.is_source_provider">
-                    Register
-                </button>
-
-                <p>
-                    Using a custom Git service, or want a service like Travis CI to run your tests before your
-                    application is deployed to Forge? It's simple. When you commit fresh code, or when your continuous
-                    integration service finishes testing your application, instruct the service to make a GET or POST
-                    request to the following URL. Making a request to this URL will trigger your Forge deployment
-                    script:
-                </p>
-            </div>
-            <pre class="break-all whitespace-normal mt-5">
-                <Copy :text="site.links.hooks_url"/>
-            </pre>
-        </div>
-
+        <Repository :site="site" class="mb-10" />
+        <PublicKey :site="site" class="section--border-b" />
+        <WebHook :site="site" class="section--border-b" />
         <Destroy :site="site" />
     </div>
 </template>
 
 <script>
+    import PublicKey from "@vue/components/Server/Sites/partials/Settings/PublicKey"
+    import WebHook from "@vue/components/Server/Sites/partials/Settings/WebHook"
     import Repository from "@vue/components/Server/Sites/Form/Repository"
     import Destroy from "@vue/components/Server/Sites/partials/Destroy"
 
     export default {
-        components: {Destroy, Repository},
+        components: {Destroy, Repository, PublicKey, WebHook},
         computed: {
             site() {
                 return this.$parent.site

@@ -1,16 +1,30 @@
 import {api_route} from "../../../Router"
 
 /**
- * Sync public key and web hooks
+ * Sync webhook to the remote repository
  *
  * @param {String} siteId
  * @return {Object}
  */
-export async function sync(siteId) {
+export async function registerWebhook(siteId) {
     try {
-        await api_route('v1.server.site.repository.sync', {site: siteId}).request()
+        await api_route('v1.server.site.repository.webhook', {site: siteId}).request()
     } catch (e) {
-        throw new ApiRequestError('Can not sync public key and web hooks.')
+        throw new ApiRequestError('Can not register web hook.')
+    }
+}
+
+/**
+ * Sync public key to the remote repository
+ *
+ * @param {String} siteId
+ * @return {Object}
+ */
+export async function registerPublicKey(siteId) {
+    try {
+        await api_route('v1.server.site.repository.public_key', {site: siteId}).request()
+    } catch (e) {
+        throw new ApiRequestError('Can not register public key.')
     }
 }
 

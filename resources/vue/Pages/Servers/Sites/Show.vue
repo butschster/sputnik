@@ -1,22 +1,20 @@
 <template>
     <div v-if="site">
-       <div class="flex justify-between items-center">
-           <h2 class="flex items-center">
-               <img src="https://image.flaticon.com/icons/svg/1055/1055685.svg" width="40px" class="mr-4">
-               <a :href="site.links.url" target="_blank">{{ site.domain }}</a>
-           </h2>
-           <BadgeTaskStatus :task="site.task" />
-       </div>
+        <div class="flex items-center">
+            <h2 class="flex flex-1 items-center">
+                <img src="https://image.flaticon.com/icons/svg/1055/1055685.svg" width="40px" class="mr-4">
+                <a :href="site.links.url" target="_blank">{{ site.domain }}</a>
+            </h2>
 
-        <div class="mb-10">
-            <span class="badge badge-warning" v-if="site.domain_expires_at">
+            <span class="badge badge-warning mr-5" v-if="site.domain_expires_at">
                 Expires at {{ site.domain_expires_at | moment('DD/MM/YYYY') }}
             </span>
+
+            <BadgeTaskStatus :task="site.task"/>
         </div>
 
-
         <div class="section" v-if="$gate.allow('deploy', 'server', site)">
-            <div class="section-header" >
+            <div class="section-header">
                 Git repository details
 
                 <div>
@@ -27,30 +25,34 @@
                 <div class="progress-bar progress-bar-striped progress-bar-animated"
                      role="progressbar" aria-valuenow="75"
                      aria-valuemin="0" aria-valuemax="100"
-                     style="width: 45%">Deployment</div>
+                     style="width: 45%">Deployment
+                </div>
             </div>
         </div>
 
 
-        <div class="flex items-start">
-            <div class="w-64">
-                <router-link :to="$link.serverSiteDeployment(site)" class="block p-4 text-grey-darker font-bold border-purple hover:bg-grey-200 border-r-4">
+        <div class="mt-10 flex items-start">
+            <LeftMenu>
+                <router-link :to="$link.serverSiteDeployment(site)">
                     Deployment
                 </router-link>
-                <router-link :to="$link.serverSiteEnvironment(site)" class="block p-4 text-grey-darker font-bold border-purple hover:bg-grey-200 border-r-4">
+                <router-link :to="$link.serverSiteEnvironment(site)">
                     Environment
                 </router-link>
-                <router-link :to="$link.serverSite(site)" class="block p-4 text-grey-darker font-bold border-purple hover:bg-grey-200 border-r-4">
+                <router-link :to="$link.serverSite(site)">
                     Settings
                 </router-link>
-            </div>
-            <router-view class="flex-1 ml-10" />
+            </LeftMenu>
+            <router-view class="flex-1 ml-10"/>
         </div>
     </div>
 </template>
 
 <script>
+    import LeftMenu from "@vue/Layouts/Partials/Content/LeftMenu"
+
     export default {
+        components: {LeftMenu},
         data() {
             return {
                 site: null,
@@ -59,6 +61,10 @@
         },
         mounted() {
             this.load()
+
+            this.$bus.$on('site.updated', (site) => {
+                this.load()
+            })
         },
         methods: {
             async load() {

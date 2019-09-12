@@ -5,7 +5,7 @@
             <div class="mb-8 flex items-center">
                 <ServerStatus :server="server" class="mr-5"/>
                 <div>
-                    <h2 class="mb-0">{{ server.name }}</h2>
+                    <h1 class="mb-0">{{ server.name }}</h1>
                     <div class="text-gray-600">
                         Team
                         <router-link :to="$link.profileTeam(server.team)">

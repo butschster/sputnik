@@ -25,9 +25,26 @@ class RepositoryController extends Controller
     /**
      * @param SourceProvidersFactory $factory
      * @param Site $site
-     * @return array
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function syncRemote(SourceProvidersFactory $factory, Site $site)
+    public function registerWebhook(SourceProvidersFactory $factory, Site $site)
+    {
+        $provider = $factory->make($site->sourceProvider);
+
+        $provider->addHook(
+            $site->repository,
+            $site->hooksHandlerUrl()
+        );
+
+        return $this->responseOk();
+    }
+
+    /**
+     * @param SourceProvidersFactory $factory
+     * @param Site $site
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function registerPublicKey(SourceProvidersFactory $factory, Site $site)
     {
         $provider = $factory->make($site->sourceProvider);
 
@@ -36,11 +53,6 @@ class RepositoryController extends Controller
             $site->server->publicKey()->getContents()
         );
 
-        $provider->addHook(
-            $site->repository,
-            $site->hooksHandlerUrl()
-        );
-
-        return ['status' => 'ok'];
+        return $this->responseOk();
     }
 }

@@ -14,7 +14,7 @@
                 <col width="200px">
                 <col width="200px">
                 <col width="100px">
-                <col width="100px">
+                <col width="150px">
                 <col width="100px">
                 <thead>
                 <tr>
@@ -40,11 +40,11 @@
                         <BadgeTimeFrom :date="user.created_at" />
                     </td>
                     <td class="text-right">
-                        <a :href="user.links.download_key" class="btn btn-sm">
+                        <a :href="user.links.download_key" class="btn btn-default btn-circle btn-sm">
                             <i class="fas fa-download"></i>
                         </a>
 
-                        <button class="btn btn-danger-outline btn-sm" v-if="!user.is_system" @click="remove(user)">
+                        <button class="btn btn-danger btn-circle btn-sm" v-if="!user.is_system" @click="remove(user)">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>

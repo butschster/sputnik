@@ -12,7 +12,7 @@ class Controller extends BaseController
      */
     public function responseOk(): JsonResponse
     {
-        return new JsonResponse('', 201);
+        return new JsonResponse(['status' => 'ok'], 201);
     }
 
     /**
@@ -20,6 +20,6 @@ class Controller extends BaseController
      */
     public function responseDeleted(): JsonResponse
     {
-        return new JsonResponse('', 202);
+        return new JsonResponse(['status' => 'ok'], 202);
     }
 }

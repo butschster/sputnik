@@ -32,10 +32,10 @@
                         <Copy :text="database.password" :label="database.password"/>
                     </td>
                     <td class="text-right">
-                        <BadgeTaskStatus :status="database.status"/>
+                        <BadgeTaskStatus :task="database.task"/>
                     </td>
                     <td class="text-right">
-                        <button class="btn btn-danger-outline btn-sm" @click="remove(database)">
+                        <button class="btn btn-danger btn-circle btn-sm" @click="remove(database)">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -72,7 +72,6 @@
 
                 try {
                     this.databases = await this.$api.serverDatabases.list(this.$parent.server.id)
-                    console.log(this.databases)
                 } catch (e) {
                     this.$handleError(e)
                 }
