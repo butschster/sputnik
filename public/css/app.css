@@ -65138,25 +65138,15 @@ readers do not read off random characters that represent icons */
   background-color: #fff;
 }
 
-.badge-primary-outline:not(:disabled):hover, .badge-primary-outline:not(:disabled):focus {
-  background-color: #4c51bf;
-  color: #ffffff;
-}
-
 .badge-default {
-  background-color: #a0aec0;
+  background-color: #e2e8f0;
   color: #718096;
 }
 
 .badge-default-outline {
-  border: 1px solid #a0aec0;
-  color: #a0aec0;
+  border: 1px solid #e2e8f0;
+  color: #e2e8f0;
   background-color: #fff;
-}
-
-.badge-default-outline:not(:disabled):hover, .badge-default-outline:not(:disabled):focus {
-  background-color: #a0aec0;
-  color: #ffffff;
 }
 
 .badge-success {
@@ -65169,11 +65159,6 @@ readers do not read off random characters that represent icons */
   background-color: #fff;
 }
 
-.badge-success-outline:not(:disabled):hover, .badge-success-outline:not(:disabled):focus {
-  background-color: #a4c639;
-  color: #ffffff;
-}
-
 .badge-danger {
   background-color: #e53e3e;
 }
@@ -65184,24 +65169,15 @@ readers do not read off random characters that represent icons */
   background-color: #fff;
 }
 
-.badge-danger-outline:not(:disabled):hover, .badge-danger-outline:not(:disabled):focus {
-  background-color: #e53e3e;
-  color: #ffffff;
-}
-
 .badge-warning {
   background-color: #fffc00;
+  color: #718096;
 }
 
 .badge-warning-outline {
   border: 1px solid #fffc00;
   color: #fffc00;
   background-color: #fff;
-}
-
-.badge-warning-outline:not(:disabled):hover, .badge-warning-outline:not(:disabled):focus {
-  background-color: #fffc00;
-  color: #ffffff;
 }
 
 .badge-info {
@@ -65212,35 +65188,6 @@ readers do not read off random characters that represent icons */
   border: 1px solid #45bbff;
   color: #45bbff;
   background-color: #fff;
-}
-
-.badge-info-outline:not(:disabled):hover, .badge-info-outline:not(:disabled):focus {
-  background-color: #45bbff;
-  color: #ffffff;
-}
-
-.badge-primary:not(:disabled):hover, .badge-primary:not(:disabled):focus {
-  background-color: #2929FF;
-}
-
-.badge-default:not(:disabled):hover, .badge-default:not(:disabled):focus {
-  background-color: #2d3748;
-}
-
-.badge-success:not(:disabled):hover, .badge-success:not(:disabled):focus {
-  background-color: #2f855a;
-}
-
-.badge-danger:not(:disabled):hover, .badge-danger:not(:disabled):focus {
-  background-color: #c53030;
-}
-
-.badge-warning:not(:disabled):hover, .badge-warning:not(:disabled):focus {
-  background-color: #ecc94b;
-}
-
-.badge-info:not(:disabled):hover, .badge-info:not(:disabled):focus {
-  background-color: #4c51bf;
 }
 
 .badge-xs {

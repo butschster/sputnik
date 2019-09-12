@@ -5,7 +5,7 @@
 
         &-#{$theme} {
             background-color: $color;
-            @if #{$theme} == default {
+            @if #{$theme} == default or (#{$theme} == warning) {
             @apply text-gray-600;
         }
 
@@ -13,22 +13,7 @@
                 border: 1px solid $color;
                 color: $color;
                 @apply bg-white;
-
-                &:not(:disabled):hover,
-                &:not(:disabled):focus {
-
-                    background-color: $color;
-                    color: $white;
-                }
             }
-        }
-    }
-
-    @each $theme, $color in $colors-hover {
-
-        &-#{$theme}:not(:disabled):hover,
-        &-#{$theme}:not(:disabled):focus {
-            background-color: $color;
         }
     }
 
