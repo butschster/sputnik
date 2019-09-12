@@ -656,8 +656,13 @@ pre {
   white-space: pre-wrap;
   border-radius: 0.25rem;
   padding: 2rem;
-  background-color: #f7fafc;
+  background-color: #edf2f7;
   overflow-x: auto;
+  transition: all 0.2s linear;
+}
+
+pre:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 code {
@@ -64190,6 +64195,22 @@ readers do not read off random characters that represent icons */
   border-color: #7A7AFF;
 }
 
+.nav-vertical {
+  width: 16rem;
+}
+
+.nav-vertical a {
+  display: block;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #a0aec0;
+}
+
+.nav-vertical a.router-link-exact-active, .nav-vertical a.router-link-active {
+  color: #2929FF;
+  font-weight: 700;
+}
+
 .dropdown {
   position: relative;
 }
@@ -64430,6 +64451,7 @@ readers do not read off random characters that represent icons */
   table-layout: fixed;
   border-width: 0;
   text-align: left;
+  background-color: #fff;
   box-shadow: 0 0 0 2px #edf2f7;
   margin-left: 2px;
   border-style: hidden;
@@ -64634,7 +64656,7 @@ readers do not read off random characters that represent icons */
 }
 
 .tabs > .tab:hover {
-  border-color: #a0aec0;
+  border-color: #e2e8f0;
   color: #2d3748;
 }
 
@@ -64679,8 +64701,10 @@ readers do not read off random characters that represent icons */
 
 .well {
   padding: 1.5rem;
-  background-color: #f7fafc;
+  background-color: #fff;
   border-radius: 0.25rem;
+  border-width: 1px;
+  border-color: #edf2f7;
 }
 
 .well-lg {
@@ -64708,6 +64732,7 @@ readers do not read off random characters that represent icons */
 .pagination-page-nav .page-link {
   display: block;
   border-width: 2px;
+  background-color: #fff;
   font-size: 1.125rem;
   font-weight: 500;
   padding-top: 0.5rem;
@@ -64727,6 +64752,7 @@ readers do not read off random characters that represent icons */
   color: #fff;
   background-color: #2929FF;
   border-color: #2929FF;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .pagination-prev-nav, .pagination-next-nav {
