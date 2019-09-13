@@ -1,6 +1,7 @@
 import * as userProfile from "./profile"
 import * as notifications from "./notifications"
 import * as team from "./team"
+import * as sites from "./sites"
 import * as subscription from './subscription'
 import * as teamBilling from "./team/billing"
 import * as userProfileTeam from "./profile/teams"
@@ -28,6 +29,7 @@ export default {
     userProfile,
     userProfileTeam,
     server,
+    sites,
     serverSites,
     serverSiteDeployment,
     serverSiteEnvironment,

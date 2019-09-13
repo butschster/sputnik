@@ -64130,7 +64130,6 @@ readers do not read off random characters that represent icons */
   padding-right: 3rem;
   letter-spacing: 0.05em;
   transition: all 0.2s linear;
-  color: #fff;
   font-weight: 500;
 }
 
@@ -65346,16 +65345,22 @@ a.card-info:focus, a.card-info:hover {
 .search__results-list__link {
   background-color: #f7fafc;
   border-radius: 0.25rem;
-  color: #1a202c;
+  font-weight: 500;
   padding: 0.75rem;
-  width: 100%;
-  height: 100%;
-  display: inline-block;
+  display: block;
 }
 
 .search__results-list__link:hover {
   color: #1a202c;
   background-color: #e2e8f0;
+}
+
+.search__results-list__item {
+  margin-bottom: 0.75rem;
+}
+
+.search__results-list__item:last-child {
+  margin-bottom: 0;
 }
 
 .search__results-list__title {

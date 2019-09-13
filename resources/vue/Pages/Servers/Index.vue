@@ -9,9 +9,6 @@
     import List from '@vue/components/Server/List'
 
     export default {
-        components: {List, CreateForm},
-        mounted() {
-            this.$store.dispatch('servers/loadServers')
-        }
+        components: {List, CreateForm}
     }
 </script>

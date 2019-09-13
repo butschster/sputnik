@@ -1,5 +1,5 @@
 .btn {
-    @apply inline-block text-center rounded py-4 px-12 tracking-wider transition text-white font-medium;
+    @apply inline-block text-center rounded py-4 px-12 tracking-wider transition font-medium;
 
     &:focus {
         @apply outline-none shadow-outline;
@@ -12,7 +12,6 @@
     }
 
     @each $theme, $color in $colors {
-
         &-#{$theme} {
             background-color: $color;
 
@@ -32,7 +31,6 @@
     }
 
     @each $theme, $color in $colors-hover {
-
         &-#{$theme}:not(:disabled):hover,
         &-#{$theme}:not(:disabled):focus {
             background-color: $color;

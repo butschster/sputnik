@@ -13,30 +13,12 @@
             <BadgeTaskStatus :task="site.task"/>
         </div>
 
-        <div class="section" v-if="$gate.allow('deploy', 'server', site)">
-            <div class="section-header">
-                Git repository details
-
-                <div>
-                    <button class="btn btn-warning btn-sm"><i class="fas fa-play-circle mr-2"></i> Deploy!</button>
-                </div>
-            </div>
-            <div class="progress rounded-0" v-if="site.is_deploying">
-                <div class="progress-bar progress-bar-striped progress-bar-animated"
-                     role="progressbar" aria-valuenow="75"
-                     aria-valuemin="0" aria-valuemax="100"
-                     style="width: 45%">Deployment
-                </div>
-            </div>
-        </div>
-
-
         <div class="mt-10 flex items-start">
             <LeftMenu>
-                <router-link :to="$link.serverSiteDeployment(site)">
+                <router-link :to="$link.serverSiteDeployment(site)" v-if="$gate.allow('deploy', 'site', site)">
                     Deployment
                 </router-link>
-                <router-link :to="$link.serverSiteEnvironment(site)">
+                <router-link :to="$link.serverSiteEnvironment(site)" v-if="$gate.allow('deploy', 'site', site)">
                     Environment
                 </router-link>
                 <router-link :to="$link.serverSite(site)">
@@ -72,6 +54,11 @@
 
                 try {
                     this.site = await this.$api.serverSites.show(this.$route.params.site_id)
+
+                    this.$echo.onSiteDeployment(this.site.id, () => {
+                        this.load()
+                    })
+
                 } catch (e) {
                     this.$handleError(e)
                     this.$router.replace({name: "404"})

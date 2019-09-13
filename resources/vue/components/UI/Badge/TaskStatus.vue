@@ -1,5 +1,7 @@
 <template>
-    <span v-if="hasTask" class="badge" :class="statusClasses" @dblclick="load">{{ current_task.status }}</span>
+    <span v-if="hasTask" class="badge cursor-pointer" :class="statusClasses" @dblclick="load" @click="show">
+        {{ current_task.status }}
+    </span>
 </template>
 
 <script>
@@ -37,6 +39,11 @@
             }
         },
         methods: {
+            show() {
+                this.$router.push(
+                    this.$link.serverTask(this.current_task)
+                )
+            },
             async load() {
                 this.loading = true
 

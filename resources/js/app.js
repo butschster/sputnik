@@ -6,6 +6,7 @@ import Loader from '@vue/components/UI/Loader'
 import Copy from '@vue/components/UI/Copy'
 import BadgeTimeFrom from "@vue/components/UI/Badge/TimeFrom"
 import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
+import BadgeStatus from "@vue/components/UI/Badge/Status"
 
 import {mapGetters} from 'vuex'
 
@@ -20,6 +21,7 @@ Vue.component('Loader', Loader)
 Vue.component('Copy', Copy)
 Vue.component('BadgeTimeFrom', BadgeTimeFrom)
 Vue.component('BadgeTaskStatus', BadgeTaskStatus)
+Vue.component('BadgeStatus', BadgeStatus)
 
 new Vue({
     el: '#app',
@@ -30,7 +32,6 @@ new Vue({
         titleTemplate: '%s | SputnikCloud'
     },
     created() {
-
         this.$store.dispatch('auth/loadUser').then((e) => {
             this.$echo.onUserNotificationCreated(this.user.id, (e) => {
                 this.$store.dispatch('notifications/getNotifications')
@@ -38,6 +39,7 @@ new Vue({
         })
 
         this.$store.dispatch('notifications/getNotifications')
+        this.$store.dispatch('servers/loadServers')
     },
     computed: {
         ...mapGetters('auth', {

@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class Run implements ShouldQueue
+class Run
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -37,18 +37,21 @@ class Run implements ShouldQueue
 
     /**
      * @param DeploymentService $service
+     * @return Site\Deployment
      * @throws \Throwable
      */
-    public function handle(DeploymentService $service): void
+    public function handle(DeploymentService $service): Site\Deployment
     {
         $data = [
             'branch' => $this->site->repositoryBranch(),
             'initiator_id' => $this->initiator ? $this->initiator->id : null,
-            'commit_hash' => '',
+            'commit_hash' => ''
         ];
 
         $service->deploy(
-            $this->site->deployments()->create($data)
+            $deployment = $this->site->deployments()->create($data)
         );
+
+        return $deployment;
     }
 }

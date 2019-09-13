@@ -86,6 +86,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('server/supervisor/{daemon}', 'Server\SupervisorController@delete')->name('server.supervisor.delete');
 
         // Site
+        Route::get('sites', 'Server\SiteController@all')->name('sites');
         Route::get('server/{server}/sites', 'Server\SiteController@index')->name('server.sites');
         Route::get('sites/search', 'Server\SiteController@search')->name('sites.search');
         Route::get('server/site/{site}', 'Server\SiteController@show')->name('server.site.show');

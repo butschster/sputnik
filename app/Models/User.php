@@ -62,6 +62,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the servers sites that belong to the user.
+     *
+     * @return HasMany
+     */
+    public function sites(): HasMany
+    {
+        return $this->hasMany(Server\Site::class);
+    }
+
+    /**
      * Get connected source providers
      *
      * @return HasMany

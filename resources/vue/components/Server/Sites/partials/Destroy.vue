@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="$gate.allow('destroy', 'site', site)">
         <Loader :loading="loading" />
         <section class="section flex items-center">
             <div class="flex-1">
