@@ -1,5 +1,21 @@
 import {api_route} from "../../../Router"
 import {ApiRequestError} from "@js/errors";
+/**
+ * Show list of env variables
+ *
+ * @param {String} siteId
+ *
+ * @return {Object}
+ */
+export async function list(siteId) {
+    try {
+        const response = await api_route('v1.server.site.environment', {site: siteId}).request()
+
+        return response.data.data
+    } catch (e) {
+        throw new ApiRequestError('Can not load env variables.')
+    }
+}
 
 /**
  * Upload env file

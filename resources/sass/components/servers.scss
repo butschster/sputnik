@@ -1,7 +1,7 @@
 $circle-size: 45px;
 $circle-dot-size: 15px;
 $server-icon-size: 25px;
-$server-icon-color: theme('colors.blue.400');
+$server-icon-color: $color-blue-400;
 
 .servers-list {
     &-item {
@@ -22,7 +22,7 @@ $server-icon-color: theme('colors.blue.400');
 
             &:hover {
                 @apply shadow-lg;
-                border-left-color: theme('colors.blue.500');
+                border-left-color: $color-blue-500;
             }
         }
 

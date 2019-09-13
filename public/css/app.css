@@ -64473,7 +64473,7 @@ a.card-info:focus, a.card-info:hover {
 
 .servers-list-item-wrapper:hover {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border-left-color: #5252FF;
+  border-left-color: #4299e1;
 }
 
 .servers-list-item__status {
@@ -64482,7 +64482,7 @@ a.card-info:focus, a.card-info:hover {
   width: 45px;
   height: 45px;
   position: relative;
-  border-color: #7A7AFF;
+  border-color: #63b3ed;
 }
 
 .servers-list-item__status .icon {
@@ -64491,7 +64491,7 @@ a.card-info:focus, a.card-info:hover {
   top: 8px;
   left: 8px;
   font-size: 25px;
-  color: #7A7AFF;
+  color: #63b3ed;
 }
 
 .servers-list-item__name {
@@ -65043,7 +65043,7 @@ a.card-info:focus, a.card-info:hover {
   padding-bottom: 2rem;
   padding-left: 3rem;
   padding-right: 3rem;
-  background: linear-gradient(to right, #2929FF, #000085);
+  background: linear-gradient(to right, #3182ce, #2a4365);
 }
 
 .modal__content {
@@ -65201,6 +65201,7 @@ a.card-info:focus, a.card-info:hover {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   font-size: 0.875rem;
+  font-weight: 500;
   border-radius: 9999px;
   white-space: nowrap;
 }

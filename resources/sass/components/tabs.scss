@@ -1,5 +1,5 @@
 $tabs-line-height: 3px;
-$tabs-line-color: theme('colors.gray.200');
+$tabs-line-color: $color-gray-200;
 
 .tabs {
     @apply w-full flex border-b-2 border-gray-200 mb-8;

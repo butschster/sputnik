@@ -13,7 +13,7 @@ class DeleteRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('update', $this->getSite());
+        return Gate::allows('deploy', $this->getSite());
     }
 
     /**

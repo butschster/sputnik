@@ -39,7 +39,6 @@ class SiteResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'has_env' => $this->hasEnvironmentVariables(),
-            'env' => EnvironmentResource::make($this->environment),
             'is_deploying' => $this->hasRunningDeployment(),
             'repository' => [
                 'is_valid' => $this->isValidRepository(),

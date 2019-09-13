@@ -23,7 +23,7 @@
 
     &__top {
         @apply text-white text-2xl py-8 px-12;
-        background: linear-gradient(to right, theme('colors.blue.600'), theme('colors.blue.900'));
+        background: linear-gradient(to right, $color-blue-600, $color-blue-900);
     }
 
     &__content {

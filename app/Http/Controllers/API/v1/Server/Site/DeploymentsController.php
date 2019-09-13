@@ -20,7 +20,7 @@ class DeploymentsController extends Controller
      */
     public function index(Request $request, Site $site): DeploymentCollection
     {
-        $this->authorize('update', $site);
+        $this->authorize('deploy', $site);
 
         return DeploymentCollection::make($site->deployments()->paginate());
     }
@@ -51,7 +51,7 @@ class DeploymentsController extends Controller
      */
     public function config(Site $site)
     {
-        $this->authorize('update', $site);
+        $this->authorize('deploy', $site);
 
         return [
             'config' => (string) view('scripts.server.site.deploy', [

@@ -99,6 +99,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/server/site/{site}/deploy', 'Server\Site\DeploymentsController@deploy')->name('server.site.deploy');
 
         // Site environment
+        Route::get('/server/site/{site}/environment', 'Server\Site\EnvironmentController@index')->name('server.site.environment');
         Route::post('/server/site/{site}/environment/upload', 'Server\Site\EnvironmentController@upload')->name('server.site.environment.upload');
         Route::post('/server/site/{site}/environment', 'Server\Site\EnvironmentController@update')->name('server.site.environment.update');
         Route::delete('/server/site/{site}/environment', 'Server\Site\EnvironmentController@delete')->name('server.site.environment.delete');

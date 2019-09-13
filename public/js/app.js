@@ -3811,17 +3811,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       loading: false,
+      variables: [],
       uploadLoading: false,
       uploadForm: {
         variables: null
       }
     };
   },
+  mounted: function mounted() {
+    this.load();
+  },
   methods: {
-    onRemove: function () {
-      var _onRemove = _asyncToGenerator(
+    load: function () {
+      var _load = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(key) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -3829,28 +3833,68 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.loading = true;
                 _context.prev = 1;
                 _context.next = 4;
+                return this.$api.serverSiteEnvironment.list(this.site.id);
+
+              case 4:
+                this.variables = _context.sent;
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](1);
+                this.$handleError(_context.t0);
+
+              case 10:
+                this.loading = false;
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 7]]);
+      }));
+
+      function load() {
+        return _load.apply(this, arguments);
+      }
+
+      return load;
+    }(),
+    onRemove: function () {
+      var _onRemove = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(key) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                this.loading = true;
+                _context2.prev = 1;
+                _context2.next = 4;
                 return this.$api.serverSiteEnvironment.remove(this.site.id, key);
 
               case 4:
-                this.$parent.site = _context.sent;
+                this.variables = _context2.sent;
                 this.resetVariables();
-                _context.next = 11;
+                _context2.next = 11;
                 break;
 
               case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](1);
-                this.$handleError(_context.t0);
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](1);
+                this.$handleError(_context2.t0);
 
               case 11:
                 this.loading = false;
 
               case 12:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this, [[1, 8]]);
+        }, _callee2, this, [[1, 8]]);
       }));
 
       function onRemove(_x) {
@@ -3862,36 +3906,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     onUploadFile: function () {
       var _onUploadFile = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 this.uploadLoading = true;
-                _context2.prev = 1;
-                _context2.next = 4;
+                _context3.prev = 1;
+                _context3.next = 4;
                 return this.$api.serverSiteEnvironment.upload(this.site.id, this.uploadForm.variables);
 
               case 4:
-                this.$parent.site = _context2.sent;
+                this.variables = _context3.sent;
                 this.resetVariables();
-                _context2.next = 11;
+                this.$notify.success('Variables stored successfully.');
+                _context3.next = 12;
                 break;
 
-              case 8:
-                _context2.prev = 8;
-                _context2.t0 = _context2["catch"](1);
-                this.$handleError(_context2.t0);
-
-              case 11:
-                this.uploadLoading = false;
+              case 9:
+                _context3.prev = 9;
+                _context3.t0 = _context3["catch"](1);
+                this.$handleError(_context3.t0);
 
               case 12:
+                this.uploadLoading = false;
+
+              case 13:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, this, [[1, 8]]);
+        }, _callee3, this, [[1, 9]]);
       }));
 
       function onUploadFile() {
@@ -3902,13 +3947,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }(),
     resetVariables: function resetVariables() {
       this.uploadForm.variables = null;
+    },
+    canBeCopiedValue: function canBeCopiedValue(value) {
+      if (value === '**********') {
+        return false;
+      }
+
+      if (value === 'null') {
+        return false;
+      }
+
+      return value.length > 0;
     }
   },
   computed: {
     site: function site() {
       return this.$parent.site;
     },
-    envString: function envString() {}
+    hasVariables: function hasVariables() {
+      return Object.keys(this.variables).length > 0;
+    },
+    groupedVariables: function groupedVariables() {
+      var _this = this;
+
+      var keys = Object.keys(this.variables);
+
+      var groupedKeys = _.groupBy(keys, function (key) {
+        return key.split("_", 1);
+      });
+
+      var groupedVariables = {};
+
+      _.forEach(groupedKeys, function (variables, group) {
+        if (typeof groupedVariables[group] == 'undefined') {
+          groupedVariables[group] = {};
+        }
+
+        variables.forEach(function (key) {
+          groupedVariables[group][key] = _this.variables[key];
+        });
+      });
+
+      return groupedVariables;
+    }
   }
 });
 
@@ -58101,105 +58182,115 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h4", [_vm._v("Environment variables")]),
-    _vm._v(" "),
-    _vm.site.has_env
-      ? _c("table", { staticClass: "table mb-16" }, [
-          _c("col", { attrs: { width: "250px" } }),
-          _vm._v(" "),
-          _c("col"),
-          _vm._v(" "),
-          _c("col", { attrs: { width: "100px" } }),
+  return _c(
+    "div",
+    [
+      _c("Loader", { attrs: { loading: _vm.loading } }),
+      _vm._v(" "),
+      _c("h2", [_vm._v("Environment variables")]),
+      _vm._v(" "),
+      _vm.hasVariables
+        ? _c(
+            "div",
+            [
+              _vm._l(_vm.groupedVariables, function(vars, group) {
+                return [
+                  _c("h4", [_vm._v(_vm._s(group))]),
+                  _vm._v(" "),
+                  _c("table", { staticClass: "table mb-10" }, [
+                    _c("col", { attrs: { width: "250px" } }),
+                    _vm._v(" "),
+                    _c("col"),
+                    _vm._v(" "),
+                    _c("col", { attrs: { width: "100px" } }),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(vars, function(value, key) {
+                        return _c("tr", [
+                          _c("th", [_vm._v(_vm._s(key))]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _vm.canBeCopiedValue(value)
+                                ? _c("Copy", { attrs: { text: value } })
+                                : _c("span", [_vm._v(_vm._s(value))])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-right" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger btn-circle btn-sm",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.onRemove(key)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-trash" })]
+                            )
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                ]
+              })
+            ],
+            2
+          )
+        : _c("div", { staticClass: "well well-lg text-center" }, [
+            _c("img", {
+              staticClass: "mx-auto mb-10",
+              attrs: {
+                src: "https://image.flaticon.com/icons/svg/1568/1568465.svg",
+                alt: "",
+                width: "150px"
+              }
+            }),
+            _vm._v(" "),
+            _c("h3", { staticClass: "mb-0" }, [
+              _vm._v("Looks like you don't have any env variables yet")
+            ])
+          ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "section well well-lg" },
+        [
+          _c("Loader", { attrs: { loading: _vm.uploadLoading } }),
           _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.site.env, function(value, key) {
-              return _c("tr", [
-                _c("th", [_vm._v(_vm._s(key))]),
-                _vm._v(" "),
-                _c("td", [_c("Copy", { attrs: { text: value } })], 1),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-right" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger btn-circle btn-sm",
-                      on: {
-                        click: function($event) {
-                          return _vm.onRemove(key)
-                        }
-                      }
-                    },
-                    [_c("i", { staticClass: "fas fa-trash" })]
-                  )
-                ])
-              ])
-            }),
-            0
-          )
-        ])
-      : _c("div", { staticClass: "well well-lg text-center" }, [
-          _c("img", {
-            staticClass: "mx-auto mb-10",
-            attrs: {
-              src: "https://image.flaticon.com/icons/svg/1568/1568465.svg",
-              alt: "",
-              width: "150px"
+          _c("Textarea", {
+            attrs: { label: "String with variables", name: "variables" },
+            model: {
+              value: _vm.uploadForm.variables,
+              callback: function($$v) {
+                _vm.$set(_vm.uploadForm, "variables", $$v)
+              },
+              expression: "uploadForm.variables"
             }
           }),
           _vm._v(" "),
-          _c("h3", { staticClass: "mb-0" }, [
-            _vm._v("Looks like you don't have any env variables yet")
-          ])
-        ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "section well well-lg" },
-      [
-        _c("Loader", { attrs: { loading: _vm.uploadLoading } }),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _c("Textarea", {
-          attrs: { label: "String with variables", name: "variables" },
-          model: {
-            value: _vm.uploadForm.variables,
-            callback: function($$v) {
-              _vm.$set(_vm.uploadForm, "variables", $$v)
-            },
-            expression: "uploadForm.variables"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "btn btn-primary", on: { click: _vm.onUploadFile } },
-          [_vm._v("Upload")]
-        )
-      ],
-      1
-    )
-  ])
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", on: { click: _vm.onUploadFile } },
+            [_vm._v("Upload")]
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Key")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Value")]),
-        _vm._v(" "),
-        _c("th")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -88295,11 +88386,12 @@ function _deploy() {
 /*!*************************************************************!*\
   !*** ./resources/js/api/methods/server/site/environment.js ***!
   \*************************************************************/
-/*! exports provided: upload, update, remove */
+/*! exports provided: list, upload, update, remove */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "list", function() { return list; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "upload", function() { return upload; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
@@ -88316,6 +88408,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /**
+ * Show list of env variables
+ *
+ * @param {String} siteId
+ *
+ * @return {Object}
+ */
+
+function list(_x) {
+  return _list.apply(this, arguments);
+}
+/**
  * Upload env file
  *
  * @param {String} siteId
@@ -88324,7 +88427,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  * @return {Object}
  */
 
-function upload(_x, _x2) {
+function _list() {
+  _list = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(siteId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.environment', {
+              site: siteId
+            }).request();
+
+          case 3:
+            response = _context.sent;
+            return _context.abrupt("return", response.data.data);
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not load env variables.');
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+  return _list.apply(this, arguments);
+}
+
+function upload(_x2, _x3) {
   return _upload.apply(this, arguments);
 }
 /**
@@ -88341,14 +88478,14 @@ function upload(_x, _x2) {
 function _upload() {
   _upload = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(siteId, variables) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(siteId, variables) {
     var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
-            _context.prev = 0;
-            _context.next = 3;
+            _context2.prev = 0;
+            _context2.next = 3;
             return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.environment.upload', {
               site: siteId
             }).request({
@@ -88356,25 +88493,25 @@ function _upload() {
             });
 
           case 3:
-            response = _context.sent;
-            return _context.abrupt("return", response.data.data);
+            response = _context2.sent;
+            return _context2.abrupt("return", response.data.data);
 
           case 7:
-            _context.prev = 7;
-            _context.t0 = _context["catch"](0);
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
             throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not upload env variables.');
 
           case 10:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee2, null, [[0, 7]]);
   }));
   return _upload.apply(this, arguments);
 }
 
-function update(_x3, _x4) {
+function update(_x4, _x5) {
   return _update.apply(this, arguments);
 }
 /**
@@ -88389,45 +88526,7 @@ function update(_x3, _x4) {
 function _update() {
   _update = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(siteId, data) {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.environment.update', {
-              site: siteId
-            }).request(data);
-
-          case 3:
-            response = _context2.sent;
-            return _context2.abrupt("return", response.data.data);
-
-          case 7:
-            _context2.prev = 7;
-            _context2.t0 = _context2["catch"](0);
-            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not update environment variables.');
-
-          case 10:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, null, [[0, 7]]);
-  }));
-  return _update.apply(this, arguments);
-}
-
-function remove(_x5, _x6) {
-  return _remove.apply(this, arguments);
-}
-
-function _remove() {
-  _remove = _asyncToGenerator(
-  /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(siteId, key) {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(siteId, data) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
       while (1) {
@@ -88435,11 +88534,9 @@ function _remove() {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.environment.delete', {
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.environment.update', {
               site: siteId
-            }).request({
-              key: key
-            });
+            }).request(data);
 
           case 3:
             response = _context3.sent;
@@ -88448,7 +88545,7 @@ function _remove() {
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not delete environment variable.');
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not update environment variables.');
 
           case 10:
           case "end":
@@ -88456,6 +88553,46 @@ function _remove() {
         }
       }
     }, _callee3, null, [[0, 7]]);
+  }));
+  return _update.apply(this, arguments);
+}
+
+function remove(_x6, _x7) {
+  return _remove.apply(this, arguments);
+}
+
+function _remove() {
+  _remove = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(siteId, key) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return Object(_Router__WEBPACK_IMPORTED_MODULE_1__["api_route"])('v1.server.site.environment.delete', {
+              site: siteId
+            }).request({
+              key: key
+            });
+
+          case 3:
+            response = _context4.sent;
+            return _context4.abrupt("return", response.data.data);
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            throw new _js_errors__WEBPACK_IMPORTED_MODULE_2__["ApiRequestError"]('Can not delete environment variable.');
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
   }));
   return _remove.apply(this, arguments);
 }
@@ -90550,6 +90687,11 @@ var Ziggy = {
     "api.v1.server.site.deploy": {
       "uri": "api\/v1\/server\/site\/{site}\/deploy",
       "methods": ["POST"],
+      "domain": null
+    },
+    "api.v1.server.site.environment": {
+      "uri": "api\/v1\/server\/site\/{site}\/environment",
+      "methods": ["GET", "HEAD"],
       "domain": null
     },
     "api.v1.server.site.environment.upload": {

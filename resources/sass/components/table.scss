@@ -1,6 +1,6 @@
 .table {
     @apply w-full table-fixed border-0 text-left bg-white;
-    box-shadow: 0 0 0 2px theme('colors.gray.200');
+    box-shadow: 0 0 0 2px $color-gray-200;
     margin-left: 2px;
     border-style: hidden;
 

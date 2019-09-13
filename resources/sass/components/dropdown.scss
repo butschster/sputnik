@@ -38,7 +38,7 @@
             right: 10px;
             border-left: 7px solid transparent;
             border-right: 7px solid transparent;
-            border-bottom: 7px solid theme('colors.white');
+            border-bottom: 7px solid $color-white;
             z-index: 2;
         }
 
@@ -49,7 +49,7 @@
             right: 8px;
             border-left: 9px solid transparent;
             border-right: 9px solid transparent;
-            border-bottom: 9px solid theme('colors.gray.300');
+            border-bottom: 9px solid $color-gray-300;
         }
     }
 

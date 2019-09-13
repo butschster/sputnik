@@ -1,5 +1,5 @@
 .badge {
-    @apply bg-gray-300 py-1 px-3 text-sm rounded-full whitespace-no-wrap;
+    @apply bg-gray-300 py-1 px-3 text-sm font-medium rounded-full whitespace-no-wrap;
 
     @each $theme, $color in $colors-badge {
         &-#{$theme} {
