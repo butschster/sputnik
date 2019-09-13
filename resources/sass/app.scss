@@ -64,7 +64,9 @@ code {
 @import "~animatewithsass";
 
 // Variables
+@import 'theme-colors';
 @import 'variables';
+@import 'functions';
 
 @import "mixins/progress";
 

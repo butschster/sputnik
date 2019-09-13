@@ -13,6 +13,7 @@
 
     @each $theme, $color in $colors {
         &-#{$theme} {
+            color: color-yiq($color);
             background-color: $color;
 
             &-outline {
@@ -24,16 +25,15 @@
                 &:not(:disabled):focus {
 
                     background-color: $color;
-                    color: $white!important;
+                    color: $color-white!important;
                 }
             }
         }
-    }
 
-    @each $theme, $color in $colors-hover {
         &-#{$theme}:not(:disabled):hover,
         &-#{$theme}:not(:disabled):focus {
-            background-color: $color;
+            color: color-yiq($color);
+            background-color: darken($color, 10%);
         }
     }
 
@@ -68,26 +68,6 @@
 
     &-circle {
         @apply rounded-full px-2 py-2 inline-flex items-center justify-center leading-none;
-    }
-
-    &-dark {
-        @apply text-white;
-
-        &:not(:disabled):hover,
-        &:not(:disabled):focus {
-
-            @apply text-white;
-        }
-    }
-
-    &-light {
-        @apply text-gray-600;
-
-        &:not(:disabled):hover,
-        &:not(:disabled):focus {
-
-            @apply text-white;
-        }
     }
 
     &-copy {

@@ -1,33 +1,24 @@
 //colors
 
-$white: #ffffff;
-$black: #000000;
+$yiq-light-color: $color-white;
+$yiq-dark-color: $color-gray-600;
 
 $colors: (
-    primary: theme('colors.blue.500'),
-    default : theme('colors.gray.500'),
-    success : theme('colors.green.500'),
-    danger : theme('colors.red.600'),
-    warning : theme('colors.yellow.500'),
-    info : theme('colors.indigo.600')
-);
-
-$colors-hover: (
-    primary: theme('colors.blue.600'),
-    default : theme('colors.gray.600'),
-    success : theme('colors.green.700'),
-    danger : theme('colors.red.700'),
-    warning : theme('colors.yellow.500'),
-    info : theme('colors.indigo.700')
+    primary: $color-blue-500,
+    default : $color-gray-500,
+    success : $color-green-500,
+    danger :  $color-red-600,
+    warning : $color-yellow-500,
+    info : $color-indigo-600,
 );
 
 $colors-badge: (
-    primary: theme('colors.indigo.700'),
-    default : theme('colors.gray.300'),
-    success : #a4c639,
-    danger : theme('colors.red.600'),
-    warning : #fffc00,
-    info : theme('colors.blue.1000'),
+    primary: $color-indigo-700,
+    default : $color-gray-300,
+    success : $color-green-500,
+    danger : $color-red-600,
+    warning : $color-yellow-200,
+    info : $color-blue-900,
 );
 
 $sizes: (

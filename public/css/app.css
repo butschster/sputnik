@@ -64146,21 +64146,28 @@ readers do not read off random characters that represent icons */
 }
 
 .btn-primary {
-  background-color: #5252FF;
+  color: #fff;
+  background-color: #4299e1;
 }
 
 .btn-primary-outline {
-  border: 1px solid #5252FF;
-  color: #5252FF;
+  border: 1px solid #4299e1;
+  color: #4299e1;
   background-color: #fff;
 }
 
 .btn-primary-outline:not(:disabled):hover, .btn-primary-outline:not(:disabled):focus {
-  background-color: #5252FF;
-  color: #ffffff !important;
+  background-color: #4299e1;
+  color: #fff !important;
+}
+
+.btn-primary:not(:disabled):hover, .btn-primary:not(:disabled):focus {
+  color: #fff;
+  background-color: #2180cf;
 }
 
 .btn-default {
+  color: #718096;
   background-color: #a0aec0;
 }
 
@@ -64172,10 +64179,16 @@ readers do not read off random characters that represent icons */
 
 .btn-default-outline:not(:disabled):hover, .btn-default-outline:not(:disabled):focus {
   background-color: #a0aec0;
-  color: #ffffff !important;
+  color: #fff !important;
+}
+
+.btn-default:not(:disabled):hover, .btn-default:not(:disabled):focus {
+  color: #718096;
+  background-color: #8194ac;
 }
 
 .btn-success {
+  color: #fff;
   background-color: #48bb78;
 }
 
@@ -64187,10 +64200,16 @@ readers do not read off random characters that represent icons */
 
 .btn-success-outline:not(:disabled):hover, .btn-success-outline:not(:disabled):focus {
   background-color: #48bb78;
-  color: #ffffff !important;
+  color: #fff !important;
+}
+
+.btn-success:not(:disabled):hover, .btn-success:not(:disabled):focus {
+  color: #fff;
+  background-color: #389860;
 }
 
 .btn-danger {
+  color: #fff;
   background-color: #e53e3e;
 }
 
@@ -64202,10 +64221,16 @@ readers do not read off random characters that represent icons */
 
 .btn-danger-outline:not(:disabled):hover, .btn-danger-outline:not(:disabled):focus {
   background-color: #e53e3e;
-  color: #ffffff !important;
+  color: #fff !important;
+}
+
+.btn-danger:not(:disabled):hover, .btn-danger:not(:disabled):focus {
+  color: #fff;
+  background-color: #d41c1c;
 }
 
 .btn-warning {
+  color: #718096;
   background-color: #ecc94b;
 }
 
@@ -64217,10 +64242,16 @@ readers do not read off random characters that represent icons */
 
 .btn-warning-outline:not(:disabled):hover, .btn-warning-outline:not(:disabled):focus {
   background-color: #ecc94b;
-  color: #ffffff !important;
+  color: #fff !important;
+}
+
+.btn-warning:not(:disabled):hover, .btn-warning:not(:disabled):focus {
+  color: #718096;
+  background-color: #e7bb1d;
 }
 
 .btn-info {
+  color: #fff;
   background-color: #5a67d8;
 }
 
@@ -64232,31 +64263,12 @@ readers do not read off random characters that represent icons */
 
 .btn-info-outline:not(:disabled):hover, .btn-info-outline:not(:disabled):focus {
   background-color: #5a67d8;
-  color: #ffffff !important;
-}
-
-.btn-primary:not(:disabled):hover, .btn-primary:not(:disabled):focus {
-  background-color: #2929FF;
-}
-
-.btn-default:not(:disabled):hover, .btn-default:not(:disabled):focus {
-  background-color: #718096;
-}
-
-.btn-success:not(:disabled):hover, .btn-success:not(:disabled):focus {
-  background-color: #2f855a;
-}
-
-.btn-danger:not(:disabled):hover, .btn-danger:not(:disabled):focus {
-  background-color: #c53030;
-}
-
-.btn-warning:not(:disabled):hover, .btn-warning:not(:disabled):focus {
-  background-color: #ecc94b;
+  color: #fff !important;
 }
 
 .btn-info:not(:disabled):hover, .btn-info:not(:disabled):focus {
-  background-color: #4c51bf;
+  color: #fff;
+  background-color: #3141ce;
 }
 
 .btn-xs {
@@ -64327,22 +64339,6 @@ readers do not read off random characters that represent icons */
   line-height: 1;
 }
 
-.btn-dark {
-  color: #fff;
-}
-
-.btn-dark:not(:disabled):hover, .btn-dark:not(:disabled):focus {
-  color: #fff;
-}
-
-.btn-light {
-  color: #718096;
-}
-
-.btn-light:not(:disabled):hover, .btn-light:not(:disabled):focus {
-  color: #fff;
-}
-
 .btn-copy {
   cursor: pointer;
 }
@@ -64402,7 +64398,7 @@ a.btn:hover, a.btn:focus {
 }
 
 .card-primary {
-  border-color: #5252FF;
+  border-color: #4299e1;
 }
 
 .card-default {
@@ -64426,7 +64422,7 @@ a.btn:hover, a.btn:focus {
 }
 
 a.card-primary:focus, a.card-primary:hover {
-  box-shadow: 0px 0px 7px 0px #5252FF;
+  box-shadow: 0px 0px 7px 0px #4299e1;
 }
 
 a.card-default:focus, a.card-default:hover {
@@ -65206,7 +65202,6 @@ a.card-info:focus, a.card-info:hover {
   padding-right: 0.75rem;
   font-size: 0.875rem;
   border-radius: 9999px;
-  color: #718096;
   white-space: nowrap;
 }
 
@@ -65223,7 +65218,7 @@ a.card-info:focus, a.card-info:hover {
 
 .badge-default {
   background-color: #e2e8f0;
-  color: #fff;
+  color: #718096;
 }
 
 .badge-default-outline {
@@ -65233,13 +65228,13 @@ a.card-info:focus, a.card-info:hover {
 }
 
 .badge-success {
-  background-color: #a4c639;
+  background-color: #48bb78;
   color: #fff;
 }
 
 .badge-success-outline {
-  border: 1px solid #a4c639;
-  color: #a4c639;
+  border: 1px solid #48bb78;
+  color: #48bb78;
   background-color: #fff;
 }
 
@@ -65255,24 +65250,24 @@ a.card-info:focus, a.card-info:hover {
 }
 
 .badge-warning {
-  background-color: #fffc00;
-  color: #fff;
+  background-color: #fefcbf;
+  color: #718096;
 }
 
 .badge-warning-outline {
-  border: 1px solid #fffc00;
-  color: #fffc00;
+  border: 1px solid #fefcbf;
+  color: #fefcbf;
   background-color: #fff;
 }
 
 .badge-info {
-  background-color: #45bbff;
+  background-color: #2a4365;
   color: #fff;
 }
 
 .badge-info-outline {
-  border: 1px solid #45bbff;
-  color: #45bbff;
+  border: 1px solid #2a4365;
+  color: #2a4365;
   background-color: #fff;
 }
 
