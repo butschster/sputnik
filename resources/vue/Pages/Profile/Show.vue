@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 class="mb-4">
-            Profile
+            {{ $t('user.profile.title') }}
         </h1>
 
         <div class="card">
@@ -10,10 +10,14 @@
                 <div class="ml-10 flex-1">
 
                     <h2>{{ user.name }}</h2>
-                    <div class="text-gray-700">Member since <strong>{{ user.created_at | moment("DD/MM/YYYY") }}</strong></div>
+                    <div class="text-gray-700">
+                        {{ $t('user.profile.member_since') }} <strong>{{ user.created_at | moment("DD/MM/YYYY") }}</strong>
+                    </div>
                 </div>
 
-                <button class="btn btn-default btn-dark">Edit profile</button>
+                <button class="btn btn-default btn-dark">
+                    {{ $t('user.profile.buttons.edit') }}
+                </button>
             </div>
         </div>
 
@@ -29,7 +33,6 @@
 
     export default {
         components: {SourceControls, Deactivate},
-
         computed: {
             ...mapGetters('auth', {
                 user: 'getUser',
