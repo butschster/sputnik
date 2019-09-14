@@ -2356,6 +2356,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
     title: 'Page not found'
@@ -56897,35 +56901,52 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "min-h-screen pt-4 md:pr-10 min-w-full max-w-5xl" },
+    {
+      staticClass:
+        "min-h-screen py-16 md:py-20 min-w-full flex flex-col justify-start"
+    },
     [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "flex mb-4 align-center" }, [
-        _vm._m(1),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "w-full md:w-1/2" },
-          [
-            _vm._m(2),
-            _vm._v(" "),
-            _c("p", { staticClass: "mb-5" }, [
-              _vm._v("We couldn't find any results for your search. Try again.")
-            ]),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { to: _vm.$link.servers() }
-              },
-              [_vm._v("\n                Check Updates\n            ")]
-            )
-          ],
-          1
-        )
-      ])
+      _c(
+        "div",
+        { staticClass: "py-12 flex-grow flex justify-between items-center" },
+        [
+          _c("div", { staticClass: "container mx-auto px-4" }, [
+            _c("div", { staticClass: "flex items-center flex-wrap" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "w-full md:w-1/2 pl-0 md:pl-4 mb-10 md:mb-0" },
+                [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "mb-8" }, [
+                    _vm._v(
+                      "We couldn't find any results for your search. Try again."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { to: _vm.$link.servers() }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Go Home\n                    "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ]
+      )
     ]
   )
 }
@@ -56936,23 +56957,35 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "a",
-      { staticClass: "logo block mb-6 mx-auto", attrs: { href: "#" } },
-      [_c("img", { attrs: { src: "img/core-img/logo.png", alt: "Logo" } })]
+      { staticClass: "w-full inline-block", attrs: { href: "#" } },
+      [
+        _c("img", {
+          staticClass: "mx-auto",
+          attrs: { src: "img/logo.png", alt: "Logo" }
+        })
+      ]
     )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-full md:w-1/2" }, [
-      _c("img", { attrs: { src: "img/bg-img/404.png", alt: "Image" } })
-    ])
+    return _c(
+      "div",
+      { staticClass: "w-full md:w-1/2 pr-0 md:pr-4 mb-10 md:mb-0" },
+      [
+        _c("img", {
+          staticClass: "max-w-2xl w-full mx-auto",
+          attrs: { src: "img/404.png", alt: "Image" }
+        })
+      ]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h2", { staticClass: "mb-4" }, [
+    return _c("h2", { staticClass: "mb-4 text-4xl font-bold" }, [
       _vm._v("OOPS! "),
       _c("br"),
       _vm._v("Page not found")
@@ -99123,8 +99156,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! c:\Users\hp\Downloads\OSPanel\domains\sputnik\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! c:\Users\hp\Downloads\OSPanel\domains\sputnik\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
