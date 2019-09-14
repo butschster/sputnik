@@ -3416,7 +3416,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3466,6 +3465,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10331,6 +10336,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -60296,7 +60302,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h1", [_vm._v("Teams")]),
+    _c("h1", [_vm._v(_vm._s(_vm.$t("user.team.list.title")))]),
     _vm._v(" "),
     _c(
       "div",
@@ -60391,7 +60397,11 @@ var render = function() {
                 _vm.team.is_trial_period
                   ? _c("span", { staticClass: "badge badge-warning" }, [
                       _vm._v(
-                        "\n                Trial ends at " +
+                        "\n                " +
+                          _vm._s(
+                            _vm.$t("user.team.subscription.trial_ends_at")
+                          ) +
+                          " " +
                           _vm._s(
                             _vm._f("moment")(
                               _vm.team.subscription.trial_ends_at,
@@ -60406,7 +60416,9 @@ var render = function() {
                 _vm.team.is_cancelled
                   ? _c("span", { staticClass: "badge badge-error ml-5" }, [
                       _vm._v(
-                        "\n                Subscription cancelled and ends at " +
+                        "\n                " +
+                          _vm._s(_vm.$t("user.team.subscription.ends_at")) +
+                          " " +
                           _vm._s(
                             _vm._f("moment")(
                               _vm.team.subscription.ends_at,
@@ -60429,7 +60441,13 @@ var render = function() {
                       staticClass: "tab",
                       attrs: { to: _vm.$link.profileTeam(_vm.team) }
                     },
-                    [_vm._v("Members")]
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("user.team.members.title")) +
+                          "\n            "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -60438,7 +60456,13 @@ var render = function() {
                       staticClass: "tab",
                       attrs: { to: _vm.$link.profileTeamSubscription(_vm.team) }
                     },
-                    [_vm._v("Subscription")]
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("user.team.subscription.title")) +
+                          "\n            "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -60447,7 +60471,13 @@ var render = function() {
                       staticClass: "tab",
                       attrs: { to: _vm.$link.profileTeamBilling(_vm.team) }
                     },
-                    [_vm._v("Billing")]
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("user.team.billing.title")) +
+                          "\n            "
+                      )
+                    ]
                   )
                 ],
                 1
@@ -65443,7 +65473,22 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "section flex items-center" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "flex-1" }, [
+      _c("div", { staticClass: "section-header" }, [
+        _vm._v(
+          "\n            " +
+            _vm._s(_vm.$t("user.profile.deactivate.title")) +
+            "\n            "
+        ),
+        _c("p", { staticClass: "text-gray-600" }, [
+          _vm._v(
+            "\n                " +
+              _vm._s(_vm.$t("user.profile.deactivate.description")) +
+              "\n            "
+          )
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -65454,12 +65499,22 @@ var render = function() {
             staticClass: "btn btn-danger-outline",
             on: { click: _vm.onDeactivate }
           },
-          [_vm._v("\n            Deactivate account\n        ")]
+          [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.$t("user.profile.deactivate.button")) +
+                "\n        "
+            )
+          ]
         ),
         _vm._v(" "),
         _c("Modal", { attrs: { name: "deactivate" } }, [
           _c("div", { staticClass: "modal__top" }, [
-            _vm._v("\n                Are you absolutely sure?\n            ")
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.$t("user.profile.deactivate.modal.title")) +
+                "\n            "
+            )
           ]),
           _vm._v(" "),
           _c(
@@ -65468,20 +65523,18 @@ var render = function() {
             [
               _c("p", { staticClass: "mb-3" }, [
                 _vm._v(
-                  "This action cannot be undone. This will permanently delete your account and remove\n                    all collaborator associations."
+                  _vm._s(_vm.$t("user.profile.deactivate.modal.description"))
                 )
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "mb-3" }, [
-                _vm._v("Please type in your "),
-                _c("strong", [_vm._v("Email address")]),
-                _vm._v(" to confirm.")
+                _vm._v(_vm._s(_vm.$t("user.profile.deactivate.modal.action")))
               ]),
               _vm._v(" "),
               _c("FormInput", {
                 staticClass: "w-full",
                 attrs: {
-                  label: "Email address",
+                  label: _vm.$t("user.profile.deactivate.modal.field"),
                   name: "email",
                   required: "",
                   autofocus: ""
@@ -65504,7 +65557,9 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                    I understand the consequences, continue\n                "
+                    "\n                    " +
+                      _vm._s(_vm.$t("user.profile.deactivate.modal.button")) +
+                      "\n                "
                   )
                 ]
               )
@@ -65517,23 +65572,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex-1" }, [
-      _c("div", { staticClass: "section-header" }, [
-        _vm._v("\n            Deactivate account\n            "),
-        _c("p", { staticClass: "text-gray-600" }, [
-          _vm._v(
-            "This will remove your account from all teams and disable your account."
-          )
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -65704,7 +65743,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "servers-list" }, [
-    _c("h4", [_vm._v("Active teams (" + _vm._s(_vm.teams.length) + ")")]),
+    _c("h4", [
+      _vm._v(
+        _vm._s(_vm.$t("user.team.list.active")) +
+          " (" +
+          _vm._s(_vm.teams.length) +
+          ")"
+      )
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -65757,7 +65803,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "user-block" }, [
-    _c("h2", [_vm._v("Members")]),
+    _c("h2", [_vm._v(_vm._s(_vm.$t("user.team.members.title")))]),
     _vm._v(" "),
     _c(
       "div",
@@ -96224,7 +96270,7 @@ module.exports = JSON.parse("{\"auth\":{\"failed\":\"These credentials do not ma
 /*! exports provided: auth, pagination, passwords, user, validation, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"auth\":{\"failed\":\"Имя пользователя и пароль не совпадают.\",\"throttle\":\"Слишком много попыток входа. Пожалуйста, попробуйте еще раз через :seconds секунд.\"},\"pagination\":{\"previous\":\"&laquo; Назад\",\"next\":\"Вперёд &raquo;\"},\"passwords\":{\"password\":\"Пароль должен быть не менее восьми символов и совпадать с подтверждением.\",\"reset\":\"Ваш пароль был сброшен!\",\"sent\":\"Ссылка на сброс пароля была отправлена!\",\"token\":\"Ошибочный код сброса пароля.\",\"user\":\"Не удалось найти пользователя с указанным электронным адресом.\"},\"user\":{\"menu\":{\"profile\":\"Профиль\",\"Teams\":\"Команды\"},\"profile\":{\"title\":\"Профиль\",\"member_since\":\"Зарегистрирован {{date}}\",\"deactivate\":\"Удалить аккаунт\",\"deactivate_description\":\"Это действие удалит ваш аккаунт и вашу команду\",\"buttons\":{\"edit\":\"Редактировать\",\"deactivate\":\"Удалить\"},\"source_control\":{\"title\":\"Системы контроля версии\",\"connected\":\"Подключеные\",\"available\":\"Доступные\",\"buttons\":{\"refresh\":\"Обновить токен\",\"unlink\":\"Отключить\"}}}},\"validation\":{\"accepted\":\"Вы должны принять :attribute.\",\"active_url\":\"Поле :attribute содержит недействительный URL.\",\"after\":\"В поле :attribute должна быть дата после :date.\",\"after_or_equal\":\"В поле :attribute должна быть дата после или равняться :date.\",\"alpha\":\"Поле :attribute может содержать только буквы.\",\"alpha_dash\":\"Поле :attribute может содержать только буквы, цифры, дефис и нижнее подчеркивание.\",\"alpha_num\":\"Поле :attribute может содержать только буквы и цифры.\",\"array\":\"Поле :attribute должно быть массивом.\",\"before\":\"В поле :attribute должна быть дата до :date.\",\"before_or_equal\":\"В поле :attribute должна быть дата до или равняться :date.\",\"between\":{\"numeric\":\"Поле :attribute должно быть между :min и :max.\",\"file\":\"Размер файла в поле :attribute должен быть между :min и :max Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть между :min и :max.\",\"array\":\"Количество элементов в поле :attribute должно быть между :min и :max.\"},\"boolean\":\"Поле :attribute должно иметь значение логического типа.\",\"confirmed\":\"Поле :attribute не совпадает с подтверждением.\",\"date\":\"Поле :attribute не является датой.\",\"date_equals\":\"Поле :attribute должно быть датой равной :date.\",\"date_format\":\"Поле :attribute не соответствует формату :format.\",\"different\":\"Поля :attribute и :other должны различаться.\",\"digits\":\"Длина цифрового поля :attribute должна быть :digits.\",\"digits_between\":\"Длина цифрового поля :attribute должна быть между :min и :max.\",\"dimensions\":\"Поле :attribute имеет недопустимые размеры изображения.\",\"distinct\":\"Поле :attribute содержит повторяющееся значение.\",\"email\":\"Поле :attribute должно быть действительным электронным адресом.\",\"ends_with\":\"Поле :attribute должно заканчиваться одним из следующих значений: :values\",\"exists\":\"Выбранное значение для :attribute некорректно.\",\"file\":\"Поле :attribute должно быть файлом.\",\"filled\":\"Поле :attribute обязательно для заполнения.\",\"gt\":{\"numeric\":\"Поле :attribute должно быть больше :value.\",\"file\":\"Размер файла в поле :attribute должен быть больше :value Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть больше :value.\",\"array\":\"Количество элементов в поле :attribute должно быть больше :value.\"},\"gte\":{\"numeric\":\"Поле :attribute должно быть больше или равно :value.\",\"file\":\"Размер файла в поле :attribute должен быть больше или равен :value Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть больше или равно :value.\",\"array\":\"Количество элементов в поле :attribute должно быть больше или равно :value.\"},\"image\":\"Поле :attribute должно быть изображением.\",\"in\":\"Выбранное значение для :attribute ошибочно.\",\"in_array\":\"Поле :attribute не существует в :other.\",\"integer\":\"Поле :attribute должно быть целым числом.\",\"ip\":\"Поле :attribute должно быть действительным IP-адресом.\",\"ipv4\":\"Поле :attribute должно быть действительным IPv4-адресом.\",\"ipv6\":\"Поле :attribute должно быть действительным IPv6-адресом.\",\"json\":\"Поле :attribute должно быть JSON строкой.\",\"lt\":{\"numeric\":\"Поле :attribute должно быть меньше :value.\",\"file\":\"Размер файла в поле :attribute должен быть меньше :value Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть меньше :value.\",\"array\":\"Количество элементов в поле :attribute должно быть меньше :value.\"},\"lte\":{\"numeric\":\"Поле :attribute должно быть меньше или равно :value.\",\"file\":\"Размер файла в поле :attribute должен быть меньше или равен :value Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть меньше или равно :value.\",\"array\":\"Количество элементов в поле :attribute должно быть меньше или равно :value.\"},\"max\":{\"numeric\":\"Поле :attribute не может быть более :max.\",\"file\":\"Размер файла в поле :attribute не может быть более :max Килобайт(а).\",\"string\":\"Количество символов в поле :attribute не может превышать :max.\",\"array\":\"Количество элементов в поле :attribute не может превышать :max.\"},\"mimes\":\"Поле :attribute должно быть файлом одного из следующих типов: :values.\",\"mimetypes\":\"Поле :attribute должно быть файлом одного из следующих типов: :values.\",\"min\":{\"numeric\":\"Поле :attribute должно быть не менее :min.\",\"file\":\"Размер файла в поле :attribute должен быть не менее :min Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть не менее :min.\",\"array\":\"Количество элементов в поле :attribute должно быть не менее :min.\"},\"not_in\":\"Выбранное значение для :attribute ошибочно.\",\"not_regex\":\"Выбранный формат для :attribute ошибочный.\",\"numeric\":\"Поле :attribute должно быть числом.\",\"present\":\"Поле :attribute должно присутствовать.\",\"regex\":\"Поле :attribute имеет ошибочный формат.\",\"required\":\"Поле :attribute обязательно для заполнения.\",\"required_if\":\"Поле :attribute обязательно для заполнения, когда :other равно :value.\",\"required_unless\":\"Поле :attribute обязательно для заполнения, когда :other не равно :values.\",\"required_with\":\"Поле :attribute обязательно для заполнения, когда :values указано.\",\"required_with_all\":\"Поле :attribute обязательно для заполнения, когда :values указано.\",\"required_without\":\"Поле :attribute обязательно для заполнения, когда :values не указано.\",\"required_without_all\":\"Поле :attribute обязательно для заполнения, когда ни одно из :values не указано.\",\"same\":\"Значения полей :attribute и :other должны совпадать.\",\"size\":{\"numeric\":\"Поле :attribute должно быть равным :size.\",\"file\":\"Размер файла в поле :attribute должен быть равен :size Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть равным :size.\",\"array\":\"Количество элементов в поле :attribute должно быть равным :size.\"},\"starts_with\":\"Поле :attribute должно начинаться из одного из следующих значений: :values\",\"string\":\"Поле :attribute должно быть строкой.\",\"timezone\":\"Поле :attribute должно быть действительным часовым поясом.\",\"unique\":\"Такое значение поля :attribute уже существует.\",\"uploaded\":\"Загрузка поля :attribute не удалась.\",\"url\":\"Поле :attribute имеет ошибочный формат.\",\"uuid\":\"Поле :attribute должно быть корректным UUID.\",\"custom\":{\"attribute-name\":{\"rule-name\":\"custom-message\"}},\"attributes\":{\"name\":\"Имя\",\"username\":\"Никнейм\",\"email\":\"E-Mail адрес\",\"first_name\":\"Имя\",\"last_name\":\"Фамилия\",\"password\":\"Пароль\",\"password_confirmation\":\"Подтверждение пароля\",\"city\":\"Город\",\"country\":\"Страна\",\"address\":\"Адрес\",\"phone\":\"Телефон\",\"mobile\":\"Моб. номер\",\"age\":\"Возраст\",\"sex\":\"Пол\",\"gender\":\"Пол\",\"day\":\"День\",\"month\":\"Месяц\",\"year\":\"Год\",\"hour\":\"Час\",\"minute\":\"Минута\",\"second\":\"Секунда\",\"title\":\"Наименование\",\"content\":\"Контент\",\"description\":\"Описание\",\"excerpt\":\"Выдержка\",\"date\":\"Дата\",\"time\":\"Время\",\"available\":\"Доступно\",\"size\":\"Размер\"}}}");
+module.exports = JSON.parse("{\"auth\":{\"failed\":\"Имя пользователя и пароль не совпадают.\",\"throttle\":\"Слишком много попыток входа. Пожалуйста, попробуйте еще раз через :seconds секунд.\"},\"pagination\":{\"previous\":\"&laquo; Назад\",\"next\":\"Вперёд &raquo;\"},\"passwords\":{\"password\":\"Пароль должен быть не менее восьми символов и совпадать с подтверждением.\",\"reset\":\"Ваш пароль был сброшен!\",\"sent\":\"Ссылка на сброс пароля была отправлена!\",\"token\":\"Ошибочный код сброса пароля.\",\"user\":\"Не удалось найти пользователя с указанным электронным адресом.\"},\"user\":{\"menu\":{\"profile\":\"Профиль\",\"Teams\":\"Команды\"},\"profile\":{\"title\":\"Профиль\",\"member_since\":\"Зарегистрирован\",\"deactivate\":{\"title\":\"Удалить аккаунт\",\"description\":\"Это действие не может быть отменено и удалит ваш аккаунт и вашу команду\",\"button\":\"Удалить\",\"modal\":{\"title\":\"Вы уверены?\",\"description\":\"Это действие не может быть отменено и удалит ваш аккаунт и вашу команду\",\"action\":\"Введите свой E-mail адрес для подтверждения\",\"field\":\"E-mail адрес\",\"button\":\"Я понимаю последствия, продолжить\"}},\"buttons\":{\"edit\":\"Редактировать\"},\"source_control\":{\"title\":\"Системы контроля версии\",\"connected\":\"Подключеные\",\"available\":\"Доступные\",\"buttons\":{\"refresh\":\"Обновить токен\",\"unlink\":\"Отключить\"}}},\"team\":{\"list\":{\"title\":\"Команды\",\"active\":\"Активные команды\"},\"title\":\"Команда\",\"members\":{\"title\":\"Участники\",\"status\":{\"owner\":\"Владелец\"}},\"billing\":{\"title\":\"Оплата\"},\"subscription\":{\"title\":\"Подписка\",\"trial_ends_at\":\"Триальный период заканчивается\",\"ends_at\":\"Подписка заканчивается\",\"available_plans\":\"Доступные планы\",\"cancel\":{\"title\":\"Отмена подписки\",\"description\":\"Вы всегда сможете активировать подписку снова\",\"button\":\"Отменить\",\"modal\":{\"title\":\"Вы уверены?\",\"description\":\"Вы всегда сможете активировать подписку снова\",\"buttons\":{\"yes\":\"Да\",\"no\":\"Нет\"}}}}}},\"validation\":{\"accepted\":\"Вы должны принять :attribute.\",\"active_url\":\"Поле :attribute содержит недействительный URL.\",\"after\":\"В поле :attribute должна быть дата после :date.\",\"after_or_equal\":\"В поле :attribute должна быть дата после или равняться :date.\",\"alpha\":\"Поле :attribute может содержать только буквы.\",\"alpha_dash\":\"Поле :attribute может содержать только буквы, цифры, дефис и нижнее подчеркивание.\",\"alpha_num\":\"Поле :attribute может содержать только буквы и цифры.\",\"array\":\"Поле :attribute должно быть массивом.\",\"before\":\"В поле :attribute должна быть дата до :date.\",\"before_or_equal\":\"В поле :attribute должна быть дата до или равняться :date.\",\"between\":{\"numeric\":\"Поле :attribute должно быть между :min и :max.\",\"file\":\"Размер файла в поле :attribute должен быть между :min и :max Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть между :min и :max.\",\"array\":\"Количество элементов в поле :attribute должно быть между :min и :max.\"},\"boolean\":\"Поле :attribute должно иметь значение логического типа.\",\"confirmed\":\"Поле :attribute не совпадает с подтверждением.\",\"date\":\"Поле :attribute не является датой.\",\"date_equals\":\"Поле :attribute должно быть датой равной :date.\",\"date_format\":\"Поле :attribute не соответствует формату :format.\",\"different\":\"Поля :attribute и :other должны различаться.\",\"digits\":\"Длина цифрового поля :attribute должна быть :digits.\",\"digits_between\":\"Длина цифрового поля :attribute должна быть между :min и :max.\",\"dimensions\":\"Поле :attribute имеет недопустимые размеры изображения.\",\"distinct\":\"Поле :attribute содержит повторяющееся значение.\",\"email\":\"Поле :attribute должно быть действительным электронным адресом.\",\"ends_with\":\"Поле :attribute должно заканчиваться одним из следующих значений: :values\",\"exists\":\"Выбранное значение для :attribute некорректно.\",\"file\":\"Поле :attribute должно быть файлом.\",\"filled\":\"Поле :attribute обязательно для заполнения.\",\"gt\":{\"numeric\":\"Поле :attribute должно быть больше :value.\",\"file\":\"Размер файла в поле :attribute должен быть больше :value Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть больше :value.\",\"array\":\"Количество элементов в поле :attribute должно быть больше :value.\"},\"gte\":{\"numeric\":\"Поле :attribute должно быть больше или равно :value.\",\"file\":\"Размер файла в поле :attribute должен быть больше или равен :value Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть больше или равно :value.\",\"array\":\"Количество элементов в поле :attribute должно быть больше или равно :value.\"},\"image\":\"Поле :attribute должно быть изображением.\",\"in\":\"Выбранное значение для :attribute ошибочно.\",\"in_array\":\"Поле :attribute не существует в :other.\",\"integer\":\"Поле :attribute должно быть целым числом.\",\"ip\":\"Поле :attribute должно быть действительным IP-адресом.\",\"ipv4\":\"Поле :attribute должно быть действительным IPv4-адресом.\",\"ipv6\":\"Поле :attribute должно быть действительным IPv6-адресом.\",\"json\":\"Поле :attribute должно быть JSON строкой.\",\"lt\":{\"numeric\":\"Поле :attribute должно быть меньше :value.\",\"file\":\"Размер файла в поле :attribute должен быть меньше :value Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть меньше :value.\",\"array\":\"Количество элементов в поле :attribute должно быть меньше :value.\"},\"lte\":{\"numeric\":\"Поле :attribute должно быть меньше или равно :value.\",\"file\":\"Размер файла в поле :attribute должен быть меньше или равен :value Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть меньше или равно :value.\",\"array\":\"Количество элементов в поле :attribute должно быть меньше или равно :value.\"},\"max\":{\"numeric\":\"Поле :attribute не может быть более :max.\",\"file\":\"Размер файла в поле :attribute не может быть более :max Килобайт(а).\",\"string\":\"Количество символов в поле :attribute не может превышать :max.\",\"array\":\"Количество элементов в поле :attribute не может превышать :max.\"},\"mimes\":\"Поле :attribute должно быть файлом одного из следующих типов: :values.\",\"mimetypes\":\"Поле :attribute должно быть файлом одного из следующих типов: :values.\",\"min\":{\"numeric\":\"Поле :attribute должно быть не менее :min.\",\"file\":\"Размер файла в поле :attribute должен быть не менее :min Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть не менее :min.\",\"array\":\"Количество элементов в поле :attribute должно быть не менее :min.\"},\"not_in\":\"Выбранное значение для :attribute ошибочно.\",\"not_regex\":\"Выбранный формат для :attribute ошибочный.\",\"numeric\":\"Поле :attribute должно быть числом.\",\"present\":\"Поле :attribute должно присутствовать.\",\"regex\":\"Поле :attribute имеет ошибочный формат.\",\"required\":\"Поле :attribute обязательно для заполнения.\",\"required_if\":\"Поле :attribute обязательно для заполнения, когда :other равно :value.\",\"required_unless\":\"Поле :attribute обязательно для заполнения, когда :other не равно :values.\",\"required_with\":\"Поле :attribute обязательно для заполнения, когда :values указано.\",\"required_with_all\":\"Поле :attribute обязательно для заполнения, когда :values указано.\",\"required_without\":\"Поле :attribute обязательно для заполнения, когда :values не указано.\",\"required_without_all\":\"Поле :attribute обязательно для заполнения, когда ни одно из :values не указано.\",\"same\":\"Значения полей :attribute и :other должны совпадать.\",\"size\":{\"numeric\":\"Поле :attribute должно быть равным :size.\",\"file\":\"Размер файла в поле :attribute должен быть равен :size Килобайт(а).\",\"string\":\"Количество символов в поле :attribute должно быть равным :size.\",\"array\":\"Количество элементов в поле :attribute должно быть равным :size.\"},\"starts_with\":\"Поле :attribute должно начинаться из одного из следующих значений: :values\",\"string\":\"Поле :attribute должно быть строкой.\",\"timezone\":\"Поле :attribute должно быть действительным часовым поясом.\",\"unique\":\"Такое значение поля :attribute уже существует.\",\"uploaded\":\"Загрузка поля :attribute не удалась.\",\"url\":\"Поле :attribute имеет ошибочный формат.\",\"uuid\":\"Поле :attribute должно быть корректным UUID.\",\"custom\":{\"attribute-name\":{\"rule-name\":\"custom-message\"}},\"attributes\":{\"name\":\"Имя\",\"username\":\"Никнейм\",\"email\":\"E-Mail адрес\",\"first_name\":\"Имя\",\"last_name\":\"Фамилия\",\"password\":\"Пароль\",\"password_confirmation\":\"Подтверждение пароля\",\"city\":\"Город\",\"country\":\"Страна\",\"address\":\"Адрес\",\"phone\":\"Телефон\",\"mobile\":\"Моб. номер\",\"age\":\"Возраст\",\"sex\":\"Пол\",\"gender\":\"Пол\",\"day\":\"День\",\"month\":\"Месяц\",\"year\":\"Год\",\"hour\":\"Час\",\"minute\":\"Минута\",\"second\":\"Секунда\",\"title\":\"Наименование\",\"content\":\"Контент\",\"description\":\"Описание\",\"excerpt\":\"Выдержка\",\"date\":\"Дата\",\"time\":\"Время\",\"available\":\"Доступно\",\"size\":\"Размер\"}}}");
 
 /***/ }),
 

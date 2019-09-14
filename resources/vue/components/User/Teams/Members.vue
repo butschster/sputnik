@@ -1,6 +1,6 @@
 <template>
     <div class="user-block">
-        <h2>Members</h2>
+        <h2>{{ $t('user.team.members.title') }}</h2>
 
         <div class="user-block__list">
             <Loader :loading="loading"/>
