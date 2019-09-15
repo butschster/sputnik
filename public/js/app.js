@@ -2286,6 +2286,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -2306,6 +2310,21 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -56287,7 +56306,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex-1 relative bg-gray-100" },
+        { staticClass: "relative bg-gray-100" },
         [
           _c("portal-target", { attrs: { name: "content-overlay" } }),
           _vm._v(" "),
@@ -56295,7 +56314,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "container py-10 px-12 m-auto" },
+            { staticClass: "container py-10 pl-12 " },
             [_c("Breadcrumbs"), _vm._v(" "), _c("router-view")],
             1
           )
@@ -56784,13 +56803,23 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "nav-link", attrs: { to: _vm.$link.profile() } },
-          [_vm._v("\n            Profile\n        ")]
+          [
+            _c("span", { staticClass: "w-8 inline-block" }, [
+              _c("i", { staticClass: "fas fa-key" })
+            ]),
+            _vm._v("\n            Profile\n        ")
+          ]
         ),
         _vm._v(" "),
         _c(
           "router-link",
           { staticClass: "nav-link", attrs: { to: _vm.$link.profileTeams() } },
-          [_vm._v("\n            Teams\n        ")]
+          [
+            _c("span", { staticClass: "w-8 inline-block" }, [
+              _c("i", { staticClass: "fas fa-chalkboard" })
+            ]),
+            _vm._v("\n            Teams\n        ")
+          ]
         )
       ],
       1
@@ -56833,7 +56862,12 @@ var render = function() {
                 staticClass: "nav-link",
                 attrs: { to: _vm.$link.serverUsers(_vm.server) }
               },
-              [_vm._v("Users")]
+              [
+                _c("span", { staticClass: "w-8 inline-block" }, [
+                  _c("i", { staticClass: "fas fa-server" })
+                ]),
+                _vm._v("Users\n        ")
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -56842,7 +56876,12 @@ var render = function() {
                 staticClass: "nav-link",
                 attrs: { to: _vm.$link.serverFirewall(_vm.server) }
               },
-              [_vm._v("Firewall")]
+              [
+                _c("span", { staticClass: "w-8 inline-block" }, [
+                  _c("i", { staticClass: "fas fa-globe" })
+                ]),
+                _vm._v("Firewall\n        ")
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -56851,7 +56890,12 @@ var render = function() {
                 staticClass: "nav-link",
                 attrs: { to: _vm.$link.serverScheduler(_vm.server) }
               },
-              [_vm._v("Scheduler")]
+              [
+                _c("span", { staticClass: "w-8 inline-block" }, [
+                  _c("i", { staticClass: "far fa-calendar-alt" })
+                ]),
+                _vm._v("Scheduler\n        ")
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -56860,7 +56904,12 @@ var render = function() {
                 staticClass: "nav-link",
                 attrs: { to: _vm.$link.serverSupervisor(_vm.server) }
               },
-              [_vm._v("Supervisor")]
+              [
+                _c("span", { staticClass: "w-8 inline-block" }, [
+                  _c("i", { staticClass: "far fa-chart-bar" })
+                ]),
+                _vm._v("Supervisor\n        ")
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -56869,7 +56918,12 @@ var render = function() {
                 staticClass: "nav-link",
                 attrs: { to: _vm.$link.serverDatabases(_vm.server) }
               },
-              [_vm._v("Database")]
+              [
+                _c("span", { staticClass: "w-8 inline-block" }, [
+                  _c("i", { staticClass: "fas fa-server" })
+                ]),
+                _vm._v("Database\n        ")
+              ]
             )
           ],
           1
@@ -56961,7 +57015,11 @@ var staticRenderFns = [
       [
         _c("img", {
           staticClass: "mx-auto",
-          attrs: { src: "img/logo.png", alt: "Logo" }
+          attrs: {
+            src:
+              "http://demo.designing-world.com/apland-4.2.0/img/core-img/logo.png",
+            alt: "Logo"
+          }
         })
       ]
     )
@@ -56976,7 +57034,11 @@ var staticRenderFns = [
       [
         _c("img", {
           staticClass: "max-w-2xl w-full mx-auto",
-          attrs: { src: "img/404.png", alt: "Image" }
+          attrs: {
+            src:
+              "http://demo.designing-world.com/apland-4.2.0/img/bg-img/404.png",
+            alt: "Image"
+          }
         })
       ]
     )
@@ -57594,6 +57656,7 @@ var render = function() {
       _vm.hasRules
         ? _c(
             "div",
+            { staticClass: "overflow-scroll" },
             [
               _c("h4", [
                 _vm._v(
@@ -57604,17 +57667,17 @@ var render = function() {
               _c("Loader", { attrs: { loading: _vm.loading } }),
               _vm._v(" "),
               _c("table", { staticClass: "table mb-10" }, [
-                _c("col"),
+                _c("col", { staticClass: "w-1/6" }),
                 _vm._v(" "),
-                _c("col", { staticClass: "w-48" }),
+                _c("col", { staticClass: "w-1/6" }),
                 _vm._v(" "),
-                _c("col", { staticClass: "w-48" }),
+                _c("col", { staticClass: "w-1/6" }),
                 _vm._v(" "),
-                _c("col", { staticClass: "w-48" }),
+                _c("col", { staticClass: "w-1/6" }),
                 _vm._v(" "),
-                _c("col", { staticClass: "w-48" }),
+                _c("col", { staticClass: "w-1/6" }),
                 _vm._v(" "),
-                _c("col", { staticClass: "w-32" }),
+                _c("col", { staticClass: "w-1/6" }),
                 _vm._v(" "),
                 _vm._m(0),
                 _vm._v(" "),
@@ -59571,7 +59634,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex" },
+        { staticClass: "flex flex-wrap" },
         [
           _c("FormInput", {
             staticClass: "flex-1 mr-8",
@@ -59949,7 +60012,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex" },
+        { staticClass: "flex flex-wrap" },
         [
           _c("FormInput", {
             staticClass: "mr-8",
@@ -59964,7 +60027,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("FormInput", {
-            staticClass: "flex-1 mr-8",
+            staticClass: "mr-8 flex-1",
             attrs: { label: "Command", name: "command", required: "" },
             model: {
               value: _vm.form.command,

@@ -63953,6 +63953,7 @@ readers do not read off random characters that represent icons */
   background-color: #fff;
   transition: all 0.2s linear;
   height: 3.5rem;
+  min-width: 150px;
 }
 
 .form-group .form-control:focus, .form-group .form-control:hover {
@@ -64168,23 +64169,23 @@ readers do not read off random characters that represent icons */
 
 .btn-default {
   color: #718096;
-  background-color: #a0aec0;
+  background-color: #edf2f7;
 }
 
 .btn-default-outline {
-  border: 1px solid #a0aec0;
-  color: #a0aec0;
+  border: 1px solid #edf2f7;
+  color: #edf2f7;
   background-color: #fff;
 }
 
 .btn-default-outline:not(:disabled):hover, .btn-default-outline:not(:disabled):focus {
-  background-color: #a0aec0;
+  background-color: #edf2f7;
   color: #fff !important;
 }
 
 .btn-default:not(:disabled):hover, .btn-default:not(:disabled):focus {
   color: #718096;
-  background-color: #8194ac;
+  background-color: #cad9e7;
 }
 
 .btn-success {
@@ -64402,7 +64403,7 @@ a.btn:hover, a.btn:focus {
 }
 
 .card-default {
-  border-color: #a0aec0;
+  border-color: #edf2f7;
 }
 
 .card-success {
@@ -64426,7 +64427,7 @@ a.card-primary:focus, a.card-primary:hover {
 }
 
 a.card-default:focus, a.card-default:hover {
-  box-shadow: 0px 0px 7px 0px #a0aec0;
+  box-shadow: 0px 0px 7px 0px #edf2f7;
 }
 
 a.card-success:focus, a.card-success:hover {
@@ -64586,16 +64587,18 @@ a.card-info:focus, a.card-info:hover {
   padding-bottom: 2rem;
   background-color: #2929FF;
   width: 250px;
+  min-width: 250px;
 }
 
 .sidebar h5 {
   text-transform: uppercase;
   margin-bottom: 0.5rem;
-  font-size: 0.875rem;
-  color: #a0aec0;
+  font-size: 0.75rem;
+  color: #cbd5e0;
   letter-spacing: 0.05em;
   padding-left: 2rem;
   padding-right: 2rem;
+  font-weight: 700;
 }
 
 .sidebar .nav a {
@@ -64879,7 +64882,7 @@ a.card-info:focus, a.card-info:hover {
 }
 
 .table {
-  width: 100%;
+  min-width: 100%;
   table-layout: fixed;
   border-width: 0;
   text-align: left;
@@ -64926,6 +64929,7 @@ a.card-info:focus, a.card-info:hover {
 .table tbody tr th, .table tbody tr td {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+  min-width: 10rem;
 }
 
 .table tbody tr th:first-child, .table tbody tr td:first-child {

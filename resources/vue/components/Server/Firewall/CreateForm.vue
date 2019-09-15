@@ -5,7 +5,7 @@
             Create a firewall rule
             <p>Enter a domain that you own below and start managing your DNS within your DigitalOcean account.</p>
         </div>
-        <div class="flex">
+        <div class="flex flex-wrap">
             <FormInput v-model="form.name" label="Name" name="name" class="flex-1 mr-8" required autofocus/>
             <FormInputNumber v-model="form.port" label="Port" name="port" class="mr-8 w-48" minlength="2" maxlength="4"
                              required/>
