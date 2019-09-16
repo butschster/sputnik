@@ -1,4 +1,5 @@
 import {api_route} from "@js/api/Router";
+import i18next from "i18next"
 
 const state = {
     user: null,
@@ -31,6 +32,8 @@ const actions = {
 const mutations = {
     setUser(state, user) {
         state.user = user
+
+        i18next.changeLanguage(user.lang)
     }
 }
 

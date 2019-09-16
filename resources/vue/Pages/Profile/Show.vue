@@ -14,10 +14,7 @@
                         {{ $t('user.profile.member_since') }} <strong>{{ user.created_at | moment("DD/MM/YYYY") }}</strong>
                     </div>
                 </div>
-
-                <button class="btn btn-default btn-dark">
-                    {{ $t('user.profile.buttons.edit') }}
-                </button>
+                <EditProfile />
             </div>
         </div>
 
@@ -27,12 +24,13 @@
 </template>
 
 <script>
+    import EditProfile from "@vue/components/User/Form/Edit"
     import {mapGetters} from 'vuex'
     import Deactivate from "@vue/components/User/Deactivate";
     import SourceControls from "@vue/components/User/SourceControls";
 
     export default {
-        components: {SourceControls, Deactivate},
+        components: {EditProfile, SourceControls, Deactivate},
         computed: {
             ...mapGetters('auth', {
                 user: 'getUser',
