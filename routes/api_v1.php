@@ -10,9 +10,10 @@ Route::middleware('auth')->group(function () {
     // User
     Route::get('profile', 'UserController@profile')->name('user.profile');
     Route::put('profile', 'UserController@update')->name('user.profile.update');
-    Route::get('profile/source-providers', 'User\SourceProvidersController@connected')->name('profile.source_providers');
-    Route::post('profile/source-provider/{provider}/unlink', 'User\SourceProvidersController@unlink')->name('profile.source_provider.unlink');
     Route::delete('profile', 'UserController@delete')->name('profile.delete');
+
+    Route::get('profile/source-providers', 'User\SourceProvidersController@connected')->name('profile.source_providers');
+    Route::delete('profile/source-provider/{provider}/unlink', 'User\SourceProvidersController@unlink')->name('profile.source_provider.unlink');
 
     // User notifications
     Route::get('profile/notifications', 'User\NotificationController@recent')->name('profile.notifications');
