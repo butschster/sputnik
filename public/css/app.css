@@ -64168,23 +64168,23 @@ readers do not read off random characters that represent icons */
 
 .btn-default {
   color: #718096;
-  background-color: #a0aec0;
+  background-color: #edf2f7;
 }
 
 .btn-default-outline {
-  border: 1px solid #a0aec0;
-  color: #a0aec0;
+  border: 1px solid #edf2f7;
+  color: #edf2f7;
   background-color: #fff;
 }
 
 .btn-default-outline:not(:disabled):hover, .btn-default-outline:not(:disabled):focus {
-  background-color: #a0aec0;
+  background-color: #edf2f7;
   color: #fff !important;
 }
 
 .btn-default:not(:disabled):hover, .btn-default:not(:disabled):focus {
   color: #718096;
-  background-color: #8194ac;
+  background-color: #cad9e7;
 }
 
 .btn-success {
@@ -64402,7 +64402,7 @@ a.btn:hover, a.btn:focus {
 }
 
 .card-default {
-  border-color: #a0aec0;
+  border-color: #edf2f7;
 }
 
 .card-success {
@@ -64426,7 +64426,7 @@ a.card-primary:focus, a.card-primary:hover {
 }
 
 a.card-default:focus, a.card-default:hover {
-  box-shadow: 0px 0px 7px 0px #a0aec0;
+  box-shadow: 0px 0px 7px 0px #edf2f7;
 }
 
 a.card-success:focus, a.card-success:hover {
@@ -64592,7 +64592,8 @@ a.card-info:focus, a.card-info:hover {
   text-transform: uppercase;
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
-  color: #a0aec0;
+  color: #A3A3FF;
+  font-weight: 500;
   letter-spacing: 0.05em;
   padding-left: 2rem;
   padding-right: 2rem;
