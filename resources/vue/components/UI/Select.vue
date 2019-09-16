@@ -1,5 +1,5 @@
 <template>
-    <div :dir="dir" class="v-select" :class="stateClasses">
+    <div class="v-select" :class="stateClasses">
         <div ref="toggle" @mousedown.prevent="toggleDropdown" class="vs__dropdown-toggle">
 
             <div class="vs__selected-options" ref="selectedOptions">
@@ -36,10 +36,6 @@
                 >
                     <i class="fas fa-times"></i>
                 </button>
-
-                <slot name="open-indicator" v-bind="scope.openIndicator">
-                     <i class="fas fa-chevron-down" v-if="!noDrop" v-bind="scope.openIndicator.attributes"></i>
-                </slot>
 
                 <slot name="spinner" v-bind="scope.spinner">
                     <div class="vs__spinner" v-show="mutableLoading">Loading...</div>
@@ -385,17 +381,6 @@
              */
             inputId: {
                 type: String
-            },
-
-            /**
-             * Sets RTL support. Accepts 'ltr', 'rtl', 'auto'.
-             * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir
-             * @type {String}
-             * @default 'auto'
-             */
-            dir: {
-                type: String,
-                default: 'auto'
             },
 
             /**
