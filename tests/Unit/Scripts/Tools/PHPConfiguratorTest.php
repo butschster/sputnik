@@ -158,18 +158,18 @@ class PHPConfigurationTest implements ServerConfiguration
         $this->version = $version;
     }
 
-    public function phpVersion(): string
+    public function phpVersion(): ?string
     {
         return $this->version;
     }
 
-    public function databaseType(): string{}
+    public function databaseType(): ?string{}
 
-    public function databasePassword(): string {}
+    public function databasePassword(): ?string {}
 
     public function databaseHosts(): array {}
 
-    public function webServerType(): string{}
+    public function webServerType(): ?string{}
 
     public function noSqlDatabases(): array{}
 

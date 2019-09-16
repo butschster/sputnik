@@ -51,13 +51,14 @@
                 loading: false,
                 teams: [],
                 form: {
+                    type: 'webserver',
                     name: 'Test server',
                     team_id: null,
                     ip: null,
                     ssh_port: 22,
                     php_version: null,
                     database_type: null,
-                    webserver_type: null
+                    webserver_type: null,
                 },
                 label: {
                     name: 'Name',
@@ -66,7 +67,7 @@
                     ssh_port: 'SSH port',
                     php_version: 'PHP version',
                     database_type: 'Database',
-                    webserver_type: 'Webserver'
+                    webserver_type: 'Webserver',
                 },
                 php_versions: [],
                 database_types: [],

@@ -10,7 +10,6 @@ use App\Events\Server\Deleted;
 use App\Events\Server\Failed;
 use App\Events\Server\StatusChanged;
 use App\Models\Concerns\DeterminesAge;
-use App\Models\Concerns\HasConfiguration;
 use App\Models\Concerns\HasKeyPair;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
@@ -23,6 +22,7 @@ use App\Models\Server\Site;
 use App\Models\Server\Task;
 use App\Models\Subscription\Plan;
 use App\Models\User\Team;
+use App\Services\Server\Configurations\Factory;
 use App\Utils\SSH\ValueObjects\SystemInformation;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -30,12 +30,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
-class Server extends Model implements ServerConfiguration
+class Server extends Model
 {
     use UsesUuid,
         DeterminesAge,
         HasTask,
-        HasConfiguration,
         HasKeyPair,
         Searchable;
 
@@ -59,7 +58,7 @@ class Server extends Model implements ServerConfiguration
     protected $hidden = [
         'private_key',
         'sudo_password',
-        'database_password',
+        'meta',
     ];
 
     /**
@@ -342,8 +341,14 @@ class Server extends Model implements ServerConfiguration
             'ip' => $this->ip,
             'user_id' => $this->user_id,
             'team_id' => $this->team_id,
-            'database_type' => $this->database_type,
-            'webserver_type' => $this->webserver_type,
         ];
+    }
+
+    /**
+     * @return ServerConfiguration
+     */
+    public function toConfiguration(): ServerConfiguration
+    {
+        return Factory::create($this);
     }
 }

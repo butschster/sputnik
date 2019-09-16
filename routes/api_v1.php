@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
         Route::post('server', 'ServerController@store')->name('server.store');
         Route::delete('server/{server}', 'ServerController@delete')->name('server.delete');
 
+        Route::get('servers/dictionaries/types', 'Server\ToolsDictionaryController@types')->name('servers.dictionaries.types');
         Route::get('servers/dictionaries/php-versions', 'Server\ToolsDictionaryController@phpVersions')->name('servers.dictionaries.php');
         Route::get('servers/dictionaries/database-types', 'Server\ToolsDictionaryController@databaseTypes')->name('servers.dictionaries.databases');
         Route::get('servers/dictionaries/webserver-types', 'Server\ToolsDictionaryController@webserverTypes')->name('servers.dictionaries.webservers');

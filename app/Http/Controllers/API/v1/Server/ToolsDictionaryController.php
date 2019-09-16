@@ -9,6 +9,21 @@ class ToolsDictionaryController extends Controller
     /**
      * @return array
      */
+    public function types(): array
+    {
+        $types = config('configurations.server_types', []);
+
+        return collect($types)->map(function (string $type) {
+            return [
+                'label' => trans('server.types.' . $type),
+                'value' => $type,
+            ];
+        });
+    }
+
+    /**
+     * @return array
+     */
     public function phpVersions(): array
     {
         return [

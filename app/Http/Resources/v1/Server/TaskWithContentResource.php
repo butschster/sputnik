@@ -3,7 +3,6 @@
 namespace App\Http\Resources\v1\Server;
 
 use App\Models\Server\Task;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @mixin Task

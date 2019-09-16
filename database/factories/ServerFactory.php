@@ -14,10 +14,11 @@ $factory->define(Server::class, function (Faker $faker) {
         'ip' => $faker->ipv4,
         'ssh_port' => 22,
         'sudo_password' => $faker->md5,
-        'meta' => [],
-        'php_version' => $faker->randomElement(config('configurations.php', [])),
-        'database_type' => $faker->randomElement(config('configurations.database', [])),
-        'database_password' => $faker->md5,
-        'webserver_type' => 'nginx'
+        'meta' => [
+            'php_version' => $faker->randomElement(config('configurations.php', [])),
+            'database_type' => $faker->randomElement(config('configurations.database', [])),
+            'database_password' => $faker->md5,
+            'webserver_type' => 'nginx'
+        ],
     ];
 });

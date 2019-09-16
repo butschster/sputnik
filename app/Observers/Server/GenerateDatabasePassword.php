@@ -12,6 +12,10 @@ class GenerateDatabasePassword
      */
     public function creating(Server $server): void
     {
-        $server->database_password = Str::random();
+        $meta = $server->meta;
+
+        $meta['database_password'] = Str::random();
+
+        $server->meta = $meta;
     }
 }

@@ -1,19 +1,34 @@
 <?php
 
-namespace App\Models\Concerns;
+namespace App\Services\Server\Configurations;
 
+use App\Contracts\Server\WebServerConfiguration;
+use App\Models\Server;
 use App\Utils\SSH\ValueObjects\PublicKey;
 
-trait HasConfiguration
+class WebServer implements WebServerConfiguration
 {
+    /**
+     * @var Server
+     */
+    protected $server;
+
+    /**
+     * @param Server $server
+     */
+    public function __construct(Server $server)
+    {
+        $this->server = $server;
+    }
+
     /**
      * Get PHP version
      *
      * @return string (56, 70, 71, 72, ....)
      */
-    public function phpVersion(): string
+    public function phpVersion(): ?string
     {
-        return $this->php_version;
+        return $this->server->meta['php_version'] ?? null;
     }
 
     /**
@@ -21,9 +36,9 @@ trait HasConfiguration
      *
      * @return string (mysql, mysql8, mariadb, pqsql)
      */
-    public function databaseType(): string
+    public function databaseType(): ?string
     {
-        return $this->database_type;
+        return $this->server->meta['database_type'] ?? null;
     }
 
     /**
@@ -31,9 +46,9 @@ trait HasConfiguration
      *
      * @return string
      */
-    public function databasePassword(): string
+    public function databasePassword(): ?string
     {
-        return $this->database_password;
+        return $this->server->meta['database_password'] ?? null;
     }
 
     /**
@@ -43,7 +58,7 @@ trait HasConfiguration
      */
     public function databaseHosts(): array
     {
-        return [$this->ip, 'localhost'];
+        return [$this->server->ip, 'localhost'];
     }
 
     /**
@@ -51,9 +66,9 @@ trait HasConfiguration
      *
      * @return string (nginx, caddy, apache)
      */
-    public function webServerType(): string
+    public function webServerType(): ?string
     {
-        return $this->webserver_type;
+        return $this->server->meta['webserver_type'] ?? null;
     }
 
     /**
@@ -74,7 +89,10 @@ trait HasConfiguration
      */
     public function publicKey(): PublicKey
     {
-        return new PublicKey($this->name, $this->public_key);
+        return new PublicKey(
+            $this->server->name,
+            $this->server->public_key
+        );
     }
 
     /**
@@ -84,7 +102,10 @@ trait HasConfiguration
      */
     public function systemUsers(): array
     {
-        return $this->users()->where('is_system', true)->get()->all();
+        return $this->server->users()
+            ->where('is_system', true)
+            ->get()
+            ->all();
     }
 
     /**
@@ -95,6 +116,6 @@ trait HasConfiguration
      */
     public function callbackUrl(string $message): string
     {
-        return callback_event($this->id, $message, 80, 10);
+        return callback_event($this->server->id, $message, 80, 10);
     }
 }

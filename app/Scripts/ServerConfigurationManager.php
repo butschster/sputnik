@@ -2,7 +2,7 @@
 
 namespace App\Scripts;
 
-use App\Contracts\Server\ServerConfiguration;
+use App\Contracts\Server\WebServerConfiguration;
 use App\Contracts\Server\ServerConfigurationManager as ServerConfigurationManagerContract;
 use App\Scripts\Tools\DatabaseConfigurator;
 use App\Scripts\Tools\PHPConfigurator;
@@ -11,14 +11,14 @@ use App\Scripts\Tools\WebServerConfigurator;
 class ServerConfigurationManager implements ServerConfigurationManagerContract
 {
     /**
-     * @var ServerConfiguration
+     * @var WebServerConfiguration
      */
     protected $configuration;
 
     /**
-     * @param ServerConfiguration $configuration
+     * @param WebServerConfiguration $configuration
      */
-    public function __construct(ServerConfiguration $configuration)
+    public function __construct(WebServerConfiguration $configuration)
     {
         $this->configuration = $configuration;
     }

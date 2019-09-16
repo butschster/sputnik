@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'server_types' => ['webserver', 'openvpn'],
     'os' => [
         'ubuntu' => ['18.04', '18.10', '19.04', '19.10'],
     ],

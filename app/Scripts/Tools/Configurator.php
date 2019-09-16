@@ -3,22 +3,29 @@
 namespace App\Scripts\Tools;
 
 use App\Exceptions\Scrpits\ConfigurationNotFoundException;
-use App\Contracts\Server\ServerConfiguration;
+use App\Models\Server;
 
 abstract class Configurator
 {
     /**
-     * @var ServerConfiguration
+     * @var Server
+     */
+    protected $server;
+
+    /**
+     * @var \App\Contracts\Server\ServerConfiguration
      */
     protected $configuration;
 
     /**
-     * @param ServerConfiguration $configuration
+     * @param Server $server
+     *
      * @throws ConfigurationNotFoundException
      */
-    public function __construct(ServerConfiguration $configuration)
+    public function __construct(Server $server)
     {
-        $this->configuration = $configuration;
+        $this->server = $server;
+        $this->configuration = $server->toConfiguration();
 
         $this->checkRequirements();
     }
@@ -77,7 +84,7 @@ abstract class Configurator
                 'config' => $this,
                 'server' => $this->configuration,
                 'users' => $this->configuration->systemUsers(),
-                'configurator' => server_configurator($this->configuration),
+                'configurator' => server_configurator($this->server),
             ]
         );
 
