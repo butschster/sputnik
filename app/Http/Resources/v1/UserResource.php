@@ -22,6 +22,7 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'lang' => $this->lang,
             'avatar' => 'https://icon-library.net/images/avatar-icon-images/avatar-icon-images-4.jpg',
             'roles' => $this->whenLoaded('roles', function() {
                 return RolesCollection::make($this->roles);

@@ -36,6 +36,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.10.1",
+        "@panter/vue-i18next": "^0.15.1",
         "@sentry/browser": "^5.6.3",
         "animatewithsass": "^3.2.1",
         "i18next": "^17.0.13",
@@ -45,6 +46,7 @@
         "pusher-js": "^5.0.0",
         "vue-clipboard2": "^0.3.0",
         "vue-i18n": "^8.14.0",
+        "vue-i18next": "^0.9.3",
         "vue-moment": "^4.0.0",
         "vue-select": "^3.1.0",
         "vue-simple-progress": "^1.1.0"

@@ -24,6 +24,8 @@ class UserProfileResource extends UserResource
     {
         return parent::toArray($request) + [
             'email' => $this->email,
+            'company' => $this->company,
+            'address' => $this->address,
             'teams' => TeamsCollection::make($this->rolesTeams),
             'team' => TeamResource::make($this->team),
             'has_active_subscription' => $this->hasActiveSubscription(),

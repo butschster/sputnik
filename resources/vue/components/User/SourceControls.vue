@@ -1,28 +1,28 @@
 <template>
     <section class="card">
         <div class="card-header">
-            Source Control
+            {{ $t('user.profile.source_control.title') }}
         </div>
         <Loader :loading="loading"/>
 
         <div class="section-body" v-if="hasConnected">
-            <h4>Connected</h4>
+            <h4>{{ $t('user.profile.source_control.connected') }}</h4>
 
             <div v-for="provider in connected" :key="provider.type" class="flex items-center mt-2 mb-10">
                 <div class="flex-1">
                     {{ provider.name }}
                 </div>
                 <a class="btn btn-primary-outline btn-sm mr-5" :href="provider.links.refresh" >
-                    <i class="fas fa-sync-alt"></i> Refresh token
+                    <i class="fas fa-sync-alt"></i> {{ $t('user.profile.source_control.buttons.refresh') }}
                 </a>
                 <button class="btn btn-danger-outline btn-sm" @click="unlink(provider)">
-                    <i class="fas fa-unlink"></i> Unlink
+                    <i class="fas fa-unlink"></i> {{ $t('user.profile.source_control.buttons.unlink') }}
                 </button>
             </div>
         </div>
 
         <div class="section-body" v-if="isAvailable">
-            <h4>Available connectors</h4>
+            <h4>{{ $t('user.profile.source_control.available') }}</h4>
 
             <a class="btn btn-primary-outline mr-5" :href="provider.links.connect" v-for="provider in available" :key="provider.type">
                 <i class="fab mr-1 fa-lg" :class="`${provider.icon}`"></i>

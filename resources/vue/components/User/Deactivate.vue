@@ -2,28 +2,29 @@
     <section class="section flex items-center">
         <div class="flex-1">
             <div class="section-header">
-                Deactivate account
-                <p class="text-gray-600">This will remove your account from all teams and disable your account.</p>
+                {{ $t('user.profile.deactivate.title') }}
+                <p class="text-gray-600">
+                    {{ $t('user.profile.deactivate.description') }}
+                </p>
             </div>
         </div>
         <div>
             <button class="btn btn-danger-outline" @click="onDeactivate">
-                Deactivate account
+                {{ $t('user.profile.deactivate.button') }}
             </button>
 
             <Modal name="deactivate">
                 <div class="modal__top">
-                    Are you absolutely sure?
+                    {{ $t('user.profile.deactivate.modal.title') }}
                 </div>
                 <div class="modal__content">
-                    <p class="mb-3">This action cannot be undone. This will permanently delete your account and remove
-                        all collaborator associations.</p>
+                    <p class="mb-3">{{ $t('user.profile.deactivate.modal.description') }}</p>
 
-                    <p class="mb-3">Please type in your <strong>Email address</strong> to confirm.</p>
+                    <p class="mb-3">{{ $t('user.profile.deactivate.modal.action') }}</p>
 
-                    <FormInput v-model="form.email" label="Email address" name="email" class="w-full" required autofocus/>
+                    <FormInput v-model="form.email" :label="$t('user.profile.deactivate.modal.field')" name="email" class="w-full" required autofocus/>
                     <button class="btn btn-danger-outline btn-block" :disabled="isDisabledButton" @click="deactivate">
-                        I understand the consequences, continue
+                        {{ $t('user.profile.deactivate.modal.button') }}
                     </button>
                 </div>
             </Modal>
