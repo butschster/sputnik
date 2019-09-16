@@ -4,10 +4,13 @@ namespace App\Services\Server\Configurations;
 
 use App\Contracts\Server\WebServerConfiguration;
 use App\Models\Server;
+use App\Utils\SSH\ValueObjects\PrivateKey;
 use App\Utils\SSH\ValueObjects\PublicKey;
 
 class WebServer implements WebServerConfiguration
 {
+    use BaseServerConfiguration;
+
     /**
      * @var Server
      */
@@ -80,42 +83,5 @@ class WebServer implements WebServerConfiguration
     public function noSqlDatabases(): array
     {
         return [];
-    }
-
-    /**
-     * Get public key
-     *
-     * @return PublicKey
-     */
-    public function publicKey(): PublicKey
-    {
-        return new PublicKey(
-            $this->server->name,
-            $this->server->public_key
-        );
-    }
-
-    /**
-     * Get available system users with root access
-     *
-     * @return array
-     */
-    public function systemUsers(): array
-    {
-        return $this->server->users()
-            ->where('is_system', true)
-            ->get()
-            ->all();
-    }
-
-    /**
-     * Get callback URL, which should be used to send message from remote server
-     *
-     * @param string $message
-     * @return string
-     */
-    public function callbackUrl(string $message): string
-    {
-        return callback_event($this->server->id, $message, 80, 10);
     }
 }

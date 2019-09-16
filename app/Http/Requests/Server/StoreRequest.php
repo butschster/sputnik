@@ -32,7 +32,7 @@ class StoreRequest extends FormRequest
             'name' => 'required|string',
             'team_id' => ['required', 'uuid', Rule::exists('teams', 'id')],
             'ip' => ['required', 'ipv4', Rule::unique('servers')],
-            'ssh_port' => 'nullable|digits_between:2,4',
+            'ssh_port' => 'nullable|digits_between:2,5',
             'sudo_password' => 'nullable|string',
             'php_version' => ['nullable', Rule::in(config('configurations.php', []))],
             'database_type' => ['nullable', Rule::in(config('configurations.database', []))],
@@ -48,6 +48,10 @@ class StoreRequest extends FormRequest
     {
         $validator->sometimes(['php_version', 'database_type', 'webserver_type'], ['required'], function ($input) {
             return $input->type == 'webserver';
+        });
+
+        $validator->sometimes('openvpn_port', ['nullable', 'digits_between:2,4'], function ($input) {
+            return $input->type == 'openvpn';
         });
     }
 
@@ -66,7 +70,7 @@ class StoreRequest extends FormRequest
             $this->failedAuthorization();
         }
 
-        $metaFields = ['php_version', 'database_type', 'webserver_type'];
+        $metaFields = ['php_version', 'database_type', 'webserver_type', 'openvpn_port'];
 
         $data = Arr::except($this->validated(), $metaFields);
         $data['meta'] = Arr::only($this->validated(), $metaFields);

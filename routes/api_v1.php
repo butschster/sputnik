@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
         Route::get('servers/search', 'ServerController@search')->name('servers.search');
         Route::get('servers', 'ServerController@index')->name('servers');
         Route::get('server/{server}', 'ServerController@show')->name('server.show');
+        Route::get('server/{server}/install-script', 'ServerController@installScript')->name('server.install_script');
         Route::put('server/{server}', 'ServerController@update')->name('server.update');
         Route::post('server', 'ServerController@store')->name('server.store');
         Route::delete('server/{server}', 'ServerController@delete')->name('server.delete');

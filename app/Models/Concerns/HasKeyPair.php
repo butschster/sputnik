@@ -4,6 +4,7 @@ namespace App\Models\Concerns;
 
 use App\Utils\SSH\ValueObjects\KeyPair;
 use App\Utils\SSH\ValueObjects\PrivateKey;
+use App\Utils\SSH\ValueObjects\PublicKey;
 
 trait HasKeyPair
 {
@@ -37,5 +38,18 @@ trait HasKeyPair
     public function privateKey(): PrivateKey
     {
         return new PrivateKey($this->id, $this->private_key);
+    }
+
+    /**
+     * Get public key
+     *
+     * @return PublicKey
+     */
+    public function publicKey(): PublicKey
+    {
+        return new PublicKey(
+            $this->name,
+            $this->public_key
+        );
     }
 }

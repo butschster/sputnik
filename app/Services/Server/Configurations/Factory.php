@@ -18,6 +18,8 @@ class Factory
         switch ($server->type) {
             case 'webserver':
                 return new WebServer($server);
+            case 'openvpn':
+                return new OpenVPN($server);
         }
 
         throw new ConfigurationException('Configuration for given type not found');

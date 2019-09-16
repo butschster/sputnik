@@ -2,8 +2,8 @@
 
 namespace App\Scripts;
 
-use App\Contracts\Server\WebServerConfiguration;
 use App\Contracts\Server\ServerConfigurationManager as ServerConfigurationManagerContract;
+use App\Models\Server;
 use App\Scripts\Tools\DatabaseConfigurator;
 use App\Scripts\Tools\PHPConfigurator;
 use App\Scripts\Tools\WebServerConfigurator;
@@ -11,16 +11,16 @@ use App\Scripts\Tools\WebServerConfigurator;
 class ServerConfigurationManager implements ServerConfigurationManagerContract
 {
     /**
-     * @var WebServerConfiguration
+     * @var Server
      */
-    protected $configuration;
+    protected $server;
 
     /**
-     * @param WebServerConfiguration $configuration
+     * @param Server $server
      */
-    public function __construct(WebServerConfiguration $configuration)
+    public function __construct(Server $server)
     {
-        $this->configuration = $configuration;
+        $this->server = $server;
     }
 
     /**
@@ -30,7 +30,7 @@ class ServerConfigurationManager implements ServerConfigurationManagerContract
      */
     public function systemUsers(): array
     {
-        return $this->configuration->systemUsers();
+        return $this->server->toConfiguration()->systemUsers();
     }
 
     /**
@@ -42,7 +42,7 @@ class ServerConfigurationManager implements ServerConfigurationManagerContract
     public function php(): PHPConfigurator
     {
         return new PHPConfigurator(
-            $this->configuration
+            $this->server
         );
     }
 
@@ -55,7 +55,7 @@ class ServerConfigurationManager implements ServerConfigurationManagerContract
     public function webserver(): WebServerConfigurator
     {
         return new WebServerConfigurator(
-            $this->configuration
+            $this->server
         );
     }
 
@@ -68,7 +68,7 @@ class ServerConfigurationManager implements ServerConfigurationManagerContract
     public function database(): DatabaseConfigurator
     {
         return new DatabaseConfigurator(
-            $this->configuration
+            $this->server
         );
     }
 }

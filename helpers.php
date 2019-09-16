@@ -1,6 +1,5 @@
 <?php
 
-use App\Contracts\Server\WebServerConfiguration;
 use App\Models\Server;
 use App\Scripts\ServerConfigurationManager;
 
@@ -55,7 +54,5 @@ function callback_event(string $serverId, string $message, int $progress = 0): s
  */
 function server_configurator(Server $server): ServerConfigurationManager
 {
-    return new ServerConfigurationManager(
-        $server->toConfiguration()
-    );
+    return new ServerConfigurationManager($server);
 }

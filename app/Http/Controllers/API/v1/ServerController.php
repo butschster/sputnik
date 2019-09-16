@@ -9,6 +9,7 @@ use App\Http\Requests\Server\UpdateRequest;
 use App\Http\Resources\v1\ServerCollection;
 use App\Http\Resources\v1\ServerResource;
 use App\Models\Server;
+use App\Scripts\Server\Configure;
 use Illuminate\Http\Request;
 
 class ServerController extends Controller
@@ -76,6 +77,18 @@ class ServerController extends Controller
 
     /**
      * @param Server $server
+     * @return Configure
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function installScript(Server $server)
+    {
+        $this->authorize('show', $server);
+
+        return new Configure($server);
+    }
+
+    /**
+     * @param Server $server
      *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -83,6 +96,8 @@ class ServerController extends Controller
     public function delete(Server $server)
     {
         $this->authorize('delete', $server);
+
+        $server->delete();
 
         return $this->responseDeleted();
     }

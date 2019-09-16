@@ -15,10 +15,17 @@ class CreateHttpFirewallRules
     /**
      * @var array
      */
-    protected $rules = [
+    protected $webserverRules = [
         ['name' => 'SSH', 'port' => 22, 'policy' => 'allow', 'editable' => false],
         ['name' => 'HTTP', 'port' => 80, 'policy' => 'allow'],
         ['name' => 'HTTPS', 'port' => 443, 'policy' => 'allow'],
+    ];
+
+    /**
+     * @var array
+     */
+    protected $openVPNRules = [
+        ['name' => 'SSH', 'port' => 22, 'policy' => 'allow', 'editable' => false],
     ];
 
     /**
@@ -34,7 +41,18 @@ class CreateHttpFirewallRules
      */
     public function handle(Configured $event): void
     {
-        foreach ($this->rules as $rule) {
+        $rules = [];
+        switch ($event->server->type) {
+            case 'webserver':
+                $rules = $this->webserverRules;
+                break;
+            case 'openvpn':
+                $rules = $this->openVPNRules;
+                $rules[] = ['name' => 'OpenVPN', 'port' => $event->server->toConfiguration()->port(), 'policy' => 'allow', 'editable' => false];
+                break;
+        }
+
+        foreach ($rules as $rule) {
             $event->server->firewallRules()->create($rule);
         }
     }

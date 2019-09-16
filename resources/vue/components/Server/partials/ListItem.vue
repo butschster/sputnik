@@ -7,6 +7,10 @@
             <div class="servers-list-item__address">{{ server.ip }}</div>
         </div>
 
+        <div class="mr-5">
+            <span class="badge">{{ $t(`server.types.${server.type}`) }}</span>
+        </div>
+
         <div class="servers-list-item__project mr-5">
             <span class="badge badge-primary">{{ server.team.name }}</span>
         </div>

@@ -4,6 +4,9 @@ namespace App\Console\Commands\Javascript;
 
 use App\Services\LocalesJavascriptGenerator;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class LocalesJavascriptCommand extends Command
 {
@@ -12,7 +15,7 @@ class LocalesJavascriptCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'locale:javascript {lang}';
+    protected $signature = 'locale:javascript';
 
     /**
      * The console command description.
@@ -23,18 +26,17 @@ class LocalesJavascriptCommand extends Command
 
     /**
      * @param LocalesJavascriptGenerator $generator
-     * @return int
      */
     public function handle(LocalesJavascriptGenerator $generator)
     {
-        if ($generator->make($this->argument('lang'))) {
-            $this->info("Locales file created");
+        foreach (File::directories(resource_path('lang')) as $directory) {
+            $lang = pathinfo($directory, PATHINFO_BASENAME);
 
-            return 0;
+            $generator->make(
+                $lang
+            );
+
+            $this->info(sprintf('Lang file for [%s] locale successfully generated', $lang));
         }
-
-        $this->error("Could not create locales file");
-
-        return 1;
     }
 }

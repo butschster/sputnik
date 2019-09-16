@@ -178,15 +178,12 @@ namespace App\Models{
  * @property string $user_id
  * @property string $team_id
  * @property string $name
+ * @property string $type
  * @property string $ip
  * @property int $ssh_port
  * @property string|null $sudo_password
  * @property array|null $meta
  * @property array|null $os_information
- * @property string $php_version
- * @property string|null $database_type
- * @property string $database_password
- * @property string|null $webserver_type
  * @property string $public_key
  * @property string $private_key
  * @property string $status
@@ -221,23 +218,20 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereConfiguringJobDispatchedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereDatabasePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereDatabaseType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereIp($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereMeta($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereOsInformation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server wherePhpVersion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server wherePrivateKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server wherePublicKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereSshPort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereSudoPassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereTeamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereWebserverType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server withMonitoring()
  */
 	class Server extends \Eloquent {}
@@ -643,7 +637,6 @@ namespace App\Models\Subscription{
  * @property bool $is_active
  * @property float $price
  * @property string $currency
- * @property int $trial_period
  * @property int $sort_order
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -661,7 +654,6 @@ namespace App\Models\Subscription{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereSortOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereTrialPeriod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan withCacheCooldownSeconds($seconds = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan withMonitoring()
@@ -736,7 +728,10 @@ namespace App\Models{
  *
  * @property string $id
  * @property string $name
+ * @property string|null $company
+ * @property string|null $address
  * @property string $email
+ * @property string $lang
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
@@ -754,6 +749,8 @@ namespace App\Models{
  * @property-read int|null $roles_teams_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server[] $servers
  * @property-read int|null $servers_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Site[] $sites
+ * @property-read int|null $sites_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\SourceProvider[] $sourceProviders
  * @property-read int|null $source_providers_count
  * @property-read \App\Models\User\Team $team
@@ -764,10 +761,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User orWherePermissionIs($permission = '')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User orWhereRoleIs($role = '', $team = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCompany($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLang($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePermissionIs($permission = '', $boolean = 'and')

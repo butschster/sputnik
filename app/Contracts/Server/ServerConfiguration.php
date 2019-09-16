@@ -2,6 +2,7 @@
 
 namespace App\Contracts\Server;
 
+use App\Utils\SSH\ValueObjects\PrivateKey;
 use App\Utils\SSH\ValueObjects\PublicKey;
 
 interface ServerConfiguration
@@ -19,6 +20,13 @@ interface ServerConfiguration
      * @return PublicKey
      */
     public function publicKey(): PublicKey;
+
+    /**
+     * Get private key
+     *
+     * @return PrivateKey
+     */
+    public function privateKey(): PrivateKey;
 
     /**
      * Get callback URL, which should be used to send message from remote server

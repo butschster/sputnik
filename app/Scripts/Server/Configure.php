@@ -27,7 +27,7 @@ class Configure extends Script
      */
     public function getName(): string
     {
-        return "Configuring server [{$this->server->name}]";
+        return "Configuring {$this->server->type} server [{$this->server->name}]";
     }
 
     /**
@@ -38,13 +38,10 @@ class Configure extends Script
      */
     public function getScript(): string
     {
-        $configurator = server_configurator($this->server);
-
-        return view('scripts.server.configure', [
+        return view('scripts.server.configuration.'.$this->server->type, [
             'script' => $this,
-            'users' => $configurator->systemUsers(),
             'server' => $this->server,
-            'configurator' => $configurator
+            'configuration' => $this->server->toConfiguration(),
         ])->render();
     }
 }
