@@ -85,6 +85,21 @@
             @include fadeOutUp();
         }
     }
+
+    &-social {
+        @apply  text-gray-800 border text-gray-700 px-2 text-base py-1;
+        min-width: 120px;
+
+        i {
+           @apply inline-block mr-3 text-2xl;
+        }
+
+        &:hover {
+            @apply border-indigo-500 shadow-md;
+            color: $color-indigo-700!important;
+        }
+
+    }
 }
 
 a.btn {
@@ -93,3 +108,5 @@ a.btn {
         @apply text-white;
     }
 }
+
+

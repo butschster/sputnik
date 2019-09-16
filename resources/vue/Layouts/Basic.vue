@@ -14,7 +14,7 @@
                 <ServerSidebar />
                 <AccountSidebar />
             </aside>
-            <div class="relative bg-gray-100">
+            <div class="relative bg-gray-100 w-full">
                 <portal-target name="content-overlay"></portal-target>
                 <Navbar />
                 <div class="container py-10 pl-12 ">

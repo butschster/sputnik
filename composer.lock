@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac535712b25199f9dfd7af2d604725db",
+    "content-hash": "8e65bf71e856ce00291ede581debff2c",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -2857,16 +2857,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.21",
+            "version": "2.0.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "9f1287e68b3f283339a9f98f67515dd619e5bf9d"
+                "reference": "cbddb5244edff6d2599977f1a1e4c8657f292e7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/9f1287e68b3f283339a9f98f67515dd619e5bf9d",
-                "reference": "9f1287e68b3f283339a9f98f67515dd619e5bf9d",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/cbddb5244edff6d2599977f1a1e4c8657f292e7c",
+                "reference": "cbddb5244edff6d2599977f1a1e4c8657f292e7c",
                 "shasum": ""
             },
             "require": {
@@ -2900,28 +2900,28 @@
             "authors": [
                 {
                     "name": "Jim Wigginton",
-                    "role": "Lead Developer",
-                    "email": "terrafrost@php.net"
+                    "email": "terrafrost@php.net",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Patrick Monnerat",
-                    "role": "Developer",
-                    "email": "pm@datasphere.ch"
+                    "email": "pm@datasphere.ch",
+                    "role": "Developer"
                 },
                 {
                     "name": "Andreas Fischer",
-                    "role": "Developer",
-                    "email": "bantu@phpbb.com"
+                    "email": "bantu@phpbb.com",
+                    "role": "Developer"
                 },
                 {
                     "name": "Hans-Jürgen Petrich",
-                    "role": "Developer",
-                    "email": "petrich@tronic-media.com"
+                    "email": "petrich@tronic-media.com",
+                    "role": "Developer"
                 },
                 {
                     "name": "Graham Campbell",
-                    "role": "Developer",
-                    "email": "graham@alt-three.com"
+                    "email": "graham@alt-three.com",
+                    "role": "Developer"
                 }
             ],
             "description": "PHP Secure Communications Library - Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc.",
@@ -2945,7 +2945,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2019-07-12T12:53:49+00:00"
+            "time": "2019-09-15T22:48:44+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -3595,6 +3595,75 @@
             "time": "2018-07-03T12:46:23+00:00"
         },
         {
+            "name": "rollerworks/password-strength-validator",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rollerworks/PasswordStrengthValidator.git",
+                "reference": "0302937c5275ceabf2b23f019a1150e8027e25e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rollerworks/PasswordStrengthValidator/zipball/0302937c5275ceabf2b23f019a1150e8027e25e0",
+                "reference": "0302937c5275ceabf2b23f019a1150e8027e25e0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "psr/container": "^1.0",
+                "psr/log": "^1.0",
+                "symfony/polyfill-mbstring": "^1.5.0",
+                "symfony/translation": "^3.4.22 || ^4.0",
+                "symfony/validator": "^3.4.22 || ^4.0"
+            },
+            "require-dev": {
+                "guzzlehttp/psr7": "^1.4",
+                "php-http/httplug": "^1.1",
+                "symfony/config": "^3.4.22 || ^4.0",
+                "symfony/console": "^3.4.22 || ^4.0",
+                "symfony/phpunit-bridge": "^3.4.22 || ^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rollerworks\\Component\\PasswordStrength\\": "src/"
+                },
+                "exclude-from-classmap": [
+                    "test/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastiaan Stok",
+                    "email": "s.stok@rollercapes.net"
+                },
+                {
+                    "name": "Luis Cordova",
+                    "email": "cordoval@gmail.com"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/rollerworks/PasswordStrengthValidator/contributors"
+                }
+            ],
+            "description": "Password-strength validator for Symfony",
+            "keywords": [
+                "password",
+                "symfony",
+                "validator"
+            ],
+            "time": "2019-05-24T09:08:29+00:00"
+        },
+        {
             "name": "sabberworm/php-css-parser",
             "version": "8.3.0",
             "source": {
@@ -3641,16 +3710,16 @@
         },
         {
             "name": "santigarcor/laratrust",
-            "version": "5.2.3",
+            "version": "5.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/santigarcor/laratrust.git",
-                "reference": "ee06bbb21c18b9262f174eaa1337bc1344a4b0f0"
+                "reference": "43d2354b149485731a9214014baf3421a6a56b9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/santigarcor/laratrust/zipball/ee06bbb21c18b9262f174eaa1337bc1344a4b0f0",
-                "reference": "ee06bbb21c18b9262f174eaa1337bc1344a4b0f0",
+                "url": "https://api.github.com/repos/santigarcor/laratrust/zipball/43d2354b149485731a9214014baf3421a6a56b9a",
+                "reference": "43d2354b149485731a9214014baf3421a6a56b9a",
                 "shasum": ""
             },
             "require": {
@@ -3702,7 +3771,7 @@
                 "rbac",
                 "roles"
             ],
-            "time": "2019-09-03T14:11:14+00:00"
+            "time": "2019-09-16T15:50:06+00:00"
         },
         {
             "name": "stripe/stripe-php",
@@ -5253,6 +5322,99 @@
                 "standards"
             ],
             "time": "2019-08-02T12:15:04+00:00"
+        },
+        {
+            "name": "symfony/validator",
+            "version": "v4.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/validator.git",
+                "reference": "173b483999c2acad8e040633105733318dcc8a83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/173b483999c2acad8e040633105733318dcc8a83",
+                "reference": "173b483999c2acad8e040633105733318dcc8a83",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-mbstring": "~1.0",
+                "symfony/translation-contracts": "^1.1"
+            },
+            "conflict": {
+                "doctrine/lexer": "<1.0.2",
+                "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0",
+                "symfony/dependency-injection": "<3.4",
+                "symfony/http-kernel": "<3.4",
+                "symfony/intl": "<4.3",
+                "symfony/translation": "<4.2",
+                "symfony/yaml": "<3.4"
+            },
+            "require-dev": {
+                "doctrine/annotations": "~1.7",
+                "doctrine/cache": "~1.0",
+                "egulias/email-validator": "^2.1.10",
+                "symfony/cache": "~3.4|~4.0",
+                "symfony/config": "~3.4|~4.0",
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/expression-language": "~3.4|~4.0",
+                "symfony/http-client": "^4.3",
+                "symfony/http-foundation": "~4.1",
+                "symfony/http-kernel": "~3.4|~4.0",
+                "symfony/intl": "^4.3",
+                "symfony/property-access": "~3.4|~4.0",
+                "symfony/property-info": "~3.4|~4.0",
+                "symfony/translation": "~4.2",
+                "symfony/var-dumper": "~3.4|~4.0",
+                "symfony/yaml": "~3.4|~4.0"
+            },
+            "suggest": {
+                "doctrine/annotations": "For using the annotation mapping. You will also need doctrine/cache.",
+                "doctrine/cache": "For using the default cached annotation reader and metadata cache.",
+                "egulias/email-validator": "Strict (RFC compliant) email validation",
+                "psr/cache-implementation": "For using the metadata cache.",
+                "symfony/config": "",
+                "symfony/expression-language": "For using the Expression validator",
+                "symfony/http-foundation": "",
+                "symfony/intl": "",
+                "symfony/property-access": "For accessing properties within comparison constraints",
+                "symfony/property-info": "To automatically add NotNull and Type constraints",
+                "symfony/translation": "For translating validation errors.",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Validator\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Validator Component",
+            "homepage": "https://symfony.com",
+            "time": "2019-08-26T09:28:48+00:00"
         },
         {
             "name": "symfony/var-dumper",

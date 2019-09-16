@@ -9,7 +9,7 @@
         window.user = @json($user)
     </script>
 </head>
-<body>
+<body class='bg-gray-100'>
 @csrf
 <div id="app">
     <router-view></router-view>

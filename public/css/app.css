@@ -64148,23 +64148,23 @@ readers do not read off random characters that represent icons */
 
 .btn-primary {
   color: #fff;
-  background-color: #4299e1;
+  background-color: #5252FF;
 }
 
 .btn-primary-outline {
-  border: 1px solid #4299e1;
-  color: #4299e1;
+  border: 1px solid #5252FF;
+  color: #5252FF;
   background-color: #fff;
 }
 
 .btn-primary-outline:not(:disabled):hover, .btn-primary-outline:not(:disabled):focus {
-  background-color: #4299e1;
+  background-color: #5252FF;
   color: #fff !important;
 }
 
 .btn-primary:not(:disabled):hover, .btn-primary:not(:disabled):focus {
   color: #fff;
-  background-color: #2180cf;
+  background-color: #1f1fff;
 }
 
 .btn-default {
@@ -64372,6 +64372,30 @@ readers do not read off random characters that represent icons */
   backface-visibility: hidden;
 }
 
+.btn-social {
+  color: #2d3748;
+  border-width: 1px;
+  color: #4a5568;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-size: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  min-width: 120px;
+}
+
+.btn-social i {
+  display: inline-block;
+  margin-right: 0.75rem;
+  font-size: 1.5rem;
+}
+
+.btn-social:hover {
+  border-color: #667eea;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  color: #4c51bf !important;
+}
+
 a.btn:hover, a.btn:focus {
   color: #fff;
 }
@@ -64399,7 +64423,7 @@ a.btn:hover, a.btn:focus {
 }
 
 .card-primary {
-  border-color: #4299e1;
+  border-color: #5252FF;
 }
 
 .card-default {
@@ -64423,7 +64447,7 @@ a.btn:hover, a.btn:focus {
 }
 
 a.card-primary:focus, a.card-primary:hover {
-  box-shadow: 0px 0px 7px 0px #4299e1;
+  box-shadow: 0px 0px 7px 0px #5252FF;
 }
 
 a.card-default:focus, a.card-default:hover {
@@ -64474,7 +64498,7 @@ a.card-info:focus, a.card-info:hover {
 
 .servers-list-item-wrapper:hover {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border-left-color: #4299e1;
+  border-left-color: #5252FF;
 }
 
 .servers-list-item__status {
@@ -64483,7 +64507,7 @@ a.card-info:focus, a.card-info:hover {
   width: 45px;
   height: 45px;
   position: relative;
-  border-color: #63b3ed;
+  border-color: #7A7AFF;
 }
 
 .servers-list-item__status .icon {
@@ -64492,7 +64516,7 @@ a.card-info:focus, a.card-info:hover {
   top: 8px;
   left: 8px;
   font-size: 25px;
-  color: #63b3ed;
+  color: #7A7AFF;
 }
 
 .servers-list-item__name {
@@ -64593,12 +64617,12 @@ a.card-info:focus, a.card-info:hover {
 .sidebar h5 {
   text-transform: uppercase;
   margin-bottom: 0.5rem;
-  font-size: 0.75rem;
-  color: #cbd5e0;
+  font-size: 0.875rem;
+  color: #A3A3FF;
+  font-weight: 500;
   letter-spacing: 0.05em;
   padding-left: 2rem;
   padding-right: 2rem;
-  font-weight: 700;
 }
 
 .sidebar .nav a {
@@ -65047,7 +65071,7 @@ a.card-info:focus, a.card-info:hover {
   padding-bottom: 2rem;
   padding-left: 3rem;
   padding-right: 3rem;
-  background: linear-gradient(to right, #3182ce, #2a4365);
+  background: linear-gradient(to right, #2929FF, #000085);
 }
 
 .modal__content {
@@ -65266,13 +65290,13 @@ a.card-info:focus, a.card-info:hover {
 }
 
 .badge-info {
-  background-color: #2a4365;
+  background-color: #000085;
   color: #fff;
 }
 
 .badge-info-outline {
-  border: 1px solid #2a4365;
-  color: #2a4365;
+  border: 1px solid #000085;
+  color: #000085;
   background-color: #fff;
 }
 

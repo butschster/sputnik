@@ -1,14 +1,19 @@
-// import Vue from 'vue'
-// import i18n from 'i18next'
-//
-// i18n.init({
-//     lng: window.settings.locale,
-//     fallbackLng: 'en',
-//     defaultNS: 'core',
-//     ns: 'core',
-//     nsSeparator: '::',
-//     resources: {
-//         en: require('../../../lang/en.json'),
-//     }
-// })
-//
+import Vue from "vue"
+import VueI18Next from "@panter/vue-i18next"
+import i18next from "i18next"
+
+Vue.use(VueI18Next)
+
+i18next.init({
+    lng: window.user.lang,
+    resources: {
+        en: {
+            translation: require('../../../lang/en.json')
+        },
+        ru: {
+            translation: require('../../../lang/ru.json')
+        },
+    }
+})
+
+export default new VueI18Next(i18next)

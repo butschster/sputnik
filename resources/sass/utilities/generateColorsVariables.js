@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const {boxShadow, colors} = require('tailwindcss/defaultTheme')
+
+const {theme} = require('tailwindcss/resolveConfig')(require('../../../tailwind.config.js'))
 const outPath = path.join(__dirname, '../_theme-colors.scss');
 
 // If the file exists, delete it.
@@ -16,18 +17,14 @@ fs.unlink(outPath, err => {
         });
     }
 
-    // Iterate through the colors property of the tailwinds config
-    // and create a scss variable for each color.
-    Object.keys(colors).forEach(key => {
+    Object.keys(theme.colors).forEach(key => {
 
-        if (typeof colors[key] === 'string') {
-            storeVariable(key, colors[key])
+        if (typeof theme.colors[key] === 'string') {
+            storeVariable(key, theme.colors[key])
         } else {
-            Object.keys(colors[key]).forEach(color => {
-                storeVariable(`${key}-${color}`, colors[key][color])
+            Object.keys(theme.colors[key]).forEach(color => {
+                storeVariable(`${key}-${color}`, theme.colors[key][color])
             })
         }
     });
-
-
 });

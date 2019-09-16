@@ -9,18 +9,24 @@
 
             <div class="mb-10">
                 <span class="badge badge-warning" v-if="team.is_trial_period">
-                    Trial ends at {{ team.subscription.trial_ends_at | moment('DD/MM/YYYY') }}
+                    {{ $t('user.team.subscription.trial_ends_at') }} {{ team.subscription.trial_ends_at | moment('DD/MM/YYYY') }}
                 </span>
 
                 <span class="badge badge-error ml-5" v-if="team.is_cancelled">
-                    Subscription cancelled and ends at {{ team.subscription.ends_at | moment('DD/MM/YYYY') }}
+                    {{ $t('user.team.subscription.ends_at') }} {{ team.subscription.ends_at | moment('DD/MM/YYYY') }}
                 </span>
             </div>
 
             <div class="tabs" role="tabs">
-                <router-link :to="$link.profileTeam(team)" class="tab">Members</router-link>
-                <router-link :to="$link.profileTeamSubscription(team)" class="tab">Subscription</router-link>
-                <router-link :to="$link.profileTeamBilling(team)" class="tab">Billing</router-link>
+                <router-link :to="$link.profileTeam(team)" class="tab">
+                    {{ $t('user.team.members.title') }}
+                </router-link>
+                <router-link :to="$link.profileTeamSubscription(team)" class="tab">
+                    {{ $t('user.team.subscription.title') }}
+                </router-link>
+                <router-link :to="$link.profileTeamBilling(team)" class="tab">
+                    {{ $t('user.team.billing.title') }}
+                </router-link>
             </div>
 
             <router-view />
