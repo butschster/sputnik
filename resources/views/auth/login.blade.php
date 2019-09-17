@@ -61,11 +61,11 @@
                 </small>
 
                 <div class="flex w-full justify-center">
-                    <a class="btn btn-social mr-4 w-1/2" href="{{ route('login.github') }}">
+                    <a class="btn btn-github mr-4 w-1/2" href="{{ route('login.github') }}">
                         <i class="fab fa-github-alt"></i>
                         Github
                     </a>
-                    <a class="btn btn-social w-1/2" href="{{ route('login.bitbucket') }}">
+                    <a class="btn btn-bitbucket w-1/2" href="{{ route('login.bitbucket') }}">
                         <i class="fab fa-bitbucket"></i>
                         Bitbucket
                     </a>

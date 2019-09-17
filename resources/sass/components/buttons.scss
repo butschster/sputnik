@@ -1,5 +1,5 @@
 .btn {
-    @apply inline-block text-center rounded py-4 px-12 tracking-wider transition font-medium;
+    @apply inline-block text-center rounded py-4 px-12 tracking-wider transition font-medium cursor-pointer;
 
     &:focus {
         @apply outline-none shadow-outline;
@@ -86,19 +86,61 @@
         }
     }
 
-    &-social {
-        @apply  text-gray-800 border text-gray-700 px-2 text-base py-1;
-        min-width: 120px;
+    &-github {
+        @apply bg-gray-800 text-white px-3;
+        border-color: rgba(0,0,0,0.2);
+        min-width: 160px;
 
-        i {
-           @apply inline-block mr-3 text-2xl;
+        span {
+            @apply inline-block mr-2;
         }
 
         &:hover {
-            @apply border-indigo-500 shadow-md;
-            color: $color-indigo-700!important;
+            @apply bg-gray-900 shadow-md;
+        }
+    }
+
+    &-goolge {
+
+        @apply bg-gray-600 text-white px-3;
+        border-color: rgba(0,0,0,0.2);
+        min-width: 160px;
+
+        span {
+            @apply inline-block mr-2;
         }
 
+        &:hover {
+            @apply bg-gray-700 shadow-md;
+        }
+
+    }
+
+    &-bitbucket {
+        @apply bg-blue-600 text-white px-3;
+        border-color: rgba(0,0,0,0.2);
+        min-width: 160px;
+
+        span {
+            @apply inline-block mr-2;
+        }
+
+        &:hover {
+            @apply bg-blue-800 shadow-md;
+        }
+    }
+
+    &-gitlab {
+        @apply bg-orange-600 text-white;
+        border-color: rgba(0,0,0,0.2);
+
+        span {
+            @apply inline-block mr-2;
+        }
+
+        &:hover {
+            @apply bg-orange-700 shadow-md;
+        }
     }
 }
 
@@ -108,5 +150,6 @@ a.btn {
         @apply text-white;
     }
 }
+
 
 

@@ -24,7 +24,7 @@
         <div class="section-body" v-if="isAvailable">
             <h4>{{ $t('user.profile.source_control.available') }}</h4>
 
-            <a class="btn btn-primary-outline mr-5" :href="provider.links.connect" v-for="provider in available" :key="provider.type">
+            <a class="btn mr-5" :href="provider.links.connect" v-for="provider in available" :key="provider.type" :class="'btn-' + provider.name.toLowerCase()">
                 <i class="fab mr-1 fa-lg" :class="`${provider.icon}`"></i>
                 {{ provider.name }}
             </a>
@@ -73,6 +73,7 @@
                 this.loading = false
             }
         },
+
         computed: {
             available() {
                 const keys = this.connected.map(p => p.type)

@@ -64165,6 +64165,7 @@ readers do not read off random characters that represent icons */
   letter-spacing: 0.05em;
   transition: all 0.2s linear;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .btn:focus {
@@ -64405,28 +64406,77 @@ readers do not read off random characters that represent icons */
   backface-visibility: hidden;
 }
 
-.btn-social {
-  color: #2d3748;
-  border-width: 1px;
-  color: #4a5568;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  font-size: 1rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  min-width: 120px;
+.btn-github {
+  background-color: #2d3748;
+  color: #fff;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-color: rgba(0, 0, 0, 0.2);
+  min-width: 160px;
 }
 
-.btn-social i {
+.btn-github span {
   display: inline-block;
-  margin-right: 0.75rem;
-  font-size: 1.5rem;
+  margin-right: 0.5rem;
 }
 
-.btn-social:hover {
-  border-color: #667eea;
+.btn-github:hover {
+  background-color: #1a202c;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  color: #4c51bf !important;
+}
+
+.btn-goolge {
+  background-color: #718096;
+  color: #fff;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-color: rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+}
+
+.btn-goolge span {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.btn-goolge:hover {
+  background-color: #4a5568;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-bitbucket {
+  background-color: #2929FF;
+  color: #fff;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-color: rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+}
+
+.btn-bitbucket span {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.btn-bitbucket:hover {
+  background-color: #0000D6;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-gitlab {
+  background-color: #dd6b20;
+  color: #fff;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.btn-gitlab span {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.btn-gitlab:hover {
+  background-color: #c05621;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 a.btn:hover, a.btn:focus {
