@@ -50,7 +50,15 @@ class StoreRequest extends FormRequest
             return $input->type == 'webserver';
         });
 
-        $validator->sometimes('openvpn_port', ['nullable', 'digits_between:2,4'], function ($input) {
+        $validator->sometimes('vpn_port', ['required', 'digits_between:2,4'], function ($input) {
+            return $input->type == 'openvpn';
+        });
+
+        $validator->sometimes('vpn_protocol', ['required', 'string', Rule::in(['udp', 'tcp'])], function ($input) {
+            return $input->type == 'openvpn';
+        });
+
+        $validator->sometimes('dns', ['required', 'string', Rule::in(['current', 'google', 'opendns', 'verisign'])], function ($input) {
             return $input->type == 'openvpn';
         });
     }
@@ -70,10 +78,10 @@ class StoreRequest extends FormRequest
             $this->failedAuthorization();
         }
 
-        $metaFields = ['php_version', 'database_type', 'webserver_type', 'openvpn_port'];
+        $serverFields = ['type', 'name', 'team_id', 'ip', 'ssh_port'];
 
-        $data = Arr::except($this->validated(), $metaFields);
-        $data['meta'] = Arr::only($this->validated(), $metaFields);
+        $data = Arr::only($this->validated(), $serverFields);
+        $data['meta'] = Arr::except($this->validated(), $serverFields);
 
         return $this->user()->servers()->create($data);
     }

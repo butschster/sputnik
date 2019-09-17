@@ -32,16 +32,15 @@ use Laravel\Scout\Searchable;
 
 class Server extends Model
 {
-    use UsesUuid,
-        DeterminesAge,
-        HasTask,
-        HasKeyPair,
-        Searchable;
+    use UsesUuid, DeterminesAge, HasTask, HasKeyPair, Searchable;
 
-    const STATUS_PENDING = 'pending';
+    const STATUS_PENDING     = 'pending';
     const STATUS_CONFIGUTING = 'configuring';
-    const STATUS_CONFIGURED = 'configured';
-    const STATUS_FAILED = 'failed';
+    const STATUS_CONFIGURED  = 'configured';
+    const STATUS_FAILED      = 'failed';
+
+    const TYPE_OPENVPN   = 'openvpn';
+    const TYPE_WEBSERVER = 'webserver';
 
     /**
      * {@inheritdoc}
@@ -85,7 +84,6 @@ class Server extends Model
 
     /**
      * Get owner
-     *
      * @return BelongsTo
      */
     public function user(): BelongsTo
@@ -95,7 +93,6 @@ class Server extends Model
 
     /**
      * Get owner team
-     *
      * @return BelongsTo
      */
     public function team(): BelongsTo
@@ -103,10 +100,8 @@ class Server extends Model
         return $this->belongsTo(Team::class);
     }
 
-
     /**
      * Get the pings that belong to the server.
-     *
      * @return HasMany
      */
     public function pings(): HasMany
@@ -116,7 +111,6 @@ class Server extends Model
 
     /**
      * Get the sites that belong to the server.
-     *
      * @return HasMany
      */
     public function users(): HasMany
@@ -126,7 +120,6 @@ class Server extends Model
 
     /**
      * Get the sites that belong to the server.
-     *
      * @return HasMany
      */
     public function sites(): HasMany
@@ -136,7 +129,6 @@ class Server extends Model
 
     /**
      * Get the daemons that belong to the server.
-     *
      * @return HasMany
      */
     public function daemons(): HasMany
@@ -146,7 +138,6 @@ class Server extends Model
 
     /**
      * Get the databases that belong to the server.
-     *
      * @return HasMany
      */
     public function databases(): HasMany
@@ -156,7 +147,6 @@ class Server extends Model
 
     /**
      * Get the tasks that belong to the server.
-     *
      * @return HasMany
      */
     public function tasks(): HasMany
@@ -166,7 +156,6 @@ class Server extends Model
 
     /**
      * Get the events that belong to the server.
-     *
      * @return HasMany
      */
     public function events(): HasMany
@@ -176,7 +165,6 @@ class Server extends Model
 
     /**
      * Get the firewall rules that belong to the server.
-     *
      * @return HasMany
      */
     public function firewallRules(): HasMany
@@ -186,7 +174,6 @@ class Server extends Model
 
     /**
      * Get the cron jobs that belong to the server.
-     *
      * @return HasMany
      */
     public function cronJobs(): HasMany
@@ -196,7 +183,6 @@ class Server extends Model
 
     /**
      * Determine if the server is currently provisioning.
-     *
      * @return bool
      */
     public function isPending(): bool
@@ -206,7 +192,6 @@ class Server extends Model
 
     /**
      * Determine if the server is currently configuring.
-     *
      * @return bool
      */
     public function isConfiguring(): bool
@@ -230,7 +215,6 @@ class Server extends Model
 
     /**
      * Determine if the server is currently configured.
-     *
      * @return bool
      */
     public function isConfigured(): bool
@@ -240,7 +224,6 @@ class Server extends Model
 
     /**
      * Mark the server as configured.
-     *
      * @return $this
      */
     public function markAsConfigured(): void
@@ -253,7 +236,6 @@ class Server extends Model
 
     /**
      * Determine if the server is currently failed.
-     *
      * @return bool
      */
     public function isFailed(): bool
@@ -263,7 +245,6 @@ class Server extends Model
 
     /**
      * Mark the server as configured.
-     *
      * @return $this
      */
     public function markAsFailed(): void
@@ -276,7 +257,6 @@ class Server extends Model
 
     /**
      * Get system information about server
-     *
      * @return SystemInformation|null
      */
     public function systemInformation(): ?SystemInformation
@@ -285,11 +265,7 @@ class Server extends Model
             return null;
         }
 
-        return new SystemInformation(
-            $this->os_information['os'],
-            $this->os_information['version'],
-            $this->os_information['architecture']
-        );
+        return new SystemInformation($this->os_information['os'], $this->os_information['version'], $this->os_information['architecture']);
     }
 
     /**
@@ -306,6 +282,7 @@ class Server extends Model
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeConfigured(Builder $builder)
@@ -315,22 +292,20 @@ class Server extends Model
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeWithMonitoring(Builder $builder)
     {
         return $builder->whereHas('team', function ($q) {
             return $q->whereHas('subscriptions', function ($q) {
-                return $q->whereIn(
-                    'stripe_plan', Plan::onlyActive()->withMonitoring()->pluck('name')
-                );
+                return $q->whereIn('stripe_plan', Plan::onlyActive()->withMonitoring()->pluck('name'));
             });
         });
     }
 
     /**
      * Get the indexable data array for the model.
-     *
      * @return array
      */
     public function toSearchableArray()
@@ -350,5 +325,21 @@ class Server extends Model
     public function toConfiguration(): ServerConfiguration
     {
         return Factory::create($this);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isWebserver(): bool
+    {
+        return $this->type === static::TYPE_WEBSERVER;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOpenVPN(): bool
+    {
+        return $this->type === static::TYPE_OPENVPN;
     }
 }
