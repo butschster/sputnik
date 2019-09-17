@@ -13,6 +13,12 @@
         &:focus,
         &:hover {
             @apply outline-none border-blue-500 bg-white;
+
+            &:not(:placeholder-shown) {
+                + label {
+                    @apply text-blue-700;
+                }
+            }
         }
 
         &.is-invalid {

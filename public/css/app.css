@@ -63467,6 +63467,35 @@ readers do not read off random characters that represent icons */
   opacity: 1;
 }
 
+.v-select {
+  background: transparent !important;
+  z-index: 1;
+}
+
+.v-select + label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  line-height: 3.5rem;
+}
+
+.v-select.vs--open, .v-select.vs--selected {
+  padding-bottom: 0.25rem !important;
+  padding-top: 1.5rem !important;
+}
+
+.v-select.vs--open + label, .v-select.vs--selected + label {
+  color: #718096;
+  font-weight: 500;
+  padding-top: 0.65rem;
+  font-size: 0.8rem;
+  line-height: 1rem !important;
+}
+
 .vs--open {
   background-color: #fff;
 }
@@ -63960,6 +63989,10 @@ readers do not read off random characters that represent icons */
   outline: 0;
   border-color: #5252FF;
   background-color: #fff;
+}
+
+.form-group .form-control:focus:not(:placeholder-shown) + label, .form-group .form-control:hover:not(:placeholder-shown) + label {
+  color: #0000FF;
 }
 
 .form-group .form-control.is-invalid {
