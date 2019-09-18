@@ -2,24 +2,29 @@
     <div>
         <div class="price-table">
             <Loader :loading="loading"/>
-            <h2>Available plans</h2>
+            <div class="price-table__bg">
+                <h2>Available plans</h2>
 
-            <div class="well border-red-300 border-2 rounded-lg mb-8 text-lg" v-if="!hasPaymentMethod">
-                You need to add payment method on <router-link :to="$link.profileTeamBilling(team)">billing page</router-link>
+                <div class="well border-red-300 border-2 rounded-lg mb-12 text-lg" v-if="!hasPaymentMethod">
+                    You need to add payment method on
+                    <router-link :to="$link.profileTeamBilling(team)">billing page</router-link>
+                </div>
             </div>
-
             <div class="price-table__items">
                 <div class="price-table__item" v-for="plan in plans" :key="plan.id"
                      :class="{'current': isCurrentPlan(plan)}">
                     <div>
-                        <h3 class="price-table__item--title">{{ plan.name }}
+                        <p class="price-table__item--badge" v-if="isCurrentPlan(plan)">Popular</p>
+                        <h3 class="price-table__item--title">{{ plan.name | capitalize }}</h3>
 
-                            <strong class="ml-3" v-if="!plan.is_free">${{ plan.price }}</strong> <span class="text-xs">/mo</span>
-                        </h3>
+                            <p class="w-full text-center">
+                                &#36; <strong class="text-5xl text-bold ml-1" v-if="!plan.is_free"> {{ plan.price }} </strong>/mo
+                            </p>
+
                         <ul class="price-table__item--features">
                             <li class="price-table__item--feature" v-for="feature in plan.features">
                                 <i class="icon fas fa-check-circle "></i> {{ feature.name }}
-                                <span v-if="!feature.is_unlimited">[{{ feature.value }} times]</span>
+                                <span v-if="!feature.is_unlimited" class="font-normal">[{{ feature.value }} times]</span>
                             </li>
                         </ul>
                     </div>
@@ -55,6 +60,14 @@
         computed: {
             hasPaymentMethod() {
                 return this.team.has_payment_method
+            }
+        },
+
+        filters: {
+            capitalize (value) {
+                if (!value) return ''
+                value = value.toString()
+                return value.charAt(0).toUpperCase() + value.slice(1)
             }
         },
         methods: {

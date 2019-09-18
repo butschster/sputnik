@@ -11500,6 +11500,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -11520,6 +11525,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     hasPaymentMethod: function hasPaymentMethod() {
       return this.team.has_payment_method;
+    }
+  },
+  filters: {
+    capitalize: function capitalize(value) {
+      if (!value) return '';
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
     }
   },
   methods: {
@@ -66623,26 +66635,30 @@ var render = function() {
       [
         _c("Loader", { attrs: { loading: _vm.loading } }),
         _vm._v(" "),
-        _c("h2", [_vm._v("Available plans")]),
-        _vm._v(" "),
-        !_vm.hasPaymentMethod
-          ? _c(
-              "div",
-              {
-                staticClass:
-                  "well border-red-300 border-2 rounded-lg mb-8 text-lg"
-              },
-              [
-                _vm._v("\n            You need to add payment method on "),
-                _c(
-                  "router-link",
-                  { attrs: { to: _vm.$link.profileTeamBilling(_vm.team) } },
-                  [_vm._v("billing page")]
-                )
-              ],
-              1
-            )
-          : _vm._e(),
+        _c("div", { staticClass: "price-table__bg" }, [
+          _c("h2", [_vm._v("Available plans")]),
+          _vm._v(" "),
+          !_vm.hasPaymentMethod
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "well border-red-300 border-2 rounded-lg mb-12 text-lg"
+                },
+                [
+                  _vm._v(
+                    "\n                You need to add payment method on\n                "
+                  ),
+                  _c(
+                    "router-link",
+                    { attrs: { to: _vm.$link.profileTeamBilling(_vm.team) } },
+                    [_vm._v("billing page")]
+                  )
+                ],
+                1
+              )
+            : _vm._e()
+        ]),
         _vm._v(" "),
         _c(
           "div",
@@ -66657,15 +66673,26 @@ var render = function() {
               },
               [
                 _c("div", [
+                  _vm.isCurrentPlan(plan)
+                    ? _c("p", { staticClass: "price-table__item--badge" }, [
+                        _vm._v("Popular")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
                   _c("h3", { staticClass: "price-table__item--title" }, [
-                    _vm._v(_vm._s(plan.name) + "\n\n                        "),
+                    _vm._v(_vm._s(_vm._f("capitalize")(plan.name)))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "w-full text-center" }, [
+                    _vm._v("\n                            $ "),
                     !plan.is_free
-                      ? _c("strong", { staticClass: "ml-3" }, [
-                          _vm._v("$" + _vm._s(plan.price))
-                        ])
+                      ? _c(
+                          "strong",
+                          { staticClass: "text-5xl text-bold ml-1" },
+                          [_vm._v(" " + _vm._s(plan.price) + " ")]
+                        )
                       : _vm._e(),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "text-xs" }, [_vm._v("/mo")])
+                    _vm._v("/mo\n                        ")
                   ]),
                   _vm._v(" "),
                   _c(
@@ -66683,7 +66710,7 @@ var render = function() {
                               "\n                            "
                           ),
                           !feature.is_unlimited
-                            ? _c("span", [
+                            ? _c("span", { staticClass: "font-normal" }, [
                                 _vm._v("[" + _vm._s(feature.value) + " times]")
                               ])
                             : _vm._e()
