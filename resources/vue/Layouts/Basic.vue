@@ -14,10 +14,10 @@
                 <ServerSidebar />
                 <AccountSidebar />
             </aside>
-            <div class="flex-1 relative bg-gray-100">
+            <div class="relative bg-gray-100 w-full">
                 <portal-target name="content-overlay"></portal-target>
                 <Navbar />
-                <div class="container py-10 px-12 m-auto">
+                <div class="container py-10 px-12">
                     <Breadcrumbs />
                     <router-view/>
                 </div>
@@ -33,6 +33,11 @@
     import Breadcrumbs from './Partials/Breadcrumbs'
 
     export default {
-        components: {Navbar, AccountSidebar, ServerSidebar, Breadcrumbs}
+        components: {
+            Navbar,
+            AccountSidebar,
+            ServerSidebar,
+            Breadcrumbs
+        }
     }
 </script>

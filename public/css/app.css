@@ -63467,6 +63467,35 @@ readers do not read off random characters that represent icons */
   opacity: 1;
 }
 
+.v-select {
+  background: transparent !important;
+  z-index: 1;
+}
+
+.v-select + label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  line-height: 3.5rem;
+}
+
+.v-select.vs--open, .v-select.vs--selected {
+  padding-bottom: 0.25rem !important;
+  padding-top: 1.5rem !important;
+}
+
+.v-select.vs--open + label, .v-select.vs--selected + label {
+  color: #718096;
+  font-weight: 500;
+  padding-top: 0.65rem;
+  font-size: 0.8rem;
+  line-height: 1rem !important;
+}
+
 .vs--open {
   background-color: #fff;
 }
@@ -63953,12 +63982,17 @@ readers do not read off random characters that represent icons */
   background-color: #fff;
   transition: all 0.2s linear;
   height: 3.5rem;
+  min-width: 150px;
 }
 
 .form-group .form-control:focus, .form-group .form-control:hover {
   outline: 0;
   border-color: #5252FF;
   background-color: #fff;
+}
+
+.form-group .form-control:focus:not(:placeholder-shown) + label, .form-group .form-control:hover:not(:placeholder-shown) + label {
+  color: #0000FF;
 }
 
 .form-group .form-control.is-invalid {
@@ -64131,6 +64165,7 @@ readers do not read off random characters that represent icons */
   letter-spacing: 0.05em;
   transition: all 0.2s linear;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .btn:focus {
@@ -64371,6 +64406,79 @@ readers do not read off random characters that represent icons */
   backface-visibility: hidden;
 }
 
+.btn-github {
+  background-color: #2d3748;
+  color: #fff;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-color: rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+}
+
+.btn-github span {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.btn-github:hover {
+  background-color: #1a202c;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-goolge {
+  background-color: #718096;
+  color: #fff;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-color: rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+}
+
+.btn-goolge span {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.btn-goolge:hover {
+  background-color: #4a5568;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-bitbucket {
+  background-color: #2929FF;
+  color: #fff;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-color: rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+}
+
+.btn-bitbucket span {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.btn-bitbucket:hover {
+  background-color: #0000D6;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-gitlab {
+  background-color: #dd6b20;
+  color: #fff;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.btn-gitlab span {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.btn-gitlab:hover {
+  background-color: #c05621;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
 a.btn:hover, a.btn:focus {
   color: #fff;
 }
@@ -64586,6 +64694,7 @@ a.card-info:focus, a.card-info:hover {
   padding-bottom: 2rem;
   background-color: #2929FF;
   width: 250px;
+  min-width: 250px;
 }
 
 .sidebar h5 {
@@ -64880,7 +64989,7 @@ a.card-info:focus, a.card-info:hover {
 }
 
 .table {
-  width: 100%;
+  min-width: 100%;
   table-layout: fixed;
   border-width: 0;
   text-align: left;
@@ -64927,6 +65036,7 @@ a.card-info:focus, a.card-info:hover {
 .table tbody tr th, .table tbody tr td {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+  min-width: 10rem;
 }
 
 .table tbody tr th:first-child, .table tbody tr td:first-child {

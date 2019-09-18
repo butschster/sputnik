@@ -18,7 +18,7 @@ cd /etc/openvpn/server/easy-rsa/
 cp vars.example vars
 
 @foreach($configuration->vars() as $key => $value)
-    sed -i 's/.*set_var {{ $key }}.*/set_var {{ $key }}="{{ $value }}"/g' vars
+sed -i 's/.*set_var {{ $key }}.*/set_var {{ $key }}="{{ $value }}"/g' vars
 @endforeach
 
 # Create the PKI, set up the CA and the server and client certificates
@@ -57,7 +57,6 @@ key server.key
 dh dh.pem
 auth SHA512
 tls-auth ta.key 0
-topology subnet
 server 10.8.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt" > /etc/openvpn/server/server.conf
 
@@ -90,13 +89,31 @@ persist-key
 persist-tun
 status openvpn-status.log
 verb 3
-crl-verify crl.pem" >> /etc/openvpn/server/server.conf
+crl-verify crl.pem
+explicit-exit-notify {{ $configuration->protocol() == 'tcp' ? 0 : 1 }}" >> /etc/openvpn/server/server.conf
 
 # Enable net.ipv4.ip_forward for the system
 echo 'net.ipv4.ip_forward=1' > /etc/sysctl.d/30-openvpn-forward.conf
 
 # Enable without waiting for a reboot or service restart
 echo 1 > /proc/sys/net/ipv4/ip_forward
+
+read -r -d '' NAT_RULES << EOM
+# START OPENVPN RULES
+# NAT table rules
+*nat
+:POSTROUTING ACCEPT [0:0]
+# Allow traffic from OpenVPN client to wlp11s0 (change to the interface you discovered!)
+-A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+COMMIT
+# END OPENVPN RULES
+EOM
+
+echo -e "$NAT_RULES\n$(cat /etc/ufw/before.rules)" > /etc/ufw/before.rules
+
+sed -i 's/DEFAULT_FORWARD_POLICY=.*/DEFAULT_FORWARD_POLICY="ACCEPT"/g' /etc/default/ufw
+ufw disable
+ufw enable
 
 # And finally, enable and start the OpenVPN service
 systemctl enable --now openvpn-server@server.service

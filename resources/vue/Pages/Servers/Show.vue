@@ -20,7 +20,6 @@
             <NotSupported v-if="!isSupported" :server="server" />
 
             <div class="tabs" role="tabs">
-                <router-link :to="$link.serverSites(server)" class="tab">Sites</router-link>
                 <router-link :to="$link.serverEvents(server)" class="tab">Events</router-link>
                 <router-link :to="$link.serverTasks(server)" class="tab">Tasks</router-link>
                 <router-link :to="$link.serverSettings(server)" class="tab">Settings</router-link>

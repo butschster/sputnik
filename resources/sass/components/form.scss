@@ -8,10 +8,17 @@
     .form-control {
         @apply appearance-none border w-full py-3 pl-5 pr-6 h-16 text-gray-700 rounded block border-gray-300 bg-white transition;
         height: 3.5rem;
+        min-width: 150px;
 
         &:focus,
         &:hover {
             @apply outline-none border-blue-500 bg-white;
+
+            &:not(:placeholder-shown) {
+                + label {
+                    @apply text-blue-700;
+                }
+            }
         }
 
         &.is-invalid {

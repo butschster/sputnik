@@ -53,11 +53,11 @@ export function serverSupervisor(server) {
 }
 
 export function serverSettings(server) {
-    return makeRoute('server.settings', {id: server})
+    return makeRoute('server.show', {id: server})
 }
 
 export function serverSites(server) {
-    return makeRoute('server.show', {id: server})
+    return makeRoute('server.sites', {id: server})
 }
 
 export function serverSite(site) {

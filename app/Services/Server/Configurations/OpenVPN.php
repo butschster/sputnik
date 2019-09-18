@@ -3,10 +3,24 @@
 namespace App\Services\Server\Configurations;
 
 use App\Contracts\Server\OpenVPNServerConfiguration;
+use App\Models\Server;
 
 class OpenVPN implements OpenVPNServerConfiguration
 {
     use BaseServerConfiguration;
+
+    /**
+     * @var Server
+     */
+    protected $server;
+
+    /**
+     * @param Server $server
+     */
+    public function __construct(Server $server)
+    {
+        $this->server = $server;
+    }
 
     /**
      * Get openVPN dns servers

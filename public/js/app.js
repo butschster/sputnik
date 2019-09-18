@@ -3140,6 +3140,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -3178,7 +3182,52 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('server', {
     server: 'getServer',
     isConfigured: 'isConfigured'
-  }))
+  }), {
+    nav: function nav() {
+      switch (this.server.type) {
+        case 'openvpn':
+          return [{
+            link: this.$link.serverFirewall(this.server),
+            icon: 'fa-globe',
+            title: 'Firewall'
+          }, {
+            link: this.$link.serverUsers(this.server),
+            icon: 'fa-server',
+            title: 'Users'
+          }, {
+            link: this.$link.serverScheduler(this.server),
+            icon: 'fa-calendar-alt',
+            title: 'Scheduler'
+          }];
+      }
+
+      return [{
+        link: this.$link.serverSites(this.server),
+        icon: 'fa-globe',
+        title: 'Sites'
+      }, {
+        link: this.$link.serverFirewall(this.server),
+        icon: 'fa-globe',
+        title: 'Firewall'
+      }, {
+        link: this.$link.serverUsers(this.server),
+        icon: 'fa-server',
+        title: 'Users'
+      }, {
+        link: this.$link.serverScheduler(this.server),
+        icon: 'fa-calendar-alt',
+        title: 'Scheduler'
+      }, {
+        link: this.$link.serverSupervisor(this.server),
+        icon: 'fa-chart-bar',
+        title: 'Supervisor'
+      }, {
+        link: this.$link.serverDatabases(this.server),
+        icon: 'fa-server',
+        title: 'Database'
+      }];
+    }
+  })
 });
 
 /***/ }),
@@ -4391,7 +4440,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -5826,6 +5874,11 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_components_UI_Select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/components/UI/Select */ "./resources/vue/components/UI/Select.vue");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -9632,7 +9685,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -9800,15 +9852,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getOptionLabel: {
       type: Function,
       "default": function _default(option) {
-        if (_typeof(option) === 'object') {
-          if (!option.hasOwnProperty(this.label)) {
-            return console.warn("[vue-select warn]: Label key \"option.".concat(this.label, "\" does not") + " exist in options object ".concat(JSON.stringify(option), ".\n") + 'http://sagalbot.github.io/vue-select/#ex-labels');
-          }
-
-          return option[this.label];
-        }
-
-        return option;
+        return option['label'];
       }
     },
 
@@ -10492,7 +10536,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'vs--searchable': this.searchable && !this.noDrop,
         'vs--unsearchable': !this.searchable,
         'vs--loading': this.mutableLoading,
-        'vs--disabled': this.disabled
+        'vs--disabled': this.disabled,
+        'vs--selected': !this.isValueEmpty
       };
     },
 
@@ -10819,24 +10864,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 user = _context.sent;
-                this.$store.dispatch('auth/updateUser');
-                _context.next = 11;
+                this.$store.commit('auth/setUser', user);
+                this.$modal.close('profile-form');
+                _context.next = 12;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](1);
                 this.$handleError(_context.t0);
 
-              case 11:
+              case 12:
                 this.loading = false;
 
-              case 12:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 8]]);
+        }, _callee, this, [[1, 9]]);
       }));
 
       function update() {
@@ -59876,7 +59922,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex-1 relative bg-gray-100" },
+        { staticClass: "relative bg-gray-100 w-full" },
         [
           _c("portal-target", { attrs: { name: "content-overlay" } }),
           _vm._v(" "),
@@ -59884,7 +59930,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "container py-10 px-12 m-auto" },
+            { staticClass: "container py-10 px-12" },
             [_c("Breadcrumbs"), _vm._v(" "), _c("router-view")],
             1
           )
@@ -60373,13 +60419,23 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "nav-link", attrs: { to: _vm.$link.profile() } },
-          [_vm._v("\n            Profile\n        ")]
+          [
+            _c("span", { staticClass: "w-8 inline-block" }, [
+              _c("i", { staticClass: "fas fa-key" })
+            ]),
+            _vm._v("\n            Profile\n        ")
+          ]
         ),
         _vm._v(" "),
         _c(
           "router-link",
           { staticClass: "nav-link", attrs: { to: _vm.$link.profileTeams() } },
-          [_vm._v("\n            Teams\n        ")]
+          [
+            _c("span", { staticClass: "w-8 inline-block" }, [
+              _c("i", { staticClass: "fas fa-chalkboard" })
+            ]),
+            _vm._v("\n            Teams\n        ")
+          ]
         )
       ],
       1
@@ -60415,52 +60471,18 @@ var render = function() {
         _c(
           "nav",
           { staticClass: "nav" },
-          [
-            _c(
+          _vm._l(_vm.nav, function(item) {
+            return _c(
               "router-link",
-              {
-                staticClass: "nav-link",
-                attrs: { to: _vm.$link.serverUsers(_vm.server) }
-              },
-              [_vm._v("Users")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "nav-link",
-                attrs: { to: _vm.$link.serverFirewall(_vm.server) }
-              },
-              [_vm._v("Firewall")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "nav-link",
-                attrs: { to: _vm.$link.serverScheduler(_vm.server) }
-              },
-              [_vm._v("Scheduler")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "nav-link",
-                attrs: { to: _vm.$link.serverSupervisor(_vm.server) }
-              },
-              [_vm._v("Supervisor")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "nav-link",
-                attrs: { to: _vm.$link.serverDatabases(_vm.server) }
-              },
-              [_vm._v("Database")]
+              { staticClass: "nav-link", attrs: { to: item.link } },
+              [
+                _c("span", { staticClass: "w-8 inline-block" }, [
+                  _c("i", { staticClass: "fas", class: item.icon })
+                ]),
+                _vm._v("\n            " + _vm._s(item.title) + "\n        ")
+              ]
             )
-          ],
+          }),
           1
         )
       ])
@@ -60550,7 +60572,11 @@ var staticRenderFns = [
       [
         _c("img", {
           staticClass: "mx-auto",
-          attrs: { src: "img/logo.png", alt: "Logo" }
+          attrs: {
+            src:
+              "http://demo.designing-world.com/apland-4.2.0/img/core-img/logo.png",
+            alt: "Logo"
+          }
         })
       ]
     )
@@ -60565,7 +60591,11 @@ var staticRenderFns = [
       [
         _c("img", {
           staticClass: "max-w-2xl w-full mx-auto",
-          attrs: { src: "img/404.png", alt: "Image" }
+          attrs: {
+            src:
+              "http://demo.designing-world.com/apland-4.2.0/img/bg-img/404.png",
+            alt: "Image"
+          }
         })
       ]
     )
@@ -61226,17 +61256,17 @@ var render = function() {
               _c("Loader", { attrs: { loading: _vm.loading } }),
               _vm._v(" "),
               _c("table", { staticClass: "table mb-10" }, [
-                _c("col"),
+                _c("col", { staticClass: "w-1/6" }),
                 _vm._v(" "),
-                _c("col", { staticClass: "w-48" }),
+                _c("col", { staticClass: "w-1/6" }),
                 _vm._v(" "),
-                _c("col", { staticClass: "w-48" }),
+                _c("col", { staticClass: "w-1/6" }),
                 _vm._v(" "),
-                _c("col", { staticClass: "w-48" }),
+                _c("col", { staticClass: "w-1/6" }),
                 _vm._v(" "),
-                _c("col", { staticClass: "w-48" }),
+                _c("col", { staticClass: "w-1/6" }),
                 _vm._v(" "),
-                _c("col", { staticClass: "w-32" }),
+                _c("col", { staticClass: "w-1/6" }),
                 _vm._v(" "),
                 _vm._m(0),
                 _vm._v(" "),
@@ -61723,15 +61753,6 @@ var render = function() {
                 "div",
                 { staticClass: "tabs", attrs: { role: "tabs" } },
                 [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "tab",
-                      attrs: { to: _vm.$link.serverSites(_vm.server) }
-                    },
-                    [_vm._v("Sites")]
-                  ),
-                  _vm._v(" "),
                   _c(
                     "router-link",
                     {
@@ -62898,7 +62919,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "form-group form-group-labeled",
+      staticClass: "form-group",
       class: {
         "is-invalid": _vm.httpErrors.has(_vm.name),
         "is-required": _vm.required
@@ -62912,12 +62933,13 @@ var render = function() {
           value: _vm.value,
           reduce: function(option) {
             return option.value
-          }
+          },
+          label: _vm.label
         },
         on: { input: _vm.setSelected }
       }),
       _vm._v(" "),
-      _c("label", { attrs: { for: _vm.name } }, [_vm._v(_vm._s(_vm.label))]),
+      _c("label", [_vm._v(_vm._s(_vm.label))]),
       _vm._v(" "),
       _vm._t("default"),
       _vm._v(" "),
@@ -63193,7 +63215,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex" },
+        { staticClass: "flex flex-wrap" },
         [
           _c("FormInput", {
             staticClass: "flex-1 mr-8",
@@ -63716,7 +63738,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex" },
+        { staticClass: "flex flex-wrap" },
         [
           _c("FormInput", {
             staticClass: "mr-8",
@@ -63731,7 +63753,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("FormInput", {
-            staticClass: "flex-1 mr-8",
+            staticClass: "mr-8 flex-1",
             attrs: { label: "Command", name: "command", required: "" },
             model: {
               value: _vm.form.command,
@@ -65793,154 +65815,151 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "v-select", class: _vm.stateClasses },
+    {
+      ref: "toggle",
+      staticClass: "v-select",
+      class: _vm.stateClasses,
+      on: {
+        mousedown: function($event) {
+          $event.preventDefault()
+          return _vm.toggleDropdown($event)
+        }
+      }
+    },
     [
-      _c(
-        "div",
-        {
-          ref: "toggle",
-          staticClass: "vs__dropdown-toggle",
-          on: {
-            mousedown: function($event) {
-              $event.preventDefault()
-              return _vm.toggleDropdown($event)
-            }
-          }
-        },
-        [
-          _c(
-            "div",
-            { ref: "selectedOptions", staticClass: "vs__selected-options" },
-            [
-              _vm._l(_vm.selectedValue, function(option) {
-                return _vm._t(
-                  "selected-option-container",
-                  [
-                    _c(
-                      "span",
-                      { key: option.index, staticClass: "vs__selected" },
-                      [
-                        _vm._t(
-                          "selected-option",
-                          [
-                            _vm._v(
-                              "\n          " +
-                                _vm._s(_vm.getOptionLabel(option)) +
-                                "\n        "
-                            )
-                          ],
-                          null,
-                          _vm.normalizeOptionForSlot(option)
-                        ),
-                        _vm._v(" "),
-                        _vm.multiple
-                          ? _c(
-                              "button",
-                              {
-                                staticClass: "vs__deselect",
-                                attrs: {
-                                  disabled: _vm.disabled,
-                                  type: "button",
-                                  "aria-label": "Deselect option"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.deselect(option)
-                                  }
-                                }
-                              },
-                              [_vm._v("\n          ×\n        ")]
-                            )
-                          : _vm._e()
-                      ],
-                      2
-                    )
-                  ],
-                  {
-                    option: _vm.normalizeOptionForSlot(option),
-                    deselect: _vm.deselect,
-                    multiple: _vm.multiple,
-                    disabled: _vm.disabled
-                  }
-                )
-              }),
-              _vm._v(" "),
-              _vm._t(
-                "search",
+      _c("div", { staticClass: "vs__dropdown-toggle" }, [
+        _c(
+          "div",
+          { ref: "selectedOptions", staticClass: "vs__selected-options" },
+          [
+            _vm._l(_vm.selectedValue, function(option) {
+              return _vm._t(
+                "selected-option-container",
                 [
                   _c(
-                    "input",
-                    _vm._g(
-                      _vm._b(
-                        { staticClass: "vs__search" },
-                        "input",
-                        _vm.scope.search.attributes,
-                        false
+                    "span",
+                    { key: option.index, staticClass: "vs__selected" },
+                    [
+                      _vm._t(
+                        "selected-option",
+                        [
+                          _vm._v(
+                            "\n                  " +
+                              _vm._s(_vm.getOptionLabel(option)) +
+                              "\n                "
+                          )
+                        ],
+                        null,
+                        _vm.normalizeOptionForSlot(option)
                       ),
-                      _vm.scope.search.events
-                    )
+                      _vm._v(" "),
+                      _vm.multiple
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "vs__deselect",
+                              attrs: {
+                                disabled: _vm.disabled,
+                                type: "button",
+                                "aria-label": "Deselect option"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deselect(option)
+                                }
+                              }
+                            },
+                            [_vm._v("\n                  ×\n                ")]
+                          )
+                        : _vm._e()
+                    ],
+                    2
                   )
                 ],
-                null,
-                _vm.scope.search
-              )
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "vs__actions" },
-            [
-              _c(
-                "button",
                 {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.showClearButton,
-                      expression: "showClearButton"
-                    }
-                  ],
-                  staticClass: "vs__clear",
-                  attrs: {
-                    disabled: _vm.disabled,
-                    type: "button",
-                    title: "Clear selection"
-                  },
-                  on: { click: _vm.clearSelection }
-                },
-                [_c("i", { staticClass: "fas fa-times" })]
-              ),
-              _vm._v(" "),
-              _vm._t(
-                "spinner",
-                [
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.mutableLoading,
-                          expression: "mutableLoading"
-                        }
-                      ],
-                      staticClass: "vs__spinner"
-                    },
-                    [_vm._v("Loading...")]
-                  )
-                ],
-                null,
-                _vm.scope.spinner
+                  option: _vm.normalizeOptionForSlot(option),
+                  deselect: _vm.deselect,
+                  multiple: _vm.multiple,
+                  disabled: _vm.disabled
+                }
               )
-            ],
-            2
-          )
-        ]
-      ),
+            }),
+            _vm._v(" "),
+            _vm._t(
+              "search",
+              [
+                _c(
+                  "input",
+                  _vm._g(
+                    _vm._b(
+                      { staticClass: "vs__search" },
+                      "input",
+                      _vm.scope.search.attributes,
+                      false
+                    ),
+                    _vm.scope.search.events
+                  )
+                )
+              ],
+              null,
+              _vm.scope.search
+            )
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "vs__actions" },
+          [
+            _c(
+              "button",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showClearButton,
+                    expression: "showClearButton"
+                  }
+                ],
+                staticClass: "vs__clear",
+                attrs: {
+                  disabled: _vm.disabled,
+                  type: "button",
+                  title: "Clear selection"
+                },
+                on: { click: _vm.clearSelection }
+              },
+              [_c("i", { staticClass: "fas fa-times" })]
+            ),
+            _vm._v(" "),
+            _vm._t(
+              "spinner",
+              [
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.mutableLoading,
+                        expression: "mutableLoading"
+                      }
+                    ],
+                    staticClass: "vs__spinner"
+                  },
+                  [_vm._v("Loading...")]
+                )
+              ],
+              null,
+              _vm.scope.spinner
+            )
+          ],
+          2
+        )
+      ]),
       _vm._v(" "),
       _c("transition", { attrs: { name: _vm.transition } }, [
         _vm.dropdownOpen
@@ -66409,7 +66428,8 @@ var render = function() {
                   "a",
                   {
                     key: provider.type,
-                    staticClass: "btn btn-primary-outline mr-5",
+                    staticClass: "btn mr-5",
+                    class: "btn-" + provider.name.toLowerCase(),
                     attrs: { href: provider.links.connect }
                   },
                   [
@@ -95948,12 +95968,12 @@ function serverSupervisor(server) {
   });
 }
 function serverSettings(server) {
-  return makeRoute('server.settings', {
+  return makeRoute('server.show', {
     id: server
   });
 }
 function serverSites(server) {
-  return makeRoute('server.show', {
+  return makeRoute('server.sites', {
     id: server
   });
 }
@@ -103272,7 +103292,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     children: [{
       path: '/server/:id/sites',
-      name: 'server.show',
+      name: 'server.sites',
       component: _vue_Pages_Servers_Sites_Index__WEBPACK_IMPORTED_MODULE_13__["default"]
     }, {
       path: '/server/:id/sites/:site_id',
@@ -103308,7 +103328,7 @@ __webpack_require__.r(__webpack_exports__);
       }]
     }, {
       path: '/server/:id/settings',
-      name: 'server.settings',
+      name: 'server.show',
       component: _vue_Pages_Servers_Settings__WEBPACK_IMPORTED_MODULE_3__["default"]
     }, {
       path: '/server/:id/users',

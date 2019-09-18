@@ -52,7 +52,7 @@ export default [
                 children: [
                     {
                         path: '/server/:id/sites',
-                        name: 'server.show',
+                        name: 'server.sites',
                         component: ServerSites
                     },
                     {
@@ -100,7 +100,7 @@ export default [
                     },
                     {
                         path: '/server/:id/settings',
-                        name: 'server.settings',
+                        name: 'server.show',
                         component: ServerSettings,
                     },
                     {

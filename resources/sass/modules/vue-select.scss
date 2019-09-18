@@ -7,6 +7,29 @@
 @import "~vue-select/src/scss/modules/search-input";
 @import "~vue-select/src/scss/modules/spinner";
 
+.v-select {
+    background: transparent !important;
+    z-index: 1;
+
+    + label {
+        @apply absolute top-0 left-0 block w-full px-5;
+        line-height: 3.5rem;
+    }
+
+    &.vs--open,
+    &.vs--selected {
+        padding-bottom: 0.25rem !important;
+        padding-top: 1.5rem !important;
+
+        + label {
+            @apply text-gray-600 font-medium;
+            padding-top: .65rem;
+            font-size: .8rem;
+            line-height: 1rem !important;
+        }
+    }
+}
+
 .vs {
     &--open {
         @apply bg-white;

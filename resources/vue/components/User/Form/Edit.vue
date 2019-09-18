@@ -73,7 +73,10 @@
 
                 try {
                     const user = await this.$api.userProfile.update(this.form)
-                    this.$store.dispatch('auth/updateUser')
+                    this.$store.commit('auth/setUser', user)
+
+                    this.$modal.close('profile-form')
+
                 } catch (e) {
                     this.$handleError(e)
                 }

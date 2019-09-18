@@ -1,7 +1,6 @@
 <template>
-    <div class="v-select" :class="stateClasses">
-        <div ref="toggle" @mousedown.prevent="toggleDropdown" class="vs__dropdown-toggle">
-
+    <div class="v-select" :class="stateClasses" ref="toggle" @mousedown.prevent="toggleDropdown">
+        <div  class="vs__dropdown-toggle">
             <div class="vs__selected-options" ref="selectedOptions">
                 <slot v-for="option in selectedValue"
                       name="selected-option-container"
@@ -9,15 +8,15 @@
                       :deselect="deselect"
                       :multiple="multiple"
                       :disabled="disabled">
-          <span class="vs__selected" v-bind:key="option.index">
-            <slot name="selected-option" v-bind="normalizeOptionForSlot(option)">
-              {{ getOptionLabel(option) }}
-            </slot>
-            <button v-if="multiple" :disabled="disabled" @click="deselect(option)" type="button" class="vs__deselect"
-                    aria-label="Deselect option">
-              ×
-            </button>
-          </span>
+                  <span class="vs__selected" v-bind:key="option.index">
+                    <slot name="selected-option" v-bind="normalizeOptionForSlot(option)">
+                      {{ getOptionLabel(option) }}
+                    </slot>
+                    <button v-if="multiple" :disabled="disabled" @click="deselect(option)" type="button" class="vs__deselect"
+                            aria-label="Deselect option">
+                      ×
+                    </button>
+                  </span>
                 </slot>
 
                 <slot name="search" v-bind="scope.search">
@@ -234,17 +233,7 @@
             getOptionLabel: {
                 type: Function,
                 default(option) {
-                    if (typeof option === 'object') {
-                        if (!option.hasOwnProperty(this.label)) {
-                            return console.warn(
-                                `[vue-select warn]: Label key "option.${this.label}" does not` +
-                                ` exist in options object ${JSON.stringify(option)}.\n` +
-                                'http://sagalbot.github.io/vue-select/#ex-labels'
-                            )
-                        }
-                        return option[this.label]
-                    }
-                    return option;
+                    return option['label'];
                 }
             },
 
@@ -910,7 +899,8 @@
                     'vs--searchable': this.searchable && !this.noDrop,
                     'vs--unsearchable': !this.searchable,
                     'vs--loading': this.mutableLoading,
-                    'vs--disabled': this.disabled
+                    'vs--disabled': this.disabled,
+                    'vs--selected': !this.isValueEmpty
                 }
             },
 

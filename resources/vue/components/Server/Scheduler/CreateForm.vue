@@ -5,9 +5,9 @@
             New scheduled task
             <p>ou can easily schedule cron jobs on your server.</p>
         </div>
-        <div class="flex">
+        <div class="flex flex-wrap">
             <FormInput v-model="form.name" label="Name" name="name" class="mr-8" required autofocus/>
-            <FormInput v-model="form.command" label="Command" name="command" class="flex-1 mr-8" required/>
+            <FormInput v-model="form.command" label="Command" name="command" class="mr-8 flex-1" required/>
             <FormInput v-model="form.cron" label="Cron expression" name="cron" class="mr-8" required>
                 <small class="form-text text-muted">
                     You can use named expressions like [@hourly, @daily, @monthly]

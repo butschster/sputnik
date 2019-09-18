@@ -10,12 +10,12 @@
             <h4>Active firewall rules ({{ rules.length }})</h4>
             <Loader :loading="loading"/>
             <table class="table mb-10">
-                <col>
-                <col class="w-48">
-                <col class="w-48">
-                <col class="w-48">
-                <col class="w-48">
-                <col class="w-32">
+                <col class="w-1/6">
+                <col class="w-1/6">
+                <col class="w-1/6">
+                <col class="w-1/6">
+                <col class="w-1/6">
+                <col class="w-1/6">
                 <thead>
                 <tr>
                     <th>Name</th>
