@@ -8,6 +8,20 @@ use App\Utils\SSH\ValueObjects\PublicKey;
 interface ServerConfiguration
 {
     /**
+     * Get server IP address
+     *
+     * @return string
+     */
+    public function ip(): string;
+
+    /**
+     * Get server SSH port
+     *
+     * @return int
+     */
+    public function sshPort(): int;
+
+    /**
      * Get available system users with root access
      *
      * @return array

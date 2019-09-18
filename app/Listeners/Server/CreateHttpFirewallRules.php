@@ -48,7 +48,13 @@ class CreateHttpFirewallRules
                 break;
             case 'openvpn':
                 $rules = $this->openVPNRules;
-                $rules[] = ['name' => 'OpenVPN', 'port' => $event->server->toConfiguration()->port(), 'policy' => 'allow', 'editable' => false];
+                $rules[] = [
+                    'name' => 'OpenVPN',
+                    'port' => $event->server->toConfiguration()->port(),
+                    'protocol' => $event->server->toConfiguration()->protocol(),
+                    'policy' => 'allow',
+                    'editable' => false
+                ];
                 break;
         }
 

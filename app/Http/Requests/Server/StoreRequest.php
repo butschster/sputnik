@@ -47,19 +47,19 @@ class StoreRequest extends FormRequest
     public function withValidator(\Illuminate\Validation\Validator $validator): void
     {
         $validator->sometimes(['php_version', 'database_type', 'webserver_type'], ['required'], function ($input) {
-            return $input->type == 'webserver';
+            return $input->type == Server::TYPE_WEBSERVER;
         });
 
         $validator->sometimes('vpn_port', ['required', 'digits_between:2,4'], function ($input) {
-            return $input->type == 'openvpn';
+            return $input->type == Server::TYPE_OPENVPN;
         });
 
         $validator->sometimes('vpn_protocol', ['required', 'string', Rule::in(['udp', 'tcp'])], function ($input) {
-            return $input->type == 'openvpn';
+            return $input->type == Server::TYPE_OPENVPN;
         });
 
         $validator->sometimes('dns', ['required', 'string', Rule::in(['current', 'google', 'opendns', 'verisign'])], function ($input) {
-            return $input->type == 'openvpn';
+            return $input->type == Server::TYPE_OPENVPN;
         });
     }
 

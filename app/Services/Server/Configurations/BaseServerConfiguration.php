@@ -8,6 +8,26 @@ use App\Utils\SSH\ValueObjects\PublicKey;
 trait BaseServerConfiguration
 {
     /**
+     * Get server IP address
+     *
+     * @return string
+     */
+    public function ip(): string
+    {
+        return $this->server->ip;
+    }
+
+    /**
+     * Get server SSH port
+     *
+     * @return int
+     */
+    public function sshPort(): int
+    {
+        return $this->server->ssh_port ?? 22;
+    }
+
+    /**
      * Get public key
      *
      * @return PublicKey

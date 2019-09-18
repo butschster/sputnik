@@ -6318,70 +6318,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vue_components_Form_Select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/components/Form/Select */ "./resources/vue/components/Form/Select.vue");
-/* harmony import */ var _vue_components_Server_Form_Type_WebServer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/Server/Form/Type/WebServer */ "./resources/vue/components/Server/Form/Type/WebServer.vue");
-/* harmony import */ var _vue_components_Server_Form_Type_OpenVPN__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/Server/Form/Type/OpenVPN */ "./resources/vue/components/Server/Form/Type/OpenVPN.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    FormSelect: _vue_components_Form_Select__WEBPACK_IMPORTED_MODULE_0__["default"],
-    webserver: _vue_components_Server_Form_Type_WebServer__WEBPACK_IMPORTED_MODULE_1__["default"],
-    openvpn: _vue_components_Server_Form_Type_OpenVPN__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
-  data: function data() {
-    return {
-      type: 'webserver',
-      types: [{
-        label: 'Web server',
-        value: 'webserver'
-      }, {
-        label: 'OpenVPN server',
-        value: 'openvpn'
-      }]
-    };
-  },
-  mounted: function mounted() {},
-  methods: {},
-  computed: {}
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Server/Form/Type/OpenVPN.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/Server/Form/Type/OpenVPN.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _vue_components_Form_Input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/Form/Input */ "./resources/vue/components/Form/Input.vue");
-/* harmony import */ var _vue_components_Form_Select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/Form/Select */ "./resources/vue/components/Form/Select.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _vue_components_Form_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/Form/Input */ "./resources/vue/components/Form/Input.vue");
+/* harmony import */ var _vue_components_Form_Select__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vue/components/Form/Select */ "./resources/vue/components/Form/Select.vue");
+/* harmony import */ var _vue_components_Server_Form_Type_WebServer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vue/components/Server/Form/Type/WebServer */ "./resources/vue/components/Server/Form/Type/WebServer.vue");
+/* harmony import */ var _vue_components_Server_Form_Type_OpenVPN__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @vue/components/Server/Form/Type/OpenVPN */ "./resources/vue/components/Server/Form/Type/OpenVPN.vue");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -6426,7 +6369,242 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    FormSelect: _vue_components_Form_Select__WEBPACK_IMPORTED_MODULE_3__["default"],
+    FormInput: _vue_components_Form_Input__WEBPACK_IMPORTED_MODULE_2__["default"],
+    webserver: _vue_components_Server_Form_Type_WebServer__WEBPACK_IMPORTED_MODULE_4__["default"],
+    openvpn: _vue_components_Server_Form_Type_OpenVPN__WEBPACK_IMPORTED_MODULE_5__["default"]
+  },
+  data: function data() {
+    return {
+      loading: false,
+      form: {
+        type: null,
+        name: 'Test server',
+        team_id: null,
+        ip: null,
+        ssh_port: 22
+      },
+      teams: [],
+      types: []
+    };
+  },
+  mounted: function mounted() {
+    this.load();
+  },
+  methods: {
+    load: function load() {
+      this.loading = true;
+      this.loadTypes();
+      this.loadTeams();
+      this.loading = false;
+    },
+    loadTypes: function () {
+      var _loadTypes = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return this.$api.serverDictionaries.types();
+
+              case 3:
+                this.types = _context.sent;
+                this.form.type = 'webserver';
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                this.$handleError(_context.t0);
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[0, 7]]);
+      }));
+
+      function loadTypes() {
+        return _loadTypes.apply(this, arguments);
+      }
+
+      return loadTypes;
+    }(),
+    loadTeams: function () {
+      var _loadTeams = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var teams;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return this.$api.userProfileTeam.list();
+
+              case 3:
+                teams = _context2.sent;
+                this.teams = teams.map(function (team) {
+                  return {
+                    label: team.name,
+                    value: team.id
+                  };
+                });
+                this.form.team_id = this.user.team.id;
+                _context2.next = 11;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+                this.$handleError(_context2.t0);
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[0, 8]]);
+      }));
+
+      function loadTeams() {
+        return _loadTeams.apply(this, arguments);
+      }
+
+      return loadTeams;
+    }(),
+    onSubmit: function () {
+      var _onSubmit = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(data) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                this.loading = true;
+                _context3.prev = 1;
+                _context3.next = 4;
+                return this.$store.dispatch('servers/createServer', Object.assign({}, this.form, data));
+
+              case 4:
+                _context3.next = 8;
+                break;
+
+              case 6:
+                _context3.prev = 6;
+                _context3.t0 = _context3["catch"](1);
+
+              case 8:
+                this.loading = false;
+
+              case 9:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[1, 6]]);
+      }));
+
+      function onSubmit(_x) {
+        return _onSubmit.apply(this, arguments);
+      }
+
+      return onSubmit;
+    }()
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('auth', {
+    user: 'getUser'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/Server/Form/Type/OpenVPN.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/vue/components/Server/Form/Type/OpenVPN.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vue_components_Form_Input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/Form/Input */ "./resources/vue/components/Form/Input.vue");
+/* harmony import */ var _vue_components_Form_Select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/Form/Select */ "./resources/vue/components/Form/Select.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6434,25 +6612,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     FormInput: _vue_components_Form_Input__WEBPACK_IMPORTED_MODULE_1__["default"],
     FormSelect: _vue_components_Form_Select__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
+  props: {
+    loading: {
+      type: Boolean,
+      "default": false
+    },
+    server: Object
+  },
   data: function data() {
     return {
-      loading: false,
-      teams: [],
       form: {
-        type: 'openvpn',
-        name: 'Test server',
-        team_id: null,
-        ip: null,
-        ssh_port: 22,
         vpn_port: 1194,
         vpn_protocol: 'udp',
         dns: 'current'
-      },
-      label: {
-        name: 'Name',
-        team: 'Team',
-        ip: 'IP Address',
-        ssh_port: 'SSH port'
       },
       protocols: [{
         label: 'UPD',
@@ -6476,80 +6648,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }]
     };
   },
-  mounted: function mounted() {
-    this.load();
-  },
   methods: {
-    load: function load() {
-      this.loading = true;
-      this.loadTeams();
-      this.loading = false;
-    },
-    loadTeams: function () {
-      var _loadTeams = _asyncToGenerator(
+    onSubmit: function () {
+      var _onSubmit = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var teams;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return this.$api.userProfileTeam.list();
+                this.$emit('submit', this.form);
 
-              case 3:
-                teams = _context.sent;
-                this.teams = teams.map(function (team) {
-                  return {
-                    label: team.name,
-                    value: team.id
-                  };
-                });
-                this.form.team_id = this.user.team.id;
-                _context.next = 11;
-                break;
-
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](0);
-                this.$handleError(_context.t0);
-
-              case 11:
+              case 1:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[0, 8]]);
-      }));
-
-      function loadTeams() {
-        return _loadTeams.apply(this, arguments);
-      }
-
-      return loadTeams;
-    }(),
-    onSubmit: function () {
-      var _onSubmit = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var server;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return this.$store.dispatch('servers/createServer', this.form);
-
-              case 2:
-                server = _context2.sent;
-
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
+        }, _callee, this);
       }));
 
       function onSubmit() {
@@ -6558,10 +6673,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return onSubmit;
     }()
-  },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])('auth', {
-    user: 'getUser'
-  }))
+  }
 });
 
 /***/ }),
@@ -6579,14 +6691,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _vue_components_Form_Input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/Form/Input */ "./resources/vue/components/Form/Input.vue");
 /* harmony import */ var _vue_components_Form_Select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/Form/Select */ "./resources/vue/components/Form/Select.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -6622,7 +6727,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6632,26 +6738,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      loading: false,
-      teams: [],
       form: {
-        type: 'webserver',
-        name: 'Test server',
-        team_id: null,
-        ip: null,
-        ssh_port: 22,
         php_version: null,
         database_type: null,
         webserver_type: null
-      },
-      label: {
-        name: 'Name',
-        team: 'Team',
-        ip: 'IP Address',
-        ssh_port: 'SSH port',
-        php_version: 'PHP version',
-        database_type: 'Database',
-        webserver_type: 'Webserver'
       },
       php_versions: [],
       database_types: [],
@@ -6663,12 +6753,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     load: function load() {
-      this.loading = true;
-      this.loadTeams();
+      this.$emit('loading', true);
       this.loadPHPVersions();
       this.loadDatabaseTypes();
       this.loadWebserverTypes();
-      this.loading = false;
+      this.$emit('loading', false);
     },
     loadPHPVersions: function () {
       var _loadPHPVersions = _asyncToGenerator(
@@ -6778,71 +6867,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return loadWebserverTypes;
     }(),
-    loadTeams: function () {
-      var _loadTeams = _asyncToGenerator(
+    onSubmit: function () {
+      var _onSubmit = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var teams;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.prev = 0;
-                _context4.next = 3;
-                return this.$api.userProfileTeam.list();
+                this.$emit('submit', this.form);
 
-              case 3:
-                teams = _context4.sent;
-                this.teams = teams.map(function (team) {
-                  return {
-                    label: team.name,
-                    value: team.id
-                  };
-                });
-                this.form.team_id = this.user.team.id;
-                _context4.next = 11;
-                break;
-
-              case 8:
-                _context4.prev = 8;
-                _context4.t0 = _context4["catch"](0);
-                this.$handleError(_context4.t0);
-
-              case 11:
+              case 1:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, this, [[0, 8]]);
-      }));
-
-      function loadTeams() {
-        return _loadTeams.apply(this, arguments);
-      }
-
-      return loadTeams;
-    }(),
-    onSubmit: function () {
-      var _onSubmit = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var server;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return this.$store.dispatch('servers/createServer', this.form);
-
-              case 2:
-                server = _context5.sent;
-
-              case 3:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, this);
+        }, _callee4, this);
       }));
 
       function onSubmit() {
@@ -6851,10 +6891,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return onSubmit;
     }()
-  },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])('auth', {
-    user: 'getUser'
-  }))
+  }
 });
 
 /***/ }),
@@ -59705,745 +59742,7 @@ if (true) {
  * (c) 2019-present biig_pongsatorn <biig_pongsatorn@hotmail.com>
  * Released under the MIT License.
  */
-!function (t, e) {
-     true ? module.exports = e() : undefined
-}(this, function () {
-    "use strict";
-    var t = {
-        name: "spinner",
-        props: {
-            color: {type: String, default: "#CCC"},
-            size: {type: String, default: "40px"},
-            duration: {type: String, default: "0.6s"}
-        }
-    };
-
-    function e(t, e, i, a, n, r, s, o, d, l) {
-        "function" == typeof s && (d = o, o = s, s = !1);
-        const u = "function" == typeof i ? i.options : i;
-        let p;
-        if (t && t.render && (u.render = t.render, u.staticRenderFns = t.staticRenderFns, u._compiled = !0, n && (u.functional = !0)), a && (u._scopeId = a), r ? (p = function (t) {
-            (t = t || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) || "undefined" == typeof __VUE_SSR_CONTEXT__ || (t = __VUE_SSR_CONTEXT__), e && e.call(this, d(t)), t && t._registeredComponents && t._registeredComponents.add(r)
-        }, u._ssrRegister = p) : e && (p = s ? function () {
-            e.call(this, l(this.$root.$options.shadowRoot))
-        } : function (t) {
-            e.call(this, o(t))
-        }), p) if (u.functional) {
-            const t = u.render;
-            u.render = function (e, i) {
-                return p.call(i), t(e, i)
-            }
-        } else {
-            const t = u.beforeCreate;
-            u.beforeCreate = t ? [].concat(t, p) : [p]
-        }
-        return i
-    }
-
-    const i = t;
-    t.__file = "spinner.vue";
-    var a = e({
-        render: function () {
-            var t = this.$createElement, e = this._self._c || t;
-            return e("svg", {
-                staticStyle: {"enable-background": "new 0 0 50 50"},
-                attrs: {
-                    version: "1.1",
-                    id: "loader-1",
-                    xmlns: "http://www.w3.org/2000/svg",
-                    "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                    x: "0px",
-                    y: "0px",
-                    width: this.size,
-                    height: this.size,
-                    viewBox: "0 0 50 50",
-                    "xml:space": "preserve"
-                }
-            }, [e("path", {
-                attrs: {
-                    fill: this.color,
-                    d: "M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z"
-                }
-            }, [e("animateTransform", {
-                attrs: {
-                    attributeType: "xml",
-                    attributeName: "transform",
-                    type: "rotate",
-                    from: "0 25 25",
-                    to: "360 25 25",
-                    dur: this.duration,
-                    repeatCount: "indefinite"
-                }
-            })], 1)])
-        }, staticRenderFns: []
-    }, void 0, i, void 0, !1, void 0, void 0, void 0), n = {
-        name: "ring",
-        props: {
-            color: {type: String, default: "#CCC"},
-            size: {type: String, default: "40px"},
-            duration: {type: String, default: "0.6s"}
-        }
-    };
-    const r = n;
-    n.__file = "ring.vue";
-    var s = e({
-        render: function () {
-            var t = this.$createElement, e = this._self._c || t;
-            return e("svg", {
-                attrs: {
-                    version: "1.1",
-                    id: "loader-1",
-                    xmlns: "http://www.w3.org/2000/svg",
-                    "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                    x: "0px",
-                    y: "0px",
-                    width: this.size,
-                    height: this.size,
-                    viewBox: "0 0 40 40",
-                    "enable-background": "new 0 0 40 40",
-                    "xml:space": "preserve"
-                }
-            }, [e("path", {
-                attrs: {
-                    opacity: "0.2",
-                    fill: this.color,
-                    d: "M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946\n    s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634\n    c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"
-                }
-            }), this._v(" "), e("path", {
-                attrs: {
-                    fill: this.color,
-                    d: "M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0\n    C22.32,8.481,24.301,9.057,26.013,10.047z"
-                }
-            }, [e("animateTransform", {
-                attrs: {
-                    attributeType: "xml",
-                    attributeName: "transform",
-                    type: "rotate",
-                    from: "0 20 20",
-                    to: "360 20 20",
-                    dur: this.duration,
-                    repeatCount: "indefinite"
-                }
-            })], 1)])
-        }, staticRenderFns: []
-    }, void 0, r, void 0, !1, void 0, void 0, void 0), o = {
-        name: "mini-spinner",
-        props: {
-            color: {type: String, default: "#CCC"},
-            size: {type: String, default: "40px"},
-            duration: {type: String, default: "0.6s"}
-        }
-    };
-    const d = o;
-    o.__file = "mini-spinner.vue";
-    var l = e({
-        render: function () {
-            var t = this.$createElement, e = this._self._c || t;
-            return e("svg", {
-                staticStyle: {"enable-background": "new 0 0 50 50"},
-                attrs: {
-                    version: "1.1",
-                    id: "loader-1",
-                    xmlns: "http://www.w3.org/2000/svg",
-                    "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                    x: "0px",
-                    y: "0px",
-                    width: this.size,
-                    height: this.size,
-                    viewBox: "0 0 50 50",
-                    "xml:space": "preserve"
-                }
-            }, [e("path", {
-                attrs: {
-                    fill: this.color,
-                    d: "M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z"
-                }
-            }, [e("animateTransform", {
-                attrs: {
-                    attributeType: "xml",
-                    attributeName: "transform",
-                    type: "rotate",
-                    from: "0 25 25",
-                    to: "360 25 25",
-                    dur: this.duration,
-                    repeatCount: "indefinite"
-                }
-            })], 1)])
-        }, staticRenderFns: []
-    }, void 0, d, void 0, !1, void 0, void 0, void 0), u = {
-        name: "line-wave",
-        props: {
-            color: {type: String, default: "#CCC"},
-            size: {type: String, default: "40px"},
-            duration: {type: String, default: "0.6s"}
-        }
-    };
-    const p = u;
-    u.__file = "line-wave.vue";
-    var c = e({
-        render: function () {
-            var t = this, e = t.$createElement, i = t._self._c || e;
-            return i("svg", {
-                staticStyle: {"enable-background": "new 0 0 50 50"},
-                attrs: {
-                    version: "1.1",
-                    id: "Layer_1",
-                    xmlns: "http://www.w3.org/2000/svg",
-                    "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                    x: "0px",
-                    y: "0px",
-                    width: t.size,
-                    height: t.size,
-                    viewBox: "0 0 24 30",
-                    "xml:space": "preserve"
-                }
-            }, [i("rect", {
-                attrs: {
-                    x: "0",
-                    y: "0",
-                    width: "4",
-                    height: "10",
-                    fill: t.color
-                }
-            }, [i("animateTransform", {
-                attrs: {
-                    attributeType: "xml",
-                    attributeName: "transform",
-                    type: "translate",
-                    values: "0 0; 0 20; 0 0",
-                    begin: "0",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })], 1), t._v(" "), i("rect", {
-                attrs: {
-                    x: "10",
-                    y: "0",
-                    width: "4",
-                    height: "10",
-                    fill: t.color
-                }
-            }, [i("animateTransform", {
-                attrs: {
-                    attributeType: "xml",
-                    attributeName: "transform",
-                    type: "translate",
-                    values: "0 0; 0 20; 0 0",
-                    begin: "0.2s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })], 1), t._v(" "), i("rect", {
-                attrs: {
-                    x: "20",
-                    y: "0",
-                    width: "4",
-                    height: "10",
-                    fill: t.color
-                }
-            }, [i("animateTransform", {
-                attrs: {
-                    attributeType: "xml",
-                    attributeName: "transform",
-                    type: "translate",
-                    values: "0 0; 0 20; 0 0",
-                    begin: "0.4s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })], 1)])
-        }, staticRenderFns: []
-    }, void 0, p, void 0, !1, void 0, void 0, void 0), v = {
-        name: "line-scale",
-        props: {
-            color: {type: String, default: "#CCC"},
-            size: {type: String, default: "40px"},
-            duration: {type: String, default: "0.6s"}
-        }
-    };
-    const f = v;
-    v.__file = "line-scale.vue";
-    var m = e({
-        render: function () {
-            var t = this, e = t.$createElement, i = t._self._c || e;
-            return i("svg", {
-                staticStyle: {"enable-background": "new 0 0 50 50"},
-                attrs: {
-                    version: "1.1",
-                    id: "Layer_1",
-                    xmlns: "http://www.w3.org/2000/svg",
-                    "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                    x: "0px",
-                    y: "0px",
-                    width: t.size,
-                    height: t.size,
-                    viewBox: "0 0 24 30",
-                    "xml:space": "preserve"
-                }
-            }, [i("rect", {
-                attrs: {
-                    x: "0",
-                    y: "13",
-                    width: "4",
-                    height: "5",
-                    fill: t.color
-                }
-            }, [i("animate", {
-                attrs: {
-                    attributeName: "height",
-                    attributeType: "XML",
-                    values: "5;21;5",
-                    begin: "0s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            }), t._v(" "), i("animate", {
-                attrs: {
-                    attributeName: "y",
-                    attributeType: "XML",
-                    values: "13; 5; 13",
-                    begin: "0s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })]), t._v(" "), i("rect", {
-                attrs: {
-                    x: "10",
-                    y: "13",
-                    width: "4",
-                    height: "5",
-                    fill: t.color
-                }
-            }, [i("animate", {
-                attrs: {
-                    attributeName: "height",
-                    attributeType: "XML",
-                    values: "5;21;5",
-                    begin: "0.15s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            }), t._v(" "), i("animate", {
-                attrs: {
-                    attributeName: "y",
-                    attributeType: "XML",
-                    values: "13; 5; 13",
-                    begin: "0.15s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })]), t._v(" "), i("rect", {
-                attrs: {
-                    x: "20",
-                    y: "13",
-                    width: "4",
-                    height: "5",
-                    fill: t.color
-                }
-            }, [i("animate", {
-                attrs: {
-                    attributeName: "height",
-                    attributeType: "XML",
-                    values: "5;21;5",
-                    begin: "0.3s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            }), t._v(" "), i("animate", {
-                attrs: {
-                    attributeName: "y",
-                    attributeType: "XML",
-                    values: "13; 5; 13",
-                    begin: "0.3s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })])])
-        }, staticRenderFns: []
-    }, void 0, f, void 0, !1, void 0, void 0, void 0), h = {
-        name: "line-down",
-        props: {
-            color: {type: String, default: "#CCC"},
-            size: {type: String, default: "40px"},
-            duration: {type: String, default: "0.6s"}
-        }
-    };
-    const g = h;
-    h.__file = "line-down.vue";
-    var y = e({
-        render: function () {
-            var t = this, e = t.$createElement, i = t._self._c || e;
-            return i("svg", {
-                staticStyle: {"enable-background": "new 0 0 50 50"},
-                attrs: {
-                    version: "1.1",
-                    id: "Layer_1",
-                    xmlns: "http://www.w3.org/2000/svg",
-                    "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                    x: "0px",
-                    y: "0px",
-                    width: t.size,
-                    height: t.size,
-                    viewBox: "0 0 24 24",
-                    "xml:space": "preserve"
-                }
-            }, [i("rect", {
-                attrs: {
-                    x: "0",
-                    y: "0",
-                    width: "4",
-                    height: "7",
-                    fill: t.color
-                }
-            }, [i("animateTransform", {
-                attrs: {
-                    attributeType: "xml",
-                    attributeName: "transform",
-                    type: "scale",
-                    values: "1,1; 1,3; 1,1",
-                    begin: "0s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })], 1), t._v(" "), i("rect", {
-                attrs: {
-                    x: "10",
-                    y: "0",
-                    width: "4",
-                    height: "7",
-                    fill: t.color
-                }
-            }, [i("animateTransform", {
-                attrs: {
-                    attributeType: "xml",
-                    attributeName: "transform",
-                    type: "scale",
-                    values: "1,1; 1,3; 1,1",
-                    begin: "0.2s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })], 1), t._v(" "), i("rect", {
-                attrs: {
-                    x: "20",
-                    y: "0",
-                    width: "4",
-                    height: "7",
-                    fill: t.color
-                }
-            }, [i("animateTransform", {
-                attrs: {
-                    attributeType: "xml",
-                    attributeName: "transform",
-                    type: "scale",
-                    values: "1,1; 1,3; 1,1",
-                    begin: "0.4s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })], 1)])
-        }, staticRenderFns: []
-    }, void 0, g, void 0, !1, void 0, void 0, void 0), x = {
-        name: "bar-fade",
-        props: {
-            color: {type: String, default: "#CCC"},
-            size: {type: String, default: "40px"},
-            duration: {type: String, default: "0.6s"}
-        }
-    };
-    const w = x;
-    x.__file = "bar-fade.vue";
-    var b = e({
-        render: function () {
-            var t = this, e = t.$createElement, i = t._self._c || e;
-            return i("svg", {
-                staticStyle: {"enable-background": "new 0 0 50 50"},
-                attrs: {
-                    version: "1.1",
-                    id: "Layer_1",
-                    xmlns: "http://www.w3.org/2000/svg",
-                    "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                    x: "0px",
-                    y: "0px",
-                    width: t.size,
-                    height: t.size,
-                    viewBox: "0 0 24 30",
-                    "xml:space": "preserve"
-                }
-            }, [i("rect", {
-                attrs: {
-                    x: "0",
-                    y: "0",
-                    width: "4",
-                    height: "20",
-                    fill: t.color
-                }
-            }, [i("animate", {
-                attrs: {
-                    attributeName: "opacity",
-                    attributeType: "XML",
-                    values: "1; .2; 1",
-                    begin: "0s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })]), t._v(" "), i("rect", {
-                attrs: {
-                    x: "7",
-                    y: "0",
-                    width: "4",
-                    height: "20",
-                    fill: t.color
-                }
-            }, [i("animate", {
-                attrs: {
-                    attributeName: "opacity",
-                    attributeType: "XML",
-                    values: "1; .2; 1",
-                    begin: "0.2s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })]), t._v(" "), i("rect", {
-                attrs: {
-                    x: "14",
-                    y: "0",
-                    width: "4",
-                    height: "20",
-                    fill: t.color
-                }
-            }, [i("animate", {
-                attrs: {
-                    attributeName: "opacity",
-                    attributeType: "XML",
-                    values: "1; .2; 1",
-                    begin: "0.4s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })])])
-        }, staticRenderFns: []
-    }, void 0, w, void 0, !1, void 0, void 0, void 0), _ = {
-        name: "bar-fade-scale",
-        props: {
-            color: {type: String, default: "#CCC"},
-            size: {type: String, default: "40px"},
-            duration: {type: String, default: "0.6s"}
-        }
-    };
-    const C = _;
-    _.__file = "bar-fade-scale.vue";
-    var S = e({
-        render: function () {
-            var t = this, e = t.$createElement, i = t._self._c || e;
-            return i("svg", {
-                staticStyle: {"enable-background": "new 0 0 50 50"},
-                attrs: {
-                    version: "1.1",
-                    id: "Layer_1",
-                    xmlns: "http://www.w3.org/2000/svg",
-                    "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                    x: "0px",
-                    y: "0px",
-                    width: t.size,
-                    height: t.size,
-                    viewBox: "0 0 24 30",
-                    "xml:space": "preserve"
-                }
-            }, [i("rect", {
-                attrs: {
-                    x: "0",
-                    y: "10",
-                    width: "4",
-                    height: "10",
-                    fill: t.color,
-                    opacity: "0.2"
-                }
-            }, [i("animate", {
-                attrs: {
-                    attributeName: "opacity",
-                    attributeType: "XML",
-                    values: "0.2; 1; .2",
-                    begin: "0s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            }), t._v(" "), i("animate", {
-                attrs: {
-                    attributeName: "height",
-                    attributeType: "XML",
-                    values: "10; 20; 10",
-                    begin: "0s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            }), t._v(" "), i("animate", {
-                attrs: {
-                    attributeName: "y",
-                    attributeType: "XML",
-                    values: "10; 5; 10",
-                    begin: "0s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })]), t._v(" "), i("rect", {
-                attrs: {
-                    x: "8",
-                    y: "10",
-                    width: "4",
-                    height: "10",
-                    fill: t.color,
-                    opacity: "0.2"
-                }
-            }, [i("animate", {
-                attrs: {
-                    attributeName: "opacity",
-                    attributeType: "XML",
-                    values: "0.2; 1; .2",
-                    begin: "0.15s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            }), t._v(" "), i("animate", {
-                attrs: {
-                    attributeName: "height",
-                    attributeType: "XML",
-                    values: "10; 20; 10",
-                    begin: "0.15s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            }), t._v(" "), i("animate", {
-                attrs: {
-                    attributeName: "y",
-                    attributeType: "XML",
-                    values: "10; 5; 10",
-                    begin: "0.15s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })]), t._v(" "), i("rect", {
-                attrs: {
-                    x: "16",
-                    y: "10",
-                    width: "4",
-                    height: "10",
-                    fill: t.color,
-                    opacity: "0.2"
-                }
-            }, [i("animate", {
-                attrs: {
-                    attributeName: "opacity",
-                    attributeType: "XML",
-                    values: "0.2; 1; .2",
-                    begin: "0.3s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            }), t._v(" "), i("animate", {
-                attrs: {
-                    attributeName: "height",
-                    attributeType: "XML",
-                    values: "10; 20; 10",
-                    begin: "0.3s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            }), t._v(" "), i("animate", {
-                attrs: {
-                    attributeName: "y",
-                    attributeType: "XML",
-                    values: "10; 5; 10",
-                    begin: "0.3s",
-                    dur: t.duration,
-                    repeatCount: "indefinite"
-                }
-            })])])
-        }, staticRenderFns: []
-    }, void 0, C, void 0, !1, void 0, void 0, void 0), T = {
-        name: "vue-element-loading",
-        props: {
-            active: Boolean,
-            spinner: {type: String, default: "spinner"},
-            text: {type: String, default: ""},
-            textStyle: {
-                type: Object, default: function () {
-                    return {}
-                }
-            },
-            color: {type: String, default: "#000"},
-            isFullScreen: {type: Boolean, default: !1},
-            backgroundColor: {type: String, default: "rgba(255, 255, 255, .9)"},
-            size: {type: String, default: "40"},
-            duration: {type: String, default: "0.6"}
-        },
-        data: function () {
-            return {isActive: this.active || !1}
-        },
-        mounted: function () {
-            this.$refs.velmld.parentNode.classList.add("velmld-parent")
-        },
-        watch: {
-            active: function (t) {
-                this.isActive = t, t && this.$refs.velmld.parentNode.classList.add("velmld-parent")
-            }
-        },
-        components: {
-            Spinner: a,
-            Ring: s,
-            MiniSpinner: l,
-            LineWave: c,
-            LineScale: m,
-            LineDown: y,
-            BarFade: b,
-            BarFadeScale: S
-        }
-    };
-    const N = "undefined" != typeof navigator && /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
-    const z = document.head || document.getElementsByTagName("head")[0], L = {};
-    const k = T;
-    T.__file = "index.vue";
-    return e({
-        render: function () {
-            var t = this, e = t.$createElement, i = t._self._c || e;
-            return i("transition", {attrs: {name: "fade"}}, [i("div", {
-                directives: [{
-                    name: "show",
-                    rawName: "v-show",
-                    value: t.isActive,
-                    expression: "isActive"
-                }],
-                ref: "velmld",
-                staticClass: "velmld-overlay",
-                class: {"velmld-full-screen": t.isFullScreen},
-                style: {backgroundColor: t.backgroundColor}
-            }, [i("div", {staticClass: "velmld-spinner"}, [t._t("default", [i(t.spinner, {
-                tag: "component",
-                attrs: {color: t.color, size: t.size + "px", duration: t.duration + "s"}
-            })]), t._v(" "), t.text.length ? i("div", {style: Object.assign({}, {color: t.color}, t.textStyle)}, [t._v("\n        " + t._s(t.text) + "\n      ")]) : t._e()], 2)])])
-        }, staticRenderFns: []
-    }, function (t) {
-        t && (t("data-v-1a4f1fc2_0", {
-            source: ".fade-enter-active[data-v-1a4f1fc2],.fade-leave-active[data-v-1a4f1fc2]{transition:opacity .3s}.fade-enter[data-v-1a4f1fc2],.fade-leave-to[data-v-1a4f1fc2]{opacity:0}.velmld-overlay[data-v-1a4f1fc2]{position:absolute;z-index:3000;margin:0;top:0;right:0;bottom:0;left:0;transition:opacity .3s}.velmld-spinner[data-v-1a4f1fc2]{top:50%;left:50%;transform:translate(-50%,-50%);position:absolute;text-align:center}.velmld-full-screen[data-v-1a4f1fc2]{position:fixed}",
-            map: void 0,
-            media: void 0
-        }), t("data-v-1a4f1fc2_1", {source: ".velmld-parent{position:relative!important}", map: void 0, media: void 0}))
-    }, k, "data-v-1a4f1fc2", !1, void 0, function (t) {
-        return function (t, e) {
-            return (function (t, e) {
-                const i = N ? e.media || "default" : t, a = L[i] || (L[i] = {ids: new Set, styles: []});
-                if (!a.ids.has(t)) {
-                    a.ids.add(t);
-                    let i = e.source;
-                    if (e.map && (i += "\n/*# sourceURL=" + e.map.sources[0] + " */", i += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(e.map)))) + " */"), a.element || (a.element = document.createElement("style"), a.element.type = "text/css", e.media && a.element.setAttribute("media", e.media), z.appendChild(a.element)), "styleSheet" in a.element) a.styles.push(i), a.element.styleSheet.cssText = a.styles.filter(Boolean).join("\n"); else {
-                        const t = a.ids.size - 1, e = document.createTextNode(i), n = a.element.childNodes;
-                        n[t] && a.element.removeChild(n[t]), n.length ? a.element.insertBefore(e, n[t]) : a.element.appendChild(e)
-                    }
-                }
-            })
-        }(t, e)
-    }, void 0)
-});
+!function(t,e){ true?module.exports=e():undefined}(this,function(){"use strict";var t={name:"spinner",props:{color:{type:String,default:"#CCC"},size:{type:String,default:"40px"},duration:{type:String,default:"0.6s"}}};function e(t,e,i,a,n,r,s,o,d,l){"function"==typeof s&&(d=o,o=s,s=!1);const u="function"==typeof i?i.options:i;let p;if(t&&t.render&&(u.render=t.render,u.staticRenderFns=t.staticRenderFns,u._compiled=!0,n&&(u.functional=!0)),a&&(u._scopeId=a),r?(p=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),e&&e.call(this,d(t)),t&&t._registeredComponents&&t._registeredComponents.add(r)},u._ssrRegister=p):e&&(p=s?function(){e.call(this,l(this.$root.$options.shadowRoot))}:function(t){e.call(this,o(t))}),p)if(u.functional){const t=u.render;u.render=function(e,i){return p.call(i),t(e,i)}}else{const t=u.beforeCreate;u.beforeCreate=t?[].concat(t,p):[p]}return i}const i=t;t.__file="spinner.vue";var a=e({render:function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{staticStyle:{"enable-background":"new 0 0 50 50"},attrs:{version:"1.1",id:"loader-1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",x:"0px",y:"0px",width:this.size,height:this.size,viewBox:"0 0 50 50","xml:space":"preserve"}},[e("path",{attrs:{fill:this.color,d:"M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z"}},[e("animateTransform",{attrs:{attributeType:"xml",attributeName:"transform",type:"rotate",from:"0 25 25",to:"360 25 25",dur:this.duration,repeatCount:"indefinite"}})],1)])},staticRenderFns:[]},void 0,i,void 0,!1,void 0,void 0,void 0),n={name:"ring",props:{color:{type:String,default:"#CCC"},size:{type:String,default:"40px"},duration:{type:String,default:"0.6s"}}};const r=n;n.__file="ring.vue";var s=e({render:function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{attrs:{version:"1.1",id:"loader-1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",x:"0px",y:"0px",width:this.size,height:this.size,viewBox:"0 0 40 40","enable-background":"new 0 0 40 40","xml:space":"preserve"}},[e("path",{attrs:{opacity:"0.2",fill:this.color,d:"M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946\n    s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634\n    c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"}}),this._v(" "),e("path",{attrs:{fill:this.color,d:"M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0\n    C22.32,8.481,24.301,9.057,26.013,10.047z"}},[e("animateTransform",{attrs:{attributeType:"xml",attributeName:"transform",type:"rotate",from:"0 20 20",to:"360 20 20",dur:this.duration,repeatCount:"indefinite"}})],1)])},staticRenderFns:[]},void 0,r,void 0,!1,void 0,void 0,void 0),o={name:"mini-spinner",props:{color:{type:String,default:"#CCC"},size:{type:String,default:"40px"},duration:{type:String,default:"0.6s"}}};const d=o;o.__file="mini-spinner.vue";var l=e({render:function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{staticStyle:{"enable-background":"new 0 0 50 50"},attrs:{version:"1.1",id:"loader-1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",x:"0px",y:"0px",width:this.size,height:this.size,viewBox:"0 0 50 50","xml:space":"preserve"}},[e("path",{attrs:{fill:this.color,d:"M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z"}},[e("animateTransform",{attrs:{attributeType:"xml",attributeName:"transform",type:"rotate",from:"0 25 25",to:"360 25 25",dur:this.duration,repeatCount:"indefinite"}})],1)])},staticRenderFns:[]},void 0,d,void 0,!1,void 0,void 0,void 0),u={name:"line-wave",props:{color:{type:String,default:"#CCC"},size:{type:String,default:"40px"},duration:{type:String,default:"0.6s"}}};const p=u;u.__file="line-wave.vue";var c=e({render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("svg",{staticStyle:{"enable-background":"new 0 0 50 50"},attrs:{version:"1.1",id:"Layer_1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",x:"0px",y:"0px",width:t.size,height:t.size,viewBox:"0 0 24 30","xml:space":"preserve"}},[i("rect",{attrs:{x:"0",y:"0",width:"4",height:"10",fill:t.color}},[i("animateTransform",{attrs:{attributeType:"xml",attributeName:"transform",type:"translate",values:"0 0; 0 20; 0 0",begin:"0",dur:t.duration,repeatCount:"indefinite"}})],1),t._v(" "),i("rect",{attrs:{x:"10",y:"0",width:"4",height:"10",fill:t.color}},[i("animateTransform",{attrs:{attributeType:"xml",attributeName:"transform",type:"translate",values:"0 0; 0 20; 0 0",begin:"0.2s",dur:t.duration,repeatCount:"indefinite"}})],1),t._v(" "),i("rect",{attrs:{x:"20",y:"0",width:"4",height:"10",fill:t.color}},[i("animateTransform",{attrs:{attributeType:"xml",attributeName:"transform",type:"translate",values:"0 0; 0 20; 0 0",begin:"0.4s",dur:t.duration,repeatCount:"indefinite"}})],1)])},staticRenderFns:[]},void 0,p,void 0,!1,void 0,void 0,void 0),v={name:"line-scale",props:{color:{type:String,default:"#CCC"},size:{type:String,default:"40px"},duration:{type:String,default:"0.6s"}}};const f=v;v.__file="line-scale.vue";var m=e({render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("svg",{staticStyle:{"enable-background":"new 0 0 50 50"},attrs:{version:"1.1",id:"Layer_1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",x:"0px",y:"0px",width:t.size,height:t.size,viewBox:"0 0 24 30","xml:space":"preserve"}},[i("rect",{attrs:{x:"0",y:"13",width:"4",height:"5",fill:t.color}},[i("animate",{attrs:{attributeName:"height",attributeType:"XML",values:"5;21;5",begin:"0s",dur:t.duration,repeatCount:"indefinite"}}),t._v(" "),i("animate",{attrs:{attributeName:"y",attributeType:"XML",values:"13; 5; 13",begin:"0s",dur:t.duration,repeatCount:"indefinite"}})]),t._v(" "),i("rect",{attrs:{x:"10",y:"13",width:"4",height:"5",fill:t.color}},[i("animate",{attrs:{attributeName:"height",attributeType:"XML",values:"5;21;5",begin:"0.15s",dur:t.duration,repeatCount:"indefinite"}}),t._v(" "),i("animate",{attrs:{attributeName:"y",attributeType:"XML",values:"13; 5; 13",begin:"0.15s",dur:t.duration,repeatCount:"indefinite"}})]),t._v(" "),i("rect",{attrs:{x:"20",y:"13",width:"4",height:"5",fill:t.color}},[i("animate",{attrs:{attributeName:"height",attributeType:"XML",values:"5;21;5",begin:"0.3s",dur:t.duration,repeatCount:"indefinite"}}),t._v(" "),i("animate",{attrs:{attributeName:"y",attributeType:"XML",values:"13; 5; 13",begin:"0.3s",dur:t.duration,repeatCount:"indefinite"}})])])},staticRenderFns:[]},void 0,f,void 0,!1,void 0,void 0,void 0),h={name:"line-down",props:{color:{type:String,default:"#CCC"},size:{type:String,default:"40px"},duration:{type:String,default:"0.6s"}}};const g=h;h.__file="line-down.vue";var y=e({render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("svg",{staticStyle:{"enable-background":"new 0 0 50 50"},attrs:{version:"1.1",id:"Layer_1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",x:"0px",y:"0px",width:t.size,height:t.size,viewBox:"0 0 24 24","xml:space":"preserve"}},[i("rect",{attrs:{x:"0",y:"0",width:"4",height:"7",fill:t.color}},[i("animateTransform",{attrs:{attributeType:"xml",attributeName:"transform",type:"scale",values:"1,1; 1,3; 1,1",begin:"0s",dur:t.duration,repeatCount:"indefinite"}})],1),t._v(" "),i("rect",{attrs:{x:"10",y:"0",width:"4",height:"7",fill:t.color}},[i("animateTransform",{attrs:{attributeType:"xml",attributeName:"transform",type:"scale",values:"1,1; 1,3; 1,1",begin:"0.2s",dur:t.duration,repeatCount:"indefinite"}})],1),t._v(" "),i("rect",{attrs:{x:"20",y:"0",width:"4",height:"7",fill:t.color}},[i("animateTransform",{attrs:{attributeType:"xml",attributeName:"transform",type:"scale",values:"1,1; 1,3; 1,1",begin:"0.4s",dur:t.duration,repeatCount:"indefinite"}})],1)])},staticRenderFns:[]},void 0,g,void 0,!1,void 0,void 0,void 0),x={name:"bar-fade",props:{color:{type:String,default:"#CCC"},size:{type:String,default:"40px"},duration:{type:String,default:"0.6s"}}};const w=x;x.__file="bar-fade.vue";var b=e({render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("svg",{staticStyle:{"enable-background":"new 0 0 50 50"},attrs:{version:"1.1",id:"Layer_1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",x:"0px",y:"0px",width:t.size,height:t.size,viewBox:"0 0 24 30","xml:space":"preserve"}},[i("rect",{attrs:{x:"0",y:"0",width:"4",height:"20",fill:t.color}},[i("animate",{attrs:{attributeName:"opacity",attributeType:"XML",values:"1; .2; 1",begin:"0s",dur:t.duration,repeatCount:"indefinite"}})]),t._v(" "),i("rect",{attrs:{x:"7",y:"0",width:"4",height:"20",fill:t.color}},[i("animate",{attrs:{attributeName:"opacity",attributeType:"XML",values:"1; .2; 1",begin:"0.2s",dur:t.duration,repeatCount:"indefinite"}})]),t._v(" "),i("rect",{attrs:{x:"14",y:"0",width:"4",height:"20",fill:t.color}},[i("animate",{attrs:{attributeName:"opacity",attributeType:"XML",values:"1; .2; 1",begin:"0.4s",dur:t.duration,repeatCount:"indefinite"}})])])},staticRenderFns:[]},void 0,w,void 0,!1,void 0,void 0,void 0),_={name:"bar-fade-scale",props:{color:{type:String,default:"#CCC"},size:{type:String,default:"40px"},duration:{type:String,default:"0.6s"}}};const C=_;_.__file="bar-fade-scale.vue";var S=e({render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("svg",{staticStyle:{"enable-background":"new 0 0 50 50"},attrs:{version:"1.1",id:"Layer_1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",x:"0px",y:"0px",width:t.size,height:t.size,viewBox:"0 0 24 30","xml:space":"preserve"}},[i("rect",{attrs:{x:"0",y:"10",width:"4",height:"10",fill:t.color,opacity:"0.2"}},[i("animate",{attrs:{attributeName:"opacity",attributeType:"XML",values:"0.2; 1; .2",begin:"0s",dur:t.duration,repeatCount:"indefinite"}}),t._v(" "),i("animate",{attrs:{attributeName:"height",attributeType:"XML",values:"10; 20; 10",begin:"0s",dur:t.duration,repeatCount:"indefinite"}}),t._v(" "),i("animate",{attrs:{attributeName:"y",attributeType:"XML",values:"10; 5; 10",begin:"0s",dur:t.duration,repeatCount:"indefinite"}})]),t._v(" "),i("rect",{attrs:{x:"8",y:"10",width:"4",height:"10",fill:t.color,opacity:"0.2"}},[i("animate",{attrs:{attributeName:"opacity",attributeType:"XML",values:"0.2; 1; .2",begin:"0.15s",dur:t.duration,repeatCount:"indefinite"}}),t._v(" "),i("animate",{attrs:{attributeName:"height",attributeType:"XML",values:"10; 20; 10",begin:"0.15s",dur:t.duration,repeatCount:"indefinite"}}),t._v(" "),i("animate",{attrs:{attributeName:"y",attributeType:"XML",values:"10; 5; 10",begin:"0.15s",dur:t.duration,repeatCount:"indefinite"}})]),t._v(" "),i("rect",{attrs:{x:"16",y:"10",width:"4",height:"10",fill:t.color,opacity:"0.2"}},[i("animate",{attrs:{attributeName:"opacity",attributeType:"XML",values:"0.2; 1; .2",begin:"0.3s",dur:t.duration,repeatCount:"indefinite"}}),t._v(" "),i("animate",{attrs:{attributeName:"height",attributeType:"XML",values:"10; 20; 10",begin:"0.3s",dur:t.duration,repeatCount:"indefinite"}}),t._v(" "),i("animate",{attrs:{attributeName:"y",attributeType:"XML",values:"10; 5; 10",begin:"0.3s",dur:t.duration,repeatCount:"indefinite"}})])])},staticRenderFns:[]},void 0,C,void 0,!1,void 0,void 0,void 0),T={name:"vue-element-loading",props:{active:Boolean,spinner:{type:String,default:"spinner"},text:{type:String,default:""},textStyle:{type:Object,default:function(){return{}}},color:{type:String,default:"#000"},isFullScreen:{type:Boolean,default:!1},backgroundColor:{type:String,default:"rgba(255, 255, 255, .9)"},size:{type:String,default:"40"},duration:{type:String,default:"0.6"}},data:function(){return{isActive:this.active||!1}},mounted:function(){this.$refs.velmld.parentNode.classList.add("velmld-parent")},watch:{active:function(t){this.isActive=t,t&&this.$refs.velmld.parentNode.classList.add("velmld-parent")}},components:{Spinner:a,Ring:s,MiniSpinner:l,LineWave:c,LineScale:m,LineDown:y,BarFade:b,BarFadeScale:S}};const N="undefined"!=typeof navigator&&/msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());const z=document.head||document.getElementsByTagName("head")[0],L={};const k=T;T.__file="index.vue";return e({render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("transition",{attrs:{name:"fade"}},[i("div",{directives:[{name:"show",rawName:"v-show",value:t.isActive,expression:"isActive"}],ref:"velmld",staticClass:"velmld-overlay",class:{"velmld-full-screen":t.isFullScreen},style:{backgroundColor:t.backgroundColor}},[i("div",{staticClass:"velmld-spinner"},[t._t("default",[i(t.spinner,{tag:"component",attrs:{color:t.color,size:t.size+"px",duration:t.duration+"s"}})]),t._v(" "),t.text.length?i("div",{style:Object.assign({},{color:t.color},t.textStyle)},[t._v("\n        "+t._s(t.text)+"\n      ")]):t._e()],2)])])},staticRenderFns:[]},function(t){t&&(t("data-v-1a4f1fc2_0",{source:".fade-enter-active[data-v-1a4f1fc2],.fade-leave-active[data-v-1a4f1fc2]{transition:opacity .3s}.fade-enter[data-v-1a4f1fc2],.fade-leave-to[data-v-1a4f1fc2]{opacity:0}.velmld-overlay[data-v-1a4f1fc2]{position:absolute;z-index:3000;margin:0;top:0;right:0;bottom:0;left:0;transition:opacity .3s}.velmld-spinner[data-v-1a4f1fc2]{top:50%;left:50%;transform:translate(-50%,-50%);position:absolute;text-align:center}.velmld-full-screen[data-v-1a4f1fc2]{position:fixed}",map:void 0,media:void 0}),t("data-v-1a4f1fc2_1",{source:".velmld-parent{position:relative!important}",map:void 0,media:void 0}))},k,"data-v-1a4f1fc2",!1,void 0,function(t){return function(t,e){return(function(t,e){const i=N?e.media||"default":t,a=L[i]||(L[i]={ids:new Set,styles:[]});if(!a.ids.has(t)){a.ids.add(t);let i=e.source;if(e.map&&(i+="\n/*# sourceURL="+e.map.sources[0]+" */",i+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(e.map))))+" */"),a.element||(a.element=document.createElement("style"),a.element.type="text/css",e.media&&a.element.setAttribute("media",e.media),z.appendChild(a.element)),"styleSheet"in a.element)a.styles.push(i),a.element.styleSheet.cssText=a.styles.filter(Boolean).join("\n");else{const t=a.ids.size-1,e=document.createTextNode(i),n=a.element.childNodes;n[t]&&a.element.removeChild(n[t]),n.length?a.element.insertBefore(e,n[t]):a.element.appendChild(e)}}})}(t,e)},void 0)});
 //# sourceMappingURL=vue-element-loading.min.js.map
 
 
@@ -64013,18 +63312,104 @@ var render = function() {
           "div",
           { staticClass: "section-body" },
           [
+            _c("Loader", { attrs: { loading: _vm.loading } }),
+            _vm._v(" "),
             _c("FormSelect", {
-              attrs: { label: "Server type", options: _vm.types },
+              attrs: { label: "Server type", options: _vm.types, required: "" },
               model: {
-                value: _vm.type,
+                value: _vm.form.type,
                 callback: function($$v) {
-                  _vm.type = $$v
+                  _vm.$set(_vm.form, "type", $$v)
                 },
-                expression: "type"
+                expression: "form.type"
               }
             }),
             _vm._v(" "),
-            _c(_vm.type, { tag: "component" })
+            _c(
+              "div",
+              { staticClass: "flex" },
+              [
+                _c("FormInput", {
+                  staticClass: "w-full",
+                  attrs: {
+                    label: "Come up with server name",
+                    name: "name",
+                    required: "",
+                    autofocus: ""
+                  },
+                  model: {
+                    value: _vm.form.name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "name", $$v)
+                    },
+                    expression: "form.name"
+                  }
+                }),
+                _vm._v(" "),
+                _vm.teams.length > 1
+                  ? _c("FormSelect", {
+                      staticClass: "ml-8 w-full",
+                      attrs: {
+                        label: "Select team for your server",
+                        name: "team_id",
+                        options: _vm.teams,
+                        required: ""
+                      },
+                      model: {
+                        value: _vm.form.team_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "team_id", $$v)
+                        },
+                        expression: "form.team_id"
+                      }
+                    })
+                  : _vm._e()
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex" },
+              [
+                _c("FormInput", {
+                  staticClass: "w-full mr-8",
+                  attrs: {
+                    label: "Specify IP address of your server",
+                    name: "ip",
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.form.ip,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "ip", $$v)
+                    },
+                    expression: "form.ip"
+                  }
+                }),
+                _vm._v(" "),
+                _c("FormInput", {
+                  attrs: {
+                    label: "Set SSH port",
+                    name: "ssh_port",
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.form.ssh_port,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "ssh_port", $$v)
+                    },
+                    expression: "form.ssh_port"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(_vm.form.type, {
+              tag: "Component",
+              on: { submit: _vm.onSubmit }
+            })
           ],
           1
         )
@@ -64069,166 +63454,80 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("Loader", { attrs: { loading: _vm.loading } }),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex" },
-        [
-          _c("FormInput", {
-            staticClass: "w-full",
-            attrs: {
-              label: _vm.label.name,
-              name: "name",
-              required: "",
-              autofocus: ""
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "flex" },
+      [
+        _c("FormInput", {
+          staticClass: "w-full mr-8",
+          attrs: {
+            label: "What port do you want OpenVPN listening to",
+            name: "vpn_port",
+            required: ""
+          },
+          model: {
+            value: _vm.form.vpn_port,
+            callback: function($$v) {
+              _vm.$set(_vm.form, "vpn_port", $$v)
             },
-            model: {
-              value: _vm.form.name,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "name", $$v)
-              },
-              expression: "form.name"
-            }
-          }),
-          _vm._v(" "),
-          _vm.teams.length > 1
-            ? _c("FormSelect", {
-                staticClass: "ml-8 w-full",
-                attrs: {
-                  label: _vm.label.team,
-                  name: "team_id",
-                  options: _vm.teams,
-                  required: ""
-                },
-                model: {
-                  value: _vm.form.team_id,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "team_id", $$v)
-                  },
-                  expression: "form.team_id"
-                }
-              })
-            : _vm._e()
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex" },
-        [
-          _c("FormInput", {
-            staticClass: "w-full mr-8",
-            attrs: { label: _vm.label.ip, name: "ip", required: "" },
-            model: {
-              value: _vm.form.ip,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "ip", $$v)
-              },
-              expression: "form.ip"
-            }
-          }),
-          _vm._v(" "),
-          _c("FormInput", {
-            attrs: {
-              label: _vm.label.ssh_port,
-              name: "ssh_port",
-              required: ""
+            expression: "form.vpn_port"
+          }
+        }),
+        _vm._v(" "),
+        _c("FormSelect", {
+          staticClass: "w-full",
+          attrs: {
+            label: "Which DNS do you want to use with the VPN",
+            name: "vpn_protocol",
+            options: _vm.protocols,
+            required: ""
+          },
+          model: {
+            value: _vm.form.vpn_protocol,
+            callback: function($$v) {
+              _vm.$set(_vm.form, "vpn_protocol", $$v)
             },
-            model: {
-              value: _vm.form.ssh_port,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "ssh_port", $$v)
-              },
-              expression: "form.ssh_port"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex" },
-        [
-          _c("FormInput", {
-            staticClass: "w-full mr-8",
-            attrs: {
-              label: "What port do you want OpenVPN listening to",
-              name: "vpn_port",
-              required: ""
+            expression: "form.vpn_protocol"
+          }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "flex" },
+      [
+        _c("FormSelect", {
+          staticClass: "w-full",
+          attrs: {
+            label: "Which DNS do you want to use with the VPN",
+            name: "dns",
+            options: _vm.dns_resolvers,
+            required: ""
+          },
+          model: {
+            value: _vm.form.dns,
+            callback: function($$v) {
+              _vm.$set(_vm.form, "dns", $$v)
             },
-            model: {
-              value: _vm.form.vpn_port,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "vpn_port", $$v)
-              },
-              expression: "form.vpn_port"
-            }
-          }),
-          _vm._v(" "),
-          _c("FormSelect", {
-            staticClass: "w-full",
-            attrs: {
-              label: "Which DNS do you want to use with the VPN",
-              name: "vpn_protocol",
-              options: _vm.protocols,
-              required: ""
-            },
-            model: {
-              value: _vm.form.vpn_protocol,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "vpn_protocol", $$v)
-              },
-              expression: "form.vpn_protocol"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex" },
-        [
-          _c("FormSelect", {
-            staticClass: "w-full",
-            attrs: {
-              label: "Which DNS do you want to use with the VPN",
-              name: "dns",
-              options: _vm.dns_resolvers,
-              required: ""
-            },
-            model: {
-              value: _vm.form.dns,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "dns", $$v)
-              },
-              expression: "form.dns"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary shadow-lg",
-          on: { click: _vm.onSubmit }
-        },
-        [
-          _c("i", { staticClass: "fas fa-plus" }),
-          _vm._v("\n        Create\n    ")
-        ]
-      )
-    ],
-    1
-  )
+            expression: "form.dns"
+          }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      { staticClass: "btn btn-primary shadow-lg", on: { click: _vm.onSubmit } },
+      [
+        _c("i", { staticClass: "fas fa-plus" }),
+        _vm._v("\n        Create\n    ")
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -64252,160 +63551,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("Loader", { attrs: { loading: _vm.loading } }),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex" },
-        [
-          _c("FormInput", {
-            staticClass: "w-full",
-            attrs: {
-              label: _vm.label.name,
-              name: "name",
-              required: "",
-              autofocus: ""
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "flex" },
+      [
+        _c("FormSelect", {
+          staticClass: "w-full mr-8",
+          attrs: {
+            label: "Which PHP version do you want to install",
+            name: "php_version",
+            options: _vm.php_versions,
+            required: ""
+          },
+          model: {
+            value: _vm.form.php_version,
+            callback: function($$v) {
+              _vm.$set(_vm.form, "php_version", $$v)
             },
-            model: {
-              value: _vm.form.name,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "name", $$v)
-              },
-              expression: "form.name"
-            }
-          }),
-          _vm._v(" "),
-          _vm.teams.length > 1
-            ? _c("FormSelect", {
-                staticClass: "ml-8 w-full",
-                attrs: {
-                  label: _vm.label.team,
-                  name: "team_id",
-                  options: _vm.teams,
-                  required: ""
-                },
-                model: {
-                  value: _vm.form.team_id,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "team_id", $$v)
-                  },
-                  expression: "form.team_id"
-                }
-              })
-            : _vm._e()
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex" },
-        [
-          _c("FormInput", {
-            staticClass: "w-full mr-8",
-            attrs: { label: _vm.label.ip, name: "ip", required: "" },
-            model: {
-              value: _vm.form.ip,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "ip", $$v)
-              },
-              expression: "form.ip"
-            }
-          }),
-          _vm._v(" "),
-          _c("FormInput", {
-            attrs: {
-              label: _vm.label.ssh_port,
-              name: "ssh_port",
-              required: ""
+            expression: "form.php_version"
+          }
+        }),
+        _vm._v(" "),
+        _c("FormSelect", {
+          staticClass: "w-full mr-8",
+          attrs: {
+            label: "Which database type do you want to install",
+            name: "database_type",
+            options: _vm.database_types,
+            required: ""
+          },
+          model: {
+            value: _vm.form.database_type,
+            callback: function($$v) {
+              _vm.$set(_vm.form, "database_type", $$v)
             },
-            model: {
-              value: _vm.form.ssh_port,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "ssh_port", $$v)
-              },
-              expression: "form.ssh_port"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex" },
-        [
-          _c("FormSelect", {
-            staticClass: "w-full mr-8",
-            attrs: {
-              label: _vm.label.php_version,
-              name: "php_version",
-              options: _vm.php_versions,
-              required: ""
+            expression: "form.database_type"
+          }
+        }),
+        _vm._v(" "),
+        _c("FormSelect", {
+          staticClass: "w-full",
+          attrs: {
+            label: "Which web server do you want to install",
+            name: "webserver_type",
+            options: _vm.webserver_types,
+            required: ""
+          },
+          model: {
+            value: _vm.form.webserver_type,
+            callback: function($$v) {
+              _vm.$set(_vm.form, "webserver_type", $$v)
             },
-            model: {
-              value: _vm.form.php_version,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "php_version", $$v)
-              },
-              expression: "form.php_version"
-            }
-          }),
-          _vm._v(" "),
-          _c("FormSelect", {
-            staticClass: "w-full mr-8",
-            attrs: {
-              label: _vm.label.database_type,
-              name: "database_type",
-              options: _vm.database_types,
-              required: ""
-            },
-            model: {
-              value: _vm.form.database_type,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "database_type", $$v)
-              },
-              expression: "form.database_type"
-            }
-          }),
-          _vm._v(" "),
-          _c("FormSelect", {
-            staticClass: "w-full",
-            attrs: {
-              label: _vm.label.webserver_type,
-              name: "webserver_type",
-              options: _vm.webserver_types,
-              required: ""
-            },
-            model: {
-              value: _vm.form.webserver_type,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "webserver_type", $$v)
-              },
-              expression: "form.webserver_type"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary shadow-lg",
-          on: { click: _vm.onSubmit }
-        },
-        [
-          _c("i", { staticClass: "fas fa-plus" }),
-          _vm._v("\n        Create\n    ")
-        ]
-      )
-    ],
-    1
-  )
+            expression: "form.webserver_type"
+          }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      { staticClass: "btn btn-primary shadow-lg", on: { click: _vm.onSubmit } },
+      [
+        _c("i", { staticClass: "fas fa-plus" }),
+        _vm._v("\n        Create\n    ")
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -96998,8 +96211,8 @@ Object.keys(_broadcast__WEBPACK_IMPORTED_MODULE_3__["default"]).forEach(function
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
   broadcaster: 'pusher',
-  key: "",
-  cluster: "mt1",
+  key: "022ab1e9258e471d631a",
+  cluster: "eu",
   encrypted: true
 });
 
@@ -104165,8 +103378,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/pbuchnev/webserver/sputnik/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/pbuchnev/webserver/sputnik/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/bustchster/webserver/laravel-sputnik/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
