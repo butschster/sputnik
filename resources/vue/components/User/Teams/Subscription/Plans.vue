@@ -17,8 +17,8 @@
                         <p class="price-table__item--badge" v-if="isCurrentPlan(plan)">Popular</p>
                         <h3 class="price-table__item--title">{{ plan.name | capitalize }}</h3>
 
-                            <p class="w-full text-center">
-                                &#36; <strong class="text-5xl text-bold ml-1" v-if="!plan.is_free"> {{ plan.price }} </strong>/mo
+                            <p class="w-full text-center" v-if="!plan.is_free">
+                                &#36; <strong class="text-5xl text-bold ml-1" > {{ plan.price }} </strong>/mo
                             </p>
 
                         <ul class="price-table__item--features">

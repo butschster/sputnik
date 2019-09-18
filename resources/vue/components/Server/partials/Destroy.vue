@@ -5,7 +5,8 @@
             <div class="flex-1">
                 <div class="section-header">
                     Destroy Server
-                    <p class="text-gray-600">This is irreversible. We will remove your Server record from your account,
+                    <p class="text-gray-600">This is irreversible. We will remove your Server record from your
+                        account,
                         but all your setting will keep on your physical server.</p>
                 </div>
             </div>

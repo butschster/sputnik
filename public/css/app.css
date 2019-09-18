@@ -64939,21 +64939,19 @@ a.card-info:focus, a.card-info:hover {
 .price-table__bg {
   padding-top: 2rem;
   padding-bottom: 2rem;
-  background-image: linear-gradient(30deg, #f7f8fa 0%, #f0f1fa 100%);
 }
 
 .price-table__items {
   display: flex;
   justify-content: center;
   padding-bottom: 2rem;
-  background-image: linear-gradient(110deg, #f2f3fa 0%, #fcfdff 100%);
 }
 
 .price-table__item {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-width: 1px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   background-color: #fff;
   transition: all 0.2s linear;
   width: 33.333333%;
@@ -64987,7 +64985,9 @@ a.card-info:focus, a.card-info:hover {
 
 .price-table__item--badge {
   text-transform: uppercase;
-  color: #f0fff4;
+  color: #ebf4ff;
+  left: 0;
+  width: 100%;
   font-size: 0.875rem;
   position: absolute;
   font-weight: 700;
@@ -64996,13 +64996,9 @@ a.card-info:focus, a.card-info:hover {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
   vertical-align: middle;
-  border-width: 1px;
-  border-color: #38a169;
   min-height: 3rem;
   bottom: 95%;
-  width: calc( 100% + 2px);
-  left: -1px;
-  background-color: #379e67;
+  background-color: #5764d7;
 }
 
 .price-table__item:not(:last-child) {
@@ -65010,8 +65006,7 @@ a.card-info:focus, a.card-info:hover {
 }
 
 .price-table__item.current {
-  border-color: transparent;
-  background-color: #38a169;
+  background-color: #5a67d8;
   color: #fff;
 }
 

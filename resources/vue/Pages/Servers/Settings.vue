@@ -1,37 +1,48 @@
 <template>
-    <div>
-        <h1>Settings</h1>
+    <div class="w-full">
+        <div class="container pl-10">
+            <h1>Settings</h1>
 
-        <SystemInformation :server="$parent.server" class="section--border-b"/>
+            <SystemInformation :server="$parent.server" class="section--border-b"/>
+        </div>
 
         <section class="section section--border-b">
-            <div class="section-header">
-                Server's Public Key
-                <p>Typically, this key will automatically be added to GitHub or Bitbucket. However, if you need to add
-                    it to a service manually, you may copy it from here.</p>
-            </div>
-            <div class="section-body">
+            <div class="container pl-10">
+                <div class="section-header">
+                    Server's Public Key
+                    <p>Typically, this key will automatically be added to GitHub or Bitbucket. However, if you need to
+                        add
+                        it to a service manually, you may copy it from here.</p>
+                </div>
+                <div class="section-body">
                 <pre class="break-all whitespace-normal">
-                    <Copy :text="server.public_key" />
+                    <Copy :text="server.public_key"/>
                 </pre>
+                </div>
             </div>
         </section>
+
 
         <section class="section section--border-b">
-            <div class="section-header">
-                Server Metadata
-            </div>
-            <div class="section-body w-1/2">
-                <FormInput v-model="server.name" label="Server name" name="name" class="w-full mr-8" required/>
+            <div class="container pl-10">
+                <div class="section-header">
+                    Server Metadata
+                </div>
+                <div class="section-body w-1/2">
+                    <FormInput v-model="server.name" label="Server name" name="name" class="w-full mr-8" required/>
 
-                <button class="btn btn-primary shadow-lg" @click="onSubmit">
-                    Save
-                </button>
+                    <button class="btn btn-primary shadow-lg" @click="onSubmit">
+                        Save
+                    </button>
+                </div>
             </div>
         </section>
+        <div class="container pl-10">
+            <Destroy :server="server"/>
+        </div>
 
-        <Destroy :server="server" />
     </div>
+
 </template>
 
 <script>

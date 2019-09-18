@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="w-full">
+        <div class="container pl-10">
         <template v-if="isPending">
             <div class="alert alert-primary mb-8 rounded">
                 <p>Run this code in your server and wait until server configuring</p>
@@ -25,6 +26,7 @@
                 </div>
             </section>
         </template>
+        </div>
     </div>
 </template>
 

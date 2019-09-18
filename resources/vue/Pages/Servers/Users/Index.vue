@@ -1,63 +1,76 @@
 <template>
     <div>
-        <h1>
-            Users
-        </h1>
-
-        <CreateForm :server="$parent.server" class="well well-lg mb-12" @created="load()"/>
-
-        <h4>Active users ({{ users.length }})</h4>
-        <div v-if="hasUsers">
-            <Loader :loading="loading"/>
-            <table class="table mb-10">
-                <col>
-                <col width="200px">
-                <col width="200px">
-                <col width="100px">
-                <col width="150px">
-                <col width="100px">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Sudo password</th>
-                    <th>Home</th>
-                    <th class="text-right">Status</th>
-                    <th class="text-right">Created At</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="user in users">
-                    <th>{{ user.name }}</th>
-                    <td>
-                        <Copy :text="user.sudo_password" :label="user.sudo_password"/>
-                    </td>
-                    <td>{{ user.home_dir }}</td>
-                    <td class="text-right">
-                        <BadgeTaskStatus :task="user.task" />
-                    </td>
-                    <td class="text-right">
-                        <BadgeTimeFrom :date="user.created_at" />
-                    </td>
-                    <td class="text-right">
-                        <a class="btn btn-default btn-circle btn-sm" :href="user.links.download_key" >
-                            <i class="fas fa-download"></i>
-                        </a>
-
-                        <button class="btn btn-danger btn-circle btn-sm" v-if="!user.is_system" @click="remove(user)">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="w-full">
+            <div class="container pl-10 pt-12">
+                <h1>
+                    Users
+                </h1>
+            </div>
         </div>
+        <div class="w-full">
+            <div class="container pl-10 pt-10">
+                <CreateForm :server="$parent.server" class="well well-lg mb-12" @created="load()"/>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="container pl-10">
+                <h4>Active users ({{ users.length }})</h4>
+                <div v-if="hasUsers">
+                    <Loader :loading="loading"/>
+                    <table class="table mb-10">
+                        <col>
+                        <col width="200px">
+                        <col width="200px">
+                        <col width="100px">
+                        <col width="150px">
+                        <col width="100px">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Sudo password</th>
+                            <th>Home</th>
+                            <th class="text-right">Status</th>
+                            <th class="text-right">Created At</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="user in users">
+                            <th>{{ user.name }}</th>
+                            <td>
+                                <Copy :text="user.sudo_password" :label="user.sudo_password"/>
+                            </td>
+                            <td>{{ user.home_dir }}</td>
+                            <td class="text-right">
+                                <BadgeTaskStatus :task="user.task"/>
+                            </td>
+                            <td class="text-right">
+                                <BadgeTimeFrom :date="user.created_at"/>
+                            </td>
+                            <td class="text-right">
+                                <a class="btn btn-default btn-circle btn-sm" :href="user.links.download_key">
+                                    <i class="fas fa-download"></i>
+                                </a>
 
-        <div v-else class="well well-lg text-center">
-            <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1871/1871131.svg" alt="" width="100px">
-            <h3 class="mb-0">Looks like you don't have any users yet</h3>
+                                <button class="btn btn-danger btn-circle btn-sm" v-if="!user.is_system"
+                                        @click="remove(user)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div v-else class="well well-lg text-center">
+                    <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1871/1871131.svg" alt=""
+                         width="100px">
+                    <h3 class="mb-0">Looks like you don't have any users yet</h3>
+                </div>
+            </div>
         </div>
     </div>
+
 </template>
 
 <script>

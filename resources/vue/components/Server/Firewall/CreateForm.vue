@@ -3,14 +3,17 @@
         <Loader :loading="loading"/>
         <div class="section-header">
             Create a firewall rule
-            <p>Enter a domain that you own below and start managing your DNS within your DigitalOcean account.</p>
+            <p>Enter a domain that you own below and start managing your DNS within your DigitalOcean
+                account.</p>
         </div>
         <div class="flex flex-wrap">
             <FormInput v-model="form.name" label="Name" name="name" class="flex-1 mr-8" required autofocus/>
-            <FormInputNumber v-model="form.port" label="Port" name="port" class="mr-8 w-48" minlength="2" maxlength="4"
+            <FormInputNumber v-model="form.port" label="Port" name="port" class="mr-8 w-48" minlength="2"
+                             maxlength="4"
                              required/>
             <FormInput v-model="form.from" label="From" name="from" class="mr-8 w-48" autofocus/>
-            <FormSelect v-model="form.policy" label="Policy" name="policy" :options="policy_value" class="mr-8 w-48"
+            <FormSelect v-model="form.policy" label="Policy" name="policy" :options="policy_value"
+                        class="mr-8 w-48"
                         required/>
 
 
@@ -19,6 +22,7 @@
             </div>
         </div>
     </section>
+
 </template>
 
 <script>

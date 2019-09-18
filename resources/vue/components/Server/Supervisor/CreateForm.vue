@@ -3,11 +3,13 @@
         <Loader :loading="loading"/>
         <div class="section-header">
             New daemon
-            <p>Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems..</p>
+            <p>Supervisor is a client/server system that allows its users to monitor and control a number of
+                processes on UNIX-like operating systems..</p>
         </div>
         <div class="flex">
             <FormInput v-model="form.command" label="Command" name="command" class="flex-1 mr-8" required/>
-            <FormInput v-model="form.processes" label="Number of processes" name="processes" class="mr-8" required/>
+            <FormInput v-model="form.processes" label="Number of processes" name="processes" class="mr-8"
+                       required/>
 
             <div class="form-group mb-0">
                 <button class="btn btn-primary" @click="onSubmit">Start</button>

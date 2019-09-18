@@ -1,10 +1,12 @@
 <template>
-    <div class="breadcrumbs">
-        <ul>
-            <li v-for="crumb in crumbs">
-                {{ crumb.name }}
-            </li>
-        </ul>
+    <div class="breadcrumbs w-full">
+        <div class="container pl-10">
+            <ul>
+                <li v-for="crumb in crumbs">
+                    {{ crumb.name }}
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 

@@ -1,24 +1,31 @@
 <template>
-    <section class="well well-lg">
-        <Loader :loading="loading"/>
-        <div class="section-header">
-            New site
-            <p>Think of sites as representing each "domain" on your server.</p>
-        </div>
-        <div class="section-body" v-if="$gate.allow('create', 'site', server)">
-            <div class="flex">
-                <FormInput v-model="form.domain" label="Domain" name="domain" class="w-full mr-8" required/>
-                <FormInput v-model="form.public_dir" label="Public dir" name="public_dir" class="w-full" required/>
-            </div>
+    <div class="w-full">
+        <div class="container pl-10">
+            <section class="well well-lg">
 
-            <button class="btn btn-primary shadow-lg" @click="onSubmit">
-                Add site
-            </button>
+                <Loader :loading="loading"/>
+                <div class="section-header">
+                    New site
+                    <p>Think of sites as representing each "domain" on your server.</p>
+                </div>
+                <div class="section-body" v-if="$gate.allow('create', 'site', server)">
+                    <div class="flex">
+                        <FormInput v-model="form.domain" label="Domain" name="domain" class="w-full mr-8" required/>
+                        <FormInput v-model="form.public_dir" label="Public dir" name="public_dir" class="w-full"
+                                   required/>
+                    </div>
+
+                    <button class="btn btn-primary shadow-lg" @click="onSubmit">
+                        Add site
+                    </button>
+                </div>
+                <div v-else class="alert alert-primary">
+                    <p>Upgrade your subscription to connect add more than one sites</p>
+                </div>
+
+            </section>
         </div>
-        <div v-else class="alert alert-primary">
-            <p>Upgrade your subscription to connect add more than one sites</p>
-        </div>
-    </section>
+    </div>
 </template>
 
 <script>

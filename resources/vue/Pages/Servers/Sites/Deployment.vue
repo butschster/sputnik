@@ -1,10 +1,12 @@
 <template>
-    <div>
-        <h2>Deployment</h2>
+    <div class="w-full">
+        <div class="container pl-10">
+            <h2>Deployment</h2>
 
-        <DeploymentButton :site="site" class="section--border-b" />
-        <DeploymentList :site="site" class="section--border-b" />
-        <Configuration :site="site" />
+            <DeploymentButton :site="site" class="section--border-b"/>
+            <DeploymentList :site="site" class="section--border-b"/>
+            <Configuration :site="site"/>
+        </div>
     </div>
 </template>
 

@@ -1,40 +1,49 @@
-/<template>
-    <div class="section well well-lg">
-        <div class="section-header">
-            {{ title }}
+<template>
+    <div class="w-full">
+        <div class="container pl-10">
+            <div class="section well well-lg">
 
-            <p>You can connect any server with public IP address and opened ssh port. Your server must run a fresh
-                installation of Ubuntu 18.04 x64 and must have a root user.</p>
-        </div>
+                <div class="section-header">
+                    {{ title }}
 
-        <div class="card-body" v-if="$gate.allow('create', 'server')">
-            <Loader :loading="loading" />
-            <div class="flex">
-                <FormInput v-model="form.name" :label="label.name" name="name" class="w-full" required autofocus/>
-                <FormSelect v-if="teams.length > 1" v-model="form.team_id" :label="label.team" name="team_id" class="ml-8 w-full" :options="teams" required/>
+                    <p>You can connect any server with public IP address and opened ssh port. Your server must run a
+                        fresh
+                        installation of Ubuntu 18.04 x64 and must have a root user.</p>
+                </div>
+
+                <div class="card-body" v-if="$gate.allow('create', 'server')">
+                    <Loader :loading="loading"/>
+                    <div class="flex">
+                        <FormInput v-model="form.name" :label="label.name" name="name" class="w-full" required
+                                   autofocus/>
+                        <FormSelect v-if="teams.length > 1" v-model="form.team_id" :label="label.team" name="team_id"
+                                    class="ml-8 w-full" :options="teams" required/>
+                    </div>
+
+                    <div class="flex">
+                        <FormInput v-model="form.ip" :label="label.ip" name="ip" class="w-full mr-8" required/>
+                        <FormInput v-model="form.ssh_port" :label="label.ssh_port" name="ssh_port" required/>
+                    </div>
+
+                    <div class="flex">
+                        <FormSelect v-model="form.php_version" :label="label.php_version" name="php_version"
+                                    class="w-full mr-8"
+                                    :options="php_versions" required/>
+                        <FormSelect v-model="form.database_type" :label="label.database_type" name="database_type"
+                                    class="w-full mr-8" :options="database_types" required/>
+                        <FormSelect v-model="form.webserver_type" :label="label.webserver_type" name="webserver_type"
+                                    class="w-full" :options="webserver_types" required/>
+                    </div>
+
+                    <button class="btn btn-primary shadow-lg" @click="onSubmit">
+                        <i class="fas fa-plus"></i>
+                        Create
+                    </button>
+                </div>
+                <div v-else class="alert alert-primary">
+                    <p>Upgrade your subscription to connect more servers</p>
+                </div>
             </div>
-
-            <div class="flex">
-                <FormInput v-model="form.ip" :label="label.ip" name="ip" class="w-full mr-8" required/>
-                <FormInput v-model="form.ssh_port" :label="label.ssh_port" name="ssh_port" required/>
-            </div>
-
-            <div class="flex">
-                <FormSelect v-model="form.php_version" :label="label.php_version" name="php_version" class="w-full mr-8"
-                            :options="php_versions" required/>
-                <FormSelect v-model="form.database_type" :label="label.database_type" name="database_type"
-                            class="w-full mr-8" :options="database_types" required/>
-                <FormSelect v-model="form.webserver_type" :label="label.webserver_type" name="webserver_type"
-                            class="w-full" :options="webserver_types" required/>
-            </div>
-
-            <button class="btn btn-primary shadow-lg" @click="onSubmit">
-                <i class="fas fa-plus"></i>
-                Create
-            </button>
-        </div>
-        <div v-else class="alert alert-primary">
-            <p>Upgrade your subscription to connect more servers</p>
         </div>
     </div>
 </template>

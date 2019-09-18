@@ -1,15 +1,18 @@
 <template>
-    <div>
-        <h1>Notifications</h1>
+    <div class="w-full">
+        <div class="container pl-10 pt-12">
+            <h1>Notifications</h1>
 
-        <loader :loading="loading"/>
+            <loader :loading="loading"/>
 
-        <div class="servers-list-items" v-if="hasNotifications">
+            <div class="servers-list-items" v-if="hasNotifications">
 
-        </div>
-        <div v-else class="well well-lg text-center">
-            <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1908/1908693.svg" alt="" width="100px">
-            <h3 class="mb-0">Looks like you don't have any notifications</h3>
+            </div>
+            <div v-else class="well well-lg text-center">
+                <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1908/1908693.svg" alt=""
+                     width="100px">
+                <h3 class="mb-0">Looks like you don't have any notifications</h3>
+            </div>
         </div>
     </div>
 </template>

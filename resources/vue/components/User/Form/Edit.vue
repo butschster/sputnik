@@ -1,38 +1,40 @@
 <template>
-    <div>
-        <button class="btn btn-default btn-dark" @click="showModal">
-            {{ $t('user.profile.buttons.edit') }}
-        </button>
+    <div class="w-full">
+        <div class="container pl-10">
+            <button class="btn btn-default btn-dark" @click="showModal">
+                {{ $t('user.profile.buttons.edit') }}
+            </button>
 
-        <Modal name="profile-form">
-            <Loader :loading="loading" />
-            <div class="modal__top">
-                {{ $t('user.profile.edit_modal.title') }}
-            </div>
-            <div class="modal__content">
-               <div class="flex">
-                   <FormInput v-model="form.name"
-                              :label="$t('user.profile.edit_modal.name')"
-                              name="name"
-                              class="w-full mr-6"
-                              required autofocus/>
+            <Modal name="profile-form">
+                <Loader :loading="loading"/>
+                <div class="modal__top">
+                    {{ $t('user.profile.edit_modal.title') }}
+                </div>
+                <div class="modal__content">
+                    <div class="flex">
+                        <FormInput v-model="form.name"
+                                   :label="$t('user.profile.edit_modal.name')"
+                                   name="name"
+                                   class="w-full mr-6"
+                                   required autofocus/>
 
-                   <FormInput v-model="form.company"
-                              :label="$t('user.profile.edit_modal.company')"
-                              name="company"
-                              class="w-full"/>
-               </div>
-                <FormSelect v-model="form.lang"
-                            :label="$t('user.profile.edit_modal.lang')"
-                            name="lang"
-                            :options="langs"
-                            class="w-full"/>
+                        <FormInput v-model="form.company"
+                                   :label="$t('user.profile.edit_modal.company')"
+                                   name="company"
+                                   class="w-full"/>
+                    </div>
+                    <FormSelect v-model="form.lang"
+                                :label="$t('user.profile.edit_modal.lang')"
+                                name="lang"
+                                :options="langs"
+                                class="w-full"/>
 
-                <button class="btn btn-danger-outline btn-block" @click="update">
-                    {{ $t('user.profile.edit_modal.save') }}
-                </button>
-            </div>
-        </Modal>
+                    <button class="btn btn-danger-outline btn-block" @click="update">
+                        {{ $t('user.profile.edit_modal.save') }}
+                    </button>
+                </div>
+            </Modal>
+        </div>
     </div>
 </template>
 

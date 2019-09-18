@@ -1,16 +1,18 @@
 <template>
-    <div>
-        <div class="alert alert-warning flex justify-between items-center" v-if="team.subscription.is_invalid">
-            <div>
-                Your subscription is expired. Please renew it.
+    <div class="w-full">
+        <div class="container pl-10">
+            <div class="alert alert-warning flex justify-between items-center" v-if="team.subscription.is_invalid">
+                <div>
+                    Your subscription is expired. Please renew it.
+                </div>
+
+                <button class="btn btn-danger-outline">Renew</button>
             </div>
 
-            <button class="btn btn-danger-outline">Renew</button>
+            <SubscriptionPlans :team="team" class="section--border-b"/>
+            <CancelSubscription v-if="canBeCanceled" :team="team"/>
+            <ResumeSubscription v-if="canBeResumed" :team="team"/>
         </div>
-
-        <SubscriptionPlans :team="team" class="section--border-b" />
-        <CancelSubscription v-if="canBeCanceled" :team="team"/>
-        <ResumeSubscription v-if="canBeResumed" :team="team"/>
     </div>
 </template>
 

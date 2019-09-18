@@ -1,45 +1,57 @@
 <template>
-    <div>
-        <Loader :loading="loading"/>
-        <h2>Environment variables</h2>
-        <div v-if="hasVariables">
-            <template v-for="(vars, group) in groupedVariables">
-                <h4>{{ group }}</h4>
 
-                <table class="table mb-10">
-                    <col width="250px">
-                    <col>
-                    <col width="100px">
-                    <tbody>
-                    <tr v-for="(value, key) in vars">
-                        <th>{{ key }}</th>
-                        <td>
-                            <Copy :text="value" v-if="canBeCopiedValue(value)"/>
-                            <span v-else>{{ value }}</span>
-                        </td>
-                        <td class="text-right">
-                            <button class="btn btn-danger btn-circle btn-sm" @click="onRemove(key)">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </template>
+    <div class="w-full">
+        <div class="container pl-10">
+            <Loader :loading="loading"/>
+            <h2>Environment variables</h2>
+        </div>
+
+        <div v-if="hasVariables">
+            <div class="container pl-10">
+                <template v-for="(vars, group) in groupedVariables">
+                    <h4>{{ group }}</h4>
+
+                    <table class="table mb-10">
+                        <col width="250px">
+                        <col>
+                        <col width="100px">
+                        <tbody>
+                        <tr v-for="(value, key) in vars">
+                            <th>{{ key }}</th>
+                            <td>
+                                <Copy :text="value" v-if="canBeCopiedValue(value)"/>
+                                <span v-else>{{ value }}</span>
+                            </td>
+                            <td class="text-right">
+                                <button class="btn btn-danger btn-circle btn-sm" @click="onRemove(key)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </template>
+            </div>
         </div>
         <div v-else class="well well-lg text-center">
-            <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1568/1568465.svg" alt="" width="150px">
-            <h3 class="mb-0">Looks like you don't have any env variables yet</h3>
+            <div class="container pl-10">
+                <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1568/1568465.svg" alt=""
+                     width="150px">
+                <h3 class="mb-0">Looks like you don't have any env variables yet</h3>
+            </div>
         </div>
 
+
         <div class="section well well-lg">
-            <Loader :loading="uploadLoading"/>
-            <div class="section-header">
-                Load from .env string
-                <p>Paste contents from .env file</p>
+            <div class="container pl-10">
+                <Loader :loading="uploadLoading"/>
+                <div class="section-header">
+                    Load from .env string
+                    <p>Paste contents from .env file</p>
+                </div>
+                <Textarea v-model="uploadForm.variables" label="String with variables" name="variables"/>
+                <button class="btn btn-primary" @click="onUploadFile">Upload</button>
             </div>
-            <Textarea v-model="uploadForm.variables" label="String with variables" name="variables"/>
-            <button class="btn btn-primary" @click="onUploadFile">Upload</button>
         </div>
     </div>
 </template>

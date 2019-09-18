@@ -2629,6 +2629,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3233,6 +3235,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
     title: 'Page not found'
@@ -3270,6 +3276,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -3375,6 +3384,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3439,6 +3460,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3488,6 +3511,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -3619,6 +3644,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -3665,6 +3692,15 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3845,6 +3881,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3872,6 +3910,16 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4157,6 +4205,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4322,6 +4380,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4410,6 +4479,13 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4561,6 +4637,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -4643,6 +4721,18 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4903,6 +4993,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -4937,6 +5028,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_components_Server_Sites_partials_Settings_WebHook__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/Server/Sites/partials/Settings/WebHook */ "./resources/vue/components/Server/Sites/partials/Settings/WebHook.vue");
 /* harmony import */ var _vue_components_Server_Sites_Form_Repository__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/Server/Sites/Form/Repository */ "./resources/vue/components/Server/Sites/Form/Repository.vue");
 /* harmony import */ var _vue_components_Server_Sites_partials_Destroy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vue/components/Server/Sites/partials/Destroy */ "./resources/vue/components/Server/Sites/partials/Destroy.vue");
+//
+//
+//
 //
 //
 //
@@ -5014,6 +5108,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -5142,6 +5239,18 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5347,6 +5456,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5373,6 +5484,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -5501,6 +5614,19 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5995,6 +6121,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6089,6 +6216,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -6244,6 +6374,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -6359,6 +6493,15 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6676,6 +6819,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6709,6 +6859,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -6852,6 +7004,13 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7158,6 +7317,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -8023,6 +8186,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -8118,6 +8283,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -8425,6 +8593,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -8509,6 +8678,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -10472,6 +10643,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -59632,12 +59805,7 @@ var render = function() {
           _vm._v(" "),
           _c("Navbar"),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "container py-10 pl-12 " },
-            [_c("Breadcrumbs"), _vm._v(" "), _c("router-view")],
-            1
-          )
+          _c("div", [_c("Breadcrumbs"), _vm._v(" "), _c("router-view")], 1)
         ],
         1
       )
@@ -59666,16 +59834,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "breadcrumbs" }, [
-    _c(
-      "ul",
-      _vm._l(_vm.crumbs, function(crumb) {
-        return _c("li", [
-          _vm._v("\n            " + _vm._s(crumb.name) + "\n        ")
-        ])
-      }),
-      0
-    )
+  return _c("div", { staticClass: "breadcrumbs w-full" }, [
+    _c("div", { staticClass: "container pl-10" }, [
+      _c(
+        "ul",
+        _vm._l(_vm.crumbs, function(crumb) {
+          return _c("li", [
+            _vm._v("\n                " + _vm._s(crumb.name) + "\n            ")
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -60280,47 +60450,49 @@ var render = function() {
         "min-h-screen py-16 md:py-20 min-w-full flex flex-col justify-start"
     },
     [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "py-12 flex-grow flex justify-between items-center" },
-        [
-          _c("div", { staticClass: "container mx-auto px-4" }, [
-            _c("div", { staticClass: "flex items-center flex-wrap" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "w-full md:w-1/2 pl-0 md:pl-4 mb-10 md:mb-0" },
-                [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "mb-8" }, [
-                    _vm._v(
-                      "We couldn't find any results for your search. Try again."
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { to: _vm.$link.servers() }
-                    },
-                    [
+      _c("div", { staticClass: "container pl-10" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "py-12 flex-grow flex justify-between items-center" },
+          [
+            _c("div", { staticClass: "container mx-auto px-4" }, [
+              _c("div", { staticClass: "flex items-center flex-wrap" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/2 pl-0 md:pl-4 mb-10 md:mb-0" },
+                  [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "mb-8" }, [
                       _vm._v(
-                        "\n                        Go Home\n                    "
+                        "We couldn't find any results for your search. Try again."
                       )
-                    ]
-                  )
-                ],
-                1
-              )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { to: _vm.$link.servers() }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Go Home\n                        "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
             ])
-          ])
-        ]
-      )
+          ]
+        )
+      ])
     ]
   )
 }
@@ -60395,32 +60567,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", [_vm._v("Notifications")]),
-      _vm._v(" "),
-      _c("loader", { attrs: { loading: _vm.loading } }),
-      _vm._v(" "),
-      _vm.hasNotifications
-        ? _c("div", { staticClass: "servers-list-items" })
-        : _c("div", { staticClass: "well well-lg text-center" }, [
-            _c("img", {
-              staticClass: "mx-auto mb-10",
-              attrs: {
-                src: "https://image.flaticon.com/icons/svg/1908/1908693.svg",
-                alt: "",
-                width: "100px"
-              }
-            }),
-            _vm._v(" "),
-            _c("h3", { staticClass: "mb-0" }, [
-              _vm._v("Looks like you don't have any notifications")
+  return _c("div", { staticClass: "w-full" }, [
+    _c(
+      "div",
+      { staticClass: "container pl-10 pt-12" },
+      [
+        _c("h1", [_vm._v("Notifications")]),
+        _vm._v(" "),
+        _c("loader", { attrs: { loading: _vm.loading } }),
+        _vm._v(" "),
+        _vm.hasNotifications
+          ? _c("div", { staticClass: "servers-list-items" })
+          : _c("div", { staticClass: "well well-lg text-center" }, [
+              _c("img", {
+                staticClass: "mx-auto mb-10",
+                attrs: {
+                  src: "https://image.flaticon.com/icons/svg/1908/1908693.svg",
+                  alt: "",
+                  width: "100px"
+                }
+              }),
+              _vm._v(" "),
+              _c("h3", { staticClass: "mb-0" }, [
+                _vm._v("Looks like you don't have any notifications")
+              ])
             ])
-          ])
-    ],
-    1
-  )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -60444,55 +60619,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", { staticClass: "mb-4" }, [
-        _vm._v("\n        " + _vm._s(_vm.$t("user.profile.title")) + "\n    ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card" }, [
-        _c(
-          "div",
-          { staticClass: "card-body flex items-center" },
-          [
-            _c("img", {
-              staticClass: "h-32 rounded-full",
-              attrs: { src: _vm.user.avatar, alt: "" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "ml-10 flex-1" }, [
-              _c("h2", [_vm._v(_vm._s(_vm.user.name))]),
+  return _c("div", [
+    _c("div", { staticClass: "w-full" }, [
+      _c("div", { staticClass: "container pl-10 pt-12" }, [
+        _c("h1", { staticClass: "mb-4" }, [
+          _vm._v(
+            "\n                " +
+              _vm._s(_vm.$t("user.profile.title")) +
+              "\n            "
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-full" }, [
+      _c("div", { staticClass: "container pl-10" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-body flex items-center" },
+            [
+              _c("img", {
+                staticClass: "h-32 rounded-full",
+                attrs: { src: _vm.user.avatar, alt: "" }
+              }),
               _vm._v(" "),
-              _c("div", { staticClass: "text-gray-700" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.$t("user.profile.member_since")) +
-                    " "
-                ),
-                _c("strong", [
+              _c("div", { staticClass: "ml-10 flex-1" }, [
+                _c("h2", [_vm._v(_vm._s(_vm.user.name))]),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-gray-700" }, [
                   _vm._v(
-                    _vm._s(_vm._f("moment")(_vm.user.created_at, "DD/MM/YYYY"))
-                  )
+                    "\n                            " +
+                      _vm._s(_vm.$t("user.profile.member_since")) +
+                      " "
+                  ),
+                  _c("strong", [
+                    _vm._v(
+                      _vm._s(
+                        _vm._f("moment")(_vm.user.created_at, "DD/MM/YYYY")
+                      )
+                    )
+                  ])
                 ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("EditProfile")
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("SourceControls", {
-        staticClass: "mt-12 section--border-b",
-        attrs: { user: _vm.user }
-      }),
-      _vm._v(" "),
-      _c("Deactivate")
-    ],
-    1
-  )
+              ]),
+              _vm._v(" "),
+              _c("EditProfile")
+            ],
+            1
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-full" }, [
+      _c(
+        "div",
+        { staticClass: "container pl-10" },
+        [
+          _c("SourceControls", {
+            staticClass: "mt-12 section--border-b",
+            attrs: { user: _vm.user }
+          }),
+          _vm._v(" "),
+          _c("Deactivate")
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -60540,15 +60734,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v(_vm._s(_vm.$t("user.team.list.title")))]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "well well-lg mb-10" },
-      [_vm._m(0), _vm._v(" "), _c("Teams", { staticClass: "mb-0" })],
-      1
-    )
+  return _c("div", { staticClass: "w-full" }, [
+    _c("div", { staticClass: "container pl-10" }, [
+      _c("h1", [_vm._v(_vm._s(_vm.$t("user.team.list.title")))]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "well well-lg mb-10" },
+        [_vm._m(0), _vm._v(" "), _c("Teams", { staticClass: "mb-0" })],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -60614,119 +60810,129 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "w-full" },
     [
-      _c("Loader", { attrs: { loading: _vm.loading } }),
-      _vm._v(" "),
-      _vm.team
-        ? _c(
-            "div",
-            [
-              _c("h1", { staticClass: "mb-4 flex items-center" }, [
-                _c("img", {
-                  attrs: {
-                    src:
-                      "https://image.flaticon.com/icons/svg/1171/1171856.svg",
-                    width: "50px"
-                  }
-                }),
-                _vm._v("\n            " + _vm._s(_vm.team.name) + "\n        ")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mb-10" }, [
-                _vm.team.is_trial_period
-                  ? _c("span", { staticClass: "badge badge-warning" }, [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(
-                            _vm.$t("user.team.subscription.trial_ends_at")
-                          ) +
-                          " " +
-                          _vm._s(
-                            _vm._f("moment")(
-                              _vm.team.subscription.trial_ends_at,
-                              "DD/MM/YYYY"
-                            )
-                          ) +
-                          "\n            "
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.team.is_cancelled
-                  ? _c("span", { staticClass: "badge badge-error ml-5" }, [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.$t("user.team.subscription.ends_at")) +
-                          " " +
-                          _vm._s(
-                            _vm._f("moment")(
-                              _vm.team.subscription.ends_at,
-                              "DD/MM/YYYY"
-                            )
-                          ) +
-                          "\n            "
-                      )
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "tabs", attrs: { role: "tabs" } },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "tab",
-                      attrs: { to: _vm.$link.profileTeam(_vm.team) }
-                    },
-                    [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.$t("user.team.members.title")) +
-                          "\n            "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "tab",
-                      attrs: { to: _vm.$link.profileTeamSubscription(_vm.team) }
-                    },
-                    [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.$t("user.team.subscription.title")) +
-                          "\n            "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "tab",
-                      attrs: { to: _vm.$link.profileTeamBilling(_vm.team) }
-                    },
-                    [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.$t("user.team.billing.title")) +
-                          "\n            "
-                      )
-                    ]
+      _c(
+        "div",
+        { staticClass: "container pl-10 pt-12" },
+        [
+          _c("Loader", { attrs: { loading: _vm.loading } }),
+          _vm._v(" "),
+          _vm.team
+            ? _c("div", [
+                _c("h1", { staticClass: "mb-4 flex items-center" }, [
+                  _c("img", {
+                    attrs: {
+                      src:
+                        "https://image.flaticon.com/icons/svg/1171/1171856.svg",
+                      width: "50px"
+                    }
+                  }),
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.team.name) +
+                      "\n            "
                   )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("router-view")
-            ],
-            1
-          )
-        : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-10" }, [
+                  _vm.team.is_trial_period
+                    ? _c("span", { staticClass: "badge badge-warning" }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(
+                              _vm.$t("user.team.subscription.trial_ends_at")
+                            ) +
+                            " " +
+                            _vm._s(
+                              _vm._f("moment")(
+                                _vm.team.subscription.trial_ends_at,
+                                "DD/MM/YYYY"
+                              )
+                            ) +
+                            "\n            "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.team.is_cancelled
+                    ? _c("span", { staticClass: "badge badge-error ml-5" }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(_vm.$t("user.team.subscription.ends_at")) +
+                            " " +
+                            _vm._s(
+                              _vm._f("moment")(
+                                _vm.team.subscription.ends_at,
+                                "DD/MM/YYYY"
+                              )
+                            ) +
+                            "\n            "
+                        )
+                      ])
+                    : _vm._e()
+                ])
+              ])
+            : _vm._e()
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "tabs", attrs: { role: "tabs" } }, [
+        _c(
+          "div",
+          { staticClass: "container pl-10" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "tab",
+                attrs: { to: _vm.$link.profileTeam(_vm.team) }
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.$t("user.team.members.title")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "tab",
+                attrs: { to: _vm.$link.profileTeamSubscription(_vm.team) }
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.$t("user.team.subscription.title")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "tab",
+                attrs: { to: _vm.$link.profileTeamBilling(_vm.team) }
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.$t("user.team.billing.title")) +
+                    "\n                "
+                )
+              ]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("router-view")
     ],
     1
   )
@@ -60753,45 +60959,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.team.subscription.is_invalid
-        ? _c(
-            "div",
-            {
-              staticClass:
-                "alert alert-warning flex justify-between items-center"
-            },
-            [
-              _c("div", [
-                _vm._v(
-                  "\n            Your subscription is expired. Please renew it.\n        "
-                )
-              ]),
-              _vm._v(" "),
-              _c("button", { staticClass: "btn btn-danger-outline" }, [
-                _vm._v("Renew")
-              ])
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("SubscriptionPlans", {
-        staticClass: "section--border-b",
-        attrs: { team: _vm.team }
-      }),
-      _vm._v(" "),
-      _vm.canBeCanceled
-        ? _c("CancelSubscription", { attrs: { team: _vm.team } })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.canBeResumed
-        ? _c("ResumeSubscription", { attrs: { team: _vm.team } })
-        : _vm._e()
-    ],
-    1
-  )
+  return _c("div", { staticClass: "w-full" }, [
+    _c(
+      "div",
+      { staticClass: "container pl-10" },
+      [
+        _vm.team.subscription.is_invalid
+          ? _c(
+              "div",
+              {
+                staticClass:
+                  "alert alert-warning flex justify-between items-center"
+              },
+              [
+                _c("div", [
+                  _vm._v(
+                    "\n                Your subscription is expired. Please renew it.\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("button", { staticClass: "btn btn-danger-outline" }, [
+                  _vm._v("Renew")
+                ])
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("SubscriptionPlans", {
+          staticClass: "section--border-b",
+          attrs: { team: _vm.team }
+        }),
+        _vm._v(" "),
+        _vm.canBeCanceled
+          ? _c("CancelSubscription", { attrs: { team: _vm.team } })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.canBeResumed
+          ? _c("ResumeSubscription", { attrs: { team: _vm.team } })
+          : _vm._e()
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -60815,111 +61024,128 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", [_vm._v("\n        Databases\n    ")]),
-      _vm._v(" "),
-      _c("CreateForm", {
-        staticClass: "well well-lg mb-12",
-        attrs: { server: _vm.$parent.server },
-        on: { created: _vm.load }
-      }),
-      _vm._v(" "),
-      _c("h4", [_vm._v("Databases (" + _vm._s(_vm.databases.length) + ")")]),
-      _vm._v(" "),
-      _vm.hasDatabase
-        ? _c(
-            "div",
-            [
-              _c("Loader", { attrs: { loading: _vm.loading } }),
-              _vm._v(" "),
-              _c("table", { staticClass: "table mb-10" }, [
-                _c("col"),
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-full" }, [
+      _c(
+        "div",
+        { staticClass: "container pl-10 pt-10" },
+        [
+          _c("CreateForm", {
+            staticClass: "well well-lg mb-12",
+            attrs: { server: _vm.$parent.server },
+            on: { created: _vm.load }
+          })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-full" }, [
+      _c("div", { staticClass: "container pl-10" }, [
+        _c("h4", [_vm._v("Databases (" + _vm._s(_vm.databases.length) + ")")]),
+        _vm._v(" "),
+        _vm.hasDatabase
+          ? _c(
+              "div",
+              [
+                _c("Loader", { attrs: { loading: _vm.loading } }),
                 _vm._v(" "),
-                _c("col", { attrs: { width: "200px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "200px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "100px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "100px" } }),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.databases, function(database) {
-                    return _c("tr", [
-                      _c("td", [_vm._v(_vm._s(database.name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(database.user))]),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c("Copy", {
-                            attrs: {
-                              text: database.password,
-                              label: database.password
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "text-right" },
-                        [
-                          _c("BadgeTaskStatus", {
-                            attrs: { task: database.task }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-right" }, [
+                _c("table", { staticClass: "table mb-10" }, [
+                  _c("col"),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "200px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "200px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "100px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "100px" } }),
+                  _vm._v(" "),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.databases, function(database) {
+                      return _c("tr", [
+                        _c("td", [_vm._v(_vm._s(database.name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(database.user))]),
+                        _vm._v(" "),
                         _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-danger btn-circle btn-sm",
-                            on: {
-                              click: function($event) {
-                                return _vm.remove(database)
+                          "td",
+                          [
+                            _c("Copy", {
+                              attrs: {
+                                text: database.password,
+                                label: database.password
                               }
-                            }
-                          },
-                          [_c("i", { staticClass: "fas fa-trash" })]
-                        )
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "text-right" },
+                          [
+                            _c("BadgeTaskStatus", {
+                              attrs: { task: database.task }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-right" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger btn-circle btn-sm",
+                              on: {
+                                click: function($event) {
+                                  return _vm.remove(database)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-trash" })]
+                          )
+                        ])
                       ])
-                    ])
-                  }),
-                  0
-                )
+                    }),
+                    0
+                  )
+                ])
+              ],
+              1
+            )
+          : _c("div", { staticClass: "well well-lg text-center" }, [
+              _c("img", {
+                staticClass: "mx-auto mb-10",
+                attrs: {
+                  src: "https://image.flaticon.com/icons/svg/1265/1265529.svg",
+                  alt: "",
+                  width: "100px"
+                }
+              }),
+              _vm._v(" "),
+              _c("h3", { staticClass: "mb-0" }, [
+                _vm._v("Looks like you don't have any databases yet")
               ])
-            ],
-            1
-          )
-        : _c("div", { staticClass: "well well-lg text-center" }, [
-            _c("img", {
-              staticClass: "mx-auto mb-10",
-              attrs: {
-                src: "https://image.flaticon.com/icons/svg/1265/1265529.svg",
-                alt: "",
-                width: "100px"
-              }
-            }),
-            _vm._v(" "),
-            _c("h3", { staticClass: "mb-0" }, [
-              _vm._v("Looks like you don't have any databases yet")
             ])
-          ])
-    ],
-    1
-  )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container pl-10" }, [
+      _c("h1", [_vm._v("\n            Databases\n        ")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -60960,18 +61186,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", [_vm._v("Events")]),
-      _vm._v(" "),
-      _c("EventsList", {
-        staticClass: "mt-10",
-        attrs: { server: _vm.$parent.server }
-      })
-    ],
-    1
-  )
+  return _c("div", { staticClass: "w-full" }, [
+    _c(
+      "div",
+      { staticClass: "container pl-10" },
+      [
+        _c("h1", [_vm._v("Events")]),
+        _vm._v(" "),
+        _c("EventsList", {
+          staticClass: "mt-10",
+          attrs: { server: _vm.$parent.server }
+        })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -60995,132 +61224,154 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", [_vm._v("\n        Firewall\n    ")]),
-      _vm._v(" "),
-      _c("CreateFormFirewall", {
-        staticClass: "well well-lg mb-12",
-        attrs: { server: _vm.$parent.server },
-        on: { created: _vm.load }
-      }),
-      _vm._v(" "),
-      _vm.hasRules
-        ? _c(
-            "div",
-            { staticClass: "overflow-scroll" },
-            [
-              _c("h4", [
-                _vm._v(
-                  "Active firewall rules (" + _vm._s(_vm.rules.length) + ")"
-                )
-              ]),
-              _vm._v(" "),
-              _c("Loader", { attrs: { loading: _vm.loading } }),
-              _vm._v(" "),
-              _c("table", { staticClass: "table mb-10" }, [
-                _c("col", { staticClass: "w-1/6" }),
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-full" }, [
+      _c(
+        "div",
+        { staticClass: "container pl-10 " },
+        [
+          _c("CreateFormFirewall", {
+            staticClass: "well well-lg mb-12",
+            attrs: { server: _vm.$parent.server },
+            on: { created: _vm.load }
+          })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-full" }, [
+      _c("div", { staticClass: "container pl-10" }, [
+        _vm.hasRules
+          ? _c(
+              "div",
+              { staticClass: "overflow-scroll" },
+              [
+                _c("h4", [
+                  _vm._v(
+                    "Active firewall rules (" + _vm._s(_vm.rules.length) + ")"
+                  )
+                ]),
                 _vm._v(" "),
-                _c("col", { staticClass: "w-1/6" }),
+                _c("Loader", { attrs: { loading: _vm.loading } }),
                 _vm._v(" "),
-                _c("col", { staticClass: "w-1/6" }),
-                _vm._v(" "),
-                _c("col", { staticClass: "w-1/6" }),
-                _vm._v(" "),
-                _c("col", { staticClass: "w-1/6" }),
-                _vm._v(" "),
-                _c("col", { staticClass: "w-1/6" }),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.rules, function(rule) {
-                    return _c("tr", [
-                      _c("th", [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(rule.name) +
-                            "\n                "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("th", [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(rule.port) +
-                            "\n                "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("span", { staticClass: "badge" }, [
-                          _vm._v(_vm._s(rule.from))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-right" }, [
+                _c("table", { staticClass: "table mb-10" }, [
+                  _c("col", { staticClass: "w-1/6" }),
+                  _vm._v(" "),
+                  _c("col", { staticClass: "w-1/6" }),
+                  _vm._v(" "),
+                  _c("col", { staticClass: "w-1/6" }),
+                  _vm._v(" "),
+                  _c("col", { staticClass: "w-1/6" }),
+                  _vm._v(" "),
+                  _c("col", { staticClass: "w-1/6" }),
+                  _vm._v(" "),
+                  _c("col", { staticClass: "w-1/6" }),
+                  _vm._v(" "),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.rules, function(rule) {
+                      return _c("tr", [
+                        _c("th", [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(rule.name) +
+                              "\n                        "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("th", [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(rule.port) +
+                              "\n                        "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("span", { staticClass: "badge" }, [
+                            _vm._v(_vm._s(rule.from))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-right" }, [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "badge",
+                              class: _vm.policyBadgeClass(rule)
+                            },
+                            [_vm._v(_vm._s(rule.policy))]
+                          )
+                        ]),
+                        _vm._v(" "),
                         _c(
-                          "span",
-                          {
-                            staticClass: "badge",
-                            class: _vm.policyBadgeClass(rule)
-                          },
-                          [_vm._v(_vm._s(rule.policy))]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "text-right" },
-                        [_c("BadgeTaskStatus", { attrs: { task: rule.task } })],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-right" }, [
-                        rule.is_editable
-                          ? _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-danger btn-circle btn-sm",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.remove(rule)
+                          "td",
+                          { staticClass: "text-right" },
+                          [
+                            _c("BadgeTaskStatus", {
+                              attrs: { task: rule.task }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-right" }, [
+                          rule.is_editable
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-danger btn-circle btn-sm",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.remove(rule)
+                                    }
                                   }
-                                }
-                              },
-                              [_c("i", { staticClass: "fas fa-trash" })]
-                            )
-                          : _vm._e()
+                                },
+                                [_c("i", { staticClass: "fas fa-trash" })]
+                              )
+                            : _vm._e()
+                        ])
                       ])
-                    ])
-                  }),
-                  0
-                )
+                    }),
+                    0
+                  )
+                ])
+              ],
+              1
+            )
+          : _c("div", { staticClass: "well well-lg text-center" }, [
+              _c("img", {
+                staticClass: "mx-auto mb-10",
+                attrs: {
+                  src: "https://image.flaticon.com/icons/svg/1272/1272856.svg",
+                  alt: "",
+                  width: "100px"
+                }
+              }),
+              _vm._v(" "),
+              _c("h3", { staticClass: "mb-0" }, [
+                _vm._v("Looks like you don't have any firewall rules yet")
               ])
-            ],
-            1
-          )
-        : _c("div", { staticClass: "well well-lg text-center" }, [
-            _c("img", {
-              staticClass: "mx-auto mb-10",
-              attrs: {
-                src: "https://image.flaticon.com/icons/svg/1272/1272856.svg",
-                alt: "",
-                width: "100px"
-              }
-            }),
-            _vm._v(" "),
-            _c("h3", { staticClass: "mb-0" }, [
-              _vm._v("Looks like you don't have any firewall rules yet")
             ])
-          ])
-    ],
-    1
-  )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container pl-10 pt-12" }, [
+      _c("h1", [_vm._v("\n            Firewall\n        ")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -61165,6 +61416,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "w-full" },
     [_c("List"), _vm._v(" "), _c("CreateForm", { staticClass: "mt-10" })],
     1
   )
@@ -61191,119 +61443,138 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", [_vm._v("\n        Scheduler\n    ")]),
-      _vm._v(" "),
-      _c("CreateForm", {
-        staticClass: "well well-lg mb-12",
-        attrs: { server: _vm.$parent.server },
-        on: { created: _vm.load }
-      }),
-      _vm._v(" "),
-      _vm.hasJobs
-        ? _c(
-            "div",
-            { staticClass: "mt-10" },
-            [
-              _c("Loader", { attrs: { loading: _vm.loading } }),
-              _vm._v(" "),
-              _c("h4", [
-                _vm._v("Scheduled jobs (" + _vm._s(_vm.jobs.length) + ")")
-              ]),
-              _vm._v(" "),
-              _c("table", { staticClass: "table mb-0" }, [
-                _c("col"),
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-full" }, [
+      _c(
+        "div",
+        { staticClass: "container pl-10" },
+        [
+          _c("CreateForm", {
+            staticClass: "well well-lg mb-12",
+            attrs: { server: _vm.$parent.server },
+            on: { created: _vm.load }
+          })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-full" }, [
+      _c("div", { staticClass: "container pl-10" }, [
+        _vm.hasJobs
+          ? _c(
+              "div",
+              { staticClass: "mt-10" },
+              [
+                _c("Loader", { attrs: { loading: _vm.loading } }),
                 _vm._v(" "),
-                _c("col", { attrs: { width: "100px" } }),
+                _c("h4", [
+                  _vm._v("Scheduled jobs (" + _vm._s(_vm.jobs.length) + ")")
+                ]),
                 _vm._v(" "),
-                _c("col"),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "80px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "150px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "100px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "80px" } }),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.jobs, function(job) {
-                    return _c("tr", { key: job.id }, [
-                      _c("th", [_vm._v(_vm._s(job.name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(job.cron))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(job.command))]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-right" }, [
-                        _vm._v(_vm._s(job.user))
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "text-right" },
-                        [
-                          _c("BadgeTimeFrom", {
-                            attrs: { date: job.next_run_at }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "text-right" },
-                        [_c("BadgeTaskStatus", { attrs: { task: job.task } })],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-right" }, [
+                _c("table", { staticClass: "table mb-0" }, [
+                  _c("col"),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "100px" } }),
+                  _vm._v(" "),
+                  _c("col"),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "80px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "150px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "100px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "80px" } }),
+                  _vm._v(" "),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.jobs, function(job) {
+                      return _c("tr", { key: job.id }, [
+                        _c("th", [_vm._v(_vm._s(job.name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(job.cron))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(job.command))]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-right" }, [
+                          _vm._v(_vm._s(job.user))
+                        ]),
+                        _vm._v(" "),
                         _c(
-                          "button",
-                          {
-                            staticClass:
-                              "btn btn-danger btn-circle btn-sm  btn-circle ml-auto",
-                            on: {
-                              click: function($event) {
-                                return _vm.remove(job)
+                          "td",
+                          { staticClass: "text-right" },
+                          [
+                            _c("BadgeTimeFrom", {
+                              attrs: { date: job.next_run_at }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "text-right" },
+                          [
+                            _c("BadgeTaskStatus", { attrs: { task: job.task } })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-right" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-danger btn-circle btn-sm  btn-circle ml-auto",
+                              on: {
+                                click: function($event) {
+                                  return _vm.remove(job)
+                                }
                               }
-                            }
-                          },
-                          [_c("i", { staticClass: "fas fa-trash" })]
-                        )
+                            },
+                            [_c("i", { staticClass: "fas fa-trash" })]
+                          )
+                        ])
                       ])
-                    ])
-                  }),
-                  0
-                )
+                    }),
+                    0
+                  )
+                ])
+              ],
+              1
+            )
+          : _c("div", { staticClass: "well well-lg text-center" }, [
+              _c("img", {
+                staticClass: "mx-auto mb-10",
+                attrs: {
+                  src: "https://image.flaticon.com/icons/svg/1418/1418561.svg",
+                  alt: "",
+                  width: "100px"
+                }
+              }),
+              _vm._v(" "),
+              _c("h3", { staticClass: "mb-0" }, [
+                _vm._v("Looks like you don't have any scheduled jobs yet")
               ])
-            ],
-            1
-          )
-        : _c("div", { staticClass: "well well-lg text-center" }, [
-            _c("img", {
-              staticClass: "mx-auto mb-10",
-              attrs: {
-                src: "https://image.flaticon.com/icons/svg/1418/1418561.svg",
-                alt: "",
-                width: "100px"
-              }
-            }),
-            _vm._v(" "),
-            _c("h3", { staticClass: "mb-0" }, [
-              _vm._v("Looks like you don't have any scheduled jobs yet")
             ])
-          ])
-    ],
-    1
-  )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container pl-10 pt-12" }, [
+      _c("h1", [_vm._v("\n            Scheduler\n        ")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -61348,17 +61619,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", [_vm._v("Settings")]),
-      _vm._v(" "),
-      _c("SystemInformation", {
-        staticClass: "section--border-b",
-        attrs: { server: _vm.$parent.server }
-      }),
-      _vm._v(" "),
-      _c("section", { staticClass: "section section--border-b" }, [
+  return _c("div", { staticClass: "w-full" }, [
+    _c(
+      "div",
+      { staticClass: "container pl-10" },
+      [
+        _c("h1", [_vm._v("Settings")]),
+        _vm._v(" "),
+        _c("SystemInformation", {
+          staticClass: "section--border-b",
+          attrs: { server: _vm.$parent.server }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("section", { staticClass: "section section--border-b" }, [
+      _c("div", { staticClass: "container pl-10" }, [
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "section-body" }, [
@@ -61373,11 +61650,13 @@ var render = function() {
             1
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "section section--border-b" }, [
+      ])
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "section section--border-b" }, [
+      _c("div", { staticClass: "container pl-10" }, [
         _c("div", { staticClass: "section-header" }, [
-          _vm._v("\n            Server Metadata\n        ")
+          _vm._v("\n                Server Metadata\n            ")
         ]),
         _vm._v(" "),
         _c(
@@ -61402,17 +61681,21 @@ var render = function() {
                 staticClass: "btn btn-primary shadow-lg",
                 on: { click: _vm.onSubmit }
               },
-              [_vm._v("\n                Save\n            ")]
+              [_vm._v("\n                    Save\n                ")]
             )
           ],
           1
         )
-      ]),
-      _vm._v(" "),
-      _c("Destroy", { attrs: { server: _vm.server } })
-    ],
-    1
-  )
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "container pl-10" },
+      [_c("Destroy", { attrs: { server: _vm.server } })],
+      1
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -61420,10 +61703,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "section-header" }, [
-      _vm._v("\n            Server's Public Key\n            "),
+      _vm._v("\n                Server's Public Key\n                "),
       _c("p", [
         _vm._v(
-          "Typically, this key will automatically be added to GitHub or Bitbucket. However, if you need to add\n                it to a service manually, you may copy it from here."
+          "Typically, this key will automatically be added to GitHub or Bitbucket. However, if you need to\n                    add\n                    it to a service manually, you may copy it from here."
         )
       ])
     ])
@@ -61452,117 +61735,134 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "w-full" },
     [
-      _c("Loader", { attrs: { loading: _vm.loading } }),
-      _vm._v(" "),
-      _vm.server
-        ? _c(
-            "div",
-            [
-              _c(
-                "div",
-                { staticClass: "mb-8 flex items-center" },
-                [
-                  _c("ServerStatus", {
-                    staticClass: "mr-5",
-                    attrs: { server: _vm.server }
-                  }),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c("h1", { staticClass: "mb-0" }, [
-                      _vm._v(_vm._s(_vm.server.name))
-                    ]),
+      _c(
+        "div",
+        { staticClass: "container pl-10 pt-12" },
+        [
+          _c("Loader", { attrs: { loading: _vm.loading } }),
+          _vm._v(" "),
+          _vm.server
+            ? _c("div", [
+                _c(
+                  "div",
+                  { staticClass: "mb-8 flex items-center" },
+                  [
+                    _c("ServerStatus", {
+                      staticClass: "mr-5",
+                      attrs: { server: _vm.server }
+                    }),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "text-gray-600" },
-                      [
-                        _vm._v(
-                          "\n                    Team\n                    "
-                        ),
+                    _c("div", { staticClass: "w-full" }, [
+                      _c("div", { staticClass: "container pl-10 pt-12" }, [
+                        _c("h1", { staticClass: "mb-0" }, [
+                          _vm._v(_vm._s(_vm.server.name))
+                        ]),
+                        _vm._v(" "),
                         _c(
-                          "router-link",
-                          {
-                            attrs: {
-                              to: _vm.$link.profileTeam(_vm.server.team)
-                            }
-                          },
+                          "div",
+                          { staticClass: "text-gray-600" },
                           [
                             _vm._v(
-                              "\n                        " +
-                                _vm._s(_vm.server.team.name) +
-                                "\n                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm.hasSysInfo
-                          ? _c("span", { staticClass: "text-gray-500" }, [
-                              _vm._v(" - " + _vm._s(_vm.server.sys_info.name))
-                            ])
-                          : _vm._e()
-                      ],
-                      1
-                    )
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              !_vm.isSupported
-                ? _c("NotSupported", { attrs: { server: _vm.server } })
-                : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "tabs", attrs: { role: "tabs" } },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "tab",
-                      attrs: { to: _vm.$link.serverSites(_vm.server) }
-                    },
-                    [_vm._v("Sites")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "tab",
-                      attrs: { to: _vm.$link.serverEvents(_vm.server) }
-                    },
-                    [_vm._v("Events")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "tab",
-                      attrs: { to: _vm.$link.serverTasks(_vm.server) }
-                    },
-                    [_vm._v("Tasks")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "tab",
-                      attrs: { to: _vm.$link.serverSettings(_vm.server) }
-                    },
-                    [_vm._v("Settings")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("InstallProgress", { attrs: { server: _vm.server } }),
-              _vm._v(" "),
-              _c("router-view")
-            ],
-            1
-          )
-        : _vm._e()
+                              "\n                            Team\n                            "
+                            ),
+                            _c(
+                              "router-link",
+                              {
+                                attrs: {
+                                  to: _vm.$link.profileTeam(_vm.server.team)
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(_vm.server.team.name) +
+                                    "\n                            "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm.hasSysInfo
+                              ? _c("span", { staticClass: "text-gray-500" }, [
+                                  _vm._v(
+                                    " - " + _vm._s(_vm.server.sys_info.name)
+                                  )
+                                ])
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      ])
+                    ])
+                  ],
+                  1
+                )
+              ])
+            : _vm._e()
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-full" }, [
+        _c(
+          "div",
+          { staticClass: "container pl-10" },
+          [
+            !_vm.isSupported
+              ? _c("NotSupported", { attrs: { server: _vm.server } })
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "tabs", attrs: { role: "tabs" } },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "tab",
+                    attrs: { to: _vm.$link.serverSites(_vm.server) }
+                  },
+                  [_vm._v("Sites")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "tab",
+                    attrs: { to: _vm.$link.serverEvents(_vm.server) }
+                  },
+                  [_vm._v("Events")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "tab",
+                    attrs: { to: _vm.$link.serverTasks(_vm.server) }
+                  },
+                  [_vm._v("Tasks")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "tab",
+                    attrs: { to: _vm.$link.serverSettings(_vm.server) }
+                  },
+                  [_vm._v("Settings")]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("InstallProgress", { attrs: { server: _vm.server } }),
+      _vm._v(" "),
+      _c("router-view")
     ],
     1
   )
@@ -61589,25 +61889,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h2", [_vm._v("Deployment")]),
-      _vm._v(" "),
-      _c("DeploymentButton", {
-        staticClass: "section--border-b",
-        attrs: { site: _vm.site }
-      }),
-      _vm._v(" "),
-      _c("DeploymentList", {
-        staticClass: "section--border-b",
-        attrs: { site: _vm.site }
-      }),
-      _vm._v(" "),
-      _c("Configuration", { attrs: { site: _vm.site } })
-    ],
-    1
-  )
+  return _c("div", { staticClass: "w-full" }, [
+    _c(
+      "div",
+      { staticClass: "container pl-10" },
+      [
+        _c("h2", [_vm._v("Deployment")]),
+        _vm._v(" "),
+        _c("DeploymentButton", {
+          staticClass: "section--border-b",
+          attrs: { site: _vm.site }
+        }),
+        _vm._v(" "),
+        _c("DeploymentList", {
+          staticClass: "section--border-b",
+          attrs: { site: _vm.site }
+        }),
+        _vm._v(" "),
+        _c("Configuration", { attrs: { site: _vm.site } })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -61631,16 +61934,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("Loader", { attrs: { loading: _vm.loading } }),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Environment variables")]),
-      _vm._v(" "),
-      _vm.hasVariables
-        ? _c(
+  return _c("div", { staticClass: "w-full" }, [
+    _c(
+      "div",
+      { staticClass: "container pl-10" },
+      [
+        _c("Loader", { attrs: { loading: _vm.loading } }),
+        _vm._v(" "),
+        _c("h2", [_vm._v("Environment variables")])
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm.hasVariables
+      ? _c("div", [
+          _c(
             "div",
+            { staticClass: "container pl-10" },
             [
               _vm._l(_vm.groupedVariables, function(vars, group) {
                 return [
@@ -61693,28 +62003,17 @@ var render = function() {
             ],
             2
           )
-        : _c("div", { staticClass: "well well-lg text-center" }, [
-            _c("img", {
-              staticClass: "mx-auto mb-10",
-              attrs: {
-                src: "https://image.flaticon.com/icons/svg/1568/1568465.svg",
-                alt: "",
-                width: "150px"
-              }
-            }),
-            _vm._v(" "),
-            _c("h3", { staticClass: "mb-0" }, [
-              _vm._v("Looks like you don't have any env variables yet")
-            ])
-          ]),
-      _vm._v(" "),
+        ])
+      : _c("div", { staticClass: "well well-lg text-center" }, [_vm._m(0)]),
+    _vm._v(" "),
+    _c("div", { staticClass: "section well well-lg" }, [
       _c(
         "div",
-        { staticClass: "section well well-lg" },
+        { staticClass: "container pl-10" },
         [
           _c("Loader", { attrs: { loading: _vm.uploadLoading } }),
           _vm._v(" "),
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c("Textarea", {
             attrs: { label: "String with variables", name: "variables" },
@@ -61735,17 +62034,35 @@ var render = function() {
         ],
         1
       )
-    ],
-    1
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container pl-10" }, [
+      _c("img", {
+        staticClass: "mx-auto mb-10",
+        attrs: {
+          src: "https://image.flaticon.com/icons/svg/1568/1568465.svg",
+          alt: "",
+          width: "150px"
+        }
+      }),
+      _vm._v(" "),
+      _c("h3", { staticClass: "mb-0" }, [
+        _vm._v("Looks like you don't have any env variables yet")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "section-header" }, [
-      _vm._v("\n            Load from .env string\n            "),
+      _vm._v("\n                Load from .env string\n                "),
       _c("p", [_vm._v("Paste contents from .env file")])
     ])
   }
@@ -61772,26 +62089,34 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.isConfigured
-    ? _c("div", [
-        _c("h1", [_vm._v("Sites")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          [
-            _c("SitesList", { attrs: { server: _vm.$parent.server } }),
-            _vm._v(" "),
-            _c("CreateForm", {
-              staticClass: "mt-12",
-              attrs: { server: _vm.$parent.server },
-              on: { created: _vm.onCreate }
-            })
-          ],
-          1
-        )
-      ])
+    ? _c(
+        "div",
+        { staticClass: "w-full" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("SitesList", { attrs: { server: _vm.$parent.server } }),
+          _vm._v(" "),
+          _c("CreateForm", {
+            staticClass: "mt-12",
+            attrs: { server: _vm.$parent.server },
+            on: { created: _vm.onCreate }
+          })
+        ],
+        1
+      )
     : _vm._e()
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container pl-10" }, [
+      _c("h1", [_vm._v("Sites")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -61813,9 +62138,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
+  return _c("div", { staticClass: "w-full" }, [
+    _c("div", { staticClass: "container pl-10" }, [
       _c("h2", [_vm._v("Settings")]),
       _vm._v(" "),
       !_vm.site.has_env
@@ -61824,60 +62148,66 @@ var render = function() {
             { staticClass: "alert alert-warning" },
             [
               _vm._v(
-                "\n        Site doesn't have environment variables\n        "
+                "\n            Site doesn't have environment variables\n            "
               ),
               _c(
                 "router-link",
                 { attrs: { to: _vm.$link.serverSiteEnvironment(_vm.site) } },
-                [_vm._v("\n            Configure\n        ")]
+                [_vm._v("\n                Configure\n            ")]
               )
             ],
             1
           )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "section section--border-b mt-10" }, [
-        _c("table", { staticClass: "table" }, [
-          _c("col", { attrs: { width: "200px" } }),
-          _vm._v(" "),
-          _c("col"),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("th", [_vm._v("Path")]),
-              _vm._v(" "),
-              _c("td", [_c("Copy", { attrs: { text: _vm.site.path } })], 1)
-            ]),
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "container pl-10" },
+      [
+        _c("div", { staticClass: "section section--border-b mt-10" }, [
+          _c("table", { staticClass: "table" }, [
+            _c("col", { attrs: { width: "200px" } }),
             _vm._v(" "),
-            _c("tr", [
-              _c("th", [_vm._v("Public path")]),
+            _c("col"),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("th", [_vm._v("Path")]),
+                _vm._v(" "),
+                _c("td", [_c("Copy", { attrs: { text: _vm.site.path } })], 1)
+              ]),
               _vm._v(" "),
-              _c(
-                "td",
-                [_c("Copy", { attrs: { text: _vm.site.public_path } })],
-                1
-              )
+              _c("tr", [
+                _c("th", [_vm._v("Public path")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  [_c("Copy", { attrs: { text: _vm.site.public_path } })],
+                  1
+                )
+              ])
             ])
           ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("Repository", { staticClass: "mb-10", attrs: { site: _vm.site } }),
-      _vm._v(" "),
-      _c("PublicKey", {
-        staticClass: "section--border-b",
-        attrs: { site: _vm.site }
-      }),
-      _vm._v(" "),
-      _c("WebHook", {
-        staticClass: "section--border-b",
-        attrs: { site: _vm.site }
-      }),
-      _vm._v(" "),
-      _c("Destroy", { attrs: { site: _vm.site } })
-    ],
-    1
-  )
+        ]),
+        _vm._v(" "),
+        _c("Repository", { staticClass: "mb-10", attrs: { site: _vm.site } }),
+        _vm._v(" "),
+        _c("PublicKey", {
+          staticClass: "section--border-b",
+          attrs: { site: _vm.site }
+        }),
+        _vm._v(" "),
+        _c("WebHook", {
+          staticClass: "section--border-b",
+          attrs: { site: _vm.site }
+        }),
+        _vm._v(" "),
+        _c("Destroy", { attrs: { site: _vm.site } })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -61902,87 +62232,102 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.site
-    ? _c("div", [
-        _c(
-          "div",
-          { staticClass: "flex items-center" },
-          [
-            _c("h2", { staticClass: "flex flex-1 items-center" }, [
-              _c("img", {
-                staticClass: "mr-4",
-                attrs: {
-                  src: "https://image.flaticon.com/icons/svg/1055/1055685.svg",
-                  width: "40px"
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "a",
-                { attrs: { href: _vm.site.links.url, target: "_blank" } },
-                [_vm._v(_vm._s(_vm.site.domain))]
-              )
-            ]),
-            _vm._v(" "),
-            _vm.site.domain_expires_at
-              ? _c("span", { staticClass: "badge badge-warning mr-5" }, [
-                  _vm._v(
-                    "\n            Expires at " +
-                      _vm._s(
-                        _vm._f("moment")(
-                          _vm.site.domain_expires_at,
-                          "DD/MM/YYYY"
-                        )
-                      ) +
-                      "\n        "
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c("BadgeTaskStatus", { attrs: { task: _vm.site.task } })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "mt-10 flex items-start" },
-          [
-            _c(
-              "LeftMenu",
-              [
-                _vm.$gate.allow("deploy", "site", _vm.site)
-                  ? _c(
-                      "router-link",
-                      {
-                        attrs: { to: _vm.$link.serverSiteDeployment(_vm.site) }
-                      },
-                      [_vm._v("\n                Deployment\n            ")]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.$gate.allow("deploy", "site", _vm.site)
-                  ? _c(
-                      "router-link",
-                      {
-                        attrs: { to: _vm.$link.serverSiteEnvironment(_vm.site) }
-                      },
-                      [_vm._v("\n                Environment\n            ")]
-                    )
-                  : _vm._e(),
+    ? _c("div", { staticClass: "w-full" }, [
+        _c("div", { staticClass: "container pl-10" }, [
+          _c(
+            "div",
+            { staticClass: "flex items-center" },
+            [
+              _c("h2", { staticClass: "flex flex-1 items-center" }, [
+                _c("img", {
+                  staticClass: "mr-4",
+                  attrs: {
+                    src:
+                      "https://image.flaticon.com/icons/svg/1055/1055685.svg",
+                    width: "40px"
+                  }
+                }),
                 _vm._v(" "),
                 _c(
-                  "router-link",
-                  { attrs: { to: _vm.$link.serverSite(_vm.site) } },
-                  [_vm._v("\n                Settings\n            ")]
+                  "a",
+                  { attrs: { href: _vm.site.links.url, target: "_blank" } },
+                  [_vm._v(_vm._s(_vm.site.domain))]
                 )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("router-view", { staticClass: "flex-1 ml-10" })
-          ],
-          1
-        )
+              ]),
+              _vm._v(" "),
+              _vm.site.domain_expires_at
+                ? _c("span", { staticClass: "badge badge-warning mr-5" }, [
+                    _vm._v(
+                      "\n            Expires at " +
+                        _vm._s(
+                          _vm._f("moment")(
+                            _vm.site.domain_expires_at,
+                            "DD/MM/YYYY"
+                          )
+                        ) +
+                        "\n        "
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("BadgeTaskStatus", { attrs: { task: _vm.site.task } })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "mt-10 flex items-start" },
+            [
+              _c(
+                "LeftMenu",
+                [
+                  _vm.$gate.allow("deploy", "site", _vm.site)
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: _vm.$link.serverSiteDeployment(_vm.site)
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    Deployment\n                "
+                          )
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.$gate.allow("deploy", "site", _vm.site)
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: _vm.$link.serverSiteEnvironment(_vm.site)
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    Environment\n                "
+                          )
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    { attrs: { to: _vm.$link.serverSite(_vm.site) } },
+                    [_vm._v("\n                    Settings\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("router-view", { staticClass: "flex-1 ml-10" })
+            ],
+            1
+          )
+        ])
       ])
     : _vm._e()
 }
@@ -62008,108 +62353,127 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", [_vm._v("\n        Supervisor\n    ")]),
-      _vm._v(" "),
-      _c("CreateForm", {
-        staticClass: "well well-lg mb-12",
-        attrs: { server: _vm.$parent.server },
-        on: { created: _vm.load }
-      }),
-      _vm._v(" "),
-      _vm.hasDaemons
-        ? _c(
-            "div",
-            { staticClass: "mt-10" },
-            [
-              _c("Loader", { attrs: { loading: _vm.loading } }),
-              _vm._v(" "),
-              _c("table", { staticClass: "table mb-0" }, [
-                _c("col"),
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-full" }, [
+      _c(
+        "div",
+        { staticClass: "container pl-10" },
+        [
+          _c("CreateForm", {
+            staticClass: "well well-lg mb-12",
+            attrs: { server: _vm.$parent.server },
+            on: { created: _vm.load }
+          })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-full" }, [
+      _c("div", { staticClass: "container pl-10" }, [
+        _vm.hasDaemons
+          ? _c(
+              "div",
+              { staticClass: "mt-10" },
+              [
+                _c("Loader", { attrs: { loading: _vm.loading } }),
                 _vm._v(" "),
-                _c("col"),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "100px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "100px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "100px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "80px" } }),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.daemons, function(daemon) {
-                    return _c("tr", { key: daemon.id }, [
-                      _c("th", [_vm._v(_vm._s(daemon.command))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(daemon.directory))]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-center" }, [
-                        _vm._v(_vm._s(daemon.processes))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-right" }, [
-                        _vm._v(_vm._s(daemon.user))
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "text-right" },
-                        [
-                          _c("BadgeTaskStatus", {
-                            attrs: { task: daemon.task }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-right" }, [
+                _c("table", { staticClass: "table mb-0" }, [
+                  _c("col"),
+                  _vm._v(" "),
+                  _c("col"),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "100px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "100px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "100px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "80px" } }),
+                  _vm._v(" "),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.daemons, function(daemon) {
+                      return _c("tr", { key: daemon.id }, [
+                        _c("th", [_vm._v(_vm._s(daemon.command))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(daemon.directory))]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(daemon.processes))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-right" }, [
+                          _vm._v(_vm._s(daemon.user))
+                        ]),
+                        _vm._v(" "),
                         _c(
-                          "button",
-                          {
-                            staticClass:
-                              "btn btn-danger-outline btn-circle btn-sm",
-                            on: {
-                              click: function($event) {
-                                return _vm.remove(daemon)
+                          "td",
+                          { staticClass: "text-right" },
+                          [
+                            _c("BadgeTaskStatus", {
+                              attrs: { task: daemon.task }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-right" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-danger-outline btn-circle btn-sm",
+                              on: {
+                                click: function($event) {
+                                  return _vm.remove(daemon)
+                                }
                               }
-                            }
-                          },
-                          [_c("i", { staticClass: "fas fa-trash" })]
-                        )
+                            },
+                            [_c("i", { staticClass: "fas fa-trash" })]
+                          )
+                        ])
                       ])
-                    ])
-                  }),
-                  0
-                )
+                    }),
+                    0
+                  )
+                ])
+              ],
+              1
+            )
+          : _c("div", { staticClass: "well well-lg text-center" }, [
+              _c("img", {
+                staticClass: "mx-auto mb-10",
+                attrs: {
+                  src: "https://image.flaticon.com/icons/svg/1681/1681597.svg",
+                  alt: "",
+                  width: "100px"
+                }
+              }),
+              _vm._v(" "),
+              _c("h3", { staticClass: "mb-0" }, [
+                _vm._v("Looks like you don't have any daemons yet")
               ])
-            ],
-            1
-          )
-        : _c("div", { staticClass: "well well-lg text-center" }, [
-            _c("img", {
-              staticClass: "mx-auto mb-10",
-              attrs: {
-                src: "https://image.flaticon.com/icons/svg/1681/1681597.svg",
-                alt: "",
-                width: "100px"
-              }
-            }),
-            _vm._v(" "),
-            _c("h3", { staticClass: "mb-0" }, [
-              _vm._v("Looks like you don't have any daemons yet")
             ])
-          ])
-    ],
-    1
-  )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-full" }, [
+      _c("div", { staticClass: "container pl-10 pt-12" }, [
+        _c("h1", [_vm._v("\n                Supervisor\n            ")])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -62178,8 +62542,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "w-full" },
     [
-      _c("h1", [_vm._v("Tasks")]),
+      _vm._m(0),
       _vm._v(" "),
       _c("TasksList", {
         staticClass: "mt-10",
@@ -62189,7 +62554,16 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container pl-10" }, [
+      _c("h1", [_vm._v("Tasks")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -62211,71 +62585,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("Loader", { attrs: { loading: _vm.loading } }),
-      _vm._v(" "),
-      _vm.task
-        ? _c("div", [
-            _c("h3", [_vm._v(_vm._s(_vm.task.name))]),
-            _vm._v(" "),
-            _c("table", { staticClass: "table" }, [
-              _c("tbody", [
-                _c("tr", [
-                  _c("th", [_vm._v("User")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.task.user))])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("Status")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [_c("BadgeTaskStatus", { attrs: { task: _vm.task } })],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("Success")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.task.is_successful ? "Yes" : "No"))
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _vm.task.script
-              ? _c("section", { staticClass: "section mt-10" }, [
-                  _c("div", { staticClass: "section-header" }, [
-                    _vm._v("Command")
+  return _c("div", { staticClass: "w-full" }, [
+    _c(
+      "div",
+      { staticClass: "container pl-10" },
+      [
+        _c("Loader", { attrs: { loading: _vm.loading } }),
+        _vm._v(" "),
+        _vm.task
+          ? _c("div", [
+              _c("h3", [_vm._v(_vm._s(_vm.task.name))]),
+              _vm._v(" "),
+              _c("table", { staticClass: "table" }, [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("th", [_vm._v("User")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.task.user))])
                   ]),
                   _vm._v(" "),
-                  _c("pre", { staticClass: "break-all" }, [
-                    _vm._v(_vm._s(_vm.task.script))
-                  ])
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.task.output
-              ? _c("section", { staticClass: "section mt-10" }, [
-                  _c("div", { staticClass: "section-header" }, [
-                    _vm._v("Output")
+                  _c("tr", [
+                    _c("th", [_vm._v("Status")]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [_c("BadgeTaskStatus", { attrs: { task: _vm.task } })],
+                      1
+                    )
                   ]),
                   _vm._v(" "),
-                  _c("pre", { staticClass: "break-all" }, [
-                    _vm._v(_vm._s(_vm.task.output))
+                  _c("tr", [
+                    _c("th", [_vm._v("Success")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.task.is_successful ? "Yes" : "No"))
+                    ])
                   ])
                 ])
-              : _vm._e()
-          ])
-        : _vm._e()
-    ],
-    1
-  )
+              ]),
+              _vm._v(" "),
+              _vm.task.script
+                ? _c("section", { staticClass: "section mt-10" }, [
+                    _c("div", { staticClass: "section-header" }, [
+                      _vm._v("Command")
+                    ]),
+                    _vm._v(" "),
+                    _c("pre", { staticClass: "break-all" }, [
+                      _vm._v(_vm._s(_vm.task.script))
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.task.output
+                ? _c("section", { staticClass: "section mt-10" }, [
+                    _c("div", { staticClass: "section-header" }, [
+                      _vm._v("Output")
+                    ]),
+                    _vm._v(" "),
+                    _c("pre", { staticClass: "break-all" }, [
+                      _vm._v(_vm._s(_vm.task.output))
+                    ])
+                  ])
+                : _vm._e()
+            ])
+          : _vm._e()
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -62299,135 +62676,159 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", [_vm._v("\n        Users\n    ")]),
-      _vm._v(" "),
-      _c("CreateForm", {
-        staticClass: "well well-lg mb-12",
-        attrs: { server: _vm.$parent.server },
-        on: {
-          created: function($event) {
-            return _vm.load()
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("h4", [_vm._v("Active users (" + _vm._s(_vm.users.length) + ")")]),
-      _vm._v(" "),
-      _vm.hasUsers
-        ? _c(
-            "div",
-            [
-              _c("Loader", { attrs: { loading: _vm.loading } }),
-              _vm._v(" "),
-              _c("table", { staticClass: "table mb-10" }, [
-                _c("col"),
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-full" }, [
+      _c(
+        "div",
+        { staticClass: "container pl-10 pt-10" },
+        [
+          _c("CreateForm", {
+            staticClass: "well well-lg mb-12",
+            attrs: { server: _vm.$parent.server },
+            on: {
+              created: function($event) {
+                return _vm.load()
+              }
+            }
+          })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-full" }, [
+      _c("div", { staticClass: "container pl-10" }, [
+        _c("h4", [_vm._v("Active users (" + _vm._s(_vm.users.length) + ")")]),
+        _vm._v(" "),
+        _vm.hasUsers
+          ? _c(
+              "div",
+              [
+                _c("Loader", { attrs: { loading: _vm.loading } }),
                 _vm._v(" "),
-                _c("col", { attrs: { width: "200px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "200px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "100px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "150px" } }),
-                _vm._v(" "),
-                _c("col", { attrs: { width: "100px" } }),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.users, function(user) {
-                    return _c("tr", [
-                      _c("th", [_vm._v(_vm._s(user.name))]),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c("Copy", {
-                            attrs: {
-                              text: user.sudo_password,
-                              label: user.sudo_password
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(user.home_dir))]),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "text-right" },
-                        [_c("BadgeTaskStatus", { attrs: { task: user.task } })],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "text-right" },
-                        [
-                          _c("BadgeTimeFrom", {
-                            attrs: { date: user.created_at }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-right" }, [
+                _c("table", { staticClass: "table mb-10" }, [
+                  _c("col"),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "200px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "200px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "100px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "150px" } }),
+                  _vm._v(" "),
+                  _c("col", { attrs: { width: "100px" } }),
+                  _vm._v(" "),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.users, function(user) {
+                      return _c("tr", [
+                        _c("th", [_vm._v(_vm._s(user.name))]),
+                        _vm._v(" "),
                         _c(
-                          "a",
-                          {
-                            staticClass: "btn btn-default btn-circle btn-sm",
-                            attrs: { href: user.links.download_key }
-                          },
-                          [_c("i", { staticClass: "fas fa-download" })]
+                          "td",
+                          [
+                            _c("Copy", {
+                              attrs: {
+                                text: user.sudo_password,
+                                label: user.sudo_password
+                              }
+                            })
+                          ],
+                          1
                         ),
                         _vm._v(" "),
-                        !user.is_system
-                          ? _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-danger btn-circle btn-sm",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.remove(user)
+                        _c("td", [_vm._v(_vm._s(user.home_dir))]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "text-right" },
+                          [
+                            _c("BadgeTaskStatus", {
+                              attrs: { task: user.task }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "text-right" },
+                          [
+                            _c("BadgeTimeFrom", {
+                              attrs: { date: user.created_at }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-right" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-default btn-circle btn-sm",
+                              attrs: { href: user.links.download_key }
+                            },
+                            [_c("i", { staticClass: "fas fa-download" })]
+                          ),
+                          _vm._v(" "),
+                          !user.is_system
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-danger btn-circle btn-sm",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.remove(user)
+                                    }
                                   }
-                                }
-                              },
-                              [_c("i", { staticClass: "fas fa-trash" })]
-                            )
-                          : _vm._e()
+                                },
+                                [_c("i", { staticClass: "fas fa-trash" })]
+                              )
+                            : _vm._e()
+                        ])
                       ])
-                    ])
-                  }),
-                  0
-                )
+                    }),
+                    0
+                  )
+                ])
+              ],
+              1
+            )
+          : _c("div", { staticClass: "well well-lg text-center" }, [
+              _c("img", {
+                staticClass: "mx-auto mb-10",
+                attrs: {
+                  src: "https://image.flaticon.com/icons/svg/1871/1871131.svg",
+                  alt: "",
+                  width: "100px"
+                }
+              }),
+              _vm._v(" "),
+              _c("h3", { staticClass: "mb-0" }, [
+                _vm._v("Looks like you don't have any users yet")
               ])
-            ],
-            1
-          )
-        : _c("div", { staticClass: "well well-lg text-center" }, [
-            _c("img", {
-              staticClass: "mx-auto mb-10",
-              attrs: {
-                src: "https://image.flaticon.com/icons/svg/1871/1871131.svg",
-                alt: "",
-                width: "100px"
-              }
-            }),
-            _vm._v(" "),
-            _c("h3", { staticClass: "mb-0" }, [
-              _vm._v("Looks like you don't have any users yet")
             ])
-          ])
-    ],
-    1
-  )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-full" }, [
+      _c("div", { staticClass: "container pl-10 pt-12" }, [
+        _c("h1", [_vm._v("\n                Users\n            ")])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -62886,61 +63287,66 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
-    _c("h4", [_vm._v("Recent Events")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "section-body" },
-      [
-        _c("Loader", { attrs: { loading: _vm.loading } }),
-        _vm._v(" "),
-        _vm.hasEvents
-          ? _c("table", { staticClass: "table" }, [
-              _c("col"),
-              _vm._v(" "),
-              _c("col", { attrs: { width: "200px" } }),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                _vm._l(_vm.events.data, function(evt) {
-                  return _c("tr", { key: evt.id }, [
-                    _c("th", [_vm._v(_vm._s(evt.message))]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-right" }, [
-                      _c("small", { staticClass: "badge" }, [
-                        _vm._v(_vm._s(_vm._f("moment")(evt.created_at, "from")))
+  return _c("section", { staticClass: "w-full" }, [
+    _c("div", { staticClass: "container pl-10" }, [
+      _c("h4", [_vm._v("Recent Events")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "section-body" },
+        [
+          _c("Loader", { attrs: { loading: _vm.loading } }),
+          _vm._v(" "),
+          _vm.hasEvents
+            ? _c("table", { staticClass: "table" }, [
+                _c("col"),
+                _vm._v(" "),
+                _c("col", { attrs: { width: "200px" } }),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.events.data, function(evt) {
+                    return _c("tr", { key: evt.id }, [
+                      _c("th", [_vm._v(_vm._s(evt.message))]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-right" }, [
+                        _c("small", { staticClass: "badge" }, [
+                          _vm._v(
+                            _vm._s(_vm._f("moment")(evt.created_at, "from"))
+                          )
+                        ])
                       ])
                     ])
-                  ])
-                }),
-                0
-              )
-            ])
-          : _c("div", { staticClass: "well well-lg text-center" }, [
-              _c("img", {
-                staticClass: "mx-auto mb-10",
-                attrs: {
-                  src: "https://image.flaticon.com/icons/svg/1421/1421313.svg",
-                  alt: "",
-                  width: "150px"
-                }
-              }),
-              _vm._v(" "),
-              _c("h3", { staticClass: "mb-0" }, [
-                _vm._v("Looks like you don't have any events yet")
+                  }),
+                  0
+                )
               ])
-            ]),
-        _vm._v(" "),
-        _c("Pagination", {
-          attrs: { data: _vm.events },
-          on: { "pagination-change-page": _vm.load }
-        })
-      ],
-      1
-    )
+            : _c("div", { staticClass: "well well-lg text-center" }, [
+                _c("img", {
+                  staticClass: "mx-auto mb-10",
+                  attrs: {
+                    src:
+                      "https://image.flaticon.com/icons/svg/1421/1421313.svg",
+                    alt: "",
+                    width: "150px"
+                  }
+                }),
+                _vm._v(" "),
+                _c("h3", { staticClass: "mb-0" }, [
+                  _vm._v("Looks like you don't have any events yet")
+                ])
+              ]),
+          _vm._v(" "),
+          _c("Pagination", {
+            attrs: { data: _vm.events },
+            on: { "pagination-change-page": _vm.load }
+          })
+        ],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -63072,7 +63478,7 @@ var staticRenderFns = [
       _vm._v("\n        Create a firewall rule\n        "),
       _c("p", [
         _vm._v(
-          "Enter a domain that you own below and start managing your DNS within your DigitalOcean account."
+          "Enter a domain that you own below and start managing your DNS within your DigitalOcean\n            account."
         )
       ])
     ])
@@ -63099,175 +63505,183 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "section well well-lg" }, [
-    _c("div", { staticClass: "section-header" }, [
-      _vm._v("\n        " + _vm._s(_vm.title) + "\n\n        "),
-      _c("p", [
-        _vm._v(
-          "You can connect any server with public IP address and opened ssh port. Your server must run a fresh\n            installation of Ubuntu 18.04 x64 and must have a root user."
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _vm.$gate.allow("create", "server")
-      ? _c(
-          "div",
-          { staticClass: "card-body" },
-          [
-            _c("Loader", { attrs: { loading: _vm.loading } }),
-            _vm._v(" "),
-            _c(
+  return _c("div", { staticClass: "w-full" }, [
+    _c("div", { staticClass: "container pl-10" }, [
+      _c("div", { staticClass: "section well well-lg" }, [
+        _c("div", { staticClass: "section-header" }, [
+          _vm._v(
+            "\n                " + _vm._s(_vm.title) + "\n\n                "
+          ),
+          _c("p", [
+            _vm._v(
+              "You can connect any server with public IP address and opened ssh port. Your server must run a\n                    fresh\n                    installation of Ubuntu 18.04 x64 and must have a root user."
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.$gate.allow("create", "server")
+          ? _c(
               "div",
-              { staticClass: "flex" },
+              { staticClass: "card-body" },
               [
-                _c("FormInput", {
-                  staticClass: "w-full",
-                  attrs: {
-                    label: _vm.label.name,
-                    name: "name",
-                    required: "",
-                    autofocus: ""
-                  },
-                  model: {
-                    value: _vm.form.name,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "name", $$v)
-                    },
-                    expression: "form.name"
-                  }
-                }),
+                _c("Loader", { attrs: { loading: _vm.loading } }),
                 _vm._v(" "),
-                _vm.teams.length > 1
-                  ? _c("FormSelect", {
-                      staticClass: "ml-8 w-full",
+                _c(
+                  "div",
+                  { staticClass: "flex" },
+                  [
+                    _c("FormInput", {
+                      staticClass: "w-full",
                       attrs: {
-                        label: _vm.label.team,
-                        name: "team_id",
-                        options: _vm.teams,
+                        label: _vm.label.name,
+                        name: "name",
+                        required: "",
+                        autofocus: ""
+                      },
+                      model: {
+                        value: _vm.form.name,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "name", $$v)
+                        },
+                        expression: "form.name"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.teams.length > 1
+                      ? _c("FormSelect", {
+                          staticClass: "ml-8 w-full",
+                          attrs: {
+                            label: _vm.label.team,
+                            name: "team_id",
+                            options: _vm.teams,
+                            required: ""
+                          },
+                          model: {
+                            value: _vm.form.team_id,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "team_id", $$v)
+                            },
+                            expression: "form.team_id"
+                          }
+                        })
+                      : _vm._e()
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "flex" },
+                  [
+                    _c("FormInput", {
+                      staticClass: "w-full mr-8",
+                      attrs: { label: _vm.label.ip, name: "ip", required: "" },
+                      model: {
+                        value: _vm.form.ip,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "ip", $$v)
+                        },
+                        expression: "form.ip"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("FormInput", {
+                      attrs: {
+                        label: _vm.label.ssh_port,
+                        name: "ssh_port",
                         required: ""
                       },
                       model: {
-                        value: _vm.form.team_id,
+                        value: _vm.form.ssh_port,
                         callback: function($$v) {
-                          _vm.$set(_vm.form, "team_id", $$v)
+                          _vm.$set(_vm.form, "ssh_port", $$v)
                         },
-                        expression: "form.team_id"
+                        expression: "form.ssh_port"
                       }
                     })
-                  : _vm._e()
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "flex" },
+                  [
+                    _c("FormSelect", {
+                      staticClass: "w-full mr-8",
+                      attrs: {
+                        label: _vm.label.php_version,
+                        name: "php_version",
+                        options: _vm.php_versions,
+                        required: ""
+                      },
+                      model: {
+                        value: _vm.form.php_version,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "php_version", $$v)
+                        },
+                        expression: "form.php_version"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("FormSelect", {
+                      staticClass: "w-full mr-8",
+                      attrs: {
+                        label: _vm.label.database_type,
+                        name: "database_type",
+                        options: _vm.database_types,
+                        required: ""
+                      },
+                      model: {
+                        value: _vm.form.database_type,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "database_type", $$v)
+                        },
+                        expression: "form.database_type"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("FormSelect", {
+                      staticClass: "w-full",
+                      attrs: {
+                        label: _vm.label.webserver_type,
+                        name: "webserver_type",
+                        options: _vm.webserver_types,
+                        required: ""
+                      },
+                      model: {
+                        value: _vm.form.webserver_type,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "webserver_type", $$v)
+                        },
+                        expression: "form.webserver_type"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary shadow-lg",
+                    on: { click: _vm.onSubmit }
+                  },
+                  [
+                    _c("i", { staticClass: "fas fa-plus" }),
+                    _vm._v("\n                    Create\n                ")
+                  ]
+                )
               ],
               1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "flex" },
-              [
-                _c("FormInput", {
-                  staticClass: "w-full mr-8",
-                  attrs: { label: _vm.label.ip, name: "ip", required: "" },
-                  model: {
-                    value: _vm.form.ip,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "ip", $$v)
-                    },
-                    expression: "form.ip"
-                  }
-                }),
-                _vm._v(" "),
-                _c("FormInput", {
-                  attrs: {
-                    label: _vm.label.ssh_port,
-                    name: "ssh_port",
-                    required: ""
-                  },
-                  model: {
-                    value: _vm.form.ssh_port,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "ssh_port", $$v)
-                    },
-                    expression: "form.ssh_port"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "flex" },
-              [
-                _c("FormSelect", {
-                  staticClass: "w-full mr-8",
-                  attrs: {
-                    label: _vm.label.php_version,
-                    name: "php_version",
-                    options: _vm.php_versions,
-                    required: ""
-                  },
-                  model: {
-                    value: _vm.form.php_version,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "php_version", $$v)
-                    },
-                    expression: "form.php_version"
-                  }
-                }),
-                _vm._v(" "),
-                _c("FormSelect", {
-                  staticClass: "w-full mr-8",
-                  attrs: {
-                    label: _vm.label.database_type,
-                    name: "database_type",
-                    options: _vm.database_types,
-                    required: ""
-                  },
-                  model: {
-                    value: _vm.form.database_type,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "database_type", $$v)
-                    },
-                    expression: "form.database_type"
-                  }
-                }),
-                _vm._v(" "),
-                _c("FormSelect", {
-                  staticClass: "w-full",
-                  attrs: {
-                    label: _vm.label.webserver_type,
-                    name: "webserver_type",
-                    options: _vm.webserver_types,
-                    required: ""
-                  },
-                  model: {
-                    value: _vm.form.webserver_type,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "webserver_type", $$v)
-                    },
-                    expression: "form.webserver_type"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary shadow-lg",
-                on: { click: _vm.onSubmit }
-              },
-              [
-                _c("i", { staticClass: "fas fa-plus" }),
-                _vm._v("\n            Create\n        ")
-              ]
             )
-          ],
-          1
-        )
-      : _c("div", { staticClass: "alert alert-primary" }, [
-          _c("p", [_vm._v("Upgrade your subscription to connect more servers")])
-        ])
+          : _c("div", { staticClass: "alert alert-primary" }, [
+              _c("p", [
+                _vm._v("Upgrade your subscription to connect more servers")
+              ])
+            ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -63292,47 +63706,52 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    { staticClass: "servers-list" },
-    [
-      _c("loader", { attrs: { loading: _vm.loading } }),
-      _vm._v(" "),
-      _vm.hasServers
-        ? _c("h4", [
-            _vm._v("Active Servers (" + _vm._s(_vm.servers.length) + ")")
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.hasServers
-        ? _c(
-            "div",
-            { staticClass: "servers-list-items" },
-            _vm._l(_vm.servers, function(server) {
-              return _c("ListItem", {
-                key: server.id,
-                attrs: { server: server }
-              })
-            }),
-            1
-          )
-        : _c("div", { staticClass: "well well-lg text-center" }, [
-            _c("img", {
-              staticClass: "mx-auto mb-10",
-              attrs: {
-                src: "https://image.flaticon.com/icons/svg/1421/1421309.svg",
-                alt: "",
-                width: "100px"
-              }
-            }),
-            _vm._v(" "),
-            _c("h3", { staticClass: "mb-0" }, [
-              _vm._v("Looks like you don't have any servers :(")
-            ])
-          ])
-    ],
-    1
-  )
+  return _c("div", { staticClass: "w-full" }, [
+    _c("div", { staticClass: "container pl-10 pt-12" }, [
+      _c(
+        "section",
+        { staticClass: "servers-list" },
+        [
+          _c("loader", { attrs: { loading: _vm.loading } }),
+          _vm._v(" "),
+          _vm.hasServers
+            ? _c("h4", [
+                _vm._v("Active Servers (" + _vm._s(_vm.servers.length) + ")")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.hasServers
+            ? _c(
+                "div",
+                { staticClass: "servers-list-items" },
+                _vm._l(_vm.servers, function(server) {
+                  return _c("ListItem", {
+                    key: server.id,
+                    attrs: { server: server }
+                  })
+                }),
+                1
+              )
+            : _c("div", { staticClass: "well well-lg text-center" }, [
+                _c("img", {
+                  staticClass: "mx-auto mb-10",
+                  attrs: {
+                    src:
+                      "https://image.flaticon.com/icons/svg/1421/1421309.svg",
+                    alt: "",
+                    width: "100px"
+                  }
+                }),
+                _vm._v(" "),
+                _c("h3", { staticClass: "mb-0" }, [
+                  _vm._v("Looks like you don't have any servers :(")
+                ])
+              ])
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -63480,70 +63899,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    { staticClass: "well well-lg" },
-    [
-      _c("Loader", { attrs: { loading: _vm.loading } }),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _vm.$gate.allow("create", "site", _vm.server)
-        ? _c("div", { staticClass: "section-body" }, [
-            _c(
-              "div",
-              { staticClass: "flex" },
-              [
-                _c("FormInput", {
-                  staticClass: "w-full mr-8",
-                  attrs: { label: "Domain", name: "domain", required: "" },
-                  model: {
-                    value: _vm.form.domain,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "domain", $$v)
-                    },
-                    expression: "form.domain"
-                  }
-                }),
+  return _c("div", { staticClass: "w-full" }, [
+    _c("div", { staticClass: "container pl-10" }, [
+      _c(
+        "section",
+        { staticClass: "well well-lg" },
+        [
+          _c("Loader", { attrs: { loading: _vm.loading } }),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _vm.$gate.allow("create", "site", _vm.server)
+            ? _c("div", { staticClass: "section-body" }, [
+                _c(
+                  "div",
+                  { staticClass: "flex" },
+                  [
+                    _c("FormInput", {
+                      staticClass: "w-full mr-8",
+                      attrs: { label: "Domain", name: "domain", required: "" },
+                      model: {
+                        value: _vm.form.domain,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "domain", $$v)
+                        },
+                        expression: "form.domain"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("FormInput", {
+                      staticClass: "w-full",
+                      attrs: {
+                        label: "Public dir",
+                        name: "public_dir",
+                        required: ""
+                      },
+                      model: {
+                        value: _vm.form.public_dir,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "public_dir", $$v)
+                        },
+                        expression: "form.public_dir"
+                      }
+                    })
+                  ],
+                  1
+                ),
                 _vm._v(" "),
-                _c("FormInput", {
-                  staticClass: "w-full",
-                  attrs: {
-                    label: "Public dir",
-                    name: "public_dir",
-                    required: ""
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary shadow-lg",
+                    on: { click: _vm.onSubmit }
                   },
-                  model: {
-                    value: _vm.form.public_dir,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "public_dir", $$v)
-                    },
-                    expression: "form.public_dir"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary shadow-lg",
-                on: { click: _vm.onSubmit }
-              },
-              [_vm._v("\n            Add site\n        ")]
-            )
-          ])
-        : _c("div", { staticClass: "alert alert-primary" }, [
-            _c("p", [
-              _vm._v(
-                "Upgrade your subscription to connect add more than one sites"
-              )
-            ])
-          ])
-    ],
-    1
-  )
+                  [_vm._v("\n                    Add site\n                ")]
+                )
+              ])
+            : _c("div", { staticClass: "alert alert-primary" }, [
+                _c("p", [
+                  _vm._v(
+                    "Upgrade your subscription to connect add more than one sites"
+                  )
+                ])
+              ])
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -63551,7 +63974,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "section-header" }, [
-      _vm._v("\n        New site\n        "),
+      _vm._v("\n                New site\n                "),
       _c("p", [
         _vm._v('Think of sites as representing each "domain" on your server.')
       ])
@@ -63721,44 +64144,52 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    { staticClass: "servers-list" },
-    [
-      _c("loader", { attrs: { loading: _vm.loading } }),
-      _vm._v(" "),
-      _vm.hasSites
-        ? _c("div", [
-            _c("h4", [
-              _vm._v("Active domains (" + _vm._s(_vm.sites.length) + ")")
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "servers-list-items" },
-              _vm._l(_vm.sites, function(site) {
-                return _c("ListItem", { key: site.id, attrs: { site: site } })
-              }),
-              1
-            )
-          ])
-        : _c("div", { staticClass: "well well-lg text-center" }, [
-            _c("img", {
-              staticClass: "mx-auto mb-10",
-              attrs: {
-                src: "https://image.flaticon.com/icons/svg/1908/1908731.svg",
-                alt: "",
-                width: "100px"
-              }
-            }),
-            _vm._v(" "),
-            _c("h3", { staticClass: "mb-0" }, [
-              _vm._v("Looks like you don't have any sites :(")
-            ])
-          ])
-    ],
-    1
-  )
+  return _c("div", { staticClass: "w-full" }, [
+    _c("section", { staticClass: "servers-list" }, [
+      _c(
+        "div",
+        { staticClass: "container pl-10" },
+        [
+          _c("loader", { attrs: { loading: _vm.loading } }),
+          _vm._v(" "),
+          _vm.hasSites
+            ? _c("div", [
+                _c("h4", [
+                  _vm._v("Active domains (" + _vm._s(_vm.sites.length) + ")")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "servers-list-items" },
+                  _vm._l(_vm.sites, function(site) {
+                    return _c("ListItem", {
+                      key: site.id,
+                      attrs: { site: site }
+                    })
+                  }),
+                  1
+                )
+              ])
+            : _c("div", { staticClass: "well well-lg text-center" }, [
+                _c("img", {
+                  staticClass: "mx-auto mb-10",
+                  attrs: {
+                    src:
+                      "https://image.flaticon.com/icons/svg/1908/1908731.svg",
+                    alt: "",
+                    width: "100px"
+                  }
+                }),
+                _vm._v(" "),
+                _c("h3", { staticClass: "mb-0" }, [
+                  _vm._v("Looks like you don't have any sites :(")
+                ])
+              ])
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -64374,7 +64805,7 @@ var staticRenderFns = [
       _vm._v("\n        New daemon\n        "),
       _c("p", [
         _vm._v(
-          "Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems.."
+          "Supervisor is a client/server system that allows its users to monitor and control a number of\n            processes on UNIX-like operating systems.."
         )
       ])
     ])
@@ -64401,55 +64832,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
-    _c("h4", [_vm._v("Recent Tasks")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "section-body" },
-      [
-        _c("Loader", { attrs: { loading: _vm.loading } }),
-        _vm._v(" "),
-        _vm.hasTasks
-          ? _c("table", { staticClass: "table" }, [
-              _c("col"),
-              _vm._v(" "),
-              _c("col", { attrs: { width: "100px" } }),
-              _vm._v(" "),
-              _c("col", { attrs: { width: "150px" } }),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                _vm._l(_vm.tasks.data, function(task) {
-                  return _c("ListItem", { key: task.id, attrs: { task: task } })
-                }),
-                1
-              )
-            ])
-          : _c("div", { staticClass: "well well-lg text-center" }, [
-              _c("img", {
-                staticClass: "mx-auto mb-10",
-                attrs: {
-                  src: "https://image.flaticon.com/icons/svg/1681/1681318.svg",
-                  alt: "",
-                  width: "150px"
-                }
-              }),
-              _vm._v(" "),
-              _c("h3", { staticClass: "mb-0" }, [
-                _vm._v("Looks like you don't have any executed tasks yet")
+  return _c("section", { staticClass: "w-full" }, [
+    _c("div", { staticClass: "container pl-10" }, [
+      _c("h4", [_vm._v("Recent Tasks")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "section-body" },
+        [
+          _c("Loader", { attrs: { loading: _vm.loading } }),
+          _vm._v(" "),
+          _vm.hasTasks
+            ? _c("table", { staticClass: "table" }, [
+                _c("col"),
+                _vm._v(" "),
+                _c("col", { attrs: { width: "100px" } }),
+                _vm._v(" "),
+                _c("col", { attrs: { width: "150px" } }),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.tasks.data, function(task) {
+                    return _c("ListItem", {
+                      key: task.id,
+                      attrs: { task: task }
+                    })
+                  }),
+                  1
+                )
               ])
-            ]),
-        _vm._v(" "),
-        _c("Pagination", {
-          attrs: { data: _vm.tasks },
-          on: { "pagination-change-page": _vm.load }
-        })
-      ],
-      1
-    )
+            : _c("div", { staticClass: "well well-lg text-center" }, [
+                _c("img", {
+                  staticClass: "mx-auto mb-10",
+                  attrs: {
+                    src:
+                      "https://image.flaticon.com/icons/svg/1681/1681318.svg",
+                    alt: "",
+                    width: "150px"
+                  }
+                }),
+                _vm._v(" "),
+                _c("h3", { staticClass: "mb-0" }, [
+                  _vm._v("Looks like you don't have any executed tasks yet")
+                ])
+              ]),
+          _vm._v(" "),
+          _c("Pagination", {
+            attrs: { data: _vm.tasks },
+            on: { "pagination-change-page": _vm.load }
+          })
+        ],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -64687,7 +65124,7 @@ var staticRenderFns = [
         _vm._v("\n                Destroy Server\n                "),
         _c("p", { staticClass: "text-gray-600" }, [
           _vm._v(
-            "This is irreversible. We will remove your Server record from your account,\n                    but all your setting will keep on your physical server."
+            "This is irreversible. We will remove your Server record from your\n                    account,\n                    but all your setting will keep on your physical server."
           )
         ])
       ])
@@ -64715,81 +65152,84 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.isPending
-        ? [
-            _c(
-              "div",
-              { staticClass: "alert alert-primary mb-8 rounded" },
-              [
-                _c("p", [
-                  _vm._v(
-                    "Run this code in your server and wait until server configuring"
-                  )
-                ]),
-                _vm._v(" "),
-                _c("Copy", { attrs: { text: _vm.installScript } })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "py-10 text-center" },
-              [
-                _c("Loader", { attrs: { loading: true } }),
-                _vm._v(" "),
-                _c("h2", { staticClass: "mt-5" }, [
-                  _vm._v("Waiting for server response")
-                ])
-              ],
-              1
-            )
-          ]
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.isConfiguring
-        ? [
-            _c("section", { staticClass: "section mb-10" }, [
-              _vm._m(0),
+  return _c("div", { staticClass: "w-full" }, [
+    _c(
+      "div",
+      { staticClass: "container pl-10" },
+      [
+        _vm.isPending
+          ? [
+              _c(
+                "div",
+                { staticClass: "alert alert-primary mb-8 rounded" },
+                [
+                  _c("p", [
+                    _vm._v(
+                      "Run this code in your server and wait until server configuring"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("Copy", { attrs: { text: _vm.installScript } })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "section-body" },
+                { staticClass: "py-10 text-center" },
                 [
-                  _c(
-                    "div",
-                    { staticClass: "text-center font-bold text-gray-600" },
-                    [_vm._v(_vm._s(_vm.progress) + "%")]
-                  ),
+                  _c("Loader", { attrs: { loading: true } }),
                   _vm._v(" "),
-                  _c("ProgressBar", {
-                    staticClass: "mb-5",
-                    attrs: {
-                      size: "big",
-                      val: _vm.progress,
-                      "bg-color": null,
-                      "bar-color": null,
-                      "text-position": "top"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.message
-                    ? _c("h4", { staticClass: "mt-5" }, [
-                        _vm._v(_vm._s(_vm.message) + "...")
-                      ])
-                    : _vm._e()
+                  _c("h2", { staticClass: "mt-5" }, [
+                    _vm._v("Waiting for server response")
+                  ])
                 ],
                 1
               )
-            ])
-          ]
-        : _vm._e()
-    ],
-    2
-  )
+            ]
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.isConfiguring
+          ? [
+              _c("section", { staticClass: "section mb-10" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "section-body" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "text-center font-bold text-gray-600" },
+                      [_vm._v(_vm._s(_vm.progress) + "%")]
+                    ),
+                    _vm._v(" "),
+                    _c("ProgressBar", {
+                      staticClass: "mb-5",
+                      attrs: {
+                        size: "big",
+                        val: _vm.progress,
+                        "bg-color": null,
+                        "bar-color": null,
+                        "text-position": "top"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.message
+                      ? _c("h4", { staticClass: "mt-5" }, [
+                          _vm._v(_vm._s(_vm.message) + "...")
+                        ])
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ])
+            ]
+          : _vm._e()
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -65809,120 +66249,123 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-default btn-dark",
-          on: { click: _vm.showModal }
-        },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.$t("user.profile.buttons.edit")) +
-              "\n    "
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "Modal",
-        { attrs: { name: "profile-form" } },
-        [
-          _c("Loader", { attrs: { loading: _vm.loading } }),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal__top" }, [
+  return _c("div", { staticClass: "w-full" }, [
+    _c(
+      "div",
+      { staticClass: "container pl-10" },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-default btn-dark",
+            on: { click: _vm.showModal }
+          },
+          [
             _vm._v(
               "\n            " +
-                _vm._s(_vm.$t("user.profile.edit_modal.title")) +
+                _vm._s(_vm.$t("user.profile.buttons.edit")) +
                 "\n        "
             )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "modal__content" },
-            [
-              _c(
-                "div",
-                { staticClass: "flex" },
-                [
-                  _c("FormInput", {
-                    staticClass: "w-full mr-6",
-                    attrs: {
-                      label: _vm.$t("user.profile.edit_modal.name"),
-                      name: "name",
-                      required: "",
-                      autofocus: ""
-                    },
-                    model: {
-                      value: _vm.form.name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "name", $$v)
-                      },
-                      expression: "form.name"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("FormInput", {
-                    staticClass: "w-full",
-                    attrs: {
-                      label: _vm.$t("user.profile.edit_modal.company"),
-                      name: "company"
-                    },
-                    model: {
-                      value: _vm.form.company,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "company", $$v)
-                      },
-                      expression: "form.company"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("FormSelect", {
-                staticClass: "w-full",
-                attrs: {
-                  label: _vm.$t("user.profile.edit_modal.lang"),
-                  name: "lang",
-                  options: _vm.langs
-                },
-                model: {
-                  value: _vm.form.lang,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "lang", $$v)
-                  },
-                  expression: "form.lang"
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-danger-outline btn-block",
-                  on: { click: _vm.update }
-                },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.$t("user.profile.edit_modal.save")) +
-                      "\n            "
-                  )
-                ]
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "Modal",
+          { attrs: { name: "profile-form" } },
+          [
+            _c("Loader", { attrs: { loading: _vm.loading } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal__top" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.$t("user.profile.edit_modal.title")) +
+                  "\n            "
               )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "modal__content" },
+              [
+                _c(
+                  "div",
+                  { staticClass: "flex" },
+                  [
+                    _c("FormInput", {
+                      staticClass: "w-full mr-6",
+                      attrs: {
+                        label: _vm.$t("user.profile.edit_modal.name"),
+                        name: "name",
+                        required: "",
+                        autofocus: ""
+                      },
+                      model: {
+                        value: _vm.form.name,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "name", $$v)
+                        },
+                        expression: "form.name"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("FormInput", {
+                      staticClass: "w-full",
+                      attrs: {
+                        label: _vm.$t("user.profile.edit_modal.company"),
+                        name: "company"
+                      },
+                      model: {
+                        value: _vm.form.company,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "company", $$v)
+                        },
+                        expression: "form.company"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("FormSelect", {
+                  staticClass: "w-full",
+                  attrs: {
+                    label: _vm.$t("user.profile.edit_modal.lang"),
+                    name: "lang",
+                    options: _vm.langs
+                  },
+                  model: {
+                    value: _vm.form.lang,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "lang", $$v)
+                    },
+                    expression: "form.lang"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger-outline btn-block",
+                    on: { click: _vm.update }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.$t("user.profile.edit_modal.save")) +
+                        "\n                "
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -66683,17 +67126,17 @@ var render = function() {
                     _vm._v(_vm._s(_vm._f("capitalize")(plan.name)))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "w-full text-center" }, [
-                    _vm._v("\n                            $ "),
-                    !plan.is_free
-                      ? _c(
+                  !plan.is_free
+                    ? _c("p", { staticClass: "w-full text-center" }, [
+                        _vm._v("\n                            $ "),
+                        _c(
                           "strong",
                           { staticClass: "text-5xl text-bold ml-1" },
                           [_vm._v(" " + _vm._s(plan.price) + " ")]
-                        )
-                      : _vm._e(),
-                    _vm._v("/mo\n                        ")
-                  ]),
+                        ),
+                        _vm._v("/mo\n                        ")
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "ul",

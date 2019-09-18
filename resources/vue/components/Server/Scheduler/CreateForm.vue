@@ -20,10 +20,12 @@
         </div>
 
         <div>
-            <span class="badge cursor-pointer mr-2" :class="{'badge-primary': form.cron == expr.expression}" v-for="expr in expressions" @click="form.cron = expr.expression">
+            <span class="badge cursor-pointer mr-2" :class="{'badge-primary': form.cron == expr.expression}"
+                  v-for="expr in expressions" @click="form.cron = expr.expression">
                 {{ expr.name }}
             </span>
         </div>
+
     </section>
 </template>
 
