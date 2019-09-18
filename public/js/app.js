@@ -3181,53 +3181,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('server', {
     server: 'getServer',
-    isConfigured: 'isConfigured'
-  }), {
-    nav: function nav() {
-      switch (this.server.type) {
-        case 'openvpn':
-          return [{
-            link: this.$link.serverFirewall(this.server),
-            icon: 'fa-globe',
-            title: 'Firewall'
-          }, {
-            link: this.$link.serverUsers(this.server),
-            icon: 'fa-server',
-            title: 'Users'
-          }, {
-            link: this.$link.serverScheduler(this.server),
-            icon: 'fa-calendar-alt',
-            title: 'Scheduler'
-          }];
-      }
-
-      return [{
-        link: this.$link.serverSites(this.server),
-        icon: 'fa-globe',
-        title: 'Sites'
-      }, {
-        link: this.$link.serverFirewall(this.server),
-        icon: 'fa-globe',
-        title: 'Firewall'
-      }, {
-        link: this.$link.serverUsers(this.server),
-        icon: 'fa-server',
-        title: 'Users'
-      }, {
-        link: this.$link.serverScheduler(this.server),
-        icon: 'fa-calendar-alt',
-        title: 'Scheduler'
-      }, {
-        link: this.$link.serverSupervisor(this.server),
-        icon: 'fa-chart-bar',
-        title: 'Supervisor'
-      }, {
-        link: this.$link.serverDatabases(this.server),
-        icon: 'fa-server',
-        title: 'Database'
-      }];
-    }
-  })
+    isConfigured: 'isConfigured',
+    links: 'links'
+  }))
 });
 
 /***/ }),
@@ -6982,6 +6938,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.$store.dispatch('servers/loadServers');
+  },
   components: {
     ListItem: _partials_ListItem__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
@@ -8923,8 +8882,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vue_components_UI_Dropdown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/components/UI/Dropdown */ "./resources/vue/components/UI/Dropdown.vue");
-/* harmony import */ var _vue_components_Server_partials_ServerStatus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/Server/partials/ServerStatus */ "./resources/vue/components/Server/partials/ServerStatus.vue");
+/* harmony import */ var _js_models_Server__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js/models/Server */ "./resources/js/models/Server.js");
+/* harmony import */ var _vue_components_UI_Dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/components/UI/Dropdown */ "./resources/vue/components/UI/Dropdown.vue");
+/* harmony import */ var _vue_components_Server_partials_ServerStatus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/components/Server/partials/ServerStatus */ "./resources/vue/components/Server/partials/ServerStatus.vue");
 //
 //
 //
@@ -8967,16 +8927,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    ServerStatus: _vue_components_Server_partials_ServerStatus__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Dropdown: _vue_components_UI_Dropdown__WEBPACK_IMPORTED_MODULE_0__["default"]
+    ServerStatus: _vue_components_Server_partials_ServerStatus__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Dropdown: _vue_components_UI_Dropdown__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
     server: Object
+  },
+  computed: {
+    links: function links() {
+      return new _js_models_Server__WEBPACK_IMPORTED_MODULE_0__["Server"](this.server).links;
+    }
   }
 });
 
@@ -9031,6 +8996,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     server: Object
+  },
+  computed: {
+    icon: function icon() {
+      switch (this.server.type) {
+        case 'openvpn':
+          return 'fa-random';
+      }
+
+      return 'fa-server';
+    }
   }
 });
 
@@ -60471,10 +60446,10 @@ var render = function() {
         _c(
           "nav",
           { staticClass: "nav" },
-          _vm._l(_vm.nav, function(item) {
+          _vm._l(_vm.links, function(item, index) {
             return _c(
               "router-link",
-              { staticClass: "nav-link", attrs: { to: item.link } },
+              { key: index, staticClass: "nav-link", attrs: { to: item.link } },
               [
                 _c("span", { staticClass: "w-8 inline-block" }, [
                   _c("i", { staticClass: "fas", class: item.icon })
@@ -65216,7 +65191,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "mr-5" }, [
-        _c("span", { staticClass: "badge" }, [
+        _c("span", { staticClass: "badge badge-primary-outline" }, [
           _vm._v(_vm._s(_vm.$t("server.types." + _vm.server.type)))
         ])
       ]),
@@ -65254,63 +65229,25 @@ var render = function() {
         },
         [
           _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "dropdown-link",
-              attrs: { to: _vm.$link.server(_vm.server) }
-            },
-            [_vm._v("Sites")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "dropdown-divider" }),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "dropdown-link",
-              attrs: { to: _vm.$link.serverUsers(_vm.server) }
-            },
-            [_vm._v("Users")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "dropdown-link",
-              attrs: { to: _vm.$link.serverFirewall(_vm.server) }
-            },
-            [_vm._v("Firewall")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "dropdown-link",
-              attrs: { to: _vm.$link.serverDatabases(_vm.server) }
-            },
-            [_vm._v("Database")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "dropdown-link",
-              attrs: { to: _vm.$link.serverScheduler(_vm.server) }
-            },
-            [_vm._v("Scheduler")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "dropdown-link",
-              attrs: { to: _vm.$link.serverSupervisor(_vm.server) }
-            },
-            [_vm._v("Supervisor")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "dropdown-divider" }),
+          _vm.links.length > 0
+            ? [
+                _vm._l(_vm.links, function(item) {
+                  return _c(
+                    "router-link",
+                    { staticClass: "dropdown-link", attrs: { to: item.link } },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(item.title) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" })
+              ]
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "router-link",
@@ -65321,7 +65258,7 @@ var render = function() {
             [_vm._v("\n            Destroy\n        ")]
           )
         ],
-        1
+        2
       )
     ],
     1
@@ -65394,7 +65331,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "servers-list-item__status" }, [
-    _c("i", { staticClass: "icon fas fa-server" }),
+    _c("i", { staticClass: "icon fas", class: _vm.icon }),
     _vm._v(" "),
     _c("div", { staticClass: "status-indicator", class: _vm.server.status })
   ])
@@ -95356,6 +95293,101 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin({
 
 /***/ }),
 
+/***/ "./resources/js/models/Server.js":
+/*!***************************************!*\
+  !*** ./resources/js/models/Server.js ***!
+  \***************************************/
+/*! exports provided: Server */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Server", function() { return Server; });
+/* harmony import */ var _js_router_links__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js/router/links */ "./resources/js/router/links.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+var Server =
+/*#__PURE__*/
+function () {
+  function Server(server) {
+    _classCallCheck(this, Server);
+
+    this.server = server;
+  }
+
+  _createClass(Server, [{
+    key: "isConfigured",
+    get: function get() {
+      return this.server.status == 'configured';
+    }
+  }, {
+    key: "isPending",
+    get: function get() {
+      return this.server.status == 'pending';
+    }
+  }, {
+    key: "isConfiguring",
+    get: function get() {
+      return this.server.status == 'configuring';
+    }
+  }, {
+    key: "isFailed",
+    get: function get() {
+      return this.server.status == 'failed';
+    }
+  }, {
+    key: "links",
+    get: function get() {
+      if (!this.isConfigured) {
+        return [];
+      }
+
+      var items = [{
+        link: _js_router_links__WEBPACK_IMPORTED_MODULE_0__["serverFirewall"](this.server),
+        icon: 'fa-globe',
+        title: 'Firewall'
+      }, {
+        link: _js_router_links__WEBPACK_IMPORTED_MODULE_0__["serverUsers"](this.server),
+        icon: 'fa-users',
+        title: 'Users'
+      }, {
+        link: _js_router_links__WEBPACK_IMPORTED_MODULE_0__["serverScheduler"](this.server),
+        icon: 'fa-calendar-alt',
+        title: 'Scheduler'
+      }];
+
+      switch (this.server.type) {
+        case 'openvpn':
+          return items;
+      }
+
+      items.push({
+        link: _js_router_links__WEBPACK_IMPORTED_MODULE_0__["serverSites"](this.server),
+        icon: 'fa-globe',
+        title: 'Sites'
+      }, {
+        link: _js_router_links__WEBPACK_IMPORTED_MODULE_0__["serverSupervisor"](this.server),
+        icon: 'fa-chart-bar',
+        title: 'Supervisor'
+      }, {
+        link: _js_router_links__WEBPACK_IMPORTED_MODULE_0__["serverDatabases"](this.server),
+        icon: 'fa-server',
+        title: 'Database'
+      });
+      return items;
+    }
+  }]);
+
+  return Server;
+}();
+
+/***/ }),
+
 /***/ "./resources/js/policies/Gate.js":
 /*!***************************************!*\
   !*** ./resources/js/policies/Gate.js ***!
@@ -96771,7 +96803,9 @@ var mutations = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _js_models_Server__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js/models/Server */ "./resources/js/models/Server.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 
 var state = {
   server: null // getters
@@ -96784,17 +96818,27 @@ var getters = {
   getServer: function getServer(state) {
     return state.server;
   },
+  model: function model(state) {
+    return new _js_models_Server__WEBPACK_IMPORTED_MODULE_0__["Server"](state.server);
+  },
   isConfigured: function isConfigured(state, getters) {
-    return getters.hasServer && state.server.status == 'configured';
+    return getters.hasServer && getters.model.isConfigured;
   },
   isPending: function isPending(state, getters) {
-    return getters.hasServer && state.server.status == 'pending';
+    return getters.hasServer && getters.mode.isPending;
   },
   isConfiguring: function isConfiguring(state, getters) {
-    return getters.hasServer && state.server.status == 'configuring';
+    return getters.hasServer && getters.mode.isConfiguring;
   },
   isFailed: function isFailed(state, getters) {
-    return getters.hasServer && state.server.status == 'failed';
+    return getters.hasServer && new getters.mode.isFailed();
+  },
+  links: function links(state, getters) {
+    if (!getters.hasServer) {
+      return [];
+    }
+
+    return new _js_models_Server__WEBPACK_IMPORTED_MODULE_0__["Server"](state.server).links;
   }
 };
 var actions = {

@@ -1,3 +1,5 @@
+import {Server} from "@js/models/Server"
+
 const state = {
     server: null,
 }
@@ -6,10 +8,18 @@ const state = {
 const getters = {
     hasServer: (state) => typeof state.server === 'object',
     getServer: (state) => state.server,
-    isConfigured: (state, getters) => getters.hasServer && state.server.status == 'configured',
-    isPending: (state, getters) => getters.hasServer && state.server.status == 'pending',
-    isConfiguring: (state, getters) => getters.hasServer && state.server.status == 'configuring',
-    isFailed: (state, getters) => getters.hasServer && state.server.status == 'failed'
+    model: (state) => new Server(state.server),
+    isConfigured: (state, getters) => getters.hasServer && getters.model.isConfigured,
+    isPending: (state, getters) => getters.hasServer && getters.mode.isPending,
+    isConfiguring: (state, getters) => getters.hasServer && getters.mode.isConfiguring,
+    isFailed: (state, getters) => getters.hasServer && new getters.mode.isFailed,
+    links: (state, getters) => {
+        if (!getters.hasServer) {
+            return []
+        }
+
+        return new Server(state.server).links
+    }
 }
 
 const actions = {

@@ -16,6 +16,9 @@
     import ListItem from './partials/ListItem'
 
     export default {
+        mounted() {
+            this.$store.dispatch('servers/loadServers')
+        },
         components: {ListItem},
         computed: {
             ...mapGetters('servers', {
