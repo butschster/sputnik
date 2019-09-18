@@ -33,6 +33,7 @@ class UserProfileResource extends UserResource
             'can' => [
                 'server_create' => Gate::allows('create', \App\Models\Server::class),
             ],
+            'last_alert_received_at' => $this->last_alert_received_at
         ];
     }
 }

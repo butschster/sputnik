@@ -27,7 +27,7 @@
             </template>
 
             <template v-if="links.length > 0">
-                <router-link v-for="item in links" :to="item.link" class="dropdown-link">
+                <router-link v-for="(item, index) in links" :key="index" :to="item.link" class="dropdown-link">
                     {{ item.title }}
                 </router-link>
                 <div class="dropdown-divider"></div>

@@ -10,11 +10,11 @@ trait Prunable
     /**
      * Prune tasks older than the given date.
      *
-     * @param \Carbon\Carbon $date
+     * @param Carbon $date
      * @param int $limit
      * @return int
      */
-    public static function prune(Carbon $date, $limit = 500)
+    public static function prune(Carbon $date, int $limit = 500)
     {
         $instance = new static;
 

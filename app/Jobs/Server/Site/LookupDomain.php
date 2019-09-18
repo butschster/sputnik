@@ -4,6 +4,7 @@ namespace App\Jobs\Server\Site;
 
 use App\Contracts\Server\Site\WhoisService;
 use App\Models\Server\Site;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -53,5 +54,22 @@ class LookupDomain implements ShouldQueue
         } catch (\Iodev\Whois\Exceptions\WhoisException $e) {
             $this->fail($e);
         }
+    }
+
+    /**
+     * Handle a job failure.
+     *
+     * @param Exception $exception
+     * @return void
+     */
+    public function failed(Exception $exception)
+    {
+        $this->site->server->alerts()->create([
+            'type' => 'server.site.lookup.failed',
+            'exception' => (string) $exception,
+            'meta' => [
+                'site_id' => $this->site->id
+            ]
+        ]);
     }
 }

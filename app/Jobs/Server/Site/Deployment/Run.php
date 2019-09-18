@@ -5,6 +5,7 @@ namespace App\Jobs\Server\Site\Deployment;
 use App\Models\Server\Site;
 use App\Models\User;
 use App\Services\Server\Site\DeploymentService;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -53,5 +54,22 @@ class Run
         );
 
         return $deployment;
+    }
+
+    /**
+     * Handle a job failure.
+     *
+     * @param Exception $exception
+     * @return void
+     */
+    public function failed(Exception $exception)
+    {
+        $this->site->server->alerts()->create([
+            'type' => 'server.site.deploy.failed',
+            'exception' => (string) $exception,
+            'meta' => [
+                'site_id' => $this->site->id
+            ]
+        ]);
     }
 }

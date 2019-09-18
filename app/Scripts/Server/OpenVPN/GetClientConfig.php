@@ -2,6 +2,7 @@
 
 namespace App\Scripts\Server\OpenVPN;
 
+use App\Models\Server\OpenVPN\Client;
 use App\Utils\SSH\Script;
 
 class GetClientConfig extends Script
@@ -12,16 +13,16 @@ class GetClientConfig extends Script
     protected $name = 'Get OpenVPN client config';
 
     /**
-     * @var string
+     * @var Client
      */
-    protected $user;
+    protected $client;
 
     /**
-     * @param string $user
+     * @param Client $client
      */
-    public function __construct(string $user)
+    public function __construct(Client $client)
     {
-        $this->user = $user;
+        $this->client = $client;
     }
 
     /**
@@ -31,6 +32,6 @@ class GetClientConfig extends Script
      */
     public function getScript(): string
     {
-        return sprintf('cat ~/%s.ovpn', $this->user);
+        return sprintf('cat ~/%s.ovpn', $this->client->name);
     }
 }

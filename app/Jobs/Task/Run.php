@@ -4,6 +4,7 @@ namespace App\Jobs\Task;
 
 use App\Services\Task\Contracts\ExecutorService;
 use App\Services\Task\Contracts\Task;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -37,5 +38,22 @@ class Run implements ShouldQueue
         $service->run(
             $this->task
         );
+    }
+
+    /**
+     * Handle a job failure.
+     *
+     * @param Exception $exception
+     * @return void
+     */
+    public function failed(Exception $exception)
+    {
+        $this->server->alerts()->create([
+            'type' => 'server.task.failed',
+            'exception' => (string) $exception,
+            'meta' => [
+                'script' => $this->script->getName()
+            ]
+        ]);
     }
 }

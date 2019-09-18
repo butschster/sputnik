@@ -1,5 +1,5 @@
 
-CLIENT={{ $user }}
+CLIENT={{ $name }}
 
 cd /etc/openvpn/server/easy-rsa/
 EASYRSA_CERT_EXPIRE=3650 ./easyrsa build-client-full $CLIENT nopass

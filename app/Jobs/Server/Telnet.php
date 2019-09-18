@@ -8,6 +8,7 @@ use App\Events\Server\Ping\Succeeded;
 use App\Models\Server;
 use Bestnetwork\Telnet\TelnetClient;
 use Bestnetwork\Telnet\TelnetException;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -64,5 +65,19 @@ class Telnet implements ShouldQueue
         ]);
 
         event(new Checked($this->server, $status));
+    }
+
+    /**
+     * Handle a job failure.
+     *
+     * @param Exception $exception
+     * @return void
+     */
+    public function failed(Exception $exception)
+    {
+        $this->server->alerts()->create([
+            'type' => 'server.telnet.failed',
+            'exception' => (string) $exception,
+        ]);
     }
 }

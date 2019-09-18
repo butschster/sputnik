@@ -28,6 +28,11 @@ export class Server {
 
         let items = [
             {
+                link: links.serverOpenVPNClients(this.server),
+                icon: 'fa-globe',
+                title: 'VPN Clients'
+            },
+            {
                 link: links.serverFirewall(this.server),
                 icon: 'fa-globe',
                 title: 'Firewall'

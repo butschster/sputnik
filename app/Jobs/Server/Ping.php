@@ -6,6 +6,7 @@ use App\Events\Server\Ping\Checked;
 use App\Events\Server\Ping\Failed;
 use App\Events\Server\Ping\Succeeded;
 use App\Models\Server;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -44,7 +45,7 @@ class Ping implements ShouldQueue
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function handle()
     {
@@ -57,5 +58,19 @@ class Ping implements ShouldQueue
         ]);
 
         event(new Checked($this->server, $status));
+    }
+
+    /**
+     * Handle a job failure.
+     *
+     * @param Exception $exception
+     * @return void
+     */
+    public function failed(Exception $exception)
+    {
+        $this->server->alerts()->create([
+            'type' => 'server.ping.failed',
+            'exception' => (string) $exception,
+        ]);
     }
 }

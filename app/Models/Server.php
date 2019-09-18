@@ -45,6 +45,11 @@ class Server extends Model
     /**
      * {@inheritdoc}
      */
+    protected $table = 'servers';
+
+    /**
+     * {@inheritdoc}
+     */
     protected $casts = [
         'meta' => 'array',
         'os_information' => 'array',
@@ -107,6 +112,15 @@ class Server extends Model
     public function pings(): HasMany
     {
         return $this->hasMany(\App\Models\Server\Ping::class);
+    }
+
+    /**
+     * Get alerts that belong to the server.
+     * @return HasMany
+     */
+    public function alerts(): HasMany
+    {
+        return $this->hasMany(\App\Models\Server\Alert::class);
     }
 
     /**

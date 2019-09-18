@@ -41,8 +41,6 @@ chmod 600 /root/.ssh/id_rsa
 
 @include('scripts.server.openvpn.install')
 
-@include('scripts.server.openvpn.add_user', ['user' => 'test'])
-
 {!! callback_event($server->id, 'openvpn.installed', 80) !!}
 
 {!! callback_event($server->id, 'server.configured', 100) !!}

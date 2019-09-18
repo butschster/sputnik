@@ -6,21 +6,29 @@ import ServersList from '@vue/Pages/Servers/Index'
 import ServerShow from '@vue/Pages/Servers/Show'
 import ServerSettings from '@vue/Pages/Servers/Settings'
 import ServerUsers from '@vue/Pages/Servers/Users/Index'
-import ServerDatabase from '@vue/Pages/Servers/Database/Index'
 import ServerFirewall from '@vue/Pages/Servers/Firewall/Index'
 import ServerEvents from '@vue/Pages/Servers/Events/Index'
 import ServerTasks from '@vue/Pages/Servers/Tasks/Index'
 import ServerTasksList from '@vue/Pages/Servers/Tasks/List'
 import ServerTaskShow from '@vue/Pages/Servers/Tasks/Show'
-import ServerSupervisor from '@vue/Pages/Servers/Supervisor/Index'
 import ServerScheduler from '@vue/Pages/Servers/Scheduler/Index'
 
-// Server Site
-import ServerSites from '@vue/Pages/Servers/Sites/Index'
-import ServerSiteShow from '@vue/Pages/Servers/Sites/Show'
-import ServerSiteSettings from '@vue/Pages/Servers/Sites/Settings'
-import ServerSiteDeployment from '@vue/Pages/Servers/Sites/Deployment'
-import ServerSiteEnvironment from '@vue/Pages/Servers/Sites/Environment'
+// OpenVPN Clients
+import ServerClients from '@vue/Pages/Servers/OpenVPN/Clients/Index'
+
+
+// WebServer Supervisor
+import ServerSupervisor from '@vue/Pages/Servers/WebServer/Supervisor/Index'
+
+// WebServer Database
+import ServerDatabase from '@vue/Pages/Servers/WebServer/Database/Index'
+
+// WebServer Site
+import ServerSites from '@vue/Pages/Servers/WebServer/Sites/Index'
+import ServerSiteShow from '@vue/Pages/Servers/WebServer/Sites/Show'
+import ServerSiteSettings from '@vue/Pages/Servers/WebServer/Sites/Settings'
+import ServerSiteDeployment from '@vue/Pages/Servers/WebServer/Sites/Deployment'
+import ServerSiteEnvironment from '@vue/Pages/Servers/WebServer/Sites/Environment'
 
 // Account
 import ProfileShow from "@vue/Pages/Profile/Show";
@@ -107,6 +115,11 @@ export default [
                         path: '/server/:id/users',
                         name: 'server.users',
                         component: ServerUsers,
+                    },
+                    {
+                        path: '/server/:id/clients',
+                        name: 'server.openvpn.clients',
+                        component: ServerClients,
                     },
                     {
                         path: '/server/:id/firewall',

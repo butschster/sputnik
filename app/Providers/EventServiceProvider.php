@@ -29,6 +29,10 @@ class EventServiceProvider extends ServiceProvider
         Server\Created::class => [
             \App\Listeners\Server\RegisterSystemUsers::class,
         ],
+        Server\Alert\Created::class => [
+            \App\Listeners\Server\Alert\UpdateLastAlertTimestampForCollaborators::class,
+            \App\Listeners\Server\Alert\TrimAlertsForProject::class,
+        ],
         Server\Site\Created::class => [
             \App\Listeners\Server\Site\LookupDomainInformation::class,
         ],
@@ -109,6 +113,10 @@ class EventServiceProvider extends ServiceProvider
 
         \App\Models\Server\Firewall\Rule::observe([
             \App\Observers\Server\Firewall\SyncFirewallRuleObserver::class,
+        ]);
+
+        \App\Models\Server\OpenVPN\Client::observe([
+            \App\Observers\Server\OpenVPN\Client\SyncUserObserver::class,
         ]);
     }
 }
