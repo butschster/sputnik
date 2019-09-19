@@ -6,6 +6,7 @@ use App\Jobs\Task\Run;
 use App\Models\Server;
 use App\Services\Task\Factory;
 use App\Utils\SSH\Contracts\Script;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -50,5 +51,22 @@ class RunScript
         );
 
         dispatch(new Run($task));
+    }
+
+    /**
+     * Handle a job failure.
+     *
+     * @param Exception $exception
+     * @return void
+     */
+    public function failed(Exception $exception)
+    {
+        $this->server->alerts()->create([
+            'type' => 'script.failed',
+            'exception' => (string) $exception,
+            'meta' => [
+                'script' => $this->script->getName()
+            ]
+        ]);
     }
 }

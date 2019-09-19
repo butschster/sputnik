@@ -37,6 +37,20 @@ class UserController extends Controller
     }
 
     /**
+     * @param Server\User $user
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function downloadPublicKey(Server\User $user)
+    {
+        $this->authorize('show', $user);
+
+        return response()->streamDownload(function () use($user) {
+            echo $user->privateKey()->getContents();
+        }, $user->id.'.key');
+    }
+
+    /**
      * @param StoreRequest $request
      * @param Server $server
      * @return UserResource

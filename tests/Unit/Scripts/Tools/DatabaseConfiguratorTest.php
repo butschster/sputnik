@@ -171,17 +171,17 @@ class DatabaseConfigurationTest implements ServerConfiguration
         $this->hosts = $hosts;
     }
 
-    public function phpVersion(): string
+    public function phpVersion(): ?string
     {
         return '71';
     }
 
-    public function databaseType(): string
+    public function databaseType(): ?string
     {
         return $this->type;
     }
 
-    public function databasePassword(): string
+    public function databasePassword(): ?string
     {
         return '--password--';
     }
@@ -191,7 +191,7 @@ class DatabaseConfigurationTest implements ServerConfiguration
         return $this->hosts;
     }
 
-    public function webServerType(): string{}
+    public function webServerType(): ?string{}
 
     public function noSqlDatabases(): array{}
 

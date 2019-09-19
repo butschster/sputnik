@@ -7,6 +7,7 @@ use App\Exceptions\Server\ServerFailedException;
 use App\Models\Server;
 use App\Scripts\Utils\GetOSInformation;
 use App\Services\Server\ConfiguratorService;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -61,7 +62,7 @@ class ConfigureServer implements ShouldQueue
         if ($this->server->isConfigured()) {
             try {
                 $this->configured();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 report($e);
             }
             return $this->delete();
@@ -86,4 +87,17 @@ class ConfigureServer implements ShouldQueue
 
     }
 
+    /**
+     * Handle a job failure.
+     *
+     * @param Exception $exception
+     * @return void
+     */
+    public function failed(Exception $exception)
+    {
+        $this->server->alerts()->create([
+            'type' => 'server.configure.failed',
+            'exception' => (string) $exception,
+        ]);
+    }
 }

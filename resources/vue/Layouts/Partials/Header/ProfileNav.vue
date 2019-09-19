@@ -16,9 +16,15 @@
             </div>
 
             <div class="dropdown-divider"></div>
-            <router-link :to="$link.profile()" class="dropdown-link">Account</router-link>
-            <router-link :to="$link.profileTeams()" class="dropdown-link">Teams</router-link>
-            <a href="#" @click="logout" class="dropdown-link">Sign out</a>
+            <router-link :to="$link.profile()" class="dropdown-link">
+                {{ $t('user.header.dropdown.profile') }}
+            </router-link>
+            <router-link :to="$link.profileTeams()" class="dropdown-link">
+                {{ $t('user.header.dropdown.teams') }}
+            </router-link>
+            <a href="#" @click="logout" class="dropdown-link">
+                {{ $t('user.header.dropdown.logout') }}
+            </a>
 
             <form ref="logout-form" action="/logout" method="POST" style="display: none;"></form>
         </Dropdown>

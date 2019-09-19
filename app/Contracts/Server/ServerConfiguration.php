@@ -2,52 +2,24 @@
 
 namespace App\Contracts\Server;
 
+use App\Utils\SSH\ValueObjects\PrivateKey;
 use App\Utils\SSH\ValueObjects\PublicKey;
 
 interface ServerConfiguration
 {
     /**
-     * Get PHP version
-     *
-     * @return string (56, 70, 71, 72, ....)
-     */
-    public function phpVersion(): string;
-
-    /**
-     * Get database type
-     *
-     * @return string (mysql, mysql8, mariadb, pqsql)
-     */
-    public function databaseType(): string;
-
-    /**
-     * Get database root password
+     * Get server IP address
      *
      * @return string
      */
-    public function databasePassword(): string;
+    public function ip(): string;
 
     /**
-     * Get database hosts
+     * Get server SSH port
      *
-     * @return array (127.0.0.1, localhost, ...)
+     * @return int
      */
-    public function databaseHosts(): array;
-
-    /**
-     * Get web server type
-     *
-     * @return string (nginx, caddy, apache)
-     */
-    public function webServerType(): string;
-
-    /**
-     * Get list of nosql databases
-     *
-     * @see http://nosql-database.org/
-     * @return array (redis, memcache, beanstalk, ...)
-     */
-    public function noSqlDatabases(): array;
+    public function sshPort(): int;
 
     /**
      * Get available system users with root access
@@ -62,6 +34,13 @@ interface ServerConfiguration
      * @return PublicKey
      */
     public function publicKey(): PublicKey;
+
+    /**
+     * Get private key
+     *
+     * @return PrivateKey
+     */
+    public function privateKey(): PrivateKey;
 
     /**
      * Get callback URL, which should be used to send message from remote server

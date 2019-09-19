@@ -4,11 +4,11 @@ namespace App\Providers;
 
 use App\Models\Server;
 use App\Models\User;
+use App\Policies\OpenVPNClientPolicy;
 use App\Policies\ServerCronJobPolicy;
 use App\Policies\ServerDaemonPolicy;
 use App\Policies\ServerDatabasePolicy;
 use App\Policies\ServerFirewallPolicy;
-use App\Policies\ServerPublicKeyPolicy;
 use App\Policies\ServerPolicy;
 use App\Policies\ServerSitePolicy;
 use App\Policies\ServerTaskPolicy;
@@ -35,6 +35,7 @@ class AuthServiceProvider extends ServiceProvider
         Server\User::class => ServerUserPolicy::class,
         Server\Task::class => ServerTaskPolicy::class,
         Server\Firewall\Rule::class => ServerFirewallPolicy::class,
+        Server\OpenVPN\Client::class => OpenVPNClientPolicy::class,
     ];
 
     /**

@@ -1,6 +1,6 @@
 $circle-size: 45px;
-$circle-dot-size: 15px;
-$server-icon-size: 25px;
+$circle-dot-size: 20px;
+$server-icon-size: 20px;
 $server-icon-color: $color-blue-400;
 
 .servers-list {
@@ -27,7 +27,7 @@ $server-icon-color: $color-blue-400;
         }
 
         &__status {
-            @apply border-2 rounded-full;
+            @apply border-2 rounded-full bg-white;
 
             width: $circle-size;
             height: $circle-size;
@@ -36,8 +36,8 @@ $server-icon-color: $color-blue-400;
 
             .icon {
                 @apply absolute text-2xl;
-                top: 8px;
-                left: 8px;
+                top: 11px;
+                left: 11px;
                 font-size: $server-icon-size;
                 color: $server-icon-color;
             }

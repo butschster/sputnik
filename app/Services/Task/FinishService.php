@@ -52,7 +52,7 @@ class FinishService
      * @param int $bytes
      * @return string
      */
-    protected function retrieveOutput(Task $task, int $bytes = 20000000): string
+    protected function retrieveOutput(Task $task, int $bytes = 2000000): string
     {
         return $this->runInline(
             sprintf('tail --bytes=%d %s', $bytes, $task->outputFile()),

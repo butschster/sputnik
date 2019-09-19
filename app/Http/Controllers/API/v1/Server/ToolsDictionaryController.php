@@ -9,56 +9,59 @@ class ToolsDictionaryController extends Controller
     /**
      * @return array
      */
-    public function phpVersions(): array
+    public function types()
     {
-        return [
-            [
-                'label' => 'PHP 7.2',
-                'value' => 72,
-            ],
-            [
-                'label' => 'PHP 7.3',
-                'value' => 73,
-            ],
-        ];
+        $types = config('configurations.server_types', []);
+
+        return collect($types)->map(function (string $type) {
+            return [
+                'label' => trans('server.types.' . $type),
+                'value' => $type,
+            ];
+        });
     }
 
     /**
      * @return array
      */
-    public function databaseTypes(): array
+    public function phpVersions()
     {
-        return [
-            [
-                'label' => 'MySQL 5.7',
-                'value' => 'mysql',
-            ],
-            [
-                'label' => 'MySQL 8',
-                'value' => 'mysql8',
-            ],
-            [
-                'label' => 'MariaDB',
-                'value' => 'mariadb',
-            ],
-            [
-                'label' => 'PostgreSQL',
-                'value' => 'pgsql',
-            ],
-        ];
+        $versions = config('configurations.php', []);
+
+        return collect($versions)->map(function (string $version) {
+            return [
+                'label' => trans('server.php_versions.' . $version),
+                'value' => $version,
+            ];
+        });
     }
 
-    public function webserverTypes(): array
+    /**
+     * @return array
+     */
+    public function databaseTypes()
     {
-        return [
-            [
-                'label' => 'Nginx',
-                'value' => 'nginx',
-            ],
-            [
-                'label' => 'Caddy',
-                'value' => 'caddy',
-            ],
-        ];
+        $databases = config('configurations.database', []);
+
+        return collect($databases)->map(function (string $type) {
+            return [
+                'label' => trans('server.databases.' . $type),
+                'value' => $type,
+            ];
+        });
+    }
+
+    /**
+     * @return array
+     */
+    public function webserverTypes()
+    {
+        $webservers = config('configurations.webserver', []);
+        return collect($webservers)->map(function (string $type) {
+            return [
+                'label' => trans('server.web_servers.' . $type),
+                'value' => $type,
+            ];
+        });
     }
 }

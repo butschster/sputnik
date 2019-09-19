@@ -1,6 +1,6 @@
 <?php
 
-use App\Contracts\Server\ServerConfiguration;
+use App\Models\Server;
 use App\Scripts\ServerConfigurationManager;
 
 /**
@@ -49,12 +49,10 @@ function callback_event(string $serverId, string $message, int $progress = 0): s
 /**
  * Get server configurator
  *
- * @param ServerConfiguration $configuration
+ * @param Server $server
  * @return ServerConfigurationManager
  */
-function server_configurator(ServerConfiguration $configuration): ServerConfigurationManager
+function server_configurator(Server $server): ServerConfigurationManager
 {
-    return new ServerConfigurationManager(
-        $configuration
-    );
+    return new ServerConfigurationManager($server);
 }

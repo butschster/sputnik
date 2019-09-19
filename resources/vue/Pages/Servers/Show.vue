@@ -1,21 +1,19 @@
 <template>
-    <div class="w-full">
-        <div class="container pl-10 pt-12">
-            <Loader :loading="loading"/>
-            <div v-if="server">
-                <div class="mb-8 flex items-center">
-                    <ServerStatus :server="server" class="mr-5"/>
-                    <div class="w-full">
-                        <div class="container pl-10 pt-12">
-                            <h1 class="mb-0">{{ server.name }}</h1>
-                            <div class="text-gray-600">
-                                Team
-                                <router-link :to="$link.profileTeam(server.team)">
-                                    {{ server.team.name }}
-                                </router-link>
+    <div>
+        <div class="w-full">
+            <div class="container pl-10 pt-12">
+                <Loader :loading="loading"/>
+                <div v-if="server">
+                    <div class="mb-8 flex items-center">
+                        <ServerStatus :server="server" class="mr-5"/>
+                        <h1 class="mb-0">{{ server.name }}</h1>
+                        <div class="text-gray-600">
+                            Team
+                            <router-link :to="$link.profileTeam(server.team)">
+                                {{ server.team.name }}
+                            </router-link>
 
-                                <span class="text-gray-500" v-if="hasSysInfo"> - {{ server.sys_info.name }}</span>
-                            </div>
+                            <span class="text-gray-500" v-if="hasSysInfo"> - {{ server.sys_info.name }}</span>
                         </div>
                     </div>
                 </div>
@@ -23,19 +21,17 @@
         </div>
         <div class="w-full">
             <div class="container pl-10">
-            <NotSupported v-if="!isSupported" :server="server"/>
+                <NotSupported v-if="!isSupported" :server="server"/>
 
-            <div class="tabs" role="tabs">
-                <router-link :to="$link.serverSites(server)" class="tab">Sites</router-link>
-                <router-link :to="$link.serverEvents(server)" class="tab">Events</router-link>
-                <router-link :to="$link.serverTasks(server)" class="tab">Tasks</router-link>
-                <router-link :to="$link.serverSettings(server)" class="tab">Settings</router-link>
+                <div class="tabs" role="tabs">
+                    <router-link v-for="(item, index) in links" :key="index" :to="item.link" class="tab">
+                        {{ $t(item.title)}}
+                    </router-link>
+                </div>
             </div>
-        </div>
         </div>
         <InstallProgress :server="server"/>
         <router-view/>
-
     </div>
 
 </template>
@@ -83,6 +79,24 @@
                 }
 
                 this.loading = false
+            }
+        },
+        computed: {
+            links() {
+                return [
+                    {
+                        title: 'server.sections.events',
+                        link: this.$link.serverEvents(this.server)
+                    },
+                    {
+                        title: 'server.sections.tasks',
+                        link: this.$link.serverTasks(this.server)
+                    },
+                    {
+                        title: 'server.sections.settings',
+                        link: this.$link.serverSettings(this.server)
+                    },
+                ]
             }
         },
         watch: {

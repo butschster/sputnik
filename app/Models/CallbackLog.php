@@ -10,17 +10,17 @@ class CallbackLog extends Model
     use UsesUuid;
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'callback_logs';
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $guarded = [];
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $casts = [
         'data' => 'array'

@@ -64485,12 +64485,11 @@ a.btn:hover, a.btn:focus {
 
 .card {
   background-color: #fff;
-  border-width: 1px;
-  border-width: 2px;
-  border-color: #edf2f7;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border-radius: 0.25rem;
   margin-bottom: 1.25rem;
   padding: 2.5rem;
+  position: relative;
 }
 
 .card-header {
@@ -64587,6 +64586,7 @@ a.card-info:focus, a.card-info:hover {
 .servers-list-item__status {
   border-width: 2px;
   border-radius: 9999px;
+  background-color: #fff;
   width: 45px;
   height: 45px;
   position: relative;
@@ -64596,9 +64596,9 @@ a.card-info:focus, a.card-info:hover {
 .servers-list-item__status .icon {
   position: absolute;
   font-size: 1.5rem;
-  top: 8px;
-  left: 8px;
-  font-size: 25px;
+  top: 11px;
+  left: 11px;
+  font-size: 20px;
   color: #7A7AFF;
 }
 
@@ -64638,8 +64638,8 @@ a.card-info:focus, a.card-info:hover {
   border-width: 2px;
   border-color: #fff;
   position: absolute;
-  height: 15px;
-  width: 15px;
+  height: 20px;
+  width: 20px;
   bottom: -3px;
   right: -3px;
   border-width: 3px;
@@ -64983,6 +64983,10 @@ a.card-info:focus, a.card-info:hover {
   margin-right: 0.75rem;
 }
 
+.price-table__item--price {
+  min-height: 3rem;
+}
+
 .price-table__item--badge {
   text-transform: uppercase;
   color: #ebf4ff;
@@ -65132,6 +65136,10 @@ a.card-info:focus, a.card-info:hover {
 
 .alert-primary {
   background-color: #2929FF;
+  color: #fff;
+}
+
+.alert-danger .btn-copy__label, .alert-primary .btn-copy__label {
   color: #fff;
 }
 
@@ -65547,6 +65555,22 @@ a.card-info:focus, a.card-info:hover {
   padding-right: 1.5rem;
   background-color: #fff;
   z-index: 20;
+}
+
+.wrap-bg {
+  background-image: -webkit-linear-gradient(30deg, #f7f8fa 0%, #f0f1fa 100%);
+  padding-bottom: 6rem;
+  position: relative;
+  width: 100%;
+}
+
+.wrap-bg__svg {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  max-width: 100%;
+  left: 10%;
+  top: 10%;
 }
 
 .page-login-container {

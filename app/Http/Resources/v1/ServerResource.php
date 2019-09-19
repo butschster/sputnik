@@ -25,6 +25,7 @@ class ServerResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'type' => $this->type,
             'ip' => $this->ip,
             'ssh_port' => $this->ssh_port,
             'sys_info' => $this->when(!empty($sysInfo), function () use ($sysInfo) {
@@ -36,9 +37,7 @@ class ServerResource extends JsonResource
                     'is_supported' => $sysInfo->isSupported(),
                 ];
             }),
-            'php_version' => $this->php_version,
-            'database_type' => $this->database_type,
-            'webserver_type' => $this->webserver_type,
+            'meta' => $this->meta,
             'public_key' => $this->public_key,
             'status' => $this->status,
             'created_at' => $this->created_at,

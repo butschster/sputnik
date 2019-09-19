@@ -1,5 +1,12 @@
 
+@php
+$configurator = server_configurator($server);
+$users = $configurator->systemUsers();
+@endphp
+
 export DEBIAN_FRONTEND=noninteractive
+
+# Run Base Script
 
 # Wait For Apt To Unlock
 
@@ -21,7 +28,7 @@ software-properties-common \
 whois \
 unzip
 
-@include('scripts.server.configuration.ssh')
+@include('scripts.server.configuration.partials.ssh')
 {!! callback_event($server->id, 'ssh.configured', 10) !!}
 
 # Set The Hostname
@@ -40,28 +47,28 @@ echo "{!! $server->private_key !!}" > /root/.ssh/id_rsa
 chmod 600 /root/.ssh/id_rsa
 
 @foreach($users as $user)
-@include('scripts.server.user.create')
+    @include('scripts.server.user.create')
 @endforeach
 {!! callback_event($server->id, 'users.created', 20) !!}
 
-@include('scripts.server.configuration.supervisor')
+@include('scripts.server.configuration.partials.supervisor')
 {!! callback_event($server->id, 'supervisor.installed', 30) !!}
 
-@include('scripts.server.configuration.firewall', ['ports' => [$server->ssh_port]])
+@include('scripts.server.configuration.partials.firewall', ['ports' => [$server->ssh_port]])
 {!! callback_event($server->id, 'firewall.configured', 40) !!}
 
-@include('scripts.server.configuration.swap')
+@include('scripts.server.configuration.partials.swap')
 {!! callback_event($server->id, 'swap.created', 50) !!}
 
 # Setup Unattended Security Upgrades
 
 cat > /etc/apt/apt.conf.d/50unattended-upgrades << EOF
 Unattended-Upgrade::Allowed-Origins {
-    "Ubuntu zesty-security";
+"Ubuntu zesty-security";
 };
 
 Unattended-Upgrade::Package-Blacklist {
-    //
+//
 };
 EOF
 
@@ -74,7 +81,29 @@ EOF
 
 # Make Sure Directories Have Correct Permissions
 @foreach($users as $user)
-@include('scripts.tools.chown')
+    @include('scripts.utils.chown')
 @endforeach
 
 {!! callback_event($server->id, 'base.installed', 60) !!}
+
+# Run PHP Installation Script
+{!! $configurator->php()->install() !!}
+
+# Run Webserver Installation Script
+{!! $configurator->webserver()->install() !!}
+
+
+# Run Database Installation Script
+{!! $configurator->database()->install() !!}
+
+{{--
+# Run Node Installation Script
+
+@include('scripts.tools.node.install')
+--}}
+
+# Run Redis Installation Script
+
+@include('scripts.tools.redis.install')
+
+{!! callback_event($server->id, 'server.configured', 100) !!}

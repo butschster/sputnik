@@ -14,6 +14,7 @@
     import DeploymentButton from "@vue/components/Server/Sites/partials/Deployment/Button"
     import Configuration from "@vue/components/Server/Sites/partials/Deployment/Configuration"
     import DeploymentList from "@vue/components/Server/Sites/partials/Deployment/List"
+
     export default {
         components: {DeploymentButton, Configuration, DeploymentList},
         data() {

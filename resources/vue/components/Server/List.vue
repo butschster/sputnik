@@ -2,18 +2,20 @@
     <div class="w-full">
         <div class="container pl-10 pt-12">
             <section class="servers-list">
-
                 <loader :loading="loading"/>
-                <h4 v-if="hasServers">Active Servers ({{ servers.length }})</h4>
+                <h4 v-if="hasServers">{{ $t('server.list.title') }} ({{ servers.length }})</h4>
+
                 <div class="servers-list-items" v-if="hasServers">
                     <ListItem v-for="server in servers" :server="server" :key="server.id"/>
                 </div>
+
                 <div v-else class="well well-lg text-center">
                     <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1421/1421309.svg" alt=""
                          width="100px">
-                    <h3 class="mb-0">Looks like you don't have any servers :(</h3>
+                    <h3 class="mb-0">
+                        {{ $t('server.list.message.empty') }}
+                    </h3>
                 </div>
-
             </section>
         </div>
     </div>
@@ -23,6 +25,9 @@
     import ListItem from './partials/ListItem'
 
     export default {
+        mounted() {
+            this.$store.dispatch('servers/loadServers')
+        },
         components: {ListItem},
         computed: {
             ...mapGetters('servers', {

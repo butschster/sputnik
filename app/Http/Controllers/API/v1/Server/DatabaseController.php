@@ -7,15 +7,16 @@ use App\Http\Requests\Server\Database\StoreRequest;
 use App\Http\Resources\v1\Server\DatabaseCollection;
 use App\Http\Resources\v1\Server\DatabaseResource;
 use App\Models\Server;
+use App\Models\WebServer;
 
 class DatabaseController extends Controller
 {
     /**
-     * @param Server $server
+     * @param WebServer $server
      * @return DatabaseCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Server $server): DatabaseCollection
+    public function index(WebServer $server): DatabaseCollection
     {
         $this->authorize('show', $server);
 
@@ -38,10 +39,10 @@ class DatabaseController extends Controller
 
     /**
      * @param StoreRequest $request
-     * @param Server $server
+     * @param WebServer $server
      * @return DatabaseResource
      */
-    public function store(StoreRequest $request, Server $server): DatabaseResource
+    public function store(StoreRequest $request, WebServer $server): DatabaseResource
     {
         $database = $request->persist();
 

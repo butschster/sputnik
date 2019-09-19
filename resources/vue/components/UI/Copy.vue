@@ -5,7 +5,7 @@
           v-clipboard:success="onCopy"
           v-clipboard:error="onError"
     >
-        {{ text }} <span class="btn-copy__label">{{ label }}</span>
+        <slot>{{ text }}</slot> <span class="btn-copy__label">{{ label }}</span>
     </span>
 </template>
 
@@ -35,10 +35,10 @@
         computed: {
             label() {
                 if (this.copied) {
-                    return 'Copied'
+                    return this.$t('app.buttons.copied')
                 }
 
-                return 'Copy'
+                return this.$t('app.buttons.copy')
             }
         }
     }

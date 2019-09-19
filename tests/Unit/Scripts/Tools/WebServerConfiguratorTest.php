@@ -152,18 +152,18 @@ class WebServerConfigurationTest implements ServerConfiguration
         $this->type = $type;
     }
 
-    public function phpVersion(): string
+    public function phpVersion(): ?string
     {
         return '11';
     }
 
-    public function databaseType(): string{}
+    public function databaseType(): ?string{}
 
-    public function databasePassword(): string {}
+    public function databasePassword(): ?string {}
 
     public function databaseHosts(): array {}
 
-    public function webServerType(): string
+    public function webServerType(): ?string
     {
         return $this->type;
     }

@@ -7,6 +7,10 @@
             <div class="servers-list-item__address">{{ server.ip }}</div>
         </div>
 
+        <div class="mr-5">
+            <span class="badge badge-primary-outline">{{ $t(`server.types.${server.type}`) }}</span>
+        </div>
+
         <div class="servers-list-item__project mr-5">
             <span class="badge badge-primary">{{ server.team.name }}</span>
         </div>
@@ -22,14 +26,13 @@
                 </div>
             </template>
 
-            <router-link :to="$link.server(server)" class="dropdown-link">Sites</router-link>
-            <div class="dropdown-divider"></div>
-            <router-link :to="$link.serverUsers(server)" class="dropdown-link">Users</router-link>
-            <router-link :to="$link.serverFirewall(server)" class="dropdown-link">Firewall</router-link>
-            <router-link :to="$link.serverDatabases(server)" class="dropdown-link">Database</router-link>
-            <router-link :to="$link.serverScheduler(server)" class="dropdown-link">Scheduler</router-link>
-            <router-link :to="$link.serverSupervisor(server)" class="dropdown-link">Supervisor</router-link>
-            <div class="dropdown-divider"></div>
+            <template v-if="links.length > 0">
+                <router-link v-for="(item, index) in links" :key="index" :to="item.link" class="dropdown-link">
+                    {{ item.title }}
+                </router-link>
+                <div class="dropdown-divider"></div>
+            </template>
+
             <router-link :to="$link.serverSettings(server)" class="dropdown-link text-red-500">
                 Destroy
             </router-link>
@@ -38,6 +41,8 @@
 </template>
 
 <script>
+    import {Server as ServerModel} from "@js/models/Server"
+
     import Dropdown from "@vue/components/UI/Dropdown"
     import ServerStatus from "@vue/components/Server/partials/ServerStatus"
 
@@ -45,6 +50,11 @@
         components: {ServerStatus, Dropdown},
         props: {
             server: Object
+        },
+        computed: {
+            links() {
+                return new ServerModel(this.server).links
+            }
         }
     }
 </script>

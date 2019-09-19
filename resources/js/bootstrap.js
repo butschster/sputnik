@@ -2,7 +2,6 @@ import axios from 'axios'
 import Vue from 'vue'
 import VeeValidate from 'vee-validate'
 import PortalVue from 'portal-vue'
-import Moment from 'vue-moment'
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
@@ -16,7 +15,6 @@ if (token) {
 
 Vue.use(VeeValidate)
 Vue.use(PortalVue)
-Vue.use(Moment)
 
 require('./vue/plugins/errorHandler')
 require('./vue/plugins/eventBus')
@@ -24,7 +22,7 @@ require('./vue/plugins/echo')
 require('./vue/plugins/modal')
 require('./vue/plugins/dropdown')
 require('./vue/plugins/stripe')
-require('./vue/plugins/i18n')
+require('./vue/plugins/moment')
 
 require('./http')
 require('./api')

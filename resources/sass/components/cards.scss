@@ -1,5 +1,5 @@
 .card {
-    @apply bg-white border border-2 border-gray-200 rounded mb-5 p-10;
+    @apply bg-white shadow-md rounded mb-5 p-10 relative;
 
     &-header {
         @apply mb-6 text-xl font-light text-gray-800;

@@ -69,8 +69,7 @@ class ServerPolicy
      */
     public function delete(?User $user, Server $server): bool
     {
-        return !$server->isConfigured()
-            && (
+        return (
                 $server->user_id == $user->id
                 || $user->can('server.delete', $server->team)
             );

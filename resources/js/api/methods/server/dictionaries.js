@@ -6,6 +6,20 @@ import {ApiRequestError} from "@js/errors";
  *
  * @return {Object}
  */
+export async function types() {
+    try {
+        const response = await api_route('v1.servers.dictionaries.types').request()
+        return response.data
+    } catch (e) {
+        throw new ApiRequestError('Can not load server types list.')
+    }
+}
+
+/**
+ * Load php versions list
+ *
+ * @return {Object}
+ */
 export async function phpVersions() {
     try {
         const response = await api_route('v1.servers.dictionaries.php').request()

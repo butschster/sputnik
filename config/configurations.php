@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\Server;
+
 return [
+    'server_types' => [Server::TYPE_WEBSERVER, Server::TYPE_OPENVPN],
     'os' => [
         'ubuntu' => ['18.04', '18.10', '19.04', '19.10'],
     ],

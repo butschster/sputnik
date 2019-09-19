@@ -1,9 +1,8 @@
 <template>
     <div class="min-h-screen py-16 md:py-20 min-w-full flex flex-col justify-start">
-        <div class="container pl-10">
             <a href="#" class="w-full inline-block"><img
                 src="http://demo.designing-world.com/apland-4.2.0/img/core-img/logo.png" class="mx-auto" alt="Logo"></a>
-            <div class="py-12 flex-grow flex justify-between items-center">
+            <div class="py-12 flex-grow flex justify-between items-center w-full">
                 <div class="container mx-auto px-4">
                     <div class="flex items-center flex-wrap">
                         <div class="w-full md:w-1/2 pr-0 md:pr-4 mb-10 md:mb-0">
@@ -21,7 +20,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script>

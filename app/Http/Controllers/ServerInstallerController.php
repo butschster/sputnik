@@ -15,6 +15,6 @@ class ServerInstallerController extends Controller
     {
         $this->authorize('install-keys', $server);
 
-        return view('scripts.server.key_installation', compact('server'));
+        return view('scripts.server.keys.install', compact('server'));
     }
 }

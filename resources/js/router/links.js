@@ -36,6 +36,10 @@ export function serverUsers(server) {
     return makeRoute('server.users', {id: server})
 }
 
+export function serverOpenVPNClients(server) {
+    return makeRoute('server.openvpn.clients', {id: server})
+}
+
 export function serverFirewall(server) {
     return makeRoute('server.firewall', {id: server})
 }
@@ -53,11 +57,11 @@ export function serverSupervisor(server) {
 }
 
 export function serverSettings(server) {
-    return makeRoute('server.settings', {id: server})
+    return makeRoute('server.show', {id: server})
 }
 
 export function serverSites(server) {
-    return makeRoute('server.show', {id: server})
+    return makeRoute('server.sites', {id: server})
 }
 
 export function serverSite(site) {

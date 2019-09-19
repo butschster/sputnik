@@ -10,7 +10,6 @@ use App\Events\Server\Deleted;
 use App\Events\Server\Failed;
 use App\Events\Server\StatusChanged;
 use App\Models\Concerns\DeterminesAge;
-use App\Models\Concerns\HasConfiguration;
 use App\Models\Concerns\HasKeyPair;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
@@ -23,6 +22,7 @@ use App\Models\Server\Site;
 use App\Models\Server\Task;
 use App\Models\Subscription\Plan;
 use App\Models\User\Team;
+use App\Services\Server\Configurations\Factory;
 use App\Utils\SSH\ValueObjects\SystemInformation;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -30,19 +30,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
-class Server extends Model implements ServerConfiguration
+class Server extends Model
 {
-    use UsesUuid,
-        DeterminesAge,
-        HasTask,
-        HasConfiguration,
-        HasKeyPair,
-        Searchable;
+    use UsesUuid, DeterminesAge, HasTask, HasKeyPair, Searchable;
 
-    const STATUS_PENDING = 'pending';
+    const STATUS_PENDING     = 'pending';
     const STATUS_CONFIGUTING = 'configuring';
-    const STATUS_CONFIGURED = 'configured';
-    const STATUS_FAILED = 'failed';
+    const STATUS_CONFIGURED  = 'configured';
+    const STATUS_FAILED      = 'failed';
+
+    const TYPE_OPENVPN   = 'openvpn';
+    const TYPE_WEBSERVER = 'webserver';
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $table = 'servers';
 
     /**
      * {@inheritdoc}
@@ -59,7 +62,7 @@ class Server extends Model implements ServerConfiguration
     protected $hidden = [
         'private_key',
         'sudo_password',
-        'database_password',
+        'meta',
     ];
 
     /**
@@ -86,7 +89,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Get owner
-     *
      * @return BelongsTo
      */
     public function user(): BelongsTo
@@ -96,7 +98,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Get owner team
-     *
      * @return BelongsTo
      */
     public function team(): BelongsTo
@@ -104,10 +105,8 @@ class Server extends Model implements ServerConfiguration
         return $this->belongsTo(Team::class);
     }
 
-
     /**
      * Get the pings that belong to the server.
-     *
      * @return HasMany
      */
     public function pings(): HasMany
@@ -116,8 +115,16 @@ class Server extends Model implements ServerConfiguration
     }
 
     /**
+     * Get alerts that belong to the server.
+     * @return HasMany
+     */
+    public function alerts(): HasMany
+    {
+        return $this->hasMany(\App\Models\Server\Alert::class);
+    }
+
+    /**
      * Get the sites that belong to the server.
-     *
      * @return HasMany
      */
     public function users(): HasMany
@@ -127,7 +134,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Get the sites that belong to the server.
-     *
      * @return HasMany
      */
     public function sites(): HasMany
@@ -137,7 +143,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Get the daemons that belong to the server.
-     *
      * @return HasMany
      */
     public function daemons(): HasMany
@@ -147,7 +152,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Get the databases that belong to the server.
-     *
      * @return HasMany
      */
     public function databases(): HasMany
@@ -157,7 +161,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Get the tasks that belong to the server.
-     *
      * @return HasMany
      */
     public function tasks(): HasMany
@@ -167,7 +170,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Get the events that belong to the server.
-     *
      * @return HasMany
      */
     public function events(): HasMany
@@ -177,7 +179,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Get the firewall rules that belong to the server.
-     *
      * @return HasMany
      */
     public function firewallRules(): HasMany
@@ -187,7 +188,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Get the cron jobs that belong to the server.
-     *
      * @return HasMany
      */
     public function cronJobs(): HasMany
@@ -197,7 +197,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Determine if the server is currently provisioning.
-     *
      * @return bool
      */
     public function isPending(): bool
@@ -207,7 +206,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Determine if the server is currently configuring.
-     *
      * @return bool
      */
     public function isConfiguring(): bool
@@ -231,7 +229,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Determine if the server is currently configured.
-     *
      * @return bool
      */
     public function isConfigured(): bool
@@ -241,7 +238,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Mark the server as configured.
-     *
      * @return $this
      */
     public function markAsConfigured(): void
@@ -254,7 +250,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Determine if the server is currently failed.
-     *
      * @return bool
      */
     public function isFailed(): bool
@@ -264,7 +259,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Mark the server as configured.
-     *
      * @return $this
      */
     public function markAsFailed(): void
@@ -277,7 +271,6 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * Get system information about server
-     *
      * @return SystemInformation|null
      */
     public function systemInformation(): ?SystemInformation
@@ -286,11 +279,7 @@ class Server extends Model implements ServerConfiguration
             return null;
         }
 
-        return new SystemInformation(
-            $this->os_information['os'],
-            $this->os_information['version'],
-            $this->os_information['architecture']
-        );
+        return new SystemInformation($this->os_information['os'], $this->os_information['version'], $this->os_information['architecture']);
     }
 
     /**
@@ -307,6 +296,7 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeConfigured(Builder $builder)
@@ -316,22 +306,20 @@ class Server extends Model implements ServerConfiguration
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeWithMonitoring(Builder $builder)
     {
         return $builder->whereHas('team', function ($q) {
             return $q->whereHas('subscriptions', function ($q) {
-                return $q->whereIn(
-                    'stripe_plan', Plan::onlyActive()->withMonitoring()->pluck('name')
-                );
+                return $q->whereIn('stripe_plan', Plan::onlyActive()->withMonitoring()->pluck('name'));
             });
         });
     }
 
     /**
      * Get the indexable data array for the model.
-     *
      * @return array
      */
     public function toSearchableArray()
@@ -342,8 +330,30 @@ class Server extends Model implements ServerConfiguration
             'ip' => $this->ip,
             'user_id' => $this->user_id,
             'team_id' => $this->team_id,
-            'database_type' => $this->database_type,
-            'webserver_type' => $this->webserver_type,
         ];
+    }
+
+    /**
+     * @return ServerConfiguration
+     */
+    public function toConfiguration(): ServerConfiguration
+    {
+        return Factory::create($this);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isWebserver(): bool
+    {
+        return $this->type === static::TYPE_WEBSERVER;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOpenVPN(): bool
+    {
+        return $this->type === static::TYPE_OPENVPN;
     }
 }

@@ -178,21 +178,20 @@ namespace App\Models{
  * @property string $user_id
  * @property string $team_id
  * @property string $name
+ * @property string $type
  * @property string $ip
  * @property int $ssh_port
  * @property string|null $sudo_password
  * @property array|null $meta
  * @property array|null $os_information
- * @property string $php_version
- * @property string|null $database_type
- * @property string $database_password
- * @property string|null $webserver_type
  * @property string $public_key
  * @property string $private_key
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $configuring_job_dispatched_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Alert[] $alerts
+ * @property-read int|null $alerts_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\CronJob[] $cronJobs
  * @property-read int|null $cron_jobs_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Daemon[] $daemons
@@ -221,23 +220,20 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereConfiguringJobDispatchedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereDatabasePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereDatabaseType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereIp($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereMeta($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereOsInformation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server wherePhpVersion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server wherePrivateKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server wherePublicKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereSshPort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereSudoPassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereTeamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server whereWebserverType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server withMonitoring()
  */
 	class Server extends \Eloquent {}
@@ -262,6 +258,146 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CallbackLog whereUpdatedAt($value)
  */
 	class CallbackLog extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\WebServer
+ *
+ * @property string $id
+ * @property string $user_id
+ * @property string $team_id
+ * @property string $name
+ * @property string $type
+ * @property string $ip
+ * @property int $ssh_port
+ * @property string|null $sudo_password
+ * @property array|null $meta
+ * @property array|null $os_information
+ * @property string $public_key
+ * @property string $private_key
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $configuring_job_dispatched_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Alert[] $alerts
+ * @property-read int|null $alerts_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\CronJob[] $cronJobs
+ * @property-read int|null $cron_jobs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Daemon[] $daemons
+ * @property-read int|null $daemons_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Database[] $databases
+ * @property-read int|null $databases_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Event[] $events
+ * @property-read int|null $events_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Firewall\Rule[] $firewallRules
+ * @property-read int|null $firewall_rules_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Ping[] $pings
+ * @property-read int|null $pings_count
+ * @property-write mixed $keypair
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Site[] $sites
+ * @property-read int|null $sites_count
+ * @property-read \App\Models\Server\Task $task
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Task[] $tasks
+ * @property-read int|null $tasks_count
+ * @property-read \App\Models\User\Team $team
+ * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\User[] $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server configured()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereConfiguringJobDispatchedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereMeta($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereOsInformation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer wherePrivateKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer wherePublicKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereSshPort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereSudoPassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereTeamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\WebServer whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server withMonitoring()
+ */
+	class WebServer extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\OpenVPNServer
+ *
+ * @property string $id
+ * @property string $user_id
+ * @property string $team_id
+ * @property string $name
+ * @property string $type
+ * @property string $ip
+ * @property int $ssh_port
+ * @property string|null $sudo_password
+ * @property array|null $meta
+ * @property array|null $os_information
+ * @property string $public_key
+ * @property string $private_key
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $configuring_job_dispatched_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Alert[] $alerts
+ * @property-read int|null $alerts_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\OpenVPN\Client[] $clients
+ * @property-read int|null $clients_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\CronJob[] $cronJobs
+ * @property-read int|null $cron_jobs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Daemon[] $daemons
+ * @property-read int|null $daemons_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Database[] $databases
+ * @property-read int|null $databases_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Event[] $events
+ * @property-read int|null $events_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Firewall\Rule[] $firewallRules
+ * @property-read int|null $firewall_rules_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Ping[] $pings
+ * @property-read int|null $pings_count
+ * @property-write mixed $keypair
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Site[] $sites
+ * @property-read int|null $sites_count
+ * @property-read \App\Models\Server\Task $task
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Task[] $tasks
+ * @property-read int|null $tasks_count
+ * @property-read \App\Models\User\Team $team
+ * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\User[] $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server configured()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereConfiguringJobDispatchedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereMeta($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereOsInformation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer wherePrivateKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer wherePublicKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereSshPort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereSudoPassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereTeamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server withMonitoring()
+ */
+	class OpenVPNServer extends \Eloquent {}
 }
 
 namespace App\Models\Server{
@@ -507,6 +643,34 @@ namespace App\Models\Server\Firewall{
 
 namespace App\Models\Server{
 /**
+ * App\Models\Server\Alert
+ *
+ * @property string $id
+ * @property string $server_id
+ * @property string $level
+ * @property string $type
+ * @property string $exception
+ * @property array $meta
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Server $server
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert whereException($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert whereLevel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert whereMeta($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert whereUpdatedAt($value)
+ */
+	class Alert extends \Eloquent {}
+}
+
+namespace App\Models\Server{
+/**
  * App\Models\Server\Site
  *
  * @property string $id
@@ -596,6 +760,29 @@ namespace App\Models\Server{
 	class Ping extends \Eloquent {}
 }
 
+namespace App\Models\Server\OpenVPN{
+/**
+ * App\Models\Server\OpenVPN\Client
+ *
+ * @property string $id
+ * @property string $server_id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Server $server
+ * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client whereUpdatedAt($value)
+ */
+	class Client extends \Eloquent {}
+}
+
 namespace App\Models\Server{
 /**
  * App\Models\Server\User
@@ -643,7 +830,6 @@ namespace App\Models\Subscription{
  * @property bool $is_active
  * @property float $price
  * @property string $currency
- * @property int $trial_period
  * @property int $sort_order
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -661,7 +847,6 @@ namespace App\Models\Subscription{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereSortOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereTrialPeriod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan withCacheCooldownSeconds($seconds = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription\Plan withMonitoring()
@@ -736,7 +921,10 @@ namespace App\Models{
  *
  * @property string $id
  * @property string $name
+ * @property string|null $company
+ * @property string|null $address
  * @property string $email
+ * @property string $lang
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
@@ -754,6 +942,8 @@ namespace App\Models{
  * @property-read int|null $roles_teams_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server[] $servers
  * @property-read int|null $servers_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Site[] $sites
+ * @property-read int|null $sites_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\SourceProvider[] $sourceProviders
  * @property-read int|null $source_providers_count
  * @property-read \App\Models\User\Team $team
@@ -764,10 +954,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User orWherePermissionIs($permission = '')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User orWhereRoleIs($role = '', $team = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCompany($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLang($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePermissionIs($permission = '', $boolean = 'and')
