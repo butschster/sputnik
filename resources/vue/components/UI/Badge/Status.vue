@@ -1,5 +1,7 @@
 <template>
-    <span v-if="status" class="badge" :class="statusClasses">{{ status }}</span>
+    <span v-if="status" class="badge" :class="statusClasses">
+        {{ $t(`server.tasks.status.${status}`) }}
+    </span>
 </template>
 
 <script>
@@ -15,6 +17,8 @@
         computed: {
             statusClasses() {
                 switch (this.status.toLowerCase()) {
+                    case 'timeout':
+                        return 'badge-warning animated-progress'
                     case 'failed':
                         return 'badge-danger'
                     case 'running':

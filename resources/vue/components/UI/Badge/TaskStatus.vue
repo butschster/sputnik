@@ -1,6 +1,6 @@
 <template>
     <span v-if="hasTask" class="badge cursor-pointer" :class="statusClasses" @dblclick="load" @click="show">
-        {{ current_task.status }}
+        {{ $t(`server.tasks.status.${current_task.status}`) }}
     </span>
 </template>
 

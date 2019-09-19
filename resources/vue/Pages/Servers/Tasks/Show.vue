@@ -7,30 +7,30 @@
             <table class="table">
                 <tbody>
                 <tr>
-                    <th>User</th>
+                    <th>{{ $t('server.tasks.item.user') }}</th>
                     <td>{{ task.user }}</td>
                 </tr>
                 <tr>
-                    <th>Status</th>
+                    <th>{{ $t('server.tasks.item.status') }}</th>
                     <td>
                         <BadgeTaskStatus :task="task"/>
                     </td>
                 </tr>
                 <tr>
-                    <th>Success</th>
+                    <th>{{ $t('server.tasks.item.success') }}</th>
                     <td>{{ task.is_successful ? 'Yes' : 'No' }}</td>
                 </tr>
                 </tbody>
             </table>
 
             <section class="section mt-10" v-if="task.script">
-                <div class="section-header">Command</div>
+                <div class="section-header">{{ $t('server.tasks.item.script') }}</div>
 
                 <pre class="break-all">{{ task.script }}</pre>
             </section>
 
             <section class="section mt-10" v-if="task.output">
-                <div class="section-header">Output</div>
+                <div class="section-header">{{ $t('server.tasks.item.output') }}</div>
 
                 <pre class="break-all">{{ task.output }}</pre>
             </section>

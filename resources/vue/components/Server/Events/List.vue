@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h4>Recent Events</h4>
+        <h4>{{ $t('server.events.recent') }}</h4>
 
         <div class="section-body">
             <Loader :loading="loading"/>
@@ -9,8 +9,8 @@
                 <col width="200px">
                 <thead>
                 <tr>
-                    <th>Event</th>
-                    <th class="text-right">Time</th>
+                    <th>{{ $t('server.events.table.event') }}</th>
+                    <th class="text-right">{{ $t('server.events.table.time') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,11 +23,12 @@
                 </tbody>
             </table>
             <div v-else class="well well-lg text-center">
-                <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1421/1421313.svg" alt="" width="150px">
-                <h3 class="mb-0">Looks like you don't have any events yet</h3>
+                <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1421/1421313.svg" alt=""
+                     width="150px">
+                <h3 class="mb-0">{{ $t('server.events.message.empty_results') }}</h3>
             </div>
 
-            <Pagination :data="events" @pagination-change-page="load" />
+            <Pagination :data="events" @pagination-change-page="load"/>
         </div>
     </section>
 </template>

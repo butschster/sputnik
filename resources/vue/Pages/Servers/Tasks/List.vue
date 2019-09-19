@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Tasks</h1>
+        <h1>{{ $t('server.tasks.title') }}</h1>
         <TasksList :server="$parent.server" class="mt-10"/>
     </div>
 </template>

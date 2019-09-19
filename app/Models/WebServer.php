@@ -16,7 +16,7 @@ class WebServer extends Server
      */
     public function sites(): HasMany
     {
-        return $this->hasMany(Site::class)->latest();
+        return $this->hasMany(Site::class, 'server_id')->latest();
     }
 
     /**
@@ -25,7 +25,7 @@ class WebServer extends Server
      */
     public function daemons(): HasMany
     {
-        return $this->hasMany(Daemon::class)->latest();
+        return $this->hasMany(Daemon::class, 'server_id')->latest();
     }
 
     /**
@@ -34,6 +34,6 @@ class WebServer extends Server
      */
     public function databases(): HasMany
     {
-        return $this->hasMany(Database::class)->latest();
+        return $this->hasMany(Database::class, 'server_id')->latest();
     }
 }

@@ -156,7 +156,7 @@ class Server extends Model
      */
     public function databases(): HasMany
     {
-        return $this->hasMany(Database::class)->latest();
+        return $this->hasMany(Database::class, 'server_id')->latest();
     }
 
     /**
