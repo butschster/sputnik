@@ -1,7 +1,7 @@
 <template>
     <section class="section">
         <div class="section-header">
-            System information
+            {{ $t('server.settings.system_information') }}
         </div>
         <table class="table">
             <col width="200px">

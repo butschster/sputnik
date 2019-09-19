@@ -20,8 +20,6 @@
                 <div class="modal__content">
                     <p class="mb-3">{{ $t('user.profile.deactivate.modal.description') }}</p>
 
-                    <p class="mb-3">{{ $t('user.profile.deactivate.modal.action') }}</p>
-
                     <FormInput v-model="form.email" :label="$t('user.profile.deactivate.modal.field')" name="email" class="w-full" required autofocus/>
                     <button class="btn btn-danger-outline btn-block" :disabled="isDisabledButton" @click="deactivate">
                         {{ $t('user.profile.deactivate.modal.button') }}

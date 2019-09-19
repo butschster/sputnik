@@ -17,12 +17,12 @@
                 </div>
             </div>
 
-            <NotSupported v-if="!isSupported" :server="server" />
+            <NotSupported v-if="!isSupported" :server="server"/>
 
             <div class="tabs" role="tabs">
-                <router-link :to="$link.serverEvents(server)" class="tab">Events</router-link>
-                <router-link :to="$link.serverTasks(server)" class="tab">Tasks</router-link>
-                <router-link :to="$link.serverSettings(server)" class="tab">Settings</router-link>
+                <router-link v-for="(item, index) in links" :key="index" :to="item.link" class="tab">
+                    {{ $t(item.title)}}
+                </router-link>
             </div>
 
             <InstallProgress :server="server"/>
@@ -75,6 +75,24 @@
                 }
 
                 this.loading = false
+            }
+        },
+        computed: {
+            links() {
+                return [
+                    {
+                        title: 'server.sections.events',
+                        link: this.$link.serverEvents(this.server)
+                    },
+                    {
+                        title: 'server.sections.tasks',
+                        link: this.$link.serverTasks(this.server)
+                    },
+                    {
+                        title: 'server.sections.settings',
+                        link: this.$link.serverSettings(this.server)
+                    },
+                ]
             }
         },
         watch: {

@@ -3,22 +3,22 @@
         <div class="flex min-h-screen">
             <aside class="sidebar">
                 <div class="sidebar-section">
-                    <h5>Manage</h5>
+                    <h5>{{ $t('app.sidebar.manage') }}</h5>
                     <div class="nav">
-                        <router-link class="nav-link"  :to="$link.servers()">
-                            Servers
+                        <router-link class="nav-link" :to="$link.servers()">
+                            {{ $t('app.sidebar.servers') }}
                         </router-link>
                     </div>
                 </div>
 
-                <ServerSidebar />
-                <AccountSidebar />
+                <ServerSidebar/>
+                <AccountSidebar/>
             </aside>
             <div class="relative bg-gray-100 w-full">
                 <portal-target name="content-overlay"></portal-target>
-                <Navbar />
+                <Navbar/>
                 <div class="container py-10 px-12">
-                    <Breadcrumbs />
+                    <Breadcrumbs/>
                     <router-view/>
                 </div>
             </div>

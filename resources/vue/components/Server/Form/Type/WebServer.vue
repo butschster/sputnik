@@ -2,21 +2,21 @@
     <div>
         <div class="flex">
             <FormSelect v-model="form.php_version"
-                        label="Which PHP version do you want to install"
+                        :label="$t('server.form.create.label.php_version')"
                         name="php_version"
                         class="w-full mr-8"
                         :options="php_versions"
                         required/>
 
             <FormSelect v-model="form.database_type"
-                        label="Which database type do you want to install"
+                        :label="$t('server.form.create.label.database_type')"
                         name="database_type"
                         class="w-full mr-8"
                         :options="database_types"
                         required/>
 
             <FormSelect v-model="form.webserver_type"
-                        label="Which web server do you want to install"
+                        :label="$t('server.form.create.label.webserver_type')"
                         name="webserver_type"
                         class="w-full"
                         :options="webserver_types"
@@ -25,7 +25,7 @@
 
         <button class="btn btn-primary shadow-lg" @click="onSubmit">
             <i class="fas fa-plus"></i>
-            Create
+            {{ $t('server.form.create.button.create') }}
         </button>
     </div>
 </template>

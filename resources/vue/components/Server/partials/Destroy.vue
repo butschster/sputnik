@@ -2,27 +2,25 @@
     <div>
         <Loader :loading="loading"/>
         <section class="section flex items-center">
-            <div class="flex-1">
+            <div class="flex-1 mr-10">
                 <div class="section-header">
-                    Destroy Server
-                    <p class="text-gray-600">This is irreversible. We will remove your Server record from your account,
-                        but all your setting will keep on your physical server.</p>
+                    {{ $t('server.destroy.title') }}
+                    <p class="text-gray-600">
+                        {{ $t('server.destroy.description') }}</p>
                 </div>
             </div>
             <div>
                 <button class="btn btn-danger-outline" @click="onDestroy">
-                    Destroy
+                    {{ $t('server.destroy.buttons.destroy') }}
                 </button>
 
                 <Modal name="destroyServer">
                     <div class="modal__top">
-                        Are you absolutely sure?
+                        {{ $t('server.destroy.modal.title') }}
                     </div>
                     <div class="modal__content">
-                        <p class="mb-3">This action cannot be undone. This will permanently delete your server.</p>
-
                         <button class="btn btn-danger-outline btn-block" @click="destroy">
-                            I understand the consequences, continue
+                            {{ $t('server.destroy.modal.button') }}
                         </button>
                     </div>
                 </Modal>

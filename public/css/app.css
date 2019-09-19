@@ -65097,6 +65097,10 @@ a.card-info:focus, a.card-info:hover {
   color: #fff;
 }
 
+.alert-danger .btn-copy__label, .alert-primary .btn-copy__label {
+  color: #fff;
+}
+
 .modal {
   position: fixed;
   display: flex;

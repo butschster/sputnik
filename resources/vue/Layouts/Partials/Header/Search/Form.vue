@@ -1,18 +1,25 @@
 <template>
     <div v-click-outside="hide" class="search-container">
         <FormInput v-model="query"
-                   label="Search by resource name or IP"
+                   :label="$t('app.search.input')"
                    name="search"
                    @focus="onFocus"
                    @blur="focused=false"/>
 
         <div v-if="show" class="search__results-list">
             <div v-if="hasResults">
-                <Results :results="resultsServers" title="Servers" type="server" @onClick="reset" />
-                <Results :results="resultsSites" title="Sites" type="site" class="mt-3" @onClick="reset"/>
+                <Results :results="resultsServers"
+                         :title="$t('app.search.sections.servers')"
+                         type="server"
+                         @onClick="reset"/>
+
+                <Results :results="resultsSites"
+                         :title="$t('app.search.sections.sites')"
+                         type="site" class="mt-3"
+                         @onClick="reset"/>
             </div>
             <div v-else class="search__empty-results">
-                No results found containing '{{ query }}'
+                {{ $t('app.search.empty_result') }}
             </div>
         </div>
 
@@ -21,6 +28,7 @@
         </portal>
     </div>
 </template>
+
 <script>
     import {mapGetters} from 'vuex'
     import {debounce} from 'lodash'

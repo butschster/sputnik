@@ -30,22 +30,22 @@ export class Server {
             {
                 link: links.serverOpenVPNClients(this.server),
                 icon: 'fa-globe',
-                title: 'VPN Clients'
+                title: 'server.sections.vpn_clients'
             },
             {
                 link: links.serverFirewall(this.server),
                 icon: 'fa-globe',
-                title: 'Firewall'
+                title:'server.sections.firewall'
             },
             {
                 link: links.serverUsers(this.server),
                 icon: 'fa-users',
-                title: 'Users'
+                title: 'server.sections.users'
             },
             {
                 link: links.serverScheduler(this.server),
                 icon: 'fa-calendar-alt',
-                title: 'Scheduler'
+                title: 'server.sections.scheduler'
             },
         ]
 
@@ -58,17 +58,17 @@ export class Server {
             {
                 link: links.serverSites(this.server),
                 icon: 'fa-globe',
-                title: 'Sites'
+                title: 'server.sections.sites'
             },
             {
                 link: links.serverSupervisor(this.server),
                 icon: 'fa-chart-bar',
-                title: 'Supervisor'
+                title: 'server.sections.supervisor'
             },
             {
                 link: links.serverDatabases(this.server),
                 icon: 'fa-server',
-                title: 'Database'
+                title: 'server.sections.database'
             }
         )
 

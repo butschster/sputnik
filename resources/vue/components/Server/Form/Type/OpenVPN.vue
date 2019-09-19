@@ -2,13 +2,13 @@
     <div>
         <div class="flex">
             <FormInput v-model="form.vpn_port"
-                       label="What port do you want OpenVPN listening to"
+                       :label="$t('server.form.create.label.vpn_port')"
                        name="vpn_port"
                        class="w-full mr-8"
                        required/>
 
             <FormSelect v-model="form.vpn_protocol"
-                        label="Which DNS do you want to use with the VPN"
+                        :label="$t('server.form.create.label.vpn_protocol')"
                         name="vpn_protocol"
                         class="w-full"
                         :options="protocols"
@@ -17,7 +17,7 @@
 
         <div class="flex">
             <FormSelect v-model="form.dns"
-                        label="Which DNS do you want to use with the VPN"
+                        :label="$t('server.form.create.label.vpn_dns')"
                         name="dns"
                         class="w-full"
                         :options="dns_resolvers" required/>
@@ -25,7 +25,7 @@
 
         <button class="btn btn-primary shadow-lg" @click="onSubmit">
             <i class="fas fa-plus"></i>
-            Create
+            {{ $t('server.form.create.button.create') }}
         </button>
     </div>
 </template>

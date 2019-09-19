@@ -8,7 +8,6 @@ import Copy from '@vue/components/UI/Copy'
 import BadgeTimeFrom from "@vue/components/UI/Badge/TimeFrom"
 import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
 import BadgeStatus from "@vue/components/UI/Badge/Status"
-
 import {mapGetters} from 'vuex'
 
 require('./bootstrap')

@@ -13,4 +13,10 @@
         @apply bg-blue-600 text-white;
     }
 
+    &-danger,
+    &-primary {
+        .btn-copy__label {
+            @apply text-white;
+        }
+    }
 }
