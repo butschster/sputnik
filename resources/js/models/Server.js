@@ -34,7 +34,7 @@ export class Server {
             },
             {
                 link: links.serverFirewall(this.server),
-                icon: 'fa-globe',
+                icon: 'fa-lock',
                 title:'server.sections.firewall'
             },
             {

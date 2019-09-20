@@ -1,12 +1,12 @@
 <template>
     <div>
         <h1>
-            OpenVPN Clients
+            {{ $t('server.openvpn.title') }}
         </h1>
 
         <CreateForm :server="$parent.server" class="well well-lg mb-12" @created="load()"/>
 
-        <h4>Active clients ({{ clients.length }})</h4>
+        <h4>{{ $t('server.openvpn.clients') }} ({{ clients.length }})</h4>
         <div v-if="hasClients">
             <Loader :loading="loading"/>
             <table class="table mb-10">
@@ -16,9 +16,9 @@
                 <col width="100px">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th class="text-right">Status</th>
-                    <th class="text-right">Created At</th>
+                    <th>{{ $t('server.openvpn.table.name') }}</th>
+                    <th class="text-right">{{ $t('server.openvpn.table.status') }}</th>
+                    <th class="text-right">{{ $t('server.openvpn.table.time') }}</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -26,13 +26,13 @@
                 <tr v-for="client in clients">
                     <th>{{ client.name }}</th>
                     <td class="text-right">
-                        <BadgeTaskStatus :task="client.task" />
+                        <BadgeTaskStatus :task="client.task"/>
                     </td>
                     <td class="text-right">
-                        <BadgeTimeFrom :date="client.created_at" />
+                        <BadgeTimeFrom :date="client.created_at"/>
                     </td>
                     <td class="text-right">
-                        <a class="btn btn-default btn-circle btn-sm" :href="client.links.download" >
+                        <a class="btn btn-default btn-circle btn-sm" :href="client.links.download">
                             <i class="fas fa-download"></i>
                         </a>
 
@@ -47,7 +47,7 @@
 
         <div v-else class="well well-lg text-center">
             <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1871/1871131.svg" alt="" width="100px">
-            <h3 class="mb-0">Looks like you don't have any clients yet</h3>
+            <h3 class="mb-0">{{ $t('server.openvpn.message.empty_results') }}</h3>
         </div>
     </div>
 </template>
@@ -80,7 +80,7 @@
             },
             removedUser(client) {
                 this.load()
-                this.$notify.success('Client successfully deleted')
+                this.$notify.success(this.$t('server.openvpn.message.deleted'))
             },
             async remove(client) {
                 this.loading = true
