@@ -7,6 +7,7 @@ use App\Http\Requests\Server\Firewall\StoreRequest;
 use App\Http\Resources\v1\Server\Firewall\RuleResource;
 use App\Http\Resources\v1\Server\Firewall\RulesCollection;
 use App\Models\Server;
+use App\Services\Server\FirewallService;
 
 class FirewallController extends Controller
 {
@@ -60,5 +61,39 @@ class FirewallController extends Controller
         $rule->delete();
 
         return $this->responseDeleted();
+    }
+
+    /**
+     * @param FirewallService $service
+     * @param Server $server
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function enable(FirewallService $service, Server $server)
+    {
+        $this->authorize('enable-firewall', $server);
+
+        $service->enable($server);
+
+        return $this->responseOk([
+            'state' => $server->refresh()->toConfiguration()->firewallStatus()
+        ]);
+    }
+
+    /**
+     * @param FirewallService $service
+     * @param Server $server
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function disable(FirewallService $service, Server $server)
+    {
+        $this->authorize('disable-firewall', $server);
+
+        $service->disable($server);
+
+        return $this->responseOk([
+            'state' => $server->refresh()->toConfiguration()->firewallStatus()
+        ]);
     }
 }

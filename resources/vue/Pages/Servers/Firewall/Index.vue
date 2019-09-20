@@ -1,7 +1,11 @@
 <template>
     <div>
-        <h1>
-            {{ $t('server.firewall.title') }}
+        <h1 class="flex items-center">
+            <div class="flex-1">
+                {{ $t('server.firewall.title') }}
+            </div>
+
+            <Switcher :value="$parent.server.firewall.status" @change="switchFirewallStatus" />
         </h1>
 
         <CreateFormFirewall :server="$parent.server" @created="load" class="well well-lg mb-12"/>
@@ -62,10 +66,11 @@
 </template>
 
 <script>
+    import Switcher from 'vue-js-toggle-button/src/Button'
     import CreateFormFirewall from "@vue/components/Server/Firewall/CreateForm"
 
     export default {
-        components: {CreateFormFirewall},
+        components: {CreateFormFirewall, Switcher},
         data() {
             return {
                 loading: false,
@@ -76,6 +81,19 @@
             this.load()
         },
         methods: {
+            async switchFirewallStatus(state) {
+                this.loading = true
+
+                const method = state.value ? 'enable' : 'disable'
+                try {
+                    this.$parent.server.firewall.status = await this.$api.serverFirewall[method](this.$parent.server.id)
+                } catch (e) {
+                    this.$handleError(e)
+                }
+
+                this.loading = false
+            },
+
             async load() {
                 this.loading = true
 

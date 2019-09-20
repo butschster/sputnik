@@ -48,6 +48,36 @@ export async function show(ruleId) {
 }
 
 /**
+ * Enable server firewall
+ *
+ * @param {String} serverId
+ * @return {Object}
+ */
+export async function enable(serverId) {
+    try {
+        const response = await api_route('v1.server.firewall.enable', {server: serverId}).request()
+        return response.data.state
+    } catch (e) {
+        throw new ApiRequestError('Can not enable server firewall.')
+    }
+}
+
+/**
+ * Enable server firewall
+ *
+ * @param {String} serverId
+ * @return {Object}
+ */
+export async function disable(serverId) {
+    try {
+        const response = await api_route('v1.server.firewall.disable', {server: serverId}).request()
+        return response.data.state
+    } catch (e) {
+        throw new ApiRequestError('Can not disable server firewall.')
+    }
+}
+
+/**
  * Delete server firewall rule by ID
  *
  * @param {String} ruleId
@@ -61,3 +91,4 @@ export async function remove(ruleId) {
         throw new ApiRequestError('Can not delete server firewall rule.')
     }
 }
+

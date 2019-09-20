@@ -38,8 +38,6 @@ class EnableRule extends Script
      */
     public function getScript(): string
     {
-        return view('scripts.server.firewall.enable_rule', [
-            'rule' => $this->rule,
-        ])->render();
+        return $this->rule->toBashEnableCommand();
     }
 }

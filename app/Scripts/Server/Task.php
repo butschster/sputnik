@@ -12,11 +12,18 @@ class Task extends Script
     protected $task;
 
     /**
-     * @param \App\Services\Task\Contracts\Task $task
+     * @var bool
      */
-    public function __construct(\App\Services\Task\Contracts\Task $task)
+    protected $callback;
+
+    /**
+     * @param \App\Services\Task\Contracts\Task $task
+     * @param bool $callback
+     */
+    public function __construct(\App\Services\Task\Contracts\Task $task, bool $callback = true)
     {
         $this->task = $task;
+        $this->callback = $callback;
     }
 
     /**
@@ -28,7 +35,8 @@ class Task extends Script
     public function getScript(): string
     {
         return view('scripts.task', [
-            'task' => $this->task
+            'task' => $this->task,
+            'callback' => $this->callback,
         ])->render();
     }
 }

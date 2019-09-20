@@ -70,8 +70,28 @@ class ServerPolicy
     public function delete(?User $user, Server $server): bool
     {
         return (
-                $server->user_id == $user->id
-                || $user->can('server.delete', $server->team)
-            );
+            $server->user_id == $user->id
+            || $user->can('server.delete', $server->team)
+        );
+    }
+
+    /**
+     * @param User|null $user
+     * @param Server $server
+     * @return bool
+     */
+    public function enableFirewall(?User $user, Server $server): bool
+    {
+        return !$server->toConfiguration()->firewallStatus() && $user->canManageServer($server);
+    }
+
+    /**
+     * @param User|null $user
+     * @param Server $server
+     * @return bool
+     */
+    public function disableFirewall(?User $user, Server $server): bool
+    {
+        return $server->toConfiguration()->firewallStatus() && $user->canManageServer($server);
     }
 }

@@ -88,4 +88,14 @@ class OpenVPN implements OpenVPNServerConfiguration
             'EASYRSA_REQ_OU' => 'Community'
         ];
     }
+
+    public function toArray()
+    {
+        return [
+            'vpn_dns' => $this->dns(),
+            'vpn_port' => $this->port(),
+            'vpn_protocol' => $this->protocol(),
+            //'vars' => $this->vars()
+        ];
+    }
 }

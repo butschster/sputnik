@@ -20,21 +20,9 @@
                 <th>SSH Port</th>
                 <td>{{ server.ssh_port }}</td>
             </tr>
-            <tr>
-                <th>IP Address</th>
-                <td><Copy :text="server.ip" /></td>
-            </tr>
-            <tr>
-                <th>PHP Version</th>
-                <td>{{ server.php_version }}</td>
-            </tr>
-            <tr>
-                <th>Database</th>
-                <td>{{ server.database_type }}</td>
-            </tr>
-            <tr>
-                <th>Webserver</th>
-                <td>{{ server.webserver_type }}</td>
+            <tr v-for="(value, key) in server.configuration" :key="key">
+                <th>{{ $t(`server.configuration.${key}`) }}</th>
+                <td>{{ value }}</td>
             </tr>
             </tbody>
         </table>

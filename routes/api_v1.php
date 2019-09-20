@@ -67,6 +67,9 @@ Route::middleware('auth')->group(function () {
         Route::delete('server/database/{database}', 'Server\DatabaseController@delete')->name('server.database.delete');
 
         // Server Firewall
+        Route::post('server/{server}/firewall/enable', 'Server\FirewallController@enable')->name('server.firewall.enable');
+        Route::post('server/{server}/firewall/disable', 'Server\FirewallController@disable')->name('server.firewall.disable');
+
         Route::get('server/{server}/firewall/rules', 'Server\FirewallController@index')->name('server.firewall.rules');
         Route::post('server/{server}/firewall', 'Server\FirewallController@store')->name('server.firewall.store');
         Route::get('server/firewall/{rule}', 'Server\FirewallController@show')->name('server.firewall.show');

@@ -21,6 +21,7 @@ class ServerResource extends JsonResource
     public function toArray($request)
     {
         $sysInfo = $this->systemInformation();
+        $configuration = $this->toConfiguration();
 
         return [
             'id' => $this->id,
@@ -37,7 +38,10 @@ class ServerResource extends JsonResource
                     'is_supported' => $sysInfo->isSupported(),
                 ];
             }),
-            'meta' => $this->meta,
+            'firewall' => [
+                'status' => $configuration->firewallStatus(),
+            ],
+            'configuration' => $configuration->toArray(),
             'public_key' => $this->public_key,
             'status' => $this->status,
             'created_at' => $this->created_at,
@@ -58,7 +62,7 @@ class ServerResource extends JsonResource
                 'create_firewall' => Gate::allows('store', [\App\Models\Server\Firewall\Rule::class, $this->resource]),
                 'create_daemon' => Gate::allows('store', [\App\Models\Server\Daemon::class, $this->resource]),
                 'create_user' => Gate::allows('store', [\App\Models\Server\User::class, $this->resource]),
-            ]
+            ],
         ];
     }
 }

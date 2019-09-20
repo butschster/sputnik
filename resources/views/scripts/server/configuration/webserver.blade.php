@@ -23,6 +23,7 @@ apt-get upgrade -y
 
 apt-get install -y --force-yes build-essential \
 curl \
+ufw \
 fail2ban \
 software-properties-common \
 whois \

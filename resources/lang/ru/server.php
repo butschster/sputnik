@@ -174,6 +174,16 @@ return [
             'please_wait' => 'Процесс установки может занять несколько минут.',
         ],
     ],
+    'configuration' => [
+        'vpn_dns' => 'DNS сервер',
+        'vpn_port' => 'OpenVPN порт',
+        'vpn_protocol' => 'OpenVPN протокол',
+        'php_version' => 'Версия PHP',
+        'database_type' => 'База данных',
+        'database_hosts' => 'Хосты БД',
+        'webserver_type' => 'Вебсервер',
+        'nosql_databases' => 'NoSQL базы данных',
+    ],
     'php_versions' => [
         72 => 'PHP 7.2',
         73 => 'PHP 7.3',
