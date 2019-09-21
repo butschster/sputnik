@@ -21,7 +21,7 @@
                 </h1>
             </div>
         </div>
-            <div class="container pl-10">
+            <div class="container px-10">
                 <div class="card -mt-16">
                     <div class="card-body flex items-center">
                         <img :src="user.avatar" alt="" class="h-32 rounded-full">

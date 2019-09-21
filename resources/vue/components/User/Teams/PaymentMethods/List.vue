@@ -2,7 +2,7 @@
     <section class="section">
         <Loader :loading="loading"/>
         <div class="section-header flex items-center">
-            <div class="flex-1">
+            <div class="flex-1 pr-4">
                 Payment methods
                 <p>Please enter your preferred payment method below. You can use a credit / debit card.</p>
             </div>

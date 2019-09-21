@@ -1,13 +1,11 @@
 <template>
-
     <div class="w-full">
-        <div class="container pl-10">
+        <div class="container px-10">
             <Loader :loading="loading"/>
             <h2>Environment variables</h2>
-        </div>
 
-        <div v-if="hasVariables">
-            <div class="container pl-10">
+            <div v-if="hasVariables">
+
                 <template v-for="(vars, group) in groupedVariables">
                     <h4>{{ group }}</h4>
 
@@ -32,18 +30,16 @@
                     </table>
                 </template>
             </div>
-        </div>
-        <div v-else class="well well-lg text-center">
-            <div class="container pl-10">
+
+            <div v-else class="well well-lg text-center">
                 <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1568/1568465.svg" alt=""
                      width="150px">
                 <h3 class="mb-0">Looks like you don't have any env variables yet</h3>
             </div>
-        </div>
 
 
-        <div class="section well well-lg">
-            <div class="container pl-10">
+            <div class="section well well-lg">
+
                 <Loader :loading="uploadLoading"/>
                 <div class="section-header">
                     Load from .env string

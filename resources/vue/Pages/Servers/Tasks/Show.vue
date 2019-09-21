@@ -1,40 +1,39 @@
 <template>
-    <div class="w-full">
-        <div class="container pl-10">
-            <Loader :loading="loading"/>
-            <div v-if="task">
-                <h3>{{ task.name }}</h3>
-                <table class="table">
-                    <tbody>
-                    <tr>
-                        <th>{{ $t('server.tasks.item.user') }}</th>
-                        <td>{{ task.user }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{ $t('server.tasks.item.status') }}</th>
-                        <td>
-                            <BadgeTaskStatus :task="task"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>{{ $t('server.tasks.item.success') }}</th>
-                        <td>{{ task.is_successful ? 'Yes' : 'No' }}</td>
-                    </tr>
-                    </tbody>
-                </table>
+    <div>
+        <Loader :loading="loading"/>
+        <div v-if="task">
+            <h3>{{ task.name }}</h3>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>{{ $t('server.tasks.item.user') }}</th>
+                    <td>{{ task.user }}</td>
+                </tr>
+                <tr>
+                    <th>{{ $t('server.tasks.item.status') }}</th>
+                    <td>
+                        <BadgeTaskStatus :task="task"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{ $t('server.tasks.item.success') }}</th>
+                    <td>{{ task.is_successful ? 'Yes' : 'No' }}</td>
+                </tr>
+                </tbody>
+            </table>
 
-                <section class="section mt-10" v-if="task.script">
-                    <div class="section-header">{{ $t('server.tasks.item.script') }}</div>
-                    <pre class="break-all">{{ task.script }}</pre>
-                </section>
+            <section class="section mt-10" v-if="task.script">
+                <div class="section-header">{{ $t('server.tasks.item.script') }}</div>
+                <pre class="break-all">{{ task.script }}</pre>
+            </section>
 
-                <section class="section mt-10" v-if="task.output">
-                    <div class="section-header">{{ $t('server.tasks.item.output') }}</div>
-                    <pre class="break-all">{{ task.output }}</pre>
-                </section>
-            </div>
+            <section class="section mt-10" v-if="task.output">
+                <div class="section-header">{{ $t('server.tasks.item.output') }}</div>
+                <pre class="break-all">{{ task.output }}</pre>
+            </section>
         </div>
     </div>
+
 </template>
 
 <script>

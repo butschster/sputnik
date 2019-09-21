@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="container pl-10">
+        <div class="container px-10">
             <button class="btn btn-default btn-dark" @click="showModal">
                 {{ $t('user.profile.buttons.edit') }}
             </button>

@@ -1,7 +1,7 @@
 <template>
     <div v-if="site" class="w-full">
 
-        <div class="container pl-10">
+        <div class="container px-10">
             <div class="flex items-center">
                 <h2 class="flex flex-1 items-center">
                     <img src="https://image.flaticon.com/icons/svg/1055/1055685.svg" width="40px" class="mr-4">

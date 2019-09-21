@@ -2,7 +2,7 @@
     <section class="section">
         <Loader :loading="loading" />
         <div class="flex items-center">
-            <div class="flex-1 section-header">
+            <div class="flex-1 section-header mb-0 mr-4">
                 Cancel subscription
                 <p>Pavel, just before you go, here are some courses we've got coming up that you might be interested in.</p>
             </div>

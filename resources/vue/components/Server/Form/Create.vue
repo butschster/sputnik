@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="container pl-10">
+        <div class="container px-10">
             <div class="section well well-lg">
                 <div class="section-header">
                     {{ $t('server.form.create.title') }}

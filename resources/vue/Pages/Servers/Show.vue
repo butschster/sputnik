@@ -1,11 +1,11 @@
 <template>
-    <div class="w-full">
-        <div class="container pl-10 pt-12">
+    <div class="w-full pb-12">
+        <div class="container px-10 pt-12">
             <Loader :loading="loading"/>
             <div v-if="server">
                 <div class="mb-8 flex items-center">
                     <ServerStatus :server="server" class="mr-5"/>
-                    <h1 class="mb-0">{{ server.name }}</h1>
+                    <h1 class="mb-0 mr-4">{{ server.name }}</h1>
                     <div class="text-gray-600">
                         Team
                         <router-link :to="$link.profileTeam(server.team)">

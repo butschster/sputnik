@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="container pl-10">
+        <div class="container px-10">
             <h2>Deployment</h2>
 
             <DeploymentButton :site="site" class="section--border-b"/>

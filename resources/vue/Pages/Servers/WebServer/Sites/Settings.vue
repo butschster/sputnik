@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="container pl-10">
+        <div class="container px-10">
             <h2>Settings</h2>
 
             <div class="alert alert-warning" v-if="!site.has_env">
@@ -10,7 +10,7 @@
                 </router-link>
             </div>
         </div>
-        <div class="container pl-10">
+        <div class="container px-10">
             <div class="section section--border-b mt-10">
                 <table class="table">
                     <col width="200px">

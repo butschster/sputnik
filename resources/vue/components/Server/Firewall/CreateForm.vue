@@ -4,7 +4,7 @@
         <div class="section-header">
             {{ $t('server.firewall.form.create.title') }}
         </div>
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap md:flex-wrap">
             <FormInput v-model="form.name"
                        :label="$t('server.firewall.form.create.label.name')"
                        name="name"

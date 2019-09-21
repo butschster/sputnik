@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="container pl-10 pt-12">
+        <div class="container px-10 pt-12">
             <h1>Notifications</h1>
 
             <loader :loading="loading"/>

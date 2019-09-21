@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="container pl-10 pt-12">
+        <div class="container px-10 pt-12">
             <section class="servers-list">
                 <loader :loading="loading"/>
                 <h4 v-if="hasServers">{{ $t('server.list.title') }} ({{ servers.length }})</h4>

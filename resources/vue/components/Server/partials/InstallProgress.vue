@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="container pl-10">
+        <div class="container px-10">
         <template v-if="isPending">
             <div class="alert alert-primary mb-8 rounded">
                 <p>{{ $t('server.installation.message.run_script') }}</p>
