@@ -1,26 +1,26 @@
 <template>
     <section>
         <h4>{{ $t('server.tasks.recent') }}</h4>
+
         <div class="section-body">
             <Loader :loading="loading"/>
-            <table class="table" v-if="hasTasks">
-                <col>
-                <col width="100px">
-                <col width="150px">
-                <thead>
-                <tr>
-                    <th>{{ $t('server.tasks.table.name') }}</th>
-                    <th class="text-right">{{ $t('server.tasks.table.status') }}</th>
-                    <th class="text-right">{{ $t('server.tasks.table.time') }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                <ListItem v-for="task in tasks.data" :key="task.id" :task="task"/>
-                </tbody>
-            </table>
+            <div class="divTable" style="width: 100%;" v-if="hasTasks">
+                <div class="divTableHeading">
+                    <div class="divTableRow">
+                        <div class="divTableCell">&nbsp;</div>
+                        <div class="divTableCell">{{ $t('server.tasks.table.name') }}</div>
+                        <div class="divTableCell">{{ $t('server.tasks.table.time') }}</div>
+                    </div>
+                </div>
+                <div class="divTableBody">
+
+                    <ListItem v-for="task in tasks.data" :key="task.id" :task="task"/>
+
+                </div>
+            </div>
             <div v-else class="well well-lg text-center">
                 <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1681/1681318.svg"
-                     width="150px">
+                     width="150px">-->
                 <h3 class="mb-0">{{ $t('server.tasks.message.empty_results') }}</h3>
             </div>
             <Pagination :data="tasks" @pagination-change-page="load"/>

@@ -65100,6 +65100,91 @@ a.card-info:focus, a.card-info:hover {
   border-bottom-right-radius: 0.25rem;
 }
 
+.divTable {
+  min-width: 100%;
+  table-layout: fixed;
+  border-width: 0;
+  text-align: left;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px #edf2f7;
+  margin-left: 2px;
+  border-style: hidden;
+  display: table;
+}
+
+.divTableHeading {
+  display: table-header-group;
+}
+
+.divTableHeading .divTableRow {
+  display: table-row;
+  background-color: #f7fafc;
+}
+
+.divTableHeading .divTableRow .divTableCell {
+  display: table-cell;
+  padding-top: 0.75rem;
+  padding-bottom: 0.25rem;
+  color: #5252FF;
+  font-weight: 500;
+  border-bottom-width: 2px;
+  border-color: #edf2f7;
+}
+
+.divTableHeading .divTableRow .divTableCell:first-child {
+  padding-left: 1.25rem;
+}
+
+.divTableHeading .divTableRow .divTableCell:last-child {
+  padding-right: 1.25rem;
+}
+
+.divTableHeading .divTableRow:first-child:first-child {
+  border-top-left-radius: 0.25rem;
+}
+
+.divTableHeading .divTableRow:first-child:last-child {
+  border-top-right-radius: 0.25rem;
+}
+
+.divTableBody {
+  display: table-row-group;
+}
+
+.divTableBody .divTableRow {
+  display: table-row;
+}
+
+.divTableBody .divTableRow:not(:last-child) {
+  border-bottom-width: 2px;
+  border-color: #edf2f7;
+}
+
+.divTableBody .divTableRow .divTableCell {
+  display: table-cell;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom-width: 2px;
+  border-color: #edf2f7;
+  min-width: 10rem;
+}
+
+.divTableBody .divTableRow .divTableCell:first-child {
+  padding-left: 1.25rem;
+}
+
+.divTableBody .divTableRow .divTableCell:last-child {
+  padding-right: 1.25rem;
+}
+
+.divTableBody .divTableRow:last-child:first-child {
+  border-bottom-left-radius: 0.25rem;
+}
+
+.divTableBody .divTableRow:last-child:last-child {
+  border-bottom-right-radius: 0.25rem;
+}
+
 .section-header {
   font-size: 1.5rem;
   margin-bottom: 1.25rem;

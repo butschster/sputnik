@@ -1,17 +1,13 @@
 <template>
-    <tr>
-        <th>
+    <div class="divTableRow">
+        <div class="divTableCell">
             <router-link :to="$link.serverTask(task)">
-                <strong>{{ task.name }}</strong>
-            </router-link>
-        </th>
-        <td class="text-right">
-            <BadgeTaskStatus :task="task"/>
-        </td>
-        <td class="text-right">
-            <BadgeTimeFrom :date="task.created_at" />
-        </td>
-    </tr>
+             <strong>{{ task.name }}</strong>
+            </router-link></div>
+        <div class="divTableCell"><BadgeTaskStatus :task="task"/></div>
+        <div class="divTableCell"><BadgeTimeFrom :date="task.created_at" /></div>
+    </div>
+
 </template>
 
 <script>
@@ -21,3 +17,6 @@
         }
     }
 </script>
+<style>
+
+</style>

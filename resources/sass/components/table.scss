@@ -63,3 +63,78 @@
         }
     }
 }
+.divTable {
+    @apply min-w-full table-fixed border-0 text-left bg-white;
+    box-shadow: 0 0 0 2px $color-gray-200;
+    margin-left: 2px;
+    border-style: hidden;
+    display: table;
+}
+
+.divTableHeading {
+    display: table-header-group;
+
+    .divTableRow {
+        display: table-row;
+        @apply bg-gray-100;
+
+        .divTableCell {
+            display: table-cell;
+            @apply pt-3 pb-1 text-blue-500 font-medium  border-b-2 border-gray-200;
+
+            &:first-child {
+                @apply pl-5;
+            }
+
+            &:last-child{
+                @apply pr-5;
+            }
+        }
+        &:first-child {
+            &:first-child {
+                @apply rounded-tl;
+            }
+
+            &:last-child{
+                @apply rounded-tr;
+            }
+        }
+    }
+}
+
+.divTableBody {
+    display: table-row-group;
+    .divTableRow {
+        display: table-row;
+
+        &:not(:last-child) {
+            @apply border-b-2 border-gray-200;
+        }
+
+        .divTableCell {
+            display: table-cell ;
+            @apply py-5 border-b-2 border-gray-200;
+            min-width: 10rem;
+
+            &:first-child {
+                @apply pl-5;
+            }
+
+            &:last-child {
+                @apply pr-5;
+            }
+        }
+
+        &:last-child {
+            &:first-child {
+                @apply rounded-bl;
+            }
+
+            &:last-child {
+                @apply rounded-br;
+            }
+        }
+
+    }
+}
+
