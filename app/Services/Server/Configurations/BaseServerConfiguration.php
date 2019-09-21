@@ -28,6 +28,18 @@ trait BaseServerConfiguration
     }
 
     /**
+     * Get firewall status
+     * 
+     * @return bool
+     */
+    public function firewallStatus(): bool
+    {
+        $status = $this->server->meta['firewall'] ?? 'disabled';
+
+        return $status === 'enabled';
+    }
+
+    /**
      * Get public key
      *
      * @return PublicKey

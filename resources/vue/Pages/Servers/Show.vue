@@ -1,37 +1,32 @@
 <template>
-    <div>
-        <div class="w-full">
-            <div class="container pl-10 pt-12">
-                <Loader :loading="loading"/>
-                <div v-if="server">
-                    <div class="mb-8 flex items-center">
-                        <ServerStatus :server="server" class="mr-5"/>
-                        <h1 class="mb-0">{{ server.name }}</h1>
-                        <div class="text-gray-600">
-                            Team
-                            <router-link :to="$link.profileTeam(server.team)">
-                                {{ server.team.name }}
-                            </router-link>
+    <div class="w-full">
+        <div class="container pl-10 pt-12">
+            <Loader :loading="loading"/>
+            <div v-if="server">
+                <div class="mb-8 flex items-center">
+                    <ServerStatus :server="server" class="mr-5"/>
+                    <h1 class="mb-0">{{ server.name }}</h1>
+                    <div class="text-gray-600">
+                        Team
+                        <router-link :to="$link.profileTeam(server.team)">
+                            {{ server.team.name }}
+                        </router-link>
 
-                            <span class="text-gray-500" v-if="hasSysInfo"> - {{ server.sys_info.name }}</span>
-                        </div>
+                        <span class="text-gray-500" v-if="hasSysInfo"> - {{ server.sys_info.name }}</span>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="w-full">
-            <div class="container pl-10">
-                <NotSupported v-if="!isSupported" :server="server"/>
 
-                <div class="tabs" role="tabs">
-                    <router-link v-for="(item, index) in links" :key="index" :to="item.link" class="tab">
-                        {{ $t(item.title)}}
-                    </router-link>
-                </div>
+            <NotSupported v-if="!isSupported" :server="server"/>
+
+            <div class="tabs" role="tabs">
+                <router-link v-for="(item, index) in links" :key="index" :to="item.link" class="tab">
+                    {{ $t(item.title)}}
+                </router-link>
             </div>
+            <InstallProgress :server="server"/>
+            <router-view/>
         </div>
-        <InstallProgress :server="server"/>
-        <router-view/>
     </div>
 
 </template>

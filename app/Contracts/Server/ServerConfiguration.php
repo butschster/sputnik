@@ -4,8 +4,9 @@ namespace App\Contracts\Server;
 
 use App\Utils\SSH\ValueObjects\PrivateKey;
 use App\Utils\SSH\ValueObjects\PublicKey;
+use Illuminate\Contracts\Support\Arrayable;
 
-interface ServerConfiguration
+interface ServerConfiguration extends Arrayable
 {
     /**
      * Get server IP address
@@ -20,6 +21,11 @@ interface ServerConfiguration
      * @return int
      */
     public function sshPort(): int;
+
+    /**
+     * @return bool
+     */
+    public function firewallStatus(): bool;
 
     /**
      * Get available system users with root access

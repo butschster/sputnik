@@ -1,9 +1,9 @@
 .wrap-bg {
     background-image: -webkit-linear-gradient(30deg, #f7f8fa 0%, #f0f1fa 100%);
-    @apply pb-24 relative w-full;
+    @apply pb-24 relative w-full overflow-hidden;
 
     &__svg {
-        @apply absolute inline-block overflow-hidden max-w-full;
+        @apply absolute inline-block overflow-hidden max-w-full opacity-75;
         left: 10%;
         top: 10%;
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="min-w-full min-h-screen">
+    <div class="min-w-full min-h-screen pb-20">
         <div class="flex min-h-screen">
             <aside class="sidebar">
                 <div class="sidebar-section">
@@ -14,7 +14,7 @@
                 <ServerSidebar/>
                 <AccountSidebar/>
             </aside>
-            <div class="relative bg-gray-100 w-full">
+            <div class="relative bg-gray-100 flex-grow">
                 <portal-target name="content-overlay"></portal-target>
                 <Navbar />
                     <Breadcrumbs/>

@@ -4,8 +4,12 @@ namespace App\Services\Server;
 
 use App\Models\Server;
 use App\Models\Server\Firewall\Rule;
+use App\Scripts\Server\Firewall\Callbacks\MarkAsDisabled;
+use App\Scripts\Server\Firewall\Callbacks\MarkAsEnabled;
 use App\Scripts\Server\Firewall\CheckFirewallStatus;
+use App\Scripts\Server\Firewall\Disable;
 use App\Scripts\Server\Firewall\DisableRule;
+use App\Scripts\Server\Firewall\Enable;
 use App\Scripts\Server\Firewall\EnableRule;
 use App\Services\Task\Contracts\Task;
 use App\Utils\SSH\Firewall\StatusParser;
@@ -43,6 +47,40 @@ class FirewallService
         $task = $this->run(new CheckFirewallStatus());
 
         return (new StatusParser($task->output))->isActive();
+    }
+
+    /**
+     * Enable firewall
+     *
+     * @param Server $server
+     * @return Task
+     */
+    public function enable(Server $server): Task
+    {
+        $this->setServer($server);
+
+        return $this->run(new Enable(), [
+            'then' => [
+                MarkAsEnabled::class,
+            ],
+        ]);
+    }
+
+    /**
+     * Disable firewall
+     *
+     * @param Server $server
+     * @return Task
+     */
+    public function disable(Server $server): Task
+    {
+        $this->setServer($server);
+
+        return $this->run(new Disable(), [
+            'then' => [
+                MarkAsDisabled::class,
+            ],
+        ]);
     }
 
     /**

@@ -1,47 +1,39 @@
 <template>
-    <div class="w-full">
-        <div class="container pl-10">
-            <h1>{{ $t('server.settings.title') }}</h1>
-
-            <SystemInformation :server="$parent.server" class="section--border-b"/>
-        </div>
-
+    <div>
+        <h1>{{ $t('server.settings.title') }}</h1>
+        <SystemInformation :server="$parent.server" class="section--border-b"/>
         <section class="section section--border-b">
-            <div class="container pl-10">
-                <div class="section-header">
-                    {{ $t('server.settings.public_key.title') }}
-                    <p>
-                        {{ $t('server.settings.public_key.description') }}</p>
-                </div>
-                <div class="section-body">
+            <div class="section-header">
+                {{ $t('server.settings.public_key.title') }}
+                <p>
+                    {{ $t('server.settings.public_key.description') }}</p>
+            </div>
+            <div class="section-body">
                 <pre class="break-all whitespace-normal">
                     <Copy :text="server.public_key"/>
                 </pre>
-                </div>
             </div>
         </section>
 
         <section class="section section--border-b">
-            <div class="container pl-10">
-                <div class="section-header">
-                    {{ $t('server.settings.metadata.title') }}
-                </div>
-                <div class="section-body w-1/2">
-                    <FormInput v-model="server.name"
-                               :label="$t('server.settings.metadata.form.name')"
-                               name="name"
-                               class="w-full mr-8"
-                               required/>
+            <div class="section-header">
+                {{ $t('server.settings.metadata.title') }}
+            </div>
+            <div class="section-body w-1/2">
+                <FormInput v-model="server.name"
+                           :label="$t('server.settings.metadata.form.name')"
+                           name="name"
+                           class="w-full mr-8"
+                           required/>
 
-                    <button class="btn btn-primary shadow-lg" @click="onSubmit">
-                        {{ $t('server.settings.metadata.buttons.save') }}
-                    </button>
-                </div>
+                <button class="btn btn-primary shadow-lg" @click="onSubmit">
+                    {{ $t('server.settings.metadata.buttons.save') }}
+                </button>
             </div>
         </section>
-        <div class="container pl-10">
-            <Destroy :server="server"/>
-        </div>
+
+        <Destroy :server="server"/>
+
     </div>
 </template>
 

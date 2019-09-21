@@ -1,6 +1,6 @@
 <template>
     <div class="breadcrumbs w-full">
-        <div class="container pl-10">
+        <div class="container px-10">
             <ul>
                 <li v-for="crumb in crumbs">
                     {{ crumb.name }}

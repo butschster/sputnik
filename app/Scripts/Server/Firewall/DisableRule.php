@@ -38,8 +38,6 @@ class DisableRule extends Script
      */
     public function getScript(): string
     {
-        return view('scripts.server.firewall.disable_rule', [
-            'rule' => $this->rule,
-        ])->render();
+        return $this->rule->toBashDisableCommand();
     }
 }

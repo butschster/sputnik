@@ -1,7 +1,7 @@
 <template>
-    <div class="w-full">
-            <List/>
-            <CreateForm class="mt-10"/>
+    <div>
+        <List/>
+        <CreateForm class="mt-10"/>
     </div>
 </template>
 <script>

@@ -1,11 +1,8 @@
 <template>
     <div v-if="isConfigured" class="w-full">
-
-        <div class="container pl-10">
-            <h1>Sites</h1>
-        </div>
-            <SitesList :server="$parent.server"/>
-            <CreateForm :server="$parent.server" @created="onCreate" class="mt-12"/>
+        <h1>Sites</h1>
+        <SitesList :server="$parent.server"/>
+        <CreateForm :server="$parent.server" @created="onCreate" class="mt-12"/>
     </div>
 </template>
 

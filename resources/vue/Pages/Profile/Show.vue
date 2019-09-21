@@ -15,15 +15,14 @@
                     <path fill-rule="evenodd" fill="rgb(74, 92, 246)" d="M861.131,312.447 L853.879,325.370 L846.314,312.267 L861.131,312.447 Z"></path>
                 </svg>
             </figure>
-            <div class="container pl-10 pt-12">
+            <div class="container px-10 pt-12">
                 <h1 class="mb-4">
                     {{ $t('user.profile.title') }}
                 </h1>
             </div>
         </div>
-        <div class="w-full -mt-16 ">
             <div class="container pl-10">
-                <div class="card">
+                <div class="card -mt-16">
                     <div class="card-body flex items-center">
                         <img :src="user.avatar" alt="" class="h-32 rounded-full">
                         <div class="ml-10 flex-1">
@@ -37,15 +36,9 @@
                         <EditProfile/>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="w-full">
-            <div class="container pl-10">
-
                 <SourceControls :user="user" class="mt-12 section--border-b"/>
                 <Deactivate/>
             </div>
-        </div>
     </div>
 </template>
 

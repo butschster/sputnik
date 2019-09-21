@@ -53,7 +53,7 @@ class CreateHttpFirewallRules
                     'port' => $event->server->toConfiguration()->port(),
                     'protocol' => $event->server->toConfiguration()->protocol(),
                     'policy' => 'allow',
-                    'editable' => false
+                    'editable' => false,
                 ];
                 break;
         }
@@ -61,5 +61,7 @@ class CreateHttpFirewallRules
         foreach ($rules as $rule) {
             $event->server->firewallRules()->create($rule);
         }
+
+        $this->service->enable($event->server);
     }
 }

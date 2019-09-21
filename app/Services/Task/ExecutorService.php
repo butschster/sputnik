@@ -32,6 +32,8 @@ class ExecutorService implements ExecutorServiceContract
      * Run task
      *
      * @param Task $task
+     *
+     * @throws \Throwable
      */
     public function run(Task $task): void
     {
@@ -42,18 +44,20 @@ class ExecutorService implements ExecutorServiceContract
         $this->ensureWorkingDirectoryExists();
 
         try {
-            $this->upload();
+            $this->upload(true);
         } catch (ProcessTimedOutException $e) {
             $this->task->markAsTimedOut();
             return;
         }
 
         $this->task->saveResponse(
-            $this->runInline(
+            $response = $this->runInline(
                 sprintf('bash %s 2>&1 | tee %s', $this->task->scriptFile(), $this->task->outputFile()),
                 $this->options['timeout'] ?? 60
             )
         );
+
+        (new FinishService($this->executor))->finish($this->task, $response->getExitCode());
     }
 
     /**
@@ -106,12 +110,13 @@ class ExecutorService implements ExecutorServiceContract
     /**
      * Upload the given script to the server.
      *
+     * @param bool $callback
      * @return bool
      */
-    protected function upload(): bool
+    protected function upload(bool $callback = true): bool
     {
         $process = $this->toUploadProcess(
-            $localScript = $this->writeScript(),
+            $localScript = $this->writeScript($callback),
             $this->task->scriptFile()
         );
 
@@ -125,15 +130,17 @@ class ExecutorService implements ExecutorServiceContract
     /**
      * Write the script to storage in preparation for upload.
      *
+     * @param bool $callback
      * @return string
      */
-    protected function writeScript(): string
+    protected function writeScript(bool $callback = true): string
     {
         $storage = app(ScriptsStorage::class);
 
         return $storage->storeScript(
             (string) new \App\Scripts\Server\Task(
-                $this->task
+                $this->task,
+                $callback
             )
         );
     }

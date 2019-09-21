@@ -1,6 +1,98 @@
 <?php
 
 return [
+    'openvpn' => [
+        'title' => 'Клиенты VPN',
+        'clients' => 'Созданные клиенты',
+        'table' => [
+            'name' => 'Имя',
+            'status' => 'Статус',
+            'time' => 'Дата создания',
+        ],
+        'form' => [
+            'create' => [
+                'title' => 'Создать нового клиента',
+                'label' => [
+                    'name' => 'Имя',
+                ],
+                'button' => [
+                    'create' => 'Создать',
+                ],
+            ],
+        ],
+        'message' => [
+            'empty_results' => 'Похоже на сервере не создано ни одного клиента.',
+            'created' => 'Конфигурация успешно создана.',
+            'deleted' => 'Конфигурация успешно удалена.',
+        ],
+    ],
+    'firewall' => [
+        'title' => 'Брандмауэр',
+        'active_rules' => 'Активные',
+        'table' => [
+            'name' => 'Название',
+            'port' => 'Порт',
+            'from' => 'From',
+            'policy' => 'Политика',
+            'status' => 'Статус',
+        ],
+        'message' => [
+            'empty_rules' => 'Похоже на сервере нет ни одного правила.',
+            'created' => 'Новое правило успешно добавлено',
+            'deleted' => 'Правило успешно удалено.',
+        ],
+        'form' => [
+            'create' => [
+                'title' => 'Добавить новое правило',
+                'label' => [
+                    'name' => 'Название',
+                    'port' => 'Порт',
+                    'from' => 'From',
+                    'policy' => 'Политика',
+                ],
+                'button' => [
+                    'create' => 'Добавить',
+                ],
+            ],
+        ],
+    ],
+    'events' => [
+        'title' => 'События',
+        'recent' => 'Недавние события',
+        'table' => [
+            'event' => 'Событие',
+            'time' => 'Дата создания',
+        ],
+        'message' => [
+            'empty_results' => 'Похоже на сервере еще ничего не происходило.',
+        ],
+    ],
+    'tasks' => [
+        'title' => 'Задачи',
+        'recent' => 'Недавно запущенные',
+        'table' => [
+            'name' => 'Название',
+            'status' => 'Статус',
+            'time' => 'Дата создания',
+        ],
+        'status' => [
+            'new' => 'Новая',
+            'pending' => 'В ожидании',
+            'running' => 'Выполняется',
+            'finished' => 'Выполнена',
+            'timeout' => 'Timeout',
+        ],
+        'message' => [
+            'empty_results' => 'Похоже на сервере еще ничего не запускалось.',
+        ],
+        'item' => [
+            'user' => 'Пользователь',
+            'status' => 'Статус',
+            'success' => 'Успешна',
+            'script' => 'Скрипт',
+            'output' => 'Результат выполнения',
+        ],
+    ],
     'form' => [
         'create' => [
             'title' => 'Подключение сервера',
@@ -39,7 +131,7 @@ return [
         'events' => 'События',
         'tasks' => 'Задачи',
         'users' => 'Пользователи',
-        'firewall' => 'Firewall',
+        'firewall' => 'Брандмауэр',
         'supervisor' => 'Supervisor',
         'scheduler' => 'Планировщик',
         'sites' => 'Сайты',
@@ -81,6 +173,16 @@ return [
             'in_progress' => 'Установка...',
             'please_wait' => 'Процесс установки может занять несколько минут.',
         ],
+    ],
+    'configuration' => [
+        'vpn_dns' => 'DNS сервер',
+        'vpn_port' => 'OpenVPN порт',
+        'vpn_protocol' => 'OpenVPN протокол',
+        'php_version' => 'Версия PHP',
+        'database_type' => 'База данных',
+        'database_hosts' => 'Хосты БД',
+        'webserver_type' => 'Вебсервер',
+        'nosql_databases' => 'NoSQL базы данных',
     ],
     'php_versions' => [
         72 => 'PHP 7.2',

@@ -1,35 +1,31 @@
 <template>
-        <section class="w-full">
-            <div class="container pl-10">
-                <h4>Recent Tasks</h4>
-
-                <div class="section-body">
-                    <Loader :loading="loading"/>
-                    <table class="table" v-if="hasTasks">
-                        <col>
-                        <col width="100px">
-                        <col width="150px">
-                        <thead>
-                        <tr>
-                            <th>Task</th>
-                            <th class="text-right">Status</th>
-                            <th class="text-right">Time</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <ListItem v-for="task in tasks.data" :key="task.id" :task="task"/>
-                        </tbody>
-                    </table>
-                    <div v-else class="well well-lg text-center">
-                        <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1681/1681318.svg" alt=""
-                             width="150px">
-                        <h3 class="mb-0">Looks like you don't have any executed tasks yet</h3>
-                    </div>
-
-                    <Pagination :data="tasks" @pagination-change-page="load"/>
-                </div>
+    <section>
+        <h4>{{ $t('server.tasks.recent') }}</h4>
+        <div class="section-body">
+            <Loader :loading="loading"/>
+            <table class="table" v-if="hasTasks">
+                <col>
+                <col width="100px">
+                <col width="150px">
+                <thead>
+                <tr>
+                    <th>{{ $t('server.tasks.table.name') }}</th>
+                    <th class="text-right">{{ $t('server.tasks.table.status') }}</th>
+                    <th class="text-right">{{ $t('server.tasks.table.time') }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <ListItem v-for="task in tasks.data" :key="task.id" :task="task"/>
+                </tbody>
+            </table>
+            <div v-else class="well well-lg text-center">
+                <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1681/1681318.svg"
+                     width="150px">
+                <h3 class="mb-0">{{ $t('server.tasks.message.empty_results') }}</h3>
             </div>
-        </section>
+            <Pagination :data="tasks" @pagination-change-page="load"/>
+        </div>
+    </section>
 </template>
 
 <script>

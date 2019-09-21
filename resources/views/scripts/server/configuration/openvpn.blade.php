@@ -18,6 +18,7 @@ apt-get upgrade -y
 
 apt-get install -y --force-yes build-essential \
 fail2ban \
+ufw \
 software-properties-common \
 openvpn \
 ca-certificates

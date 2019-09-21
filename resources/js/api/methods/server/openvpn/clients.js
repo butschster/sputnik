@@ -8,11 +8,11 @@ import {ApiRequestError} from "@js/errors"
  * @return {Object}
  */
 export async function list(serverId) {
-    try {
-        const response = await api_route('v1.server.openvpn.clients', {server: serverId}).request()
+   try {
+        const response = await api_route('v1.server.openvpn.clients', {openvpn: serverId}).request()
         return response.data.data
     } catch (e) {
-        throw new ApiRequestError('Can not load OpenVPN clients list.')
+       throw new ApiRequestError('Can not load OpenVPN clients list.')
     }
 }
 

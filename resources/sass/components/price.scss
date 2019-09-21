@@ -16,14 +16,14 @@
     }
 
     &__item {
-        @apply flex flex-col justify-between shadow-lg bg-white transition w-1/3 p-8 rounded-lg relative;
+        @apply flex flex-col justify-start shadow-lg bg-white transition w-1/3 p-8 rounded-lg relative;
 
         &--title {
             @apply mb-6 text-3xl text-center;
         }
 
         &--features {
-            @apply mt-3 mb-4;
+            @apply mt-6 mb-4;
         }
 
         &--feature {

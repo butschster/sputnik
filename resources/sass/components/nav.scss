@@ -1,5 +1,5 @@
 .navbar {
-    @apply bg-white border-b flex justify-between items-center;
+    @apply bg-white border-b flex justify-between items-center py-2;
 
     &__divider {
         @apply mx-4 border-l-2;

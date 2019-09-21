@@ -84,4 +84,15 @@ class WebServer implements WebServerConfiguration
     {
         return [];
     }
+
+    public function toArray()
+    {
+        return [
+            'php_version' => $this->phpVersion(),
+            'database_type' => $this->databaseType(),
+            'database_hosts' => $this->databaseHosts(),
+            'webserver_type' => $this->webServerType(),
+            'nosql_databases' => $this->noSqlDatabases(),
+        ];
+    }
 }

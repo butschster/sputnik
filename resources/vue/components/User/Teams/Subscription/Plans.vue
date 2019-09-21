@@ -16,28 +16,31 @@
                     <div>
                         <p class="price-table__item--badge" v-if="isCurrentPlan(plan)">Popular</p>
                         <h3 class="price-table__item--title">{{ plan.name | capitalize }}</h3>
-
+                        <div class="h-12">
                             <p class="w-full text-center price-table__item--price" v-if="!plan.is_free">
-                                &#36; <strong class="text-5xl text-bold ml-1" > {{ plan.price }} </strong>/mo
+                                &#36; <strong class="text-5xl text-bold ml-1"> {{ plan.price }} </strong>/mo
                             </p>
-
-                        <ul class="price-table__item--features">
-                            <li class="price-table__item--feature" v-for="feature in plan.features">
-                                <i class="icon fas fa-check-circle "></i> {{ feature.name }}
-                                <span v-if="!feature.is_unlimited" class="font-normal">[{{ feature.value }} times]</span>
-                            </li>
-                        </ul>
+                        </div>
                     </div>
 
-                    <div class="text-center mt-5" v-if="canBeUpgradedTo(plan)">
-                        <button class="btn btn-primary btn-rounded" @click="subscribe(plan)">
-                            Subscribe now
-                        </button>
-                    </div>
+                    <ul class="price-table__item--features">
+                        <li class="price-table__item--feature" v-for="feature in plan.features">
+                            <i class="icon fas fa-check-circle "></i> {{ feature.name }}
+                            <span v-if="!feature.is_unlimited"
+                                  class="font-normal">[{{ feature.value }} times]</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="text-center mt-5" v-if="canBeUpgradedTo(plan)">
+                    <button class="btn btn-primary btn-rounded" @click="subscribe(plan)">
+                        Subscribe now
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+
 </template>
 
 <script>

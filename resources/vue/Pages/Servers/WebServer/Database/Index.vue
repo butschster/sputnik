@@ -1,63 +1,55 @@
 <template>
     <div>
-        <div class="container pl-10">
-            <h1>
-                Databases
-            </h1>
-        </div>
-        <div class="w-full">
-            <div class="container pl-10 pt-10">
-            <CreateForm :server="$parent.server" class="well well-lg mb-12" @created="load"/>
-        </div>
-        </div>
-        <div class="w-full">
-            <div class="container pl-10">
-                <h4>Databases ({{ databases.length }})</h4>
-                <div v-if="hasDatabase">
-                    <Loader :loading="loading"/>
-                    <table class="table mb-10">
-                        <col>
-                        <col width="200px">
-                        <col width="200px">
-                        <col width="100px">
-                        <col width="100px">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>User</th>
-                            <th>Password</th>
-                            <th>Status</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="database in databases">
-                            <td>{{ database.name }}</td>
-                            <td>{{ database.user }}</td>
-                            <td>
-                                <Copy :text="database.password" :label="database.password"/>
-                            </td>
-                            <td class="text-right">
-                                <BadgeTaskStatus :task="database.task"/>
-                            </td>
-                            <td class="text-right">
-                                <button class="btn btn-danger btn-circle btn-sm" @click="remove(database)">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <h1>
+            Databases
+        </h1>
+        <CreateForm :server="$parent.server" class="well well-lg mb-12" @created="load"/>
 
-                <div v-else class="well well-lg text-center">
-                    <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1265/1265529.svg" alt=""
-                         width="100px">
-                    <h3 class="mb-0">Looks like you don't have any databases yet</h3>
-                </div>
-            </div>
+        <h4>Databases ({{ databases.length }})</h4>
+        <div v-if="hasDatabase">
+            <Loader :loading="loading"/>
+            <table class="table mb-10">
+                <col>
+                <col width="200px">
+                <col width="200px">
+                <col width="100px">
+                <col width="100px">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>User</th>
+                    <th>Password</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="database in databases">
+                    <td>{{ database.name }}</td>
+                    <td>{{ database.user }}</td>
+                    <td>
+                        <Copy :text="database.password" :label="database.password"/>
+                    </td>
+                    <td class="text-right">
+                        <BadgeTaskStatus :task="database.task"/>
+                    </td>
+                    <td class="text-right">
+                        <button class="btn btn-danger btn-circle btn-sm" @click="remove(database)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div v-else class="well well-lg text-center">
+            <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1265/1265529.svg" alt=""
+                 width="100px">
+            <h3 class="mb-0">Looks like you don't have any databases yet</h3>
         </div>
     </div>
+
 </template>
 
 <script>
