@@ -50,7 +50,7 @@ class ClientsController extends Controller
 
         return response()->streamDownload(function () use ($service, $client) {
             echo $service->getClientConfig($client);
-        }, $client->id . '.ovpn');
+        }, $client->name . '.ovpn');
     }
 
     /**

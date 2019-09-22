@@ -34,6 +34,7 @@ class OpenVPNService
     public function createClient(Server\OpenVPN\Client $client): Task
     {
         $this->setServer($client->server);
+        $this->setOwner($client);
 
         return $this->runJob(new CreateClient($client));
     }
@@ -48,6 +49,7 @@ class OpenVPNService
     public function deleteClient(Server\OpenVPN\Client $client): Task
     {
         $this->setServer($client->server);
+        $this->setOwner($client);
 
         return $this->runJob(new DeleteClient($client));
     }

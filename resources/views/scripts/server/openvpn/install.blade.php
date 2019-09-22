@@ -1,6 +1,4 @@
 
-GROUPNAME=nogroup
-
 # Get easy-rsa
 EASYRSAURL='https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.6/EasyRSA-unix-v3.0.6.tgz'
 
@@ -37,7 +35,7 @@ EASYRSA_CRL_DAYS=3650 ./easyrsa gen-crl
 cp pki/ca.crt pki/private/ca.key pki/issued/server.crt pki/private/server.key pki/crl.pem /etc/openvpn/server
 
 # CRL is read with each client connection, when OpenVPN is dropped to nobody
-chown nobody:$GROUPNAME /etc/openvpn/server/crl.pem
+chown nobody:nogroup /etc/openvpn/server/crl.pem
 
 # Generate key for tls-auth
 openvpn --genkey --secret /etc/openvpn/server/ta.key
@@ -55,7 +53,7 @@ ca ca.crt
 cert server.crt
 key server.key
 dh dh.pem
-auth SHA512
+auth SHA256
 tls-auth ta.key 0
 server 10.8.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt" > /etc/openvpn/server/server.conf
@@ -84,7 +82,7 @@ echo 'push "dhcp-option DNS {{ $ip }}"' >> /etc/openvpn/server/server.conf
 echo "keepalive 10 120
 cipher AES-256-CBC
 user nobody
-group $GROUPNAME
+group nogroup
 persist-key
 persist-tun
 status openvpn-status.log
@@ -100,10 +98,8 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 read -r -d '' NAT_RULES << EOM
 # START OPENVPN RULES
-# NAT table rules
 *nat
 :POSTROUTING ACCEPT [0:0]
-# Allow traffic from OpenVPN client to wlp11s0 (change to the interface you discovered!)
 -A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
 COMMIT
 # END OPENVPN RULES
@@ -112,8 +108,6 @@ EOM
 echo -e "$NAT_RULES\n$(cat /etc/ufw/before.rules)" > /etc/ufw/before.rules
 
 sed -i 's/DEFAULT_FORWARD_POLICY=.*/DEFAULT_FORWARD_POLICY="ACCEPT"/g' /etc/default/ufw
-ufw disable
-ufw enable
 
 # And finally, enable and start the OpenVPN service
 systemctl enable --now openvpn-server@server.service

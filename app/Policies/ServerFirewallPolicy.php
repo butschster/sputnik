@@ -31,7 +31,7 @@ class ServerFirewallPolicy
             return false;
         }
 
-        return $server->isWebserver() && $user->canManageServer($server);
+        return $user->canManageServer($server);
     }
 
     /**

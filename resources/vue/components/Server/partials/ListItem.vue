@@ -28,13 +28,13 @@
 
             <template v-if="links.length > 0">
                 <router-link v-for="(item, index) in links" :key="index" :to="item.link" class="dropdown-link">
-                    {{ item.title }}
+                    {{ $t(item.title) }}
                 </router-link>
                 <div class="dropdown-divider"></div>
             </template>
 
             <router-link :to="$link.serverSettings(server)" class="dropdown-link text-red-500">
-                Destroy
+                {{ $t('server.destroy.buttons.destroy') }}
             </router-link>
         </Dropdown>
     </router-link>

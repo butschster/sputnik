@@ -175,7 +175,7 @@ return [
         ],
     ],
     'configuration' => [
-        'vpn_dns' => 'DNS сервер',
+        'vpn_dns' => 'OpenVPN DNS сервер',
         'vpn_port' => 'OpenVPN порт',
         'vpn_protocol' => 'OpenVPN протокол',
         'php_version' => 'Версия PHP',

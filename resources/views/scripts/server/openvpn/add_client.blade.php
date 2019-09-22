@@ -1,4 +1,3 @@
-
 CLIENT={{ $name }}
 
 cd /etc/openvpn/server/easy-rsa/
@@ -17,8 +16,8 @@ nobind
 persist-key
 persist-tun
 remote-cert-tls server
-cipher AES-256-CBC
 auth SHA256
+cipher AES-256-CBC
 setenv opt block-outside-dns
 key-direction 1
 verb 3" > ~/$CLIENT.ovpn

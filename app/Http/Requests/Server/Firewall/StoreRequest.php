@@ -23,7 +23,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'port' => 'required|numeric|digits:2,4',
+            'port' => 'required|numeric|digits_between:2,5',
             'from' => 'nullable|ip',
             'policy' => 'required|in:allow,deny',
         ];

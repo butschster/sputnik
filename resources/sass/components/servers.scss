@@ -6,7 +6,7 @@ $server-icon-color: $color-blue-400;
 .servers-list {
     &-item {
         &-wrapper {
-            @apply border border-blue-200 bg-white flex transition items-center justify-between py-3;
+            @apply border border-gray-300 bg-white flex transition items-center justify-between py-3;
 
             &:first-child {
                 @apply rounded-t;
@@ -22,7 +22,6 @@ $server-icon-color: $color-blue-400;
 
             &:hover {
                 @apply shadow-lg;
-                border-left-color: $color-blue-500;
             }
         }
 
