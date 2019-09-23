@@ -51,6 +51,8 @@ class Plan extends Model
     }
 
     /**
+     * Filter plans only by active status
+     *
      * @param Builder $builder
      * @return Builder
      */
@@ -60,6 +62,8 @@ class Plan extends Model
     }
 
     /**
+     * Filter plans only with payment
+     *
      * @param Builder $builder
      * @return Builder
      */

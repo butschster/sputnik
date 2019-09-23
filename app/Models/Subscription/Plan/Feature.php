@@ -35,6 +35,8 @@ class Feature extends Model
     ];
 
     /**
+     * Get the name of feature
+     *
      * @return array|\Illuminate\Contracts\Translation\Translator|string|null
      */
     public function name(): string
@@ -44,6 +46,7 @@ class Feature extends Model
 
     /**
      * The model always belongs to a plan.
+     *
      * @return BelongsTo
      */
     public function plan(): BelongsTo
@@ -53,6 +56,7 @@ class Feature extends Model
 
     /**
      * Check if feature is unlimited
+     *
      * @return bool
      */
     public function isUnlimited(): bool
@@ -61,6 +65,8 @@ class Feature extends Model
     }
 
     /**
+     * Get feature usage reset date
+     *
      * @param Carbon $date
      * @return Carbon
      */

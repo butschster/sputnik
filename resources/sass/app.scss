@@ -62,6 +62,8 @@ code {
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import "~animatewithsass";
+@import "~prismjs/themes/prism.css";
+@import "~vue-prism-editor/dist/VuePrismEditor.css";
 
 // Variables
 @import 'theme-colors';

@@ -26,13 +26,13 @@
             <section class="section mt-10" v-if="task.script">
                 <div class="section-header">{{ $t('server.tasks.item.script') }}</div>
 
-                <pre class="break-all">{{ task.script }}</pre>
+                <PrismEditor :code="task.script" language="bash" lineNumbers readonly class="break-all" />
             </section>
 
             <section class="section mt-10" v-if="task.output">
                 <div class="section-header">{{ $t('server.tasks.item.output') }}</div>
 
-                <pre class="break-all">{{ task.output }}</pre>
+                <PrismEditor :code="task.output" language="bash" lineNumbers readonly class="break-all" />
             </section>
         </div>
     </div>

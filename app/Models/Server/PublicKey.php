@@ -24,6 +24,7 @@ class PublicKey extends Model
 
     /**
      * Convert key to Public key value object
+     *
      * @return PublicKeyValueObject
      */
     public function toPublicKey(): PublicKeyValueObject

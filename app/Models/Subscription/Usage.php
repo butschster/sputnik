@@ -31,6 +31,7 @@ class Usage extends Model
 
     /**
      * Scope subscription usage by feature name.
+     *
      * @param Builder $builder
      * @param string $code
      * @return Builder

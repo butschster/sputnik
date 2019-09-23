@@ -2,6 +2,7 @@ import axios from 'axios'
 import Vue from 'vue'
 import VeeValidate from 'vee-validate'
 import PortalVue from 'portal-vue'
+import "prismjs"
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 

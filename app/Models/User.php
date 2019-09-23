@@ -43,7 +43,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the servers that belong to the user.
+     * Get servers that belong to the user.
      *
      * @return HasOne
      */
@@ -53,7 +53,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the servers that belong to the user.
+     * Get servers that belong to the user.
      *
      * @return HasMany
      */
@@ -63,13 +63,23 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the servers sites that belong to the user.
+     * Get servers sites that belong to the user.
      *
      * @return HasMany
      */
     public function sites(): HasMany
     {
         return $this->hasMany(Server\Site::class);
+    }
+
+    /**
+     * Get user scripts
+     *
+     * @return HasMany
+     */
+    public function scripts(): HasMany
+    {
+        return $this->hasMany(Script::class)->latest();
     }
 
     /**
@@ -83,6 +93,8 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user has active subscription
+     *
      * @return bool
      */
     public function hasActiveSubscription(): bool
@@ -93,6 +105,8 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user can use specific feature
+     *
      * @param string $code
      *
      * @return bool
@@ -105,7 +119,10 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user can manage specific server
+     *
      * @param Server $server
+     *
      * @return bool
      */
     public function canManageServer(Server $server): bool

@@ -88,7 +88,6 @@ class Task extends Model implements TaskContract
      * Set the value of the options array.
      *
      * @param array $value
-     * @return array
      */
     public function setOptionsAttribute(array $value): void
     {

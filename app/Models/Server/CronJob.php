@@ -39,6 +39,8 @@ class CronJob extends Model
     }
 
     /**
+     * Get calculated cron job next run date
+     *
      * @return Carbon
      */
     public function nextRunDate(): Carbon

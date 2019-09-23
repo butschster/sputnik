@@ -31,6 +31,16 @@ abstract class Script implements ScriptContract
     protected $sshAs;
 
     /**
+     * Run script as specified user
+     *
+     * @param string $user
+     */
+    public function asUser(string $user): void
+    {
+        $this->sshAs = $user;
+    }
+
+    /**
      * Get the user that the script should be run as.
      *
      * @return string

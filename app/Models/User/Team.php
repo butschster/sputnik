@@ -32,6 +32,8 @@ class Team extends LaratrustTeam
     }
 
     /**
+     * Get team owner
+     * 
      * @return BelongsTo
      */
     public function owner(): BelongsTo
@@ -43,6 +45,7 @@ class Team extends LaratrustTeam
      * Check if user is owner
      *
      * @param User $user
+     *
      * @return bool
      */
     public function isOwner(User $user): bool

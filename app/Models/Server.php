@@ -88,7 +88,8 @@ class Server extends Model
     }
 
     /**
-     * Get owner
+     * Get server owner
+     *
      * @return BelongsTo
      */
     public function user(): BelongsTo
@@ -97,7 +98,8 @@ class Server extends Model
     }
 
     /**
-     * Get owner team
+     * Get server owner team
+     *
      * @return BelongsTo
      */
     public function team(): BelongsTo
@@ -106,7 +108,8 @@ class Server extends Model
     }
 
     /**
-     * Get the pings that belong to the server.
+     * Get pings that belong to the server.
+     *
      * @return HasMany
      */
     public function pings(): HasMany
@@ -116,6 +119,7 @@ class Server extends Model
 
     /**
      * Get alerts that belong to the server.
+     *
      * @return HasMany
      */
     public function alerts(): HasMany
@@ -124,7 +128,8 @@ class Server extends Model
     }
 
     /**
-     * Get the sites that belong to the server.
+     * Get users that belong to the server.
+     *
      * @return HasMany
      */
     public function users(): HasMany
@@ -133,7 +138,8 @@ class Server extends Model
     }
 
     /**
-     * Get the sites that belong to the server.
+     * Get sites that belong to the server.
+     *
      * @return HasMany
      */
     public function sites(): HasMany
@@ -142,7 +148,8 @@ class Server extends Model
     }
 
     /**
-     * Get the daemons that belong to the server.
+     * Get daemons that belong to the server.
+     *
      * @return HasMany
      */
     public function daemons(): HasMany
@@ -151,7 +158,8 @@ class Server extends Model
     }
 
     /**
-     * Get the databases that belong to the server.
+     * Get databases that belong to the server.
+     *
      * @return HasMany
      */
     public function databases(): HasMany
@@ -160,7 +168,8 @@ class Server extends Model
     }
 
     /**
-     * Get the tasks that belong to the server.
+     * Get tasks that belong to the server.
+     *
      * @return HasMany
      */
     public function tasks(): HasMany
@@ -169,7 +178,8 @@ class Server extends Model
     }
 
     /**
-     * Get the events that belong to the server.
+     * Get events that belong to the server.
+     *
      * @return HasMany
      */
     public function events(): HasMany
@@ -178,7 +188,8 @@ class Server extends Model
     }
 
     /**
-     * Get the firewall rules that belong to the server.
+     * Get firewall rules that belong to the server.
+     *
      * @return HasMany
      */
     public function firewallRules(): HasMany
@@ -187,7 +198,8 @@ class Server extends Model
     }
 
     /**
-     * Get the cron jobs that belong to the server.
+     * Get cron jobs that belong to the server.
+     *
      * @return HasMany
      */
     public function cronJobs(): HasMany
@@ -196,7 +208,8 @@ class Server extends Model
     }
 
     /**
-     * Determine if the server is currently provisioning.
+     * Determine if the server is waiting for configuration.
+     *
      * @return bool
      */
     public function isPending(): bool
@@ -206,6 +219,7 @@ class Server extends Model
 
     /**
      * Determine if the server is currently configuring.
+     *
      * @return bool
      */
     public function isConfiguring(): bool
@@ -238,7 +252,6 @@ class Server extends Model
 
     /**
      * Mark the server as configured.
-     * @return $this
      */
     public function markAsConfigured(): void
     {
@@ -259,7 +272,6 @@ class Server extends Model
 
     /**
      * Mark the server as configured.
-     * @return $this
      */
     public function markAsFailed(): void
     {
@@ -270,7 +282,8 @@ class Server extends Model
     }
 
     /**
-     * Get system information about server
+     * Get information about server
+     *
      * @return SystemInformation|null
      */
     public function systemInformation(): ?SystemInformation
@@ -283,6 +296,8 @@ class Server extends Model
     }
 
     /**
+     * Check id server configuration is supported
+     *
      * @return bool
      */
     public function isSupported(): bool
@@ -295,6 +310,8 @@ class Server extends Model
     }
 
     /**
+     * Filter servers only by configured
+     *
      * @param Builder $builder
      *
      * @return Builder
@@ -305,6 +322,8 @@ class Server extends Model
     }
 
     /**
+     * Filter servers only with monitoring
+     *
      * @param Builder $builder
      *
      * @return Builder
@@ -320,6 +339,7 @@ class Server extends Model
 
     /**
      * Get the indexable data array for the model.
+     *
      * @return array
      */
     public function toSearchableArray()
@@ -334,6 +354,8 @@ class Server extends Model
     }
 
     /**
+     * Convert model to server configuration object
+     *
      * @return ServerConfiguration
      */
     public function toConfiguration(): ServerConfiguration
@@ -342,6 +364,8 @@ class Server extends Model
     }
 
     /**
+     * Check if server is Web Server
+     *
      * @return bool
      */
     public function isWebserver(): bool
@@ -350,6 +374,8 @@ class Server extends Model
     }
 
     /**
+     * Check if server is OpenVPN Server
+     *
      * @return bool
      */
     public function isOpenVPN(): bool

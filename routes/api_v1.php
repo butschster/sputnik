@@ -12,6 +12,15 @@ Route::middleware('auth')->group(function () {
     Route::put('profile', 'UserController@update')->name('user.profile.update');
     Route::delete('profile', 'UserController@delete')->name('profile.delete');
 
+    // Scripts
+    Route::get('scripts', 'ScriptsController@public')->name('scripts.public');
+    Route::get('profile/scripts', 'ScriptsController@index')->name('profile.scripts');
+    Route::post('profile/script', 'ScriptsController@store')->name('script.store');
+    Route::get('script/{script}', 'ScriptsController@show')->name('script.show');
+    Route::put('script/{script}', 'ScriptsController@update')->name('script.update');
+    Route::delete('scripts/{script}', 'ScriptsController@delete')->name('script.delete');
+    Route::post('scripts/{script}/execute', 'ScriptsController@execute')->name('script.execute');
+
     Route::get('profile/source-providers', 'User\SourceProvidersController@connected')->name('profile.source_providers');
     Route::delete('profile/source-provider/{provider}/unlink', 'User\SourceProvidersController@unlink')->name('profile.source_provider.unlink');
 
