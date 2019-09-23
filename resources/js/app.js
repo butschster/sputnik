@@ -8,6 +8,7 @@ import Copy from '@vue/components/UI/Copy'
 import BadgeTimeFrom from "@vue/components/UI/Badge/TimeFrom"
 import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
 import BadgeStatus from "@vue/components/UI/Badge/Status"
+import Table from "@vue/components/UI/Table/Table"
 import {mapGetters} from 'vuex'
 
 require('./bootstrap')
@@ -19,6 +20,7 @@ Vue.component('Copy', Copy)
 Vue.component('BadgeTimeFrom', BadgeTimeFrom)
 Vue.component('BadgeTaskStatus', BadgeTaskStatus)
 Vue.component('BadgeStatus', BadgeStatus)
+Vue.component('DynamicTable', Table)
 
 new Vue({
     el: '#app',

@@ -4,6 +4,8 @@
 
         <div class="section-body">
             <Loader :loading="loading"/>
+            <DynamicTable :data="tasks.data" :structure="tableStructure" />
+
             <table class="table" v-if="hasTasks">
                 <col>
                 <col width="100px">
@@ -31,6 +33,7 @@
 </template>
 
 <script>
+    import Table from "@vue/components/UI/Table/Table"
     import Pagination from 'laravel-vue-pagination'
     import ListItem from "@vue/components/Server/Tasks/ListItem"
 
@@ -43,6 +46,28 @@
             return {
                 tasks: {
                     data: []
+                },
+                tableStructure: {
+                    name: {
+                        type: 'string',
+                        title: 'server.tasks.table.name',
+                        headClasses: null,
+                        classes: null,
+                        width: null,
+                        tag: 'th'
+                    },
+                    status: {
+                        type: 'task.status',
+                        title: 'server.tasks.table.status',
+                        headClasses: ['text-right'],
+                        width: '100px'
+                    },
+                    time: {
+                        type: 'time',
+                        title: 'server.tasks.table.time',
+                        headClasses: ['text-right'],
+                        width: '150px'
+                    }
                 },
                 loading: false
             }
