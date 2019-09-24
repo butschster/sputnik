@@ -182,6 +182,7 @@ return [
         App\Providers\ActionsServiceProvider::class,
         App\Providers\WhoisServiceProvider::class,
         App\Providers\WebHooksServiceProvider::class,
+        App\Providers\ServerModulesServiceProvider::class
     ],
 
     /*

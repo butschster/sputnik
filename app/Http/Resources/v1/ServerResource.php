@@ -26,7 +26,7 @@ class ServerResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'type' => $this->type,
+            'type' => 'webserver',
             'ip' => $this->ip,
             'ssh_port' => $this->ssh_port,
             'sys_info' => $this->when(!empty($sysInfo), function () use ($sysInfo) {

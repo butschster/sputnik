@@ -4,6 +4,7 @@ namespace App\Jobs\Server;
 
 use App\Jobs\Task\Run;
 use App\Models\Server;
+use App\Services\Task\Contracts\Task;
 use App\Services\Task\Factory;
 use App\Utils\SSH\Contracts\Script;
 use Exception;
@@ -38,19 +39,18 @@ class RunScript
 
     /**
      * @param Factory $taskFactory
+     *
+     * @return Task
      */
-    public function handle(Factory $taskFactory): void
+    public function handle(Factory $taskFactory): Task
     {
-        // TODO Add checking for server status
-//        if ($this->server->isConfigured()) {
-//            return;
-//        }
-
         $task = $taskFactory->createFromScript(
             $this->server, $this->script
         );
 
         dispatch(new Run($task));
+
+        return $task;
     }
 
     /**

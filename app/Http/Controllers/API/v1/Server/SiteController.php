@@ -7,9 +7,7 @@ use App\Http\Requests\Server\Site\SearchRequest;
 use App\Http\Requests\Server\Site\StoreRequest;
 use App\Http\Resources\v1\Server\SiteCollection;
 use App\Http\Resources\v1\Server\SiteResource;
-use App\Http\Resources\v1\ServerCollection;
 use App\Models\Server;
-use App\Models\WebServer;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -26,11 +24,11 @@ class SiteController extends Controller
     }
 
     /**
-     * @param WebServer $server
+     * @param Server $server
      * @return SiteCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(WebServer $server): SiteCollection
+    public function index(Server $server): SiteCollection
     {
         $this->authorize('show', $server);
 
@@ -66,11 +64,11 @@ class SiteController extends Controller
 
     /**
      * @param StoreRequest $request
-     * @param WebServer $server
+     * @param Server $server
      * @return SiteResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(StoreRequest $request, WebServer $server)
+    public function store(StoreRequest $request, Server $server)
     {
         return SiteResource::make(
             $request->persist()

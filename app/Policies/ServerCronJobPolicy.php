@@ -33,8 +33,7 @@ class ServerCronJobPolicy
             return false;
         }
 
-        return $server->isWebserver()
-            && $user->canManageServer($server) &&
+        return $user->canManageServer($server) &&
             $user->canUseFeature('server.cron_job.create');
     }
 

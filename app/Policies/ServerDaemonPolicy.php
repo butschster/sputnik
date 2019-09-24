@@ -32,8 +32,7 @@ class ServerDaemonPolicy
             return false;
         }
 
-        return $server->isWebserver() &&
-            $user->canManageServer($server) &&
+        return $user->canManageServer($server) &&
             $user->canUseFeature('server.daemon.create');
     }
 

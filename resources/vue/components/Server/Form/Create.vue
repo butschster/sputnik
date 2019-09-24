@@ -9,11 +9,6 @@
         <div class="section-body" v-if="$gate.allow('create', 'server')">
             <Loader :loading="loading"/>
 
-            <FormSelect v-model="form.type"
-                        :label="$t('server.form.create.label.type')"
-                        :options="types"
-                        required/>
-
             <div class="flex">
                 <FormInput v-model="form.name"
                            :label="$t('server.form.create.label.name')"
@@ -42,9 +37,6 @@
                            name="ssh_port"
                            required/>
             </div>
-
-            <Component :is="form.type" @submit="onSubmit"/>
-
         </div>
         <div v-else class="alert alert-primary">
             <p>{{ $t('server.form.create.message.upgrade_subscription') }}</p>
@@ -57,16 +49,12 @@
     import FormInput from '@vue/components/Form/Input'
     import FormSelect from '@vue/components/Form/Select'
 
-    import webserver from "@vue/components/Server/Form/Type/WebServer"
-    import openvpn from "@vue/components/Server/Form/Type/OpenVPN"
-
     export default {
-        components: {FormSelect, FormInput, webserver, openvpn},
+        components: {FormSelect, FormInput},
         data() {
             return {
                 loading: false,
                 form: {
-                    type: null,
                     name: null,
                     team_id: null,
                     ip: null,
@@ -83,18 +71,9 @@
             load() {
                 this.loading = true
 
-                this.loadTypes()
                 this.loadTeams()
 
                 this.loading = false
-            },
-            async loadTypes() {
-                try {
-                    this.types = await this.$api.serverDictionaries.types()
-                    this.form.type = 'webserver'
-                } catch (e) {
-                    this.$handleError(e)
-                }
             },
             async loadTeams() {
                 try {

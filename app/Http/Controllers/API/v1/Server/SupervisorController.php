@@ -7,17 +7,16 @@ use App\Http\Requests\Server\Supervisor\StoreRequest;
 use App\Http\Resources\v1\Server\DaemonResource;
 use App\Http\Resources\v1\Server\DaemonsCollection;
 use App\Models\Server;
-use App\Models\WebServer;
 use App\Services\Server\SupervisorService;
 
 class SupervisorController extends Controller
 {
     /**
-     * @param WebServer $server
+     * @param Server $server
      * @return DaemonsCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(WebServer $server): DaemonsCollection
+    public function index(Server $server): DaemonsCollection
     {
         $this->authorize('show', $server);
 
@@ -55,10 +54,10 @@ class SupervisorController extends Controller
 
     /**
      * @param StoreRequest $request
-     * @param WebServer $server
+     * @param Server $server
      * @return DaemonResource
      */
-    public function store(StoreRequest $request, WebServer $server): DaemonResource
+    public function store(StoreRequest $request, Server $server): DaemonResource
     {
         $daemon = $request->persist();
 

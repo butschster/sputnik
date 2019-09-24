@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('has-subscription')->group(function () {
 
         // Servers
+        Route::get('servers/modules', 'Server\ModulesController@index')->name('servers.modules');
         Route::get('servers/search', 'ServerController@search')->name('servers.search');
         Route::get('servers', 'ServerController@index')->name('servers');
         Route::get('server/{server}', 'ServerController@show')->name('server.show');
@@ -53,11 +54,6 @@ Route::middleware('auth')->group(function () {
         Route::put('server/{server}', 'ServerController@update')->name('server.update');
         Route::post('server', 'ServerController@store')->name('server.store');
         Route::delete('server/{server}', 'ServerController@delete')->name('server.delete');
-
-        Route::get('servers/dictionaries/types', 'Server\ToolsDictionaryController@types')->name('servers.dictionaries.types');
-        Route::get('servers/dictionaries/php-versions', 'Server\ToolsDictionaryController@phpVersions')->name('servers.dictionaries.php');
-        Route::get('servers/dictionaries/database-types', 'Server\ToolsDictionaryController@databaseTypes')->name('servers.dictionaries.databases');
-        Route::get('servers/dictionaries/webserver-types', 'Server\ToolsDictionaryController@webserverTypes')->name('servers.dictionaries.webservers');
 
         // Server Events
         Route::get('server/{server}/events', 'Server\EventsController@index')->name('server.events');
@@ -92,8 +88,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('server/user/{user}', 'Server\UserController@delete')->name('server.user.delete');
 
         // OpenVPN clients
-        Route::get('server/{openvpn}/openvpn/clients', 'Server\OpenVPN\ClientsController@index')->name('server.openvpn.clients');
-        Route::post('server/{openvpn}/openvpn/client', 'Server\OpenVPN\ClientsController@store')->name('server.openvpn.client.store');
+        Route::get('server/{server}/openvpn/clients', 'Server\OpenVPN\ClientsController@index')->name('server.openvpn.clients');
+        Route::post('server/{server}/openvpn/client', 'Server\OpenVPN\ClientsController@store')->name('server.openvpn.client.store');
         Route::get('server/openvpn/client/{client}/download', 'Server\OpenVPN\ClientsController@download')->name('server.openvpn.client.download');
         Route::delete('server/openvpn/{client}', 'Server\OpenVPN\ClientsController@delete')->name('server.openvpn.client.delete');
 

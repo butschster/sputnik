@@ -21,7 +21,6 @@ class CreateServersTable extends Migration
             $table->belongsToTeam();
 
             $table->string('name');
-            $table->string('type');
             $table->ipAddress('ip')->unique();
             $table->integer('ssh_port')->default(22);
             $table->string('sudo_password')->nullable();

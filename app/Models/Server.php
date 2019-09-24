@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Contracts\Server\ServerConfiguration;
+use App\Contracts\Server\ServerConfiguration as ServerConfigurationContract;
 use App\Events\Server\Configured;
 use App\Events\Server\Configuring;
 use App\Events\Server\Created;
@@ -22,12 +22,13 @@ use App\Models\Server\Site;
 use App\Models\Server\Task;
 use App\Models\Subscription\Plan;
 use App\Models\User\Team;
-use App\Services\Server\Configurations\Factory;
+use App\Server\ServerConfiguration;
 use App\Utils\SSH\ValueObjects\SystemInformation;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Arr;
 use Laravel\Scout\Searchable;
 
 class Server extends Model
@@ -356,30 +357,36 @@ class Server extends Model
     /**
      * Convert model to server configuration object
      *
-     * @return ServerConfiguration
+     * @return ServerConfigurationContract
      */
-    public function toConfiguration(): ServerConfiguration
+    public function toConfiguration(): ServerConfigurationContract
     {
-        return Factory::create($this);
+        return new ServerConfiguration($this);
     }
 
     /**
-     * Check if server is Web Server
+     * Get available system users with root access
      *
-     * @return bool
+     * @return array
      */
-    public function isWebserver(): bool
+    public function systemUsers(): array
     {
-        return $this->type === static::TYPE_WEBSERVER;
+        return $this->users()
+            ->where('is_system', true)
+            ->get()
+            ->all();
     }
 
     /**
-     * Check if server is OpenVPN Server
+     * Get meta data by key
      *
-     * @return bool
+     * @param string $key
+     * @param $default
+     *
+     * @return mixed
      */
-    public function isOpenVPN(): bool
+    public function meta(string $key, $default)
     {
-        return $this->type === static::TYPE_OPENVPN;
+        return Arr::get($key, $default);
     }
 }

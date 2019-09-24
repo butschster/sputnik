@@ -9,7 +9,7 @@ import {ApiRequestError} from "@js/errors"
  */
 export async function list(serverId) {
    try {
-        const response = await api_route('v1.server.openvpn.clients', {openvpn: serverId}).request()
+        const response = await api_route('v1.server.openvpn.clients', {server: serverId}).request()
         return response.data.data
     } catch (e) {
        throw new ApiRequestError('Can not load OpenVPN clients list.')
@@ -25,7 +25,7 @@ export async function list(serverId) {
  */
 export async function store(serverId, data) {
     try {
-        const response = await api_route('v1.server.openvpn.client.store', {openvpn: serverId}).request(data)
+        const response = await api_route('v1.server.openvpn.client.store', {server: serverId}).request(data)
         return response.data.data
     } catch (e) {
         throw new ApiRequestError('Can not store OpenVPN client data.')
