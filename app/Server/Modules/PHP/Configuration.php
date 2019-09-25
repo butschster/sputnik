@@ -36,9 +36,10 @@ class Configuration extends BaseConfiguration
      * @param Server $server
      * @param array $data
      *
+     * @return array
      * @throws \Throwable
      */
-    public function install(Server $server, array $data = []): void
+    public function install(Server $server, array $data = []): array
     {
         $data['modules'] = $this->getInstallableModulesFromGivenData($data);
         $data['server_modules'] = $this->prepareModulesListFromGivenData($data);
@@ -50,19 +51,20 @@ class Configuration extends BaseConfiguration
             $script,
             sprintf('Install PHP version %s', $this->humanReadableVersion())
         );
+
+        return $data;
     }
 
     /**
      * Uninstall module
      *
      * @param Server $server
-     * @param array $data
      *
      * @throws \Throwable
      */
-    public function uninstall(Server $server, array $data = []): void
+    public function uninstall(Server $server): void
     {
-        $script = $this->render($server, 'php.uninstall', $data);
+        $script = $this->render($server, 'php.uninstall');
 
         $this->runScript(
             $server,

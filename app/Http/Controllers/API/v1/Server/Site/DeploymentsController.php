@@ -57,7 +57,6 @@ class DeploymentsController extends Controller
             'config' => (string) view('scripts.server.site.deploy', [
                 'server' => $site->server,
                 'site' => $site,
-                'configurator' => server_configurator($site->server)
             ])
         ];
     }

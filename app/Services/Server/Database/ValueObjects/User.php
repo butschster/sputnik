@@ -2,7 +2,9 @@
 
 namespace App\Services\Server\Database\ValueObjects;
 
-class User
+use Illuminate\Contracts\Support\Arrayable;
+
+class User implements Arrayable
 {
     /**
      * @var string
@@ -53,5 +55,19 @@ class User
     public function getGrants(): array
     {
         return $this->grants;
+    }
+
+    /**
+     * Get the instance as an array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'name' => $this->getName(),
+            'password' => $this->getPassword(),
+            'grants' => $this->getGrants()
+        ];
     }
 }

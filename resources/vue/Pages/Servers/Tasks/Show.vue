@@ -48,12 +48,14 @@
         },
         created() {
             this.load()
+
+            this.$bus.$on(`task.${this.$route.params.task_id}`, (task) => {
+                this.load()
+            })
         },
         methods: {
             loaded() {
-                this.$echo.onServerTaskStatusChanged(this.task.server_id, (e) => {
-                    this.load()
-                })
+
             },
             async load() {
                 this.loading = true

@@ -2,22 +2,26 @@
 
 namespace App\Providers;
 
+use App\Contracts\Server\Modules\Registry as RegistryContract;
 use App\Contracts\Server\Modules\Repository as RepositoryContract;
 use App\Server\Modules\PHP;
 use App\Server\Modules\Database;
+use App\Server\Modules\Repository;
 use App\Server\Modules\Security;
 use App\Server\Modules\Javascript;
-use App\Server\Modules\Repository;
+use App\Server\Modules\Registry;
+use App\Server\Modules\Tools;
 use Illuminate\Support\ServiceProvider;
 
 class ServerModulesServiceProvider extends ServiceProvider
 {
     /**
      * Available server modules
+     *
      * @var array
      */
     protected $modules = [
-        PHP\PHP59::class,
+        PHP\PHP58::class,
         PHP\PHP72::class,
         PHP\PHP73::class,
         PHP\Composer::class,
@@ -33,6 +37,8 @@ class ServerModulesServiceProvider extends ServiceProvider
         Security\Fail2Ban::class,
         Security\Ufw::class,
 
+        Tools\Supervisor::class,
+
         Javascript\NodeJs::class,
         Javascript\Yarn::class,
     ];
@@ -42,16 +48,22 @@ class ServerModulesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(RepositoryContract::class, function ($app) {
-            $repository = new Repository();
+        $this->app->singleton(RegistryContract::class, function ($app) {
+            $registry = new Registry();
 
             foreach ($this->modules as $module) {
-                $repository->register(
+                $registry->register(
                     $app->make($module)
                 );
             }
 
-            return $repository;
+            return $registry;
+        });
+
+        $this->app->singleton(RepositoryContract::class, function () {
+            return new Repository(
+                $this->app[RegistryContract::class]
+            );
         });
     }
 

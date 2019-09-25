@@ -74,23 +74,25 @@ class NodeJs extends Module
              *
              * @param Server $server
              * @param array $data
+             * @return array
              */
-            public function install(Server $server, array $data): void
+            public function install(Server $server, array $data): array
             {
                 $script = $this->render($server, 'javascript.nodejs.install', $data);
 
                 $this->runScript($server, $script, sprintf('Install %s', $this->module->title()));
+
+                return $data;
             }
 
             /**
              * Uninstall module
              *
              * @param Server $server
-             * @param array $data
              */
-            public function uninstall(Server $server, array $data): void
+            public function uninstall(Server $server): void
             {
-                $script = $this->render($server, 'javascript.nodejs.uninstall', $data);
+                $script = $this->render($server, 'javascript.nodejs.uninstall');
 
                 $this->runScript($server, $script, sprintf('Uninstall %s', $this->module->title()));
             }

@@ -46,7 +46,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware('has-subscription')->group(function () {
 
         // Servers
-        Route::get('servers/modules', 'Server\ModulesController@index')->name('servers.modules');
         Route::get('servers/search', 'ServerController@search')->name('servers.search');
         Route::get('servers', 'ServerController@index')->name('servers');
         Route::get('server/{server}', 'ServerController@show')->name('server.show');
@@ -54,6 +53,15 @@ Route::middleware('auth')->group(function () {
         Route::put('server/{server}', 'ServerController@update')->name('server.update');
         Route::post('server', 'ServerController@store')->name('server.store');
         Route::delete('server/{server}', 'ServerController@delete')->name('server.delete');
+
+        // Server modules
+        Route::get('servers/modules', 'Server\ModulesController@index')->name('servers.modules');
+        Route::post('server/{server}/modules', 'Server\ModulesController@installed')->name('server.modules');
+        Route::post('server/{server}/module/install', 'Server\ModulesController@install')->name('server.module.install');
+        Route::delete('server/module/{module}/uninstall', 'Server\ModulesController@uninstall')->name('server.module.uninstall');
+        Route::post('server/module/{module}/restart', 'Server\ModulesController@restart')->name('server.module.restart');
+        Route::post('server/module/{module}/start', 'Server\ModulesController@start')->name('server.module.start');
+        Route::post('server/module/{module}/stop', 'Server\ModulesController@stop')->name('server.module.stop');
 
         // Server Events
         Route::get('server/{server}/events', 'Server\EventsController@index')->name('server.events');

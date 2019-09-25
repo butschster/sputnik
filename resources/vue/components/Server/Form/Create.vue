@@ -37,6 +37,13 @@
                            name="ssh_port"
                            required/>
             </div>
+
+            <Modules v-model="form.modules"/>
+
+            <button class="btn btn-primary shadow-lg" @click="onSubmit">
+                <i class="fas fa-plus"></i>
+                {{ $t('server.form.create.button.create') }}
+            </button>
         </div>
         <div v-else class="alert alert-primary">
             <p>{{ $t('server.form.create.message.upgrade_subscription') }}</p>
@@ -46,11 +53,12 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import Modules from "./partials/Modules"
     import FormInput from '@vue/components/Form/Input'
     import FormSelect from '@vue/components/Form/Select'
 
     export default {
-        components: {FormSelect, FormInput},
+        components: {Modules, FormSelect, FormInput},
         data() {
             return {
                 loading: false,
@@ -59,6 +67,7 @@
                     team_id: null,
                     ip: null,
                     ssh_port: 22,
+                    modules: []
                 },
                 teams: [],
                 types: []

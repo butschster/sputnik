@@ -84,7 +84,6 @@ abstract class Configurator
                 'config' => $this,
                 'server' => $this->configuration,
                 'users' => $this->configuration->systemUsers(),
-                'configurator' => server_configurator($this->server),
             ]
         );
 

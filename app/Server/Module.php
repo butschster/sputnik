@@ -24,6 +24,7 @@ abstract class Module implements \App\Contracts\Server\Module
         return [
             'title' => $this->title(),
             'key' => $this->key(),
+            'categories' => $this->categories(),
             'dependencies' => $this->dependencies(),
             'dictionaries' => $this->dictionaries(),
         ];

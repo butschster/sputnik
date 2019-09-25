@@ -5,6 +5,7 @@ namespace App\Server\Modules\Database;
 use App\Models\Server;
 use App\Server\Modules\Configuration as BaseConfiguration;
 use App\Services\Server\Database\ValueObjects\User;
+use Illuminate\Support\Str;
 
 class Configuration extends BaseConfiguration
 {
@@ -20,31 +21,20 @@ class Configuration extends BaseConfiguration
     }
 
     /**
-     * Additional data for render
-     *
-     * @param Server $server
-     *
-     * @return array
-     */
-    protected function data(Server $server): array
-    {
-        return [
-            'password' => $this->getDatabasePassword($server),
-            'hosts' =>  [$server->ip, 'localhost'],
-            'databaseUsers' => $this->getDatabaseUsers($server)
-        ];
-    }
-
-    /**
      * Install module
      *
      * @param Server $server
      * @param array $data
      *
+     * @return array
      * @throws \Throwable
      */
-    public function install(Server $server, array $data): void
+    public function install(Server $server, array $data): array
     {
+        $data['password'] = Str::random(10);
+        $data['databaseUsers'] = $this->getDatabaseUsers($server, $data['password']);
+        $data['hosts'] = [$server->ip, 'localhost'];
+
         $script = $this->render($server, 'database.'.$this->type().'.install', $data);
 
         $this->runScript(
@@ -52,19 +42,20 @@ class Configuration extends BaseConfiguration
             $script,
             sprintf('Install %s', $this->module->title())
         );
+
+        return $data;
     }
 
     /**
      * Uninstall module
      *
      * @param Server $server
-     * @param array $data
      *
      * @throws \Throwable
      */
-    public function uninstall(Server $server, array $data): void
+    public function uninstall(Server $server): void
     {
-        $script = $this->render($server, 'database.'.$this->type().'.uninstall', $data);
+        $script = $this->render($server, 'database.'.$this->type().'.uninstall');
 
         $this->runScript(
             $server,
@@ -93,24 +84,14 @@ class Configuration extends BaseConfiguration
 
     /**
      * @param Server $server
-     *
+     * @param string $password
      * @return \Illuminate\Support\Collection
      */
-    protected function getDatabaseUsers(Server $server): \Illuminate\Support\Collection
+    protected function getDatabaseUsers(Server $server, string $password): \Illuminate\Support\Collection
     {
         return collect($server->toConfiguration()->systemUsers())
-            ->map(function ($user) use($server) {
-                return new User($user->name, $this->getDatabasePassword($server), ['*.*']);
+            ->map(function ($user) use($server, $password) {
+                return new User($user->name, $password, ['*.*']);
             });
-    }
-
-    /**
-     * @param Server $server
-     *
-     * @return string|null
-     */
-    protected function getDatabasePassword(Server $server): ?string
-    {
-        return $server->meta('database_password');
     }
 }

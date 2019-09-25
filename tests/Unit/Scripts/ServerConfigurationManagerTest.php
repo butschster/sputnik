@@ -3,9 +3,7 @@
 namespace Tests\Unit\Scripts;
 
 use App\Contracts\Server\ServerConfiguration;
-use App\Scripts\ServerConfigurationManager;
 use App\Scripts\Tools\DatabaseConfigurator;
-use App\Scripts\Tools\PHPConfigurator;
 use App\Scripts\Tools\WebServerConfigurator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;

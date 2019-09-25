@@ -59,6 +59,10 @@
                     this.load()
                 })
 
+                this.$echo.onServerTaskStatusChanged(this.server.id, (e) => {
+                    this.$bus.$emit(`task.${e.task.id}`, e.task)
+                })
+
                 this.$store.dispatch('server/setServer', this.server)
             },
             async load() {

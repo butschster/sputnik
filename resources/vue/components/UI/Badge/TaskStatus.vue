@@ -1,5 +1,5 @@
 <template>
-    <span v-if="hasTask" class="badge cursor-pointer" :class="statusClasses" @dblclick="load" @click="show">
+    <span v-if="hasTask" class="badge cursor-pointer" :class="statusClasses" @dblclick="load">
         {{ $t(`server.tasks.status.${current_task.status}`) }}
     </span>
 </template>
@@ -31,19 +31,12 @@
             }
 
             if (this.current_task) {
-                this.$echo.onServerTaskStatusChanged(this.current_task.server_id, (e) => {
-                    if (e.task.id == this.current_task.id) {
-                        this.current_task = e.task
-                    }
+                this.$bus.$on(`task.${this.current_task.id}`, (task) => {
+                    this.current_task = task
                 })
             }
         },
         methods: {
-            show() {
-                this.$router.push(
-                    this.$link.serverTask(this.current_task)
-                )
-            },
             async load() {
                 this.loading = true
 

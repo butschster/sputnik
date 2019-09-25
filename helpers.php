@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\Server;
-use App\Scripts\ServerConfigurationManager;
-
 /**
  * Generate API route with version by name
  *
@@ -44,15 +41,4 @@ function callback_event(string $serverId, string $message, int $progress = 0): s
     return callback_url('server.event', [
         'server_id' => $serverId, 'message' => $message, 'progress' => $progress,
     ], 10);
-}
-
-/**
- * Get server configurator
- *
- * @param Server $server
- * @return ServerConfigurationManager
- */
-function server_configurator(Server $server): ServerConfigurationManager
-{
-    return new ServerConfigurationManager($server);
 }

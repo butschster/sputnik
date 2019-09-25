@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\v1;
 
+use App\Http\Resources\v1\Server\ModulesCollection;
 use App\Http\Resources\v1\User\TeamResource;
 use App\Models\Server;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -48,6 +49,7 @@ class ServerResource extends JsonResource
             'updated_at' => $this->updated_at,
             'team' => TeamResource::make($this->whenLoaded('team')),
             'owner' => UserResource::make($this->whenLoaded('user')),
+            'modules' => ModulesCollection::make($this->whenLoaded('modules')),
             'links' => [
                 'install_script' => route('server.install_script', $this),
             ],

@@ -1,7 +1,8 @@
 
 @if(!$user->isRoot())
-# Set The Proper Directory Permissions
-
+# ================================================
+# Set The Proper Directory Permissions for {{ $user->name }}
+# ================================================
 chown -R {{ $user->name }}:{{ $user->name }} {{ $user->homeDir() }}
 chmod -R 755 {{ $user->homeDir() }}
 

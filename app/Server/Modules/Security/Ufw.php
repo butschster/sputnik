@@ -49,8 +49,9 @@ class Ufw extends Module
              *
              * @param Server $server
              * @param array $data
+             * @return array
              */
-            public function install(Server $server, array $data): void
+            public function install(Server $server, array $data): array
             {
                 $script = $this->render($server, 'security.ufw.install', $data);
 
@@ -59,17 +60,18 @@ class Ufw extends Module
                     $script,
                     sprintf('Install %s', $this->module->title())
                 );
+
+                return $data;
             }
 
             /**
              * Uninstall module
              *
              * @param Server $server
-             * @param array $data
              */
-            public function uninstall(Server $server, array $data): void
+            public function uninstall(Server $server): void
             {
-                $script = $this->render($server, 'security.ufw.uninstall', $data);
+                $script = $this->render($server, 'security.ufw.uninstall');
 
                 $this->runScript(
                     $server,

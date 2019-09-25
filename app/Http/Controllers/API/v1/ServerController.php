@@ -47,6 +47,8 @@ class ServerController extends Controller
     {
         $this->authorize('show', $server);
 
+        $server->load('modules');
+
         return ServerResource::make($server);
     }
 

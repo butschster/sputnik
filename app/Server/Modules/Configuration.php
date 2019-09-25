@@ -44,7 +44,7 @@ abstract class Configuration implements ConfigurationContract
      */
     protected function scriptPath(string $path): string
     {
-        return 'server.scripts.modules.' . $path;
+        return 'scripts.server.modules.' . $path;
     }
 
     /**
@@ -119,7 +119,7 @@ abstract class Configuration implements ConfigurationContract
      */
     protected function runScript(Server $server, string $script, string $name): Server\Task
     {
-        return dispatch(
+        return dispatch_now(
             new RunScript($server, new CustomScript($name, $script))
         );
     }

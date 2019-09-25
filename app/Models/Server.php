@@ -18,6 +18,7 @@ use App\Models\Server\Daemon;
 use App\Models\Server\Database;
 use App\Models\Server\Event;
 use App\Models\Server\Firewall\Rule as FirewallRule;
+use App\Models\Server\Module;
 use App\Models\Server\Site;
 use App\Models\Server\Task;
 use App\Models\Subscription\Plan;
@@ -39,9 +40,6 @@ class Server extends Model
     const STATUS_CONFIGUTING = 'configuring';
     const STATUS_CONFIGURED  = 'configured';
     const STATUS_FAILED      = 'failed';
-
-    const TYPE_OPENVPN   = 'openvpn';
-    const TYPE_WEBSERVER = 'webserver';
 
     /**
      * {@inheritdoc}
@@ -206,6 +204,16 @@ class Server extends Model
     public function cronJobs(): HasMany
     {
         return $this->hasMany(CronJob::class)->with('task');
+    }
+
+    /**
+     * Get installed server modules
+     *
+     * @return HasMany
+     */
+    public function modules(): HasMany
+    {
+        return $this->hasMany(Module::class);
     }
 
     /**
@@ -387,6 +395,6 @@ class Server extends Model
      */
     public function meta(string $key, $default)
     {
-        return Arr::get($key, $default);
+        return Arr::get($this->meta, $key, $default);
     }
 }

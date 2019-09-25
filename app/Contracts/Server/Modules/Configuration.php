@@ -11,16 +11,17 @@ interface Configuration
      *
      * @param Server $server
      * @param array $data
+     *
+     * @return array
      */
-    public function install(Server $server, array $data): void;
+    public function install(Server $server, array $data): array;
 
     /**
      * Uninstall module
      *
      * @param Server $server
-     * @param array $data
      */
-    public function uninstall(Server $server, array $data): void;
+    public function uninstall(Server $server): void;
 
     /**
      * Restart module

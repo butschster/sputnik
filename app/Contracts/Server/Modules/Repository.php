@@ -2,48 +2,55 @@
 
 namespace App\Contracts\Server\Modules;
 
-use App\Contracts\Server\Module;
-use App\Exceptions\Server\ModuleNotFoundException;
-use Illuminate\Support\Collection;
+use App\Models\Server;
 
 interface Repository
 {
     /**
-     * Get keys of registered modules
-     * @return array
-     */
-    public function getKeys(): array;
-
-    /**
-     * Register a new module
-     *
-     * @param Module $module
-     */
-    public function register(Module $module): void;
-
-    /**
-     * Check if module registered
+     * Install module on specific server
      *
      * @param string $module
+     * @param Server $server
+     * @param array $data
      *
-     * @return bool
+     * @return Server\Module
+     * @throws \App\Exceptions\Server\ModuleNotFoundException
      */
-    public function has(string $module): bool;
+    public function install(string $module, Server $server, array $data = []): Server\Module;
 
     /**
-     * Get module by key
+     * Uninstall module on specific server
      *
-     * @param string $module
+     * @param Server\Module $module
      *
-     * @return Module
-     * @throws ModuleNotFoundException
+     * @throws \App\Exceptions\Server\ModuleNotFoundException
      */
-    public function get(string $module): Module;
+    public function uninstall(Server\Module $module): void;
 
     /**
-     * Get modules collection
+     * Restart module on specific server
      *
-     * @return Collection
+     * @param Server\Module $module
+     *
+     * @throws \App\Exceptions\Server\ModuleNotFoundException
      */
-    public function collection(): Collection;
+    public function restart(Server\Module $module): void;
+
+    /**
+     * Start module on specific server
+     *
+     * @param Server\Module $module
+     *
+     * @throws \App\Exceptions\Server\ModuleNotFoundException
+     */
+    public function start(Server\Module $module): void;
+
+    /**
+     * Stop module on specific server
+     *
+     * @param Server\Module $module
+     *
+     * @throws \App\Exceptions\Server\ModuleNotFoundException
+     */
+    public function stop(Server\Module $module): void;
 }

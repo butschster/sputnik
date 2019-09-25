@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Server;
 
+use App\Contracts\Server\Module;
+use App\Contracts\Server\Modules\Registry;
 use App\Models\Server;
 use App\Models\User\Team;
 use App\Validation\Rules\Server\Site\RepositoryName;
@@ -22,8 +24,8 @@ class StoreRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
      * @return array
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function rules()
     {
@@ -33,6 +35,8 @@ class StoreRequest extends FormRequest
             'ip' => ['required', 'ipv4', Rule::unique('servers')],
             'ssh_port' => 'nullable|digits_between:2,5',
             'sudo_password' => 'nullable|string',
+            'modules' => 'nullable|array',
+            'modules.*.key' => ['required', 'string', Rule::in($this->modulesRegistry()->getKeys())]
         ];
     }
 
@@ -42,7 +46,24 @@ class StoreRequest extends FormRequest
      */
     public function withValidator(\Illuminate\Validation\Validator $validator): void
     {
+        $modules = collect($this->modules)->pluck('key');
 
+        $this->modulesRegistry()->modules()->filter(function (Module $module) use($modules, $validator) {
+
+            if ($modules->contains($module->key())) {
+                $rules = $module->validationRules($this);
+                if (empty($rules)) {
+                    return;
+                }
+
+                $rules = collect($module->validationRules($this))->mapWithKeys(function ($rules, $field) use ($module) {
+                    return ['modules.' . $module->key() . '.data.' . $field => $rules];
+                })->all();
+
+                $validator->addRules($rules);
+            }
+
+        });
     }
 
     /**
@@ -66,5 +87,14 @@ class StoreRequest extends FormRequest
         $data['meta'] = Arr::except($this->validated(), $serverFields);
 
         return $this->user()->servers()->create($data);
+    }
+
+    /**
+     * @return Registry
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function modulesRegistry(): Registry
+    {
+        return $this->container->make(Registry::class);
     }
 }
