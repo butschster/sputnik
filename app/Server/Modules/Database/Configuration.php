@@ -21,6 +21,25 @@ class Configuration extends BaseConfiguration
     }
 
     /**
+     * Additional data for render
+     *
+     * @param Server $server
+     *
+     * @return array
+     */
+    protected function data(Server $server): array
+    {
+        $password = Str::random(10);
+
+        return [
+            'password' => $password,
+            'databaseUsers' => $this->getDatabaseUsers($server, $password),
+            'hosts' => [$server->ip, 'localhost']
+        ];
+    }
+
+
+    /**
      * Install module
      *
      * @param Server $server
@@ -31,9 +50,7 @@ class Configuration extends BaseConfiguration
      */
     public function install(Server $server, array $data): array
     {
-        $data['password'] = Str::random(10);
-        $data['databaseUsers'] = $this->getDatabaseUsers($server, $data['password']);
-        $data['hosts'] = [$server->ip, 'localhost'];
+       $data = $this->prepareData($server, $data);
 
         $script = $this->render($server, 'database.'.$this->type().'.install', $data);
 

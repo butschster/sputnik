@@ -60,6 +60,21 @@ abstract class Configuration implements ConfigurationContract
     }
 
     /**
+     * @param Server $server
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function prepareData(Server $server, array $data): array
+    {
+        return array_merge(
+            $this->module->defaultSettings(),
+            $this->data($server),
+            $data
+        );
+    }
+
+    /**
      * Get callback message
      *
      * @param string $path
@@ -83,11 +98,14 @@ abstract class Configuration implements ConfigurationContract
      */
     protected function render(Server $server, string $path, array $data = []): string
     {
-        $data = array_merge($this->data($server), $data, [
-            'config' => $this,
-            'server' => $server,
-            'users' => $server->toConfiguration()->systemUsers()
-        ]);
+        $data = array_merge(
+            $data,
+            [
+                'config' => $this,
+                'server' => $server,
+                'users' => $server->toConfiguration()->systemUsers()
+            ]
+        );
 
         return view($this->scriptPath('configurator'), [
             'script' => view($this->scriptPath($path), $data)->render(),

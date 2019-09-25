@@ -59,4 +59,12 @@ abstract class Module implements \App\Contracts\Server\Module
     {
         return [];
     }
+
+    /**
+     * @return array
+     */
+    public function defaultSettings(): array
+    {
+        return [];
+    }
 }

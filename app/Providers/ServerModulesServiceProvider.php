@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Contracts\Server\Modules\Registry as RegistryContract;
 use App\Contracts\Server\Modules\Repository as RepositoryContract;
+use App\Server\Modules\BaseSettings;
 use App\Server\Modules\PHP;
 use App\Server\Modules\Database;
 use App\Server\Modules\Repository;
@@ -21,6 +22,8 @@ class ServerModulesServiceProvider extends ServiceProvider
      * @var array
      */
     protected $modules = [
+        BaseSettings::class,
+        
         PHP\PHP58::class,
         PHP\PHP72::class,
         PHP\PHP73::class,

@@ -53,4 +53,11 @@ interface Module extends Arrayable
      * @return array
      */
     public function dictionaries(): array;
+
+    /**
+     * Get module default settings
+     *
+     * @return array
+     */
+    public function defaultSettings(): array;
 }

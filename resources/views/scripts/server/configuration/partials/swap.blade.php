@@ -13,3 +13,5 @@ else
     echo "vm.swappiness=30" >> /etc/sysctl.conf
     echo "vm.vfs_cache_pressure=50" >> /etc/sysctl.conf
 fi
+
+{!! callback_event($server->id, 'swap.created', 50) !!}

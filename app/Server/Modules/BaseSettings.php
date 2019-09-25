@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Server\Modules\Javascript;
+namespace App\Server\Modules;
 
-use App\Contracts\Server\Modules\Configuration;
 use App\Models\Server;
 use App\Server\Module;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Validation\Rule;
 
-class NodeJs extends Module
+class BaseSettings extends Module
 {
     /**
      * Get module categories
@@ -18,7 +14,7 @@ class NodeJs extends Module
      */
     public function categories(): array
     {
-        return ['javascript', 'webserver'];
+        return ['base'];
     }
 
     /**
@@ -27,7 +23,7 @@ class NodeJs extends Module
      */
     public function title(): string
     {
-        return 'Node.js';
+        return 'Base settings';
     }
 
     /**
@@ -36,15 +32,7 @@ class NodeJs extends Module
      */
     public function key(): string
     {
-        return 'nodejs';
-    }
-
-    /**
-     * @return array
-     */
-    public function availableVersions(): array
-    {
-        return [8, 10, 11, 12];
+        return 'base_settings';
     }
 
     /**
@@ -53,29 +41,15 @@ class NodeJs extends Module
     public function defaultSettings(): array
     {
         return [
-            'version' => Arr::last($this->availableVersions()),
-        ];
-    }
-
-    /**
-     * Get validation rules for module
-     *
-     * @param Request $request
-     *
-     * @return array
-     */
-    public function validationRules(Request $request): array
-    {
-        return [
-            'version' => ['nullable', 'string', Rule::in($this->availableVersions())],
+            'timezone' => 'UTC'
         ];
     }
 
     /**
      * Get module configuration
-     * @return Configuration
+     * @return \App\Contracts\Server\Modules\Configuration
      */
-    public function configuration(): Configuration
+    public function configuration(): \App\Contracts\Server\Modules\Configuration
     {
         return new class($this) extends \App\Server\Modules\Configuration
         {
@@ -91,9 +65,13 @@ class NodeJs extends Module
             {
                 $data = $this->prepareData($server, $data);
 
-                $script = $this->render($server, 'javascript.nodejs.install', $data);
+                $script = $this->render($server, 'base.install', $data);
 
-                $this->runScript($server, $script, sprintf('Install %s', $this->module->title()));
+                $this->runScript(
+                    $server,
+                    $script,
+                    sprintf('Install %s', $this->module->title())
+                );
 
                 return $data;
             }
@@ -105,9 +83,7 @@ class NodeJs extends Module
              */
             public function uninstall(Server $server): void
             {
-                $script = $this->render($server, 'javascript.nodejs.uninstall');
 
-                $this->runScript($server, $script, sprintf('Uninstall %s', $this->module->title()));
             }
         };
     }
@@ -119,7 +95,7 @@ class NodeJs extends Module
     public function dictionaries(): array
     {
         return [
-            'versions' => $this->availableVersions(),
+            //'timezones' => \DateTimeZone::listIdentifiers(),
         ];
     }
 }
