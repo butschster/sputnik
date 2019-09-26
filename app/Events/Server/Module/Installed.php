@@ -11,7 +11,12 @@ class Installed implements ShouldBroadcast
     /**
      * @var Server
      */
-    protected $server;
+    public $server;
+
+    /**
+     * @var string
+     */
+    public $module;
 
     /**
      * @param Server $server
@@ -20,6 +25,7 @@ class Installed implements ShouldBroadcast
     public function __construct(Server $server, string $module)
     {
         $this->server = $server;
+        $this->module = $module;
     }
 
     /**

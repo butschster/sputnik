@@ -2,7 +2,7 @@
 
 namespace App\Server;
 
-use Illuminate\Http\Request;
+use App\Meta\FieldsCollection;
 
 abstract class Module implements \App\Contracts\Server\Module
 {
@@ -26,20 +26,9 @@ abstract class Module implements \App\Contracts\Server\Module
             'key' => $this->key(),
             'categories' => $this->categories(),
             'dependencies' => $this->dependencies(),
-            'dictionaries' => $this->dictionaries(),
+            'fields' => $this->getFields(),
+            'defaults' => $this->defaultSettings(),
         ];
-    }
-
-    /**
-     * Get validation rules for module
-     *
-     * @param Request $request
-     *
-     * @return array
-     */
-    public function validationRules(Request $request): array
-    {
-        return [];
     }
 
     /**
@@ -52,18 +41,25 @@ abstract class Module implements \App\Contracts\Server\Module
     }
 
     /**
-     * Get module dictionaries
      * @return array
      */
-    public function dictionaries(): array
+    public function defaultSettings(): array
     {
         return [];
     }
 
     /**
+     * @return FieldsCollection
+     */
+    public function getFields(): FieldsCollection
+    {
+        return new FieldsCollection($this->fields());
+    }
+
+    /**
      * @return array
      */
-    public function defaultSettings(): array
+    protected function fields(): array
     {
         return [];
     }

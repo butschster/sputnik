@@ -6,6 +6,7 @@ use App\Contracts\Server\Module;
 use App\Contracts\Server\Modules\Registry;
 use App\Contracts\Server\Modules\Repository;
 use App\Http\Controllers\API\Controller;
+use App\Http\Requests\Server\Module\StoreRequest;
 use App\Http\Resources\v1\Server\ModulesCollection;
 use App\Models\Server;
 use Illuminate\Http\Request;
@@ -55,31 +56,16 @@ class ModulesController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param StoreRequest $request
      * @param Server $server
-     * @return Module|Server\Module
-     * @throws \App\Exceptions\Server\ModuleNotFoundException
-     * @throws \Illuminate\Validation\ValidationException
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function install(Request $request, Server $server)
+    public function install(StoreRequest $request, Server $server)
     {
-        $this->authorize('update', $server);
+        $request->persist();
 
-        $this->validate($request, [
-            'module' => ['required', 'string', Rule::in($this->registry->getKeys())]
-        ]);
-
-        $module = $this->registry->get($request->module);
-
-        $data = $this->validate(
-            $request,
-            $module->validationRules($request)
-        );
-
-        $module = $this->repository->install($module->key(), $server, $data);
-
-        return $module;
+       return $this->responseOk();
     }
 
     /**

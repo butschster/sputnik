@@ -64,7 +64,7 @@ class Deployer extends \App\Server\Module
             {
                 $script = $this->render($server, 'php.deployer.install', $data);
 
-                $this->runScript(
+                $this->installModule(
                     $server,
                     $script,
                     sprintf('Install %s', $this->module->title())

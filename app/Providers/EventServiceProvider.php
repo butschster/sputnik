@@ -24,11 +24,15 @@ class EventServiceProvider extends ServiceProvider
         ],
         Server\Configured::class => [
             //\App\Listeners\Server\CreateHttpFirewallRules::class,
-            //\App\Listeners\Server\ScheduleSystemJobs::class,
-            \App\Listeners\Server\InstallModules::class,
+            \App\Listeners\Server\ScheduleSystemJobs::class,
+            \App\Listeners\Server\InstallModulesWhenServerWasConfigured::class,
         ],
         Server\Created::class => [
             \App\Listeners\Server\RegisterSystemUsers::class,
+        ],
+        Server\Module\Installed::class => [
+            \App\Listeners\Server\ClearModuleMetaInformation::class,
+            \App\Listeners\Server\Module\MarkModuleAsInstalled::class
         ],
         Server\Alert\Created::class => [
             \App\Listeners\Server\Alert\UpdateLastAlertTimestampForCollaborators::class,

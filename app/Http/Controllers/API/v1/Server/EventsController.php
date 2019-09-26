@@ -32,10 +32,8 @@ class EventsController extends Controller
     {
         $this->authorize('show', $server);
 
-        if ($event = $server->events()->latest()->first()) {
-            return EventResource::make($event);
-        }
-
-        return [];
+        return EventResource::make(
+            $server->events()->latest()->first()
+        );
     }
 }

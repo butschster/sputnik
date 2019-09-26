@@ -1,22 +1,27 @@
 <template>
     <div>
-        <div class="section" v-if="hasSelected">
+        <Loader :loading="loading" />
+        <div class="section" v-if="hasModules">
             <div class="section-header">
-                Устанавливаемые модули
+                {{ $t('server.modules.available.title') }}
+                <p>{{ $t('server.modules.available.description') }}</p>
             </div>
-           <div class="flex">
-               <Module v-for="module in selected" :key="module.key" :module="module" class="mb-2 mr-2" @onRemove="remove"/>
-           </div>
-        </div>
-        <div class="section">
-            <div class="section-header">
-                Доступные модули
-                <p></p>
-                <p>Вы можете выбрать ПО, которое будет установлено на вашем сервере. </p>
-            </div>
-            <div class="p-5 bg-gray-100 mb-4">
+            <div class="mb-4">
                 <button v-for="module in availableModules" :key="module.key" class="btn btn-sm btn-primary mr-2 mb-2"
                         @click="select(module.key)">
+                    {{ module.title }}
+                </button>
+            </div>
+        </div>
+        <div class="section" v-if="hasSelected">
+            <div class="section-header">
+                {{ $t('server.modules.selected.title') }}
+                <p>{{ $t('server.modules.selected.description') }}</p>
+            </div>
+            <div class="mb-4">
+                <button v-for="module in selected"
+                        class="btn btn-sm btn-danger mr-2 mb-2"
+                        @click="remove(module)">
                     {{ module.title }}
                 </button>
             </div>
@@ -27,12 +32,21 @@
 <script>
     import Str from '@js/helpers/str'
 
-    import Module from "./Module"
-
     export default {
-        components: {Module},
         props: {
-            value: Array
+            value: Array,
+            except: {
+                type: Array,
+                default() {
+                    return []
+                }
+            },
+            defaultModules: {
+                type: Array,
+                default() {
+                    return ['base_settings', 'ufw']
+                }
+            }
         },
         data() {
             return {
@@ -44,6 +58,11 @@
         mounted() {
             this.loadModules()
         },
+        watch: {
+            selected() {
+                this.updateFormData()
+            }
+        },
         methods: {
             remove(module) {
                 this.selected = this.selected.filter(m => m.key != module.key)
@@ -52,28 +71,34 @@
                         this.remove(md)
                     }
                 })
-                this.updateFormData()
             },
             select(key) {
-                const module = _.find(this.modules, m => m.key === key)
+                const module = _.find(this.availableModules, m => m.key === key)
+
+                if (!module) {
+                    console.error('Module not found.', key)
+                    return
+                }
 
                 if (module.dependencies.length > 0) {
                     if (this.selected.filter(m => Str(m.key).is(module.dependencies)).length === 0) {
 
-                        console.log('Module does\'t have required dependencies.', module.dependencies)
+                        console.error('Module does\'t have required dependencies.', module.dependencies)
                         return
                     }
                 }
 
                 this.selected.push(module)
-
-                this.updateFormData()
+            },
+            loaded() {
+                this.defaultModules.forEach(key => this.select(key))
             },
             async loadModules() {
                 this.loading = true
 
                 try {
                     this.modules = await this.$api.serverModules.list()
+                    this.loaded()
                 } catch (e) {
                     console.error(e)
                 }
@@ -81,19 +106,20 @@
                 this.loading = false
             },
             updateFormData() {
-                const data = _.keyBy(this.selected.map(m => {
-                    return {key: m.key, data: {}}
-                }), 'key')
-
-                this.$emit('input', data)
+                this.$emit('onSelect', this.selected)
             }
         },
         computed: {
             hasSelected() {
                 return this.selected.length > 0
             },
+            hasModules() {
+                return this.availableModules.length > 0
+            },
             availableModules() {
                 return _.filter(this.modules, m => {
+                    return this.except.indexOf(m.key) == -1
+                }).filter(m => {
                     return this.selected.indexOf(m) == -1
                 })
             }

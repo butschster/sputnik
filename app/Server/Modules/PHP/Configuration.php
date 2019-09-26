@@ -44,9 +44,11 @@ class Configuration extends BaseConfiguration
         $data['modules'] = $this->getInstallableModulesFromGivenData($data);
         $data['server_modules'] = $this->prepareModulesListFromGivenData($data);
 
+        $data = $this->prepareData($server, $data);
+
         $script = $this->render($server, 'php.install', $data);
 
-        $this->runScript(
+        $this->installModule(
             $server,
             $script,
             sprintf('Install PHP version %s', $this->humanReadableVersion())
@@ -92,11 +94,7 @@ class Configuration extends BaseConfiguration
      */
     protected function getInstallableModulesFromGivenData(array $data): array
     {
-        if (!isset($data['modules'])) {
-            return ['cli', 'dev', 'sqlite3', 'gd', 'curl', 'mbstring', 'xml', 'zip', 'bcmath', 'intl'];
-        } else {
-            return (array)$data['modules'];
-        }
+        return (array) $data['modules'];
     }
 
     /**

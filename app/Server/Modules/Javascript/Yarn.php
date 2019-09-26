@@ -56,7 +56,7 @@ class Yarn extends Module
             {
                 $script = $this->render($server, 'javascript.yarn.install', $data);
 
-                $this->runScript(
+                $this->installModule(
                     $server,
                     $script,
                     sprintf('Install %s', $this->module->title())

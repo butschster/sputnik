@@ -17,12 +17,6 @@ class ScheduleSystemJobs
      */
     protected $jobs = [
         [
-            'name' => 'Update composer',
-            'command' => '/usr/local/bin/composer self-update',
-            'user' => 'root',
-            'cron' => '@daily',
-        ],
-        [
             'name' => 'Clean system',
             'command' => 'apt-get autoremove && apt-get autoclean',
             'user' => 'root',

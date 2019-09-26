@@ -30,3 +30,20 @@ export async function installed(serverId) {
         throw new ApiRequestError('Can not load server modules.')
     }
 }
+
+
+/**
+ * Load servers modules
+ *
+ * @param {String} serverId
+ * @param {Array} modules
+ * @return {Object}
+ */
+export async function install(serverId, modules) {
+    try {
+        const response = await api_route('v1.server.modules.install', {server: serverId}).request(modules)
+    } catch (e) {
+       throw new ApiRequestError('Can not install modules.')
+   }
+}
+

@@ -3,14 +3,13 @@
 namespace App\Contracts\Server;
 
 use App\Contracts\Server\Modules\Configuration;
+use App\Meta\FieldsCollection;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Http\Request;
 
 interface Module extends Arrayable
 {
     /**
      * Get module categories
-     *
      * @return array
      */
     public function categories(): array;
@@ -28,15 +27,6 @@ interface Module extends Arrayable
     public function key(): string;
 
     /**
-     * Get validation rules for module
-     *
-     * @param Request $request
-     *
-     * @return array
-     */
-    public function validationRules(Request $request): array;
-
-    /**
      * Get module configuration
      * @return Configuration
      */
@@ -49,15 +39,13 @@ interface Module extends Arrayable
     public function dependencies(): array;
 
     /**
-     * Get module dictionaries
-     * @return array
-     */
-    public function dictionaries(): array;
-
-    /**
      * Get module default settings
-     *
      * @return array
      */
     public function defaultSettings(): array;
+
+    /**
+     * @return FieldsCollection
+     */
+    public function getFields(): FieldsCollection;
 }

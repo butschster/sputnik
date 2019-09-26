@@ -3,7 +3,8 @@ import notify from "@js/vue/plugins/notify"
 import {ApiRequestError} from "@js/errors";
 
 const handleApiRequestErrors = (err) => {
-    notify.error(err.message)
+    console.error(err.message)
+    //notify.error(err.message)
 }
 
 Vue.$handleError = Vue.prototype.$handleError = err => {

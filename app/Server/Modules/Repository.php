@@ -12,6 +12,7 @@ use App\Events\Server\Module\Uninstalled;
 use App\Exceptions\Server\ModuleInstalledException;
 use App\Exceptions\Server\ModuleNotInstalledException;
 use App\Models\Server;
+use Illuminate\Support\Arr;
 
 class Repository implements RepositoryContract
 {
@@ -43,7 +44,7 @@ class Repository implements RepositoryContract
     {
         if ($this->isInstalled($module, $server)) {
             throw new ModuleInstalledException(
-                sprintf('Server contains module %s', $module)
+                sprintf('Module %s has already installed on this server', $module)
             );
         }
 
@@ -52,9 +53,8 @@ class Repository implements RepositoryContract
         $model = $server->modules()->create([
             'name' => $module,
             'meta' => $data,
+            'status' => Server\Module::STATUS_INSTALLING
         ]);
-
-        event(new Installed($server, $module));
 
         return $model;
     }

@@ -3,9 +3,9 @@
 namespace App\Server\Modules\Javascript;
 
 use App\Contracts\Server\Modules\Configuration;
+use App\Meta\Fields\Select;
 use App\Models\Server;
 use App\Server\Module;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 
@@ -44,7 +44,12 @@ class NodeJs extends Module
      */
     public function availableVersions(): array
     {
-        return [8, 10, 11, 12];
+        return [
+            '8.x' => 'v.8',
+            '10.x' => 'v.10',
+            '11.x' => 'v.11',
+            '12.x' => 'v.12',
+        ];
     }
 
     /**
@@ -53,21 +58,7 @@ class NodeJs extends Module
     public function defaultSettings(): array
     {
         return [
-            'version' => Arr::last($this->availableVersions()),
-        ];
-    }
-
-    /**
-     * Get validation rules for module
-     *
-     * @param Request $request
-     *
-     * @return array
-     */
-    public function validationRules(Request $request): array
-    {
-        return [
-            'version' => ['nullable', 'string', Rule::in($this->availableVersions())],
+            'version' => Arr::last(array_keys($this->availableVersions())),
         ];
     }
 
@@ -85,7 +76,9 @@ class NodeJs extends Module
              *
              * @param Server $server
              * @param array $data
+             *
              * @return array
+             * @throws \Throwable
              */
             public function install(Server $server, array $data): array
             {
@@ -93,7 +86,7 @@ class NodeJs extends Module
 
                 $script = $this->render($server, 'javascript.nodejs.install', $data);
 
-                $this->runScript($server, $script, sprintf('Install %s', $this->module->title()));
+                $this->installModule($server, $script, sprintf('Install %s', $this->module->title()));
 
                 return $data;
             }
@@ -113,13 +106,14 @@ class NodeJs extends Module
     }
 
     /**
-     * Get module dictionaries
      * @return array
      */
-    public function dictionaries(): array
+    protected function fields(): array
     {
         return [
-            'versions' => $this->availableVersions(),
+            (new Select('version', 'NodeJs version', $this->availableVersions()))
+                ->addValidationRule('nullable')
+                ->addValidationRule((string) Rule::in(array_keys($this->availableVersions()))),
         ];
     }
 }

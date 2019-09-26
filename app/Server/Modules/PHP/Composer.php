@@ -64,7 +64,7 @@ class Composer extends \App\Server\Module
             {
                 $script = $this->render($server, 'php.composer.install', $data);
 
-                $this->runScript(
+                $this->installModule(
                     $server,
                     $script,
                     sprintf('Install %s', $this->module->title())

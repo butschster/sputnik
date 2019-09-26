@@ -20,6 +20,10 @@ export function server(server) {
     return makeRoute('server.show', {id: server})
 }
 
+export function serverModules(server) {
+    return makeRoute('server.modules', {id: server})
+}
+
 export function serverEvents(server) {
     return makeRoute('server.events', {id: server})
 }

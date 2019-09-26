@@ -49,7 +49,12 @@ const notify = {
      * @returns {*}
      */
     message(text, type) {
-        return new Noty({type, text, theme: 'mint'}).show();
+        return new Noty({
+            type,
+            text,
+            theme: 'mint',
+            timeout: 1000
+        }).show();
     },
 
     /**

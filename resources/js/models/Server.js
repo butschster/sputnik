@@ -36,6 +36,11 @@ export class Server {
 
         let items = [
             {
+                link: links.serverModules(this.server),
+                icon: 'fa-cubes',
+                title: 'server.sections.modules'
+            },
+            {
                 link: links.serverFirewall(this.server),
                 icon: 'fa-lock',
                 title: 'server.sections.firewall'

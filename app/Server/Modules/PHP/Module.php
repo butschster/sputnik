@@ -2,9 +2,9 @@
 
 namespace App\Server\Modules\PHP;
 
+use App\Meta\Fields\MultiSelect;
 use App\Server\Module as BaseModule;
 use App\Contracts\Server\Modules\Configuration;
-use Illuminate\Http\Request;
 
 abstract class Module extends BaseModule
 {
@@ -41,16 +41,36 @@ abstract class Module extends BaseModule
     }
 
     /**
-     * Get validation rules for module
-     *
-     * @param Request $request
-     *
      * @return array
      */
-    public function validationRules(Request $request): array
+    protected function fields(): array
     {
         return [
-            'modules' => 'nullable|array'
+            (new MultiSelect('modules', 'Modules', $this->availableModules()))
+                ->addValidationRule('required')
+                ->addValidationRule('array')
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function defaultSettings(): array
+    {
+        return [
+            'modules' => ['cli', 'dev', 'sqlite3', 'gd', 'curl', 'mbstring', 'xml', 'zip', 'bcmath', 'intl']
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function availableModules(): array
+    {
+        return [
+            'cli', 'dev', 'sqlite3', 'gd', 'curl', 'mbstring', 'xml', 'zip', 'bcmath', 'intl', 'ftp',
+            'iconv', 'imap', 'ldap', 'mcrypt', 'mongodb', 'mysqli', 'pdo', 'apc', 'openssl', 'tidy', 'xsl',
+            'sockets', 'libxml', 'ctype', 'dom'
         ];
     }
 

@@ -6,8 +6,6 @@ use App\Contracts\Server\Module;
 use App\Contracts\Server\Modules\Registry;
 use App\Models\Server;
 use App\Models\User\Team;
-use App\Validation\Rules\Server\Site\RepositoryName;
-use App\Validation\Rules\Server\Site\RepositoryUrl;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
@@ -36,33 +34,30 @@ class StoreRequest extends FormRequest
             'ssh_port' => 'nullable|digits_between:2,5',
             'sudo_password' => 'nullable|string',
             'modules' => 'nullable|array',
-            'modules.*.key' => ['required', 'string', Rule::in($this->modulesRegistry()->getKeys())]
+            'modules.*.key' => ['required', 'string', Rule::in($this->modulesRegistry()->getKeys())],
         ];
     }
 
     /**
      * @param \Illuminate\Validation\Validator $validator
-     * @return mixed
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function withValidator(\Illuminate\Validation\Validator $validator): void
     {
         $modules = collect($this->modules)->pluck('key');
 
-        $this->modulesRegistry()->modules()->filter(function (Module $module) use($modules, $validator) {
-
+        $this->modulesRegistry()->modules()->filter(function (Module $module) use ($modules, $validator) {
+            $prefix = 'modules.' . $module->key().'.';
             if ($modules->contains($module->key())) {
-                $rules = $module->validationRules($this);
+                $rules = $module->getFields()->getValidationRules($prefix);
                 if (empty($rules)) {
                     return;
                 }
 
-                $rules = collect($module->validationRules($this))->mapWithKeys(function ($rules, $field) use ($module) {
-                    return ['modules.' . $module->key() . '.data.' . $field => $rules];
-                })->all();
-
                 $validator->addRules($rules);
+                $validator->addCustomAttributes($module->getFields()->getValidationLabels($prefix));
             }
-
         });
     }
 

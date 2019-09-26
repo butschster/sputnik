@@ -2,8 +2,10 @@
 
 namespace App\Server\Modules;
 
+use App\Meta\Fields\Select;
 use App\Models\Server;
 use App\Server\Module;
+use Illuminate\Validation\Rule;
 
 class BaseSettings extends Module
 {
@@ -67,7 +69,7 @@ class BaseSettings extends Module
 
                 $script = $this->render($server, 'base.install', $data);
 
-                $this->runScript(
+                $this->installModule(
                     $server,
                     $script,
                     sprintf('Install %s', $this->module->title())
@@ -89,13 +91,16 @@ class BaseSettings extends Module
     }
 
     /**
-     * Get module dictionaries
      * @return array
      */
-    public function dictionaries(): array
+    protected function fields(): array
     {
+        $zones = \DateTimeZone::listIdentifiers();
+
         return [
-            //'timezones' => \DateTimeZone::listIdentifiers(),
+            (new Select('timezone', 'Server Timezone', $zones))
+                ->addValidationRule('required')
+                ->addValidationRule((string) Rule::in($zones)),
         ];
     }
 }

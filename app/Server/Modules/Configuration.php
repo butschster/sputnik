@@ -5,8 +5,11 @@ namespace App\Server\Modules;
 use App\Contracts\Server\Module;
 use App\Contracts\Server\Modules\Configuration as ConfigurationContract;
 use App\Jobs\Server\RunScript;
+use App\Jobs\Task\Run;
 use App\Models\Server;
+use App\Scripts\Server\Callbacks\ModuleInstalled;
 use App\Scripts\Server\CustomScript;
+use App\Services\Task\Factory;
 
 abstract class Configuration implements ConfigurationContract
 {
@@ -137,9 +140,22 @@ abstract class Configuration implements ConfigurationContract
      */
     protected function runScript(Server $server, string $script, string $name): Server\Task
     {
-        return dispatch_now(
-            new RunScript($server, new CustomScript($name, $script))
-        );
+        $task = $this->createTaskForScript($server, $script, $name);
+
+        dispatch(new Run($task));
+
+        return $task;
+    }
+
+    protected function installModule(Server $server, string $script, string $name)
+    {
+        $task = $this->createTaskForScript($server, $script, $name);
+
+        $task->addCallback(ModuleInstalled::class);
+
+        dispatch(new Run($task));
+
+        return $task;
     }
 
     /**
@@ -170,5 +186,21 @@ abstract class Configuration implements ConfigurationContract
     public function start(Server $server): void
     {
 
+    }
+
+    /**
+     * @param Server $server
+     * @param string $script
+     * @param string $name
+     *
+     * @return \App\Services\Task\Contracts\Task
+     */
+    protected function createTaskForScript(Server $server, string $script, string $name): \App\Services\Task\Contracts\Task
+    {
+        return (new Factory())->createFromScript(
+            $server,
+            new CustomScript($name, $script),
+            ['module' => $this->module->key()]
+        );
     }
 }

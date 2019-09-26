@@ -55,7 +55,7 @@ class Fail2Ban extends Module
             {
                 $script = $this->render($server, 'security.fail2ban.install', $data);
 
-                $this->runScript(
+                $this->installModule(
                     $server,
                     $script,
                     sprintf('Install %s', $this->module->title())

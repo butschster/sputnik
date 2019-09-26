@@ -6,7 +6,7 @@ use App\Events\Server\Configured;
 use App\Jobs\Server\Module\Install;
 use Illuminate\Support\Arr;
 
-class InstallModules
+class InstallModulesWhenServerWasConfigured
 {
     /**
      * @param Configured $event
@@ -17,11 +17,8 @@ class InstallModules
 
         foreach ($modules as $module) {
             dispatch(
-                new Install($event->server, $module['key'], $module['data'])
+                new Install($event->server, $module['key'], Arr::except($module, 'key'))
             );
         }
-
-        $event->server->meta = Arr::except($event->server->meta, 'modules');
-        $event->server->save();
     }
 }

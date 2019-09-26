@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Server\Module;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -18,6 +19,7 @@ class CreateServerModulesTable extends Migration
             $table->belongsToServer();
 
             $table->string('name');
+            $table->string('status')->default(Module::STATUS_PENDING);
             $table->json('meta')->nullable();
 
             $table->timestamps();

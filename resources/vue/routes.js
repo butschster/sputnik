@@ -5,6 +5,7 @@ import LayoutBasic from '@vue/Layouts/Basic'
 import ServersList from '@vue/Pages/Servers/Index'
 import ServerShow from '@vue/Pages/Servers/Show'
 import ServerSettings from '@vue/Pages/Servers/Settings'
+import ServerModules from '@vue/Pages/Servers/Modules'
 import ServerUsers from '@vue/Pages/Servers/Users/Index'
 import ServerFirewall from '@vue/Pages/Servers/Firewall/Index'
 import ServerEvents from '@vue/Pages/Servers/Events/Index'
@@ -15,7 +16,6 @@ import ServerScheduler from '@vue/Pages/Servers/Scheduler/Index'
 
 // OpenVPN Clients
 import ServerClients from '@vue/Pages/Servers/OpenVPN/Clients/Index'
-
 
 // WebServer Supervisor
 import ServerSupervisor from '@vue/Pages/Servers/WebServer/Supervisor/Index'
@@ -58,6 +58,12 @@ export default [
                     server: true
                 },
                 children: [
+                    {
+                        path: '/server/:id/modules',
+                        name: 'server.modules',
+                        component: ServerModules
+                    },
+
                     {
                         path: '/server/:id/sites',
                         name: 'server.sites',

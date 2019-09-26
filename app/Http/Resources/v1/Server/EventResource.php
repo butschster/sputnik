@@ -14,10 +14,15 @@ class EventResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function toArray($request)
     {
+        if (!$this instanceof Event) {
+            return [];
+        }
+
         return [
             'id' => $this->id,
             'server_id' => $this->server_id,

@@ -56,8 +56,8 @@ Route::middleware('auth')->group(function () {
 
         // Server modules
         Route::get('servers/modules', 'Server\ModulesController@index')->name('servers.modules');
+        Route::post('server/{server}/modules/install', 'Server\ModulesController@install')->name('server.modules.install');
         Route::post('server/{server}/modules', 'Server\ModulesController@installed')->name('server.modules');
-        Route::post('server/{server}/module/install', 'Server\ModulesController@install')->name('server.module.install');
         Route::delete('server/module/{module}/uninstall', 'Server\ModulesController@uninstall')->name('server.module.uninstall');
         Route::post('server/module/{module}/restart', 'Server\ModulesController@restart')->name('server.module.restart');
         Route::post('server/module/{module}/start', 'Server\ModulesController@start')->name('server.module.start');

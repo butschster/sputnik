@@ -54,7 +54,7 @@ class Configuration extends BaseConfiguration
 
         $script = $this->render($server, 'database.'.$this->type().'.install', $data);
 
-        $this->runScript(
+        $this->installModule(
             $server,
             $script,
             sprintf('Install %s', $this->module->title())

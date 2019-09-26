@@ -56,7 +56,7 @@ class Supervisor extends Module
             {
                 $script = $this->render($server, 'tools.supervisor.install', $data);
 
-                $this->runScript(
+                $this->installModule(
                     $server,
                     $script,
                     sprintf('Install %s', $this->module->title())

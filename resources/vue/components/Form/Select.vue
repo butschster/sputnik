@@ -5,6 +5,7 @@
                  :value="value" @input="setSelected"
                  :reduce="option => option.value"
                  :label="label"
+                 :multiple="multiple"
         />
         <label>{{ label }}</label>
 
@@ -25,6 +26,10 @@
                 default() {
                     return []
                 }
+            },
+            multiple: {
+                type: Boolean,
+                default: false
             },
             name: String,
             label: String,

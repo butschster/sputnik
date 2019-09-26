@@ -38,7 +38,14 @@
                            required/>
             </div>
 
-            <Modules v-model="form.modules"/>
+            <ModuleForm
+                :module="module"
+                :key="module.key"
+                @onChange="updateModuleData"
+                v-for="module in modulesWithForm"
+            />
+
+            <Modules @onSelect="onModuleSelect"/>
 
             <button class="btn btn-primary shadow-lg" @click="onSubmit">
                 <i class="fas fa-plus"></i>
@@ -54,11 +61,12 @@
 <script>
     import {mapGetters} from 'vuex'
     import Modules from "./partials/Modules"
+    import ModuleForm from "./partials/ModuleForm"
     import FormInput from '@vue/components/Form/Input'
     import FormSelect from '@vue/components/Form/Select'
 
     export default {
-        components: {Modules, FormSelect, FormInput},
+        components: {ModuleForm, Modules, FormSelect, FormInput},
         data() {
             return {
                 loading: false,
@@ -67,8 +75,9 @@
                     team_id: null,
                     ip: null,
                     ssh_port: 22,
-                    modules: []
                 },
+                modulesData: {},
+                selectedModules: [],
                 teams: [],
                 types: []
             }
@@ -77,6 +86,12 @@
             this.load()
         },
         methods: {
+            updateModuleData(module, data) {
+                this.modulesData[module] = data
+            },
+            onModuleSelect(modules) {
+                this.selectedModules = modules
+            },
             load() {
                 this.loading = true
 
@@ -99,11 +114,22 @@
                     this.$handleError(e)
                 }
             },
-            async onSubmit(data) {
+            async onSubmit() {
                 this.loading = true
 
                 try {
-                    const server = await this.$store.dispatch('servers/createServer', Object.assign({}, this.form, data))
+                    const modules = this.selectedModules.map(m => {return {key: m.key, ...this.modulesData[m.key]}})
+
+                    const server = await this.$store.dispatch(
+                        'servers/createServer',
+                        Object.assign(
+                            {},
+                            this.form,
+                            {
+                                modules: _.keyBy(modules, m => m.key)
+                            }
+                        )
+                    )
 
                     this.$notify.success(
                         this.$t('server.form.create.message.created')
@@ -121,7 +147,10 @@
         computed: {
             ...mapGetters('auth', {
                 user: 'getUser',
-            })
+            }),
+            modulesWithForm() {
+                return this.selectedModules.filter(m => m.fields.length > 0)
+            }
         }
     }
 </script>
