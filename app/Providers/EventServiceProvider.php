@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\Task\CallbacksHandled;
 use App\Events\WebHooks;
 use App\Events\Task;
 use App\Events\Server;
@@ -23,7 +24,7 @@ class EventServiceProvider extends ServiceProvider
 
         ],
         Server\Configured::class => [
-            //\App\Listeners\Server\CreateHttpFirewallRules::class,
+            \App\Listeners\Server\CreateSSHFirewallRules::class,
             \App\Listeners\Server\ScheduleSystemJobs::class,
             \App\Listeners\Server\InstallModulesWhenServerWasConfigured::class,
         ],
@@ -32,7 +33,8 @@ class EventServiceProvider extends ServiceProvider
         ],
         Server\Module\Installed::class => [
             \App\Listeners\Server\ClearModuleMetaInformation::class,
-            \App\Listeners\Server\Module\MarkModuleAsInstalled::class
+            \App\Listeners\Server\Module\MarkModuleAsInstalled::class,
+            \App\Listeners\Server\Module\FireModuleEventsWhenItInstalled::class,
         ],
         Server\Alert\Created::class => [
             \App\Listeners\Server\Alert\UpdateLastAlertTimestampForCollaborators::class,
@@ -49,6 +51,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         Task\Finished::class => [
             \App\Listeners\Server\Site\UpdateDeploymentStatus::class,
+        ],
+        Task\CallbacksHandled::class => [
+            \App\Listeners\Server\Task\RemoveCallbacksFromTask::class,
         ],
         WebHooks\Ping::class => [
 

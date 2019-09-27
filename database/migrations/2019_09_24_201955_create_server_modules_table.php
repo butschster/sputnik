@@ -22,6 +22,8 @@ class CreateServerModulesTable extends Migration
             $table->string('status')->default(Module::STATUS_PENDING);
             $table->json('meta')->nullable();
 
+            $table->unique(['server_id', 'name']);
+
             $table->timestamps();
         });
     }

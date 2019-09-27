@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Contracts\Server\Modules\Registry as RegistryContract;
 use App\Contracts\Server\Modules\Repository as RepositoryContract;
+use App\Server\Module;
 use App\Server\Modules\BaseSettings;
 use App\Server\Modules\PHP;
+use App\Server\Modules\Webserver;
 use App\Server\Modules\Database;
 use App\Server\Modules\Repository;
 use App\Server\Modules\Security;
@@ -30,6 +32,8 @@ class ServerModulesServiceProvider extends ServiceProvider
         PHP\Composer::class,
         PHP\Deployer::class,
 
+        Webserver\Nginx::class,
+
         Database\MySQL5::class,
         Database\MySQL8::class,
         Database\MariaDB::class,
@@ -37,8 +41,9 @@ class ServerModulesServiceProvider extends ServiceProvider
         Database\MongoDB::class,
         Database\Redis::class,
 
+        Security\OpenVPN::class,
         Security\Fail2Ban::class,
-        Security\Ufw::class,
+        //Security\Ufw::class,
 
         Tools\Supervisor::class,
 
@@ -75,6 +80,6 @@ class ServerModulesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Module::setEventDispatcher($this->app['events']);
     }
 }

@@ -43,6 +43,17 @@ class Module extends Model
         parent::boot();
     }
 
+    /**
+     * Check if module belongs to categories
+     *
+     * @param array $categories
+     * @return bool
+     * @throws \App\Exceptions\Server\ModuleNotFoundException
+     */
+    public function belongsToCategories(array $categories): bool
+    {
+        return collect($this->toModule()->categories())->intersect($categories)->count() === count($categories);
+    }
 
     /**
      * @return \App\Contracts\Server\Module

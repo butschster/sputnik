@@ -3,12 +3,27 @@
 namespace App\Scripts\Server\Callbacks;
 
 use App\Contracts\Scripts\Callback;
+use App\Contracts\Server\Modules\Registry;
 use App\Events\Server\Module\Installed;
 use App\Models\Server\Task;
+use App\Server\Module;
 use Illuminate\Support\Arr;
 
 class ModuleInstalled implements Callback
 {
+    /**
+     * @var Registry
+     */
+    protected $registry;
+
+    /**
+     * @param Registry $registry
+     */
+    public function __construct(Registry $registry)
+    {
+        $this->registry = $registry;
+    }
+
     /**
      * When the task "Configuring Web Server" is finished it runs this callback
      * and the server changes status to finished
@@ -16,6 +31,7 @@ class ModuleInstalled implements Callback
      * @param Task $task
      *
      * @return void
+     * @throws \App\Exceptions\Server\ModuleNotFoundException
      */
     public function handle(Task $task): void
     {
@@ -26,5 +42,8 @@ class ModuleInstalled implements Callback
         }
 
         event(new Installed($task->server, $module));
+
+        $this->registry->get($module)
+            ->fireEvent('installed', $task->server);
     }
 }

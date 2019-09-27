@@ -18,6 +18,16 @@ class Redis extends Module
     }
 
     /**
+     * Get module type
+     *
+     * @return string
+     */
+    public function type(): string
+    {
+        return 'database.nosql';
+    }
+
+    /**
      * Get module title
      * @return string
      */

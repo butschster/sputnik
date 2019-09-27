@@ -22,6 +22,7 @@ class DatabaseResource extends JsonResource
         return [
             'id' => $this->id,
             'server_id' => $this->server_id,
+            'type' => $this->type,
             'name' => $this->name,
             'user' => $this->name,
             'password' => $this->password,

@@ -3,9 +3,31 @@
 namespace App\Server;
 
 use App\Meta\FieldsCollection;
+use App\Server\Modules\Concerns\HasEvents;
 
 abstract class Module implements \App\Contracts\Server\Module
 {
+    use HasEvents;
+
+    /**
+     * The event dispatcher instance.
+     *
+     * @var \Illuminate\Contracts\Events\Dispatcher
+     */
+    protected static $dispatcher;
+
+    /**
+     * The array of booted modules.
+     *
+     * @var array
+     */
+    protected static $booted = [];
+
+    public function __construct()
+    {
+        $this->bootIfNotBooted();
+    }
+
     /**
      * Get module categories
      * @return array
@@ -62,5 +84,28 @@ abstract class Module implements \App\Contracts\Server\Module
     protected function fields(): array
     {
         return [];
+    }
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+
+    }
+
+    /**
+     * Check if the model needs to be booted and if so, do it.
+     *
+     * @return void
+     */
+    protected function bootIfNotBooted()
+    {
+        if (! isset(static::$booted[static::class])) {
+            static::$booted[static::class] = true;
+            static::boot();
+        }
     }
 }

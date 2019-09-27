@@ -19,6 +19,7 @@ class PostgreSQL extends Module
 
     /**
      * Get module title
+     *
      * @return string
      */
     public function title(): string

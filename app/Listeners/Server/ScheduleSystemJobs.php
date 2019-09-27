@@ -37,14 +37,7 @@ class ScheduleSystemJobs
      */
     public function handle(Configured $event): void
     {
-        $jobs = [];
-        switch ($event->server->type) {
-            case 'webserver':
-                $jobs = $this->jobs;
-                break;
-        }
-
-        foreach ($jobs as $job) {
+        foreach ($this->jobs as $job) {
             $event->server->cronJobs()->create($job);
         }
     }

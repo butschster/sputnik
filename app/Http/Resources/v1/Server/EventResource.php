@@ -19,7 +19,7 @@ class EventResource extends JsonResource
      */
     public function toArray($request)
     {
-        if (!$this instanceof Event) {
+        if (!$this->resource instanceof Event) {
             return [];
         }
 

@@ -7,6 +7,7 @@
         </div>
         <div class="flex">
             <FormInput v-model="form.name" label="Name" name="name" class="flex-1 mr-8" required autofocus/>
+            <FormSelect v-model="form.module_id" :options="modulesOptions" label="Module" name="module_id" class="mr-8" required/>
             <FormPassword v-model="form.password" label="Password" name="password" class="mr-8"/>
 
             <div class="form-group mb-0">
@@ -17,10 +18,11 @@
 </template>
 
 <script>
+    import FormSelect from '@vue/components/Form/Select'
     import FormInput from '@vue/components/Form/Input'
     import FormPassword from '@vue/components/Form/Password'
     export default {
-        components: {FormInput, FormPassword},
+        components: {FormInput, FormSelect, FormPassword},
         props: {
             server: Object
         },
@@ -28,12 +30,28 @@
             return {
                 loading: false,
                 form: {
+                    module_id: null,
                     name: null,
                     password: null
-                }
+                },
+                modules: []
             }
         },
+        mounted() {
+            this.loadModules()
+        },
         methods: {
+            async loadModules() {
+                this.loading = true
+                try {
+                    this.modules = await this.$api.serverModules.installed(
+                        this.server.id, ['database', 'sql']
+                    )
+                } catch (e) {
+                    this.$handleError(e)
+                }
+                this.loading = false
+            },
             async onSubmit() {
                 this.loading = true
                 try {
@@ -52,6 +70,16 @@
                     name: null,
                     password: null
                 }
+            }
+        },
+        computed: {
+            modulesOptions() {
+                return this.modules.map(m => {
+                    return {
+                        label: m.title,
+                        value: m.id
+                    }
+                })
             }
         }
     }

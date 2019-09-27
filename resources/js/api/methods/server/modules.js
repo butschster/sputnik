@@ -22,9 +22,9 @@ export async function list() {
  * @param {String} serverId
  * @return {Object}
  */
-export async function installed(serverId) {
+export async function installed(serverId, categories = []) {
     try {
-        const response = await api_route('v1.server.modules', {server: serverId}).request()
+        const response = await api_route('v1.server.modules', {server: serverId}).request({categories})
         return response.data.data
     } catch (e) {
         throw new ApiRequestError('Can not load server modules.')

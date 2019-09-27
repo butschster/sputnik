@@ -40,6 +40,15 @@ class SchemaServiceProvider extends ServiceProvider
                 ->onDelete('cascade');
         });
 
+        Blueprint::macro('belongsToModule', function () {
+            $this->uuid('module_id')->index();
+
+            $this->foreign('module_id')
+                ->references('id')
+                ->on('server_modules')
+                ->onDelete('cascade');
+        });
+
         Blueprint::macro('belongsToUser', function () {
             $this->uuid('user_id')->index();
             $this->foreign('user_id')

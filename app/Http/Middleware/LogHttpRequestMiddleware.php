@@ -29,12 +29,12 @@ class LogHttpRequestMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $this->logger->info('Request', [
+        $this->logger->debug('Request', [
             'url' => $request->fullUrl(),
             'method' => $request->method(),
             'data' => $request->all(),
             'query' => $request->query(),
-            'ip' => $request->ip()
+            'ip' => $request->ip(),
         ]);
 
         return $next($request);

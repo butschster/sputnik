@@ -1,10 +1,10 @@
 import * as links from "@js/router/links"
-import Str from '@js/helpers/str'
+import {Modules} from "./Modules"
 
 export class Server {
     constructor(server) {
         this.server = server
-        this.modules = server.modules ? server.modules.map(module => module.key) : []
+        this.modules = new Modules(server.modules)
     }
 
     get isConfigured() {
@@ -23,10 +23,12 @@ export class Server {
         return this.server.status == 'failed'
     }
 
+    /**
+     * @param {String|Array} keys
+     * @return Boolean
+     */
     hasModule(keys) {
-        return this.modules.filter(key => {
-            return Str(key).is(keys)
-        }).length > 0
+        return this.modules.isInstalled(keys)
     }
 
     get links() {
@@ -88,7 +90,6 @@ export class Server {
                 title: 'server.sections.vpn_clients'
             })
         }
-
 
         return items
     }

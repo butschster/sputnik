@@ -2,6 +2,7 @@
 
 namespace App\Services\Task;
 
+use App\Events\Task\CallbacksHandled;
 use App\Services\Task\Contracts\Task;
 use App\Utils\SSH\Contracts\ProcessExecutor;
 
@@ -72,10 +73,17 @@ class FinishService
                 $callback = app($callback);
             }
 
+            logger()->debug('Task callback', [
+                'task' => $task,
+                'callback' => get_class($callback)
+            ]);
+
             $callback->handle($task);
 
             $this->handledCallbacks[] = get_class($callback);
         });
+
+        event(new CallbacksHandled($task, $this->handledCallbacks));
     }
 
     /**

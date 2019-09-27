@@ -1,6 +1,8 @@
 
 @include('scripts.server.configuration.partials.timezone')
 
+@include('scripts.server.configuration.partials.locale')
+
 @include('scripts.server.configuration.partials.swap')
 
 # ================================================

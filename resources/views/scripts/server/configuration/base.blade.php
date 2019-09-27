@@ -39,4 +39,6 @@ chmod 600 /root/.ssh/id_rsa
 @include('scripts.utils.chown')
 @endforeach
 
+ufw allow {{ $server->ssh_port }}
+
 {!! callback_event($server->id, 'server.configured', 100) !!}

@@ -9,6 +9,7 @@ use App\Http\Controllers\API\Controller;
 use App\Http\Requests\Server\Module\StoreRequest;
 use App\Http\Resources\v1\Server\ModulesCollection;
 use App\Models\Server;
+use App\Server\Modules\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -44,15 +45,28 @@ class ModulesController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param Server $server
-     * @return mixed
+     * @return ModulesCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function installed(Server $server): ModulesCollection
+    public function installed(Request $request, Server $server): ModulesCollection
     {
         $this->authorize('show', $server);
 
-        return ModulesCollection::make($server->modules);
+        $this->validate($request, [
+            'categories' => 'nullable|array',
+            'categories.*' => 'string'
+        ]);
+
+        $modules = $server->modules;
+
+        if ($request->has('categories')) {
+            $modules = Collection::forServer($server)->filterByCategories($request->categories)->toCollection();
+        }
+
+        return ModulesCollection::make($modules);
     }
 
     /**

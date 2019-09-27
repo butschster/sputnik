@@ -33,8 +33,6 @@ class UfwRule implements UfwRuleContract
     protected $version;
 
     /**
-     * UfwRule constructor.
-     *
      * @param string $port
      * @param string $policy
      * @param string|null $from

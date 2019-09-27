@@ -17,6 +17,7 @@ class CreateServerDatabasesTable extends Migration
         Schema::create('server_databases', function (Blueprint $table) {
             $table->primaryUuid('id');
             $table->belongsToServer();
+            $table->belongsToModule();
 
             $table->string('name');
             $table->string('password');
