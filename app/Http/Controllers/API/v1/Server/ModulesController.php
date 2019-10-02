@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\API\v1\Server;
 
-use App\Contracts\Server\Module;
 use App\Contracts\Server\Modules\Registry;
 use App\Contracts\Server\Modules\Repository;
 use App\Http\Controllers\API\Controller;
-use App\Http\Requests\Server\Module\StoreRequest;
+use App\Http\Requests\Server\Module\RunActionRequest;
 use App\Http\Resources\v1\Server\ModulesCollection;
 use App\Models\Server;
 use App\Server\Modules\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class ModulesController extends Controller
 {
@@ -35,13 +33,11 @@ class ModulesController extends Controller
     }
 
     /**
-     * @param Registry $registry
-     *
      * @return \Illuminate\Support\Collection
      */
-    public function index(Registry $registry)
+    public function index()
     {
-        return $registry->modules();
+        return $this->registry->modules();
     }
 
     /**
@@ -57,7 +53,7 @@ class ModulesController extends Controller
 
         $this->validate($request, [
             'categories' => 'nullable|array',
-            'categories.*' => 'string'
+            'categories.*' => 'string',
         ]);
 
         $modules = $server->modules;
@@ -70,83 +66,26 @@ class ModulesController extends Controller
     }
 
     /**
-     * @param StoreRequest $request
+     * @param RunActionRequest $request
      * @param Server $server
-     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function install(StoreRequest $request, Server $server)
+    public function runAction(RunActionRequest $request, Server $server)
     {
         $request->persist();
 
-       return $this->responseOk();
-    }
-
-    /**
-     * @param Request $request
-     * @param Server\Module $module
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \App\Exceptions\Server\ModuleNotFoundException
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function uninstall(Request $request, Server\Module $module)
-    {
-        $this->authorize('update', $module->server);
-
-        $this->repository->uninstall($module);
-
         return $this->responseOk();
     }
 
     /**
      * @param Request $request
-     * @param Server\Module $module
-     * @return \Illuminate\Http\JsonResponse
+     * @param Server $server
+     * @return \App\Contracts\Server\Modules\Action
      * @throws \App\Exceptions\Server\ModuleNotFoundException
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function restart(Request $request, Server\Module $module)
+    public function script(Request $request, Server $server, string $module, string $action)
     {
-        $this->authorize('update', $module->server);
-
-        $this->repository->restart($module);
-
-        return $this->responseOk();
-    }
-
-    /**
-     * @param Request $request
-     * @param Server\Module $module
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \App\Exceptions\Server\ModuleNotFoundException
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function start(Request $request, Server\Module $module)
-    {
-        $this->authorize('update', $module->server);
-
-        $this->repository->start($module);
-
-        return $this->responseOk();
-    }
-
-    /**
-     * @param Request $request
-     * @param Server\Module $module
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \App\Exceptions\Server\ModuleNotFoundException
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function stop(Request $request, Server\Module $module)
-    {
-        $this->authorize('update', $module->server);
-
-        $this->repository->stop($module);
-
-        return $this->responseOk();
+        return $this->registry->get($module)->getAction($action)->render($server);
     }
 }

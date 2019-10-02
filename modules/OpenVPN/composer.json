@@ -1,0 +1,22 @@
+{
+  "name": "sputnik/OpenVPN",
+  "description": "Server OpenVPN module",
+  "type": "module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pavel Buchnev",
+      "email": "butschster@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Module\\OpenVPN\\Providers\\ServiceProvider"
+      ]
+    }
+  }
+}

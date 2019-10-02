@@ -5,6 +5,7 @@ import auth from './modules/auth'
 import servers from './modules/servers'
 import server from './modules/server'
 import notifications from './modules/notifications'
+import createLogger from "vuex/dist/logger";
 
 Vue.use(Vuex)
 
@@ -16,4 +17,5 @@ export default new Vuex.Store({
         server,
         notifications
     },
+    plugins: process.env.APP_DEBUG ? [createLogger()] : []
 })

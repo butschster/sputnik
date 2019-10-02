@@ -40,10 +40,6 @@ export function serverUsers(server) {
     return makeRoute('server.users', {id: server})
 }
 
-export function serverOpenVPNClients(server) {
-    return makeRoute('server.openvpn.clients', {id: server})
-}
-
 export function serverFirewall(server) {
     return makeRoute('server.firewall', {id: server})
 }

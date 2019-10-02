@@ -1,11 +1,12 @@
 import axios from "axios"
 import {ErrorBag} from "vee-validate"
 import {forEach} from "lodash";
-import {links, router} from '../router'
+
 import store from "@js/vue/store"
 import notify from "@js/vue/plugins/notify"
 
 axios.interceptors.response.use(response => response, error => {
+    require('../router')
 
     switch (error.response.status) {
         case 403:

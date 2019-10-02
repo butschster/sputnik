@@ -45,10 +45,9 @@ class Install implements ShouldQueue
 
     /**
      * @param Repository $repository
-     * @throws \App\Exceptions\Server\ModuleNotFoundException
      */
     public function handle(Repository $repository)
     {
-        $repository->install($this->module, $this->server, $this->data);
+        $repository->run($this->module, $this->server, $this->data);
     }
 }

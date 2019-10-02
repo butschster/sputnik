@@ -35,7 +35,6 @@ class AuthServiceProvider extends ServiceProvider
         Server\User::class => ServerUserPolicy::class,
         Server\Task::class => ServerTaskPolicy::class,
         Server\Firewall\Rule::class => ServerFirewallPolicy::class,
-        Server\OpenVPN\Client::class => OpenVPNClientPolicy::class,
     ];
 
     /**

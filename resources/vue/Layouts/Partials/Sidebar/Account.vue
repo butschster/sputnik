@@ -11,21 +11,12 @@
 </template>
 
 <script>
+    import LinksManager from '@js/LinksManager'
+
     export default {
         computed: {
             links() {
-                return [
-                    {
-                        title: 'user.sidebar.profile',
-                        link: this.$link.profile(),
-                        icon: 'fa-key'
-                    },
-                    {
-                        title: 'user.sidebar.teams',
-                        link: this.$link.profileTeams(),
-                        icon: 'fa-chalkboard'
-                    }
-                ]
+                return LinksManager.sidebar.links
             }
         }
     }

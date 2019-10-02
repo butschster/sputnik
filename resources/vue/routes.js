@@ -14,9 +14,6 @@ import ServerTasksList from '@vue/Pages/Servers/Tasks/List'
 import ServerTaskShow from '@vue/Pages/Servers/Tasks/Show'
 import ServerScheduler from '@vue/Pages/Servers/Scheduler/Index'
 
-// OpenVPN Clients
-import ServerClients from '@vue/Pages/Servers/OpenVPN/Clients/Index'
-
 // WebServer Supervisor
 import ServerSupervisor from '@vue/Pages/Servers/WebServer/Supervisor/Index'
 
@@ -40,8 +37,9 @@ import TeamBilling from "@vue/Pages/Profile/Team/Billing";
 import TeamSubscription from "@vue/Pages/Profile/Team/Subscription/Index";
 
 import NotFoundPage from '@vue/Pages/NotFound'
+import {Manager} from "@js/router/manager";
 
-export default [
+const routes = [
     {
         path: '/',
         component: LayoutBasic,
@@ -104,7 +102,6 @@ export default [
                                 name: 'server.tasks',
                                 component: ServerTasksList,
                             },
-
                             {
                                 path: '/server/:id/tasks/:task_id',
                                 name: 'server.task.show',
@@ -122,11 +119,7 @@ export default [
                         name: 'server.users',
                         component: ServerUsers,
                     },
-                    {
-                        path: '/server/:id/clients',
-                        name: 'server.openvpn.clients',
-                        component: ServerClients,
-                    },
+
                     {
                         path: '/server/:id/firewall',
                         name: 'server.firewall',
@@ -197,3 +190,7 @@ export default [
         redirect: '/404'
     },
 ]
+
+const manager = new Manager(routes)
+
+export default manager

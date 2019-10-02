@@ -1,6 +1,5 @@
 import methods from './methods'
 import {ApiError, ApiRequestError} from "@js/errors"
-import Vue from 'vue'
 
 class ApiMethods {
     constructor(methods) {

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Contracts\Server\Modules\Registry as RegistryContract;
 use App\Contracts\Server\Modules\Repository as RepositoryContract;
 use App\Server\Module;
+use App\Server\Modules\Action;
 use App\Server\Modules\BaseSettings;
 use App\Server\Modules\PHP;
 use App\Server\Modules\Webserver;
@@ -24,31 +25,7 @@ class ServerModulesServiceProvider extends ServiceProvider
      * @var array
      */
     protected $modules = [
-        BaseSettings::class,
-        
-        PHP\PHP58::class,
-        PHP\PHP72::class,
-        PHP\PHP73::class,
-        PHP\Composer::class,
-        PHP\Deployer::class,
-
-        Webserver\Nginx::class,
-
-        Database\MySQL5::class,
-        Database\MySQL8::class,
-        Database\MariaDB::class,
-        Database\PostgreSQL::class,
-        Database\MongoDB::class,
-        Database\Redis::class,
-
-        Security\OpenVPN::class,
-        Security\Fail2Ban::class,
-        //Security\Ufw::class,
-
-        Tools\Supervisor::class,
-
-        Javascript\NodeJs::class,
-        Javascript\Yarn::class,
+        //
     ];
 
     /**
@@ -65,6 +42,8 @@ class ServerModulesServiceProvider extends ServiceProvider
                 );
             }
 
+            $registry->registerFromArray($this->baseSettingsModule());
+
             return $registry;
         });
 
@@ -75,11 +54,29 @@ class ServerModulesServiceProvider extends ServiceProvider
         });
     }
 
+    protected function baseSettingsModule(): array
+    {
+        return [
+            'key' => 'base_settings',
+            'title' => 'Base settings',
+            'categories' => ['base'],
+            'actions' => [
+                'install' => [
+                    'script_view' => 'scripts.server.configuration.partials.base_settings',
+                    'extensions' => [
+                        \App\Server\Modules\Actions\Extensions\Installer::class,
+                        \App\Server\Modules\Actions\Extensions\BaseSettings::class,
+                    ],
+                ],
+            ],
+        ];
+    }
+
     /**
      * @return void
      */
     public function boot()
     {
-        Module::setEventDispatcher($this->app['events']);
+
     }
 }

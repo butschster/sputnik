@@ -2,30 +2,23 @@
 
 namespace App\Server;
 
-use App\Meta\FieldsCollection;
-use App\Server\Modules\Concerns\HasEvents;
+use App\Contracts\Server\Modules\Action;
+use App\Exceptions\Server\InvalidModuleActionException;
+use App\Exceptions\Server\ModuleActionNotFoundException;
+use App\Models\Server;
+use Illuminate\Support\Arr;
 
 abstract class Module implements \App\Contracts\Server\Module
 {
-    use HasEvents;
 
     /**
-     * The event dispatcher instance.
+     * Get module meta
      *
-     * @var \Illuminate\Contracts\Events\Dispatcher
+     * @return array
      */
-    protected static $dispatcher;
-
-    /**
-     * The array of booted modules.
-     *
-     * @var array
-     */
-    protected static $booted = [];
-
-    public function __construct()
+    public function meta(): array
     {
-        $this->bootIfNotBooted();
+        return [];
     }
 
     /**
@@ -33,6 +26,74 @@ abstract class Module implements \App\Contracts\Server\Module
      * @return array
      */
     public function categories(): array
+    {
+        return [];
+    }
+
+    /**
+     * Get module conflicts
+     *
+     * @return array
+     */
+    public function conflicts(): array
+    {
+        return [];
+    }
+
+    /**
+     * Get module dependencies
+     * @return array
+     */
+    public function dependencies(): array
+    {
+        return [];
+    }
+
+    /**
+     * Get action by name
+     *
+     * @param string $name
+     * @return Action
+     */
+    public function getAction(string $name): Action
+    {
+        $action = Arr::get($this->actions(), $name);
+
+        if (!$action) {
+            throw new ModuleActionNotFoundException(
+                sprintf('Action [%s] for module [%s] not found', $name, $this->title())
+            );
+        }
+
+        if (!$action instanceof Action) {
+            throw new InvalidModuleActionException('Action should be instanced of [App\Contracts\Server\Modules\Action] interface');
+        }
+
+        return $action;
+    }
+
+    /**
+     * Run action on a specified Server
+     *
+     * @param string $name
+     * @param Server $server
+     * @param array $data
+     * @return Server\Task
+     * @throws \Throwable
+     */
+    public function runAction(string $name, Server $server, array $data = []): Server\Task
+    {
+        $action = $this->getAction($name);
+
+        return $action->run($this, $server, $data);
+    }
+
+    /**
+     * Get list of actions
+     *
+     * @return array
+     */
+    public function actions(): array
     {
         return [];
     }
@@ -48,64 +109,8 @@ abstract class Module implements \App\Contracts\Server\Module
             'key' => $this->key(),
             'categories' => $this->categories(),
             'dependencies' => $this->dependencies(),
-            'fields' => $this->getFields(),
-            'defaults' => $this->defaultSettings(),
+            'conflicts' => $this->conflicts(),
+            'actions' => collect($this->actions())->toArray(),
         ];
-    }
-
-    /**
-     * Get module dependencies
-     * @return array
-     */
-    public function dependencies(): array
-    {
-        return [];
-    }
-
-    /**
-     * @return array
-     */
-    public function defaultSettings(): array
-    {
-        return [];
-    }
-
-    /**
-     * @return FieldsCollection
-     */
-    public function getFields(): FieldsCollection
-    {
-        return new FieldsCollection($this->fields());
-    }
-
-    /**
-     * @return array
-     */
-    protected function fields(): array
-    {
-        return [];
-    }
-
-    /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-
-    }
-
-    /**
-     * Check if the model needs to be booted and if so, do it.
-     *
-     * @return void
-     */
-    protected function bootIfNotBooted()
-    {
-        if (! isset(static::$booted[static::class])) {
-            static::$booted[static::class] = true;
-            static::boot();
-        }
     }
 }

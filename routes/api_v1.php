@@ -57,11 +57,7 @@ Route::middleware('auth')->group(function () {
         // Server modules
         Route::get('servers/modules', 'Server\ModulesController@index')->name('servers.modules');
         Route::get('server/{server}/modules', 'Server\ModulesController@installed')->name('server.modules');
-        Route::post('server/{server}/modules/install', 'Server\ModulesController@install')->name('server.modules.install');
-        Route::delete('server/module/{module}/uninstall', 'Server\ModulesController@uninstall')->name('server.module.uninstall');
-        Route::post('server/module/{module}/restart', 'Server\ModulesController@restart')->name('server.module.restart');
-        Route::post('server/module/{module}/start', 'Server\ModulesController@start')->name('server.module.start');
-        Route::post('server/module/{module}/stop', 'Server\ModulesController@stop')->name('server.module.stop');
+        Route::get('server/{server}/module/{module}/{action}', 'Server\ModulesController@script')->name('server.module.action.script');
 
         // Server Events
         Route::get('server/{server}/events', 'Server\EventsController@index')->name('server.events');
@@ -95,11 +91,6 @@ Route::middleware('auth')->group(function () {
         Route::get('server/user/{user}/download', 'Server\UserController@downloadPublicKey')->name('server.user.download_key');
         Route::delete('server/user/{user}', 'Server\UserController@delete')->name('server.user.delete');
 
-        // OpenVPN clients
-        Route::get('server/{server}/openvpn/clients', 'Server\OpenVPN\ClientsController@index')->name('server.openvpn.clients');
-        Route::post('server/{server}/openvpn/client', 'Server\OpenVPN\ClientsController@store')->name('server.openvpn.client.store');
-        Route::get('server/openvpn/client/{client}/download', 'Server\OpenVPN\ClientsController@download')->name('server.openvpn.client.download');
-        Route::delete('server/openvpn/{client}', 'Server\OpenVPN\ClientsController@delete')->name('server.openvpn.client.delete');
 
         // Server tasks
         Route::get('server/{server}/tasks', 'Server\TasksController@index')->name('server.tasks');

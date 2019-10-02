@@ -19,7 +19,6 @@ import * as serverSites from "./server/sites"
 import * as serverSiteDeployment from "./server/site/deployment"
 import * as serverSiteEnvironment from "./server/site/environment"
 import * as serverSiteRepository from "./server/site/repository"
-import * as serverOpenVPNClients from "./server/openvpn/clients"
 
 export default {
     notifications,
@@ -43,5 +42,4 @@ export default {
     serverCron,
     serverDatabases,
     serverSupervisor,
-    serverOpenVPNClients,
 }

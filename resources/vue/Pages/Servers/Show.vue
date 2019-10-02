@@ -32,6 +32,7 @@
     </div>
 </template>
 <script>
+    import LinksManager from '@js/LinksManager'
     import ServerStatus from "@vue/components/Server/partials/ServerStatus"
     import InstallProgress from "@vue/components/Server/partials/InstallProgress"
     import NotSupported from "@vue/components/Server/partials/NotSupported"
@@ -83,20 +84,7 @@
         },
         computed: {
             links() {
-                return [
-                    {
-                        title: 'server.sections.events',
-                        link: this.$link.serverEvents(this.server)
-                    },
-                    {
-                        title: 'server.sections.tasks',
-                        link: this.$link.serverTasks(this.server)
-                    },
-                    {
-                        title: 'server.sections.settings',
-                        link: this.$link.serverSettings(this.server)
-                    },
-                ]
+                return LinksManager.serverTopSidebar.linksWithArgs(this.server)
             }
         },
         watch: {

@@ -1,0 +1,22 @@
+{
+  "name": "sputnik/Mysql",
+  "description": "Server MySQL database module",
+  "type": "module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pavel Buchnev",
+      "email": "butschster@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Module\\Mysql\\Providers\\ServiceProvider"
+      ]
+    }
+  }
+}

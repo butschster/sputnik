@@ -42,3 +42,13 @@ function callback_event(string $serverId, string $message, int $progress = 0): s
         'server_id' => $serverId, 'message' => $message, 'progress' => $progress,
     ], 10);
 }
+
+/**
+ * @param string $path
+ *
+ * @return string
+ */
+function modules_path(string $path = ''): string
+{
+    return app(App\Contracts\Modules\ManagerInterface::class)->basePath() . ($path ? DIRECTORY_SEPARATOR . $path : $path);
+}

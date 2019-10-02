@@ -39,6 +39,8 @@
         "@panter/vue-i18next": "^0.15.1",
         "@sentry/browser": "^5.6.3",
         "animatewithsass": "^3.2.1",
+        "file-exists": "^5.0.1",
+        "fs": "0.0.1-security",
         "i18next": "^17.0.13",
         "laravel-vue-pagination": "^2.3.0",
         "noty": "^3.2.0-beta",

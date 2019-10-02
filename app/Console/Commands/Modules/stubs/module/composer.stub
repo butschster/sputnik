@@ -1,0 +1,22 @@
+{
+  "name": "sputnik/{{module}}",
+  "description": "{{module-title}}",
+  "type": "module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pavel Buchnev",
+      "email": "butschster@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "{{namespace-escaped}}\\Providers\\ServiceProvider"
+      ]
+    }
+  }
+}

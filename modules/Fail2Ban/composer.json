@@ -1,0 +1,22 @@
+{
+  "name": "sputnik/Fail2Ban",
+  "description": "Server fail2ban module",
+  "type": "module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pavel Buchnev",
+      "email": "butschster@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Module\\Fail2Ban\\Providers\\ServiceProvider"
+      ]
+    }
+  }
+}

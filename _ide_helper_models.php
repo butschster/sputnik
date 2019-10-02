@@ -295,77 +295,6 @@ namespace App\Models{
 	class CallbackLog extends \Eloquent {}
 }
 
-namespace App\Models{
-/**
- * App\Models\OpenVPNServer
- *
- * @property string $id
- * @property string $user_id
- * @property string $team_id
- * @property string $name
- * @property string $ip
- * @property int $ssh_port
- * @property string|null $sudo_password
- * @property array|null $meta
- * @property array|null $os_information
- * @property string $public_key
- * @property string $private_key
- * @property string $status
- * @property \Illuminate\Support\Carbon|null $configuring_job_dispatched_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Alert[] $alerts
- * @property-read int|null $alerts_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\OpenVPN\Client[] $clients
- * @property-read int|null $clients_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\CronJob[] $cronJobs
- * @property-read int|null $cron_jobs_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Daemon[] $daemons
- * @property-read int|null $daemons_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Database[] $databases
- * @property-read int|null $databases_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Event[] $events
- * @property-read int|null $events_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Firewall\Rule[] $firewallRules
- * @property-read int|null $firewall_rules_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Module[] $modules
- * @property-read int|null $modules_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Ping[] $pings
- * @property-read int|null $pings_count
- * @property-write mixed $keypair
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Site[] $sites
- * @property-read int|null $sites_count
- * @property-read \App\Models\Server\Task $task
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Task[] $tasks
- * @property-read int|null $tasks_count
- * @property-read \App\Models\User\Team $team
- * @property-read \App\Models\User $user
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\User[] $users
- * @property-read int|null $users_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server configured()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereConfiguringJobDispatchedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereIp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereMeta($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereOsInformation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer wherePrivateKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer wherePublicKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereSshPort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereSudoPassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereTeamId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OpenVPNServer whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server withMonitoring()
- */
-	class OpenVPNServer extends \Eloquent {}
-}
-
 namespace App\Models\Server{
 /**
  * App\Models\Server\CronJob
@@ -380,6 +309,7 @@ namespace App\Models\Server{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Server $server
  * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob forServer(\App\Models\Server $server)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob query()
@@ -407,6 +337,7 @@ namespace App\Models\Server{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Server $server
  * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Record forServer(\App\Models\Server $server)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Record newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Record newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Record query()
@@ -456,8 +387,10 @@ namespace App\Models\Server{
  * @property string $collation
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $module_id
  * @property-read \App\Models\Server $server
  * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database forServer(\App\Models\Server $server)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database query()
@@ -465,6 +398,7 @@ namespace App\Models\Server{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereCollation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereModuleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereServerId($value)
@@ -480,11 +414,13 @@ namespace App\Models\Server{
  * @property string $id
  * @property string $server_id
  * @property string $name
+ * @property string $status
  * @property array|null $meta
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Server $server
  * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Module forServer(\App\Models\Server $server)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Module newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Module newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Module query()
@@ -493,6 +429,7 @@ namespace App\Models\Server{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Module whereMeta($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Module whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Module whereServerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Module whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Module whereUpdatedAt($value)
  */
 	class Module extends \Eloquent {}
@@ -542,6 +479,7 @@ namespace App\Models\Server{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Server $server
  * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon forServer(\App\Models\Server $server)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon query()
@@ -578,6 +516,7 @@ namespace App\Models\Server{
  * @property-read \App\Models\Server $server
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task disableCache()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task for($class)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Task forServer(\App\Models\Server $server)
  * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Server\Task newModelQuery()
  * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Server\Task newQuery()
  * @method static \GeneaLabs\LaravelModelCaching\CachedBuilder|\App\Models\Server\Task query()
@@ -615,6 +554,7 @@ namespace App\Models\Server\Firewall{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Server $server
  * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule forServer(\App\Models\Server $server)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Firewall\Rule query()
@@ -645,6 +585,7 @@ namespace App\Models\Server{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Server $server
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert forServer(\App\Models\Server $server)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Alert query()
@@ -686,6 +627,7 @@ namespace App\Models\Server{
  * @property-read \App\Models\User\SourceProvider|null $sourceProvider
  * @property-read \App\Models\Server\Task $task
  * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site forServer(\App\Models\Server $server)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site query()
@@ -741,6 +683,7 @@ namespace App\Models\Server{
  * @property int $success
  * @property \Illuminate\Support\Carbon $created_at
  * @property-read \App\Models\Server $server
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping forServer(\App\Models\Server $server)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping query()
@@ -749,29 +692,6 @@ namespace App\Models\Server{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Ping whereSuccess($value)
  */
 	class Ping extends \Eloquent {}
-}
-
-namespace App\Models\Server\OpenVPN{
-/**
- * App\Models\Server\OpenVPN\Client
- *
- * @property string $id
- * @property string $server_id
- * @property string $name
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Server $server
- * @property-read \App\Models\Server\Task $task
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client whereServerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\OpenVPN\Client whereUpdatedAt($value)
- */
-	class Client extends \Eloquent {}
 }
 
 namespace App\Models\Server{
@@ -794,6 +714,7 @@ namespace App\Models\Server{
  * @property-read \App\Models\Server $server
  * @property-write mixed $keypair
  * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User forServer(\App\Models\Server $server)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User query()

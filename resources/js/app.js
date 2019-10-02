@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import router from './router'
 import Gate from './policies/Gate'
 import store from './vue/store'
 import i18n from './vue/plugins/i18n'
@@ -9,7 +8,8 @@ import BadgeTimeFrom from "@vue/components/UI/Badge/TimeFrom"
 import BadgeTaskStatus from "@vue/components/UI/Badge/TaskStatus"
 import BadgeStatus from "@vue/components/UI/Badge/Status"
 import PrismEditor from 'vue-prism-editor'
-import {mapGetters} from 'vuex'
+import ModulesManager from './modules'
+import manager from './LinksManager'
 
 require('./bootstrap')
 
@@ -22,28 +22,35 @@ Vue.component('BadgeTaskStatus', BadgeTaskStatus)
 Vue.component('BadgeStatus', BadgeStatus)
 Vue.component('PrismEditor', PrismEditor)
 
-new Vue({
-    el: '#app',
-    router,
-    store,
-    i18n,
-    metaInfo: {
-        title: '',
-        titleTemplate: '%s | SputnikCloud'
-    },
-    created() {
-        this.$store.dispatch('auth/loadUser').then((e) => {
-            this.$echo.onUserNotificationCreated(this.user.id, (e) => {
-                this.$store.dispatch('notifications/getNotifications')
-            })
-        })
+ModulesManager.init().then(init)
 
-        this.$store.dispatch('notifications/getNotifications')
-        this.$store.dispatch('servers/loadServers')
-    },
-    computed: {
-        ...mapGetters('auth', {
-            user: 'getUser',
-        }),
-    }
-});
+function init() {
+    const {router} = require('./router'),
+        {mapGetters} = require('vuex')
+
+    new Vue({
+        el: '#app',
+        router,
+        store,
+        i18n,
+        metaInfo: {
+            title: '',
+            titleTemplate: '%s | SputnikCloud'
+        },
+        created() {
+            this.$store.dispatch('auth/loadUser').then((e) => {
+                this.$echo.onUserNotificationCreated(this.user.id, (e) => {
+                    this.$store.dispatch('notifications/getNotifications')
+                })
+            })
+
+            this.$store.dispatch('notifications/getNotifications')
+            this.$store.dispatch('servers/loadServers')
+        },
+        computed: {
+            ...mapGetters('auth', {
+                user: 'getUser',
+            }),
+        }
+    })
+}

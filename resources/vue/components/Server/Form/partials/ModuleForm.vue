@@ -2,17 +2,17 @@
     <div class="section my-3">
         <h4>{{ module.title }}</h4>
 
-        <div v-for="field in module.fields" :key="field.key">
+        <div v-for="field in action.fields" :key="field.key">
             <FormText v-model="form[field.key]" :name="field.key" :label="field.title"
                       v-if="field.type == 'Text'"/>
 
             <FormSelect
-                v-model="form[field.key]"
-                :name="`modules.${module.key}.${field.key}`"
-                :label="field.title"
-                :options="field.meta.options"
-                :multiple="field.type == 'MultiSelect'"
-                v-if="field.type == 'Select' || field.type == 'MultiSelect'"
+                    v-model="form[field.key]"
+                    :name="`modules.${module.key}.${field.key}`"
+                    :label="field.title"
+                    :options="field.meta.options"
+                    :multiple="field.type == 'MultiSelect'"
+                    v-if="field.type == 'Select' || field.type == 'MultiSelect'"
             />
         </div>
     </div>
@@ -42,7 +42,12 @@
             }
         },
         mounted() {
-            this.form = this.module.defaults
+            this.form = this.action.settings
+        },
+        computed: {
+            action() {
+                return this.module.getAction('install')
+            }
         }
     }
 </script>

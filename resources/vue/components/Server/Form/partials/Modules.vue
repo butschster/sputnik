@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Loader :loading="loading" />
+        <Loader :loading="loading"/>
         <div class="section" v-if="hasModules">
             <div class="section-header">
                 {{ $t('server.modules.available.title') }}
@@ -31,6 +31,7 @@
 
 <script>
     import Str from '@js/helpers/str'
+    import {Module} from "@js/models/Module";
 
     export default {
         props: {
@@ -65,12 +66,13 @@
         },
         methods: {
             remove(module) {
-                this.selected = this.selected.filter(m => m.key != module.key)
-                this.selected.filter(m => m.dependencies.length > 0).forEach(md => {
-                    if (this.selected.filter(m => Str(m.key).is(md.dependencies)).length === 0) {
-                        this.remove(md)
-                    }
-                })
+                this.selected = this.selected.filter(m => !m.is(module))
+                this.selected.filter(m => m.hasDependencies)
+                    .forEach(md => {
+                        if (this.selected.filter(m => m.checkDependencies(md)).length === 0) {
+                            this.remove(md)
+                        }
+                    })
             },
             select(key) {
                 const module = _.find(this.availableModules, m => m.key === key)
@@ -80,8 +82,8 @@
                     return
                 }
 
-                if (module.dependencies.length > 0) {
-                    if (this.selected.filter(m => Str(m.key).is(module.dependencies)).length === 0) {
+                if (module.hasDependencies) {
+                    if (this.selected.filter(m => m.checkDependencies(module)).length === 0) {
 
                         console.error('Module does\'t have required dependencies.', module.dependencies)
                         return
@@ -97,7 +99,9 @@
                 this.loading = true
 
                 try {
-                    this.modules = await this.$api.serverModules.list()
+                    const modules = await this.$api.serverModules.list()
+
+                    this.modules = Object.values(modules).map(m => new Module(m))
                     this.loaded()
                 } catch (e) {
                     console.error(e)
@@ -116,11 +120,19 @@
             hasModules() {
                 return this.availableModules.length > 0
             },
+            installableModules() {
+                return this.modules.filter(m => m.isInstallable)
+            },
             availableModules() {
-                return _.filter(this.modules, m => {
+                return this.installableModules.filter(m => {
                     return this.except.indexOf(m.key) == -1
                 }).filter(m => {
                     return this.selected.indexOf(m) == -1
+                }).filter(md => {
+                    return this.selected
+                        .filter(m => m.hasConflictsWithModules)
+                        .filter(m => m.checkConflicts(md))
+                        .length === 0
                 })
             }
         }

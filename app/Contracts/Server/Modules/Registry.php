@@ -22,6 +22,13 @@ interface Registry
     public function register(Module $module): void;
 
     /**
+     * Register a new module from array
+     *
+     * @param array $data
+     */
+    public function registerFromArray(array $data): void;
+
+    /**
      * Check if module registered
      *
      * @param string $module

@@ -2,8 +2,8 @@
 
 namespace App\Contracts\Server;
 
-use App\Contracts\Server\Modules\Configuration;
-use App\Meta\FieldsCollection;
+use App\Contracts\Server\Modules\Action;
+use App\Models\Server;
 use Illuminate\Contracts\Support\Arrayable;
 
 interface Module extends Arrayable
@@ -27,10 +27,11 @@ interface Module extends Arrayable
     public function key(): string;
 
     /**
-     * Get module configuration
-     * @return Configuration
+     * Get module meta
+     *
+     * @return array
      */
-    public function configuration(): Configuration;
+    public function meta(): array;
 
     /**
      * Get module dependencies
@@ -39,13 +40,34 @@ interface Module extends Arrayable
     public function dependencies(): array;
 
     /**
-     * Get module default settings
+     * Get module conflicts
+     *
      * @return array
      */
-    public function defaultSettings(): array;
+    public function conflicts(): array;
 
     /**
-     * @return FieldsCollection
+     * Get list of actions
+     *
+     * @return array
      */
-    public function getFields(): FieldsCollection;
+    public function actions(): array;
+
+    /**
+     * Get action by name
+     *
+     * @param string $name
+     * @return Action
+     */
+    public function getAction(string $name): Action;
+
+    /**
+     * Run action on a specified Server
+     *
+     * @param string $name
+     * @param Server $server
+     * @param array $data
+     * @return Server\Task
+     */
+    public function runAction(string $name, Server $server, array $data = []): Server\Task;
 }

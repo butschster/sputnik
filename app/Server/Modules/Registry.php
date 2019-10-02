@@ -35,6 +35,18 @@ class Registry implements RegistryContract
     }
 
     /**
+     * Register a new module from array
+     *
+     * @param array $data
+     */
+    public function registerFromArray(array $data): void
+    {
+        $this->register(
+            Builder::buildFromArray($data)
+        );
+    }
+
+    /**
      * Check if module registered
      *
      * @param string $module

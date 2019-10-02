@@ -17,12 +17,12 @@ VueRouter.prototype.processError = function (error) {
     }
 }
 
-Vue.prototype.$link = links
-
 const router = new VueRouter({
-    routes,
+    routes: routes.list,
     mode: 'history',
 })
+
+Vue.prototype.$link = links
 
 router.beforeEach(async (to, from, next) => {
     NProgress.start()

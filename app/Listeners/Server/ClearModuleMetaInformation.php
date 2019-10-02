@@ -2,19 +2,20 @@
 
 namespace App\Listeners\Server;
 
-use App\Events\Server\Module\Installed;
-use App\Models\Server\Module;
+use App\Events\Server\Module\ActionRan;
 use Illuminate\Support\Arr;
 
 class ClearModuleMetaInformation
 {
     /**
-     * @param Installed $event
+     * @param ActionRan $event
      */
-    public function handle(Installed $event)
+    public function handle(ActionRan $event)
     {
-        $event->server->update([
-            'meta' => Arr::except($event->server->meta, 'modules.'.$event->module)
-        ]);
+        if ($event->action === 'install') {
+            $event->server->update([
+                'meta' => Arr::except($event->server->meta, 'modules.' . $event->module),
+            ]);
+        }
     }
 }

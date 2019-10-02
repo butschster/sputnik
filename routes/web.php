@@ -15,11 +15,11 @@ Route::get('login/bitbucket/callback', 'Auth\BitbucketLoginController@handleProv
 
 Route::middleware('auth')->group(function () {
 
-    Route::any('{vue?}', function (\Illuminate\Http\Request $request) {
+    Route::any('{vue?}', function (\Illuminate\Http\Request $request, \App\Contracts\Modules\ManagerInterface $manager) {
         return view('app', [
             'user' => UserProfileResource::make($request->user()),
+            'modules' => $manager->getModules()->map->getName()
         ]);
-    })->where('vue', '[\/\w\.-]*')->name('app');
+    })->where('vue', '^(?!api)[\/\w\.-]*$')->name('app');
 
 });
-

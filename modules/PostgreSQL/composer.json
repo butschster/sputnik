@@ -1,0 +1,22 @@
+{
+  "name": "sputnik/PostgreSQL",
+  "description": "Postgresql",
+  "type": "module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pavel Buchnev",
+      "email": "butschster@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Module\\PostgreSQL\\Providers\\ServiceProvider"
+      ]
+    }
+  }
+}

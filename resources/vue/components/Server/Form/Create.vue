@@ -149,7 +149,8 @@
                 user: 'getUser',
             }),
             modulesWithForm() {
-                return this.selectedModules.filter(m => m.fields.length > 0)
+                return this.selectedModules
+                    .filter(m => m.getAction('install').hasFields )
             }
         }
     }

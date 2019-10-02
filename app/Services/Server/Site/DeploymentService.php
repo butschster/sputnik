@@ -4,7 +4,6 @@ namespace App\Services\Server\Site;
 
 use App\Jobs\Server\Site\Deployment\TimeOutDeploymentIfStillRunning;
 use App\Models\Server\Site\Deployment;
-use App\Scripts\Server\Callbacks\RestartPHP;
 use App\Scripts\Server\Callbacks\RestartWebServer;
 use App\Scripts\Server\Site\Deployment as DeploymentScript;
 use App\Services\Server\Runnable;
@@ -26,7 +25,6 @@ class DeploymentService
             new DeploymentScript($deployment),
             [
                 'then' => [
-                    RestartPHP::class,
                     RestartWebServer::class,
                 ],
             ]
