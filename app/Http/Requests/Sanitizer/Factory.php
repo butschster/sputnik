@@ -21,6 +21,17 @@ class Factory implements FactoryContract
     }
 
     /**
+     * Register a new filter
+     *
+     * @param string $key
+     * @param string $filter
+     */
+    public function registerFilter(string $key, string $filter): void
+    {
+        $this->filters[$key] = $filter;
+    }
+
+    /**
      * Create a new Sanitizer instance
      *
      * @param array $data

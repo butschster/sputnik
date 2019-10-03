@@ -20,7 +20,6 @@ class SanitizerServiceProvider extends ServiceProvider
         'trim' => Formatters\Trim::class,
         'strip_tags' => Formatters\StripTags::class,
         'digit' => Formatters\Digit::class,
-        'cron' => Formatters\CronFormatter::class,
         'remove_new_lines' => Formatters\RemoveNewLines::class,
     ];
 

@@ -2,10 +2,16 @@
 
 namespace App\Services;
 
+use App\Contracts\Modules\ManagerInterface as ModulesManagerContract;
 use Illuminate\Filesystem\Filesystem;
 
 class LocalesJavascriptGenerator
 {
+    /**
+     * @var ModulesManagerContract
+     */
+    protected $manager;
+
     /**
      * @var Filesystem
      */
@@ -13,10 +19,12 @@ class LocalesJavascriptGenerator
 
     /**
      * @param Filesystem $file
+     * @param ModulesManagerContract $manager
      */
-    public function __construct(Filesystem $file)
+    public function __construct(Filesystem $file, ModulesManagerContract $manager)
     {
         $this->file = $file;
+        $this->manager = $manager;
     }
 
     /**
@@ -48,6 +56,10 @@ class LocalesJavascriptGenerator
     protected function getLocales(string $lang): array
     {
         $locales = [];
+
+        foreach ($this->manager->getModules() as $module) {
+            $locales = array_merge($locales, $this->getTranslations($module->getName(), $module->getPath('resources/lang/'.$lang)));
+        }
 
         $locales = array_merge($locales, $this->getTranslations(null, resource_path('lang/' . $lang)));
 

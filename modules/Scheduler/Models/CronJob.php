@@ -5,9 +5,9 @@ namespace Module\Scheduler\Models;
 use App\Models\Concerns\HasServer;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
-use App\Services\Server\CronService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Module\Scheduler\CronService;
 
 class CronJob extends Model
 {

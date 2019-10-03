@@ -5,10 +5,8 @@ export class Manager {
 
     init() {
         return new Promise((resolve, reject) => {
-            this.modules.forEach(module => {
-                try {
-                    require(`@modules/${module}/resources/js/bootstrap`)
-                } catch (e) {}
+            this.modules.filter(module => module.bootstrap).forEach(module => {
+                require(`@modules/${module.name}/resources/js/bootstrap`)
             })
 
             resolve()

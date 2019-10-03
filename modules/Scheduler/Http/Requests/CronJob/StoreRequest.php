@@ -4,9 +4,9 @@ namespace Module\Scheduler\Http\Requests\CronJob;
 
 use App\Http\Requests\Sanitizer\SanitizesInput;
 use App\Models\Server;
-use App\Validation\Rules\Server\CronExpression;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
+use Module\Scheduler\Http\Requests\Rules\CronExpression;
 use Module\Scheduler\Models\CronJob;
 
 class StoreRequest extends FormRequest
