@@ -7,13 +7,10 @@ import * as teamBilling from "./team/billing"
 import * as userProfileTeam from "./profile/teams"
 import * as server from "./server"
 import * as serverModules from "./server/modules"
-import * as serverCron from "./server/cron"
 import * as serverEvents from "./server/events"
 import * as serverTasks from "./server/tasks"
 import * as serverUsers from "./server/users"
 import * as serverFirewall from "./server/firewall"
-import * as serverDatabases from "./server/database"
-import * as serverSupervisor from "./server/supervisor"
 import * as sourceProviders from "./sourceProviders"
 import * as serverSites from "./server/sites"
 import * as serverSiteDeployment from "./server/site/deployment"
@@ -39,7 +36,4 @@ export default {
     serverTasks,
     serverUsers,
     serverFirewall,
-    serverCron,
-    serverDatabases,
-    serverSupervisor,
 }

@@ -24,7 +24,6 @@ class EventServiceProvider extends ServiceProvider
         ],
         Server\Configured::class => [
             \App\Listeners\Server\CreateSSHFirewallRules::class,
-            \App\Listeners\Server\ScheduleSystemJobs::class,
             \App\Listeners\Server\InstallModulesWhenServerWasConfigured::class,
         ],
         Server\Created::class => [
@@ -72,19 +71,18 @@ class EventServiceProvider extends ServiceProvider
         \App\Models\Server::observe([
             \App\Observers\Server\GenerateSshKeyPairsObserver::class,
             \App\Observers\Server\ConsumeSubscriptionFeaturesObserver::class,
-//            \App\Observers\Server\GenerateDatabasePassword::class,
         ]);
 
         \App\Models\Server\Event::observe([
             \App\Observers\Server\Event\FireEventsObserver::class,
         ]);
 
-//        \App\Models\Server\Site::observe([
-//            \App\Observers\Server\Site\GenerateRandomTokenObserver::class,
-//            \App\Observers\Server\Site\ConsumeSubscriptionFeaturesObserver::class,
-//            \App\Observers\Server\Site\FireEventsObserver::class,
-//            \App\Observers\Server\Site\SyncSiteObserver::class,
-//        ]);
+        \App\Models\Server\Site::observe([
+            \App\Observers\Server\Site\GenerateRandomTokenObserver::class,
+            \App\Observers\Server\Site\ConsumeSubscriptionFeaturesObserver::class,
+            \App\Observers\Server\Site\FireEventsObserver::class,
+            \App\Observers\Server\Site\SyncSiteObserver::class,
+        ]);
 
         \App\Models\Server\User::observe([
             \App\Observers\Server\User\GenerateSshKeyPairsObserver::class,
@@ -100,58 +98,8 @@ class EventServiceProvider extends ServiceProvider
 //            \App\Observers\Server\Site\Deployment\ConsumeSubscriptionFeaturesObserver::class,
 //        ]);
 //
-//        \App\Models\Server\Database::observe([
-//            \App\Observers\Server\Database\ConsumeSubscriptionFeaturesObserver::class,
-//            \App\Observers\Server\Database\GenerateDatabasePassword::class,
-//            \App\Observers\Server\Database\FireEventsObserver::class,
-//            \App\Observers\Server\Database\SyncDatabaseObserver::class,
-//        ]);
-//
 //        \App\Models\Server\Firewall\Rule::observe([
 //            \App\Observers\Server\Firewall\SyncFirewallRuleObserver::class,
-//        ]);
-//
-//        \App\Models\Server\OpenVPN\Client::observe([
-//            \App\Observers\Server\OpenVPN\Client\SyncUserObserver::class,
-//        ]);\App\Models\Server\User::observe([
-//            \App\Observers\Server\User\GenerateSshKeyPairsObserver::class,
-//            \App\Observers\Server\User\GenerateUserPassword::class,
-//            \App\Observers\Server\User\SyncUserObserver::class,
-//        ]);
-//
-//        \App\Models\Server\User\PublicKey::observe([
-//            \App\Observers\Server\User\PublicKey\FireEventsObserver::class,
-//        ]);
-//
-//        \App\Models\Server\Daemon::observe([
-//            \App\Observers\Server\Supervisor\ConsumeSubscriptionFeaturesObserver::class,
-//            \App\Observers\Server\Supervisor\FireEventsObserver::class,
-//            \App\Observers\Server\Supervisor\SyncDaemonObserver::class,
-//        ]);
-//
-//        \App\Models\Server\Site\Deployment::observe([
-//            \App\Observers\Server\Site\Deployment\ConsumeSubscriptionFeaturesObserver::class,
-//        ]);
-//
-//        \App\Models\Server\CronJob::observe([
-//            \App\Observers\Server\Cron\ConsumeSubscriptionFeaturesObserver::class,
-//            \App\Observers\Server\Cron\FireEventsObserver::class,
-//            \App\Observers\Server\Cron\SyncCronJobsObserver::class,
-//        ]);
-//
-//        \App\Models\Server\Database::observe([
-//            \App\Observers\Server\Database\ConsumeSubscriptionFeaturesObserver::class,
-//            \App\Observers\Server\Database\GenerateDatabasePassword::class,
-//            \App\Observers\Server\Database\FireEventsObserver::class,
-//            \App\Observers\Server\Database\SyncDatabaseObserver::class,
-//        ]);
-//
-//        \App\Models\Server\Firewall\Rule::observe([
-//            \App\Observers\Server\Firewall\SyncFirewallRuleObserver::class,
-//        ]);
-//
-//        \App\Models\Server\OpenVPN\Client::observe([
-//            \App\Observers\Server\OpenVPN\Client\SyncUserObserver::class,
 //        ]);
     }
 }

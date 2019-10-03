@@ -20,6 +20,8 @@ class ServiceProvider extends BaseServiceProvider
 
     public function boot()
     {
+        parent::boot();
+
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         }

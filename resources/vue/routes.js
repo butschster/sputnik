@@ -12,13 +12,6 @@ import ServerEvents from '@vue/Pages/Servers/Events/Index'
 import ServerTasks from '@vue/Pages/Servers/Tasks/Index'
 import ServerTasksList from '@vue/Pages/Servers/Tasks/List'
 import ServerTaskShow from '@vue/Pages/Servers/Tasks/Show'
-import ServerScheduler from '@vue/Pages/Servers/Scheduler/Index'
-
-// WebServer Supervisor
-import ServerSupervisor from '@vue/Pages/Servers/WebServer/Supervisor/Index'
-
-// WebServer Database
-import ServerDatabase from '@vue/Pages/Servers/WebServer/Database/Index'
 
 // WebServer Site
 import ServerSites from '@vue/Pages/Servers/WebServer/Sites/Index'
@@ -119,27 +112,11 @@ const routes = [
                         name: 'server.users',
                         component: ServerUsers,
                     },
-
                     {
                         path: '/server/:id/firewall',
                         name: 'server.firewall',
                         component: ServerFirewall,
                     },
-                    {
-                        path: '/server/:id/scheduler',
-                        name: 'server.scheduler',
-                        component: ServerScheduler,
-                    },
-                    {
-                        path: '/server/:id/supervisor',
-                        name: 'server.supervisor',
-                        component: ServerSupervisor,
-                    },
-                    {
-                        path: '/server/:id/database',
-                        name: 'server.databases',
-                        component: ServerDatabase,
-                    }
                 ]
             },
             {

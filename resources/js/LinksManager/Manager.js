@@ -4,7 +4,9 @@ class Links {
     }
 
     get links() {
-        return this._links
+        return _.sortBy(this._links, [
+            (link) => link.order || 0
+        ])
     }
 
     linksWithArgs(...args) {

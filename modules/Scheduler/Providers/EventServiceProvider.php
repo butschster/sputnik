@@ -3,6 +3,7 @@
 namespace Module\Scheduler\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Module\Scheduler\Listeners\ScheduleSystemJobs;
 use Module\Scheduler\Observers;
 use Module\Scheduler\Models\CronJob;
 
@@ -13,7 +14,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-
+        \App\Events\Server\Configured::class => [
+            ScheduleSystemJobs::class,
+        ],
     ];
 
     /**

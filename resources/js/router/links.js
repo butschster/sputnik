@@ -48,14 +48,6 @@ export function serverDatabases(server) {
     return makeRoute('server.databases', {id: server})
 }
 
-export function serverScheduler(server) {
-    return makeRoute('server.scheduler', {id: server})
-}
-
-export function serverSupervisor(server) {
-    return makeRoute('server.supervisor', {id: server})
-}
-
 export function serverSettings(server) {
     return makeRoute('server.show', {id: server})
 }
