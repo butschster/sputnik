@@ -2,9 +2,9 @@
 
 namespace Module\Supervisor;
 
-use App\Models\Server\Daemon;
 use App\Services\Server\Runnable;
 use App\Services\Task\Contracts\Task;
+use Module\Supervisor\Models\Daemon;
 use Module\Supervisor\Scripts\Daemon\Restart;
 use Module\Supervisor\Scripts\Daemon\Start;
 use Module\Supervisor\Scripts\Daemon\Stop;
@@ -22,7 +22,9 @@ class DaemonService
         $this->setServer($daemon->server);
         $this->setOwner($daemon);
 
-        return $this->runJob(new Start($daemon));
+        return $this->runJob(
+            new Start($daemon)
+        );
     }
 
     /**
@@ -34,7 +36,9 @@ class DaemonService
         $this->setServer($daemon->server);
         $this->setOwner($daemon);
 
-        return $this->runJob(new Stop($daemon));
+        return $this->runJob(
+            new Stop($daemon)
+        );
     }
 
     /**
@@ -46,6 +50,8 @@ class DaemonService
         $this->setServer($daemon->server);
         $this->setOwner($daemon);
 
-        return $this->runJob(new Restart($daemon));
+        return $this->runJob(
+            new Restart($daemon)
+        );
     }
 }

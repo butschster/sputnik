@@ -2,20 +2,20 @@
 
 namespace Module\Supervisor\Scripts\Daemon;
 
-use App\Models\Server;
 use App\Utils\SSH\Script;
+use Module\Supervisor\Models\Daemon;
 
 class Restart extends Script
 {
     /**
-     * @var Server\Daemon
+     * @var Daemon
      */
     protected $daemon;
 
     /**
-     * @param Server\Daemon $daemon
+     * @param Daemon $daemon
      */
-    public function __construct(Server\Daemon $daemon)
+    public function __construct(Daemon $daemon)
     {
         $this->daemon = $daemon;
     }

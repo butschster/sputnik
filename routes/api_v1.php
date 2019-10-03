@@ -63,22 +63,9 @@ Route::middleware('auth')->group(function () {
         Route::get('server/{server}/events', 'Server\EventsController@index')->name('server.events');
         Route::get('server/{server}/last-event', 'Server\EventsController@last')->name('server.event.last');
 
-        // Server Cron jobs
-        Route::get('server/{server}/cron', 'Server\SchedulerController@index')->name('server.cron_jobs');
-        Route::post('server/{server}/cron', 'Server\SchedulerController@store')->name('server.cron_job.store');
-        Route::get('server/cron/{job}', 'Server\SchedulerController@show')->name('server.cron_job.show');
-        Route::delete('server/cron/{job}', 'Server\SchedulerController@delete')->name('server.cron_job.delete');
-
-        // WebServer Database
-        Route::get('server/{server}/databases', 'Server\DatabaseController@index')->name('server.databases');
-        Route::post('server/{server}/database', 'Server\DatabaseController@store')->name('server.database.store');
-        Route::get('server/database/{database}', 'Server\DatabaseController@show')->name('server.database.show');
-        Route::delete('server/database/{database}', 'Server\DatabaseController@delete')->name('server.database.delete');
-
         // Server Firewall
         Route::post('server/{server}/firewall/enable', 'Server\FirewallController@enable')->name('server.firewall.enable');
         Route::post('server/{server}/firewall/disable', 'Server\FirewallController@disable')->name('server.firewall.disable');
-
         Route::get('server/{server}/firewall/rules', 'Server\FirewallController@index')->name('server.firewall.rules');
         Route::post('server/{server}/firewall', 'Server\FirewallController@store')->name('server.firewall.store');
         Route::get('server/firewall/{rule}', 'Server\FirewallController@show')->name('server.firewall.show');
@@ -91,17 +78,9 @@ Route::middleware('auth')->group(function () {
         Route::get('server/user/{user}/download', 'Server\UserController@downloadPublicKey')->name('server.user.download_key');
         Route::delete('server/user/{user}', 'Server\UserController@delete')->name('server.user.delete');
 
-
         // Server tasks
         Route::get('server/{server}/tasks', 'Server\TasksController@index')->name('server.tasks');
         Route::get('server/task/{task}', 'Server\TasksController@show')->name('server.task.show');
-
-        // WebServer Supervisor
-        Route::get('server/{server}/supervisor/list', 'Server\SupervisorController@index')->name('server.supervisors');
-        Route::post('server/{server}/supervisor/daemon', 'Server\SupervisorController@store')->name('server.supervisor.store');
-        Route::post('server/{server}/supervisor/restart', 'Server\SupervisorController@restart')->name('server.supervisor.restart');
-        Route::get('server/supervisor/{daemon}', 'Server\SupervisorController@show')->name('server.supervisor.show');
-        Route::delete('server/supervisor/{daemon}', 'Server\SupervisorController@delete')->name('server.supervisor.delete');
 
         // WebServer Sites
         Route::get('sites', 'Server\SiteController@all')->name('sites');

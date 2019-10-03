@@ -3,9 +3,21 @@
 namespace Module\Mysql\Providers;
 
 use App\Modules\ServiceProvider as BaseServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use Module\Mysql\Models\Database;
+use Module\Mysql\Policies\DatabasePolicy;
 
 class ServiceProvider extends BaseServiceProvider
 {
+    /**
+     * Module service providers
+     *
+     * @var array
+     */
+    protected $providers = [
+        EventServiceProvider::class,
+    ];
+
     public function register()
     {
         $categories = ['database', 'sql'];
@@ -48,5 +60,16 @@ class ServiceProvider extends BaseServiceProvider
                 'actions' => $actions,
             ],
         ]);
+    }
+
+    public function boot()
+    {
+        parent::boot();
+
+        if ($this->app->runningInConsole()) {
+            $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        }
+
+        Gate::policy(Database::class, DatabasePolicy::class);
     }
 }

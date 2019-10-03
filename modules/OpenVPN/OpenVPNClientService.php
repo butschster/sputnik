@@ -43,11 +43,11 @@ class OpenVPNClientService
     /**
      * Revoke an existing user
      *
-     * @param Server\OpenVPN\Client $client
+     * @param Client $client
      *
      * @return Task
      */
-    public function delete(Server\OpenVPN\Client $client): Task
+    public function delete(Client $client): Task
     {
         $this->setServer($client->server);
         $this->setOwner($client);

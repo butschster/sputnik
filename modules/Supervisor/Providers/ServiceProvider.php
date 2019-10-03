@@ -3,9 +3,21 @@
 namespace Module\Supervisor\Providers;
 
 use App\Modules\ServiceProvider as BaseServiceProvider;
+use App\Policies\DaemonPolicy;
+use Illuminate\Support\Facades\Gate;
+use Module\Supervisor\Models\Daemon;
 
 class ServiceProvider extends BaseServiceProvider
 {
+    /**
+     * Module service providers
+     *
+     * @var array
+     */
+    protected $providers = [
+        EventServiceProvider::class,
+    ];
+
     public function register()
     {
         $this->registerServerModulesFromArray([
@@ -25,7 +37,18 @@ class ServiceProvider extends BaseServiceProvider
                     'start' => 'Supervisor::scripts.start',
                     'stop' => 'Supervisor::scripts.stop',
                 ],
-            ]
+            ],
         ]);
+    }
+
+    public function boot()
+    {
+        parent::boot();
+
+        if ($this->app->runningInConsole()) {
+            $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        }
+
+        Gate::policy(Daemon::class, DaemonPolicy::class);
     }
 }

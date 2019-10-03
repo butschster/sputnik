@@ -81,6 +81,8 @@ return array(
 
     'model_locations' => array(
         'app/Models',
+        'modules/Mysql/Models',
+        'modules/Supervisor/Models',
     ),
 
 

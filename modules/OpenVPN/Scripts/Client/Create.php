@@ -2,8 +2,8 @@
 
 namespace Module\OpenVPN\Scripts\Client;
 
-use App\Models\Server\OpenVPN\Client;
 use App\Utils\SSH\Script;
+use Module\OpenVPN\Models\Client;
 
 class Create extends Script
 {

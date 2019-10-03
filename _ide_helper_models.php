@@ -226,12 +226,6 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Alert[] $alerts
  * @property-read int|null $alerts_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\CronJob[] $cronJobs
- * @property-read int|null $cron_jobs_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Daemon[] $daemons
- * @property-read int|null $daemons_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Database[] $databases
- * @property-read int|null $databases_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Event[] $events
  * @property-read int|null $events_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Server\Firewall\Rule[] $firewallRules
@@ -297,36 +291,6 @@ namespace App\Models{
 
 namespace App\Models\Server{
 /**
- * App\Models\Server\CronJob
- *
- * @property string $id
- * @property string $server_id
- * @property string|null $name
- * @property string $command
- * @property string $user
- * @property string $cron
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Server $server
- * @property-read \App\Models\Server\Task $task
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob forServer(\App\Models\Server $server)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereCommand($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereCron($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereServerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\CronJob whereUser($value)
- */
-	class CronJob extends \Eloquent {}
-}
-
-namespace App\Models\Server{
-/**
  * App\Models\Server\Record
  *
  * @property string $id
@@ -373,38 +337,6 @@ namespace App\Models\Server\User{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\User\PublicKey whereUpdatedAt($value)
  */
 	class PublicKey extends \Eloquent {}
-}
-
-namespace App\Models\Server{
-/**
- * App\Models\Server\Database
- *
- * @property string $id
- * @property string $server_id
- * @property string $name
- * @property string $password
- * @property string $character_set
- * @property string $collation
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $module_id
- * @property-read \App\Models\Server $server
- * @property-read \App\Models\Server\Task $task
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database forServer(\App\Models\Server $server)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereCharacterSet($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereCollation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereModuleId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereServerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Database whereUpdatedAt($value)
- */
-	class Database extends \Eloquent {}
 }
 
 namespace App\Models\Server{
@@ -463,36 +395,6 @@ namespace App\Models\Server\Site{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Site\Deployment whereUpdatedAt($value)
  */
 	class Deployment extends \Eloquent {}
-}
-
-namespace App\Models\Server{
-/**
- * App\Models\Server\Daemon
- *
- * @property string $id
- * @property string $server_id
- * @property string $command
- * @property string $user
- * @property string|null $directory
- * @property int $processes
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Server $server
- * @property-read \App\Models\Server\Task $task
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon forServer(\App\Models\Server $server)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereCommand($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereDirectory($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereProcesses($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereServerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Server\Daemon whereUser($value)
- */
-	class Daemon extends \Eloquent {}
 }
 
 namespace App\Models\Server{
@@ -885,5 +787,33 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}
+}
+
+namespace Module\Mysql\Models{
+/**
+ * Module\Mysql\Models\Database
+ *
+ * @property-read \App\Models\Server $server
+ * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\Module\Mysql\Models\Database forServer(\App\Models\Server $server)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Module\Mysql\Models\Database newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Module\Mysql\Models\Database newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Module\Mysql\Models\Database query()
+ */
+	class Database extends \Eloquent {}
+}
+
+namespace Module\Supervisor\Models{
+/**
+ * Module\Supervisor\Models\Daemon
+ *
+ * @property-read \App\Models\Server $server
+ * @property-read \App\Models\Server\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|\Module\Supervisor\Models\Daemon forServer(\App\Models\Server $server)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Module\Supervisor\Models\Daemon newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Module\Supervisor\Models\Daemon newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Module\Supervisor\Models\Daemon query()
+ */
+	class Daemon extends \Eloquent {}
 }
 

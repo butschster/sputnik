@@ -2,8 +2,8 @@
 
 namespace Module\Mysql\Scripts\Database;
 
-use App\Models\Server\Database;
 use App\Utils\SSH\Script;
+use Module\Mysql\Models\Database;
 
 class Create extends Script
 {

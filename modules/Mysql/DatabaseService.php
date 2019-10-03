@@ -2,9 +2,9 @@
 
 namespace Module\Mysql;
 
-use App\Models\Server\Database;
 use App\Services\Server\Runnable;
 use App\Services\Task\Contracts\Task;
+use Module\Mysql\Models\Database;
 use Module\Mysql\Scripts\Database\Create;
 use Module\Mysql\Scripts\Database\Drop;
 

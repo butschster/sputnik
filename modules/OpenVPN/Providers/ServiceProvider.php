@@ -9,6 +9,15 @@ use Module\OpenVPN\Policies\ClientPolicy;
 
 class ServiceProvider extends BaseServiceProvider
 {
+    /**
+     * Module service providers
+     *
+     * @var array
+     */
+    protected $providers = [
+        EventServiceProvider::class,
+    ];
+
     public function register()
     {
         $this->registerServerModulesFromArray([

@@ -96,20 +96,8 @@ class EventServiceProvider extends ServiceProvider
 //            \App\Observers\Server\User\PublicKey\FireEventsObserver::class,
 //        ]);
 //
-//        \App\Models\Server\Daemon::observe([
-//            \App\Observers\Server\Supervisor\ConsumeSubscriptionFeaturesObserver::class,
-//            \App\Observers\Server\Supervisor\FireEventsObserver::class,
-//            \App\Observers\Server\Supervisor\SyncDaemonObserver::class,
-//        ]);
-//
 //        \App\Models\Server\Site\Deployment::observe([
 //            \App\Observers\Server\Site\Deployment\ConsumeSubscriptionFeaturesObserver::class,
-//        ]);
-//
-//        \App\Models\Server\CronJob::observe([
-//            \App\Observers\Server\Cron\ConsumeSubscriptionFeaturesObserver::class,
-//            \App\Observers\Server\Cron\FireEventsObserver::class,
-//            \App\Observers\Server\Cron\SyncCronJobsObserver::class,
 //        ]);
 //
 //        \App\Models\Server\Database::observe([

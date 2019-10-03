@@ -13,9 +13,6 @@ use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\HasKeyPair;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
-use App\Models\Server\CronJob;
-use App\Models\Server\Daemon;
-use App\Models\Server\Database;
 use App\Models\Server\Event;
 use App\Models\Server\Firewall\Rule as FirewallRule;
 use App\Models\Server\Module;
@@ -147,26 +144,6 @@ class Server extends Model
     }
 
     /**
-     * Get daemons that belong to the server.
-     *
-     * @return HasMany
-     */
-    public function daemons(): HasMany
-    {
-        return $this->hasMany(Daemon::class)->latest();
-    }
-
-    /**
-     * Get databases that belong to the server.
-     *
-     * @return HasMany
-     */
-    public function databases(): HasMany
-    {
-        return $this->hasMany(Database::class, 'server_id')->latest();
-    }
-
-    /**
      * Get tasks that belong to the server.
      *
      * @return HasMany
@@ -194,16 +171,6 @@ class Server extends Model
     public function firewallRules(): HasMany
     {
         return $this->hasMany(FirewallRule::class)->with('task');
-    }
-
-    /**
-     * Get cron jobs that belong to the server.
-     *
-     * @return HasMany
-     */
-    public function cronJobs(): HasMany
-    {
-        return $this->hasMany(CronJob::class)->with('task');
     }
 
     /**
@@ -301,7 +268,11 @@ class Server extends Model
             return null;
         }
 
-        return new SystemInformation($this->os_information['os'], $this->os_information['version'], $this->os_information['architecture']);
+        return new SystemInformation(
+            $this->os_information['os'],
+            $this->os_information['version'],
+            $this->os_information['architecture']
+        );
     }
 
     /**
