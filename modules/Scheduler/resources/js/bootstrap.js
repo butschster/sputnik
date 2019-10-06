@@ -17,7 +17,7 @@ LinksManager.serverSidebar.register(
     {
         link: (server) => makeRoute('server.scheduler', {id: server}),
         icon: 'fa-calendar-alt',
-        title: 'server.sections.scheduler',
+        title: 'scheduler.section',
         order: 150,
     }
 )

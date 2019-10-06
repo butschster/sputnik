@@ -2,25 +2,25 @@
     <section class="section">
         <Loader :loading="loading"/>
         <div class="section-header">
-            New scheduled task
-            <p>ou can easily schedule cron jobs on your server.</p>
+            {{ $t('scheduler.form.create.title') }}
+            <p>{{ $t('scheduler.form.create.description') }}</p>
         </div>
         <div class="flex flex-wrap">
-            <FormInput v-model="form.name" label="Name" name="name" class="mr-8" required autofocus/>
-            <FormInput v-model="form.command" label="Command" name="command" class="mr-8 flex-1" required/>
-            <FormInput v-model="form.cron" label="Cron expression" name="cron" class="mr-8" required>
-                <small class="form-text text-muted">
-                    You can use named expressions like [@hourly, @daily, @monthly]
-                </small>
-            </FormInput>
-
+            <FormInput v-model="form.name" :label="$t('scheduler.form.create.name')" name="name" class="mr-8" required
+                       autofocus/>
+            <FormInput v-model="form.command" :label="$t('scheduler.form.create.command')" name="command"
+                       class="mr-8 flex-1" required/>
+            <FormInput v-model="form.cron" :label="$t('scheduler.form.create.cron')" name="cron" class="mr-8" required/>
             <div class="form-group mb-0">
-                <button class="btn btn-primary" @click="onSubmit">Schedule</button>
+                <button class="btn btn-primary" @click="onSubmit">
+                    {{ $t('scheduler.form.create.submit') }}
+                </button>
             </div>
         </div>
 
         <div>
-            <span class="badge cursor-pointer mr-2" :class="{'badge-primary': form.cron == expr.expression}" v-for="expr in expressions" @click="form.cron = expr.expression">
+            <span class="badge cursor-pointer mr-2" :class="{'badge-primary': form.cron == expr.expression}"
+                  v-for="expr in expressions" @click="form.cron = expr.expression">
                 {{ expr.name }}
             </span>
         </div>
@@ -80,7 +80,7 @@
                     const job = await this.$api.serverCron.store(this.server.id, this.form)
                     this.$emit('created', job)
 
-                    this.$notify.success('Cron job successfully created')
+                    this.$notify.success(this.$t('scheduler.message.created'))
 
                     this.clear()
                 } catch (e) {

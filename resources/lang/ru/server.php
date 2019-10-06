@@ -21,61 +21,6 @@ return [
             'installed' => 'Модули добавлены в очередь на установку. Процесс может занять некоторое время.'
         ]
     ],
-    'openvpn' => [
-        'title' => 'Клиенты VPN',
-        'clients' => 'Созданные клиенты',
-        'table' => [
-            'name' => 'Имя',
-            'status' => 'Статус',
-            'time' => 'Дата создания',
-        ],
-        'form' => [
-            'create' => [
-                'title' => 'Создать нового клиента',
-                'label' => [
-                    'name' => 'Имя',
-                ],
-                'button' => [
-                    'create' => 'Создать',
-                ],
-            ],
-        ],
-        'message' => [
-            'empty_results' => 'Похоже на сервере не создано ни одного клиента.',
-            'created' => 'Конфигурация успешно создана.',
-            'deleted' => 'Конфигурация успешно удалена.',
-        ],
-    ],
-    'firewall' => [
-        'title' => 'Брандмауэр',
-        'active_rules' => 'Активные',
-        'table' => [
-            'name' => 'Название',
-            'port' => 'Порт',
-            'from' => 'From',
-            'policy' => 'Политика',
-            'status' => 'Статус',
-        ],
-        'message' => [
-            'empty_rules' => 'Похоже на сервере нет ни одного правила.',
-            'created' => 'Новое правило успешно добавлено',
-            'deleted' => 'Правило успешно удалено.',
-        ],
-        'form' => [
-            'create' => [
-                'title' => 'Добавить новое правило',
-                'label' => [
-                    'name' => 'Название',
-                    'port' => 'Порт',
-                    'from' => 'From',
-                    'policy' => 'Политика',
-                ],
-                'button' => [
-                    'create' => 'Добавить',
-                ],
-            ],
-        ],
-    ],
     'events' => [
         'title' => 'События',
         'recent' => 'Недавние события',
@@ -152,12 +97,8 @@ return [
         'events' => 'События',
         'tasks' => 'Задачи',
         'users' => 'Пользователи',
-        'firewall' => 'Брандмауэр',
         'supervisor' => 'Supervisor',
-        'scheduler' => 'Планировщик',
         'sites' => 'Сайты',
-        'database' => 'База данных',
-        'vpn_clients' => 'Клиенты VPN',
     ],
     'settings' => [
         'title' => 'Настройки',
@@ -194,33 +135,5 @@ return [
             'in_progress' => 'Установка...',
             'please_wait' => 'Процесс установки может занять несколько минут.',
         ],
-    ],
-    'configuration' => [
-        'vpn_dns' => 'OpenVPN DNS сервер',
-        'vpn_port' => 'OpenVPN порт',
-        'vpn_protocol' => 'OpenVPN протокол',
-        'php_version' => 'Версия PHP',
-        'database_type' => 'База данных',
-        'database_hosts' => 'Хосты БД',
-        'webserver_type' => 'Вебсервер',
-        'nosql_databases' => 'NoSQL базы данных',
-    ],
-    'php_versions' => [
-        72 => 'PHP 7.2',
-        73 => 'PHP 7.3',
-        74 => 'PHP 7.4',
-    ],
-    'databases' => [
-        'mysql' => 'MySQL 5.7',
-        'mariadb' => 'MariaDB',
-        'pgsql' => 'PostgreSQL',
-        'mysql8' => 'MySQL 8',
-    ],
-    'web_servers' => [
-        'nginx' => 'Nginx',
-    ],
-    'types' => [
-        'webserver' => 'Web сервер',
-        'openvpn' => 'OpenVPN серевер',
     ],
 ];

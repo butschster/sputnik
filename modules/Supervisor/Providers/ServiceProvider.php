@@ -3,7 +3,7 @@
 namespace Module\Supervisor\Providers;
 
 use App\Modules\ServiceProvider as BaseServiceProvider;
-use App\Policies\DaemonPolicy;
+use Module\Supervisor\Policies\DaemonPolicy;
 use Illuminate\Support\Facades\Gate;
 use Module\Supervisor\Models\Daemon;
 

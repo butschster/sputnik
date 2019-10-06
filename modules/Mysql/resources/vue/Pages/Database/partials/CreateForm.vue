@@ -2,15 +2,21 @@
     <section class="section">
         <Loader :loading="loading"/>
         <div class="section-header">
-            Create a new one
-            <p>You can easily mange databases on your server</p>
+            {{ $t('mysql.database.form.create.title') }}
+            <p>{{ $t('mysql.database.form.create.description') }}</p>
         </div>
         <div class="flex">
-            <FormInput v-model="form.name" label="Name" name="name" class="flex-1 mr-8" required autofocus/>
-            <FormPassword v-model="form.password" label="Password" name="password" class="mr-8"/>
+            <FormInput v-model="form.name"
+                       :label="$t('mysql.database.form.create.name')" name="name"
+                       class="flex-1 mr-8" required autofocus/>
+            <FormPassword v-model="form.password"
+                          :label="$t('mysql.database.form.create.password')"
+                          name="password" class="mr-8"/>
 
             <div class="form-group mb-0">
-                <button class="btn btn-primary" @click="onSubmit">Store</button>
+                <button class="btn btn-primary" @click="onSubmit">
+                    {{ $t('mysql.database.form.create.submit') }}
+                </button>
             </div>
         </div>
     </section>
@@ -19,6 +25,7 @@
 <script>
     import FormInput from '@vue/components/Form/Input'
     import FormPassword from '@vue/components/Form/Password'
+
     export default {
         components: {FormInput, FormPassword},
         props: {
@@ -41,7 +48,7 @@
                     const database = await this.$api.mysqlDatabase.store(this.server.id, this.form)
                     this.$emit('created', database)
 
-                    this.$notify.success('Database successfully create')
+                    this.$notify.success(this.$t('mysql.database.message.deleted'))
                     this.clear()
                 } catch (e) {
                     this.$handleError(e)

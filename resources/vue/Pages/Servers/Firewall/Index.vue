@@ -2,7 +2,7 @@
     <div>
         <h1 class="flex items-center">
             <div class="flex-1">
-                {{ $t('server.firewall.title') }}
+                {{ $t('firewall.title') }}
             </div>
 
             <Switcher :value="$parent.server.firewall.status" @change="switchFirewallStatus" />
@@ -11,7 +11,7 @@
         <CreateFormFirewall :server="$parent.server" @created="load" class="well well-lg mb-12"/>
 
         <div v-if="hasRules">
-            <h4>{{ $t('server.firewall.active_rules')}} ({{ rules.length }})</h4>
+            <h4>{{ $t('firewall.active_rules')}} ({{ rules.length }})</h4>
             <Loader :loading="loading"/>
             <table class="table mb-10">
                 <col class="w-1/6">
@@ -22,11 +22,11 @@
                 <col class="w-1/6">
                 <thead>
                 <tr>
-                    <th>{{ $t('server.firewall.table.name') }}</th>
-                    <th>{{ $t('server.firewall.table.port') }}</th>
-                    <th>{{ $t('server.firewall.table.from') }}</th>
-                    <th class="text-right">{{ $t('server.firewall.table.policy') }}</th>
-                    <th class="text-right">{{ $t('server.firewall.table.status') }}</th>
+                    <th>{{ $t('firewall.table.name') }}</th>
+                    <th>{{ $t('firewall.table.port') }}</th>
+                    <th>{{ $t('firewall.table.from') }}</th>
+                    <th class="text-right">{{ $t('firewall.table.policy') }}</th>
+                    <th class="text-right">{{ $t('firewall.table.status') }}</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -60,7 +60,7 @@
 
         <div v-else class="well well-lg text-center">
             <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1272/1272856.svg" alt="" width="100px">
-            <h3 class="mb-0">{{ $t('server.firewall.message.empty_rules') }}</h3>
+            <h3 class="mb-0">{{ $t('firewall.message.empty_rules') }}</h3>
         </div>
     </div>
 </template>
@@ -108,7 +108,7 @@
             onRemoved(rule) {
                 this.load()
 
-                this.$notify.success(this.$t('server.firewall.message.deleted'))
+                this.$notify.success(this.$t('firewall.message.deleted'))
             },
             async remove(rule) {
                 this.loading = true

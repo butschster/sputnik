@@ -1,14 +1,12 @@
 <template>
     <div>
-        <h1>
-            MySQL Databases
-        </h1>
+        <h1>{{ $t('mysql.title') }}</h1>
 
         <CreateForm :server="$parent.server" class="well well-lg mb-12" @created="load"/>
 
-        <h4>Databases ({{ databases.length }})</h4>
         <div v-if="hasDatabase">
             <Loader :loading="loading"/>
+            <h4>{{ $t('mysql.database.title') }} ({{ databases.length }})</h4>
             <table class="table mb-10">
                 <col>
                 <col width="200px">
@@ -17,10 +15,10 @@
                 <col width="100px">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>User</th>
-                    <th>Password</th>
-                    <th>Status</th>
+                    <th>{{ $t('mysql.database.table.name') }}</th>
+                    <th>{{ $t('mysql.database.table.user') }}</th>
+                    <th>{{ $t('mysql.database.table.password') }}</th>
+                    <th>{{ $t('mysql.database.table.status') }}</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -35,7 +33,7 @@
                         <BadgeTaskStatus :task="database.task"/>
                     </td>
                     <td class="text-right">
-                        <button class="btn btn-danger btn-circle btn-sm" @click="remove(database)">
+                        <button class="btn btn-danger btn-circle btn-sm" @click="destroy(database)">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -46,7 +44,7 @@
 
         <div v-else class="well well-lg text-center">
             <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1265/1265529.svg" alt="" width="100px">
-            <h3 class="mb-0">Looks like you don't have any databases yet</h3>
+            <h3 class="mb-0">{{ $t('mysql.database.message.empty_list') }}</h3>
         </div>
     </div>
 </template>
@@ -78,16 +76,16 @@
 
                 this.loading = false
             },
-            removedDatabase(database) {
+            onDestroy(database) {
                 this.load()
 
-                this.$notify.success('Database successfully deleted')
+                this.$notify.success(this.$t('mysql.database.message.deleted'))
             },
-            async remove(database) {
+            async destroy(database) {
                 this.loading = true
                 try {
-                    await this.$api.mysqlDatabase.remove(database.id)
-                    this.removedDatabase(database)
+                    await this.$api.mysqlDatabase.destroy(database.id)
+                    this.onDestroy(database)
                 } catch (e) {
                     this.$handleError(e)
                 }

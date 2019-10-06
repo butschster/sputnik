@@ -4,10 +4,6 @@ namespace App\Providers;
 
 use App\Models\Server;
 use App\Models\User;
-use App\Policies\OpenVPNClientPolicy;
-use App\Policies\ServerCronJobPolicy;
-use App\Policies\ServerDaemonPolicy;
-use App\Policies\ServerDatabasePolicy;
 use App\Policies\ServerFirewallPolicy;
 use App\Policies\ServerPolicy;
 use App\Policies\ServerSitePolicy;

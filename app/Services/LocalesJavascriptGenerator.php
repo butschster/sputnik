@@ -58,12 +58,16 @@ class LocalesJavascriptGenerator
         $locales = [];
 
         foreach ($this->manager->getModules() as $module) {
-            $locales = array_merge($locales, $this->getTranslations($module->getName(), $module->getPath('resources/lang/'.$lang)));
+            $locales = array_merge_recursive(
+                $locales,
+                $this->getTranslations($module->getName(), $module->getPath('resources/lang/'.$lang))
+            );
         }
 
-        $locales = array_merge($locales, $this->getTranslations(null, resource_path('lang/' . $lang)));
-
-        return $locales;
+        return array_merge_recursive(
+            $locales,
+            $this->getTranslations(null, resource_path('lang/' . $lang))
+        );
     }
 
     /**
@@ -90,6 +94,7 @@ class LocalesJavascriptGenerator
     {
         $data = [];
 
+
         foreach ($this->getLocaleFiles($path) as $file) {
             $filename = pathinfo($file, PATHINFO_FILENAME);
 
@@ -109,8 +114,8 @@ class LocalesJavascriptGenerator
      *
      * @return string
      */
-    private function getNamespace($module, string $filename): string
+    private function getNamespace(?string $module, string $filename): string
     {
-        return $module ? $module . ':' . $filename : $filename;
+        return $filename;
     }
 }

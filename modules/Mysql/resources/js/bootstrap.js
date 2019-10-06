@@ -17,7 +17,7 @@ LinksManager.serverSidebar.register(
     {
         link: (server) => makeRoute('server.mysql', {id: server}),
         icon: 'fa-server',
-        title: 'server.sections.mysql',
+        title: 'mysql.section',
         module: ['mysql*', 'mariadb'],
         order: 1000,
     }

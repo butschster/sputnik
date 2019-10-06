@@ -28,7 +28,7 @@ manager.serverSidebar.register(
     {
         link: (server) => links.serverFirewall(server),
         icon: 'fa-lock',
-        title: 'server.sections.firewall',
+        title: 'firewall.section',
         order: 200,
     },
     {

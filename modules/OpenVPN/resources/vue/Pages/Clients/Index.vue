@@ -1,12 +1,12 @@
 <template>
     <div>
         <h1>
-            {{ $t('server.openvpn.title') }}
+            {{ $t('openvpn.clients.title') }}
         </h1>
 
         <CreateForm :server="$parent.server" class="well well-lg mb-12" @created="load()"/>
 
-        <h4>{{ $t('server.openvpn.clients') }} ({{ clients.length }})</h4>
+        <h4>{{ $t('openvpn.clients.clients') }} ({{ clients.length }})</h4>
         <div v-if="hasClients">
             <Loader :loading="loading"/>
             <table class="table mb-10">
@@ -16,9 +16,9 @@
                 <col width="100px">
                 <thead>
                 <tr>
-                    <th>{{ $t('server.openvpn.table.name') }}</th>
-                    <th class="text-right">{{ $t('server.openvpn.table.status') }}</th>
-                    <th class="text-right">{{ $t('server.openvpn.table.time') }}</th>
+                    <th>{{ $t('openvpn.clients.table.name') }}</th>
+                    <th class="text-right">{{ $t('openvpn.clients.table.status') }}</th>
+                    <th class="text-right">{{ $t('openvpn.clients.table.time') }}</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -47,7 +47,7 @@
 
         <div v-else class="well well-lg text-center">
             <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1871/1871131.svg" alt="" width="100px">
-            <h3 class="mb-0">{{ $t('server.openvpn.message.empty_results') }}</h3>
+            <h3 class="mb-0">{{ $t('openvpn.clients.message.empty_results') }}</h3>
         </div>
     </div>
 </template>
@@ -80,7 +80,7 @@
             },
             removedUser(client) {
                 this.load()
-                this.$notify.success(this.$t('server.openvpn.message.deleted'))
+                this.$notify.success(this.$t('openvpn.clients.message.deleted'))
             },
             async remove(client) {
                 this.loading = true

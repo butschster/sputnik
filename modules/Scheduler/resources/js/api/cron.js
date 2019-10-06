@@ -53,7 +53,7 @@ export async function show(jobId) {
  * @param {String} jobId
  * @return {Object}
  */
-export async function remove(jobId) {
+export async function destroy(jobId) {
     try {
         const response = await api_route('v1.server.cron_job.delete', {job: jobId}).request()
         return response.data

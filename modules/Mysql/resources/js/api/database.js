@@ -53,7 +53,7 @@ export async function show(databaseId) {
  * @param {String} databaseId
  * @return {Object}
  */
-export async function remove(databaseId) {
+export async function destroy(databaseId) {
     try {
         const response = await api_route('v1.server.database.delete', {database: databaseId}).request()
         return response.data

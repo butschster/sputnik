@@ -17,7 +17,7 @@ LinksManager.serverSidebar.register(
     {
         link: (server) => makeRoute('server.openvpn.clients', {id: server}),
         icon: 'fa-globe',
-        title: 'server.sections.vpn_clients',
+        title: 'openvpn.clients.section',
         module: 'openvpn'
     }
 )

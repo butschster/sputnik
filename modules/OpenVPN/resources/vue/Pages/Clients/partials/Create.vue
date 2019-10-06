@@ -2,11 +2,11 @@
     <section class="section">
         <Loader :loading="loading"/>
         <div class="section-header">
-            {{ $t('server.openvpn.form.create.title') }}
+            {{ $t('openvpn.clients.form.create.title') }}
         </div>
         <div class="flex">
             <FormInput v-model="form.name"
-                       :label="$t('server.openvpn.form.create.label.name')"
+                       :label="$t('openvpn.clients.form.create.label.name')"
                        name="name"
                        class="flex-1 mr-8"
                        required
@@ -14,7 +14,7 @@
 
             <div class="form-group mb-0">
                 <button class="btn btn-primary" @click="onSubmit">
-                    {{ $t('server.openvpn.form.create.button.create') }}
+                    {{ $t('openvpn.clients.form.create.button.create') }}
                 </button>
             </div>
         </div>
@@ -45,7 +45,7 @@
                     const user = await this.$api.openVpnClient.store(this.server.id, this.form)
                     this.$emit('created', user)
 
-                    this.$notify.success(this.$t('server.openvpn.message.created'))
+                    this.$notify.success(this.$t('openvpn.clients.message.created'))
 
                     this.clear()
                 } catch (e) {
