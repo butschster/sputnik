@@ -4,6 +4,7 @@ namespace App\Utils\SSH\Fake;
 
 use App\Services\Task\Contracts\ExecutorService;
 use App\Services\Task\Contracts\Task;
+use App\Services\Task\FinishService;
 use App\Utils\SSH\Shell\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -26,9 +27,7 @@ class FakeExecutorService implements ExecutorService
 
         $this->task->markAsRunning();
 
-        $this->task->saveResponse(
-            $this->getOutput($task)
-        );
+        app(FinishService::class)->finish($this->task, $this->getOutput($task)->getExitCode());
     }
 
     /**
@@ -45,9 +44,7 @@ class FakeExecutorService implements ExecutorService
 
         $this->task->markAsRunning();
 
-        $this->task->saveResponse(
-            $this->getOutput($task)
-        );
+        app(FinishService::class)->finish($this->task, $this->getOutput($task)->getExitCode());
     }
 
     /**

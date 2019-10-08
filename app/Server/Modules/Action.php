@@ -308,4 +308,12 @@ class Action implements ActionContract, ActionContract\HasFields
             'default_settings' => $this->settings(),
         ];
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->module->key().'.'.$this->key();
+    }
 }

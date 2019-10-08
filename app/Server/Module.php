@@ -124,4 +124,12 @@ abstract class Module implements \App\Contracts\Server\Module
             'actions' => collect($this->actions())->toArray(),
         ];
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->key();
+    }
 }

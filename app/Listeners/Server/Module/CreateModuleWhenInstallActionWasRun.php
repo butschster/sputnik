@@ -7,9 +7,6 @@ use App\Models\Server;
 
 class CreateModuleWhenInstallActionWasRun
 {
-    /**
-     * @param ActionRan $event
-     */
     public function handle(ActionRan $event)
     {
         if ($event->action->key() === 'install') {

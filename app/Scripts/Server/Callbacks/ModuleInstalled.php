@@ -42,8 +42,5 @@ class ModuleInstalled implements Callback
         }
 
         event(new Installed($task->server, $module));
-
-        $this->registry->get($module)
-            ->fireEvent('installed', $task->server);
     }
 }

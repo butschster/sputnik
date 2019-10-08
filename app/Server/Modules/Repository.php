@@ -4,11 +4,8 @@ namespace App\Server\Modules;
 
 use App\Contracts\Server\Modules\Registry;
 use App\Contracts\Server\Modules\Repository as RepositoryContract;
-use App\Events\Server\Module\ActionRan;
 use App\Exceptions\Server\ModuleInstalledException;
-use App\Exceptions\Server\ModuleNotInstalledException;
 use App\Models\Server;
-use Illuminate\Support\Arr;
 
 class Repository implements RepositoryContract
 {

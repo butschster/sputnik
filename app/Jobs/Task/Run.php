@@ -48,11 +48,11 @@ class Run implements ShouldQueue
      */
     public function failed(Exception $exception)
     {
-        $this->server->alerts()->create([
+        $this->task->server->alerts()->create([
             'type' => 'server.task.failed',
             'exception' => (string) $exception,
             'meta' => [
-                'script' => $this->script->getName()
+                'script' => $this->task->name
             ]
         ]);
     }

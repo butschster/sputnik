@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Events\WebHooks;
-use App\Events\Task;
 use App\Events\Server;
 use App\Events\Server\KeysInstalled;
+use App\Events\Task;
+use App\Events\WebHooks;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -58,6 +58,9 @@ class EventServiceProvider extends ServiceProvider
         WebHooks\Push::class => [
             \App\Listeners\Server\Site\WebHooks\DeploySite::class,
         ],
+        Server\Module\ActionRan::class => [
+            \App\Listeners\Server\Module\CreateModuleWhenInstallActionWasRun::class,
+        ],
     ];
 
     /**
@@ -90,16 +93,17 @@ class EventServiceProvider extends ServiceProvider
             \App\Observers\Server\User\SyncUserObserver::class,
         ]);
 
-//        \App\Models\Server\User\PublicKey::observe([
-//            \App\Observers\Server\User\PublicKey\FireEventsObserver::class,
-//        ]);
-//
-//        \App\Models\Server\Site\Deployment::observe([
-//            \App\Observers\Server\Site\Deployment\ConsumeSubscriptionFeaturesObserver::class,
-//        ]);
-//
-//        \App\Models\Server\Firewall\Rule::observe([
-//            \App\Observers\Server\Firewall\SyncFirewallRuleObserver::class,
-//        ]);
+        //        \App\Models\Server\User\PublicKey::observe([
+        //            \App\Observers\Server\User\PublicKey\FireEventsObserver::class,
+        //        ]);
+        //
+        //        \App\Models\Server\Site\Deployment::observe([
+        //            \App\Observers\Server\Site\Deployment\ConsumeSubscriptionFeaturesObserver::class,
+        //        ]);
+        //
+
+        \App\Models\Server\Firewall\Rule::observe([
+            \App\Observers\Server\Firewall\SyncFirewallRuleObserver::class,
+        ]);
     }
 }
