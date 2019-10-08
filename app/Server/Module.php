@@ -73,6 +73,17 @@ abstract class Module implements \App\Contracts\Server\Module
     }
 
     /**
+     * Check if action exists
+     *
+     * @param string $name
+     * @return bool
+     */
+    public function hasAction(string $name): bool
+    {
+        return Arr::has($this->actions(), $name);
+    }
+
+    /**
      * Run action on a specified Server
      *
      * @param string $name

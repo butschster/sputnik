@@ -2,12 +2,12 @@
 
 namespace App\Contracts\Server\Modules;
 
-use App\Contracts\Server\Modules\Action\HasForm;
+use App\Contracts\Server\Module;
 use App\Contracts\Server\Modules\Action\HasSettings;
 use App\Models\Server;
 use Illuminate\Contracts\Support\Arrayable;
 
-interface Action extends HasForm, HasSettings, Arrayable
+interface Action extends HasSettings, Arrayable
 {
     /**
      * Get action key
@@ -15,6 +15,13 @@ interface Action extends HasForm, HasSettings, Arrayable
      * @return string
      */
     public function key(): string;
+
+    /**
+     * Get module
+     *
+     * @return Module
+     */
+    public function getModule(): Module;
 
     /**
      * Check if action can be run

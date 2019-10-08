@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Server;
 
 use App\Contracts\Server\Module;
+use App\Contracts\Server\Modules\Action;
 use App\Contracts\Server\Modules\Registry;
 use App\Models\Server;
 use App\Models\User\Team;
@@ -10,6 +11,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 
 class StoreRequest extends FormRequest
 {
@@ -39,25 +41,34 @@ class StoreRequest extends FormRequest
     }
 
     /**
-     * @param \Illuminate\Validation\Validator $validator
+     * @param Validator $validator
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function withValidator(\Illuminate\Validation\Validator $validator): void
+    public function withValidator(Validator $validator): void
     {
         $modules = collect($this->modules)->pluck('key');
 
         $this->modulesRegistry()->modules()->filter(function (Module $module) use ($modules, $validator) {
-            $prefix = 'modules.' . $module->key().'.';
-            if ($modules->contains($module->key())) {
-                $rules = $module->getFields()->getValidationRules($prefix);
-                if (empty($rules)) {
-                    return;
-                }
+            return $modules->contains(
+                $module->key()
+            );
+        })->filter(function(Module $module) {
+            return $module->hasAction('install');
+        })->map(function(Module $module) {
+            return $module->getAction('install');
+        })->filter(function(Action $action) {
+            return $action instanceof Action\HasFields;
+        })->each(function (Action $action) use($validator) {
+            $prefix = 'modules.' . $action->getModule()->key().'.';
 
-                $validator->addRules($rules);
-                $validator->addCustomAttributes($module->getFields()->getValidationLabels($prefix));
+            $rules = $action->getFields()->getValidationRules($prefix);
+            if (empty($rules)) {
+                return;
             }
+
+            $validator->addRules($rules);
+            $validator->addCustomAttributes($action->getFields()->getValidationLabels($prefix));
         });
     }
 

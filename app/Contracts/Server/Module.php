@@ -62,6 +62,14 @@ interface Module extends Arrayable
     public function getAction(string $name): Action;
 
     /**
+     * Check if action exists
+     *
+     * @param string $name
+     * @return bool
+     */
+    public function hasAction(string $name): bool;
+
+    /**
      * Run action on a specified Server
      *
      * @param string $name

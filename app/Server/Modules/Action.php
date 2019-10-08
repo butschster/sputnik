@@ -9,11 +9,9 @@ use App\Jobs\Task\Run;
 use App\Meta\FieldsCollection;
 use App\Models\Server;
 use App\Scripts\Server\CustomScript;
-use App\Server\Modules\Concerns\HasEvents;
 use App\Services\Task\Factory;
-use Illuminate\Support\Traits\Macroable;
 
-class Action implements ActionContract
+class Action implements ActionContract, ActionContract\HasFields
 {
     /**
      * @var string
@@ -70,6 +68,16 @@ class Action implements ActionContract
     }
 
     /**
+     * Get module
+     *
+     * @return Module
+     */
+    public function getModule(): Module
+    {
+        return $this->module;
+    }
+
+    /**
      * Get action key
      *
      * @return string
@@ -114,7 +122,7 @@ class Action implements ActionContract
     /**
      * @return array
      */
-    protected function fields(): array
+    public function fields(): array
     {
         $fields = [];
 
