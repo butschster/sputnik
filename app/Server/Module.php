@@ -96,7 +96,7 @@ abstract class Module implements \App\Contracts\Server\Module
     {
         $action = $this->getAction($name);
 
-        return $action->run($this, $server, $data);
+        return $action->run($server, $data);
     }
 
     /**

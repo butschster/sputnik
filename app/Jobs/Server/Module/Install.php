@@ -29,7 +29,7 @@ class Install implements ShouldQueue
     /**
      * @var array
      */
-    protected $data;
+    public $data;
 
     /**
      * @param Server $server
@@ -45,9 +45,11 @@ class Install implements ShouldQueue
 
     /**
      * @param Repository $repository
+     *
+     * @throws \App\Exceptions\Server\ModuleNotFoundException
      */
     public function handle(Repository $repository)
     {
-        $repository->run($this->module, $this->server, $this->data);
+        $repository->runAction($this->module, 'install', $this->server, $this->data);
     }
 }

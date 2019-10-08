@@ -40,7 +40,7 @@ class Repository implements RepositoryContract
     {
         $module = $this->modules->get($module);
 
-        if (!$module->getAction($action)->isValid($module, $server, $data)) {
+        if (!$module->getAction($action)->isValid($server, $data)) {
             throw new ModuleInstalledException(
                 sprintf('Module %s has already installed on this server', $module)
             );

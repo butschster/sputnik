@@ -4,6 +4,8 @@ namespace Module\Scheduler\Listeners;
 
 use App\Events\Server\Configured;
 use Module\Scheduler\CronService;
+use Module\Scheduler\Jobs\Schedule;
+use Module\Scheduler\ValueObjects\CronJob;
 
 class ScheduleSystemJobs
 {
@@ -38,7 +40,15 @@ class ScheduleSystemJobs
     public function handle(Configured $event): void
     {
         foreach ($this->jobs as $job) {
-            $event->server->cronJobs()->create($job);
+            event(new Schedule(
+                $event->server,
+                new CronJob(
+                    $job['name'],
+                    $job['command'],
+                    $job['cron'],
+                    $job['user']
+                )
+            ));
         }
     }
 }
