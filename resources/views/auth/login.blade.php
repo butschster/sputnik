@@ -8,8 +8,7 @@
                 @csrf
 
                 <div class="form-group form-group-labeled @error('email') is-invalid @enderror">
-                    <input id="email" type="email" class="form-control"
-                           placeholder="{{ __('E-Mail Address') }}" name="email">
+                    <input id="email" type="email" class="form-control" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" name="email">
                     <label for="email">{{ __('E-Mail Address') }}</label>
 
                     @error('email')
@@ -20,9 +19,7 @@
                 </div>
 
                 <div class="form-group form-group-labeled @error('password') is-invalid @enderror">
-                    <input id="password" type="password"
-                           class="form-control" name="password"
-                           placeholder="{{ __('Password') }}">
+                    <input id="password" type="password" class="form-control" name="password" placeholder="{{ __('Password') }}">
 
                     <label for="password">{{ __('Password') }}</label>
 
@@ -34,9 +31,8 @@
                 </div>
 
                 <div class="flex justify-between">
-                    <div class="form-group form-group-checkbox>
-                        <input class="form-checkbox" type="checkbox" name="remember"
-                               id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    <div class="form-group form-group-checkbox">
+                        <input class="form-checkbox" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                         <label class="form-check-label ml-2" for="remember">
                             {{ __('Remember Me') }}
