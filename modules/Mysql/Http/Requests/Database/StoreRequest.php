@@ -3,16 +3,19 @@
 namespace Module\Mysql\Http\Requests\Database;
 
 use App\Models\Server;
+use App\Repositories\Server\RecordRepository;
+use App\Validation\Rules\Server\ModuleInstalled;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use Module\Mysql\Models\Database;
+use Module\Mysql\Events\Database\Created;
 
 class StoreRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('store', [Database::class, $this->getServer()]);
+        return Gate::allows('store', [Server\Record::class, $this->getServer()]);
     }
 
     /**
@@ -27,25 +30,42 @@ class StoreRequest extends FormRequest
                 'required',
                 'string',
                 'alpha_dash',
-                Rule::unique('server_databases')->where('server_id', $this->route('server')->id),
+                Rule::unique('server_mysql_databases')->where('server_id', $this->route('server')->id),
             ],
             'password' => [
                 'nullable',
                 'string',
             ],
+            'module' => [
+                'required',
+                new ModuleInstalled($this->getServer())
+            ]
         ];
     }
 
     /**
-     * @return Database
+     * @return Server\Record
      */
-    public function persist(): Database
+    public function persist(): Server\Record
     {
-        $database = new Database($this->validated());
-        $database->server()->associate($this->getServer());
-        $database->save();
+        $repository = new RecordRepository();
 
-        return $$database;
+        $data = $this->validated();
+
+        if (!$this->password) {
+            $data['password']= Str::random();
+        }
+
+        $record = $repository->store(
+            $this->getServer(),
+            $this->module,
+            'database',
+            $data
+        );
+
+        event(new Created($record));
+
+        return $record;
     }
 
     /**

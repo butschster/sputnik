@@ -6,6 +6,7 @@ use App\Models\Concerns\HasServer;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Record extends Model
 {
@@ -27,4 +28,12 @@ class Record extends Model
      * {@inheritdoc}
      */
     protected $guarded = [];
+
+    /**
+     * @return BelongsTo
+     */
+    public function module(): BelongsTo
+    {
+        return $this->belongsTo(Module::class);
+    }
 }

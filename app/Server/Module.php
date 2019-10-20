@@ -89,10 +89,10 @@ abstract class Module implements \App\Contracts\Server\Module
      * @param string $name
      * @param Server $server
      * @param array $data
-     * @return Server\Task
+     * @return Server\Action
      * @throws \Throwable
      */
-    public function runAction(string $name, Server $server, array $data = []): Server\Task
+    public function runAction(string $name, Server $server, array $data = []): Server\Action
     {
         $action = $this->getAction($name);
 

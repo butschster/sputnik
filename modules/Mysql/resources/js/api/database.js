@@ -5,11 +5,12 @@ import {ApiRequestError} from "@js/errors"
  * Load servers databases
  *
  * @param {String} serverId
+ * @param {String} module
  * @return {Object}
  */
-export async function list(serverId) {
+export async function list(serverId, module) {
     try {
-        const response = await api_route('v1.server.databases', {server: serverId}).request()
+        const response = await api_route('v1.server.databases', {server: serverId}).request({module})
         return response.data.data
     } catch (e) {
         throw new ApiRequestError('Can not load server databases.')
@@ -20,10 +21,13 @@ export async function list(serverId) {
  * Create a new server database
  *
  * @param {String} serverId
+ * @param {String} module
  * @param {Object} data
  * @return {Object}
  */
-export async function store(serverId, data) {
+export async function store(serverId, module, data) {
+    data['module'] = module
+
     try {
         const response = await api_route('v1.server.database.store', {server: serverId}).request(data)
         return response.data.data

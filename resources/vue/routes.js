@@ -5,7 +5,8 @@ import LayoutBasic from '@vue/Layouts/Basic'
 import ServersList from '@vue/Pages/Servers/Index'
 import ServerShow from '@vue/Pages/Servers/Show'
 import ServerSettings from '@vue/Pages/Servers/Settings'
-import ServerModules from '@vue/Pages/Servers/Modules'
+import ServerModules from '@vue/Pages/Servers/Modules/List'
+import ServerModule from '@vue/Pages/Servers/Modules/Show'
 import ServerUsers from '@vue/Pages/Servers/Users/Index'
 import ServerFirewall from '@vue/Pages/Servers/Firewall/Index'
 import ServerEvents from '@vue/Pages/Servers/Events/Index'
@@ -21,16 +22,16 @@ import ServerSiteDeployment from '@vue/Pages/Servers/WebServer/Sites/Deployment'
 import ServerSiteEnvironment from '@vue/Pages/Servers/WebServer/Sites/Environment'
 
 // Account
-import ProfileShow from "@vue/Pages/Profile/Show";
-import NotificationsIndex from "@vue/Pages/Profile/Notifications";
-import TeamsIndex from "@vue/Pages/Profile/Team/Index";
-import TeamShow from "@vue/Pages/Profile/Team/Show";
-import TeamMembers from "@vue/Pages/Profile/Team/Members";
-import TeamBilling from "@vue/Pages/Profile/Team/Billing";
-import TeamSubscription from "@vue/Pages/Profile/Team/Subscription/Index";
+import ProfileShow from "@vue/Pages/Profile/Show"
+import NotificationsIndex from "@vue/Pages/Profile/Notifications"
+import TeamsIndex from "@vue/Pages/Profile/Team/Index"
+import TeamShow from "@vue/Pages/Profile/Team/Show"
+import TeamMembers from "@vue/Pages/Profile/Team/Members"
+import TeamBilling from "@vue/Pages/Profile/Team/Billing"
+import TeamSubscription from "@vue/Pages/Profile/Team/Subscription/Index"
 
 import NotFoundPage from '@vue/Pages/NotFound'
-import {Manager} from "@js/router/manager";
+import {Manager} from "@js/router/manager"
 
 const routes = [
     {
@@ -49,6 +50,11 @@ const routes = [
                     server: true
                 },
                 children: [
+                    {
+                        path: '/server/:id/module/:module_id',
+                        name: 'server.module',
+                        component: ServerModule
+                    },
                     {
                         path: '/server/:id/modules',
                         name: 'server.modules',

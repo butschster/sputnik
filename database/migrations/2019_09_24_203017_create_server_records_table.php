@@ -16,13 +16,14 @@ class CreateServerRecordsTable extends Migration
         Schema::create('server_records', function (Blueprint $table) {
             $table->primaryUuid('id');
             $table->belongsToServer();
+            $table->belongsToModule();
+            $table->string('feature')->nullable();
 
-            $table->string('module');
+            $table->string('key');
             $table->json('meta')->nullable();
-
             $table->timestamps();
 
-            $table->index(['server_id', 'module']);
+            $table->index(['server_id', 'module_id']);
         });
     }
 

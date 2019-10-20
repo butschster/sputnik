@@ -3,62 +3,92 @@
 namespace Module\Mysql\Http\Controllers\API\v1;
 
 use App\Http\Controllers\API\Controller;
+use App\Http\Resources\v1\Server\RecordResource;
+use App\Http\Resources\v1\Server\RecordsCollection;
 use App\Models\Server;
+use App\Repositories\Server\RecordRepository;
+use App\Validation\Rules\Server\ModuleInstalled;
+use Illuminate\Http\Request;
+use Module\Mysql\Events\Database\Deleted;
 use Module\Mysql\Http\Requests\Database\StoreRequest;
-use Module\Mysql\Http\Resources\v1\DatabaseCollection;
-use Module\Mysql\Http\Resources\v1\DatabaseResource;
-use Module\Mysql\Models\Database;
 
 class DatabaseController extends Controller
 {
     /**
-     * @param Server $server
-     * @return DatabaseCollection
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @var RecordRepository
      */
-    public function index(Server $server): DatabaseCollection
+    protected $repository;
+
+    /**
+     * @param RecordRepository $repository
+     */
+    public function __construct(RecordRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * @param Request $request
+     * @param Server $server
+     * @return RecordsCollection
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function index(Request $request, Server $server): RecordsCollection
     {
         $this->authorize('show', $server);
 
-        return DatabaseCollection::make(
-            Database::forServer($server)->get()
+        $this->validate($request, [
+            'module' => [
+                'required',
+                new ModuleInstalled($server)
+            ]
+        ]);
+
+        return RecordsCollection::make(
+            $this->repository->list($server, $request->module, 'database')
         );
     }
 
     /**
-     * @param Database $database
-     * @return mixed
+     * @param string $database
+     * @return RecordResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show(Database $database): DatabaseResource
+    public function show(string $database): RecordResource
     {
-        $this->authorize('show', $database);
+        $record = $this->repository->find($database);
+        $this->authorize('show', $record);
 
-        return DatabaseResource::make($database);
+        return RecordResource::make($record);
     }
 
     /**
      * @param StoreRequest $request
      * @param Server $server
-     * @return DatabaseResource
+     * @return RecordResource
      */
-    public function store(StoreRequest $request, Server $server): DatabaseResource
+    public function store(StoreRequest $request, Server $server): RecordResource
     {
         $database = $request->persist();
 
-        return DatabaseResource::make($database);
+        return RecordResource::make($database);
     }
 
     /**
-     * @param Database $database
+     * @param string $database
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Database $database)
+    public function delete(string $database)
     {
-        $this->authorize('delete', $database);
+        $this->authorize(
+            'delete', $record = $this->repository->find($database)
+        );
 
-        $database->delete();
+        $this->repository->delete($database);
+
+        event(new Deleted($record));
 
         return $this->responseDeleted();
     }

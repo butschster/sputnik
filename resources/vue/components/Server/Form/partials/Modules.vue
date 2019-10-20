@@ -45,7 +45,7 @@
             defaultModules: {
                 type: Array,
                 default() {
-                    return ['base_settings', 'ufw']
+                    return ['base_settings']
                 }
             }
         },

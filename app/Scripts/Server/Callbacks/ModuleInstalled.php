@@ -6,7 +6,6 @@ use App\Contracts\Scripts\Callback;
 use App\Contracts\Server\Modules\Registry;
 use App\Events\Server\Module\Installed;
 use App\Models\Server\Task;
-use App\Server\Module;
 use Illuminate\Support\Arr;
 
 class ModuleInstalled implements Callback

@@ -7,18 +7,27 @@ import {makeRoute} from "@js/router/links";
 
 api.register('mysqlDatabase', mysqlDatabase)
 
-Manager.addRoute('/server/:id', {
-    path: '/server/:id/mysql',
-    name: 'server.mysql',
-    component: DatabasePage,
-})
+const databaseTypes = ['mysql56', 'mysql8', 'mariadb']
 
-LinksManager.serverSidebar.register(
-    {
-        link: (server) => makeRoute('server.mysql', {id: server}),
-        icon: 'fa-server',
-        title: 'mysql.section',
-        module: ['mysql*', 'mariadb'],
-        order: 1000,
-    }
-)
+databaseTypes.forEach(type => {
+
+    Manager.addRoute('/server/:id', {
+        path: `/server/:id/${type}`,
+        name: `server.${type}`,
+        component: DatabasePage,
+        meta: {
+            database: type
+        }
+    })
+
+    LinksManager.serverSidebar.register(
+        {
+            link: (server) => makeRoute(`server.${type}`, {id: server}),
+            icon: 'fa-server',
+            title: `mysql.section.${type}`,
+            module: [type],
+            order: 1000,
+        }
+    )
+
+})

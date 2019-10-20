@@ -13,6 +13,7 @@ use App\Models\Concerns\DeterminesAge;
 use App\Models\Concerns\HasKeyPair;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
+use App\Models\Server\Action;
 use App\Models\Server\Event;
 use App\Models\Server\Firewall\Rule as FirewallRule;
 use App\Models\Server\Module;
@@ -181,6 +182,16 @@ class Server extends Model
     public function modules(): HasMany
     {
         return $this->hasMany(Module::class);
+    }
+
+    /**
+     * Get installed server modules
+     *
+     * @return HasMany
+     */
+    public function actions(): HasMany
+    {
+        return $this->hasMany(Action::class);
     }
 
     /**

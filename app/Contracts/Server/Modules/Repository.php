@@ -14,8 +14,8 @@ interface Repository
      * @param Server $server
      * @param array $data
      *
-     * @return mixed
+     * @return Server\Action
      * @throws \App\Exceptions\Server\ModuleNotFoundException
      */
-    public function runAction(string $module, string $action, Server $server, array $data = []);
+    public function runAction(string $module, string $action, Server $server, array $data = []): Server\Action;
 }

@@ -32,7 +32,7 @@ class Delete extends Script
      */
     public function getScript(): string
     {
-        return view('OpenVPN::scripts.clientc.delete', [
+        return view('OpenVPN::scripts.client.delete', [
             'name' => $this->client->name,
         ])->render();
     }

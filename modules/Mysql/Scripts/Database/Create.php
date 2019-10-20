@@ -28,8 +28,8 @@ class Create extends Script
      */
     public function getScript(): string
     {
-        return server_configurator($this->database->server)
-            ->database()
-            ->createDatabase($this->database);
+        return view('Mysql::scripts.mysql56.database.create', [
+            'database' => $this->database
+        ]);
     }
 }

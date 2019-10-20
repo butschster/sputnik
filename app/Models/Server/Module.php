@@ -3,6 +3,7 @@
 namespace App\Models\Server;
 
 use App\Contracts\Server\Modules\Registry;
+use App\Events\Server\Module\StatusChanged;
 use App\Models\Concerns\HasServer;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
@@ -63,5 +64,35 @@ class Module extends Model
     public function toModule(): \App\Contracts\Server\Module
     {
         return app(Registry::class)->get($this->name);
+    }
+
+    /**
+     * Mark the server as configured.
+     */
+    public function markAsInstalling(): void
+    {
+        $this->update(['status' => static::STATUS_INSTALLING]);
+
+        event(new StatusChanged($this));
+    }
+
+    /**
+     * Mark the server as configured.
+     */
+    public function markAsInstalled(): void
+    {
+        $this->update(['status' => static::STATUS_INSTALLED]);
+
+        event(new StatusChanged($this));
+    }
+
+    /**
+     * Mark the server as configured.
+     */
+    public function markAsFailed(): void
+    {
+        $this->update(['status' => static::STATUS_FAILED]);
+
+        event(new StatusChanged($this));
     }
 }

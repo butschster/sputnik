@@ -29,10 +29,6 @@ class EventServiceProvider extends ServiceProvider
         Server\Created::class => [
             \App\Listeners\Server\RegisterSystemUsers::class,
         ],
-        Server\Module\Installed::class => [
-            \App\Listeners\Server\ClearModuleMetaInformation::class,
-            \App\Listeners\Server\Module\MarkModuleAsInstalled::class,
-        ],
         Server\Alert\Created::class => [
             \App\Listeners\Server\Alert\UpdateLastAlertTimestampForCollaborators::class,
             \App\Listeners\Server\Alert\TrimAlertsForProject::class,
@@ -61,6 +57,10 @@ class EventServiceProvider extends ServiceProvider
         Server\Module\ActionRan::class => [
             \App\Listeners\Server\Module\CreateModuleWhenInstallActionWasRun::class,
         ],
+        Server\Module\Installed::class => [
+            \App\Listeners\Server\ClearModuleMetaInformation::class,
+            \App\Listeners\Server\Module\MarkModuleAsInstalled::class,
+        ],
     ];
 
     /**
@@ -74,6 +74,10 @@ class EventServiceProvider extends ServiceProvider
         \App\Models\Server::observe([
             \App\Observers\Server\GenerateSshKeyPairsObserver::class,
             \App\Observers\Server\ConsumeSubscriptionFeaturesObserver::class,
+        ]);
+
+        \App\Models\Server\Record::observe([
+            \App\Observers\Server\Record\ConsumeSubscriptionFeaturesObserver::class,
         ]);
 
         \App\Models\Server\Event::observe([

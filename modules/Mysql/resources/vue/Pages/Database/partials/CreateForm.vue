@@ -29,7 +29,8 @@
     export default {
         components: {FormInput, FormPassword},
         props: {
-            server: Object
+            server: Object,
+            module: String
         },
         data() {
             return {
@@ -45,7 +46,7 @@
             async onSubmit() {
                 this.loading = true
                 try {
-                    const database = await this.$api.mysqlDatabase.store(this.server.id, this.form)
+                    const database = await this.$api.mysqlDatabase.store(this.server.id, this.module, this.form)
                     this.$emit('created', database)
 
                     this.$notify.success(this.$t('mysql.database.message.deleted'))
@@ -62,15 +63,5 @@
                 }
             }
         },
-        computed: {
-            modulesOptions() {
-                return this.modules.map(m => {
-                    return {
-                        label: m.title,
-                        value: m.id
-                    }
-                })
-            }
-        }
     }
 </script>

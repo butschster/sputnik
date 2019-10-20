@@ -3,6 +3,8 @@
 namespace Module\Mysql\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Module\Mysql\Events\Database\Created;
+use Module\Mysql\Events\Database\Deleted;
 use Module\Mysql\Models\Database;
 use Module\Mysql\Observers;
 
@@ -13,7 +15,12 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        Created::class => [
 
+        ],
+        Deleted::class => [
+
+        ],
     ];
 
     /**
@@ -24,11 +31,8 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        Database::observe([
-            Observers\Database\ConsumeSubscriptionFeaturesObserver::class,
-            Observers\Database\GenerateDatabasePassword::class,
-            Observers\Database\FireEventsObserver::class,
-            Observers\Database\SyncDatabaseObserver::class,
-        ]);
+//        Database::observe([
+//            Observers\Database\SyncDatabaseObserver::class,
+//        ]);
     }
 }

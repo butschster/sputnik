@@ -2,37 +2,46 @@
 
 namespace Module\Mysql;
 
+use App\Models\Server\Record;
 use App\Services\Server\Runnable;
 use App\Services\Task\Contracts\Task;
 use Module\Mysql\Models\Database;
 use Module\Mysql\Scripts\Database\Create;
 use Module\Mysql\Scripts\Database\Drop;
+use Module\Mysql\ValueObjects\User;
 
 class DatabaseService
 {
     use Runnable;
 
     /**
-     * @param Database $database
+     * @param Record $record
      * @return Task
      */
-    public function create(Database $database): Task
+    public function create(Record $record): Task
     {
-        $this->setServer($database->server);
-        $this->setOwner($database);
+        $this->setServer($record->server);
+        $this->setOwner($record);
 
-        return $this->runJob(new Create($database));
+        return $this->runJob(
+            new Create($record)
+        );
     }
 
     /**
-     * @param Database $database
+     * @param Record $record
      * @return Task
      */
-    public function delete(Database $database): Task
+    public function delete(Record $record): Task
     {
-        $this->setServer($database->server);
-        $this->setOwner($database);
+        $this->setServer($record->server);
+        $this->setOwner($record);
 
-        return $this->runJob(new Drop($database));
+        return $this->runJob(
+            new Drop(
+                new User('root', 'password'),
+                $record->meta->name
+            )
+        );
     }
 }

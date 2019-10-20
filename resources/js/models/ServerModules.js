@@ -18,4 +18,10 @@ export class ServerModules {
             return Str(key).is(keys)
         }).length > 0
     }
+
+    find(keys) {
+        return _.head(this.modules.filter(m => {
+            return Str(m.key).is(keys)
+        }))
+    }
 }

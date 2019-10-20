@@ -26,7 +26,7 @@ class User implements Arrayable
      * @param string $password
      * @param array $grants
      */
-    public function __construct(string $name, string $password, array $grants)
+    public function __construct(string $name, string $password, array $grants = [])
     {
         $this->name = $name;
         $this->password = $password;

@@ -3,6 +3,7 @@
 namespace App\Models\Concerns;
 
 use App\Models\Server\Task;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait HasTask
 {
@@ -31,9 +32,9 @@ trait HasTask
     }
 
     /**
-     * @return mixed
+     * @return MorphOne
      */
-    public function task()
+    public function task(): MorphOne
     {
         return $this->morphOne(Task::class, 'owner');
     }

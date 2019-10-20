@@ -69,7 +69,5 @@ class ServiceProvider extends BaseServiceProvider
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         }
-
-        Gate::policy(Database::class, DatabasePolicy::class);
     }
 }

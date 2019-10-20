@@ -25,7 +25,7 @@ class SyncUserObserver
      */
     public function created(Client $client): void
     {
-        $this->service->createClient($client);
+        $this->service->create($client);
     }
 
     /**
@@ -33,6 +33,6 @@ class SyncUserObserver
      */
     public function deleted(Client $client): void
     {
-        $this->service->deleteClient($client);
+        $this->service->delete($client);
     }
 }

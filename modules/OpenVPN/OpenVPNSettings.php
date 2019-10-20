@@ -36,7 +36,7 @@ class OpenVPNSettings implements Extension, HasSettings, HasFields
     {
         return [
             'vars' => $this->vars(),
-            'dns' => $this->getDNS($data['dns'])
+            'dns' => $this->getDNS($data['dns']),
         ];
     }
 

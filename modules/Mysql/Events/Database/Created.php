@@ -2,25 +2,25 @@
 
 namespace Module\Mysql\Events\Database;
 
+use App\Models\Server\Record;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Module\Mysql\Models\Database;
 
 class Created
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * @var Database
+     * @var Record
      */
-    public $database;
+    public $record;
 
     /**
-     * @param Database $database
+     * @param Record $record
      */
-    public function __construct(Database $database)
+    public function __construct(Record $record)
     {
-        $this->database = $database;
+        $this->record = $record;
     }
 }

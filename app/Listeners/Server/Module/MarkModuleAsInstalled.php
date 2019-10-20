@@ -12,9 +12,9 @@ class MarkModuleAsInstalled
      */
     public function handle(Installed $event)
     {
-        $event->server->modules()->where('name', $event->module)->update([
-            'status' => Module::STATUS_INSTALLED
-        ]);
-
+        /** @var Module $module */
+        if ($module = $event->server->modules()->where('name', $event->module)->first()) {
+            $module->markAsInstalled();
+        }
     }
 }

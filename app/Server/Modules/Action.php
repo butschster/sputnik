@@ -49,6 +49,11 @@ class Action implements ActionContract, ActionContract\HasFields
     protected $extensions = [];
 
     /**
+     * @var array
+     */
+    protected $preparedData;
+
+    /**
      * @param Module $module
      * @param string $key
      * @param string $name
@@ -178,14 +183,16 @@ class Action implements ActionContract, ActionContract\HasFields
      * @param Server $server
      * @param array $data
      * @param array $callbacks
-     * @return Server\Task
+     * @return Server\Action
      * @throws \Throwable
      */
-    public function run(Server $server, array $data = [], array $callbacks = []): Server\Task
+    public function run(Server $server, array $data = [], array $callbacks = []): Server\Action
     {
         $task = $this->createTaskForScript(
             $server, $data
         );
+
+        $action = $this->createAction($server, $data, $task);
 
         foreach (array_merge($callbacks, $this->callbacks) as $callback) {
             $task->addCallback($callback);
@@ -194,10 +201,29 @@ class Action implements ActionContract, ActionContract\HasFields
         dispatch(new Run($task));
 
         event(
-            new ActionRan($server, $this->module, $this, $data)
+            new ActionRan(
+                $server,
+                $this->module,
+                $this,
+                $this->preparedData($server, $data)
+            )
         );
 
-        return $task;
+        return $action;
+    }
+
+    /**
+     * @param Server $server
+     * @param array $data
+     * @return array|mixed
+     */
+    public function preparedData(Server $server, array $data)
+    {
+        if (!$this->preparedData) {
+            $this->preparedData = $this->prepareData($server, $data);
+        }
+
+        return $this->preparedData;
     }
 
     /**
@@ -219,8 +245,8 @@ class Action implements ActionContract, ActionContract\HasFields
 
         return array_merge(
             $this->settings(),
-            $extensionsData,
-            $data
+            $data,
+            $extensionsData
         );
     }
 
@@ -253,7 +279,7 @@ class Action implements ActionContract, ActionContract\HasFields
     public function render(Server $server, array $data = []): string
     {
         $data = array_merge(
-            $this->prepareData($server, $data),
+            $this->preparedData($server, $data),
             [
                 'module' => $this->module,
                 'server' => $server,
@@ -315,5 +341,29 @@ class Action implements ActionContract, ActionContract\HasFields
     public function __toString()
     {
         return $this->module->key().'.'.$this->key();
+    }
+
+    /**
+     * @param Server $server
+     * @param array $data
+     * @param \App\Services\Task\Contracts\Task $task
+     * @return Server\Action
+     */
+    protected function createAction(Server $server, array $data, \App\Services\Task\Contracts\Task $task): Server\Action
+    {
+        $action = new Server\Action([
+            'module' => $this->module,
+            'class' => get_class($this),
+            'action' => $this->key,
+            'meta' => $this->preparedData($server, $data),
+        ]);
+
+        $action->server()->associate($server);
+        $action->save();
+
+        $task->owner()->associate($action);
+        $task->save();
+
+        return $action;
     }
 }

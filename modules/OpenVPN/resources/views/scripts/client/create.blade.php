@@ -5,7 +5,7 @@ EASYRSA_CERT_EXPIRE=3650 ./easyrsa build-client-full $CLIENT nopass
 
 echo "client
 dev tun
-proto {{ $configuration->protocol() }}
+proto {{ $protocol() }}
 user nobody
 group nogroup
 sndbuf 0

@@ -75,7 +75,7 @@ interface Module extends Arrayable
      * @param string $name
      * @param Server $server
      * @param array $data
-     * @return Server\Task
+     * @return Server\Action
      */
-    public function runAction(string $name, Server $server, array $data = []): Server\Task;
+    public function runAction(string $name, Server $server, array $data = []): Server\Action;
 }

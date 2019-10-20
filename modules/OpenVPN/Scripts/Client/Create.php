@@ -32,7 +32,7 @@ class Create extends Script
      */
     public function getScript(): string
     {
-        return view('OpenVPN::scripts.clientc.create', [
+        return view('OpenVPN::scripts.client.create', [
             'name' => $this->client->name,
             'configuration' => $this->client->server->toConfiguration(),
         ])->render();

@@ -38,10 +38,10 @@ interface Action extends HasSettings, Arrayable
      * @param Server $server
      * @param array $data
      * @param array $callbacks
-     * @return Server\Task
+     * @return Server\Action
      * @throws \Throwable
      */
-    public function run(Server $server, array $data = [], array $callbacks = []): Server\Task;
+    public function run(Server $server, array $data = [], array $callbacks = []): Server\Action;
 
     /**
      * Render action script

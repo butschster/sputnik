@@ -2,8 +2,9 @@
 
 namespace Module\Mysql\Scripts\Database;
 
-use App\Models\Server\Database;
 use App\Utils\SSH\Script;
+use Module\Mysql\Models\Database;
+use Module\Mysql\ValueObjects\User;
 
 class Drop extends Script
 {
@@ -13,22 +14,31 @@ class Drop extends Script
     protected $database;
 
     /**
-     * @param Database $database
+     * @var User
      */
-    public function __construct(Database $database)
+    protected $user;
+
+    /**
+     * @param User $user
+     * @param string $database
+     */
+    public function __construct(User $user, string $database)
     {
         $this->database = $database;
+        $this->user = $user;
     }
 
     /**
      * @return string
      * @throws \App\Exceptions\Scrpits\ConfigurationNotFoundException
+     *
      * @throws \Throwable
      */
     public function getScript(): string
     {
-        return server_configurator($this->database->server)
-            ->database()
-            ->dropDatabase($this->database);
+        return view('Mysql::scripts.mysql56.database.drop', [
+            'user' => $this->user,
+            'database' => $this->database
+        ]);
     }
 }

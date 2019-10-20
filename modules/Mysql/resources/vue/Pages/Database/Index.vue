@@ -2,7 +2,12 @@
     <div>
         <h1>{{ $t('mysql.title') }}</h1>
 
-        <CreateForm :server="$parent.server" class="well well-lg mb-12" @created="load"/>
+        <CreateForm
+                :server="server"
+                :module="module"
+                class="well well-lg mb-12"
+                @created="load"
+        />
 
         <div v-if="hasDatabase">
             <Loader :loading="loading"/>
@@ -57,7 +62,6 @@
         data() {
             return {
                 loading: false,
-                page: 1,
                 databases: []
             }
         },
@@ -69,7 +73,7 @@
                 this.loading = true
 
                 try {
-                    this.databases = await this.$api.mysqlDatabase.list(this.$parent.server.id)
+                    this.databases = await this.$api.mysqlDatabase.list(this.server.id, this.module)
                 } catch (e) {
                     this.$handleError(e)
                 }
@@ -79,7 +83,9 @@
             onDestroy(database) {
                 this.load()
 
-                this.$notify.success(this.$t('mysql.database.message.deleted'))
+                this.$notify.success(
+                    this.$t('mysql.database.message.deleted')
+                )
             },
             async destroy(database) {
                 this.loading = true
@@ -95,6 +101,12 @@
         computed: {
             hasDatabase() {
                 return this.databases.length > 0
+            },
+            server() {
+                return this.$parent.server
+            },
+            module() {
+                return this.$route.meta.database
             }
         }
     }
