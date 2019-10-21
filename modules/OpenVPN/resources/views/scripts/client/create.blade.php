@@ -5,12 +5,12 @@ EASYRSA_CERT_EXPIRE=3650 ./easyrsa build-client-full $CLIENT nopass
 
 echo "client
 dev tun
-proto {{ $protocol() }}
+proto {{ $protocol }}
 user nobody
 group nogroup
 sndbuf 0
 rcvbuf 0
-remote {{ $configuration->ip() }} {{ $configuration->port() }}
+remote {{ $configuration->ip() }} {{ $port }}
 resolv-retry infinite
 nobind
 persist-key

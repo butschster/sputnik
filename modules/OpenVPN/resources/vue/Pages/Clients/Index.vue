@@ -24,7 +24,7 @@
                 </thead>
                 <tbody>
                 <tr v-for="client in clients">
-                    <th>{{ client.name }}</th>
+                    <th>{{ client.meta.name }}</th>
                     <td class="text-right">
                         <BadgeTaskStatus :task="client.task"/>
                     </td>

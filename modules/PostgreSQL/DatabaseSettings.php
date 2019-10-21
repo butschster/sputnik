@@ -12,12 +12,7 @@ use Module\Mysql\ValueObjects\User;
 class DatabaseSettings implements Extension
 {
     /**
-     * Check if action can be run
-     *
-     * @param Module $module
-     * @param Server $server
-     * @param array $data
-     * @return bool
+     * {@inheritDoc}
      */
     public function isValid(Module $module, Server $server, array $data = []): bool
     {
@@ -25,19 +20,25 @@ class DatabaseSettings implements Extension
     }
 
     /**
-     * @param Module $module
-     * @param Server $server
-     * @param array $data
-     * @return array
+     * {@inheritDoc}
      */
-    public function data(Module $module, Server $server, array $data = []): array
+    public function scriptData(Module $module, Server $server, array $data = []): array
+    {
+        return [
+            'databaseUsers' => $this->getDatabaseUsers($server, $data['password']),
+            'hosts' => [$server->ip, 'localhost'],
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function databaseData(Module $module, Server $server, array $data = []): array
     {
         $password = Str::random(10);
 
         return [
             'password' => $password,
-            'databaseUsers' => $this->getDatabaseUsers($server, $password),
-            'hosts' => [$server->ip, 'localhost'],
         ];
     }
 

@@ -16,9 +16,13 @@ class RecordRepository
      */
     public function list(Server $server, string $module, string $key)
     {
-        $module = $server->modules()->where('name', $module)->where('key', $key)->firstOrFail()->id;
+        $module = $server->getModule($module)->id;
 
-        return Server\Record::forServer($server)->where('module', $module)->latest()->get();
+        return Server\Record::forServer($server)
+            ->where('module_id', $module)
+            ->where('key', $key)
+            ->latest()
+            ->get();
     }
 
     /**
@@ -40,14 +44,12 @@ class RecordRepository
      */
     public function store(Server $server, string $module, string $key, array $data, ?string $feature = null): Server\Record
     {
-        $module = $server->modules()->where('name', $module)->firstOrFail();
-
         $record = new Server\Record();
         $record->meta = $data;
         $record->feature = $feature;
         $record->key = $key;
         $record->server()->associate($server);
-        $record->module()->associate($module);
+        $record->module()->associate($server->getModule($module));
 
         $record->save();
 

@@ -185,6 +185,20 @@ class Server extends Model
     }
 
     /**
+     * Get module by name
+     *
+     * @param string $module
+     * @return Module
+     */
+    public function getModule(string $module): Module
+    {
+        return $this
+            ->modules()
+            ->where('name', $module)
+            ->firstOrFail();
+    }
+
+    /**
      * Get installed server modules
      *
      * @return HasMany

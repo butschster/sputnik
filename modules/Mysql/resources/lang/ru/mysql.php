@@ -1,14 +1,22 @@
 <?php
 
 return [
-    'section' => 'Управление MySQL',
-    'title' => 'Управление MySQL',
+    'section' => [
+        'mysql56' => 'Управление MySQL 5.6',
+        'mysql8' => 'Управление MySQL 8',
+        'mariadb' => 'Управление MariaDB',
+    ],
+    'title' => [
+        'mysql56' => 'Управление MySQL 5.6',
+        'mysql8' => 'Управление MySQL 8',
+        'mariadb' => 'Управление MariaDB',
+    ],
     'database' => [
         'title' => 'Созданные БД',
         'table' => [
             'name' => 'Название БД',
             'user' => 'Пользователь',
-            'password' => 'Ппроль',
+            'password' => 'Пароль',
             'status' => 'Статус',
         ],
         'form' => [

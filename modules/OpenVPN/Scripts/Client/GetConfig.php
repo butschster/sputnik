@@ -2,8 +2,8 @@
 
 namespace Module\OpenVPN\Scripts\Client;
 
+use App\Models\Server\Record;
 use App\Utils\SSH\Script;
-use Module\OpenVPN\Models\Client;
 
 class GetConfig extends Script
 {
@@ -13,16 +13,16 @@ class GetConfig extends Script
     protected $name = 'Get OpenVPN client config';
 
     /**
-     * @var Client
+     * @var Record
      */
-    protected $client;
+    protected $record;
 
     /**
-     * @param Client $client
+     * @param Record $record
      */
-    public function __construct(Client $client)
+    public function __construct(Record $record)
     {
-        $this->client = $client;
+        $this->record = $record;
     }
 
     /**
@@ -32,6 +32,6 @@ class GetConfig extends Script
      */
     public function getScript(): string
     {
-        return sprintf('cat ~/%s.ovpn', $this->client->name);
+        return sprintf('cat ~/%s.ovpn', $this->record->meta['name']);
     }
 }

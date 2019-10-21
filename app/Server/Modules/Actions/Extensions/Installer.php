@@ -11,7 +11,7 @@ use App\Scripts\Server\Callbacks\ModuleInstalled;
 class Installer implements Extension, HasCallbacks
 {
     /**
-     * @return array
+     * {@inheritDoc}
      */
     public function callbacks(): array
     {
@@ -21,12 +21,7 @@ class Installer implements Extension, HasCallbacks
     }
 
     /**
-     * Check if action can be run
-     *
-     * @param Module $module
-     * @param Server $server
-     * @param array $data
-     * @return bool
+     * {@inheritDoc}
      */
     public function isValid(Module $module, Server $server, array $data = []): bool
     {
@@ -34,12 +29,17 @@ class Installer implements Extension, HasCallbacks
     }
 
     /**
-     * @param Module $module
-     * @param Server $server
-     * @param array $data
-     * @return array
+     * {@inheritDoc}
      */
-    public function data(Module $module, Server $server, array $data = []): array
+    public function scriptData(Module $module, Server $server, array $data = []): array
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function databaseData(Module $module, Server $server, array $data = []): array
     {
         return [];
     }

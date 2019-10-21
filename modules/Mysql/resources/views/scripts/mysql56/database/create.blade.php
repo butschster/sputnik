@@ -1,3 +1,6 @@
 
-mysql --user="root" --password="{!! $password !!}" -e "CREATE DATABASE IF NOT EXISTS {{ $database->name }} @if($database->character_set)character set {{ $database->character_set }}@endif @if($database->collation)collate {{ $database->collation }}@endif;"
-@include('Mysql::scripts.mysql56.user.create')
+@mysql(['user' => $root])
+CREATE DATABASE IF NOT EXISTS {{ $database->getName() }} @if($database->getCharacterSet())character set {{ $database->getCharacterSet() }}@endif @if($database->getCollation())collate {{ $database->getCollation() }}@endif
+@endmysql
+@include('Mysql::scripts.mysql56.user.create', ['user' => $database->getUser(), 'hosts' => $database->getHosts()] )
+

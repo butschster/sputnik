@@ -2,14 +2,13 @@
 
 namespace Module\OpenVPN\Http\Resources\v1;
 
-use App\Http\Resources\v1\Server\TaskResource;
-use App\Models\Server\OpenVPN\Client;
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\v1\Server\RecordResource;
+use App\Models\Server\Record;
 
 /**
- * @mixin Client
+ * @mixin Record
  */
-class ClientResource extends JsonResource
+class ClientResource extends RecordResource
 {
     /**
      * Transform the resource into an array.
@@ -19,15 +18,11 @@ class ClientResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'server_id' => $this->server_id,
-            'name' => $this->name,
-            'task' => TaskResource::make($this->task),
-            'created_at' => $this->created_at,
-            'links' => [
-                'download' => api_route('server.openvpn.client.download', $this->id)
-            ]
+        $data = parent::toArray($request);
+        $data['links'] = [
+            'download' => api_route('server.openvpn.client.download', $this->id)
         ];
+
+        return $data;
     }
 }

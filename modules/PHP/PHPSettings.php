@@ -10,12 +10,7 @@ class PHPSettings implements Extension
 {
 
     /**
-     * Check if action can be run
-     *
-     * @param Module $module
-     * @param Server $server
-     * @param array $data
-     * @return bool
+     * {@inheritDoc}
      */
     public function isValid(Module $module, Server $server, array $data = []): bool
     {
@@ -23,22 +18,29 @@ class PHPSettings implements Extension
     }
 
     /**
-     * @param Module $module
-     * @param Server $server
-     * @param array $data
-     * @return array
+     * {@inheritDoc}
      */
-    public function data(Module $module, Server $server, array $data = []): array
+    public function scriptData(Module $module, Server $server, array $data = []): array
     {
-        $modules = [
-            'cli', 'dev', 'sqlite3', 'gd', 'curl', 'mbstring', 'xml', 'zip', 'bcmath', 'intl',
-            'fpm', 'mcrypt', 'pdo', 'mysqli',
-        ];
+        $modules = $data['modules'];
 
         return array_merge($module->meta(), [
             'modules_configuration' => $this->prepareModulesConfiguration($module, $modules),
             'server_modules' => $this->prepareModulesListFromGivenData($module, $modules),
         ]);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function databaseData(Module $module, Server $server, array $data = []): array
+    {
+        return [
+            'modules' => [
+                'cli', 'dev', 'sqlite3', 'gd', 'curl', 'mbstring', 'xml', 'zip', 'bcmath', 'intl',
+                'fpm', 'mcrypt', 'pdo', 'mysqli',
+            ]
+        ];
     }
 
     /**

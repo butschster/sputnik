@@ -2,8 +2,8 @@
 
 namespace Module\OpenVPN\Scripts\Client;
 
+use App\Models\Server\Record;
 use App\Utils\SSH\Script;
-use Module\OpenVPN\Models\Client;
 
 class Delete extends Script
 {
@@ -13,16 +13,16 @@ class Delete extends Script
     protected $name = 'Delete OpenVPN client config';
 
     /**
-     * @var Client
+     * @var Record
      */
-    protected $client;
+    protected $record;
 
     /**
-     * @param Client $client
+     * @param Record $record
      */
-    public function __construct(Client $client)
+    public function __construct(Record $record)
     {
-        $this->client = $client;
+        $this->record = $record;
     }
 
     /**
@@ -33,7 +33,7 @@ class Delete extends Script
     public function getScript(): string
     {
         return view('OpenVPN::scripts.client.delete', [
-            'name' => $this->client->name,
+            'name' => $this->record->meta['name'],
         ])->render();
     }
 }

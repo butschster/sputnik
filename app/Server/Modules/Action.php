@@ -51,7 +51,12 @@ class Action implements ActionContract, ActionContract\HasFields
     /**
      * @var array
      */
-    protected $preparedData;
+    protected $preparedScriptsData;
+
+    /**
+     * @var array
+     */
+    protected $preparedDatabaseData;
 
     /**
      * @param Module $module
@@ -192,7 +197,7 @@ class Action implements ActionContract, ActionContract\HasFields
             $server, $data
         );
 
-        $action = $this->createAction($server, $data, $task);
+        $action = $this->storeActionToDatabase($server, $data, $task);
 
         foreach (array_merge($callbacks, $this->callbacks) as $callback) {
             $task->addCallback($callback);
@@ -205,7 +210,7 @@ class Action implements ActionContract, ActionContract\HasFields
                 $server,
                 $this->module,
                 $this,
-                $this->preparedData($server, $data)
+                $this->preparedDatabaseData($server, $data)
             )
         );
 
@@ -217,13 +222,27 @@ class Action implements ActionContract, ActionContract\HasFields
      * @param array $data
      * @return array|mixed
      */
-    public function preparedData(Server $server, array $data)
+    public function preparedScriptData(Server $server, array $data)
     {
-        if (!$this->preparedData) {
-            $this->preparedData = $this->prepareData($server, $data);
+        if (!$this->preparedScriptsData) {
+            $this->preparedScriptsData = $this->prepareScriptData($server, $data);
         }
 
-        return $this->preparedData;
+        return $this->preparedScriptsData;
+    }
+
+    /**
+     * @param Server $server
+     * @param array $data
+     * @return array|mixed
+     */
+    public function preparedDatabaseData(Server $server, array $data)
+    {
+        if (!$this->preparedDatabaseData) {
+            $this->preparedDatabaseData = $this->prepareDatabaseData($server, $data);
+        }
+
+        return $this->preparedDatabaseData;
     }
 
     /**
@@ -232,14 +251,41 @@ class Action implements ActionContract, ActionContract\HasFields
      *
      * @return array
      */
-    protected function prepareData(Server $server, array $data): array
+    protected function prepareDatabaseData(Server $server, array $data): array
     {
         $extensionsData = [];
 
         foreach ($this->extensions as $extension) {
             $extensionsData = array_merge(
                 $extensionsData,
-                $extension->data($this->module, $server, $data)
+                $extension->databaseData($this->module, $server, $data),
+            );
+        }
+
+        return array_merge(
+            $data,
+            $extensionsData
+        );
+    }
+
+    /**
+     * @param Server $server
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function prepareScriptData(Server $server, array $data): array
+    {
+        $data = array_merge(
+            $data, $this->preparedDatabaseData($server, $data)
+        );
+
+        $extensionsData = [];
+
+        foreach ($this->extensions as $extension) {
+            $extensionsData = array_merge(
+                $extensionsData,
+                $extension->scriptData($this->module, $server, $data)
             );
         }
 
@@ -279,7 +325,7 @@ class Action implements ActionContract, ActionContract\HasFields
     public function render(Server $server, array $data = []): string
     {
         $data = array_merge(
-            $this->preparedData($server, $data),
+            $this->preparedScriptData($server, $data),
             [
                 'module' => $this->module,
                 'server' => $server,
@@ -344,18 +390,20 @@ class Action implements ActionContract, ActionContract\HasFields
     }
 
     /**
+     * Store information about current action to the database
+     *
      * @param Server $server
      * @param array $data
      * @param \App\Services\Task\Contracts\Task $task
      * @return Server\Action
      */
-    protected function createAction(Server $server, array $data, \App\Services\Task\Contracts\Task $task): Server\Action
+    protected function storeActionToDatabase(Server $server, array $data, \App\Services\Task\Contracts\Task $task): Server\Action
     {
         $action = new Server\Action([
             'module' => $this->module,
             'class' => get_class($this),
             'action' => $this->key,
-            'meta' => $this->preparedData($server, $data),
+            'meta' => $this->preparedDatabaseData($server, $data),
         ]);
 
         $action->server()->associate($server);

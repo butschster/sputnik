@@ -2,6 +2,7 @@
 # ================================================
 # Install OpenVPN
 # ================================================
+sudo apt-get install -y openvpn
 
 EASYRSAURL='https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.6/EasyRSA-unix-v3.0.6.tgz'
 
@@ -124,6 +125,8 @@ EOM
 echo -e "$NAT_RULES\n$(cat /etc/ufw/before.rules)" > /etc/ufw/before.rules
 
 sed -i 's/DEFAULT_FORWARD_POLICY=.*/DEFAULT_FORWARD_POLICY="ACCEPT"/g' /etc/default/ufw
+
+systemctl restart ufw
 
 # ================================================
 # EAnd finally, enable and start the

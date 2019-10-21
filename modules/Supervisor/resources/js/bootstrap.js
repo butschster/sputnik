@@ -11,6 +11,9 @@ Manager.addRoute('/server/:id', {
     path: '/server/:id/supervisor',
     name: 'server.supervisor',
     component: SupervisorPage,
+    meta: {
+        module: 'supervisor'
+    }
 })
 
 LinksManager.serverSidebar.register(

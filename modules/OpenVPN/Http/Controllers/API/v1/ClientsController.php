@@ -4,25 +4,49 @@ namespace Module\OpenVPN\Http\Controllers\API\v1;
 
 use App\Http\Controllers\API\Controller;
 use App\Models\Server;
+use App\Repositories\Server\RecordRepository;
+use App\Validation\Rules\Server\ModuleInstalled;
+use Illuminate\Http\Request;
 use Module\OpenVPN\Http\Requests\Client\StoreRequest;
 use Module\OpenVPN\Http\Resources\v1\ClientResource;
 use Module\OpenVPN\Http\Resources\v1\ClientsCollection;
-use Module\OpenVPN\Models\Client;
 use Module\OpenVPN\OpenVPNClientService;
 
 class ClientsController extends Controller
 {
     /**
+     * @var RecordRepository
+     */
+    protected $repository;
+
+    /**
+     * @var OpenVPNClientService
+     */
+    protected $service;
+
+    /**
+     * @param RecordRepository $repository
+     * @param OpenVPNClientService $service
+     */
+    public function __construct(RecordRepository $repository, OpenVPNClientService $service)
+    {
+        $this->repository = $repository;
+        $this->service = $service;
+    }
+
+    /**
+     * @param Request $request
      * @param Server $server
      * @return ClientsCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function index(Server $server): ClientsCollection
+    public function index(Request $request, Server $server): ClientsCollection
     {
         $this->authorize('show', $server);
 
         return ClientsCollection::make(
-            Client::forServer($server)->get()
+            $this->repository->list($server, 'openvpn', 'client')
         );
     }
 
@@ -33,36 +57,43 @@ class ClientsController extends Controller
      */
     public function store(StoreRequest $request, Server $server): ClientResource
     {
+        $record = $request->persist();
+
+        $this->service->create($record);
         return ClientResource::make(
-            $request->persist()
+            $record
         );
     }
 
     /**
-     * @param OpenVPNClientService $service
-     * @param Client $client
+     * @param string $client
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function download(OpenVPNClientService $service, Client $client)
+    public function download(string $client)
     {
-        $this->authorize('show', $client);
+        $record = $this->repository->find($client);
+        $this->authorize('show', $record);
 
-        return response()->streamDownload(function () use ($service, $client) {
-            echo $service->getClientConfig($client);
-        }, $client->name . '.ovpn');
+        return response()->streamDownload(function () use ($record) {
+            echo $this->service->getConfig($record);
+        }, $record->meta['name'] . '.ovpn');
     }
 
     /**
-     * @param Client $client
+     * @param string $client
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Client $client)
+    public function delete(string $client)
     {
-        $this->authorize('delete', $client);
+        $this->authorize(
+            'delete', $record = $this->repository->find($client)
+        );
 
-        $client->delete();
+        if ($this->repository->delete($client)) {
+            $this->service->delete($record);
+        }
 
         return $this->responseDeleted();
     }

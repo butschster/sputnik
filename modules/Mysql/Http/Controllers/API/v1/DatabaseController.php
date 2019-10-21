@@ -9,7 +9,7 @@ use App\Models\Server;
 use App\Repositories\Server\RecordRepository;
 use App\Validation\Rules\Server\ModuleInstalled;
 use Illuminate\Http\Request;
-use Module\Mysql\Events\Database\Deleted;
+use Module\Mysql\DatabaseService;
 use Module\Mysql\Http\Requests\Database\StoreRequest;
 
 class DatabaseController extends Controller
@@ -20,11 +20,18 @@ class DatabaseController extends Controller
     protected $repository;
 
     /**
-     * @param RecordRepository $repository
+     * @var DatabaseService
      */
-    public function __construct(RecordRepository $repository)
+    protected $service;
+
+    /**
+     * @param RecordRepository $repository
+     * @param DatabaseService $service
+     */
+    public function __construct(RecordRepository $repository, DatabaseService $service)
     {
         $this->repository = $repository;
+        $this->service = $service;
     }
 
     /**
@@ -70,9 +77,11 @@ class DatabaseController extends Controller
      */
     public function store(StoreRequest $request, Server $server): RecordResource
     {
-        $database = $request->persist();
+        $record = $request->persist();
 
-        return RecordResource::make($database);
+        $this->service->create($record);
+
+        return RecordResource::make($record);
     }
 
     /**
@@ -86,9 +95,9 @@ class DatabaseController extends Controller
             'delete', $record = $this->repository->find($database)
         );
 
-        $this->repository->delete($database);
-
-        event(new Deleted($record));
+        if ($this->repository->delete($database)) {
+            $this->service->delete($record);
+        }
 
         return $this->responseDeleted();
     }

@@ -14,12 +14,7 @@ use Illuminate\Validation\Rule;
 class OpenVPNSettings implements Extension, HasSettings, HasFields
 {
     /**
-     * Check if action can be run
-     *
-     * @param Module $module
-     * @param Server $server
-     * @param array $data
-     * @return bool
+     * {@inheritDoc}
      */
     public function isValid(Module $module, Server $server, array $data = []): bool
     {
@@ -27,12 +22,17 @@ class OpenVPNSettings implements Extension, HasSettings, HasFields
     }
 
     /**
-     * @param Module $module
-     * @param Server $server
-     * @param array $data
-     * @return array
+     * {@inheritDoc}
      */
-    public function data(Module $module, Server $server, array $data = []): array
+    public function scriptData(Module $module, Server $server, array $data = []): array
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function databaseData(Module $module, Server $server, array $data = []): array
     {
         return [
             'vars' => $this->vars(),
@@ -41,7 +41,7 @@ class OpenVPNSettings implements Extension, HasSettings, HasFields
     }
 
     /**
-     * @return array
+     * {@inheritDoc}
      */
     public function settings(): array
     {
@@ -66,7 +66,7 @@ class OpenVPNSettings implements Extension, HasSettings, HasFields
     }
 
     /**
-     * @return array
+     * {@inheritDoc}
      */
     public function fields(): array
     {

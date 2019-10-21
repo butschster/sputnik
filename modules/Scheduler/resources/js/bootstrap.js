@@ -11,6 +11,9 @@ Manager.addRoute('/server/:id',  {
     path: '/server/:id/scheduler',
     name: 'server.scheduler',
     component: SchedulerPage,
+    meta: {
+        module: 'scheduler'
+    }
 })
 
 LinksManager.serverSidebar.register(

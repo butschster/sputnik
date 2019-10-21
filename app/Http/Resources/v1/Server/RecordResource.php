@@ -25,7 +25,6 @@ class RecordResource extends JsonResource
             'server_id' => $this->server_id,
             'key' => $this->key,
             'module_id' => $this->module_id,
-            'status' => $this->status,
             'meta' => $this->meta,
             'task' => TaskResource::make($this->task),
             'created_at' => $this->created_at,

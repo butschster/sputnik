@@ -3,9 +3,9 @@
 namespace Module\Mysql\Providers;
 
 use App\Modules\ServiceProvider as BaseServiceProvider;
-use Illuminate\Support\Facades\Gate;
 use Module\Mysql\Models\Database;
 use Module\Mysql\Policies\DatabasePolicy;
+use Illuminate\Support\Facades\Blade;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -69,5 +69,7 @@ class ServiceProvider extends BaseServiceProvider
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         }
+
+        Blade::component('Mysql::components.executeScript', 'mysql');
     }
 }

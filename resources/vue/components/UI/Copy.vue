@@ -5,7 +5,8 @@
           v-clipboard:success="onCopy"
           v-clipboard:error="onError"
     >
-        <slot>{{ text }}</slot> <span class="btn-copy__label">{{ label }}</span>
+        <slot>{{ label }}</slot>
+        <span class="btn-copy__label">{{ copyLabel }}</span>
     </span>
 </template>
 
@@ -13,8 +14,12 @@
     export default {
         props: {
             text: String,
+            label: {
+                default() {
+                    return this.text
+                }
+            }
         },
-
         data() {
             return {
                 copied: false,
@@ -33,7 +38,7 @@
             }
         },
         computed: {
-            label() {
+            copyLabel() {
                 if (this.copied) {
                     return this.$t('app.buttons.copied')
                 }

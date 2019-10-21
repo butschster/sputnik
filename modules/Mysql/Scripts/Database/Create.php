@@ -3,7 +3,8 @@
 namespace Module\Mysql\Scripts\Database;
 
 use App\Utils\SSH\Script;
-use Module\Mysql\Models\Database;
+use Module\Mysql\ValueObjects\Database;
+use Module\Mysql\ValueObjects\User;
 
 class Create extends Script
 {
@@ -13,11 +14,18 @@ class Create extends Script
     protected $database;
 
     /**
-     * @param Database $database
+     * @var User
      */
-    public function __construct(Database $database)
+    protected $root;
+
+    /**
+     * @param Database $database
+     * @param User $root
+     */
+    public function __construct(Database $database, User $root)
     {
         $this->database = $database;
+        $this->root = $root;
     }
 
     /**
@@ -29,7 +37,8 @@ class Create extends Script
     public function getScript(): string
     {
         return view('Mysql::scripts.mysql56.database.create', [
-            'database' => $this->database
+            'database' => $this->database,
+            'root' => $this->root
         ]);
     }
 }

@@ -6,10 +6,10 @@ use App\Models\Server;
 use App\Repositories\Server\RecordRepository;
 use App\Validation\Rules\Server\ModuleInstalled;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use Module\Mysql\Events\Database\Created;
 
 class StoreRequest extends FormRequest
 {
@@ -25,21 +25,26 @@ class StoreRequest extends FormRequest
      */
     public function rules()
     {
+        $server = $this->getServer();
+
         return [
+            'module' => [
+                'required',
+                new ModuleInstalled($server)
+            ],
             'name' => [
                 'required',
                 'string',
                 'alpha_dash',
-                Rule::unique('server_mysql_databases')->where('server_id', $this->route('server')->id),
+                Rule::unique('server_records', 'meta->name')
+                    ->where('server_id', $server->id)
+                    ->where('module_id', $server->getModule($this->module)->id)
+                    ->where('key', 'database'),
             ],
             'password' => [
                 'nullable',
                 'string',
             ],
-            'module' => [
-                'required',
-                new ModuleInstalled($this->getServer())
-            ]
         ];
     }
 
@@ -60,10 +65,9 @@ class StoreRequest extends FormRequest
             $this->getServer(),
             $this->module,
             'database',
-            $data
+            Arr::except($data, 'module'),
+            'server.database.create'
         );
-
-        event(new Created($record));
 
         return $record;
     }

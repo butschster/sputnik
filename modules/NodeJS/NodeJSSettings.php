@@ -15,12 +15,7 @@ class NodeJSSettings implements Extension, HasFields, HasSettings
 {
 
     /**
-     * Check if action can be run
-     *
-     * @param Module $module
-     * @param Server $server
-     * @param array $data
-     * @return bool
+     * {@inheritDoc}
      */
     public function isValid(Module $module, Server $server, array $data = []): bool
     {
@@ -41,12 +36,17 @@ class NodeJSSettings implements Extension, HasFields, HasSettings
     }
 
     /**
-     * @param Module $module
-     * @param Server $server
-     * @param array $data
-     * @return array
+     * {@inheritDoc}
      */
-    public function data(Module $module, Server $server, array $data = []): array
+    public function scriptData(Module $module, Server $server, array $data = []): array
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function databaseData(Module $module, Server $server, array $data = []): array
     {
         return [];
     }
@@ -64,7 +64,7 @@ class NodeJSSettings implements Extension, HasFields, HasSettings
     }
 
     /**
-     * @return array
+     * {@inheritDoc}
      */
     public function settings(): array
     {

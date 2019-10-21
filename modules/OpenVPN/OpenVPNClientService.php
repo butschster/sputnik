@@ -2,9 +2,9 @@
 
 namespace Module\OpenVPN;
 
+use App\Models\Server\Record;
 use App\Services\Server\Runnable;
 use App\Services\Task\Contracts\Task;
-use Module\OpenVPN\Models\Client;
 use Module\OpenVPN\Scripts\Client\Create;
 use Module\OpenVPN\Scripts\Client\Delete;
 use Module\OpenVPN\Scripts\Client\GetConfig;
@@ -16,42 +16,45 @@ class OpenVPNClientService
     /**
      * Get client OpenVPN config
      *
-     * @param Client $client
+     * @param Record $record
      * @return string
      */
-    public function getConfig(Client $client): string
+    public function getConfig(Record $record): string
     {
-        $this->setServer($client->server);
+        $this->setServer($record->server);
 
-        return $this->run(new GetConfig($client))->output;
+        return $this->run(new GetConfig($record))->output;
     }
 
     /**
      * Add a new user
      *
-     * @param Client $client
+     * @param Record $record
      * @return Task
      */
-    public function create(Client $client): Task
+    public function create(Record $record): Task
     {
-        $this->setServer($client->server);
-        $this->setOwner($client);
+        $this->setServer($record->server);
+        $this->setOwner($record);
 
-        return $this->runJob(new Create($client));
+        return $this->runJob(
+            new Create($record)
+        );
     }
 
     /**
      * Revoke an existing user
      *
-     * @param Client $client
-     *
+     * @param Record $record
      * @return Task
      */
-    public function delete(Client $client): Task
+    public function delete(Record $record): Task
     {
-        $this->setServer($client->server);
-        $this->setOwner($client);
+        $this->setServer($record->server);
+        $this->setOwner($record);
 
-        return $this->runJob(new Delete($client));
+        return $this->runJob(
+            new Delete($record)
+        );
     }
 }

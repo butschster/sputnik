@@ -3,21 +3,9 @@
 namespace Module\OpenVPN\Providers;
 
 use App\Modules\ServiceProvider as BaseServiceProvider;
-use Illuminate\Support\Facades\Gate;
-use Module\OpenVPN\Models\Client;
-use Module\OpenVPN\Policies\ClientPolicy;
 
 class ServiceProvider extends BaseServiceProvider
 {
-    /**
-     * Module service providers
-     *
-     * @var array
-     */
-    protected $providers = [
-        EventServiceProvider::class,
-    ];
-
     public function register()
     {
         $this->registerServerModulesFromArray([
@@ -32,6 +20,9 @@ class ServiceProvider extends BaseServiceProvider
                             \App\Server\Modules\Actions\Extensions\Installer::class,
                             \Module\OpenVPN\OpenVPNSettings::class
                         ],
+                        'callbacks' => [
+                            \Module\OpenVPN\Scripts\Callbacks\OpenFirewallRules::class
+                        ]
                     ],
                     'uninstall' => 'OpenVPN::scripts.uninstall',
                     'restart' => 'OpenVPN::scripts.restart',
@@ -49,7 +40,5 @@ class ServiceProvider extends BaseServiceProvider
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         }
-
-        Gate::policy(Client::class, ClientPolicy::class);
     }
 }

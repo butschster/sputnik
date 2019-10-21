@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>{{ $t('mysql.title') }}</h1>
+        <h1>{{ $t(`mysql.title.${module}`) }}</h1>
 
         <CreateForm
                 :server="server"
@@ -29,11 +29,13 @@
                 </thead>
                 <tbody>
                 <tr v-for="database in databases">
-                    <td>{{ database.name }}</td>
-                    <td>{{ database.user }}</td>
-                    <td>
-                        <Copy :text="database.password" :label="database.password"/>
-                    </td>
+                    <td>{{ database.meta.name }}</td>
+                    <td>{{ database.meta.user }}</td>
+                    <th>
+                        <small>
+                            <Copy :text="database.meta.password" label="*******"/>
+                        </small>
+                    </th>
                     <td class="text-right">
                         <BadgeTaskStatus :task="database.task"/>
                     </td>

@@ -3,16 +3,17 @@
 namespace Module\OpenVPN\Http\Requests\Client;
 
 use App\Models\Server;
+use App\Repositories\Server\RecordRepository;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
-use Module\OpenVPN\Models\Client;
 
 class StoreRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('store', [Client::class, $this->getServer()]);
+        return Gate::allows('store', [Server\Record::class, $this->getServer()]);
     }
 
     /**
@@ -22,26 +23,36 @@ class StoreRequest extends FormRequest
      */
     public function rules()
     {
+        $server = $this->getServer();
+
         return [
             'name' => [
                 'required',
                 'string',
                 'alpha_dash',
-                Rule::unique('openvpn_clients')->where('server_id', $this->getServer()->id)
+                Rule::unique('server_records', 'meta->name')
+                    ->where('server_id', $server->id)
+                    ->where('module_id', $server->getModule('openvpn')->id)
+                    ->where('key', 'client'),
             ]
         ];
     }
 
     /**
-     * @return Client
+     * @return Server\Record
      */
-    public function persist(): Client
+    public function persist(): Server\Record
     {
-        $client = new Client($this->validated());
-        $client->server()->associate($this->getServer());
-        $client->save();
+        $repository = new RecordRepository();
 
-        return $client;
+        $record = $repository->store(
+            $this->getServer(),
+            'openvpn',
+            'client',
+            Arr::except($this->validated(), 'module')
+        );
+
+        return $record;
     }
 
     /**
