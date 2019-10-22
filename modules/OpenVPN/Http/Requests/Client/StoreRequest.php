@@ -7,6 +7,7 @@ use App\Repositories\Server\RecordRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
+use Module\OpenVPN\Models\Client;
 
 class StoreRequest extends FormRequest
 {
@@ -46,9 +47,7 @@ class StoreRequest extends FormRequest
 
         return $repository->store(
             $this->getServer(),
-            'openvpn',
-            'client',
-            $this->validated()
+            new Client($this->validated())
         );
     }
 

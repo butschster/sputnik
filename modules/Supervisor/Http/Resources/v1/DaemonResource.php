@@ -3,11 +3,11 @@
 namespace Module\Supervisor\Http\Resources\v1;
 
 use App\Http\Resources\v1\Server\RecordResource;
+use App\Models\Server\Record;
 use Illuminate\Support\Facades\Gate;
-use Module\Supervisor\Models\Daemon;
 
 /**
- * @mixin Daemon
+ * @mixin Record
  */
 class DaemonResource extends RecordResource
 {

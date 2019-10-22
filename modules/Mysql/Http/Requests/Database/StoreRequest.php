@@ -10,6 +10,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Module\Mysql\Models\Database;
 
 class StoreRequest extends FormRequest
 {
@@ -61,12 +62,13 @@ class StoreRequest extends FormRequest
             $data['password']= Str::random();
         }
 
+        $model = new Database(
+            Arr::except($data, 'module')
+        );
+
         $record = $repository->store(
             $this->getServer(),
-            $this->module,
-            'database',
-            Arr::except($data, 'module'),
-            'server.database.create'
+            $model->setModule($this->module)
         );
 
         return $record;

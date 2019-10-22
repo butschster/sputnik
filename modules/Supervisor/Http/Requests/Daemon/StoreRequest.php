@@ -39,10 +39,7 @@ class StoreRequest extends FormRequest
 
         return $repository->store(
             $this->getServer(),
-            'supervisor',
-            'daemon',
-            $this->validated(),
-            'server.daemon.create'
+            new Daemon($this->validated())
         );
     }
 

@@ -22,6 +22,7 @@ class Record extends Model
      */
     protected $casts = [
         'meta' => 'array',
+        'model' => 'string',
     ];
 
     /**
@@ -35,5 +36,17 @@ class Record extends Model
     public function module(): BelongsTo
     {
         return $this->belongsTo(Module::class);
+    }
+
+    /**
+     * Get record model instance
+     *
+     * @return \App\Contracts\Server\Records\Model
+     */
+    public function meta(): \App\Contracts\Server\Records\Model
+    {
+        $model = $this->model;
+
+        return new $model($this->meta);
     }
 }

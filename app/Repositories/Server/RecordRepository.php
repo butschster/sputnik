@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Server;
 
+use App\Contracts\Server\Records\Model;
 use App\Events\Server\Record\Created;
 use App\Events\Server\Record\Deleted;
 use App\Models\Server;
@@ -36,20 +37,21 @@ class RecordRepository
 
     /**
      * @param Server $server
-     * @param string $module
-     * @param string $key
-     * @param array $data
-     * @param string|null $feature
+     * @param Model $model
      * @return Server\Record
      */
-    public function store(Server $server, string $module, string $key, array $data, ?string $feature = null): Server\Record
+    public function store(Server $server, Model $model): Server\Record
     {
         $record = new Server\Record();
-        $record->meta = $data;
-        $record->feature = $feature;
-        $record->key = $key;
+        $record->meta = $model->getMetaAttributes();
+        $record->feature = $model->feature();
+        $record->key = $model->key();
+        $record->model = get_class($model);
+
         $record->server()->associate($server);
-        $record->module()->associate($server->getModule($module));
+        $record->module()->associate(
+            $server->getModule($model->module())
+        );
 
         $record->save();
 
@@ -60,14 +62,14 @@ class RecordRepository
 
     /**
      * @param string $recordId
-     * @param array $data
-     * @return Server\Record|Server\Record[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
+     * @param Model $model
+     * @return Server\Record
      */
-    public function update(string $recordId, array $data)
+    public function update(string $recordId, Model $model)
     {
         $record = $this->find($recordId);
 
-        $record->meta = $data;
+        $record->meta = $model->getMetaAttributes();
         $record->update();
 
         return $record;

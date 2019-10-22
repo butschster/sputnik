@@ -17,6 +17,7 @@ class CreateServerRecordsTable extends Migration
             $table->primaryUuid('id');
             $table->belongsToServer();
             $table->belongsToModule();
+            $table->string('model');
             $table->string('feature')->nullable();
 
             $table->string('key');
