@@ -2,15 +2,14 @@
 
 namespace Module\Supervisor\Http\Resources\v1;
 
-use App\Http\Resources\v1\Server\TaskResource;
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\v1\Server\RecordResource;
 use Illuminate\Support\Facades\Gate;
 use Module\Supervisor\Models\Daemon;
 
 /**
  * @mixin Daemon
  */
-class DaemonResource extends JsonResource
+class DaemonResource extends RecordResource
 {
     /**
      * Transform the resource into an array.
@@ -20,20 +19,12 @@ class DaemonResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'server_id' => $this->server_id,
-            'directory' => $this->directory,
-            'command' => $this->command,
-            'user' => $this->user,
-            'processes' => $this->processes,
-            'task' => TaskResource::make($this->task),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'can' => [
-                'show' => Gate::allows('show', $this->resource),
-                'delete' => Gate::allows('delete', $this->resource),
-            ]
+        $data = parent::toArray($request);
+        $data['can'] = [
+            'show' => Gate::allows('show', $this->resource),
+            'delete' => Gate::allows('delete', $this->resource),
         ];
+
+        return $data;
     }
 }

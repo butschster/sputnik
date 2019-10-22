@@ -1,6 +1,6 @@
 
 # ===========================================================================================
-# Restart The Supervisor Daemon /etc/supervisor/conf.d/{!! $daemon->id !!}.conf
+# Restart The Supervisor Daemon /etc/supervisor/conf.d/{!! $id !!}.conf
 # ===========================================================================================
 
-supervisorctl restart {!! $daemon->id !!}:*
+supervisorctl restart {!! $id !!}:*

@@ -5,7 +5,6 @@ namespace Module\OpenVPN\Http\Controllers\API\v1;
 use App\Http\Controllers\API\Controller;
 use App\Models\Server;
 use App\Repositories\Server\RecordRepository;
-use App\Validation\Rules\Server\ModuleInstalled;
 use Illuminate\Http\Request;
 use Module\OpenVPN\Http\Requests\Client\StoreRequest;
 use Module\OpenVPN\Http\Resources\v1\ClientResource;
@@ -35,13 +34,12 @@ class ClientsController extends Controller
     }
 
     /**
-     * @param Request $request
      * @param Server $server
      * @return ClientsCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function index(Request $request, Server $server): ClientsCollection
+    public function index(Server $server): ClientsCollection
     {
         $this->authorize('show', $server);
 

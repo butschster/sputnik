@@ -12,4 +12,5 @@ Route::middleware('auth')->group(function () {
         Route::delete('server/supervisor/{daemon}', 'SupervisorController@delete')->name('server.supervisor.delete');
 
     });
+
 });

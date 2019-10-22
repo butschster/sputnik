@@ -3,6 +3,7 @@
 namespace Module\Supervisor\Http\Requests\Daemon;
 
 use App\Models\Server;
+use App\Repositories\Server\RecordRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Module\Supervisor\Models\Daemon;
@@ -11,7 +12,7 @@ class StoreRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('store', [Daemon::class, $this->getServer()]);
+        return Gate::allows('store', [Server\Record::class, $this->getServer()]);
     }
 
     /**
@@ -24,21 +25,25 @@ class StoreRequest extends FormRequest
         return [
             'command' => 'required|string',
             'processes' => 'required|numeric|min:1|max:100',
-            'user' => 'required',
+            'user' => 'required|string',
             'directory' => 'nullable|string',
         ];
     }
 
     /**
-     * @return Daemon
+     * @return Server\Record
      */
-    public function persist(): Daemon
+    public function persist(): Server\Record
     {
-        $daemon = new Daemon($this->validated());
-        $daemon->server()->associate($this->getServer());
-        $daemon->save();
+        $repository = new RecordRepository();
 
-        return $daemon;
+        return $repository->store(
+            $this->getServer(),
+            'supervisor',
+            'daemon',
+            $this->validated(),
+            'server.daemon.create'
+        );
     }
 
     /**

@@ -2,22 +2,22 @@
 
 namespace Module\Supervisor\Scripts\Daemon;
 
+use App\Models\Server\Record;
 use App\Utils\SSH\Script;
-use Module\Supervisor\Models\Daemon;
 
 class Start extends Script
 {
     /**
-     * @var Daemon
+     * @var Record
      */
-    protected $daemon;
+    protected $record;
 
     /**
-     * @param Daemon $daemon
+     * @param Record $record
      */
-    public function __construct(Daemon $daemon)
+    public function __construct(Record $record)
     {
-        $this->daemon = $daemon;
+        $this->record = $record;
     }
 
     /**
@@ -28,7 +28,10 @@ class Start extends Script
     public function getScript(): string
     {
         return view('Supervisor::scripts.daemon.start', [
-            'daemon' => $this->daemon
+            'id' => $this->record->id,
+            'command' => $this->record->meta['command'],
+            'user' => $this->record->meta['user'],
+            'processes' => $this->record->meta['processes']
         ]);
     }
 }

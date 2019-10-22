@@ -24,26 +24,6 @@ class Schedule implements ShouldQueue
      */
     protected $cronJob;
 
-    //    /**
-    //     * @var string
-    //     */
-    //    public $name;
-    //
-    //    /**
-    //     * @var string
-    //     */
-    //    public $command;
-    //
-    //    /**
-    //     * @var string
-    //     */
-    //    public $user;
-    //
-    //    /**
-    //     * @var string
-    //     */
-    //    public $cron;
-
     /**
      * @param Server $server
      * @param CronJob $cronJob
@@ -52,11 +32,6 @@ class Schedule implements ShouldQueue
     {
         $this->server = $server;
         $this->cronJob = $cronJob;
-
-        //        $this->name = $cronJob->getName();
-        //        $this->command = $cronJob->getUser();
-        //        $this->cron = $cronJob->getCronExpression();
-        //        $this->user = $cronJob->getUser();
     }
 
     public function handle()

@@ -9,15 +9,6 @@ use Module\Supervisor\Models\Daemon;
 
 class ServiceProvider extends BaseServiceProvider
 {
-    /**
-     * Module service providers
-     *
-     * @var array
-     */
-    protected $providers = [
-        EventServiceProvider::class,
-    ];
-
     public function register()
     {
         $this->registerServerModulesFromArray([
@@ -48,7 +39,5 @@ class ServiceProvider extends BaseServiceProvider
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         }
-
-        Gate::policy(Daemon::class, DaemonPolicy::class);
     }
 }

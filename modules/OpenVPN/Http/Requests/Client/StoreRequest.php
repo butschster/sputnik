@@ -5,7 +5,6 @@ namespace Module\OpenVPN\Http\Requests\Client;
 use App\Models\Server;
 use App\Repositories\Server\RecordRepository;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
@@ -34,7 +33,7 @@ class StoreRequest extends FormRequest
                     ->where('server_id', $server->id)
                     ->where('module_id', $server->getModule('openvpn')->id)
                     ->where('key', 'client'),
-            ]
+            ],
         ];
     }
 
@@ -45,14 +44,12 @@ class StoreRequest extends FormRequest
     {
         $repository = new RecordRepository();
 
-        $record = $repository->store(
+        return $repository->store(
             $this->getServer(),
             'openvpn',
             'client',
-            Arr::except($this->validated(), 'module')
+            $this->validated()
         );
-
-        return $record;
     }
 
     /**

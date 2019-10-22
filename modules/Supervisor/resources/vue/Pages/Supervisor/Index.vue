@@ -30,10 +30,10 @@
                 </thead>
                 <tbody>
                 <tr v-for="daemon in daemons" :key="daemon.id">
-                    <th>{{ daemon.command }}</th>
-                    <td>{{ daemon.directory }}</td>
-                    <td class="text-center">{{ daemon.processes }}</td>
-                    <td class="text-right">{{ daemon.user }}</td>
+                    <th>{{ daemon.meta.command }}</th>
+                    <td>{{ daemon.meta.directory }}</td>
+                    <td class="text-center">{{ daemon.meta.processes }}</td>
+                    <td class="text-right">{{ daemon.meta.user }}</td>
                     <td class="text-right">
                         <BadgeTaskStatus :task="daemon.task"/>
                     </td>

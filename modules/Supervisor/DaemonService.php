@@ -2,9 +2,9 @@
 
 namespace Module\Supervisor;
 
+use App\Models\Server\Record;
 use App\Services\Server\Runnable;
 use App\Services\Task\Contracts\Task;
-use Module\Supervisor\Models\Daemon;
 use Module\Supervisor\Scripts\Daemon\Restart;
 use Module\Supervisor\Scripts\Daemon\Start;
 use Module\Supervisor\Scripts\Daemon\Stop;
@@ -14,44 +14,44 @@ class DaemonService
     use Runnable;
 
     /**
-     * @param Daemon $daemon
+     * @param Record $record
      * @return Task
      */
-    public function start(Daemon $daemon): Task
+    public function start(Record $record): Task
     {
-        $this->setServer($daemon->server);
-        $this->setOwner($daemon);
+        $this->setServer($record->server);
+        $this->setOwner($record);
 
         return $this->runJob(
-            new Start($daemon)
+            new Start($record)
         );
     }
 
     /**
-     * @param Daemon $daemon
+     * @param Record $record
      * @return Task
      */
-    public function stop(Daemon $daemon): Task
+    public function stop(Record $record): Task
     {
-        $this->setServer($daemon->server);
-        $this->setOwner($daemon);
+        $this->setServer($record->server);
+        $this->setOwner($record);
 
         return $this->runJob(
-            new Stop($daemon)
+            new Stop($record)
         );
     }
 
     /**
-     * @param Daemon $daemon
+     * @param Record $record
      * @return Task
      */
-    public function restart(Daemon $daemon): Task
+    public function restart(Record $record): Task
     {
-        $this->setServer($daemon->server);
-        $this->setOwner($daemon);
+        $this->setServer($record->server);
+        $this->setOwner($record);
 
         return $this->runJob(
-            new Restart($daemon)
+            new Restart($record)
         );
     }
 }

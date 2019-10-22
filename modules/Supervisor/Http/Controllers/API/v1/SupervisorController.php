@@ -8,10 +8,30 @@ use Module\Supervisor\DaemonService;
 use Module\Supervisor\Http\Requests\Daemon\StoreRequest;
 use Module\Supervisor\Http\Resources\v1\DaemonResource;
 use Module\Supervisor\Http\Resources\v1\DaemonsCollection;
-use Module\Supervisor\Models\Daemon;
+use App\Repositories\Server\RecordRepository;
 
 class SupervisorController extends Controller
 {
+    /**
+     * @var RecordRepository
+     */
+    protected $repository;
+
+    /**
+     * @var DaemonService
+     */
+    protected $service;
+
+    /**
+     * @param RecordRepository $repository
+     * @param DaemonService $service
+     */
+    public function __construct(RecordRepository $repository, DaemonService $service)
+    {
+        $this->repository = $repository;
+        $this->service = $service;
+    }
+
     /**
      * @param Server $server
      * @return DaemonsCollection
@@ -22,33 +42,35 @@ class SupervisorController extends Controller
         $this->authorize('show', $server);
 
         return DaemonsCollection::make(
-            Daemon::forServer($server)->get()
+            $this->repository->list($server, 'supervisor', 'daemon')
         );
     }
 
     /**
-     * @param Daemon $daemon
+     * @param string $daemon
      * @return DaemonResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show(Daemon $daemon): DaemonResource
+    public function show(string $daemon): DaemonResource
     {
-        $this->authorize('show', $daemon);
+        $record = $this->repository->find($daemon);
 
-        return DaemonResource::make($daemon);
+        $this->authorize('show', $record);
+
+        return DaemonResource::make($record);
     }
 
     /**
-     * @param DaemonService $service
-     * @param Server\Daemon $daemon
-     * @return DaemonResource
+     * @param string $daemon
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function restart(DaemonService $service, Server\Daemon $daemon)
+    public function restart(string $daemon)
     {
-        $this->authorize('show', $daemon);
+        $record = $this->repository->find($daemon);
+        $this->authorize('show', $record);
 
-        $service->restart($daemon);
+        $this->service->restart($record);
 
         return $this->responseOk();
     }
@@ -60,21 +82,27 @@ class SupervisorController extends Controller
      */
     public function store(StoreRequest $request, Server $server): DaemonResource
     {
-        $daemon = $request->persist();
+        $record = $request->persist();
 
-        return DaemonResource::make($daemon);
+        $this->service->start($record);
+
+        return DaemonResource::make($record);
     }
 
     /**
-     * @param Daemon $daemon
+     * @param string $daemon
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Daemon $daemon)
+    public function delete(string $daemon)
     {
-        $this->authorize('delete', $daemon);
+        $this->authorize(
+            'delete', $record = $this->repository->find($daemon)
+        );
 
-        $daemon->delete();
+        if ($this->repository->delete($daemon)) {
+            $this->service->stop($record);
+        }
 
         return $this->responseDeleted();
     }
