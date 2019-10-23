@@ -19,12 +19,6 @@ class DaemonResource extends RecordResource
      */
     public function toArray($request)
     {
-        $data = parent::toArray($request);
-        $data['can'] = [
-            'show' => Gate::allows('show', $this->resource),
-            'delete' => Gate::allows('delete', $this->resource),
-        ];
-
-        return $data;
+        return parent::toArray($request);
     }
 }

@@ -27,11 +27,13 @@ class Start extends Script
      */
     public function getScript(): string
     {
+        $meta = $this->record->meta();
+
         return view('Supervisor::scripts.daemon.start', [
             'id' => $this->record->id,
-            'command' => $this->record->meta['command'],
-            'user' => $this->record->meta['user'],
-            'processes' => $this->record->meta['processes']
+            'command' => $meta->command,
+            'user' => $meta->user,
+            'processes' => $meta->processes,
         ]);
     }
 }

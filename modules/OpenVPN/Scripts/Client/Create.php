@@ -29,6 +29,7 @@ class Create extends Script
      * Get the contents of the script.
      *
      * @return string
+     * @throws \Throwable
      */
     public function getScript(): string
     {

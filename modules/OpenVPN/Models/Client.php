@@ -6,6 +6,7 @@ use App\Server\Record\Model;
 
 class Client extends Model
 {
+    protected $fillable = ['name'];
 
     /**
      * Get module key

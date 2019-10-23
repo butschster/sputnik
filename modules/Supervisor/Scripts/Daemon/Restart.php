@@ -28,7 +28,7 @@ class Restart extends Script
     public function getScript(): string
     {
         return view('Supervisor::scripts.daemon.restart', [
-            'daemon' => $this->daemon
+            'id' => $this->record->id
         ]);
     }
 }
