@@ -3,12 +3,10 @@
         <Loader :loading="loading"/>
         <h1>{{ $t('server.modules.title') }}</h1>
 
-        <div class="section section--border-b">
-            <h3>{{ $t('server.modules.installed.title') }}</h3>
+        <h3>{{ $t('server.modules.installed.title') }}</h3>
 
-            <span class="badge badge-dark mr-2" v-for="module in installedModules">
-                {{ module.title }}
-            </span>
+        <div>
+            <ModuleInformation v-for="module in installedModules" :module="module" />
         </div>
         <div class="section well well-lg">
             <ModuleForm
@@ -30,9 +28,10 @@
 <script>
     import ModuleForm from "@vue/components/Server/Form/partials/ModuleForm"
     import Modules from "@vue/components/Server/Form/partials/Modules"
+    import ModuleInformation from "@vue/components/Server/Modules/Information"
 
     export default {
-        components: {Modules, ModuleForm},
+        components: {Modules, ModuleForm, ModuleInformation},
         data() {
             return {
                 loading: false,

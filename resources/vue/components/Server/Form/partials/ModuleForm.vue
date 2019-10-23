@@ -6,6 +6,9 @@
             <FormText v-model="form[field.key]" :name="field.key" :label="field.title"
                       v-if="field.type == 'Text'"/>
 
+            <FormNumber v-model="form[field.key]" :name="field.key" :label="field.title"
+                      v-if="field.type == 'Number'"/>
+
             <FormSelect
                     v-model="form[field.key]"
                     :name="`modules.${module.key}.${field.key}`"
@@ -19,11 +22,12 @@
 </template>
 
 <script>
-    import FormInput from '@vue/components/Form/Input'
+    import FormText from '@vue/components/Form/Input'
     import FormSelect from '@vue/components/Form/Select'
+    import FormNumber from '@vue/components/Form/Number'
 
     export default {
-        components: {FormSelect, FormInput},
+        components: {FormSelect, FormText, FormNumber},
         props: {
             module: Object
         },

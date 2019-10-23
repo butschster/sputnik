@@ -12,7 +12,7 @@
                        required
                        autofocus/>
 
-            <FormInputNumber v-model="form.port"
+            <FormNumber v-model="form.port"
                              :label="$t('firewall.form.create.label.port')"
                              name="port"
                              class="mr-8 w-48"
@@ -44,12 +44,12 @@
 </template>
 
 <script>
-    import FormInput from '@vue/components/Form/Input.vue'
-    import FormInputNumber from '@vue/components/Form/InputNumber.vue'
+    import FormInput from '@vue/components/Form/Input'
+    import FormNumber from '@vue/components/Form/Number'
     import FormSelect from '@vue/components/Form/Select'
 
     export default {
-        components: {FormInput, FormInputNumber, FormSelect},
+        components: {FormInput, FormNumber, FormSelect},
         props: {
             server: Object
         },
