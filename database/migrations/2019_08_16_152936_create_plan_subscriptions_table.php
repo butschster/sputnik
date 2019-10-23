@@ -19,7 +19,7 @@ class CreatePlanSubscriptionsTable extends Migration
             $table->uuid('team_id');
 
             $table->string('name');
-            $table->string('stripe_id')->collation('utf8mb4_bin')->nullable();
+            $table->string('stripe_id')->nullable();
             $table->string('stripe_status')->nullable();
             $table->string('stripe_plan');
             $table->integer('quantity');
