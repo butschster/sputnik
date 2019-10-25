@@ -14,7 +14,9 @@ class MarkModuleAsInstalled
     {
         /** @var Module $module */
         if ($module = $event->server->modules()->where('name', $event->module)->first()) {
+
             $module->markAsInstalled();
+
         }
     }
 }

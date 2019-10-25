@@ -60,6 +60,7 @@
 
     "psr-4": {
       "App\\": "app/",
+      "Domain\\": "domain/",
       "Module\\": "modules/"
     },
     "classmap": [

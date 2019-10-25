@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Scripts\Server\Site;
+namespace App\Scripts\Server;
 
-use App\Models\Server\Site\Deployment as DeploymentModel;
+use App\Models\Server\Deployment as DeploymentModel;
 use App\Utils\SSH\Script;
 
 class Deployment extends Script
@@ -32,7 +32,7 @@ class Deployment extends Script
      */
     public function getName(): string
     {
-        return "Site {$this->deployment->site->domain} deployment";
+        return "Site deploy";
     }
 
     /**
@@ -42,14 +42,12 @@ class Deployment extends Script
      */
     public function getScript(): string
     {
-        $server = $this->deployment->site->server;
-
-        $configurator = server_configurator($server);
+        $server = $this->deployment->server;
 
         return view('scripts.server.site.deploy', [
             'server' => $server,
             'site' => $this->deployment->site,
-            'configurator' => $configurator
+            'configurator' => $server->toConfigurator()
         ]);
     }
 }

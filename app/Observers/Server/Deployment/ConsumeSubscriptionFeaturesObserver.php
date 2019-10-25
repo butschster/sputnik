@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Observers\Server\Site\Deployment;
+namespace App\Observers\Server\Deployment;
 
-use App\Models\Server\Site\Deployment;
+use App\Models\Server\Deployment;
 
 class ConsumeSubscriptionFeaturesObserver
 {
@@ -11,6 +11,6 @@ class ConsumeSubscriptionFeaturesObserver
      */
     public function created(Deployment $deployment): void
     {
-        $deployment->site->server->team->useFeature('server.deployments.run');
+        $deployment->server->team->useFeature('server.deployments.run');
     }
 }

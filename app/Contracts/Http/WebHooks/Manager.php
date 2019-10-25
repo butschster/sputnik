@@ -2,7 +2,6 @@
 
 namespace App\Contracts\Http\WebHooks;
 
-use App\Models\Server\Site;
 use Illuminate\Http\Request;
 
 interface Manager

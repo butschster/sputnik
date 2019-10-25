@@ -91,9 +91,9 @@ Route::middleware('auth')->group(function () {
         Route::delete('server/site/{site}', 'Server\SiteController@delete')->name('server.site.delete');
 
         // WebServer Site deployment
-        Route::get('/server/site/{site}/deploy/config', 'Server\Site\DeploymentsController@config')->name('server.site.deploy.config');
-        Route::get('/server/site/{site}/deployments', 'Server\Site\DeploymentsController@index')->name('server.site.deployments');
-        Route::post('/server/site/{site}/deploy', 'Server\Site\DeploymentsController@deploy')->name('server.site.deploy');
+        Route::get('/server/site/{site}/deploy/config', 'Server\DeploymentsController@config')->name('server.site.deploy.config');
+        Route::get('/server/site/{site}/deployments', 'Server\DeploymentsController@index')->name('server.site.deployments');
+        Route::post('/server/site/{site}/deploy', 'Server\DeploymentsController@deploy')->name('server.site.deploy');
 
         // WebServer Site environment
         Route::get('/server/site/{site}/environment', 'Server\Site\EnvironmentController@index')->name('server.site.environment');

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Events\Server\Site\Deployment;
+namespace App\Events\Server\Deployment;
 
-use App\Models\Server\Site\Deployment;
+use App\Models\Server\Deployment;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class Timeout implements ShouldBroadcast
+class Finished implements ShouldBroadcast
 {
     /**
      * @var Deployment

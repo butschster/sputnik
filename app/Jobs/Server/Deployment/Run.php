@@ -1,13 +1,16 @@
 <?php
 
-namespace App\Jobs\Server\Site\Deployment;
+namespace App\Jobs\Server\Deployment;
 
+use App\Models\Server;
+use App\Models\Server\Deployment;
 use App\Models\Server\Site;
 use App\Models\User;
 use App\Services\Server\Site\DeploymentService;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -17,9 +20,9 @@ class Run
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * @var Site
+     * @var Model
      */
-    protected $site;
+    protected $owner;
 
     /**
      * @var User|null
@@ -27,12 +30,19 @@ class Run
     protected $initiator;
 
     /**
-     * @param Site $site
+     * @var Server
+     */
+    protected $server;
+
+    /**
+     * @param Server $server
+     * @param Model|null $owner
      * @param User|null $initiator
      */
-    public function __construct(Site $site, ?User $initiator = null)
+    public function __construct(Server $server, ?Model $owner = null, ?User $initiator = null)
     {
-        $this->site = $site;
+        $this->server = $server;
+        $this->owner = $owner;
         $this->initiator = $initiator;
     }
 
@@ -48,10 +58,15 @@ class Run
             'initiator_id' => $this->initiator ? $this->initiator->id : null,
             'commit_hash' => ''
         ];
+        $deployment = new Deployment($data);
+        $deployment->server()->associate($this->server);
 
-        $service->deploy(
-            $deployment = $this->site->deployments()->create($data)
-        );
+        if ($this->owner) {
+            $deployment->owner()->associate($this->owner);
+        }
+        $deployment->save();
+
+        $service->deploy($deployment);
 
         return $deployment;
     }
@@ -64,11 +79,11 @@ class Run
      */
     public function failed(Exception $exception)
     {
-        $this->site->server->alerts()->create([
+        $this->server->alerts()->create([
             'type' => 'server.site.deploy.failed',
             'exception' => (string) $exception,
             'meta' => [
-                'site_id' => $this->site->id
+                'owner' => $this->owner
             ]
         ]);
     }

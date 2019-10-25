@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Models\Server\Site;
+namespace App\Models\Server;
 
-use App\Events\Server\Site\Deployment\Failed;
-use App\Events\Server\Site\Deployment\Finished;
-use App\Events\Server\Site\Deployment\Running;
-use App\Events\Server\Site\Deployment\Timeout;
+use App\Events\Server\Deployment\Failed;
+use App\Events\Server\Deployment\Finished;
+use App\Events\Server\Deployment\Running;
+use App\Events\Server\Deployment\Timeout;
 use App\Models\Concerns\DeterminesAge;
+use App\Models\Concerns\HasServer;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
-use App\Models\Server\Site;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Deployment extends Model
 {
-    use UsesUuid, HasTask, DeterminesAge;
+    use UsesUuid, HasTask, HasServer, DeterminesAge;
 
     const STATUS_PENDING = 'pending';
     const STATUS_RUNNING = 'running';
@@ -36,7 +36,7 @@ class Deployment extends Model
     /**
      * {@inheritdoc}
      */
-    protected $table = 'server_site_deployments';
+    protected $table = 'server_deployments';
 
     /**
      * {@inheritdoc}
@@ -44,13 +44,13 @@ class Deployment extends Model
     protected $guarded = [];
 
     /**
-     * Link to the site
+     * Link to the owner model
      *
      * @return BelongsTo
      */
-    public function site(): BelongsTo
+    public function owner(): BelongsTo
     {
-        return $this->belongsTo(Site::class, 'server_site_id');
+        return $this->morphTo('owner');
     }
 
     /**

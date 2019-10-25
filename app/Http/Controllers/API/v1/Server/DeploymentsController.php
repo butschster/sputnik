@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API\v1\Server\Site;
+namespace App\Http\Controllers\API\v1\Server;
 
 use App\Http\Controllers\API\Controller;
-use App\Http\Resources\v1\Server\Site\DeploymentCollection;
-use App\Http\Resources\v1\Server\Site\DeploymentResource;
-use App\Jobs\Server\Site\Deployment\Run;
+use App\Http\Resources\v1\Server\DeploymentCollection;
+use App\Http\Resources\v1\Server\DeploymentResource;
+use App\Jobs\Server\Deployment\Run;
 use App\Models\Server\Site;
-use App\Services\Server\Site\DeploymentService;
+use App\Services\Server\DeploymentService;
 use Illuminate\Http\Request;
 
 class DeploymentsController extends Controller
@@ -37,7 +37,7 @@ class DeploymentsController extends Controller
         $this->authorize('deploy', $site);
 
         $deployment = dispatch_now(
-            new Run($site, $request->user())
+            new Run($site->server, $site, $request->user())
         );
 
         return DeploymentResource::make($deployment);

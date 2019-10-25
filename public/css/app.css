@@ -63659,7 +63659,6 @@ readers do not read off random characters that represent icons */
 
 .v-select {
   background: transparent !important;
-  z-index: 1;
 }
 
 .v-select + label {

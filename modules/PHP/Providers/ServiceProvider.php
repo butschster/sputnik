@@ -8,7 +8,7 @@ class ServiceProvider extends BaseServiceProvider
 {
     public function register()
     {
-        $categories = ['php'];
+        $categories = ['php', 'webserver_processor'];
         $actions = [
             'install' => [
                 'script_view' => 'PHP::scripts.php.install',

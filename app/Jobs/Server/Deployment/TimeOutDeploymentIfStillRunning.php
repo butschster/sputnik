@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Jobs\Server\Site\Deployment;
+namespace App\Jobs\Server\Deployment;
 
-use App\Models\Server\Site\Deployment;
+use App\Models\Server\Deployment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

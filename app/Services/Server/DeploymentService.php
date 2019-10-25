@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Services\Server\Site;
+namespace App\Services\Server;
 
-use App\Jobs\Server\Site\Deployment\TimeOutDeploymentIfStillRunning;
+use App\Jobs\Server\Deployment\TimeOutDeploymentIfStillRunning;
 use App\Models\Server\Site\Deployment;
 use App\Scripts\Server\Callbacks\RestartWebServer;
-use App\Scripts\Server\Site\Deployment as DeploymentScript;
-use App\Services\Server\Runnable;
+use App\Scripts\Server\Deployment as DeploymentScript;
 
 class DeploymentService
 {

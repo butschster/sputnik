@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Events\Server\Site\Deployment;
+namespace App\Events\Server\Deployment;
 
-use App\Models\Server\Site\Deployment;
+use App\Models\Server\Deployment;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class Running implements ShouldBroadcast
+class Failed implements ShouldBroadcast
 {
     /**
      * @var Deployment
@@ -18,7 +18,6 @@ class Running implements ShouldBroadcast
      */
     public function __construct(Deployment $deployment)
     {
-        $deployment->unsetRelation('site');
         $this->deployment = $deployment;
     }
 

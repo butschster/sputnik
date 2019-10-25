@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Listeners\Server\Site;
+namespace App\Listeners\Server\Deployment;
 
 use App\Events\Task\Finished;
 use App\Events\Task\Running;
 use App\Events\Task\Timeout;
-use App\Models\Server\Site\Deployment;
+use App\Models\Server\Deployment;
 
-class UpdateDeploymentStatus
+class UpdateStatus
 {
     /**
      * @param $event

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Console\Commands\Server\Site;
+namespace App\Console\Commands\Server;
 
-use App\Models\Server\Site\Deployment;
+use App\Models\Server\Deployment;
 use Illuminate\Console\Command;
 
 class MarkAsTimeoutExpiredDeployments extends Command
@@ -12,7 +12,7 @@ class MarkAsTimeoutExpiredDeployments extends Command
      *
      * @var string
      */
-    protected $signature = 'server:site:deployments:timeout-expired';
+    protected $signature = 'server:deployments:timeout-expired';
 
     /**
      * Execute the console command.

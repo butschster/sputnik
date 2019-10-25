@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Resources\v1\Server\Site;
+namespace App\Http\Resources\v1\Server;
 
-use App\Http\Resources\v1\Server\TaskResource;
-use App\Models\Server\Site\Deployment;
+use App\Models\Server\Deployment;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -25,6 +24,7 @@ class DeploymentResource extends JsonResource
             'site_id' => $this->server_site_id,
             'initiator_id' => $this->initiator_id,
             'status' => $this->status,
+            'owner' => $this->owner,
             'task' => TaskResource::make($this->task),
             'is_ended' => $this->hasEnded(),
             'created_at' => $this->created_at,
