@@ -3,7 +3,7 @@
 namespace Module\OpenVPN\Scripts\Client;
 
 use App\Models\Server\Record;
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 
 class Delete extends Script
 {

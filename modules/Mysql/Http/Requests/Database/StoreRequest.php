@@ -3,8 +3,8 @@
 namespace Module\Mysql\Http\Requests\Database;
 
 use App\Models\Server;
-use App\Repositories\Server\RecordRepository;
-use App\Validation\Rules\Server\ModuleInstalled;
+use Domain\Module\Validation\Rules\ModuleInstalled;
+use Domain\Record\Repositories\RecordRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;

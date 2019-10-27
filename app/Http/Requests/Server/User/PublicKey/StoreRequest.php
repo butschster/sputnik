@@ -4,7 +4,7 @@ namespace App\Http\Requests\Server\User\PublicKey;
 
 use App\Http\Requests\Sanitizer\SanitizesInput;
 use App\Models\Server\User;
-use App\Validation\Rules\Server\PublicKey as PublicKeyRule;
+use Domain\SSH\Validation\Rules\PublicKey as PublicKeyRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

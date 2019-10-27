@@ -5,7 +5,7 @@ namespace Tests\Unit\Scripts\Tools;
 use App\Exceptions\Scrpits\ConfigurationNotFoundException;
 use App\Contracts\Server\ServerConfiguration;
 use App\Scripts\Tools\DatabaseConfigurator;
-use App\Utils\SSH\ValueObjects\PublicKey;
+use Domain\SSH\ValueObjects\PublicKey;
 use Tests\TestCase;
 
 class DatabaseConfiguratorTest extends TestCase

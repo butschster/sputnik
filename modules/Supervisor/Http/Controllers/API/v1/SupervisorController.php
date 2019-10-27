@@ -4,11 +4,11 @@ namespace Module\Supervisor\Http\Controllers\API\v1;
 
 use App\Http\Controllers\API\Controller;
 use App\Models\Server;
+use Domain\Record\Repositories\RecordRepository;
 use Module\Supervisor\DaemonService;
 use Module\Supervisor\Http\Requests\Daemon\StoreRequest;
 use Module\Supervisor\Http\Resources\v1\DaemonResource;
 use Module\Supervisor\Http\Resources\v1\DaemonsCollection;
-use App\Repositories\Server\RecordRepository;
 
 class SupervisorController extends Controller
 {

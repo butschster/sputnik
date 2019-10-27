@@ -2,10 +2,9 @@
 
 namespace App\Console\Commands\Server;
 
-use App\Jobs\Server\Ping;
-use App\Jobs\Server\Telnet;
 use App\Models\Concerns\Prunable;
 use App\Models\Server;
+use Domain\Server\Jobs\Telnet;
 use Illuminate\Console\Command;
 
 class PingServer extends Command

@@ -2,7 +2,7 @@
 
 namespace Module\Mysql\Scripts\Database;
 
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 use Module\Mysql\ValueObjects\Database;
 use Module\Mysql\ValueObjects\User;
 

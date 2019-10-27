@@ -20,7 +20,7 @@ class ServiceProvider extends BaseServiceProvider
                     'install' => [
                         'script_view' => 'Supervisor::scripts.install',
                         'extensions' => [
-                            \App\Server\Modules\Actions\Extensions\Installer::class,
+                            \Domain\Module\Entities\Action\Extensions\Installer::class,
                         ],
                     ],
                     'uninstall' => 'Supervisor::scripts.uninstall',

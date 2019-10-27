@@ -2,8 +2,8 @@
 
 namespace App\Scripts\Server\Callbacks;
 
-use App\Contracts\Scripts\Callback;
-use App\Jobs\Server\RunScript;
+use Domain\Task\Contracts\Script\Callback;
+use Domain\SSH\Jobs\RunScript;
 use App\Models\Server\Task;
 use App\Scripts\Server\CustomScript;
 

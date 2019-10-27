@@ -3,8 +3,8 @@
 namespace App\Observers\Server;
 
 use App\Models\Server;
-use App\Utils\SSH\Contracts\KeyGenerator;
-use App\Utils\SSH\Contracts\KeyStorage;
+use Domain\SSH\Contracts\KeyGenerator;
+use Domain\SSH\Contracts\KeyStorage;
 
 class GenerateSshKeyPairsObserver
 {

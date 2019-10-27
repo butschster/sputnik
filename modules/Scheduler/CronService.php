@@ -3,7 +3,7 @@
 namespace Module\Scheduler;
 
 use App\Services\Server\Runnable;
-use App\Services\Task\Contracts\Task;
+use Domain\Task\Contracts\Task;
 use Carbon\Carbon;
 use Cron\CronExpression;
 use Module\Scheduler\Models\CronJob;

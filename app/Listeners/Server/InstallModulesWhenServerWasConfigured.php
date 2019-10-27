@@ -3,7 +3,7 @@
 namespace App\Listeners\Server;
 
 use App\Events\Server\Configured;
-use App\Jobs\Server\Module\Install;
+use Domain\Module\Jobs\Module\Install;
 use Illuminate\Support\Arr;
 
 class InstallModulesWhenServerWasConfigured

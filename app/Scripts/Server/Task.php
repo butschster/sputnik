@@ -2,12 +2,12 @@
 
 namespace App\Scripts\Server;
 
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 
 class Task extends Script
 {
     /**
-     * @var \App\Services\Task\Contracts\Task
+     * @var \Domain\Task\Contracts\Task
      */
     protected $task;
 
@@ -17,10 +17,10 @@ class Task extends Script
     protected $callback;
 
     /**
-     * @param \App\Services\Task\Contracts\Task $task
+     * @param \Domain\Task\Contracts\Task $task
      * @param bool $callback
      */
-    public function __construct(\App\Services\Task\Contracts\Task $task, bool $callback = true)
+    public function __construct(\Domain\Task\Contracts\Task $task, bool $callback = true)
     {
         $this->task = $task;
         $this->callback = $callback;

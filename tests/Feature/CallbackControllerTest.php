@@ -2,9 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Jobs\Server\ConfigureServer;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Bus;
 use Tests\TestCase;
 
 class CallbackControllerTest extends TestCase

@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Jobs\Server;
 
-use App\Jobs\Server\RunScript;
-use App\Jobs\Task\Run;
-use App\Utils\SSH\Script;
+use Domain\SSH\Jobs\RunScript;
+use Domain\Task\Jobs\Run;
+use Domain\SSH\Script;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Bus;
 use Tests\TestCase;

@@ -17,7 +17,7 @@ class ServiceProvider extends BaseServiceProvider
                     'install' => [
                         'script_view' => 'Memcached::scripts.install',
                         'extensions' => [
-                            \App\Server\Modules\Actions\Extensions\Installer::class,
+                            \Domain\Module\Entities\Action\Extensions\Installer::class,
                         ],
                     ],
                     'uninstall' => 'Memcached::scripts.uninstall',

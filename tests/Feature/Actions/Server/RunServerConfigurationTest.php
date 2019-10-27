@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Actions\Server;
 
-use App\Jobs\Server\ConfigureServer;
+use Domain\Server\Jobs\Configure;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Bus;
 use Tests\TestCase;
@@ -46,6 +46,6 @@ class RunServerConfigurationTest extends TestCase
             'server_id' => $server->id,
         ])->assertOk();
 
-        Bus::assertDispatched(ConfigureServer::class);
+        Bus::assertDispatched(Configure::class);
     }
 }

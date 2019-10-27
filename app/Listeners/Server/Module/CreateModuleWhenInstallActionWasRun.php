@@ -2,12 +2,12 @@
 
 namespace App\Listeners\Server\Module;
 
-use App\Events\Server\Module\ActionRan;
 use App\Models\Server;
+use Domain\Module\Events\Action\Ran;
 
 class CreateModuleWhenInstallActionWasRun
 {
-    public function handle(ActionRan $event)
+    public function handle(Ran $event)
     {
         if ($event->action->key() === 'install') {
             /** @var Server\Module $module */

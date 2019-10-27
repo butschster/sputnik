@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Utils\SSH;
 
-use App\Utils\SSH\CommandGenerator;
+use Domain\SSH\Bash\CommandGenerator;
 use Tests\TestCase;
 
 class CommandGeneratorTest extends TestCase

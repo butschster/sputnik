@@ -2,7 +2,7 @@
 
 namespace Module\Supervisor\Models;
 
-use App\Server\Record\Model;
+use Domain\Record\Entities\Record\Model;
 
 class Daemon extends Model
 {

@@ -2,7 +2,7 @@
 
 namespace App\Scripts\Server;
 
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 
 class CustomScript extends Script
 {

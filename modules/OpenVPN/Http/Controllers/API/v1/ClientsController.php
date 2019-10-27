@@ -4,8 +4,7 @@ namespace Module\OpenVPN\Http\Controllers\API\v1;
 
 use App\Http\Controllers\API\Controller;
 use App\Models\Server;
-use App\Repositories\Server\RecordRepository;
-use Illuminate\Http\Request;
+use Domain\Record\Repositories\RecordRepository;
 use Module\OpenVPN\Http\Requests\Client\StoreRequest;
 use Module\OpenVPN\Http\Resources\v1\ClientResource;
 use Module\OpenVPN\Http\Resources\v1\ClientsCollection;

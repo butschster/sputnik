@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Utils\Ssh\ValueObjects;
 
-use App\Utils\SSH\ValueObjects\SystemInformation;
+use Domain\SSH\ValueObjects\SystemInformation;
 use Tests\TestCase;
 
 class SystemInformationTest extends TestCase

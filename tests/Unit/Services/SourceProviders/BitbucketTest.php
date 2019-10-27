@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Services\SourceProviders;
 
-use App\Services\SourceProviders\Bitbucket;
+use Domain\SourceProvider\Providers\Bitbucket;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

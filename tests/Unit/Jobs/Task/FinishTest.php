@@ -2,8 +2,7 @@
 
 namespace Tests\Unit\Jobs\Task;
 
-use App\Jobs\Task\Finish;
-use App\Models\Server\Task;
+use Domain\Task\Jobs\Finish;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

@@ -2,12 +2,12 @@
 
 namespace Module\NodeJS;
 
-use App\Contracts\Server\Module;
-use App\Contracts\Server\Modules\Action\Extension;
-use App\Contracts\Server\Modules\Action\HasFields;
-use App\Contracts\Server\Modules\Action\HasSettings;
 use App\Meta\Fields\Select;
 use App\Models\Server;
+use Domain\Module\Contracts\Entities\Action\Extension;
+use Domain\Module\Contracts\Entities\Action\HasFields;
+use Domain\Module\Contracts\Entities\Action\HasSettings;
+use Domain\Module\Contracts\Entities\Module;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 

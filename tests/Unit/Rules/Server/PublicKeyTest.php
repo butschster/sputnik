@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Rules\Server;
 
-use App\Validation\Rules\Server\PublicKey;
+use Domain\SSH\Validation\Rules\PublicKey;
 use Tests\TestCase;
 
 class PublicKeyTest extends TestCase

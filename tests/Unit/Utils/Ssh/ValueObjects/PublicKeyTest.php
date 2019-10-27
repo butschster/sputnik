@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Utils\SSH\ValueObjects;
 
-use App\Utils\SSH\ValueObjects\PublicKey;
+use Domain\SSH\ValueObjects\PublicKey;
 use Tests\TestCase;
 
 class PublicKeyTest extends TestCase

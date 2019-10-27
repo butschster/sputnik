@@ -2,8 +2,8 @@
 
 namespace App\Jobs\Server\Site;
 
-use App\Contracts\Server\Site\WhoisService;
 use App\Models\Server\Site;
+use Domain\Site\Contracts\WhoisService;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

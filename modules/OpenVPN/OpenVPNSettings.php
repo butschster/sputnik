@@ -2,10 +2,10 @@
 
 namespace Module\OpenVPN;
 
-use App\Contracts\Server\Module;
-use App\Contracts\Server\Modules\Action\Extension;
-use App\Contracts\Server\Modules\Action\HasFields;
-use App\Contracts\Server\Modules\Action\HasSettings;
+use Domain\Module\Contracts\Entities\Action\Extension;
+use Domain\Module\Contracts\Entities\Action\HasFields;
+use Domain\Module\Contracts\Entities\Action\HasSettings;
+use Domain\Module\Contracts\Entities\Module;
 use App\Meta\Fields\Number;
 use App\Meta\Fields\Select;
 use App\Models\Server;

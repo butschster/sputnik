@@ -17,7 +17,7 @@ class ServiceProvider extends BaseServiceProvider
                     'install' => [
                         'script_view' => 'PostgreSQL::scripts.install',
                         'extensions' => [
-                            \App\Server\Modules\Actions\Extensions\Installer::class,
+                            \Domain\Module\Entities\Action\Extensions\Installer::class,
                             \Module\PostgreSQL\DatabaseSettings::class
                         ],
                     ],

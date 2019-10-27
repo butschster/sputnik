@@ -2,8 +2,8 @@
 
 namespace App\Scripts\Server\Callbacks;
 
-use App\Contracts\Scripts\Callback;
 use App\Models\Server\Task;
+use Domain\Task\Contracts\Script\Callback;
 
 class MarkAsConfigured implements Callback
 {

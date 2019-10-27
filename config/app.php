@@ -180,11 +180,11 @@ return [
         App\Providers\HorizonServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\SSHServiceProvider::class,
+        Domain\SSH\Providers\SSHServiceProvider::class,
         App\Providers\ActionsServiceProvider::class,
-        App\Providers\WhoisServiceProvider::class,
+        Domain\Site\Providers\WhoisServiceProvider::class,
         App\Providers\WebHooksServiceProvider::class,
-        App\Providers\ServerModulesServiceProvider::class
+        Domain\Module\Providers\ServerModulesServiceProvider::class
     ],
 
     /*

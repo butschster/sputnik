@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Utils\SSH;
 
-use App\Utils\SSH\ProcessExecutor;
-use App\Utils\SSH\Shell\Output;
+use Domain\SSH\Services\ProcessExecutor;
+use Domain\SSH\Shell\Output;
 use Mockery as m;
 use Symfony\Component\Process\Exception\ProcessTimedOutException;
 use Symfony\Component\Process\Process;

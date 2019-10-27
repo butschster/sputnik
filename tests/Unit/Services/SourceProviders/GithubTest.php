@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Services\SourceProviders;
 
-use App\Services\SourceProviders\Github;
+use Domain\SourceProvider\Providers\Github;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

@@ -25,7 +25,7 @@ function api_route(string $name, $parameters = [], string $version = 'v1'): stri
  */
 function callback_url(string $action, array $parameters = [], int $lifeTime = 60): string
 {
-    return app(\App\Utils\SSH\CallbackCurlGenerator::class)->generate($action, $parameters, $lifeTime);
+    return app(\Domain\SSH\Bash\CallbackCurlGenerator::class)->generate($action, $parameters, $lifeTime);
 }
 
 /**

@@ -2,7 +2,7 @@
 
 namespace Module\OpenVPN\Models;
 
-use App\Server\Record\Model;
+use Domain\Record\Entities\Record\Model;
 
 class Client extends Model
 {

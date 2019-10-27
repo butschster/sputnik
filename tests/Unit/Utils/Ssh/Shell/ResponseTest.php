@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Utils\Ssh\Shell;
 
-use App\Utils\SSH\Shell\Response;
+use Domain\SSH\Shell\Response;
 use Tests\TestCase;
 
 class ResponseTest extends TestCase

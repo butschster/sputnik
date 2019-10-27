@@ -4,7 +4,7 @@ namespace App\Models\Server\User;
 
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
-use App\Utils\SSH\ValueObjects\PublicKey as PublicKeyValueObject;
+use Domain\SSH\ValueObjects\PublicKey as PublicKeyValueObject;
 use Illuminate\Database\Eloquent\Model;
 
 class PublicKey extends Model

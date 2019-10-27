@@ -10,7 +10,7 @@ use App\Http\Resources\v1\ScriptCollection;
 use App\Http\Resources\v1\ScriptResource;
 use App\Models\Script;
 use Illuminate\Http\Request;
-use App\Services\Task\Factory;
+use Domain\Task\Factory;
 
 class ScriptsController extends Controller
 {

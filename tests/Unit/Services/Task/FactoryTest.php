@@ -3,8 +3,8 @@
 namespace Tests\Unit\Services\Task;
 
 use App\Models\Server;
-use App\Services\Task\Factory;
-use App\Utils\SSH\Script;
+use Domain\Task\Factory;
+use Domain\SSH\Script;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

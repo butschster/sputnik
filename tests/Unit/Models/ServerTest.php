@@ -7,7 +7,7 @@ use App\Events\Server\Configuring;
 use App\Events\Server\Failed;
 use App\Models\Server;
 use App\Models\User;
-use App\Utils\SSH\Contracts\KeyStorage;
+use Domain\SSH\Contracts\KeyStorage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;

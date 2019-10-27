@@ -17,7 +17,7 @@ class ServiceProvider extends BaseServiceProvider
                     'install' => [
                         'script_view' => 'NodeJS::scripts.nodejs.install',
                         'extensions' => [
-                            \App\Server\Modules\Actions\Extensions\Installer::class,
+                            \Domain\Module\Entities\Action\Extensions\Installer::class,
                             \Module\NodeJS\NodeJSSettings::class
                         ],
                     ],
@@ -32,7 +32,7 @@ class ServiceProvider extends BaseServiceProvider
                     'install' => [
                         'script_view' => 'NodeJS::scripts.yarn.install',
                         'extensions' => [
-                            \App\Server\Modules\Actions\Extensions\Installer::class,
+                            \Domain\Module\Entities\Action\Extensions\Installer::class,
                         ],
                     ],
                     'uninstall' => 'NodeJS::scripts.yarn.uninstall',

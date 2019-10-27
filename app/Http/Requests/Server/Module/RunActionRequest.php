@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Server\Module;
 
-use App\Contracts\Server\Module;
-use App\Contracts\Server\Modules\Registry;
-use App\Jobs\Server\Module\Install;
+use Domain\Module\Contracts\Entities\Module;
+use Domain\Module\Contracts\Registry;
 use App\Models\Server;
+use Domain\Module\Jobs\Module\Install;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;

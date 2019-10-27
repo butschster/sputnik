@@ -5,7 +5,7 @@ namespace App\Modules;
 use App\Contracts\Modules\ManagerInterface as ModulesManagerContract;
 use App\Contracts\Modules\ModuleInterface;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use App\Contracts\Server\Modules\Registry as RegistryContract;
+use Domain\Module\Contracts\Registry as RegistryContract;
 
 abstract class ServiceProvider extends BaseServiceProvider
 {

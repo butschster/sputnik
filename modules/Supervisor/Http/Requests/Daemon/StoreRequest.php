@@ -3,7 +3,7 @@
 namespace Module\Supervisor\Http\Requests\Daemon;
 
 use App\Models\Server;
-use App\Repositories\Server\RecordRepository;
+use Domain\Record\Repositories\RecordRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Module\Supervisor\Models\Daemon;

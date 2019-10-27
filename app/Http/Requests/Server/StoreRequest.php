@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Server;
 
-use App\Contracts\Server\Module;
-use App\Contracts\Server\Modules\Action;
-use App\Contracts\Server\Modules\Registry;
+use Domain\Module\Contracts\Entities\Action;
+use Domain\Module\Contracts\Entities\Module;
+use Domain\Module\Contracts\Registry;
 use App\Models\Server;
 use App\Models\User\Team;
 use Illuminate\Foundation\Http\FormRequest;

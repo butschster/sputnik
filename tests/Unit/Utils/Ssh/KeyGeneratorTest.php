@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Utils\SSH;
 
-use App\Utils\SSH\Contracts\KeyGenerator;
+use Domain\SSH\Contracts\KeyGenerator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

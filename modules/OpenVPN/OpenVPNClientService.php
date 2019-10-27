@@ -4,7 +4,7 @@ namespace Module\OpenVPN;
 
 use App\Models\Server\Record;
 use App\Services\Server\Runnable;
-use App\Services\Task\Contracts\Task;
+use Domain\Task\Contracts\Task;
 use Module\OpenVPN\Scripts\Client\Create;
 use Module\OpenVPN\Scripts\Client\Delete;
 use Module\OpenVPN\Scripts\Client\GetConfig;

@@ -3,7 +3,7 @@
 namespace App\Scripts\Server;
 
 use App\Models\Server\Deployment as DeploymentModel;
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 
 class Deployment extends Script
 {

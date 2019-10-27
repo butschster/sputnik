@@ -3,7 +3,7 @@
 namespace App\Http\Actions\Server;
 
 use App\Models\Server;
-use App\Validation\Rules\Server\PublicKey;
+use Domain\SSH\Validation\Rules\PublicKey;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\Action;
@@ -17,7 +17,7 @@ class RegisterNewKey extends Action
     {
         return [
             'server_id' => ['required', Rule::exists('servers', 'id')],
-            'key' => ['required', 'string', new PublicKey],
+            'key' => ['required', 'string', new PublicKey()],
         ];
     }
 

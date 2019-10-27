@@ -4,7 +4,7 @@ namespace Module\Supervisor;
 
 use App\Models\Server\Record;
 use App\Services\Server\Runnable;
-use App\Services\Task\Contracts\Task;
+use Domain\Task\Contracts\Task;
 use Module\Supervisor\Scripts\Daemon\Restart;
 use Module\Supervisor\Scripts\Daemon\Start;
 use Module\Supervisor\Scripts\Daemon\Stop;

@@ -2,9 +2,9 @@
 
 namespace Module\Mysql;
 
-use App\Contracts\Server\Module;
-use App\Contracts\Server\Modules\Action\Extension;
+use Domain\Module\Contracts\Entities\Action\Extension;
 use App\Models\Server;
+use Domain\Module\Contracts\Entities\Module;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Module\Mysql\ValueObjects\User;

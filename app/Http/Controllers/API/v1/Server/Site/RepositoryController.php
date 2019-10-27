@@ -6,7 +6,7 @@ use App\Http\Controllers\API\Controller;
 use App\Http\Requests\Server\Site\Repository\UpdateRequest;
 use App\Http\Resources\v1\Server\SiteResource;
 use App\Models\Server\Site;
-use App\Services\SourceProviders\Factory as SourceProvidersFactory;
+use Domain\SourceProvider\Factory as SourceProvidersFactory;
 
 class RepositoryController extends Controller
 {

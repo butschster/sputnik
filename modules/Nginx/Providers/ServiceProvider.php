@@ -17,7 +17,7 @@ class ServiceProvider extends BaseServiceProvider
                     'install' => [
                         'script_view' => 'Nginx::scripts.nginx.install',
                         'extensions' => [
-                            \App\Server\Modules\Actions\Extensions\Installer::class,
+                            \Domain\Module\Entities\Action\Extensions\Installer::class,
                         ],
                         'callbacks' => [
                             \Module\Nginx\Scripts\Callbacks\OpenFirewallRules::class

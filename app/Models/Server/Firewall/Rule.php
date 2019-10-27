@@ -5,8 +5,7 @@ namespace App\Models\Server\Firewall;
 use App\Models\Concerns\HasServer;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
-use App\Utils\SSH\Contracts\UfwRule;
-use App\Utils\SSH\FirewallCommandGenerator;
+use Domain\SSH\Contracts\Firewall\UfwRule;
 use Illuminate\Database\Eloquent\Model;
 
 class Rule extends Model implements UfwRule

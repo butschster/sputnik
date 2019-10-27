@@ -3,7 +3,7 @@
 namespace Module\Supervisor\Scripts\Daemon;
 
 use App\Models\Server\Record;
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 
 class Stop extends Script
 {

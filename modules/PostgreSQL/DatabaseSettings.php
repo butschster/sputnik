@@ -2,8 +2,8 @@
 
 namespace Module\PostgreSQL;
 
-use App\Contracts\Server\Module;
-use App\Contracts\Server\Modules\Action\Extension;
+use Domain\Module\Contracts\Entities\Action\Extension;
+use Domain\Module\Contracts\Entities\Module;
 use App\Models\Server;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;

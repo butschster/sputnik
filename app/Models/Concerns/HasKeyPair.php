@@ -2,9 +2,9 @@
 
 namespace App\Models\Concerns;
 
-use App\Utils\SSH\ValueObjects\KeyPair;
-use App\Utils\SSH\ValueObjects\PrivateKey;
-use App\Utils\SSH\ValueObjects\PublicKey;
+use Domain\SSH\ValueObjects\KeyPair;
+use Domain\SSH\ValueObjects\PrivateKey;
+use Domain\SSH\ValueObjects\PublicKey;
 
 trait HasKeyPair
 {

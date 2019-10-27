@@ -2,7 +2,7 @@
 
 namespace App\Scripts\Utils;
 
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 
 class GetCurrentDirectory extends Script
 {

@@ -41,9 +41,9 @@ class Record extends Model
     /**
      * Get record model instance
      *
-     * @return \App\Contracts\Server\Records\Model
+     * @return \Domain\Record\Entities\Record\Model
      */
-    public function meta(): \App\Contracts\Server\Records\Model
+    public function meta(): \Domain\Record\Entities\Record\Model
     {
         $model = $this->model;
 

@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Utils\Ssh\ValueObjects;
 
-use App\Utils\SSH\ValueObjects\KeyPair;
+use Domain\SSH\ValueObjects\KeyPair;
 use Tests\TestCase;
 
 class KeyPairTest extends TestCase

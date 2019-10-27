@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Services\SourceProviders;
 
-use App\Exceptions\Repository\SourceProviderNotFoundException;
-use App\Services\SourceProviders\Bitbucket;
-use App\Services\SourceProviders\Factory;
-use App\Services\SourceProviders\Github;
+use Domain\SourceProvider\Exceptions\SourceProviderNotFoundException;
+use Domain\SourceProvider\Providers\Bitbucket;
+use Domain\SourceProvider\Factory;
+use Domain\SourceProvider\Providers\Github;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

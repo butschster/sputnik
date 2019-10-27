@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Rules\Server\Site;
 
-use App\Validation\Rules\Server\Site\RepositoryName;
+use Domain\SourceProvider\Validation\Rules\RepositoryName;
 use Tests\TestCase;
 
 class RepositoryNameTest extends TestCase

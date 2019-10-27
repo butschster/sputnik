@@ -2,11 +2,11 @@
 
 namespace App\Models\Server;
 
-use App\Contracts\Server\Modules\Registry;
-use App\Events\Server\Module\StatusChanged;
+use Domain\Module\Contracts\Registry;
 use App\Models\Concerns\HasServer;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
+use Domain\Module\Events\Module\StatusChanged;
 use Illuminate\Database\Eloquent\Model;
 
 class Module extends Model
@@ -49,7 +49,6 @@ class Module extends Model
      *
      * @param array $categories
      * @return bool
-     * @throws \App\Exceptions\Server\ModuleNotFoundException
      */
     public function belongsToCategories(array $categories): bool
     {
@@ -57,11 +56,11 @@ class Module extends Model
     }
 
     /**
-     * @return \App\Contracts\Server\Module
+     * @return \Domain\Module\Contracts\Entities\Module
      *
-     * @throws \App\Exceptions\Server\ModuleNotFoundException
+     * @throws \Domain\Module\Exceptions\ModuleNotFoundException
      */
-    public function toModule(): \App\Contracts\Server\Module
+    public function toModule(): \Domain\Module\Contracts\Entities\Module
     {
         return app(Registry::class)->get($this->name);
     }

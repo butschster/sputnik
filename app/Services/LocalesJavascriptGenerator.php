@@ -94,7 +94,6 @@ class LocalesJavascriptGenerator
     {
         $data = [];
 
-
         foreach ($this->getLocaleFiles($path) as $file) {
             $filename = pathinfo($file, PATHINFO_FILENAME);
 

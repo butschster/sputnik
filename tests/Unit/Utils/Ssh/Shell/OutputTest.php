@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Utils\Ssh\Shell;
 
-use App\Utils\SSH\Shell\Output;
+use Domain\SSH\Shell\Output;
 use Tests\TestCase;
 
 class OutputTest extends TestCase

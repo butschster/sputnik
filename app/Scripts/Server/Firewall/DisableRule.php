@@ -3,7 +3,7 @@
 namespace App\Scripts\Server\Firewall;
 
 use App\Models\Server\Firewall\Rule;
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 
 class DisableRule extends Script
 {

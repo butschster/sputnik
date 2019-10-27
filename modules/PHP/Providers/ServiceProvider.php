@@ -13,7 +13,7 @@ class ServiceProvider extends BaseServiceProvider
             'install' => [
                 'script_view' => 'PHP::scripts.php.install',
                 'extensions' => [
-                    \App\Server\Modules\Actions\Extensions\Installer::class,
+                    \Domain\Module\Entities\Action\Extensions\Installer::class,
                     \Module\PHP\PHPSettings::class
                 ],
             ],
@@ -56,7 +56,7 @@ class ServiceProvider extends BaseServiceProvider
                     'install' => [
                         'script_view' => 'PHP::scripts.deployer.install',
                         'extensions' => [
-                            \App\Server\Modules\Actions\Extensions\Installer::class
+                            \Domain\Module\Entities\Action\Extensions\Installer::class
                         ],
                     ],
                     'uninstall' => 'PHP::scripts.deployer.uninstall'
@@ -71,7 +71,7 @@ class ServiceProvider extends BaseServiceProvider
                     'install' => [
                         'script_view' => 'PHP::scripts.composer.install',
                         'extensions' => [
-                            \App\Server\Modules\Actions\Extensions\Installer::class
+                            \Domain\Module\Entities\Action\Extensions\Installer::class
                         ],
                     ],
                     'uninstall' => 'PHP::scripts.composer.uninstall'

@@ -51,10 +51,10 @@ class EventServiceProvider extends ServiceProvider
         WebHooks\Push::class => [
             \App\Listeners\Server\Site\WebHooks\DeploySite::class,
         ],
-        Server\Module\ActionRan::class => [
+        \Domain\Module\Events\Action\Ran::class => [
             \App\Listeners\Server\Module\CreateModuleWhenInstallActionWasRun::class,
         ],
-        Server\Module\Installed::class => [
+        \Domain\Module\Events\Module\Installed::class => [
             \App\Listeners\Server\ClearModuleMetaInformation::class,
             \App\Listeners\Server\Module\MarkModuleAsInstalled::class,
         ],

@@ -2,14 +2,14 @@
 
 namespace Tests\Unit\Services\Server;
 
-use App\Exceptions\Server\ConfigurationException;
 use App\Scripts\Server\Configure;
 use App\Scripts\Server\Cron\DeleteJob;
 use App\Scripts\Utils\GetAptLockStatus;
 use App\Scripts\Utils\GetCurrentDirectory;
-use App\Services\Server\ConfiguratorService;
-use App\Services\Task\Contracts\Task;
-use App\Utils\SSH\Shell\Response;
+use Domain\Server\Exceptions\ConfigurationException;
+use Domain\Server\Services\ConfiguratorService;
+use Domain\Task\Contracts\Task;
+use Domain\SSH\Shell\Response;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

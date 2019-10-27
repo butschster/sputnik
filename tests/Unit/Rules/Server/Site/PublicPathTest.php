@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Rules\Server\Site;
 
-use App\Validation\Rules\Server\Site\PublicPath;
+use Domain\Site\Validation\Rules\PublicPath;
 use Tests\TestCase;
 
 class PublicPathTest extends TestCase

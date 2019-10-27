@@ -3,7 +3,7 @@
 namespace App\Scripts\Server\User;
 
 use App\Models\Server\User;
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 
 class Create extends Script
 {

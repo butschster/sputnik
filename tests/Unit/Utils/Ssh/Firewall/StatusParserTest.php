@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Utils\Ssh\Firewall;
 
-use App\Utils\SSH\Firewall\StatusParser;
+use Domain\SSH\Bash\Firewall\StatusParser;
 use Tests\TestCase;
 
 class StatusParserTest extends TestCase

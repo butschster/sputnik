@@ -4,6 +4,7 @@ namespace App\Scripts\Tools;
 
 use App\Exceptions\Scrpits\ConfigurationNotFoundException;
 use App\Models\Server;
+use Domain\Server\Contracts\Configuration;
 
 abstract class Configurator
 {
@@ -13,7 +14,7 @@ abstract class Configurator
     protected $server;
 
     /**
-     * @var \App\Contracts\Server\ServerConfiguration
+     * @var Configuration
      */
     protected $configuration;
 

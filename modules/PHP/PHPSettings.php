@@ -2,8 +2,8 @@
 
 namespace Module\PHP;
 
-use App\Contracts\Server\Module;
-use App\Contracts\Server\Modules\Action\Extension;
+use Domain\Module\Contracts\Entities\Action\Extension;
+use Domain\Module\Contracts\Entities\Module;
 use App\Models\Server;
 
 class PHPSettings implements Extension

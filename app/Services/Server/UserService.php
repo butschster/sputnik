@@ -5,7 +5,7 @@ namespace App\Services\Server;
 use App\Models\Server\User;
 use App\Scripts\Server\User\Create;
 use App\Scripts\Server\User\Delete;
-use App\Services\Task\Contracts\Task;
+use Domain\Task\Contracts\Task;
 
 class UserService
 {

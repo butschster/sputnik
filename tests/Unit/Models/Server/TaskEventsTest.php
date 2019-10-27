@@ -67,7 +67,7 @@ class TaskEventsTest extends TestCase
 
         $task = $this->createTask();
 
-        $task->saveResponse(new \App\Utils\SSH\Shell\Response(0, 'done!'));
+        $task->saveResponse(new \Domain\SSH\Shell\Response(0, 'done!'));
 
         Event::assertDispatched(Response::class, function ($event) use($task) {
             return $event->task->is($task) && $event->response->getOutput() == 'done!';

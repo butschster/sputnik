@@ -2,12 +2,12 @@
 
 namespace App\Services\Server;
 
-use App\Jobs\Task\Run;
+use Domain\Task\Jobs\Run;
 use App\Models\Server;
-use App\Services\Task\Contracts\ExecutorService;
-use App\Services\Task\Contracts\Task;
-use App\Services\Task\Factory;
-use App\Utils\SSH\Contracts\Script;
+use Domain\Task\Contracts\ExecutorService;
+use Domain\Task\Contracts\Task;
+use Domain\Task\Factory;
+use Domain\SSH\Contracts\Script;
 use Illuminate\Database\Eloquent\Model;
 
 trait Runnable

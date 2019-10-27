@@ -4,7 +4,7 @@ namespace App\Scripts\Server;
 
 use App\Models\Server;
 use App\Services\Server\FirewallService;
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 
 class Configure extends Script
 {

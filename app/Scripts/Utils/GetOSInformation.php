@@ -3,7 +3,7 @@
 namespace App\Scripts\Utils;
 
 use App\Models\Server;
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 
 class GetOSInformation extends Script
 {

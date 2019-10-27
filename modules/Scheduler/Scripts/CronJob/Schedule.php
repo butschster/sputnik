@@ -2,7 +2,7 @@
 
 namespace Module\Scheduler\Scripts\CronJob;
 
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 use Module\Scheduler\Models\CronJob;
 
 class Schedule extends Script

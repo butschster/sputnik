@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Utils\Ssh;
 
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 use Tests\TestCase;
 
 class ScriptTest extends TestCase

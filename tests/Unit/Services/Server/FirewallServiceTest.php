@@ -5,8 +5,8 @@ namespace Tests\Unit\Services\Server;
 use App\Scripts\Server\Firewall\DisableRule;
 use App\Scripts\Server\Firewall\EnableRule;
 use App\Services\Server\FirewallService;
-use App\Utils\SSH\Contracts\ProcessExecutor;
-use App\Utils\SSH\Shell\Response;
+use Domain\SSH\Contracts\ProcessExecutor;
+use Domain\SSH\Shell\Response;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

@@ -3,9 +3,9 @@
 namespace Tests\Unit\Services\Task;
 
 use App\Models\Server\Task;
-use App\Services\Task\FinishService;
-use App\Utils\SSH\Contracts\ProcessExecutor;
-use App\Utils\SSH\Shell\Response;
+use Domain\Task\Services\FinishService;
+use Domain\SSH\Contracts\ProcessExecutor;
+use Domain\SSH\Shell\Response;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Mockery as m;

@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests\Script;
 
-use App\Jobs\Task\Run;
 use App\Models\Script;
 use App\Models\Server;
 use App\Scripts\Server\CustomScript;
 use App\Scripts\Server\Task;
-use App\Services\Task\Factory;
+use Domain\Task\Factory;
+use Domain\Task\Jobs\Run;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;

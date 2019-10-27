@@ -11,8 +11,8 @@ use App\Scripts\Server\Firewall\Disable;
 use App\Scripts\Server\Firewall\DisableRule;
 use App\Scripts\Server\Firewall\Enable;
 use App\Scripts\Server\Firewall\EnableRule;
-use App\Services\Task\Contracts\Task;
-use App\Utils\SSH\Firewall\StatusParser;
+use Domain\Task\Contracts\Task;
+use Domain\SSH\Bash\Firewall\StatusParser;
 use Illuminate\Support\Collection;
 
 class FirewallService

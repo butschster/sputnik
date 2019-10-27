@@ -21,7 +21,7 @@ class Response
     public $task;
 
     /**
-     * @var \App\Utils\SSH\Shell\Response
+     * @var \Domain\SSH\Shell\Response
      */
     public $response;
 
@@ -29,9 +29,9 @@ class Response
      * This event fires when remove server sent console output
      *
      * @param Task $task
-     * @param \App\Utils\SSH\Shell\Response $response
+     * @param \Domain\SSH\Shell\Response $response
      */
-    public function __construct(Task $task, \App\Utils\SSH\Shell\Response $response)
+    public function __construct(Task $task, \Domain\SSH\Shell\Response $response)
     {
         $this->task = $task;
         $this->response = $response;

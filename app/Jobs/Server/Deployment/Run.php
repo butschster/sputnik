@@ -4,12 +4,10 @@ namespace App\Jobs\Server\Deployment;
 
 use App\Models\Server;
 use App\Models\Server\Deployment;
-use App\Models\Server\Site;
 use App\Models\User;
-use App\Services\Server\Site\DeploymentService;
+use App\Services\Server\DeploymentService;
 use Exception;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -48,10 +46,10 @@ class Run
 
     /**
      * @param DeploymentService $service
-     * @return Site\Deployment
+     * @return Deployment
      * @throws \Throwable
      */
-    public function handle(DeploymentService $service): Site\Deployment
+    public function handle(DeploymentService $service): Deployment
     {
         $data = [
             'branch' => $this->site->repositoryBranch(),

@@ -2,8 +2,8 @@
 
 namespace Module\OpenVPN\Listeners;
 
-use App\Events\Server\Module\Installed;
 use App\Jobs\Server\OpenFirewallRule;
+use Domain\Module\Events\Module\Installed;
 
 class CreateOpenVPNFirewallRules
 {

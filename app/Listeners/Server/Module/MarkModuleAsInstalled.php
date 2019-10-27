@@ -2,8 +2,8 @@
 
 namespace App\Listeners\Server\Module;
 
-use App\Events\Server\Module\Installed;
 use App\Models\Server\Module;
+use Domain\Module\Events\Module\Installed;
 
 class MarkModuleAsInstalled
 {

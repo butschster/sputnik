@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Server;
 
-use App\Events\Server\Module\Installed;
+use Domain\Module\Events\Module\Installed;
 use Illuminate\Support\Arr;
 
 class ClearModuleMetaInformation

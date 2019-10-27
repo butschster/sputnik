@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\API\v1\Server;
 
-use App\Contracts\Server\Modules\Registry;
-use App\Contracts\Server\Modules\Repository;
 use App\Http\Controllers\API\Controller;
 use App\Http\Requests\Server\Module\RunActionRequest;
 use App\Http\Resources\v1\Server\ModulesCollection;
 use App\Models\Server;
-use App\Server\Modules\Collection;
+use Domain\Module\Contracts\Entities\Module\Repository;
+use Domain\Module\Contracts\Registry;
+use Domain\Module\Entities\Module\Collection;
 use Illuminate\Http\Request;
 
 class ModulesController extends Controller
@@ -59,7 +59,9 @@ class ModulesController extends Controller
         $modules = $server->modules;
 
         if ($request->has('categories')) {
-            $modules = Collection::forServer($server)->filterByCategories($request->categories)->toCollection();
+            $modules = Collection::forServer($server)
+                ->filterByCategories($request->categories)
+                ->toCollection();
         }
 
         return ModulesCollection::make($modules);
@@ -81,7 +83,7 @@ class ModulesController extends Controller
      * @param Request $request
      * @param Server $server
      * @return \App\Contracts\Server\Modules\Action
-     * @throws \App\Exceptions\Server\ModuleNotFoundException
+     * @throws \Domain\Module\Exceptions\ModuleNotFoundException
      * @throws \Illuminate\Validation\ValidationException
      */
     public function script(Request $request, Server $server, string $module, string $action)

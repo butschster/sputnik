@@ -4,7 +4,7 @@ namespace Module\Mysql;
 
 use App\Models\Server\Record;
 use App\Services\Server\Runnable;
-use App\Services\Task\Contracts\Task;
+use Domain\Task\Contracts\Task;
 use Module\Mysql\Scripts\Database\Create;
 use Module\Mysql\Scripts\Database\Drop;
 use Module\Mysql\ValueObjects\Database;

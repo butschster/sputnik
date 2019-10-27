@@ -2,8 +2,8 @@
 
 namespace App\Http\Actions\Task;
 
-use App\Jobs\Task\Finish;
 use App\Models\Server\Task;
+use Domain\Task\Jobs\Finish;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\Action;
 

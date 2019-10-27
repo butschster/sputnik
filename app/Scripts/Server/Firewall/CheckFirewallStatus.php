@@ -2,7 +2,7 @@
 
 namespace App\Scripts\Server\Firewall;
 
-use App\Utils\SSH\Script;
+use Domain\SSH\Script;
 
 class CheckFirewallStatus extends Script
 {

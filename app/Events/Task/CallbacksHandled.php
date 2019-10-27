@@ -2,7 +2,7 @@
 
 namespace App\Events\Task;
 
-use App\Models\Server\Task;
+use Domain\Task\Contracts\Task;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;

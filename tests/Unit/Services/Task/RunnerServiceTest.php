@@ -3,11 +3,11 @@
 namespace Tests\Unit\Services\Task;
 
 use App\Models\Server\Task;
-use App\Services\Task\ExecutorService;
-use App\Utils\SSH\Contracts\KeyStorage;
-use App\Utils\SSH\Contracts\ProcessExecutor;
-use App\Utils\SSH\ScriptsStorage;
-use App\Utils\SSH\Shell\Response;
+use Domain\Task\Services\ExecutorService;
+use Domain\SSH\Contracts\KeyStorage;
+use Domain\SSH\Contracts\ProcessExecutor;
+use Domain\SSH\Services\ScriptsStorage;
+use Domain\SSH\Shell\Response;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Carbon;
 use Mockery as m;

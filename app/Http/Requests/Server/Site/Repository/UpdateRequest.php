@@ -3,8 +3,8 @@
 namespace App\Http\Requests\Server\Site\Repository;
 
 use App\Models\Server\Site;
-use App\Validation\Rules\Server\Site\RepositoryName;
-use App\Validation\Rules\Server\Site\RepositoryUrl;
+use Domain\SourceProvider\Validation\Rules\RepositoryName;
+use Domain\SourceProvider\Validation\Rules\RepositoryUrl;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 

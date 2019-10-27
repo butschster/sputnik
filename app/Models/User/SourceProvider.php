@@ -4,8 +4,8 @@ namespace App\Models\User;
 
 use App\Models\Concerns\UsesUuid;
 use App\Models\User;
-use App\Services\SourceProviders\Contracts\SourceProvider as SourceProviderContract;
-use App\Services\SourceProviders\Factory;
+use Domain\SourceProvider\Contracts\SourceProvider as SourceProviderContract;
+use Domain\SourceProvider\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

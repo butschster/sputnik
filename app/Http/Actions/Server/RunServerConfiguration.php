@@ -4,6 +4,7 @@ namespace App\Http\Actions\Server;
 
 use App\Events\Server\KeysInstalled;
 use App\Models\Server;
+use Domain\Server\Jobs\Configure;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\Action;
 
@@ -28,7 +29,7 @@ class RunServerConfiguration extends Action
         event(new KeysInstalled($server));
 
         dispatch(
-            new \App\Jobs\Server\ConfigureServer($server)
+            new Configure($server)
         );
     }
 }

@@ -3,7 +3,7 @@
 namespace Tests\Unit\Utils\Ssh;
 
 use App\Contracts\Request\RequestSignatureHandler;
-use App\Utils\SSH\CallbackCurlGenerator;
+use Domain\SSH\Bash\CallbackCurlGenerator;
 use Illuminate\Support\Carbon;
 use Tests\TestCase;
 

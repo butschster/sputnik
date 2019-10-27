@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Utils\SSH;
 
-use App\Utils\SSH\FilesystemKeyStorage;
-use App\Utils\SSH\ValueObjects\PrivateKey;
+use Domain\SSH\FilesystemKeyStorage;
+use Domain\SSH\ValueObjects\PrivateKey;
 use Illuminate\Filesystem\Filesystem;
 use Tests\TestCase;
 

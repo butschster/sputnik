@@ -2,7 +2,7 @@
 
 namespace App\Scripts\Server\Firewall\Callbacks;
 
-use App\Contracts\Scripts\Callback;
+use Domain\Task\Contracts\Script\Callback;
 use App\Models\Server\Task;
 
 class MarkAsDisabled implements Callback

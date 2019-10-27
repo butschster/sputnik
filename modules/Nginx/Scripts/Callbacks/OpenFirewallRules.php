@@ -2,7 +2,7 @@
 
 namespace Module\Nginx\Scripts\Callbacks;
 
-use App\Contracts\Scripts\Callback;
+use Domain\Task\Contracts\Script\Callback;
 use App\Jobs\Server\OpenFirewallRule;
 use App\Models\Server\Task;
 

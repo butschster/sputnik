@@ -6,7 +6,7 @@ use App\Models\Server\Site;
 use App\Scripts\Server\Site\Create;
 use App\Scripts\Server\Site\Delete;
 use App\Services\Server\Runnable;
-use App\Services\Task\Contracts\Task;
+use Domain\Task\Contracts\Task;
 
 class ConfiguratorService
 {

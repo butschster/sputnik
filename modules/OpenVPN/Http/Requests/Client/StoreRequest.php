@@ -3,7 +3,7 @@
 namespace Module\OpenVPN\Http\Requests\Client;
 
 use App\Models\Server;
-use App\Repositories\Server\RecordRepository;
+use Domain\Record\Repositories\RecordRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;

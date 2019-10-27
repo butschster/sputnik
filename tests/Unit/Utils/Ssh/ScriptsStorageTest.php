@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Utils\SSH;
 
-use App\Utils\SSH\ScriptsStorage;
+use Domain\SSH\Services\ScriptsStorage;
 use Tests\TestCase;
 
 class ScriptsStorageTest extends TestCase

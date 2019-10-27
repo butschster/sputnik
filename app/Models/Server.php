@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Contracts\Server\ServerConfiguration as ServerConfigurationContract;
+use Domain\Server\Contracts\Configuration as ConfigurationContract;
 use App\Events\Server\Configured;
 use App\Events\Server\Configuring;
 use App\Events\Server\Created;
@@ -21,8 +21,8 @@ use App\Models\Server\Site;
 use App\Models\Server\Task;
 use App\Models\Subscription\Plan;
 use App\Models\User\Team;
-use App\Server\ServerConfiguration;
-use App\Utils\SSH\ValueObjects\SystemInformation;
+use Domain\Server\Configuration;
+use Domain\SSH\ValueObjects\SystemInformation;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -361,11 +361,11 @@ class Server extends Model
     /**
      * Convert model to server configuration object
      *
-     * @return ServerConfigurationContract
+     * @return ConfigurationContract
      */
-    public function toConfiguration(): ServerConfigurationContract
+    public function toConfiguration(): ConfigurationContract
     {
-        return new ServerConfiguration($this);
+        return new Configuration($this);
     }
 
     /**
