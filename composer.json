@@ -31,7 +31,8 @@
     "rollerworks/password-strength-validator": "^1.2",
     "santigarcor/laratrust": "^5.2",
     "tightenco/ziggy": "^0.8",
-    "violuke/rsa-ssh-key-fingerprint": "^1.1"
+    "violuke/rsa-ssh-key-fingerprint": "^1.1",
+    "webmozart/assert": "^1.5"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.6",

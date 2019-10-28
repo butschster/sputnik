@@ -1,6 +1,6 @@
 <template>
     <div v-if="isConfigured">
-        <h1>Sites</h1>
+        <h1>{{ $t('site.title') }}</h1>
         <div>
             <SitesList :server="$parent.server" />
             <CreateForm :server="$parent.server" @created="onCreate" class="mt-12"/>

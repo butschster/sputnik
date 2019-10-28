@@ -12,9 +12,7 @@ abstract class Module implements \Domain\Module\Contracts\Entities\Module
 {
 
     /**
-     * Get module meta
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function meta(): array
     {
@@ -22,8 +20,7 @@ abstract class Module implements \Domain\Module\Contracts\Entities\Module
     }
 
     /**
-     * Get module categories
-     * @return array
+     * {@inheritDoc}
      */
     public function categories(): array
     {
@@ -31,9 +28,7 @@ abstract class Module implements \Domain\Module\Contracts\Entities\Module
     }
 
     /**
-     * Get module conflicts
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function conflicts(): array
     {
@@ -41,8 +36,7 @@ abstract class Module implements \Domain\Module\Contracts\Entities\Module
     }
 
     /**
-     * Get module dependencies
-     * @return array
+     * {@inheritDoc}
      */
     public function dependencies(): array
     {
@@ -50,10 +44,7 @@ abstract class Module implements \Domain\Module\Contracts\Entities\Module
     }
 
     /**
-     * Get action by name
-     *
-     * @param string $name
-     * @return Action
+     * {@inheritDoc}
      */
     public function getAction(string $name): ActionContract
     {
@@ -73,10 +64,7 @@ abstract class Module implements \Domain\Module\Contracts\Entities\Module
     }
 
     /**
-     * Check if action exists
-     *
-     * @param string $name
-     * @return bool
+     * {@inheritDoc}
      */
     public function hasAction(string $name): bool
     {
@@ -84,19 +72,21 @@ abstract class Module implements \Domain\Module\Contracts\Entities\Module
     }
 
     /**
-     * Run action on a specified Server
-     *
-     * @param string $name
-     * @param Server $server
-     * @param array $data
-     * @return Server\Action
-     * @throws \Throwable
+     * {@inheritDoc}
      */
     public function runAction(string $name, Server $server, array $data = []): Server\Action
     {
         $action = $this->getAction($name);
 
         return $action->run($server, $data);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isInstalled(Server $server): bool
+    {
+        return $server->modules()->where('name', $this->key())->exists();
     }
 
     /**

@@ -77,4 +77,12 @@ interface Module extends Arrayable
      * @return Server\Action
      */
     public function runAction(string $name, Server $server, array $data = []): Server\Action;
+
+    /**
+     * Check of module is installed
+     *
+     * @param Server $server
+     * @return bool
+     */
+    public function isInstalled(Server $server): bool;
 }

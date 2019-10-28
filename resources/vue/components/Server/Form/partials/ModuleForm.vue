@@ -2,21 +2,24 @@
     <div class="section my-3">
         <h4>{{ module.title }}</h4>
 
-        <div v-for="field in action.fields" :key="field.key">
-            <FormText v-model="form[field.key]" :name="field.key" :label="field.title"
-                      v-if="field.type == 'Text'"/>
+        <div class="flex">
+            <template v-for="field in action.fields">
+                <FormText v-model="form[field.key]" :name="field.key" :label="field.title"
+                          v-if="field.type == 'Text'" class="w-full mr-8"/>
 
-            <FormNumber v-model="form[field.key]" :name="field.key" :label="field.title"
-                      v-if="field.type == 'Number'"/>
+                <FormNumber v-model="form[field.key]" :name="field.key" :label="field.title"
+                          v-if="field.type == 'Number'" class="w-full mr-8"/>
 
-            <FormSelect
-                    v-model="form[field.key]"
-                    :name="`modules.${module.key}.${field.key}`"
-                    :label="field.title"
-                    :options="field.meta.options"
-                    :multiple="field.type == 'MultiSelect'"
-                    v-if="field.type == 'Select' || field.type == 'MultiSelect'"
-            />
+                <FormSelect
+                        v-model="form[field.key]"
+                        :name="`modules.${module.key}.${field.key}`"
+                        :label="field.title"
+                        :options="field.meta.options"
+                        :multiple="field.type == 'MultiSelect'"
+                        v-if="field.type == 'Select' || field.type == 'MultiSelect'"
+                        class="w-full mr-8"
+                />
+            </template>
         </div>
     </div>
 </template>

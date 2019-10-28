@@ -16,10 +16,11 @@ class CreateServerSitesTable extends Migration
         Schema::create('server_sites', function (Blueprint $table) {
             $table->primaryUuid('id');
             $table->belongsToServer();
-            $table->belongsToModule();
             $table->belongsToUser();
 
             $table->string('token');
+            $table->string('webserver');
+            $table->string('processor')->nullable();
 
             $table->string('domain');
             $table->json('aliases')->nullable();
@@ -29,6 +30,9 @@ class CreateServerSitesTable extends Migration
             $table->string('repository')->nullable();
             $table->string('repository_provider')->nullable();
             $table->string('repository_branch')->nullable();
+
+            $table->boolean('is_proxy')->default(false);
+            $table->string('proxy_address')->nullable();
 
             $table->boolean('use_ssl')->default(false);
 

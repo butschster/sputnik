@@ -3,6 +3,10 @@
 namespace Module\Nginx\Providers;
 
 use App\Modules\ServiceProvider as BaseServiceProvider;
+use Domain\Site\Contracts\Entities\Processor;
+use Domain\Site\Contracts\Entities\WebServer;
+use Domain\Site\ValueObjects\Site;
+use Domain\SSH\Contracts\Script;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -30,5 +34,19 @@ class ServiceProvider extends BaseServiceProvider
                 ],
             ],
         ]);
+
+        $this->app[\Domain\Site\Contracts\Configurator::class]->registerWebServer(new class implements WebServer {
+            /** @inheritDoc */
+            public function key(): string
+            {
+                return 'nginx';
+            }
+
+            /** @inheritDoc */
+            public function name(): string
+            {
+                return 'Nginx';
+            }
+        });
     }
 }

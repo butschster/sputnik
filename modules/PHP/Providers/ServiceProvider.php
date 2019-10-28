@@ -3,6 +3,7 @@
 namespace Module\PHP\Providers;
 
 use App\Modules\ServiceProvider as BaseServiceProvider;
+use Domain\Site\Contracts\Entities\Processor;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -14,15 +15,15 @@ class ServiceProvider extends BaseServiceProvider
                 'script_view' => 'PHP::scripts.php.install',
                 'extensions' => [
                     \Domain\Module\Entities\Action\Extensions\Installer::class,
-                    \Module\PHP\PHPSettings::class
+                    \Module\PHP\PHPSettings::class,
                 ],
             ],
             'uninstall' => [
                 'script_view' => 'PHP::scripts.php.uninstall',
                 'extensions' => [
-                    \Module\PHP\PHPSettings::class
+                    \Module\PHP\PHPSettings::class,
                 ],
-            ]
+            ],
         ];
 
         $this->registerServerModulesFromArray([
@@ -56,10 +57,10 @@ class ServiceProvider extends BaseServiceProvider
                     'install' => [
                         'script_view' => 'PHP::scripts.deployer.install',
                         'extensions' => [
-                            \Domain\Module\Entities\Action\Extensions\Installer::class
+                            \Domain\Module\Entities\Action\Extensions\Installer::class,
                         ],
                     ],
-                    'uninstall' => 'PHP::scripts.deployer.uninstall'
+                    'uninstall' => 'PHP::scripts.deployer.uninstall',
                 ],
             ],
             [
@@ -71,12 +72,58 @@ class ServiceProvider extends BaseServiceProvider
                     'install' => [
                         'script_view' => 'PHP::scripts.composer.install',
                         'extensions' => [
-                            \Domain\Module\Entities\Action\Extensions\Installer::class
+                            \Domain\Module\Entities\Action\Extensions\Installer::class,
                         ],
                     ],
-                    'uninstall' => 'PHP::scripts.composer.uninstall'
+                    'uninstall' => 'PHP::scripts.composer.uninstall',
                 ],
             ],
         ]);
+
+
+        $this->app[\Domain\Site\Contracts\Configurator::class]->registerProcessor(new class implements Processor
+        {
+            /** @inheritDoc */
+            public function key(): string
+            {
+                return 'php';
+            }
+
+            /** @inheritDoc */
+            public function name(): string
+            {
+                return 'PHP 5.9';
+            }
+        });
+
+        $this->app[\Domain\Site\Contracts\Configurator::class]->registerProcessor(new class implements Processor
+        {
+            /** @inheritDoc */
+            public function key(): string
+            {
+                return 'php7.2';
+            }
+
+            /** @inheritDoc */
+            public function name(): string
+            {
+                return 'PHP 7.2';
+            }
+        });
+
+        $this->app[\Domain\Site\Contracts\Configurator::class]->registerProcessor(new class implements Processor
+        {
+            /** @inheritDoc */
+            public function key(): string
+            {
+                return 'php7.3';
+            }
+
+            /** @inheritDoc */
+            public function name(): string
+            {
+                return 'PHP 7.3';
+            }
+        });
     }
 }

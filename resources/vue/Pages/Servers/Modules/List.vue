@@ -6,7 +6,7 @@
         <h3>{{ $t('server.modules.installed.title') }}</h3>
 
         <div>
-            <ModuleInformation v-for="module in installedModules" :module="module" />
+            <ModuleInformation v-for="module in installedModules" :module="module" :key="module.key" />
         </div>
         <div class="section well well-lg">
             <ModuleForm

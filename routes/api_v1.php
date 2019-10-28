@@ -83,6 +83,9 @@ Route::middleware('auth')->group(function () {
         Route::get('server/task/{task}', 'Server\TasksController@show')->name('server.task.show');
 
         // WebServer Sites
+        Route::get('sites/{server}/processors', 'Server\Site\ConfiguratorController@processors')->name('sites.processors');
+        Route::get('sites/{server}/web-servers', 'Server\Site\ConfiguratorController@webServers')->name('sites.web_servers');
+
         Route::get('sites', 'Server\SiteController@all')->name('sites');
         Route::get('server/{server}/sites', 'Server\SiteController@index')->name('server.sites');
         Route::get('sites/search', 'Server\SiteController@search')->name('sites.search');

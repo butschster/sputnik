@@ -40,8 +40,7 @@ manager.serverSidebar.register(
     {
         link: (server) => links.serverSites(server),
         icon: 'fa-globe',
-        title: 'server.sections.sites',
-        module: 'nginx',
+        title: 'site.section',
         order: 400,
     }
 )

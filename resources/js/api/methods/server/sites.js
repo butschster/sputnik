@@ -10,6 +10,34 @@ const SITE_DELETED = 'server.site.deleted'
  *
  * @return {Object}
  */
+export async function processors(serverId) {
+    try {
+        const response = await api_route('v1.sites.processors', {server: serverId}).request()
+        return response.data
+    } catch (e) {
+        throw new ApiRequestError('Can not load sites processors.')
+    }
+}
+
+/**
+ * Load sites list
+ *
+ * @return {Object}
+ */
+export async function webServers(serverId) {
+    try {
+        const response = await api_route('v1.sites.web_servers', {server: serverId}).request()
+        return response.data
+    } catch (e) {
+        throw new ApiRequestError('Can not load sites web servers.')
+    }
+}
+
+/**
+ * Load sites list
+ *
+ * @return {Object}
+ */
 export async function all() {
     try {
         const response = await api_route('v1.sites').request()

@@ -183,6 +183,7 @@ return [
         Domain\SSH\Providers\SSHServiceProvider::class,
         App\Providers\ActionsServiceProvider::class,
         Domain\Site\Providers\WhoisServiceProvider::class,
+        Domain\Site\Providers\ConfiguratorServiceProvider::class,
         App\Providers\WebHooksServiceProvider::class,
         Domain\Module\Providers\ServerModulesServiceProvider::class
     ],
