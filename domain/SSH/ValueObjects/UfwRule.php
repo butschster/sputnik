@@ -2,6 +2,7 @@
 
 namespace Domain\SSH\ValueObjects;
 
+use Domain\SSH\Bash\Firewall\CommandGenerator;
 use Domain\SSH\Contracts\Firewall\UfwRule as UfwRuleContract;
 
 class UfwRule implements UfwRuleContract
@@ -149,7 +150,7 @@ class UfwRule implements UfwRuleContract
      */
     public function toBashEnableCommand(): string
     {
-        return (new FirewallCommandGenerator())->generateEnableString($this);
+        return (new CommandGenerator())->generateEnableString($this);
     }
 
     /**
@@ -159,6 +160,6 @@ class UfwRule implements UfwRuleContract
      */
     public function toBashDisableCommand(): string
     {
-        return (new FirewallCommandGenerator())->generateDisableString($this);
+        return (new CommandGenerator())->generateDisableString($this);
     }
 }

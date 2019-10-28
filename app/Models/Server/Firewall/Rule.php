@@ -5,6 +5,7 @@ namespace App\Models\Server\Firewall;
 use App\Models\Concerns\HasServer;
 use App\Models\Concerns\HasTask;
 use App\Models\Concerns\UsesUuid;
+use Domain\SSH\Bash\Firewall\CommandGenerator;
 use Domain\SSH\Contracts\Firewall\UfwRule;
 use Illuminate\Database\Eloquent\Model;
 
@@ -124,7 +125,7 @@ class Rule extends Model implements UfwRule
      */
     public function toBashEnableCommand(): string
     {
-        return (new FirewallCommandGenerator())->generateEnableString($this);
+        return (new CommandGenerator())->generateEnableString($this);
     }
 
     /**
@@ -135,6 +136,6 @@ class Rule extends Model implements UfwRule
      */
     public function toBashDisableCommand(): string
     {
-        return (new FirewallCommandGenerator())->generateDisableString($this);
+        return (new CommandGenerator())->generateDisableString($this);
     }
 }

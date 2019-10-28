@@ -48,7 +48,7 @@
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-block btn-primary btn-shadow">
-                        {{ __('Login') }}
+                        <i class="fas fa-plug fa-lg fa-fw"></i> {{ __('Login') }}
                     </button>
                 </div>
 
@@ -58,11 +58,11 @@
 
                 <div class="flex w-full justify-center">
                     <a class="btn btn-github mr-4 w-1/2" href="{{ route('login.github') }}">
-                        <i class="fab fa-github-alt"></i>
+                        <i class="fab fa-github-alt fa-lg fa-fw"></i>
                         Github
                     </a>
                     <a class="btn btn-bitbucket w-1/2" href="{{ route('login.bitbucket') }}">
-                        <i class="fab fa-bitbucket"></i>
+                        <i class="fab fa-bitbucket fa-lg fa-fw"></i>
                         Bitbucket
                     </a>
                 </div>

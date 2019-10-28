@@ -69,7 +69,7 @@
             </div>
 
             <button type="submit" class="btn btn-block btn-primary btn-shadow">
-                {{ __('Register') }}
+                <i class="fa fa-check fa-lg fa-fw"></i> {{ __('Register') }}
             </button>
         </form>
     </div>

@@ -22,11 +22,6 @@ class CreateServerDeploymentsTable extends Migration
             $table->string('commit_hash');
             $table->string('status', 25)->default('pending');
 
-            $table->foreign('server_site_id')
-                ->references('id')
-                ->on('server_sites')
-                ->onDelete('cascade');
-
             $table->timestamps();
         });
     }
