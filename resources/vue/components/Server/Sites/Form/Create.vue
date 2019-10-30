@@ -6,7 +6,7 @@
             <p>{{ $t('site.form.create.description') }}</p>
         </div>
         <div class="section-body" v-if="$gate.allow('create', 'site', server)">
-            <FormSelect v-model="form.web_server"
+            <FormSelect v-model="form.webserver"
                         :label="$t('site.form.create.label.web_server')"
                         name="web_server"
                         class="w-full"
@@ -25,7 +25,7 @@
                         :options="processors"
                         required v-if="!form.is_proxy" />
 
-            <FormInput v-model="form.proxy_addr" :label="$t('site.form.create.label.proxy_addr')" name="proxy_addr" class="w-full" required v-if="form.is_proxy"/>
+            <FormInput v-model="form.proxy_address" :label="$t('site.form.create.label.proxy_address')" name="proxy_address" class="w-full" required v-if="form.is_proxy"/>
 
             <div class="flex">
                 <FormInput v-model="form.domain" :label="$t('site.form.create.label.domain')" name="domain" class="w-full mr-8" required/>
@@ -59,9 +59,10 @@
                 web_servers: [],
                 form: {
                     is_proxy: false,
-                    web_server: '',
-                    processor: '',
-                    domain: '',
+                    webserver: null,
+                    processor: null,
+                    domain: null,
+                    proxy_address: null,
                     public_dir: '/public'
                 }
             }

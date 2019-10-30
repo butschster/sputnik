@@ -2,6 +2,8 @@
 
 namespace Domain\Site\Contracts\Entities;
 
+use Domain\Site\ValueObjects\Site;
+
 interface Processor
 {
     /**
@@ -17,4 +19,18 @@ interface Processor
      * @return string
      */
     public function name(): string;
+
+    /**
+     * Create script for webserver site configuration
+     *
+     * @param string $webserver
+     *
+     * @return string
+     */
+    public function createScriptForWebServer(string $webserver, Site $site): string;
+
+    /**
+     * @return string
+     */
+    public function createScriptForRestart(): string;
 }

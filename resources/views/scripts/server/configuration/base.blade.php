@@ -1,14 +1,7 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-# ================================================
-# Wait For Apt To Unlock
-# ================================================
-while fuser /var/lib/dpkg/lock >/dev/null 2>&1 ; do
-echo "Waiting for other software managers to finish..."
-
-sleep 1
-done
+@include('scripts.utils.wait_apt_unlock')
 
 # ================================================
 # Update & Install Packages

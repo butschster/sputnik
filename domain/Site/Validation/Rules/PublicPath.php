@@ -27,6 +27,6 @@ class PublicPath implements Rule
      */
     public function message()
     {
-        return 'Not a valid public path';
+        return 'The :attribute contains not a valid public path';
     }
 }

@@ -32,9 +32,17 @@ class SiteResource extends JsonResource
             'domain_expires_at' => $this->domain_expires_at,
             'use_ssl' => $this->use_ssl,
             'ssl_certificate_expires_at' => $this->ssl_certificate_expires_at,
+            'is_proxy' => $this->is_proxy,
+            'proxy_address' => $this->proxy_address,
             'task' => TaskResource::make($this->task),
             'server' => $this->whenLoaded('server', function() {
                 return ServerResource::make($this->server);
+            }),
+            'webserver' => $this->whenLoaded('webServer', function() {
+                return ModuleResource::make($this->webserver);
+            }),
+            'processor' => $this->whenLoaded('processor', function() {
+                return ModuleResource::make($this->processor);
             }),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

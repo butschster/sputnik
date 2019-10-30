@@ -43,6 +43,6 @@ class ModuleInstalled implements Rule
      */
     public function message()
     {
-        return 'The server module is not installed';
+        return 'The :attribute module is not installed';
     }
 }

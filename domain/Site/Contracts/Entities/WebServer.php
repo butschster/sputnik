@@ -2,7 +2,6 @@
 
 namespace Domain\Site\Contracts\Entities;
 
-use Domain\Server\Contracts\Configuration;
 use Domain\Site\ValueObjects\Site;
 use Domain\SSH\Contracts\Script;
 
@@ -25,24 +24,18 @@ interface WebServer
     /**
      * Get script for site creation
      *
+     * @param Processor $processor
      * @param Site $site
      * @return Script
      */
-    //public function createScript(Configuration $configuration, Site $site): Script;
+    public function createScript(Processor $processor, Site $site): string;
 
     /**
      * Get script for site delete
      *
+     * @param Processor $processor
      * @param Site $site
-     * @return Script
+     * @return string
      */
-    //public function deleteScript(Site $site): Script;
-
-    /**
-     * Get script for restart site
-     *
-     * @param Site $site
-     * @return Script
-     */
-    //public function restartScript(Site $site): Script;
+    public function deleteScript(Processor $processor, Site $site): string;
 }

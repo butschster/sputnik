@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Laravel\Scout\Searchable;
 
 class Site extends Model
@@ -36,6 +37,7 @@ class Site extends Model
         'environment' => 'array',
         'domain_expires_at' => 'date',
         'use_ssl' => 'bool',
+        'is_proxy' => 'bool',
         'ssl_certificate_expires_at' => 'date',
     ];
 
@@ -49,6 +51,25 @@ class Site extends Model
         return $this->belongsTo(\App\Models\User::class);
     }
 
+    /**
+     * Get webserver module
+     *
+     * @return BelongsTo
+     */
+    public function webServer(): BelongsTo
+    {
+        return $this->belongsTo(\App\Models\Server\Module::class, 'webserver_id');
+    }
+
+    /**
+     * Get processor module
+     *
+     * @return BelongsTo
+     */
+    public function processor(): BelongsTo
+    {
+        return $this->belongsTo(\App\Models\Server\Module::class, 'processor_id');
+    }
 
     /**
      * @param Builder $builder
@@ -104,11 +125,11 @@ class Site extends Model
     /**
      * Get the deployments that belong to the site.
      *
-     * @return HasMany
+     * @return MorphMany
      */
-    public function deployments(): HasMany
+    public function deployments(): MorphMany
     {
-        return $this->hasMany(Deployment::class, 'server_site_id')->latest();
+        return $this->morphMany(Deployment::class, 'owner')->latest();
     }
 
     /**

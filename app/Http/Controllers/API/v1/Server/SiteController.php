@@ -8,6 +8,7 @@ use App\Http\Requests\Server\Site\StoreRequest;
 use App\Http\Resources\v1\Server\SiteCollection;
 use App\Http\Resources\v1\Server\SiteResource;
 use App\Models\Server;
+use App\Services\Server\Site\ConfiguratorService;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -57,7 +58,7 @@ class SiteController extends Controller
     {
         $this->authorize('show', $site);
 
-        $site->load('server');
+        $site->load(['server', 'webServer', 'processor']);
 
         return SiteResource::make($site);
     }

@@ -1,7 +1,7 @@
 
 server {
-    listen 80;
-    listen [::]:80;
-    server_name www.{{ $site->domain }};
-    return 301 \$scheme://{{ $site->domain }}\$request_uri;
+    listen {{ $site->getPort() }};
+    listen [::]:{{ $site->getPort() }};
+    server_name www.{{ $site->getDomain() }};
+    return 301 \$scheme://{{ $site->getDomain() }}\$request_uri;
 }

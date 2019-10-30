@@ -5,6 +5,8 @@ namespace Domain\Site\Contracts;
 use App\Models\Server;
 use Domain\Site\Contracts\Entities\Processor;
 use Domain\Site\Contracts\Entities\WebServer;
+use Domain\Site\ValueObjects\Site;
+use Domain\SSH\Script;
 use Illuminate\Support\Collection;
 
 interface Configurator
@@ -38,4 +40,26 @@ interface Configurator
      * @return Collection
      */
     public function getProcessorsOptionsForServer(Server $server): Collection;
+
+    /**
+     * Create configuration for new site
+     *
+     * @param string $webServer
+     * @param string|null $processor
+     * @param Site $site
+     *
+     * @return Script
+     */
+    public function createConfiguration(string $webServer, ?string $processor = null, Site $site): Script;
+
+    /**
+     * Delete configuration for the site
+     *
+     * @param string $webServer
+     * @param string|null $processor
+     * @param Site $site
+     *
+     * @return Script
+     */
+    public function deleteConfiguration(string $webServer, ?string $processor = null, Site $site): Script;
 }

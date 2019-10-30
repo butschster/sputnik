@@ -2,18 +2,18 @@
 # ================================================
 # Remove The Nginx Site
 # ================================================
-rm "/etc/nginx/sites-enabled/www.{{ $site->domain }}"
-rm "/etc/nginx/sites-enabled/{{ $site->domain }}"
-rm "/etc/nginx/sites-available/www.{{ $site->domain }}"
-rm "/etc/nginx/sites-available/{{ $site->domain }}"
+rm "/etc/nginx/sites-enabled/www.{{ $site->getDomain() }}"
+rm "/etc/nginx/sites-enabled/{{ $site->getDomain() }}"
+rm "/etc/nginx/sites-available/www.{{ $site->getDomain() }}"
+rm "/etc/nginx/sites-available/{{ $site->getDomain() }}"
 
 # Remove Configuration Directories
 
-rm -rf "{{ $config->configPath($site) }}"
-rm -rf "{{ $site->path() }}"
+rm -rf "/etc/nginx/configs/{{ $site->getDomain() }}/"
+rm -rf "{{ $site->getDir() }}"
 
 # Remove The SSL Certificates
-rm -rf "/etc/nginx/ssl/{{ $site->domain }}"
+rm -rf "/etc/nginx/ssl/{{ $site->getDomain() }}"
 
 @include('scripts.tools.webserver.nginx.restart')
-{!! $configurator->php()->restart() !!}
+{!! $processor->createScriptForRestart() !!}

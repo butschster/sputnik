@@ -13,7 +13,7 @@ return [
                 'domain' => 'Домен',
                 'public_dir' => 'Публичная директория',
                 'is_proxy' => 'Прокси',
-                'proxy_addr' => 'Проксируемый IP'
+                'proxy_address' => 'Проксируемый IP'
             ],
             'button' => [
                 'create' => 'Создать',

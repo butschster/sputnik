@@ -52,3 +52,8 @@ function modules_path(string $path = ''): string
 {
     return app(App\Contracts\Modules\ManagerInterface::class)->basePath() . ($path ? DIRECTORY_SEPARATOR . $path : $path);
 }
+
+
+function site_configurator(): \Domain\Site\Configurator {
+    return app(\Domain\Site\Contracts\Configurator::class);
+}

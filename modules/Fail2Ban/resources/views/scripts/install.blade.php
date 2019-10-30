@@ -1,3 +1,4 @@
+@include('scripts.utils.wait_apt_unlock')
 
 # ================================================
 # Install Fail2Ban

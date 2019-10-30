@@ -203,7 +203,7 @@ class Action implements ActionContract, ActionContract\HasFields
             $task->addCallback($callback);
         }
 
-        dispatch(new Run($task));
+        dispatch_now(new Run($task));
 
         event(
             new Ran(

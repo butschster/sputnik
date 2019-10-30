@@ -83,16 +83,4 @@ class WebServerConfigurator extends Configurator
             );
         }
     }
-
-    /**
-     * Build config path for given site
-     *
-     * @param Site $site
-     * @param string $path
-     * @return string
-     */
-    public function configPath(Site $site, string $path = ''): string
-    {
-        return '/etc/nginx/configs/'.$site->domain.'/'.ltrim(trim($path), '/');
-    }
 }

@@ -1,3 +1,4 @@
+@include('scripts.utils.wait_apt_unlock')
 
 # ================================================
 # Uninstall MongoDB

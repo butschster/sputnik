@@ -47,6 +47,24 @@ class ServiceProvider extends BaseServiceProvider
             {
                 return 'Nginx';
             }
+
+            /** @inheritDoc */
+            public function createScript(Processor $processor, Site $site): string
+            {
+                return view('Nginx::scripts.site.create', [
+                    'processor' => $processor,
+                    'site' => $site
+                ]);
+            }
+
+            /** @inheritDoc */
+            public function deleteScript(Processor $processor, Site $site): string
+            {
+                return view('Nginx::scripts.site.delete', [
+                    'processor' => $processor,
+                    'site' => $site
+                ]);
+            }
         });
     }
 }

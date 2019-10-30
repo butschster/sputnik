@@ -19,8 +19,17 @@ class CreateServerSitesTable extends Migration
             $table->belongsToUser();
 
             $table->string('token');
-            $table->string('webserver');
-            $table->string('processor')->nullable();
+            $table->uuid('webserver_id');
+            $table->foreign('webserver_id')
+                ->references('id')
+                ->on('server_modules')
+                ->onDelete('cascade');
+
+            $table->uuid('processor_id')->nullable();
+            $table->foreign('processor_id')
+                ->references('id')
+                ->on('server_modules')
+                ->onDelete('cascade');
 
             $table->string('domain');
             $table->json('aliases')->nullable();

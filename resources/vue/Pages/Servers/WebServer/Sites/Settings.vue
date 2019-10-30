@@ -15,6 +15,24 @@
                 <col>
                 <tbody>
                 <tr>
+                    <th>Domain</th>
+                    <td>
+                        <Copy :text="site.domain"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Web server</th>
+                    <td>
+                        {{ site.webserver.title }}
+                    </td>
+                </tr>
+                <tr v-if="site.processor">
+                    <th>Processor</th>
+                    <td>
+                        {{ site.processor.title }}
+                    </td>
+                </tr>
+                <tr>
                     <th>Path</th>
                     <td>
                         <Copy :text="site.path"/>
@@ -24,6 +42,12 @@
                     <th>Public path</th>
                     <td>
                         <Copy :text="site.public_path"/>
+                    </td>
+                </tr>
+                <tr v-if="site.is_proxy">
+                    <th>Proxy pass</th>
+                    <td>
+                        <Copy :text="site.proxy_address"/>
                     </td>
                 </tr>
                 </tbody>

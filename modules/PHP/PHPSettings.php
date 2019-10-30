@@ -38,7 +38,7 @@ class PHPSettings implements Extension
         return [
             'modules' => [
                 'cli', 'dev', 'sqlite3', 'gd', 'curl', 'mbstring', 'xml', 'zip', 'bcmath', 'intl',
-                'fpm', 'mcrypt', 'pdo', 'mysqli',
+                'fpm', 'pdo', 'mysqli',
             ]
         ];
     }

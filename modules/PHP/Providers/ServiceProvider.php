@@ -4,6 +4,7 @@ namespace Module\PHP\Providers;
 
 use App\Modules\ServiceProvider as BaseServiceProvider;
 use Domain\Site\Contracts\Entities\Processor;
+use Domain\Site\ValueObjects\Site;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -94,6 +95,24 @@ class ServiceProvider extends BaseServiceProvider
             {
                 return 'PHP 5.9';
             }
+
+            /** @inheritDoc */
+            public function createScriptForWebServer(string $webserver, Site $site): string
+            {
+                return view('PHP::scripts.php.site.create', [
+                    'version' => 'php',
+                    'webserver' => $webserver,
+                    'site' => $site,
+                ]);
+            }
+
+            /** @inheritDoc */
+            public function createScriptForRestart(): string
+            {
+                return view('PHP::scripts.php.restart', [
+                    'version' => 'php',
+                ]);
+            }
         });
 
         $this->app[\Domain\Site\Contracts\Configurator::class]->registerProcessor(new class implements Processor
@@ -109,6 +128,24 @@ class ServiceProvider extends BaseServiceProvider
             {
                 return 'PHP 7.2';
             }
+
+            /** @inheritDoc */
+            public function createScriptForWebServer(string $webserver, Site $site): string
+            {
+                return view('PHP::scripts.php.site.create', [
+                    'version' => 'php7.2',
+                    'webserver' => $webserver,
+                    'site' => $site,
+                ]);
+            }
+
+            /** @inheritDoc */
+            public function createScriptForRestart(): string
+            {
+                return view('PHP::scripts.php.restart', [
+                    'version' => 'php7.2',
+                ]);
+            }
         });
 
         $this->app[\Domain\Site\Contracts\Configurator::class]->registerProcessor(new class implements Processor
@@ -123,6 +160,24 @@ class ServiceProvider extends BaseServiceProvider
             public function name(): string
             {
                 return 'PHP 7.3';
+            }
+
+            /** @inheritDoc */
+            public function createScriptForWebServer(string $webserver, Site $site): string
+            {
+                return view('PHP::scripts.php.site.create', [
+                    'version' => 'php7.3',
+                    'webserver' => $webserver,
+                    'site' => $site,
+                ]);
+            }
+
+            /** @inheritDoc */
+            public function createScriptForRestart(): string
+            {
+                return view('PHP::scripts.php.restart', [
+                    'version' => 'php7.3',
+                ]);
             }
         });
     }

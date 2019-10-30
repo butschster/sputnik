@@ -6,7 +6,11 @@ use App\Models\Server;
 use Domain\Module\Contracts\Registry;
 use Domain\Site\Contracts\Entities\Processor;
 use Domain\Site\Contracts\Entities\WebServer;
+use Domain\Site\Entities\ProxyProcessor;
+use Domain\Site\Scripts\CreateConfiguration;
+use Domain\Site\Scripts\DeleteConfiguration;
 use Domain\Site\ValueObjects\Site;
+use Domain\SSH\Script;
 use Illuminate\Support\Collection;
 
 class Configurator implements Contracts\Configurator
@@ -89,14 +93,32 @@ class Configurator implements Contracts\Configurator
     }
 
     /**
-     * Create configuration for new site
-     *
-     * @param string $webServer
-     * @param string $processor
-     * @param Site $site
+     * {@inheritDoc}
      */
-    public function createConfiguration(string $webServer, string $processor, Site $site)
+    public function createConfiguration(string $webServer, ?string $processor = null, Site $site): Script
     {
+        $webServer = $this->webServers->get($webServer);
+        if ($processor) {
+            $processor = $this->processors->get($processor);
+        } else {
+            $processor = new ProxyProcessor();
+        }
 
+        return new CreateConfiguration($webServer, $processor, $site);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function deleteConfiguration(string $webServer, ?string $processor = null, Site $site): Script
+    {
+        $webServer = $this->webServers->get($webServer);
+        if ($processor) {
+            $processor = $this->processors->get($processor);
+        } else {
+            $processor = new ProxyProcessor();
+        }
+
+        return new DeleteConfiguration($webServer, $processor, $site);
     }
 }

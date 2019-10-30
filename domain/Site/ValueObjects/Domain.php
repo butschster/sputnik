@@ -18,7 +18,7 @@ class Domain
      * @param string $name
      * @param array $aliases
      */
-    public function __construct(string $name, array $aliases = [])
+    public function __construct(string $name, ?array $aliases = [])
     {
         $this->name = $name;
         $this->aliases = $aliases;

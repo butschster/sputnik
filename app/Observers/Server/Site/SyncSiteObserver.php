@@ -3,7 +3,7 @@
 namespace App\Observers\Server\Site;
 
 use App\Models\Server\Site;
-use App\Services\Server\Site\ConfiguratorService;
+use Domain\Site\Services\ConfiguratorService;
 
 class SyncSiteObserver
 {
@@ -25,7 +25,7 @@ class SyncSiteObserver
      */
     public function created(Site $site): void
     {
-        $this->service->create($site);
+        $this->service->create($site->refresh());
     }
 
     /**
