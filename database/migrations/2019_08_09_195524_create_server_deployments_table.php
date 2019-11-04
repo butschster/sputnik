@@ -18,7 +18,10 @@ class CreateServerDeploymentsTable extends Migration
             $table->belongsToServer();
             $table->nullableUuidMorphs('owner');
             $table->uuid('initiator_id')->nullable();
-            $table->string('branch')->nullable();
+            $table->string('path');
+            $table->json('environment');
+            $table->string('repository');
+            $table->string('branch');
             $table->string('commit_hash');
             $table->string('status', 25)->default('pending');
 

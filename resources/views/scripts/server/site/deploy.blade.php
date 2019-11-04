@@ -1,23 +1,22 @@
-
 # ================================================
-# Deploy site {{ $site->domain }}
+# Deploy {{ class_basename($owner) }} {{ $owner->getKey() }}
 # ================================================
 
 // TODO
 ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 ssh-keyscan -H bitbucket.com >> ~/.ssh/known_hosts
 
-if [ ! -d {{ $site->path() }} ]
+if [ ! -d {{ $path }} ]
 then
-    mkdir -p {{ $site->path() }}
+    mkdir -p {{ $path }}
 fi
 
-if [ -d {{ $site->path().'/current' }} ] && [ ! -L {{ $site->path().'/current' }} ]
+if [ -d {{ $path.'/current' }} ] && [ ! -L {{ $path.'/current' }} ]
 then
-    rm -rf {{ $site->path().'/current' }}
+    rm -rf {{ $path.'/current' }}
 fi
 
-cat > {{ $site->path() }}/deploy.php << EOF
+cat > {{ $path }}/deploy.php << EOF
 @php echo '<?php'; @endphp
 
 namespace Deployer;
@@ -25,7 +24,7 @@ namespace Deployer;
 require 'recipe/laravel.php';
 
 set('application', '{{ $server->name  }}');
-set('repository', '{{ $site->cloneUrl() }}');
+set('repository', '{{ $repository }}');
 set('git_tty', false);
 set('keep_releases', 5);
 add('shared_files', []);
@@ -36,9 +35,9 @@ set('allow_anonymous_stats', false);
 host('{{ $server->ip  }}')
     ->port({{ $server->ssh_port  }})
     ->user('root')
-    ->set('branch', '{{ $site->repositoryBranch() }}')
+    ->set('branch', '{{ $repository_branch }}')
     ->identityFile('/root/.ssh/id_rsa')
-    ->set('deploy_path', '{{ $site->path() }}')
+    ->set('deploy_path', '{{ $path }}')
     ->addSshOption('StrictHostKeyChecking', 'no');
 
 after('deploy:failed', 'deploy:unlock');
@@ -46,14 +45,14 @@ before('deploy:symlink', 'artisan:migrate');
 
 EOF
 
-if [ ! -d {{ $site->path().'/shared' }} ]
+if [ ! -d {{ $path.'/shared' }} ]
 then
-    mkdir -p {{ $site->path().'/shared' }}
+    mkdir -p {{ $path.'/shared' }}
 fi
 
-cat > {{ $site->path().'/shared/.env' }} << EOF
+cat > {{ $path.'/shared/.env' }} << EOF
 @include('scripts.server.site.env')
 
 EOF
 
-cd {{ $site->path() }} && dep deploy:unlock && dep deploy
+cd {{ $path }} && dep deploy:unlock && dep deploy

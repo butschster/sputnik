@@ -44,6 +44,14 @@ class Deployment extends Model
     protected $guarded = [];
 
     /**
+     * {@inheritdoc}
+     */
+    protected $casts = [
+        'path' => 'string',
+        'environment' => 'array',
+    ];
+
+    /**
      * Link to the owner model
      *
      * @return BelongsTo

@@ -23,13 +23,14 @@ class DatabaseService
         $this->setServer($record->server);
         $this->setOwner($record);
 
-        $password = $record->module->meta['password'];
+        $rootPassword = $record->module->meta['password'];
         $databaseName = $record->meta['name'];
+        $password = $record->meta['password'];
 
         return $this->runJob(
             new Create(
                 $this->makeDatabaseValueObject($databaseName, $password),
-                $this->makeRootUserValueObject($password)
+                $this->makeRootUserValueObject($rootPassword)
             )
         );
     }
@@ -43,13 +44,14 @@ class DatabaseService
         $this->setServer($record->server);
         $this->setOwner($record);
 
-        $password = $record->module->meta['password'];
+        $rootPassword = $record->module->meta['password'];
         $databaseName = $record->meta['name'];
+        $password = $record->meta['password'];
 
         return $this->runJob(
             new Drop(
                 $this->makeDatabaseValueObject($databaseName, $password),
-                $this->makeRootUserValueObject($password)
+                $this->makeRootUserValueObject($rootPassword)
             )
         );
     }

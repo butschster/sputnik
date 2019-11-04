@@ -6,6 +6,7 @@ use App\Http\Controllers\API\Controller;
 use App\Http\Requests\Server\Site\Environment\DeleteRequest;
 use App\Http\Requests\Server\Site\Environment\UpdateRequest;
 use App\Http\Requests\Server\Site\Environment\UploadRequest;
+use App\Http\Resources\v1\Server\Site\EnvironmentResource;
 use App\Http\Resources\v1\Server\SiteResource;
 use App\Models\Server\Site;
 

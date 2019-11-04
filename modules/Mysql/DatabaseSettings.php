@@ -52,7 +52,7 @@ class DatabaseSettings implements Extension
     {
         return collect($server->toConfiguration()->systemUsers())
             ->map(function ($user) use ($server, $password) {
-                return $this->createUser($user, $password);
+                return $this->createUser($user->name, $password);
             });
     }
 

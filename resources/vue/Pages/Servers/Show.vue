@@ -19,7 +19,7 @@
 
             <NotSupported v-if="!isSupported" :server="server"/>
 
-            <div class="tabs" role="tabs">
+            <div class="tabs" role="tabs" v-if="server.id">
                 <router-link v-for="(item, index) in links" :key="index" :to="item.link" class="tab">
                     {{ $t(item.title)}}
                 </router-link>

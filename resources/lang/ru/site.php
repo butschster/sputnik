@@ -7,7 +7,7 @@ return [
     ],
     'section' => [
         'index' => 'Сайты',
-        'deployment' => 'Развертывание',
+        'deployment' => 'Deployment',
         'environment' => 'Окружение',
         'settings' => 'Настройки',
     ],

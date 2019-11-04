@@ -41,10 +41,6 @@ class SitePolicy
             return false;
         }
 
-        if ($site->hasRunningDeployment()) {
-            return false;
-        }
-
         return $user->canManageServer($site->server) &&
             $user->canUseFeature('server.deployments.run');
     }

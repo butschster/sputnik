@@ -3,7 +3,7 @@
 namespace App\Services\Server;
 
 use App\Jobs\Server\Deployment\TimeOutDeploymentIfStillRunning;
-use App\Models\Server\Site\Deployment;
+use App\Models\Server\Deployment;
 use App\Scripts\Server\Callbacks\RestartWebServer;
 use App\Scripts\Server\Deployment as DeploymentScript;
 
@@ -17,7 +17,7 @@ class DeploymentService
      */
     public function deploy(Deployment $deployment)
     {
-        $this->setServer($deployment->site->server);
+        $this->setServer($deployment->server);
         $this->setOwner($deployment);
 
         $this->runInBackground(

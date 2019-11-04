@@ -46,8 +46,11 @@ class Deployment extends Script
 
         return view('scripts.server.site.deploy', [
             'server' => $server,
-            'site' => $this->deployment->site,
-            'configurator' => $server->toConfigurator()
+            'path' => $this->deployment->path,
+            'repository' => $this->deployment->repository,
+            'repository_branch' => $this->deployment->branch,
+            'owner' => $this->deployment->owner,
+            'environment' => $this->deployment->environment ?? []
         ]);
     }
 }

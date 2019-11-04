@@ -56,7 +56,11 @@ class DeploymentsController extends Controller
         return [
             'config' => (string) view('scripts.server.site.deploy', [
                 'server' => $site->server,
-                'site' => $site,
+                'path' => $site->path(),
+                'repository' => $site->cloneUrl(),
+                'repository_branch' => $site->repositoryBranch(),
+                'owner' => $site,
+                'environment' => $site->hasEnvironmentVariables() ? $site->environment : []
             ])
         ];
     }

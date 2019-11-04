@@ -67,7 +67,9 @@ class Install implements ShouldQueue
         $module = $this->getModule();
 
         try {
-            $repository->runAction($module->name, 'install', $this->server, $this->data);
+            $action = $repository->runAction($module->name, 'install', $this->server, $this->data);
+
+            $module->update(['meta' => $action->meta]);
         } catch (Exception $e) {
             $module->markAsFailed();
 

@@ -12,6 +12,11 @@ class Database extends Model
     protected $module;
 
     /**
+     * @var array
+     */
+    protected $fillable = ['name', 'password'];
+
+    /**
      * @param string $module
      * @return $this
      */

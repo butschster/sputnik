@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Services\Server\DeploymentService;
 use Exception;
 use Illuminate\Bus\Queueable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -18,9 +17,9 @@ class Run
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * @var Model
+     * @var Server\Site
      */
-    protected $owner;
+    protected $site;
 
     /**
      * @var User|null
@@ -34,13 +33,13 @@ class Run
 
     /**
      * @param Server $server
-     * @param Model|null $owner
+     * @param Server\Site $site
      * @param User|null $initiator
      */
-    public function __construct(Server $server, ?Model $owner = null, ?User $initiator = null)
+    public function __construct(Server $server, Server\Site $site, ?User $initiator = null)
     {
         $this->server = $server;
-        $this->owner = $owner;
+        $this->site = $site;
         $this->initiator = $initiator;
     }
 
@@ -53,15 +52,17 @@ class Run
     {
         $data = [
             'branch' => $this->site->repositoryBranch(),
+            'repository' => $this->site->cloneUrl(),
+            'path' => $this->site->path(),
+            'environment' => $this->site->environment ?? [],
             'initiator_id' => $this->initiator ? $this->initiator->id : null,
             'commit_hash' => ''
         ];
+
         $deployment = new Deployment($data);
         $deployment->server()->associate($this->server);
 
-        if ($this->owner) {
-            $deployment->owner()->associate($this->owner);
-        }
+        $deployment->owner()->associate($this->site);
         $deployment->save();
 
         $service->deploy($deployment);
@@ -81,7 +82,7 @@ class Run
             'type' => 'server.site.deploy.failed',
             'exception' => (string) $exception,
             'meta' => [
-                'owner' => $this->owner
+                'owner' => $this->site
             ]
         ]);
     }
