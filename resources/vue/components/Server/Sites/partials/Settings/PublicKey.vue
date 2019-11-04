@@ -1,14 +1,14 @@
 <template>
     <div class="section">
         <div class="section-header">
-            Use this public key for access deployment
+            {{ $t('site.public_key.description') }}
         </div>
         <pre class="break-all whitespace-normal">
             <Loader :loading="loading" />
             <Copy :text="site.server.public_key"/><br />
 
             <button class="btn btn-sm btn-primary mt-5" @click="register" v-if="site.repository.is_source_provider">
-                Register deploy key
+                {{ $t('site.public_key.button.register') }}
             </button>
         </pre>
     </div>

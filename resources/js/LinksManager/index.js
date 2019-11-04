@@ -40,7 +40,7 @@ manager.serverSidebar.register(
     {
         link: (server) => links.serverSites(server),
         icon: 'fa-globe',
-        title: 'site.section',
+        title: 'site.section.index',
         order: 400,
     }
 )

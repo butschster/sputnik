@@ -76,7 +76,7 @@
                     this.loaded()
                 } catch (e) {
                     this.$handleError(e)
-                    this.$router.replace({name: "404"})
+                    //this.$router.replace({name: "404"})
                 }
 
                 this.loading = false

@@ -1,22 +1,16 @@
 <template>
     <div class="section section--border-b">
         <div class="section-header">
-            Deployment Trigger URL
+            {{ $t('site.webhook.title') }}
 
-            <p>
-                Using a custom Git service, or want a service like Travis CI to run your tests before your
-                application is deployed to Forge? It's simple. When you commit fresh code, or when your continuous
-                integration service finishes testing your application, instruct the service to make a GET or POST
-                request to the following URL. Making a request to this URL will trigger your Forge deployment
-                script:
-            </p>
+            <p>{{ $t('site.webhook.description') }}</p>
         </div>
         <pre class="break-all whitespace-normal mt-5">
             <Loader :loading="loading" />
             <Copy :text="site.links.hooks_url"/><br />
 
             <button class="btn btn-sm btn-primary mt-5" @click="register" v-if="site.repository.is_source_provider">
-                Register web hook
+                {{ $t('site.webhook.button.register') }}
             </button>
         </pre>
     </div>

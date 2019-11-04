@@ -1,7 +1,7 @@
 <template>
     <div>
         <Loader :loading="loading"/>
-        <h2>Environment variables</h2>
+        <h2>{{ $t('site.environment.title') }}</h2>
         <div v-if="hasVariables">
             <template v-for="(vars, group) in groupedVariables">
                 <h4>{{ group }}</h4>
@@ -29,17 +29,19 @@
         </div>
         <div v-else class="well well-lg text-center">
             <img class="mx-auto mb-10" src="https://image.flaticon.com/icons/svg/1568/1568465.svg" alt="" width="150px">
-            <h3 class="mb-0">Looks like you don't have any env variables yet</h3>
+            <h3 class="mb-0">{{ $t('site.environment.message.empty') }}</h3>
         </div>
 
         <div class="section well well-lg">
             <Loader :loading="uploadLoading"/>
             <div class="section-header">
-                Load from .env string
-                <p>Paste contents from .env file</p>
+                {{ $t('site.environment.form.upload.title') }}
+                <p>{{ $t('site.environment.form.upload.description') }}</p>
             </div>
-            <Textarea v-model="uploadForm.variables" label="String with variables" name="variables"/>
-            <button class="btn btn-primary" @click="onUploadFile">Upload</button>
+            <Textarea v-model="uploadForm.variables"
+                      :label="$t('site.environment.form.upload.textarea')"
+                      name="variables"/>
+            <button class="btn btn-primary" @click="onUploadFile">{{ $t('site.environment.form.upload.button') }}</button>
         </div>
     </div>
 </template>

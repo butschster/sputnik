@@ -18,7 +18,11 @@
                 </tr>
                 <tr>
                     <th>{{ $t('server.tasks.item.success') }}</th>
-                    <td>{{ task.is_successful ? 'Yes' : 'No' }}</td>
+                    <td>
+                        <span class="badge" :class="{'badge-success' : task.is_successful, 'badge-danger': !task.is_successful}">
+                            {{ task.is_successful ? 'Yes' : 'No' }}
+                        </span>
+                    </td>
                 </tr>
                 </tbody>
             </table>

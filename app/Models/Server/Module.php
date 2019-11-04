@@ -76,6 +76,14 @@ class Module extends Model
     }
 
     /**
+     * @return bool
+     */
+    public function isInstalling(): bool
+    {
+        return $this->status === static::STATUS_INSTALLING;
+    }
+
+    /**
      * Mark the server as configured.
      */
     public function markAsInstalled(): void
@@ -83,6 +91,14 @@ class Module extends Model
         $this->update(['status' => static::STATUS_INSTALLED]);
 
         event(new StatusChanged($this));
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInstalled(): bool
+    {
+        return $this->status === static::STATUS_INSTALLED;
     }
 
     /**
@@ -94,4 +110,13 @@ class Module extends Model
 
         event(new StatusChanged($this));
     }
+
+    /**
+     * @return bool
+     */
+    public function isFailed(): bool
+    {
+        return $this->status === static::STATUS_FAILED;
+    }
+
 }

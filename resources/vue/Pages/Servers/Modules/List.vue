@@ -8,6 +8,8 @@
         <div>
             <ModuleInformation v-for="module in installedModules" :module="module" :key="module.key" />
         </div>
+
+<!--
         <div class="section well well-lg">
             <ModuleForm
                     :module="module"
@@ -21,6 +23,7 @@
             <button class="btn btn-primary shadow-lg" @click="onSubmit" v-if="hasSelectedModules">
                 {{ $t('server.modules.button.install') }}
             </button>
+-->
         </div>
     </div>
 </template>

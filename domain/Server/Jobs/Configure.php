@@ -19,6 +19,8 @@ class Configure implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    const RETRY_IN = 15;
+
     /**
      * @var Server
      */
@@ -68,14 +70,14 @@ class Configure implements ShouldQueue
             }
             return $this->delete();
         } elseif ($this->server->isConfiguring()) {
-            return $this->release(now()->addSeconds(30));
+            return $this->release($this->getNextRetryTime());
         } elseif ($service->isServerReadyForConfigure($this->server)) {
             $service->configure($this->server);
         } elseif ($this->server->olderThan(now()->addDay(), 'configuring_job_dispatched_at')) {
             return $this->fail(ConfiguringTimeoutException::for($this->server));
         }
 
-        $this->release(now()->addSeconds(30));
+        $this->release($this->getNextRetryTime());
     }
 
     /**
@@ -100,5 +102,13 @@ class Configure implements ShouldQueue
             'type' => 'server.configure.failed',
             'exception' => (string) $exception,
         ]);
+    }
+
+    /**
+     * @return \Carbon\Carbon
+     */
+    protected function getNextRetryTime(): \Carbon\Carbon
+    {
+        return now()->addSeconds(static::RETRY_IN);
     }
 }

@@ -25,7 +25,10 @@ class Installer implements Extension, HasCallbacks
      */
     public function isValid(Module $module, Server $server, array $data = []): bool
     {
-        return !$server->modules()->where('name', $module->key())->exists();
+        return !$server->modules()
+            ->where('name', $module->key())
+            ->where('status', Server\Module::STATUS_INSTALLED)
+            ->exists();
     }
 
     /**

@@ -82,9 +82,10 @@ class ModulesController extends Controller
     /**
      * @param Request $request
      * @param Server $server
-     * @return \App\Contracts\Server\Modules\Action
+     * @param string $module
+     * @param string $action
+     * @return string
      * @throws \Domain\Module\Exceptions\ModuleNotFoundException
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function script(Request $request, Server $server, string $module, string $action)
     {

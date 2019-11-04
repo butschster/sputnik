@@ -7,11 +7,13 @@
             <table class="table" v-if="hasTasks">
                 <col>
                 <col width="100px">
+                <col width="80px">
                 <col width="150px">
                 <thead>
                 <tr>
                     <th>{{ $t('server.tasks.table.name') }}</th>
                     <th class="text-right">{{ $t('server.tasks.table.status') }}</th>
+                    <th class="text-right">{{ $t('server.tasks.table.success') }}</th>
                     <th class="text-right">{{ $t('server.tasks.table.time') }}</th>
                 </tr>
                 </thead>

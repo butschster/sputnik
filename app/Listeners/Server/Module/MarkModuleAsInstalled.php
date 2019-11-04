@@ -4,6 +4,7 @@ namespace App\Listeners\Server\Module;
 
 use App\Models\Server\Module;
 use Domain\Module\Events\Module\Installed;
+use Illuminate\Support\Facades\Log;
 
 class MarkModuleAsInstalled
 {
@@ -12,9 +13,6 @@ class MarkModuleAsInstalled
      */
     public function handle(Installed $event)
     {
-        /** @var Module $module */
-        if ($module = $event->server->modules()->where('name', $event->module)->first()) {
-            $module->markAsInstalled();
-        }
+        $event->server->getModule($event->module)->markAsInstalled();
     }
 }

@@ -6,7 +6,9 @@ use Domain\Task\Contracts\Script\Callback;
 use Domain\Module\Contracts\Registry;
 use App\Models\Server\Task;
 use Domain\Module\Events\Module\Installed;
+use Domain\Module\Events\Module\Failed;
 use Illuminate\Support\Arr;
+use Log;
 
 class ModuleInstalled implements Callback
 {
@@ -40,6 +42,14 @@ class ModuleInstalled implements Callback
             return;
         }
 
-        event(new Installed($task->server, $module));
+        Log::debug('Module installed', [
+            'module' => $module
+        ]);
+
+        if ($task->isSuccessful()) {
+            event(new Installed($task->server, $module));
+        } else {
+            event(new Failed($task->server, $module));
+        }
     }
 }

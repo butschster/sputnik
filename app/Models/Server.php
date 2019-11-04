@@ -199,6 +199,15 @@ class Server extends Model
     }
 
     /**
+     * @param string $module
+     * @return bool
+     */
+    public function hasModule(string $module): bool
+    {
+        return $this->modules()->where('name', $module)->exists();
+    }
+
+    /**
      * Get installed server modules
      *
      * @return HasMany

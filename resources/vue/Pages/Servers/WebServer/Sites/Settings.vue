@@ -1,11 +1,11 @@
 <template>
     <div>
-        <h2>Settings</h2>
+        <h2>{{ $t('site.settings.title') }}</h2>
 
         <div class="alert alert-warning" v-if="!site.has_env">
-            Site doesn't have environment variables
+            {{ $t('site.settings.environment.empty') }}
             <router-link :to="$link.serverSiteEnvironment(site)">
-                Configure
+                {{ $t('site.settings.environment.button.configure') }}
             </router-link>
         </div>
 
@@ -15,37 +15,37 @@
                 <col>
                 <tbody>
                 <tr>
-                    <th>Domain</th>
+                    <th>{{ $t('site.settings.table.domain') }}</th>
                     <td>
                         <Copy :text="site.domain"/>
                     </td>
                 </tr>
                 <tr>
-                    <th>Web server</th>
+                    <th>{{ $t('site.settings.table.web_server') }}</th>
                     <td>
                         {{ site.webserver.title }}
                     </td>
                 </tr>
                 <tr v-if="site.processor">
-                    <th>Processor</th>
+                    <th>{{ $t('site.settings.table.processor') }}</th>
                     <td>
                         {{ site.processor.title }}
                     </td>
                 </tr>
                 <tr>
-                    <th>Path</th>
+                    <th>{{ $t('site.settings.table.path') }}</th>
                     <td>
                         <Copy :text="site.path"/>
                     </td>
                 </tr>
                 <tr>
-                    <th>Public path</th>
+                    <th>{{ $t('site.settings.table.public_path') }}</th>
                     <td>
                         <Copy :text="site.public_path"/>
                     </td>
                 </tr>
                 <tr v-if="site.is_proxy">
-                    <th>Proxy pass</th>
+                    <th>{{ $t('site.settings.table.proxy_pass') }}</th>
                     <td>
                         <Copy :text="site.proxy_address"/>
                     </td>

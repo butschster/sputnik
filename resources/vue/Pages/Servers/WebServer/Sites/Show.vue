@@ -7,7 +7,7 @@
             </h2>
 
             <span class="badge badge-warning mr-5" v-if="site.domain_expires_at">
-                Expires at {{ site.domain_expires_at | moment('DD/MM/YYYY') }}
+                {{ $t('site.label.expires_at') }} {{ site.domain_expires_at | moment('DD/MM/YYYY') }}
             </span>
 
             <BadgeTaskStatus :task="site.task"/>
@@ -16,13 +16,13 @@
         <div class="mt-10 flex items-start">
             <LeftMenu>
                 <router-link :to="$link.serverSiteDeployment(site)" v-if="$gate.allow('deploy', 'site', site)">
-                    Deployment
+                    {{ $t('site.section.deployment') }}
                 </router-link>
                 <router-link :to="$link.serverSiteEnvironment(site)" v-if="$gate.allow('deploy', 'site', site)">
-                    Environment
+                    {{ $t('site.section.environment') }}
                 </router-link>
                 <router-link :to="$link.serverSite(site)">
-                    Settings
+                    {{ $t('site.section.settings') }}
                 </router-link>
             </LeftMenu>
             <router-view class="flex-1 ml-10"/>

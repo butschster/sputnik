@@ -27,6 +27,9 @@ class Task extends Model implements TaskContract
     const STATUS_FINISHED = 'finished';
     const STATUS_TIMEOUT = 'timeout';
 
+    const SUCCESS = 0;
+    const FAIL = 1;
+
     protected static function boot()
     {
         static::creating(function ($task) {
@@ -105,7 +108,7 @@ class Task extends Model implements TaskContract
             return false;
         }
 
-        return (int) $this->exit_code === 0;
+        return (int) $this->exit_code === static::SUCCESS;
     }
 
     /**
@@ -149,7 +152,7 @@ class Task extends Model implements TaskContract
     public function markAsTimedOut(string $output = ''): void
     {
         $this->update([
-            'exit_code' => 1,
+            'exit_code' => static::FAIL,
             'status' => static::STATUS_TIMEOUT,
             'output' => $output,
         ]);

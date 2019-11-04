@@ -4,24 +4,24 @@
         <section class="section flex items-center">
             <div class="flex-1">
                 <div class="section-header">
-                    Destroy Site
-                    <p class="text-gray-600">This is irreversible. We will remove your site folder and web server configuration from your server.</p>
+                    {{ $t('site.destroy.title') }}
+                    <p class="text-gray-600">{{ $t('site.destroy.description') }}</p>
                 </div>
             </div>
             <div>
                 <button class="btn btn-danger-outline" @click="onDestroy">
-                    Destroy
+                    {{ $t('site.destroy.button.destroy') }}
                 </button>
 
                 <Modal name="destroySite">
                     <div class="modal__top">
-                        Are you absolutely sure?
+                        {{ $t('site.destroy.modal.title') }}
                     </div>
                     <div class="modal__content">
-                        <p class="mb-3">This action cannot be undone. This will permanently delete your site.</p>
+                        <p class="mb-3">{{ $t('site.destroy.modal.description') }}</p>
 
                         <button class="btn btn-danger-outline btn-block" @click="destroy">
-                            I understand the consequences, continue
+                            {{ $t('site.destroy.modal.button.destroy') }}
                         </button>
                     </div>
                 </Modal>
@@ -52,12 +52,14 @@
                 try {
                     await this.$api.serverSites.remove(this.site.id)
 
-                    this.$notify.success('Site successfully destroyed')
+                    this.$notify.success(
+                        this.$t('site.destroy.message.successful')
+                    )
+                    this.$modal.hide('destroySite')
 
                     this.$router.replace(
                         this.$link.server(this.site.server_id)
                     )
-                    this.$modal.hide('destroySite')
                 } catch (e) {
                     this.$handleError(e)
                 }

@@ -52,11 +52,14 @@ class EventServiceProvider extends ServiceProvider
             \App\Listeners\Server\Site\WebHooks\DeploySite::class,
         ],
         \Domain\Module\Events\Action\Ran::class => [
-            \App\Listeners\Server\Module\CreateModuleWhenInstallActionWasRun::class,
+
         ],
         \Domain\Module\Events\Module\Installed::class => [
             \App\Listeners\Server\ClearModuleMetaInformation::class,
             \App\Listeners\Server\Module\MarkModuleAsInstalled::class,
+        ],
+        \Domain\Module\Events\Module\Failed::class => [
+            \App\Listeners\Server\Module\MarkModuleAsFailed::class,
         ],
     ];
 

@@ -25,6 +25,7 @@ class DatabaseSettings implements Extension
     public function scriptData(Module $module, Server $server, array $data = []): array
     {
         return [
+            'root' => $this->createUser('root', $data['password']),
             'databaseUsers' => $this->getDatabaseUsers($server, $data['password']),
             'hosts' => [$server->ip, 'localhost'],
         ];
@@ -51,7 +52,17 @@ class DatabaseSettings implements Extension
     {
         return collect($server->toConfiguration()->systemUsers())
             ->map(function ($user) use ($server, $password) {
-                return new User($user->name, $password, ['*.*']);
+                return $this->createUser($user, $password);
             });
+    }
+
+    /**
+     * @param string $name
+     * @param string $password
+     * @return User
+     */
+    protected function createUser(string $name, string $password): User
+    {
+        return new User($name, $password, ['*.*']);
     }
 }

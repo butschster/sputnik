@@ -2,12 +2,11 @@
     <section class="well well-lg">
         <Loader :loading="loading"/>
         <div class="section-header">
-            Repository
+            {{ $t('site.repository.title') }}
         </div>
         <div class="section-body">
-
             <div>
-                <h4>Source provider</h4>
+                <h4>{{ $t('site.repository.form.label.source_provider') }}</h4>
 
                 <div class="flex">
                     <FormRadio v-model="form.repository_provider"
@@ -28,25 +27,26 @@
                                required />
                 </div>
 
-
                 <span class="invalid-feedback" role="alert" v-if="httpErrors.has('repository_provider')">
                     <strong>{{ httpErrors.first('repository_provider') }}</strong>
                 </span>
             </div>
 
             <div class="flex">
-                <FormInput v-model="form.repository" label="Repository"
+                <FormInput v-model="form.repository"
+                           :label="$t('site.repository.form.label.repository')"
                            name="repository"
                            class="w-full mr-8"
                            required />
-                <FormInput v-model="form.repository_branch" label="Branch"
+                <FormInput v-model="form.repository_branch"
+                           :label="$t('site.repository.form.label.branch')"
                            name="repository_branch"
                            class="w-64"
                            required />
             </div>
 
             <button class="btn btn-primary shadow-lg mt-5" @click="onSubmit">
-                Save
+                {{ $t('site.repository.form.button.save') }}
             </button>
         </div>
     </section>
