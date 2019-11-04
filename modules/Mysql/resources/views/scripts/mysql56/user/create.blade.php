@@ -2,7 +2,11 @@
 @foreach($user->getGrants() as $grant)
 
 @mysql(['user' => $root])
-GRANT ALL ON {{ $grant }} TO {{ $user->getName() }}@'{{ $host }}' IDENTIFIED BY '{!! $user->getPassword() !!}'
+CREATE USER {{ $user->getName() }}@'localhost' IDENTIFIED BY '{!! $user->getPassword() !!}'
+@endmysql
+
+@mysql(['user' => $root])
+GRANT ALL PRIVILEGES ON {{ $grant }} TO {{ $user->getName() }}@'{{ $host }}'
 @endmysql
 
 @endforeach

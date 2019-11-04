@@ -11,7 +11,8 @@ apt-get upgrade -y
 
 apt-get install -y --force-yes build-essential \
 curl \
-software-properties-common
+software-properties-common \
+acl
 
 @include('scripts.server.configuration.partials.ssh')
 {!! callback_event($server->id, 'ssh.configured', 10) !!}

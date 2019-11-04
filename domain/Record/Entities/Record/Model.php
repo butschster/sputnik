@@ -146,7 +146,6 @@ abstract class Model implements \Domain\Record\Contracts\Entities\Record\Model
     {
         return array_merge(
             [
-                'module' => $this->module(),
                 'feature' => $this->feature(),
                 'key' => $this->key()
             ],
