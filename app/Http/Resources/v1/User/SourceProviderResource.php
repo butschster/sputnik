@@ -25,7 +25,7 @@ class SourceProviderResource extends JsonResource
             'user_id' => $this->user_id,
             'created_at' => $this->created_at,
             'links' => [
-                'refresh' => route('login.'.$this->type),
+                'refresh' => route('provider.connect', $this->type),
             ]
         ];
     }

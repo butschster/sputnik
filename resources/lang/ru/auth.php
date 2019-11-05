@@ -14,5 +14,48 @@ return [
     */
 
     'failed' => 'Имя пользователя и пароль не совпадают.',
+    'provider_failed' => 'Пользователь не найден.',
     'throttle' => 'Слишком много попыток входа. Пожалуйста, попробуйте еще раз через :seconds секунд.',
+
+    'provider' => [
+        'github' => 'GitHub',
+        'bitbucket' => 'Bitbucket',
+    ],
+
+    'form' => [
+        'login' => [
+            'title' => 'Авторизация',
+            'email' => 'E-mail адрес',
+            'password' => 'Пароль',
+            'remember_me' => 'Запомнить меня',
+            'sign_in_with_provider' => 'Или войти с помощью',
+            'no_account' => 'У вас нет аккаунта?',
+            'button' => [
+                'forgot_password' => 'Забыли пароль?',
+                'login' => 'Войти',
+                'register' => 'Регистрация',
+            ],
+        ],
+        'register' => [
+            'title' => 'Регистрация',
+            'project' => 'Название проекта',
+            'name' => 'Ваше имя',
+            'email' => 'E-mail адрес',
+            'password' => 'Пароль',
+            'password_confirm' => 'Подтверждение пароля',
+            'sign_up_with_provider' => 'Или регистрация с помощью',
+            'have_account' => 'У вас уже есть аккаунт?',
+            'button' => [
+                'login' => 'Войти',
+                'register' => 'Продолжить',
+            ],
+        ],
+        'reset_password_email' => [
+            'title' => 'Сброс пароля',
+            'email' => 'E-mail адрес',
+            'button' => [
+                'reset' => 'Отправить ссылку на сброс пароля',
+            ],
+        ],
+    ],
 ];

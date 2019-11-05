@@ -7,11 +7,11 @@ Route::any('/callback', 'CallbackController')->name('callback');
 
 Auth::routes();
 
-Route::get('login/github', 'Auth\GithubLoginController@redirectToProvider')->name('login.github');
-Route::get('login/github/callback', 'Auth\GithubLoginController@handleProviderCallback')->name('login.github.callback');
+Route::get('login/{provider}', 'Auth\ProviderLoginController@login')->name('provider.login');
+Route::get('register/{provider}', 'Auth\ProviderLoginController@register')->name('provider.register');
+Route::get('connect/{provider}', 'Auth\ProviderLoginController@connect')->name('provider.connect');
 
-Route::get('login/bitbucket', 'Auth\BitbucketLoginController@redirectToProvider')->name('login.bitbucket');
-Route::get('login/bitbucket/callback', 'Auth\BitbucketLoginController@handleProviderCallback')->name('login.bitbucket.callback');
+Route::get('login/{provider}/callback', 'Auth\ProviderLoginController@handleProviderCallback')->name('provider.callback');
 
 Route::middleware('auth')->group(function () {
 
