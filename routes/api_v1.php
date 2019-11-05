@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::post('team/{team}/resume-subscription', 'SubscriptionController@resume')->name('team.subscription.resume');
     Route::post('team/{team}/subscribe/{plan}', 'SubscriptionController@subscribe')->name('team.subscribe');
 
-    Route::middleware('has-subscription')->group(function () {
+    Route::middleware(['has-subscription', /* 'verified' */])->group(function () {
 
         // Servers
         Route::get('servers/search', 'ServerController@search')->name('servers.search');

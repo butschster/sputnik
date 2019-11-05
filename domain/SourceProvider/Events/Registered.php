@@ -24,6 +24,7 @@ class Registered
     /**
      * @param string $provider
      * @param User $user
+     * @param string $password
      */
     public function __construct(string $provider, User $user, string $password)
     {

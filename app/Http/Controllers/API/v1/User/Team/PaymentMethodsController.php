@@ -68,6 +68,12 @@ class PaymentMethodsController extends Controller
         return $this->responseOk();
     }
 
+    /**
+     * @param Team $team
+     * @param string $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function delete(Team $team, string $id)
     {
         $this->authorize('subscribe', $team);

@@ -2,6 +2,9 @@
 
 namespace App\Models\Concerns;
 
+use App\Events\Subscription\Canceled;
+use App\Events\Subscription\Resumed;
+use App\Events\Subscription\Subscribed;
 use App\Models\Subscription\Plan;
 use App\Models\User\Subscription;
 
@@ -20,18 +23,22 @@ trait HasSubscriptions
         $name = 'main';
 
         if ($this->hasActiveSubscription()) {
-            return $this->getActiveSubscription()->swap($plan->name);
-        }
-
-        $builder = $this->newSubscription($name, $plan->name);
-
-        if ($plan->hasTrial()) {
-            $builder->trialDays($plan->trialPeriod());
+            $subscription = $this->getActiveSubscription()->swap($plan->name);
         } else {
-            $builder->skipTrial();
+            $builder = $this->newSubscription($name, $plan->name);
+
+            if ($plan->hasTrial()) {
+                $builder->trialDays($plan->trialPeriod());
+            } else {
+                $builder->skipTrial();
+            }
+
+            $subscription = $builder->create($paymentMethod);
         }
 
-        return $builder->create($paymentMethod);
+        event(new Subscribed($subscription));
+
+        return $subscription;
     }
 
     /**
@@ -47,7 +54,9 @@ trait HasSubscriptions
      */
     public function cancelCurrentSubscription(): void
     {
-        $this->getActiveSubscription()->cancel();
+        event(new Canceled(
+            $this->getActiveSubscription()->cancel()
+        ));
     }
 
     /**
@@ -55,7 +64,9 @@ trait HasSubscriptions
      */
     public function resumeCurrentSubscription(): void
     {
-        $this->getActiveSubscription()->resume();
+        event(new Resumed(
+            $this->getActiveSubscription()->resume()
+        ));
     }
 
     /**

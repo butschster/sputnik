@@ -4,7 +4,6 @@ namespace App\Services\Stripe\Events;
 
 use App\Services\Stripe\Contracts\Event as EventContract;
 use Illuminate\Http\Response;
-use Laravel\Cashier\Billable;
 
 abstract class Event implements EventContract
 {
@@ -14,7 +13,7 @@ abstract class Event implements EventContract
      * @param string|null $stripeId
      * @return \Laravel\Cashier\Billable|null
      */
-    protected function getUserByStripeId(?string $stripeId): ?Billable
+    protected function getUserByStripeId(?string $stripeId)
     {
         if ($stripeId === null) {
             return null;

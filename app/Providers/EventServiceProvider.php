@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events\Server;
 use App\Events\Server\KeysInstalled;
+use App\Events\Subscription;
 use App\Events\Task;
 use App\Events\WebHooks;
 use Illuminate\Auth\Events\Registered;
@@ -18,6 +19,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             \Illuminate\Auth\Listeners\SendEmailVerificationNotification::class,
+            \App\Listeners\User\SendNotificationWhenUserRegistered::class,
         ],
         KeysInstalled::class => [
 
@@ -25,6 +27,7 @@ class EventServiceProvider extends ServiceProvider
         Server\Configured::class => [
             \App\Listeners\Server\CreateSSHFirewallRules::class,
             \App\Listeners\Server\InstallModulesWhenServerWasConfigured::class,
+            \App\Listeners\Server\SendNotificationWhenServerConfigured::class,
         ],
         Server\Created::class => [
             \App\Listeners\Server\RegisterSystemUsers::class,
@@ -60,6 +63,24 @@ class EventServiceProvider extends ServiceProvider
         ],
         \Domain\Module\Events\Module\Failed::class => [
             \App\Listeners\Server\Module\MarkModuleAsFailed::class,
+        ],
+        \Domain\SourceProvider\Events\Registered::class => [
+            \App\Listeners\User\SendNotificationWhenUserRegisteredByProvider::class,
+        ],
+        \Domain\SourceProvider\Events\Connected::class => [
+            \App\Listeners\User\SendNotificationWhenProviderConnected::class,
+        ],
+        \Domain\SourceProvider\Events\Disconnected::class => [
+            \App\Listeners\User\SendNotificationWhenProviderDisconnected::class,
+        ],
+        Subscription\Canceled::class => [
+
+        ],
+        Subscription\Resumed::class => [
+
+        ],
+        Subscription\Subscribed::class => [
+            \App\Listeners\User\SendNotificationWhenSubscriptionChanged::class,
         ],
     ];
 

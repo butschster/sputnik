@@ -2,6 +2,7 @@
 
 namespace App\Models\User;
 
+use App\Events\Subscription\Feature\Used;
 use App\Models\Concerns\UsesUuid;
 use App\Models\Subscription\Plan;
 use App\Models\Subscription\Usage;
@@ -65,6 +66,7 @@ class Subscription extends SubscriptionBase
      */
     public function recordFeatureUsage(string $code, int $uses = 1): Usage
     {
+        /** @var Plan\Feature $feature */
         $feature = $this->plan->features()->where('code', $code)->first();
 
         $usage = $this->usage()->firstOrNew([
@@ -88,6 +90,10 @@ class Subscription extends SubscriptionBase
         $usage->used += $uses;
 
         $usage->save();
+
+        event(
+            new Used($feature)
+        );
 
         return $usage;
     }
