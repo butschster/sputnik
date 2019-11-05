@@ -3,11 +3,8 @@
 namespace App\Http\Requests\User;
 
 use App\Models\User;
+use Domain\User\Services\RegisterUser;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Subscription\Plan;
-use Illuminate\Validation\Rule;
 
 class StoreRequest extends FormRequest
 {
@@ -44,31 +41,6 @@ class StoreRequest extends FormRequest
      */
     public function persist(): User
     {
-        return DB::transaction(function () {
-
-            $data = $this->validated();
-
-            $user = User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'company' => $data['company'] ?? null,
-                'address' => $data['address'] ?? null,
-                'password' => Hash::make($data['password']),
-            ]);
-
-            $team = User\Team::create([
-                'name' => $data['project_name'],
-                'owner_id' => $user->id
-            ]);
-
-            $owner = User\Role::where('name', 'owner')->firstOrFail();
-            $user->attachRole($owner, $team);
-
-            $team->subscribeTo(
-                Plan::findByName('free')
-            );
-
-            return $user;
-        });
+        return RegisterUser::fromRequest($this);
     }
 }

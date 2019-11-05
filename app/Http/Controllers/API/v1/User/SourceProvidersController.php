@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\v1\User;
 
 use App\Http\Controllers\API\Controller;
 use App\Http\Resources\v1\User\SourceProvidersCollection;
+use Domain\SourceProvider\Events\Disconnected;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,10 @@ class SourceProvidersController extends Controller
      */
     public function unlink(Request $request, string $provider): JsonResponse
     {
-        $request->user()->sourceProviders()->where('id', $provider)->delete();
+        $provider = $request->user()->sourceProviders()->where('id', $provider)->firstOrFail();
+        $provider->delete();
+
+        event(new Disconnected($provider->type, $request->user()));
 
         return $this->responseDeleted();
     }
@@ -41,7 +45,7 @@ class SourceProvidersController extends Controller
     {
         return collect(config('source_providers'))->map(function ($provider) {
             $provider['links'] = [
-                'connect' => route('login.'.$provider['type']),
+                'connect' => route('provider.connect', $provider['type']),
             ];
 
             return $provider;
