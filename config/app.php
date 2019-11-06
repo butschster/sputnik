@@ -185,7 +185,8 @@ return [
         Domain\Site\Providers\WhoisServiceProvider::class,
         Domain\Site\Providers\ConfiguratorServiceProvider::class,
         App\Providers\WebHooksServiceProvider::class,
-        Domain\Module\Providers\ServerModulesServiceProvider::class
+        Domain\Module\Providers\ServerModulesServiceProvider::class,
+        Domain\SourceProvider\Providers\SourceProvidersServiceProvider::class,
     ],
 
     /*

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API\v1\User;
 
 use App\Http\Controllers\API\Controller;
 use App\Http\Resources\v1\User\SourceProvidersCollection;
+use Domain\SourceProvider\Contracts\Registry;
 use Domain\SourceProvider\Events\Disconnected;
+use Domain\SourceProvider\ValueObjects\SourceProvider;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -39,16 +41,20 @@ class SourceProvidersController extends Controller
     /**
      * Get list of available source providers
      *
+     * @param Registry $registry
+     *
      * @return array
      */
-    public function available(): array
+    public function available(Registry $registry): array
     {
-        return collect(config('source_providers'))->map(function ($provider) {
-            $provider['links'] = [
-                'connect' => route('provider.connect', $provider['type']),
+        return $registry->all()->map(function (SourceProvider $provider) {
+            return [
+                'type' => $provider->getType(),
+                'name' => $provider->getName(),
+                'links' => [
+                    'connect' => route('provider.connect', $provider->getType()),
+                ]
             ];
-
-            return $provider;
         })->all();
     }
 }

@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Resources\v1\UserProfileResource;
-
 Route::get('/server/{server}/install', 'ServerInstallerController')->name('server.install_script');
 Route::any('/callback', 'CallbackController')->name('callback');
 
@@ -14,7 +12,5 @@ Route::get('connect/{provider}', 'Auth\ProviderLoginController@connect')->name('
 Route::get('login/{provider}/callback', 'Auth\ProviderLoginController@handleProviderCallback')->name('provider.callback');
 
 Route::middleware('auth')->group(function () {
-
     Route::any('{vue?}', 'SpaController')->where('vue', '^(?!api)[\/\w\.-]*$')->name('app');
-
 });

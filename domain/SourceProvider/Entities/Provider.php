@@ -1,27 +1,27 @@
 <?php
 
-namespace Domain\SourceProvider;
+namespace Domain\SourceProvider\Entities;
 
-use App\Models\User\SourceProvider as SourceProviderModel;
+use App\Models\User\SourceProvider;
 use Domain\SourceProvider\Contracts\SourceProvider as SourceProviderContract;
 use GuzzleHttp\Client;
 
-abstract class SourceProvider implements SourceProviderContract
+abstract class Provider implements SourceProviderContract
 {
     /**
      * The source instance.
      *
-     * @var SourceProviderModel
+     * @var SourceProvider
      */
     protected $source;
 
     /**
      * Create a new GitHub service instance.
      *
-     * @param SourceProviderModel $source
+     * @param SourceProvider $source
      * @return void
      */
-    public function __construct(SourceProviderModel $source)
+    public function __construct(SourceProvider $source)
     {
         $this->source = $source;
     }

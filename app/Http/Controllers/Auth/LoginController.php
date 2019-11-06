@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Domain\SourceProvider\Contracts\Registry;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -28,6 +29,20 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Show the application's login form.
+     *
+     * @param Registry $registry
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm(Registry $registry)
+    {
+        return view('auth.login', [
+            'providers' => $registry->all()
+        ]);
     }
 
     /**

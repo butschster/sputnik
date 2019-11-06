@@ -3,13 +3,15 @@
 namespace Domain\SourceProvider\Http\Controllers;
 
 use App\Http\Controllers\Controller as BaseController;
+use Domain\SourceProvider\Contracts\Registry;
 use Domain\SourceProvider\Events\Connected;
 use Domain\SourceProvider\Events\Registered;
+use Domain\SourceProvider\ValueObjects\SourceProvider;
 use Domain\User\Services\RegisterUser;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Models\User\SourceProvider;
+use App\Models\User\SourceProvider as SourceProviderModel;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Contracts\Provider;
 use Laravel\Socialite\Contracts\User as ProviderUser;
@@ -18,6 +20,19 @@ use Laravel\Socialite\Facades\Socialite;
 abstract class Controller extends BaseController
 {
     /**
+     * @var Registry
+     */
+    protected $registry;
+
+    /**
+     * @param Registry $registry
+     */
+    public function __construct(Registry $registry)
+    {
+        $this->registry = $registry;
+    }
+
+    /**
      * Get provider driver
      *
      * @param string $provider
@@ -25,9 +40,9 @@ abstract class Controller extends BaseController
      */
     public function getProvider(string $provider): Provider
     {
-        $this->getProviderConfig($provider);
+        $provider = $this->registry->get($provider);
 
-        return Socialite::driver($provider);
+        return Socialite::driver($provider->getType());
     }
 
     /**
@@ -77,7 +92,9 @@ abstract class Controller extends BaseController
         $request->session()->put('provider_action', $action);
 
         return $this->getProvider($provider)
-            ->setScopes($this->getScopes($provider))
+            ->setScopes(
+                $this->registry->get($provider)->getScopes()
+            )
             ->redirect();
     }
 
@@ -92,6 +109,7 @@ abstract class Controller extends BaseController
         $action = $request->session()->pull('provider_action');
 
         $providerUser = $this->getProvider($provider)->user();
+        $provider = $this->registry->get($provider);
 
         switch ($action) {
             case 'login':
@@ -111,15 +129,13 @@ abstract class Controller extends BaseController
      * @param ProviderUser $providerUser
      * @return RedirectResponse
      */
-    protected function handleLoginCallback(Request $request, string $provider, ProviderUser $providerUser): RedirectResponse
+    protected function handleLoginCallback(Request $request, SourceProvider $provider, ProviderUser $providerUser): RedirectResponse
     {
         try {
-            $provider = SourceProvider::where('provider_user_id', $providerUser->getId())->firstOrFail();
+            $provider = SourceProviderModel::where('provider_user_id', $providerUser->getId())->firstOrFail();
         } catch (ModelNotFoundException $e) {
             return redirect()->route('login')->withErrors([
-                'provider' => trans('auth.provider_failed', [
-                    'provider' => trans('auth.provider.' . $provider),
-                ]),
+                'provider' => trans('auth.provider_failed'),
             ]);
         }
 
@@ -134,33 +150,33 @@ abstract class Controller extends BaseController
      * @param ProviderUser $providerUser
      * @return RedirectResponse
      */
-    protected function handleConnectCallback(Request $request, string $provider, ProviderUser $providerUser): RedirectResponse
+    protected function handleConnectCallback(Request $request, SourceProvider $provider, ProviderUser $providerUser): RedirectResponse
     {
         if (!auth()->check()) {
             abort(404);
         }
 
         $request->user()->sourceProviders()->updateOrCreate([
-            'type' => $provider,
+            'type' => $provider->getType(),
             'provider_user_id' => $providerUser->getId(),
         ], [
             'access_token' => $providerUser->token,
-            'name' => trans('auth.provider.'.$provider),
+            'name' => $provider->getName(),
         ]);
 
-        event(new Connected($provider, $request->user()));
+        event(new Connected($provider->getType(), $request->user()));
 
         return redirect()->to('/account');
     }
 
     /**
      * @param Request $request
-     * @param string $provider
+     * @param SourceProvider $provider
      * @param ProviderUser $providerUser
      * @return RedirectResponse
      * @throws \Throwable
      */
-    protected function handleRegisterCallback(Request $request, string $provider, ProviderUser $providerUser): RedirectResponse
+    protected function handleRegisterCallback(Request $request, SourceProvider $provider, ProviderUser $providerUser): RedirectResponse
     {
         if (auth()->check()) {
             abort(404);
@@ -174,16 +190,16 @@ abstract class Controller extends BaseController
         ))->register();
 
         $user->sourceProviders()->updateOrCreate([
-            'type' => $provider,
+            'type' => $provider->getType(),
             'provider_user_id' => $providerUser->getId(),
         ], [
             'access_token' => $providerUser->token,
-            'name' => trans('auth.provider.'.$provider),
+            'name' => $provider->getName(),
         ]);
 
         auth()->loginUsingId($user->id);
 
-        event(new Registered($provider, $user, $password));
+        event(new Registered($provider->getType(), $user, $password));
 
         return redirect()->to('/account');
     }

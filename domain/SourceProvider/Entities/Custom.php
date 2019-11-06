@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\SourceProvider\Providers;
+namespace Domain\SourceProvider\Entities;
 
 use Domain\SourceProvider\Contracts\SourceProvider;
 use Illuminate\Support\Collection;

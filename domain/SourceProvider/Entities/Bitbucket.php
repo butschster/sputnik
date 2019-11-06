@@ -1,13 +1,12 @@
 <?php
 
-namespace Domain\SourceProvider\Providers;
+namespace Domain\SourceProvider\Entities;
 
-use Domain\SourceProvider\SourceProvider;
 use Domain\SSH\ValueObjects\PublicKey;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Collection;
 
-class Github extends SourceProvider
+class Bitbucket extends Provider
 {
     /**
      * Get available web hooks
@@ -18,33 +17,9 @@ class Github extends SourceProvider
      */
     public function getHooks(string $repository): Collection
     {
-        return collect(
-            $this->request('get', "/repos/{$repository}/hooks")
-        );
-    }
+        $hooks = $this->request('get', "/repositories/{$repository}/hooks");
 
-    /**
-     * Delete web hook
-     *
-     * @param string $repository
-     * @param string $url
-     * @return bool
-     */
-    public function deleteHook(string $repository, string $url): bool
-    {
-        try {
-            $this->getHooks($repository)->filter(function ($hook) use ($url) {
-                return $hook['config']['url'] === $url;
-            })->each(function ($hook) use ($repository) {
-                $this->request('delete', "/repos/{$repository}/hooks/" . $hook['id']);
-            });
-
-            return true;
-        } catch (ClientException $e) {
-
-        }
-
-        return false;
+        return collect($hooks['values']);
     }
 
     /**
@@ -57,7 +32,7 @@ class Github extends SourceProvider
         $hooks = $this->getHooks($repository);
 
         $hooks = $hooks->filter(function ($hook) use ($url) {
-            return $hook['config']['url'] === $url;
+            return $hook['url'] === $url;
         });
 
         if ($hooks->count() > 0) {
@@ -65,16 +40,35 @@ class Github extends SourceProvider
         }
 
         try {
-            $this->request('post', "/repos/{$repository}/hooks", [
-                'title' => 'Webhook [sputnik]',
-                'config' => [
-                    'url' => $url,
-                    'content_type' => 'json',
-                ],
+            $this->request('post', "/repositories/{$repository}/hooks", [
+                'description' => 'Webhook [sputnik]',
+                'url' => $url,
+                'active' => true,
                 'events' => [
-                    'push',
-                ],
+                    'repo:push'
+                ]
             ]);
+
+            return true;
+        } catch (ClientException $e) {
+        }
+
+        return false;
+    }
+
+    /**
+     * @param string $repository
+     * @param string $url
+     * @return bool
+     */
+    public function deleteHook(string $repository, string $url): bool
+    {
+        try {
+            $this->getHooks($repository)->filter(function ($hook) use ($url) {
+                return $hook['url'] === $url;
+            })->each(function ($hook) use ($repository) {
+                $this->request('delete', "/repositories/{$repository}/hooks/" . $hook['uuid']);
+            });
 
             return true;
         } catch (ClientException $e) {
@@ -85,18 +79,16 @@ class Github extends SourceProvider
     }
 
     /**
-     * Add new public key
-     *
      * @param string $repository
      * @param string $content
      * @return bool
      */
     public function addPublicKey(string $repository, string $content): bool
     {
-        $keys = $this->request('get', "/repos/{$repository}/keys");
+        $keys = $this->request('get', "/repositories/{$repository}/deploy-keys");
 
-        $keys = collect($keys)->filter(function ($key) use ($content) {
-            return (new PublicKey($key['title'], $key['key']))
+        $keys = collect($keys['values'])->filter(function ($key) use ($content) {
+            return (new PublicKey($key['label'], $key['key']))
                 ->is(new PublicKey('test', $content));
         });
 
@@ -105,10 +97,9 @@ class Github extends SourceProvider
         }
 
         try {
-            $this->request('post', "/repos/{$repository}/keys", [
-                'title' => 'Deployment key [sputnik]',
-                'key' => $content,
-                'read_only' => false,
+            $this->request('post', "/repositories/{$repository}/deploy-keys", [
+                'label' => 'Deployment key [sputnik]',
+                'key' => $content
             ]);
 
             return true;
@@ -133,7 +124,7 @@ class Github extends SourceProvider
         }
 
         try {
-            $response = $this->request('get', "/repos/{$repository}/branches");
+            $response = $this->request('get', "/repositories/{$repository}/refs/branches");
         } catch (ClientException $e) {
             return false;
         }
@@ -142,7 +133,7 @@ class Github extends SourceProvider
             return true;
         }
 
-        return collect($response)->contains(function ($b) use ($branch) {
+        return collect($response['values'])->contains(function ($b) use ($branch) {
             return $b['name'] === $branch;
         });
     }
@@ -165,7 +156,7 @@ class Github extends SourceProvider
      */
     public function cloneUrl(string $repository): string
     {
-        return "git@github.com:{$repository}.git";
+        return "git@bitbucket.org:{$repository}.git";
     }
 
     /**
@@ -173,7 +164,7 @@ class Github extends SourceProvider
      */
     protected function authHeader(): string
     {
-        return 'token ' . $this->getToken();
+        return 'Bearer ' . $this->getToken();
     }
 
     /**
@@ -183,6 +174,6 @@ class Github extends SourceProvider
      */
     protected function buildUrl(string $path): string
     {
-        return 'https://api.github.com/' . ltrim($path, '/');
+        return 'https://api.bitbucket.org/2.0/' . ltrim($path, '/');
     }
 }

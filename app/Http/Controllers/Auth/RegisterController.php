@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Controllers\Controller;
+use Domain\SourceProvider\Contracts\Registry;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -35,11 +36,15 @@ class RegisterController extends Controller
     /**
      * Show the application registration form.
      *
+     * @param Registry $registry
+     *
      * @return \Illuminate\Http\Response
      */
-    public function showRegistrationForm()
+    public function showRegistrationForm(Registry $registry)
     {
-        return view('auth.register');
+        return view('auth.register', [
+            'providers' => $registry->all()
+        ]);
     }
 
     /**

@@ -81,10 +81,10 @@
             </small>
 
             <div class="flex w-full mt-5">
-                @foreach(config('source_providers', []) as $provider)
-                    <a class="btn btn-{{ $provider['type'] }} w-full @if(!$loop->last) mr-4 @endif" href="{{ route('provider.register', $provider['type']) }}">
-                        <i class="fab {{ $provider['icon'] }} fa-lg fa-fw"></i>
-                        @lang('auth.provider.'.$provider['type'])
+                @foreach($providers as $provider)
+                    <a class="btn btn-{{ $provider->getType() }} w-full @if(!$loop->last) mr-4 @endif" href="{{ route('provider.register', $provider->getType()) }}">
+                        <i class="fab {{ $provider->getIcon() }} fa-lg fa-fw"></i>
+                        {{ $provider->getName() }}
                     </a>
                 @endforeach
             </div>
