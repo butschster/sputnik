@@ -5,6 +5,8 @@ namespace Domain\Site\Contracts;
 use App\Models\Server;
 use Domain\Site\Contracts\Entities\Processor;
 use Domain\Site\Contracts\Entities\WebServer;
+use Domain\Site\Exceptions\ProcessorConfiguratorNotFound;
+use Domain\Site\Exceptions\WebServerConfiguratorNotFound;
 use Domain\Site\ValueObjects\Site;
 use Domain\SSH\Script;
 use Illuminate\Support\Collection;
@@ -62,4 +64,23 @@ interface Configurator
      * @return Script
      */
     public function deleteConfiguration(string $webServer, ?string $processor = null, Site $site): Script;
+
+    /**
+     * Get web server
+     *
+     * @param string $webServer
+     *
+     * @return WebServer
+     * @throws WebServerConfiguratorNotFound
+     */
+    public function getWebServer(string $webServer): WebServer;
+
+    /**
+     * Get processor
+     *
+     * @param string $processor
+     * @return Processor
+     * @throws ProcessorConfiguratorNotFound
+     */
+    public function getProcessor(string $processor): Processor;
 }

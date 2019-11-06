@@ -28,4 +28,6 @@ APT::Periodic::AutocleanInterval "7";
 APT::Periodic::Unattended-Upgrade "1";
 EOF
 
+asdadasd
+
 {!! callback_event($server->id, 'updates.configured', 60) !!}

@@ -7,6 +7,8 @@ use Domain\Module\Contracts\Registry;
 use Domain\Site\Contracts\Entities\Processor;
 use Domain\Site\Contracts\Entities\WebServer;
 use Domain\Site\Entities\ProxyProcessor;
+use Domain\Site\Exceptions\ProcessorConfiguratorNotFound;
+use Domain\Site\Exceptions\WebServerConfiguratorNotFound;
 use Domain\Site\Scripts\CreateConfiguration;
 use Domain\Site\Scripts\DeleteConfiguration;
 use Domain\Site\ValueObjects\Site;
@@ -97,9 +99,9 @@ class Configurator implements Contracts\Configurator
      */
     public function createConfiguration(string $webServer, ?string $processor = null, Site $site): Script
     {
-        $webServer = $this->webServers->get($webServer);
+        $webServer = $this->getWebServer($webServer);
         if ($processor) {
-            $processor = $this->processors->get($processor);
+            $processor = $this->getProcessor($processor);
         } else {
             $processor = new ProxyProcessor();
         }
@@ -112,13 +114,41 @@ class Configurator implements Contracts\Configurator
      */
     public function deleteConfiguration(string $webServer, ?string $processor = null, Site $site): Script
     {
-        $webServer = $this->webServers->get($webServer);
+        $webServer = $this->getWebServer($webServer);
         if ($processor) {
-            $processor = $this->processors->get($processor);
+            $processor = $this->getProcessor($processor);
         } else {
             $processor = new ProxyProcessor();
         }
 
         return new DeleteConfiguration($webServer, $processor, $site);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getWebServer(string $webServer): WebServer
+    {
+        if (!$this->webServers->has($webServer)) {
+            throw new WebServerConfiguratorNotFound(
+                "Configurator for {$webServer} not found"
+            );
+        }
+
+        return $this->webServers->get($webServer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getProcessor(string $processor): Processor
+    {
+        if (!$this->processors->has($processor)) {
+            throw new ProcessorConfiguratorNotFound(
+                "Configurator for {$processor} not found"
+            );
+        }
+
+        return $this->processors->get($processor);
     }
 }

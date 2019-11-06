@@ -37,7 +37,7 @@ class ProxyProcessor implements Processor
     /**
      * {@inheritDoc}
      */
-    public function createScriptForRestart(): string
+    public function restartScript(): string
     {
         return '';
     }

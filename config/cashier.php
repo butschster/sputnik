@@ -96,7 +96,7 @@ return [
     |
     */
 
-    'payment_notification' => env('CASHIER_PAYMENT_NOTIFICATION'),
+    'payment_notification' => env('CASHIER_PAYMENT_NOTIFICATION', App\Notifications\User\Subscription\PaymentNotification::class),
 
     /*
     |--------------------------------------------------------------------------

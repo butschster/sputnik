@@ -6,6 +6,7 @@ import * as subscription from './subscription'
 import * as teamBilling from "./team/billing"
 import * as userProfileTeam from "./profile/teams"
 import * as server from "./server"
+import * as serverAlerts from "./server/alerts"
 import * as serverModules from "./server/modules"
 import * as serverEvents from "./server/events"
 import * as serverTasks from "./server/tasks"
@@ -27,6 +28,7 @@ export default {
     userProfileTeam,
     server,
     sites,
+    serverAlerts,
     serverModules,
     serverSites,
     serverSiteDeployment,

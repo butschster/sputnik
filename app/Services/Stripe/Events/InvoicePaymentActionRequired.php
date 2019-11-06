@@ -17,6 +17,7 @@ class InvoicePaymentActionRequired extends Event
      * @param Payload $payload
      *
      * @return Response
+     * @throws \Stripe\Exception\ApiErrorException
      */
     public function handle(Payload $payload): Response
     {

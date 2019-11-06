@@ -2,6 +2,7 @@
 
 namespace Module\Nginx\Providers;
 
+use App\Models\Server;
 use App\Modules\ServiceProvider as BaseServiceProvider;
 use Domain\Site\Contracts\Entities\Processor;
 use Domain\Site\Contracts\Entities\WebServer;
@@ -64,6 +65,12 @@ class ServiceProvider extends BaseServiceProvider
                     'processor' => $processor,
                     'site' => $site
                 ]);
+            }
+
+            /** @inheritDoc */
+            public function restartScript(): string
+            {
+                return view('Nginx::scripts.site.restart');
             }
         });
     }

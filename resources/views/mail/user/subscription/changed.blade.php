@@ -1,11 +1,13 @@
 @component('mail::message')
-# Introduction
+# Your subscription plan has been updated.
 
-The body of your message.
+Thank you for using our service!
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+**New plan:** {{ $plan->name }}
+
+@if($subscription->onTrial())
+**Trial ends at:** {{ $subscription->trial_ends_at }}
+@endif
 
 Thanks,<br>
 {{ config('app.name') }}

@@ -24,7 +24,7 @@
         <div class="section-body" v-if="isAvailable">
             <h4>{{ $t('user.profile.source_control.available') }}</h4>
 
-            <a class="btn mr-5" :href="provider.links.connect" v-for="provider in available" :key="provider.type" :class="'btn-' + provider.name.toLowerCase()">
+            <a class="btn mr-5 w-48" :href="provider.links.connect" v-for="provider in available" :key="provider.type" :class="'btn-' + provider.type">
                 <i class="fab mr-1 fa-lg" :class="`${provider.icon}`"></i>
                 {{ provider.name }}
             </a>

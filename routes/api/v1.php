@@ -6,7 +6,6 @@ Route::get('subscription/plans', 'SubscriptionController@plans')->name('subscrip
 Route::get('source-providers', 'User\SourceProvidersController@available')->name('source_providers');
 
 Route::middleware('auth')->group(function () {
-
     // User
     Route::get('profile', 'UserController@profile')->name('user.profile');
     Route::put('profile', 'UserController@update')->name('user.profile.update');
@@ -44,7 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::post('team/{team}/subscribe/{plan}', 'SubscriptionController@subscribe')->name('team.subscribe');
 
     Route::middleware(['has-subscription', /* 'verified' */])->group(function () {
-
         // Servers
         Route::get('servers/search', 'ServerController@search')->name('servers.search');
         Route::get('servers', 'ServerController@index')->name('servers');
@@ -53,6 +51,8 @@ Route::middleware('auth')->group(function () {
         Route::put('server/{server}', 'ServerController@update')->name('server.update');
         Route::post('server', 'ServerController@store')->name('server.store');
         Route::delete('server/{server}', 'ServerController@delete')->name('server.delete');
+
+        Route::get('server/{server}/alerts', 'ServerC\AlertsController@index')->name('server.alerts');
 
         // Server modules
         Route::get('servers/modules', 'Server\ModulesController@index')->name('servers.modules');

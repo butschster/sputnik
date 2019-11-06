@@ -44,9 +44,12 @@ class Changed extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('mail.user.subscription.changed', [
-            'user' => $this->subscription->user,
-            'plan' => $this->subscription->plan,
-        ]);
+        return (new MailMessage)
+            ->subject('Your subscription plan updated.')
+            ->markdown('mail.user.subscription.changed', [
+                'subscription' => $this->subscription,
+                'user' => $this->subscription->user,
+                'plan' => $this->subscription->plan,
+            ]);
     }
 }

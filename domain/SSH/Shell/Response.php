@@ -2,6 +2,8 @@
 
 namespace Domain\SSH\Shell;
 
+use Symfony\Component\Process\Process;
+
 class Response
 {
     /**
@@ -52,6 +54,14 @@ class Response
     public function getExitCode(): int
     {
         return $this->exitCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExitCodeText(): string
+    {
+        return Process::$exitCodes[$this->getExitCode()] ?? 'Unknown error';
     }
 
     /**

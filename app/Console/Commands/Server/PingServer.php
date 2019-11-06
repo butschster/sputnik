@@ -26,7 +26,7 @@ class PingServer extends Command
     public function handle()
     {
         Server::withMonitoring()->configured()->get()->each(function(Server $server) {
-            dispatch(new Telnet($server));
+            dispatch_now(new Telnet($server));
         });
     }
 }

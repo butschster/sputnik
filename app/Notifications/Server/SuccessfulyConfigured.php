@@ -44,8 +44,10 @@ class SuccessfulyConfigured extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('mail.server.configured', [
-            'server' =>  $this->server
-        ]);
+        return (new MailMessage)
+            ->subject('Your server has been successfully configured!')
+            ->markdown('mail.server.configured', [
+                'server' =>  $this->server
+            ]);
     }
 }

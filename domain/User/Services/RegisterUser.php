@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Subscription\Plan;
+use Validator;
 
 class RegisterUser
 {
@@ -79,7 +80,7 @@ class RegisterUser
 
             $team = User\Team::create([
                 'name' => $this->project,
-                'owner_id' => $user->id
+                'owner_id' => $user->id,
             ]);
 
             $owner = User\Role::where('name', 'owner')->firstOrFail();

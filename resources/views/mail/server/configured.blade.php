@@ -1,5 +1,5 @@
 @component('mail::message')
-# Your server {{ $server->name }} has successful configured!
+# Your server {{ $server->name }} has been successful configured!
 
 Thanks,<br>
 {{ config('app.name') }}

@@ -162,6 +162,16 @@ class Task extends Model implements TaskContract
     }
 
     /**
+     * @param string $output
+     */
+    public function saveOutput(string $output = ''): void
+    {
+        $this->update([
+            'output' => $output,
+        ]);
+    }
+
+    /**
      * Determine if the task is timed out.
      *
      * @return bool
@@ -175,14 +185,12 @@ class Task extends Model implements TaskContract
      * Mark the task as finished.
      *
      * @param int $exitCode
-     * @param string $output
      */
-    public function markAsFinished(int $exitCode = 0, string $output = ''): void
+    public function markAsFinished(int $exitCode = 0): void
     {
         $this->update([
             'exit_code' => $exitCode,
             'status' => static::STATUS_FINISHED,
-            'output' => $output,
         ]);
 
         event(new Finished($this));

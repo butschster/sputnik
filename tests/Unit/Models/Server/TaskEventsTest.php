@@ -37,7 +37,18 @@ class TaskEventsTest extends TestCase
 
         $task = $this->createTask();
 
-        $task->markAsFinished();
+        $task->
+     * @param int $exitCode
+     */
+    public function finish(Task $task, int $exitCode = 0): void
+    {
+        $this->task = $task;
+
+        $task->saveOutput(
+            $this->retrieveOutput($task)
+        );
+
+        if ($task->isRunning()) {markAsFinished();
 
         Event::assertDispatched(Finished::class, function ($event) use($task) {
             return $event->task->is($task);

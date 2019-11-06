@@ -46,7 +46,9 @@ class ExecutorService implements ExecutorServiceContract
         try {
             $this->upload(true);
         } catch (ProcessTimedOutException $e) {
-            $this->task->markAsTimedOut();
+            $this->task->markAsTimedOut(
+                $e->getMessage()
+            );
             return;
         }
 
@@ -81,7 +83,9 @@ class ExecutorService implements ExecutorServiceContract
         try {
             $this->upload();
         } catch (ProcessTimedOutException $e) {
-            $this->task->markAsTimedOut();
+            $this->task->markAsTimedOut(
+                $e->getMessage()
+            );
             return;
         }
 

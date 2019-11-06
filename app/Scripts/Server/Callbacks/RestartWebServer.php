@@ -2,6 +2,8 @@
 
 namespace App\Scripts\Server\Callbacks;
 
+use App\Models\Server\Site;
+use Domain\Site\Contracts\Configurator;
 use Domain\Task\Contracts\Script\Callback;
 use Domain\SSH\Jobs\RunScript;
 use App\Models\Server\Task;
@@ -9,6 +11,19 @@ use App\Scripts\Server\CustomScript;
 
 class RestartWebServer implements Callback
 {
+    /**
+     * @var Configurator
+     */
+    protected $configurator;
+
+    /**
+     * @param Configurator $configurator
+     */
+    public function __construct(Configurator $configurator)
+    {
+        $this->configurator = $configurator;
+    }
+
     /**
      * @param Task $task
      * @throws \App\Exceptions\Scrpits\ConfigurationNotFoundException
@@ -20,9 +35,49 @@ class RestartWebServer implements Callback
             return;
         }
 
-        dispatch(new RunScript(
-            $task->server,
-            new CustomScript('Restart Web Server', server_configurator($task->server)->webserver()->restart())
-        ));
+        if (!$task->owner instanceof Site) {
+            return;
+        }
+
+        $this->restartWebServer($task);
+        $this->restartProcessor($task);
+    }
+
+    /**
+     * @param Task $task
+     * @throws \Domain\Site\Exceptions\WebServerConfiguratorNotFound
+     */
+    protected function restartWebServer(Task $task): void
+    {
+        $webServer = $task->owner->webServer()->name;
+        $script = $this->configurator->getWebServer($webServer)->restartScript();
+
+        dispatch(
+            new RunScript(
+                $task->server,
+                new CustomScript("Restart Web Server {$webServer}", $script)
+            )
+        );
+    }
+
+    /**
+     * @param Task $task
+     * @throws \Domain\Site\Exceptions\ProcessorConfiguratorNotFound
+     */
+    protected function restartProcessor(Task $task): void
+    {
+        $processor = $task->owner->processor()->name;
+        $script = $this->configurator->getProcessor($processor)->restartScript();
+
+        if (empty($script)) {
+            return;
+        }
+
+        dispatch(
+            new RunScript(
+                $task->server,
+                new CustomScript("Restart procssor {$processor}", $script)
+            )
+        );
     }
 }

@@ -182,10 +182,20 @@ abstract class Controller extends BaseController
             abort(404);
         }
 
+        $request->offsetSet('email', $providerUser->getEmail());
+        $request->offsetSet('name', $providerUser->getNickname());
+        $request->offsetSet('project_name', sprintf('%s\'s project', $providerUser->getNickname()));
+
+        $this->validate($request, [
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'project_name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
         $user = (new RegisterUser(
-            sprintf('%s\'s project', $providerUser->getNickname()),
-            $providerUser->getName(),
-            $providerUser->getEmail(),
+            $request->project_name,
+            $request->name,
+            $request->email,
             $password = Str::random(12)
         ))->register();
 

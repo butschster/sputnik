@@ -32,15 +32,25 @@ class EventServiceProvider extends ServiceProvider
         Server\Created::class => [
             \App\Listeners\Server\RegisterSystemUsers::class,
         ],
+        Server\Deleted::class => [
+            \App\Listeners\User\SendNotificationWhenServerDeleted::class,
+        ],
         Server\Alert\Created::class => [
             \App\Listeners\Server\Alert\UpdateLastAlertTimestampForCollaborators::class,
             \App\Listeners\Server\Alert\TrimAlertsForProject::class,
+            \App\Listeners\User\SendNotificationWhenAlertCreated::class,
         ],
         Server\Site\Created::class => [
             \App\Listeners\Server\Site\LookupDomainInformation::class,
         ],
+        Server\Deployment\Running::class => [
+            \App\Listeners\User\SendNotificationWhenDeploymentStarted::class,
+        ],
         Task\Running::class => [
             \App\Listeners\Server\Deployment\UpdateStatus::class,
+        ],
+        Task\Timeout::class => [
+            //\App\Listeners\Server\Task\CheckConnectionProblems::class,
         ],
         Task\Finished::class => [
             \App\Listeners\Server\Deployment\UpdateStatus::class,
@@ -118,10 +128,10 @@ class EventServiceProvider extends ServiceProvider
             \App\Observers\Server\User\SyncUserObserver::class,
         ]);
 
-        //        \App\Models\Server\User\PublicKey::observe([
-        //            \App\Observers\Server\User\PublicKey\FireEventsObserver::class,
-        //        ]);
-        //
+//        \App\Models\Server\User\PublicKey::observe([
+//            \App\Observers\Server\User\PublicKey\FireEventsObserver::class,
+//        ]);
+//
 
         \App\Models\Server\Deployment::observe([
             \App\Observers\Server\Deployment\ConsumeSubscriptionFeaturesObserver::class,

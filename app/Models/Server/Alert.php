@@ -46,4 +46,12 @@ class Alert extends Model
     protected $dispatchesEvents = [
         'created' => Events\Server\Alert\Created::class,
     ];
+
+    /**
+     * @return string
+     */
+    public function message(): string
+    {
+        return $this->exception;
+    }
 }

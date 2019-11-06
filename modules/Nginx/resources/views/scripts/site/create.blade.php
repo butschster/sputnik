@@ -44,4 +44,4 @@ cat > /etc/nginx/configs/{{ $site->getDomain() }}/before/redirect.conf << EOF
 EOF
 
 @include('Nginx::scripts.nginx.restart')
-{!! $processor->createScriptForRestart() !!}
+{!! $processor->restartScript() !!}

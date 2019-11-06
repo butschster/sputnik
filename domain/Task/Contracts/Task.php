@@ -16,9 +16,8 @@ interface Task
      * Mark the task as finished.
      *
      * @param int $exitCode
-     * @param string $output
      */
-    public function markAsFinished(int $exitCode = 0, string $output = ''): void;
+    public function markAsFinished(int $exitCode = 0): void;
 
     /**
      * Mark the task as timed out.

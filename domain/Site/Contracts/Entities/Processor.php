@@ -32,5 +32,5 @@ interface Processor
     /**
      * @return string
      */
-    public function createScriptForRestart(): string;
+    public function restartScript(): string;
 }

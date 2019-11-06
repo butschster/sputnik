@@ -52,7 +52,7 @@ class Site extends Model
     }
 
     /**
-     * Get webserver module
+     * Get web server module
      *
      * @return BelongsTo
      */

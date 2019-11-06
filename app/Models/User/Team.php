@@ -7,6 +7,7 @@ use App\Models\Concerns\UsesUuid;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Notifications\Notifiable;
 use Laratrust\Models\LaratrustTeam;
 use Laravel\Cashier\Billable;
 
@@ -14,7 +15,8 @@ class Team extends LaratrustTeam
 {
     use UsesUuid,
         HasSubscriptions,
-        Billable;
+        Billable,
+        Notifiable;
 
     /**
      * {@inheritdoc}
@@ -61,5 +63,16 @@ class Team extends LaratrustTeam
     public function getEmailAttribute(): string
     {
         return $this->owner->email;
+    }
+
+    /**
+     * Route notifications for the mail channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForMail($notification)
+    {
+        return $this->getEmailAttribute();
     }
 }

@@ -18,6 +18,11 @@ class AlertResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'level' => $this->level,
+            'type' => $this->type,
+            'message' => $this->message()
+        ];
     }
 }

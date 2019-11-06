@@ -1,11 +1,9 @@
 @component('mail::message')
-# Introduction
+# Thanks for registering on our website SputnikCloud.com!
 
-The body of your message.
+Dear {{ $user->name }},
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+We're happy you're here.
 
 Thanks,<br>
 {{ config('app.name') }}

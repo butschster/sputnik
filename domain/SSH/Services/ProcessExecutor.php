@@ -5,7 +5,6 @@ namespace Domain\SSH\Services;
 use Domain\SSH\Contracts\ProcessExecutor as ProcessExecutorContract;
 use Domain\SSH\Shell\Output;
 use Domain\SSH\Shell\Response;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\Process\Exception\ProcessTimedOutException;
 use Symfony\Component\Process\Process;
 
@@ -31,7 +30,7 @@ class ProcessExecutor implements ProcessExecutorContract
             $exitCode = 1;
         }
 
-        return $this->makeResponse($exitCode, (string)$output, $timedOut);
+        return $this->makeResponse($exitCode, (string) $output, $timedOut);
     }
 
     /**

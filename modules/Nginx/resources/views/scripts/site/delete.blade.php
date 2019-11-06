@@ -16,4 +16,4 @@ rm -rf "{{ $site->getDir() }}"
 rm -rf "/etc/nginx/ssl/{{ $site->getDomain() }}"
 
 @include('scripts.tools.webserver.nginx.restart')
-{!! $processor->createScriptForRestart() !!}
+{!! $processor->restartScript() !!}

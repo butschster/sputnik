@@ -93,7 +93,7 @@ class ServiceProvider extends BaseServiceProvider
             /** @inheritDoc */
             public function name(): string
             {
-                return 'PHP 5.9';
+                return 'php-fpm 5.9';
             }
 
             /** @inheritDoc */
@@ -107,7 +107,7 @@ class ServiceProvider extends BaseServiceProvider
             }
 
             /** @inheritDoc */
-            public function createScriptForRestart(): string
+            public function restartScript(): string
             {
                 return view('PHP::scripts.php.restart', [
                     'version' => 'php',
@@ -126,7 +126,7 @@ class ServiceProvider extends BaseServiceProvider
             /** @inheritDoc */
             public function name(): string
             {
-                return 'PHP 7.2';
+                return 'php-fpm 7.2';
             }
 
             /** @inheritDoc */
@@ -140,7 +140,7 @@ class ServiceProvider extends BaseServiceProvider
             }
 
             /** @inheritDoc */
-            public function createScriptForRestart(): string
+            public function restartScript(): string
             {
                 return view('PHP::scripts.php.restart', [
                     'version' => 'php7.2',
@@ -159,7 +159,7 @@ class ServiceProvider extends BaseServiceProvider
             /** @inheritDoc */
             public function name(): string
             {
-                return 'PHP 7.3';
+                return 'php-fpm 7.3';
             }
 
             /** @inheritDoc */
@@ -173,7 +173,7 @@ class ServiceProvider extends BaseServiceProvider
             }
 
             /** @inheritDoc */
-            public function createScriptForRestart(): string
+            public function restartScript(): string
             {
                 return view('PHP::scripts.php.restart', [
                     'version' => 'php7.3',

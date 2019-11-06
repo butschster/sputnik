@@ -47,14 +47,17 @@ class SourceProvidersController extends Controller
      */
     public function available(Registry $registry): array
     {
-        return $registry->all()->map(function (SourceProvider $provider) {
+        $providers = $registry->all()->map(function (SourceProvider $provider) {
             return [
                 'type' => $provider->getType(),
                 'name' => $provider->getName(),
+                'icon' => $provider->getIcon(),
                 'links' => [
                     'connect' => route('provider.connect', $provider->getType()),
                 ]
             ];
         })->all();
+
+        return array_values($providers);
     }
 }

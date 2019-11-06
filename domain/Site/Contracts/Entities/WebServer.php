@@ -2,6 +2,7 @@
 
 namespace Domain\Site\Contracts\Entities;
 
+use App\Models\Server;
 use Domain\Site\ValueObjects\Site;
 use Domain\SSH\Contracts\Script;
 
@@ -38,4 +39,11 @@ interface WebServer
      * @return string
      */
     public function deleteScript(Processor $processor, Site $site): string;
+
+    /**
+     * Get script for web server restart
+     *
+     * @return string
+     */
+    public function restartScript(): string;
 }

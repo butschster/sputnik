@@ -3,8 +3,11 @@
 namespace Domain\Task\Services;
 
 use App\Events\Task\CallbacksHandled;
+use Domain\SSH\Exceptions\SSHConnectionRefusedException;
+use Domain\SSH\Exceptions\SSHPermissionDeniedException;
 use Domain\Task\Contracts\Task;
 use Domain\SSH\Contracts\ProcessExecutor;
+use Illuminate\Support\Str;
 
 class FinishService
 {
@@ -33,15 +36,26 @@ class FinishService
      *
      * @param Task $task
      * @param int $exitCode
+     * @throws \Exception
      */
     public function finish(Task $task, int $exitCode = 0): void
     {
         $this->task = $task;
 
-        $task->markAsFinished(
-            $exitCode,
-            $this->retrieveOutput($task)
+        $task->saveOutput(
+            $output = $this->retrieveOutput($task)
         );
+
+        try {
+            $this->checkOutputForErrors($output);
+        } catch (\Exception $e) {
+            $task->markAsTimedOut($exitCode);
+            throw $e;
+        }
+
+        if ($task->isRunning()) {
+            $task->markAsFinished($exitCode);
+        }
 
         $this->runCallbacks($task);
     }
@@ -75,7 +89,7 @@ class FinishService
 
             logger()->debug('Task callback', [
                 'task' => $task,
-                'callback' => get_class($callback)
+                'callback' => get_class($callback),
             ]);
 
             $callback->handle($task);
@@ -94,5 +108,19 @@ class FinishService
     public function getHandledCallbacks(): array
     {
         return $this->handledCallbacks;
+    }
+
+    /**
+     * @param string $output
+     */
+    protected function checkOutputForErrors(string $output): void
+    {
+        if (Str::contains($output, 'Permission denied (publickey)')) {
+            throw new SSHPermissionDeniedException($output);
+        }
+
+        if (Str::contains($output, 'Connection refused')) {
+            throw new SSHConnectionRefusedException($output);
+        }
     }
 }
