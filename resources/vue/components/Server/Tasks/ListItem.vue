@@ -8,8 +8,10 @@
         <td class="text-right">
             <BadgeTaskStatus :task="task"/>
 
-            <span class="ml-5 badge" :class="{'badge-success' : task.is_successful, 'badge-danger': !task.is_successful}">
-                <strong>[{{ task.exit_code }}]</strong> {{ task.exit_code_text }}
+            <span class="ml-5 badge"
+                  v-if="isComplete"
+                  :class="{'badge-success' : task.is_successful, 'badge-danger': !task.is_successful}">
+                {{ task.exit_code_text }}
             </span>
         </td>
         <td class="text-right">
@@ -22,6 +24,11 @@
     export default {
         props: {
             task: Object
+        },
+        computed: {
+            isComplete() {
+                return this.task.status === 'finished' || this.task.status === 'timeout'
+            }
         }
     }
 </script>
