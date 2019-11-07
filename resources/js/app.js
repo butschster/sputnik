@@ -10,6 +10,7 @@ import BadgeStatus from "@vue/components/UI/Badge/Status"
 import PrismEditor from 'vue-prism-editor'
 import ModulesManager from './modules'
 import manager from './LinksManager'
+import VueAnalytics from 'vue-analytics'
 
 require('./bootstrap')
 
@@ -24,9 +25,18 @@ Vue.component('PrismEditor', PrismEditor)
 
 ModulesManager.init().then(init)
 
+
 function init() {
     const {router} = require('./router'),
         {mapGetters} = require('vuex')
+
+    Vue.use(VueAnalytics, {
+        id: process.env.MIX_GOOGLE_ANALYTICS_ID,
+        router,
+        autoTracking: {
+            pageviewOnLoad: false
+        }
+    })
 
     new Vue({
         el: '#app',

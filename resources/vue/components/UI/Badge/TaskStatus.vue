@@ -59,6 +59,7 @@
                 }
 
                 switch (this.current_task.status.toLowerCase()) {
+                    case 'timeout':
                     case 'failed':
                         return 'badge-danger'
                     case 'running':

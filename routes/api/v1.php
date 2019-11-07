@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
         Route::post('server', 'ServerController@store')->name('server.store');
         Route::delete('server/{server}', 'ServerController@delete')->name('server.delete');
 
-        Route::get('server/{server}/alerts', 'ServerC\AlertsController@index')->name('server.alerts');
+        Route::get('server/{server}/alerts', 'Server\AlertsController@index')->name('server.alerts');
 
         // Server modules
         Route::get('servers/modules', 'Server\ModulesController@index')->name('servers.modules');

@@ -24,6 +24,7 @@ require('./vue/plugins/modal')
 require('./vue/plugins/dropdown')
 require('./vue/plugins/stripe')
 require('./vue/plugins/moment')
+require('./vue/plugins/analytics')
 
 require('./http')
 require('./api')

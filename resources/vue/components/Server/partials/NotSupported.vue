@@ -1,22 +1,21 @@
 <template>
-    <section class="section">
-        <div class="alert-warning alert mb-0 p-4 flex justify-between">
-            Sorry, your OS {{ server.sys_info.name }} currently is not supported!
-
-            <button class="btn btn-danger-outline btn-sm" @click="destroy">Delete</button>
-        </div>
-    </section>
+    <div>
+        <section class="section section--border-b">
+            <div class="alert-warning alert mb-0 p-4">
+                {{ $t('server.installation.message.not_supported', {info: server.sys_info.name}) }}
+            </div>
+        </section>
+        <Destroy :server="server"/>
+    </div>
 </template>
 
 <script>
+    import Destroy from "@vue/components/Server/partials/Destroy"
+
     export default {
+        components: {Destroy},
         props: {
             server: Object
-        },
-        methods: {
-            destroy() {
-
-            }
         }
     }
 </script>

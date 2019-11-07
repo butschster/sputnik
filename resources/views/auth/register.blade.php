@@ -71,7 +71,7 @@
                 <label for="password-confirm">@lang('auth.form.register.password_confirm')</label>
             </div>
 
-            <button type="submit" class="btn btn-block btn-primary btn-shadow">
+            <button type="submit" class="btn btn-block btn-primary btn-shadow" onclick="ga('send', 'event', 'user', 'register');">
                 <i class="fa fa-check fa-lg fa-fw"></i>
                 @lang('auth.form.register.button.register')
             </button>
@@ -82,7 +82,7 @@
 
             <div class="flex w-full mt-5">
                 @foreach($providers as $provider)
-                    <a class="btn btn-{{ $provider->getType() }} w-full @if(!$loop->last) mr-4 @endif" href="{{ route('provider.register', $provider->getType()) }}">
+                    <a class="btn btn-{{ $provider->getType() }} w-full @if(!$loop->last) mr-4 @endif" href="{{ route('provider.register', $provider->getType()) }}"  onclick="ga('send', 'event', 'user', 'register');">
                         <i class="fab {{ $provider->getIcon() }} fa-lg fa-fw"></i>
                         {{ $provider->getName() }}
                     </a>

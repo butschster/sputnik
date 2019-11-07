@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Collection;
+use Symfony\Component\Process\Process;
 
 class Task extends Model implements TaskContract
 {
@@ -109,6 +110,14 @@ class Task extends Model implements TaskContract
         }
 
         return (int) $this->exit_code === static::SUCCESS;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExitCodeText(): string
+    {
+        return Process::$exitCodes[$this->exit_code] ?? 'Unknown error';
     }
 
     /**

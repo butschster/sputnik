@@ -55,4 +55,8 @@ return [
         'client_secret' => env('BITBUCKET_CLIENT_SECRET'),
         'redirect' => env('BITBUCKET_CALLBACK_URL'),
     ],
+
+    'google_analytics' => [
+        'id' => env('GOOGLE_ANALYTICS_ID')
+    ]
 ];

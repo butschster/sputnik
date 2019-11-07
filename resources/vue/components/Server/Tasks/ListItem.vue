@@ -7,10 +7,9 @@
         </th>
         <td class="text-right">
             <BadgeTaskStatus :task="task"/>
-        </td>
-        <td class="text-right">
-            <span class="badge" :class="{'badge-success' : task.is_successful, 'badge-danger': !task.is_successful}">
-                {{ task.is_successful ? 'Yes' : 'No' }}
+
+            <span class="ml-5 badge" :class="{'badge-success' : task.is_successful, 'badge-danger': !task.is_successful}">
+                <strong>[{{ task.exit_code }}]</strong> {{ task.exit_code_text }}
             </span>
         </td>
         <td class="text-right">

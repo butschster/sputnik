@@ -2,12 +2,14 @@
     <div>
         <Loader :loading="loading"/>
         <div v-if="server">
+            <Alerts :server="server" />
+
             <div class="mb-8 flex items-center">
                 <ServerStatus :server="server" class="mr-5"/>
                 <div>
                     <h1 class="mb-0">{{ server.name }}</h1>
                     <div class="text-gray-600">
-                        Team
+                        {{ $t('server.users.team') }}
                         <router-link :to="$link.profileTeam(server.team)">
                             {{ server.team.name }}
                         </router-link>
@@ -18,28 +20,33 @@
             </div>
 
             <NotSupported v-if="!isSupported" :server="server"/>
+            <FailedMessage v-if="isFailed" :server="server" />
 
-            <div class="tabs" role="tabs" v-if="server.id">
-                <router-link v-for="(item, index) in links" :key="index" :to="item.link" class="tab">
-                    {{ $t(item.title)}}
-                </router-link>
-            </div>
+            <template v-if="isSupported && !isFailed">
+                <div class="tabs" role="tabs" v-if="server.id">
+                    <router-link v-for="(item, index) in links" :key="index" :to="item.link" class="tab">
+                        {{ $t(item.title)}}
+                    </router-link>
+                </div>
 
-            <InstallProgress :server="server"/>
+                <InstallProgress :server="server"/>
 
-            <router-view/>
+                <router-view/>
+            </template>
         </div>
     </div>
 </template>
 <script>
     import LinksManager from '@js/LinksManager'
+    import Alerts from "@vue/components/Server/Alerts/List"
     import ServerStatus from "@vue/components/Server/partials/ServerStatus"
     import InstallProgress from "@vue/components/Server/partials/InstallProgress"
     import NotSupported from "@vue/components/Server/partials/NotSupported"
+    import FailedMessage from "@vue/components/Server/partials/FailedMessage"
     import serverMixin from "@js/vue/mixins/server"
 
     export default {
-        components: {InstallProgress, ServerStatus, NotSupported},
+        components: {InstallProgress, ServerStatus, NotSupported, FailedMessage, Alerts},
         mixins: [serverMixin],
         data() {
             return {

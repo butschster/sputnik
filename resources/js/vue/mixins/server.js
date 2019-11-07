@@ -12,6 +12,9 @@ export default {
         isConfigured() {
             return this.server.status == 'configured'
         },
+        isFailed() {
+            return this.server.status == 'failed'
+        },
         hasSysInfo() {
             return this.server.hasOwnProperty('sys_info')
         },

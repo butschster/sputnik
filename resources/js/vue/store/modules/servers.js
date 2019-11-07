@@ -1,5 +1,6 @@
 import {api} from "@js/api"
 import Vue from 'vue'
+import { event } from 'vue-analytics'
 
 const state = {
     servers: null,
@@ -30,6 +31,9 @@ const actions = {
             commit('setLoading', true)
             try {
                 const server = await api.server.store(data)
+
+                event('server', 'create')
+
                 this.dispatch('servers/loadServers')
                 resolve(server)
             } catch (e) {

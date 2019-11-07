@@ -46,6 +46,7 @@
     import FormInput from '@vue/components/Form/Input'
     import FormSelect from '@vue/components/Form/Select'
     import FormCheckbox from '@vue/components/Form/Checkbox'
+    import { event } from 'vue-analytics'
 
     export default {
         components: {FormInput, FormSelect, FormCheckbox},
@@ -74,6 +75,8 @@
         methods: {
             created(site) {
                 this.$emit('created', site)
+
+                event('site', 'create')
             },
             async loadProcessors() {
                 try {
