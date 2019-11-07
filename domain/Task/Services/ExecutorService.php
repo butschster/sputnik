@@ -55,7 +55,7 @@ class ExecutorService implements ExecutorServiceContract
         $this->task->saveResponse(
             $response = $this->runInline(
                 sprintf('bash %s 2>&1 | tee %s', $this->task->scriptFile(), $this->task->outputFile()),
-                $this->options['timeout'] ?? 60
+                $this->options['timeout'] ?? 600
             )
         );
 
