@@ -3,6 +3,7 @@
 namespace Domain\Server\Jobs;
 
 use App\Models\Server;
+use Domain\Alert\Builder;
 use Domain\Server\Exceptions\ConfiguringTimeoutException;
 use Domain\Server\Exceptions\ServerFailedException;
 use Domain\Server\Services\ConfiguratorService;
@@ -89,10 +90,9 @@ class CheckConfigurationProcess implements ShouldQueue
      */
     public function failed(Exception $exception)
     {
-        $this->server->alerts()->create([
-            'type' => 'server.configure.failed',
-            'exception' => (string) $exception,
-        ]);
+        Builder::for($this->server, $exception)
+            ->setType('server.configure.failed')
+            ->store();
     }
 
     /**

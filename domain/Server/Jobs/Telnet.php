@@ -5,6 +5,7 @@ namespace Domain\Server\Jobs;
 use App\Models\Server;
 use Bestnetwork\Telnet\TelnetClient;
 use Bestnetwork\Telnet\TelnetException;
+use Domain\Alert\Builder;
 use Domain\Server\Events\Ping\Checked;
 use Exception;
 use Illuminate\Bus\Queueable;
@@ -73,9 +74,8 @@ class Telnet implements ShouldQueue
      */
     public function failed(Exception $exception)
     {
-        $this->server->alerts()->create([
-            'type' => 'server.telnet.failed',
-            'exception' => (string) $exception,
-        ]);
+        Builder::for($this->server, $exception)
+            ->setType('server.telnet.failed')
+            ->store();
     }
 }

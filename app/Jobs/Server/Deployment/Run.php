@@ -6,6 +6,7 @@ use App\Models\Server;
 use App\Models\Server\Deployment;
 use App\Models\User;
 use App\Services\Server\DeploymentService;
+use Domain\Alert\Builder;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -78,12 +79,11 @@ class Run
      */
     public function failed(Exception $exception)
     {
-        $this->server->alerts()->create([
-            'type' => 'server.site.deploy.failed',
-            'exception' => (string) $exception,
-            'meta' => [
+        Builder::for($this->server, $exception)
+            ->setType('server.site.deploy.failed')
+            ->setMeta([
                 'owner' => $this->site
-            ]
-        ]);
+            ])
+            ->store();
     }
 }

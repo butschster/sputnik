@@ -3,6 +3,7 @@
 namespace Domain\Server\Jobs;
 
 use App\Models\Server;
+use Domain\Alert\Builder;
 use Domain\Server\Exceptions\ConfigurationException;
 use Domain\Server\Exceptions\ServerFailedException;
 use Domain\Server\Services\ConfiguratorService;
@@ -72,10 +73,9 @@ class CheckServerRequirements implements ShouldQueue
     {
         $this->server->markAsFailed();
 
-        $this->server->alerts()->create([
-            'type' => 'server.configure.failed',
-            'exception' => (string) $exception,
-        ]);
+        Builder::for($this->server, $exception)
+            ->setType('server.configure.failed')
+            ->store();
     }
 
 }

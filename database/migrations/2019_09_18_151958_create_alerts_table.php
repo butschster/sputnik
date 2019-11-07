@@ -19,6 +19,7 @@ class CreateAlertsTable extends Migration
             $table->string('level', 15)->default('error');
             $table->string('type');
             $table->text('exception');
+            $table->text('message');
             $table->json('meta')->nullable();
             $table->timestamps();
         });

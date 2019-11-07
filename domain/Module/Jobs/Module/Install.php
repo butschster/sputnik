@@ -2,6 +2,7 @@
 
 namespace Domain\Module\Jobs\Module;
 
+use Domain\Alert\Builder;
 use Domain\Module\Contracts\Entities\Module\Repository;
 use App\Models\Server;
 use Domain\Module\Exceptions\ModuleInstallationException;
@@ -86,10 +87,9 @@ class Install implements ShouldQueue
      */
     public function failed(ModuleInstallationException $exception)
     {
-        $this->server->alerts()->create([
-            'type' => 'server.install.failed',
-            'exception' => (string) $exception,
-        ]);
+        Builder::for($this->server, $exception)
+            ->setType('server.install.failed')
+            ->store();
     }
 
     /**

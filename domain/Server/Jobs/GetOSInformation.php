@@ -3,6 +3,7 @@
 namespace Domain\Server\Jobs;
 
 use App\Models\Server;
+use Domain\Alert\Builder;
 use Domain\Server\Events\Ping\Checked;
 use Domain\Server\Exceptions\ConfigurationException;
 use Domain\SSH\Jobs\RunScript;
@@ -71,9 +72,8 @@ class GetOSInformation implements ShouldQueue
      */
     public function failed(Exception $exception)
     {
-        $this->server->alerts()->create([
-            'type' => 'server.configure.failed',
-            'exception' => (string) $exception,
-        ]);
+        Builder::for($this->server, $exception)
+            ->setType('server.configure.failed')
+            ->store();
     }
 }

@@ -52,6 +52,6 @@ class Alert extends Model
      */
     public function message(): string
     {
-        return $this->exception;
+        return $this->message;
     }
 }

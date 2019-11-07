@@ -2,6 +2,7 @@
 
 namespace Domain\Task\Jobs;
 
+use Domain\Alert\Builder;
 use Domain\Task\Contracts\ExecutorService;
 use Domain\Task\Contracts\Task;
 use Exception;
@@ -48,12 +49,11 @@ class Run implements ShouldQueue
      */
     public function failed(Exception $exception)
     {
-        $this->task->server->alerts()->create([
-            'type' => 'server.task.failed',
-            'exception' => (string) $exception,
-            'meta' => [
+        Builder::for($this->task->server, $exception)
+            ->setType('server.task.failed')
+            ->setMeta([
                 'script' => $this->task->name
-            ]
-        ]);
+            ])
+            ->store();
     }
 }

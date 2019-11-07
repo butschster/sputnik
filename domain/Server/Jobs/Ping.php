@@ -3,6 +3,7 @@
 namespace Domain\Server\Jobs;
 
 use App\Models\Server;
+use Domain\Alert\Builder;
 use Domain\Server\Events\Ping\Checked;
 use Exception;
 use Illuminate\Bus\Queueable;
@@ -66,9 +67,8 @@ class Ping implements ShouldQueue
      */
     public function failed(Exception $exception)
     {
-        $this->server->alerts()->create([
-            'type' => 'server.ping.failed',
-            'exception' => (string) $exception,
-        ]);
+        Builder::for($this->server, $exception)
+            ->setType('server.ping.failed')
+            ->store();
     }
 }

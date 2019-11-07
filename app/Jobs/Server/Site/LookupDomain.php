@@ -3,6 +3,7 @@
 namespace App\Jobs\Server\Site;
 
 use App\Models\Server\Site;
+use Domain\Alert\Builder;
 use Domain\Site\Contracts\WhoisService;
 use Exception;
 use Illuminate\Bus\Queueable;
@@ -64,12 +65,11 @@ class LookupDomain implements ShouldQueue
      */
     public function failed(Exception $exception)
     {
-        $this->site->server->alerts()->create([
-            'type' => 'server.site.lookup.failed',
-            'exception' => (string) $exception,
-            'meta' => [
+        Builder::for($this->site->server, $exception)
+            ->setType('server.site.lookup.failed')
+            ->setMeta([
                 'site_id' => $this->site->id
-            ]
-        ]);
+            ])
+            ->store();
     }
 }

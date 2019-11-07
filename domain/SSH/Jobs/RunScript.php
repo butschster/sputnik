@@ -2,6 +2,7 @@
 
 namespace Domain\SSH\Jobs;
 
+use Domain\Alert\Builder;
 use Domain\Task\Jobs\Run;
 use App\Models\Server;
 use Domain\Task\Contracts\Task;
@@ -61,12 +62,11 @@ class RunScript
      */
     public function failed(Exception $exception)
     {
-        $this->server->alerts()->create([
-            'type' => 'script.failed',
-            'exception' => (string) $exception,
-            'meta' => [
+        Builder::for($this->server, $exception)
+            ->setType('server.task.failed')
+            ->setMeta([
                 'script' => $this->script->getName()
-            ]
-        ]);
+            ])
+            ->store();
     }
 }
