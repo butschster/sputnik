@@ -7,7 +7,7 @@ return [
             'create' => 'Schedule cron jobs',
         ],
         'daemon' => [
-            'create' => 'Use Superviser',
+            'create' => 'Use Supervisor',
         ],
         'database' => [
             'create' => 'Create database',
