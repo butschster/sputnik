@@ -2,6 +2,7 @@
 
 namespace App\Scripts\Server\Callbacks;
 
+use App\Models\Server\Deployment;
 use App\Models\Server\Site;
 use Domain\Site\Contracts\Configurator;
 use Domain\Task\Contracts\Script\Callback;
@@ -31,11 +32,13 @@ class RestartWebServer implements Callback
      */
     public function handle(Task $task): void
     {
-        if (!$task->isSuccessful()) {
+        if (!$task->owner instanceof Deployment) {
             return;
         }
 
-        if (!$task->owner instanceof Site) {
+        $site = $task->owner->owner;
+
+        if (!$task->owner->owner instanceof Site) {
             return;
         }
 
@@ -49,7 +52,8 @@ class RestartWebServer implements Callback
      */
     protected function restartWebServer(Task $task): void
     {
-        $webServer = $task->owner->webServer()->name;
+        $site = $task->owner->owner;
+        $webServer = $site->webServer->name;
         $script = $this->configurator->getWebServer($webServer)->restartScript();
 
         dispatch(
@@ -66,7 +70,8 @@ class RestartWebServer implements Callback
      */
     protected function restartProcessor(Task $task): void
     {
-        $processor = $task->owner->processor()->name;
+        $site = $task->owner->owner;
+        $processor = $site->processor->name;
         $script = $this->configurator->getProcessor($processor)->restartScript();
 
         if (empty($script)) {

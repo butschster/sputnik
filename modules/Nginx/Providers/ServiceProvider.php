@@ -70,7 +70,7 @@ class ServiceProvider extends BaseServiceProvider
             /** @inheritDoc */
             public function restartScript(): string
             {
-                return view('Nginx::scripts.site.restart');
+                return view('Nginx::scripts.nginx.restart');
             }
         });
     }
