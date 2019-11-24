@@ -81,7 +81,7 @@ class RestartWebServer implements Callback
         dispatch(
             new RunScript(
                 $task->server,
-                new CustomScript("Restart procssor {$processor}", $script)
+                new CustomScript("Restart processor {$processor}", $script)
             )
         );
     }
