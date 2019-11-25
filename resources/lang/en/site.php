@@ -105,6 +105,12 @@ return [
                 'textarea' => 'String with variables',
                 'button' => 'Upload',
             ],
+            'create' => [
+                'key' => 'Key',
+                'value' => 'Value',
+                'title' => 'Add variable',
+                'button' => 'Add',
+            ],
         ],
     ],
 ];

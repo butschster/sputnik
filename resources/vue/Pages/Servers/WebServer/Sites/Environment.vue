@@ -32,30 +32,65 @@
             <h3 class="mb-0">{{ $t('site.environment.message.empty') }}</h3>
         </div>
 
+        <section class="section section--border-b well well-lg">
+            <Loader :loading="createFormLoading"/>
+            <div class="section-header">
+                {{ $t('site.environment.form.create.title') }}
+            </div>
+            <div class="flex">
+                <FormInput v-model="createForm.key"
+                           :label="$t('site.environment.form.create.key')"
+                           name="key"
+                           class="flex-1 mr-8" required/>
+
+                <FormInput v-model="createForm.value"
+                           :label="$t('site.environment.form.create.value')"
+                           name="value"
+                           class="mr-8"
+                           required/>
+
+                <div class="form-group mb-0">
+                    <button class="btn btn-primary" @click="onSubmit">
+                        {{ $t('site.environment.form.create.button') }}
+                    </button>
+                </div>
+            </div>
+        </section>
+
         <div class="section well well-lg">
             <Loader :loading="uploadLoading"/>
             <div class="section-header">
                 {{ $t('site.environment.form.upload.title') }}
                 <p>{{ $t('site.environment.form.upload.description') }}</p>
             </div>
+
             <Textarea v-model="uploadForm.variables"
                       :label="$t('site.environment.form.upload.textarea')"
                       name="variables"/>
-            <button class="btn btn-primary" @click="onUploadFile">{{ $t('site.environment.form.upload.button') }}</button>
+
+            <button class="btn btn-primary" @click="onUploadFile">
+                {{ $t('site.environment.form.upload.button') }}
+            </button>
         </div>
     </div>
 </template>
 
 <script>
+    import FormInput from '@vue/components/Form/Input.vue'
     import Textarea from "@vue/components/Form/Textarea"
 
     export default {
-        components: {Textarea},
+        components: {Textarea, FormInput},
         data() {
             return {
                 loading: false,
                 variables: [],
                 uploadLoading: false,
+                createFormLoading: false,
+                createForm: {
+                    key: '',
+                    value: '',
+                },
                 uploadForm: {
                     variables: null
                 }
@@ -89,6 +124,19 @@
 
                 this.loading = false
             },
+            async onSubmit() {
+                this.createFormLoading = true
+
+                try {
+                    this.variables = await this.$api.serverSiteEnvironment.update(this.site.id, this.createForm)
+                    this.resetVariables()
+                    this.$notify.success('Variables stored successfully.')
+                } catch (e) {
+                    this.$handleError(e)
+                }
+
+                this.createFormLoading = false
+            },
             async onUploadFile() {
                 this.uploadLoading = true
 
@@ -104,6 +152,10 @@
             },
             resetVariables() {
                 this.uploadForm.variables = null
+                this.createForm = {
+                    key: '',
+                    value: '',
+                }
             },
             canBeCopiedValue(value) {
                 if (value === '**********') {
