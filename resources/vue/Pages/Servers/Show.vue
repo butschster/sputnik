@@ -24,7 +24,7 @@
 
             <template v-if="isSupported && !isFailed">
                 <div class="tabs" role="tabs" v-if="server.id">
-                    <router-link v-for="(item, index) in links" :key="index" :to="item.link" class="tab">
+                    <router-link v-for="(item, index) in links" :key="index" :to="item.link(server)" class="tab">
                         {{ $t(item.title)}}
                     </router-link>
                 </div>
@@ -51,6 +51,7 @@
         data() {
             return {
                 server: null,
+                links: [],
                 loading: false,
             }
         },
@@ -72,6 +73,8 @@
                 })
 
                 this.$store.dispatch('server/setServer', this.server)
+
+                this.links = LinksManager.serverTopSidebar.links
             },
             async load() {
                 this.loading = true
@@ -87,11 +90,6 @@
                 }
 
                 this.loading = false
-            }
-        },
-        computed: {
-            links() {
-                return LinksManager.serverTopSidebar.linksWithArgs(this.server)
             }
         },
         watch: {

@@ -5,7 +5,8 @@ export class Server {
     constructor(server) {
         this.server = server
         this.modules = new ServerModules(server.modules)
-        this._links = LinksManager.serverSidebar.linksWithArgs(this.server)
+
+        this._links = LinksManager.serverSidebar.links
     }
 
     get isConfigured() {
@@ -38,7 +39,7 @@ export class Server {
         }
 
         return this._links.filter(link => {
-            if (!_.has(link, 'module')) {
+            if (!link.module) {
                 return true
             }
 
