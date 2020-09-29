@@ -135,7 +135,7 @@ abstract class Controller extends BaseController
             $provider = SourceProviderModel::where('provider_user_id', $providerUser->getId())->firstOrFail();
         } catch (ModelNotFoundException $e) {
             return redirect()->route('login')->withErrors([
-                'provider' => trans('auth.provider_failed'),
+                'provider' => trans('auth.provider.message.failed'),
             ]);
         }
 

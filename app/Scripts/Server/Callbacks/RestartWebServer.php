@@ -27,16 +27,14 @@ class RestartWebServer implements Callback
 
     /**
      * @param Task $task
-     * @throws \App\Exceptions\Scrpits\ConfigurationNotFoundException
-     * @throws \Throwable
+     * @throws \Domain\Site\Exceptions\ProcessorConfiguratorNotFound
+     * @throws \Domain\Site\Exceptions\WebServerConfiguratorNotFound
      */
     public function handle(Task $task): void
     {
         if (!$task->owner instanceof Deployment) {
             return;
         }
-
-        $site = $task->owner->owner;
 
         if (!$task->owner->owner instanceof Site) {
             return;

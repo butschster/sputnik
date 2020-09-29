@@ -3,15 +3,12 @@
 namespace App\Console\Commands\Modules;
 
 use Illuminate\Console\Command;
-use Illuminate\Console\DetectsApplicationNamespace;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputArgument;
 use Illuminate\Support\Str;
 
 class ModuleMakeCommand extends Command
 {
-    use DetectsApplicationNamespace;
-
     /**
      * The name and signature of the console command.
      * @var string

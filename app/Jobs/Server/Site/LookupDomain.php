@@ -57,6 +57,8 @@ class LookupDomain implements ShouldQueue
         }
     }
 
+
+
     /**
      * Handle a job failure.
      *

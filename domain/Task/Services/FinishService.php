@@ -7,6 +7,7 @@ use Domain\SSH\Exceptions\SSHConnectionRefusedException;
 use Domain\SSH\Exceptions\SSHPermissionDeniedException;
 use Domain\Task\Contracts\Task;
 use Domain\SSH\Contracts\ProcessExecutor;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class FinishService
@@ -42,6 +43,8 @@ class FinishService
     {
         $this->task = $task;
 
+        Log::debug('Task finish', ['class' => __CLASS__, 'task_id' => $task->id, 'status' => $task->status, 'exit_code' => $exitCode]);
+
         $task->saveOutput(
             $output = $this->retrieveOutput($task)
         );
@@ -49,7 +52,11 @@ class FinishService
         try {
             $this->checkOutputForErrors($output);
         } catch (\Exception $e) {
+
+            Log::debug('Task has errors', ['class' => __CLASS__, 'task_id' => $task->id, 'message' => (string) $e]);
+
             $task->markAsTimedOut($exitCode);
+
             throw $e;
         }
 
